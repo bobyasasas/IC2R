@@ -6,7 +6,7 @@
     {
       "id": "M01",
       "title": "构建与架构基础",
-      "status": "in_progress",
+      "status": "done",
       "depends_on": [],
       "acceptance": "Java 25 构建、核心单测、平台启动测试、CI 和进度校验全部通过。",
       "evidence": [

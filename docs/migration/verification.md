@@ -16,4 +16,6 @@
 
 未验证：客户端实际渲染、菜单／多人同步、机器链路、能量网络、第三方集成和旧存档升级。当前产物是开发基础版本，不能作为完整旧版的替代品。
 
-远程 CI 结果以本分支 Actions 运行记录为准；M01 在首次远程构建验收后完成。
+[首次远程 CI](https://github.com/bobyasasas/IC2R/actions/runs/34129849053) 已在提交 `9853b387` 通过构建、JUnit、GameTest、打包检查与看板检查，产物和测试报告已上传。M01 验收完成。
+
+`jdeps --print-module-deps core/build/libs/core-3.0.0-migration.1.jar` 的输出仅为 `java.base`，确认当前 core 产物无平台依赖。
