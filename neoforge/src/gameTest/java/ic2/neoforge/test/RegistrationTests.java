@@ -28,6 +28,10 @@ public final class RegistrationTests {
             DeferredRegister.create(BuiltInRegistries.TEST_FUNCTION, "ic2_tests");
 
     static {
+        FUNCTIONS.register("tin_can_consumption", () -> ConsumptionTests::tinCans);
+        FUNCTIONS.register("tool_mining", () -> ToolTests::miningAndRetention);
+        FUNCTIONS.register("tool_interactions", () -> ToolTests::rotationAndInsulation);
+        FUNCTIONS.register("tool_crafting", () -> ToolTests::crafting);
         FUNCTIONS.register("transformer_profiles", () -> EnergyDeviceTests::profiles);
         FUNCTIONS.register("storage_state", () -> EnergyDeviceTests::stateAndMenu);
         FUNCTIONS.register("transformer_chain", () -> EnergyDeviceTests::transformerChain);

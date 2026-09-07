@@ -3,6 +3,8 @@ package ic2.neoforge.machine;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 
+import ic2.neoforge.component.ModDataComponents;
+import ic2.neoforge.energy.EnergyConfig;
 import ic2.neoforge.energy.WorldEnergyNetworks;
 import ic2.neoforge.registration.ModMachines;
 
@@ -11,6 +13,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -26,10 +29,14 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
+import net.minecraft.world.level.storage.loot.LootParams;
+import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraft.world.phys.BlockHitResult;
 import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.transfer.access.ItemAccess;
 import net.neoforged.neoforge.transfer.fluid.FluidUtil;
+
+import java.util.List;
 
 public final class MachineBlock extends BaseEntityBlock {
     public static final BooleanProperty ACTIVE = BooleanProperty.create("active");
@@ -91,6 +98,37 @@ public final class MachineBlock extends BaseEntityBlock {
                     if (entity instanceof MachineBlockEntity machine)
                         machine.serverTick((ServerLevel) world);
                 };
+    }
+
+    @Override
+    protected List<ItemStack> getDrops(BlockState state, LootParams.Builder params) {
+        var drops = super.getDrops(state, params);
+        var entity = params.getOptionalParameter(LootContextParams.BLOCK_ENTITY);
+        for (var drop : drops) {
+            // The loot table chooses the correct item and respects explosion survival.
+            if (drop.is(asItem())
+                    && kind.storage()
+                    && entity instanceof EnergyStorageBlockEntity storage) {
+                double retained =
+                        storage.energy().stored() * EnergyConfig.STORAGE_DROP_RETENTION.get();
+                if (retained > 0) drop.set(ModDataComponents.STORED_ENERGY, retained);
+            }
+        }
+        return drops;
+    }
+
+    @Override
+    public void setPlacedBy(
+            Level level, BlockPos pos, BlockState state, LivingEntity placer, ItemStack stack) {
+        super.setPlacedBy(level, pos, state, placer, stack);
+        if (!level.isClientSide()
+                && level.getBlockEntity(pos) instanceof EnergyStorageBlockEntity storage) {
+            double stored = stack.getOrDefault(ModDataComponents.STORED_ENERGY, 0.0);
+            if (Double.isFinite(stored) && stored > 0) {
+                storage.energy().restore(Math.min(stored, storage.energy().capacity()));
+                storage.setChanged();
+            }
+        }
     }
 
     @Override

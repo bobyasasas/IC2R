@@ -31,4 +31,4 @@
 
 剩余验收：升级模块、燃料棒等尚未迁移原料的配方、特殊流体的世界效果、多人实机交互及声音听感。当前机器和流体族在注册清单中仍标为部分实现。
 
-资源生成顺序：`machines.py` → `material_blocks.py` → `fluids.py` → `recipes.py`，均位于 `tools/migration/resources/`。
+资源生成顺序：`machines.py` → `material_blocks.py` → `fluids.py` → `tools.py` → `recipes.py`，均位于 `tools/migration/resources/`。

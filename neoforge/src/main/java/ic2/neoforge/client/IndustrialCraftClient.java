@@ -1,11 +1,15 @@
 package ic2.neoforge.client;
 
 import ic2.neoforge.IndustrialCraft;
+import ic2.neoforge.component.ModDataComponents;
+import ic2.neoforge.item.CraftingToolItem;
 import ic2.neoforge.item.ElectricItem;
 import ic2.neoforge.item.ElectricItemEnergy;
+import ic2.neoforge.item.WrenchTool;
 import ic2.neoforge.machine.MachineKind;
 import ic2.neoforge.registration.ModMachines;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
 import net.neoforged.api.distmarker.Dist;
@@ -40,6 +44,30 @@ public final class IndustrialCraftClient {
     }
 
     private static void addTooltip(ItemTooltipEvent event) {
+        var stack = event.getItemStack();
+        if (stack.getItem() instanceof WrenchTool) {
+            var options = Minecraft.getInstance().options;
+            event.getToolTip()
+                    .add(
+                            Component.translatable(
+                                    "item.ic2.wrench.tooltip.mine",
+                                    options.keyAttack.getTranslatedKeyMessage()));
+            event.getToolTip()
+                    .add(
+                            Component.translatable(
+                                    "item.ic2.wrench.tooltip.rotate",
+                                    options.keyUse.getTranslatedKeyMessage()));
+        }
+        if (stack.getItem() instanceof CraftingToolItem)
+            event.getToolTip()
+                    .add(
+                            Component.translatable(
+                                    "ic2.tooltip.tool.uses_left",
+                                    stack.getMaxDamage() - stack.getDamageValue()));
+        var stored = stack.get(ModDataComponents.STORED_ENERGY);
+        if (stored != null)
+            event.getToolTip().add(Component.translatable("Store", stored.longValue()));
+
         if (event.getItemStack().getItem() instanceof ElectricItem item) {
             event.getToolTip()
                     .add(

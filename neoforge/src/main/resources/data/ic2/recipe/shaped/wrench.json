@@ -1,0 +1,16 @@
+{
+  "type": "ic2:shaped",
+  "pattern": [
+    "B B",
+    "BBB",
+    " B "
+  ],
+  "group": "wrench",
+  "result": {
+    "id": "ic2:wrench",
+    "count": 1
+  },
+  "key": {
+    "B": "#c:ingots/bronze"
+  }
+}

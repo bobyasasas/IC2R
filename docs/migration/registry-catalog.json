@@ -920,7 +920,7 @@
         "neoforge/src/gameTest/java/ic2/neoforge/test/EnergyDeviceTests.java",
         "docs/migration/energy-devices.md"
       ],
-      "note": "方向、电流档位、红石、充放电、菜单及保存已迁移；扳手拆卸的储能保留及完整 IC2 爆炸待验收。"
+      "note": "方向、红石、菜单、保存及扳手拆卸已验证；完整 IC2 爆炸和多人持续验收仍待完成。"
     },
     {
       "registry": "item",
@@ -935,7 +935,7 @@
         "neoforge/src/gameTest/java/ic2/neoforge/test/EnergyDeviceTests.java",
         "docs/migration/energy-devices.md"
       ],
-      "note": "方向、电流档位、红石、充放电、菜单及保存已迁移；扳手拆卸的储能保留及完整 IC2 爆炸待验收。"
+      "note": "方向、红石、菜单、保存及扳手拆卸已验证；完整 IC2 爆炸和多人持续验收仍待完成。"
     },
     {
       "registry": "item",
@@ -950,7 +950,7 @@
         "neoforge/src/gameTest/java/ic2/neoforge/test/EnergyDeviceTests.java",
         "docs/migration/energy-devices.md"
       ],
-      "note": "方向、电流档位、红石、充放电、菜单及保存已迁移；扳手拆卸的储能保留及完整 IC2 爆炸待验收。"
+      "note": "方向、红石、菜单、保存及扳手拆卸已验证；完整 IC2 爆炸和多人持续验收仍待完成。"
     },
     {
       "registry": "item",
@@ -965,7 +965,7 @@
         "neoforge/src/gameTest/java/ic2/neoforge/test/EnergyDeviceTests.java",
         "docs/migration/energy-devices.md"
       ],
-      "note": "方向、电流档位、红石、充放电、菜单及保存已迁移；扳手拆卸的储能保留及完整 IC2 爆炸待验收。"
+      "note": "方向、红石、菜单、保存及扳手拆卸已验证；完整 IC2 爆炸和多人持续验收仍待完成。"
     },
     {
       "registry": "item",
@@ -980,7 +980,7 @@
         "neoforge/src/gameTest/java/ic2/neoforge/test/EnergyDeviceTests.java",
         "docs/migration/energy-devices.md"
       ],
-      "note": "方向、电流档位、红石、充放电、菜单及保存已迁移；扳手拆卸的储能保留及完整 IC2 爆炸待验收。"
+      "note": "方向、红石、菜单、保存及扳手拆卸已验证；完整 IC2 爆炸和多人持续验收仍待完成。"
     },
     {
       "registry": "item",
@@ -995,7 +995,7 @@
         "neoforge/src/gameTest/java/ic2/neoforge/test/EnergyDeviceTests.java",
         "docs/migration/energy-devices.md"
       ],
-      "note": "方向、电流档位、红石、充放电、菜单及保存已迁移；扳手拆卸的储能保留及完整 IC2 爆炸待验收。"
+      "note": "方向、红石、菜单、保存及扳手拆卸已验证；完整 IC2 爆炸和多人持续验收仍待完成。"
     },
     {
       "registry": "item",
@@ -1010,7 +1010,7 @@
         "neoforge/src/gameTest/java/ic2/neoforge/test/EnergyDeviceTests.java",
         "docs/migration/energy-devices.md"
       ],
-      "note": "方向、电流档位、红石、充放电、菜单及保存已迁移；扳手拆卸的储能保留及完整 IC2 爆炸待验收。"
+      "note": "方向、红石、菜单、保存及扳手拆卸已验证；完整 IC2 爆炸和多人持续验收仍待完成。"
     },
     {
       "registry": "item",
@@ -1025,7 +1025,7 @@
         "neoforge/src/gameTest/java/ic2/neoforge/test/EnergyDeviceTests.java",
         "docs/migration/energy-devices.md"
       ],
-      "note": "方向、电流档位、红石、充放电、菜单及保存已迁移；扳手拆卸的储能保留及完整 IC2 爆炸待验收。"
+      "note": "方向、红石、菜单、保存及扳手拆卸已验证；完整 IC2 爆炸和多人持续验收仍待完成。"
     },
     {
       "registry": "item",
@@ -4518,7 +4518,12 @@
       "factory": "register",
       "expression": "new ItemToolCutter(new Properties().durability(60))",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/tools.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/ToolTests.java"
+      ],
+      "note": "合成、旋转、原生拆卸、耐久／电耗和绝缘交互通过；扳手面选择叠层、工具箱等后续整合待验收。"
     },
     {
       "registry": "item",
@@ -4538,7 +4543,12 @@
       "factory": "register",
       "expression": "new ItemToolCrafting(new Properties().durability(80))",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/tools.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/ToolTests.java"
+      ],
+      "note": "合成、旋转、原生拆卸、耐久／电耗和绝缘交互通过；扳手面选择叠层、工具箱等后续整合待验收。"
     },
     {
       "registry": "item",
@@ -4588,7 +4598,12 @@
       "factory": "register",
       "expression": "new ItemToolWrench(new Properties().durability(120))",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/tools.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/ToolTests.java"
+      ],
+      "note": "合成、旋转、原生拆卸、耐久／电耗和绝缘交互通过；扳手面选择叠层、工具箱等后续整合待验收。"
     },
     {
       "registry": "item",
@@ -4748,7 +4763,12 @@
       "factory": "register",
       "expression": "new ItemToolWrenchElectric(new Properties().stacksTo(1))",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/tools.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/ToolTests.java"
+      ],
+      "note": "合成、旋转、原生拆卸、耐久／电耗和绝缘交互通过；扳手面选择叠层、工具箱等后续整合待验收。"
     },
     {
       "registry": "item",
@@ -5606,11 +5626,10 @@
       "factory": "register",
       "expression": "new ItemTinCan(new Properties())",
       "decision": "preserve",
-      "status": "partial",
+      "status": "implemented",
       "evidence": [
-        "neoforge/src/main/java/ic2/neoforge/item/TinCanItem.java"
-      ],
-      "note": "批量进食与容器返还待独立游戏验收。"
+        "neoforge/src/gameTest/java/ic2/neoforge/test/ConsumptionTests.java"
+      ]
     },
     {
       "registry": "item",
@@ -7270,7 +7289,7 @@
         "neoforge/src/gameTest/java/ic2/neoforge/test/EnergyDeviceTests.java",
         "docs/migration/energy-devices.md"
       ],
-      "note": "方向、电流档位、红石、充放电、菜单及保存已迁移；扳手拆卸的储能保留及完整 IC2 爆炸待验收。"
+      "note": "方向、红石、菜单、保存及扳手拆卸已验证；完整 IC2 爆炸和多人持续验收仍待完成。"
     },
     {
       "registry": "block",
@@ -7285,7 +7304,7 @@
         "neoforge/src/gameTest/java/ic2/neoforge/test/EnergyDeviceTests.java",
         "docs/migration/energy-devices.md"
       ],
-      "note": "方向、电流档位、红石、充放电、菜单及保存已迁移；扳手拆卸的储能保留及完整 IC2 爆炸待验收。"
+      "note": "方向、红石、菜单、保存及扳手拆卸已验证；完整 IC2 爆炸和多人持续验收仍待完成。"
     },
     {
       "registry": "block",
@@ -7300,7 +7319,7 @@
         "neoforge/src/gameTest/java/ic2/neoforge/test/EnergyDeviceTests.java",
         "docs/migration/energy-devices.md"
       ],
-      "note": "方向、电流档位、红石、充放电、菜单及保存已迁移；扳手拆卸的储能保留及完整 IC2 爆炸待验收。"
+      "note": "方向、红石、菜单、保存及扳手拆卸已验证；完整 IC2 爆炸和多人持续验收仍待完成。"
     },
     {
       "registry": "block",
@@ -7315,7 +7334,7 @@
         "neoforge/src/gameTest/java/ic2/neoforge/test/EnergyDeviceTests.java",
         "docs/migration/energy-devices.md"
       ],
-      "note": "方向、电流档位、红石、充放电、菜单及保存已迁移；扳手拆卸的储能保留及完整 IC2 爆炸待验收。"
+      "note": "方向、红石、菜单、保存及扳手拆卸已验证；完整 IC2 爆炸和多人持续验收仍待完成。"
     },
     {
       "registry": "block",
@@ -7340,7 +7359,7 @@
         "neoforge/src/gameTest/java/ic2/neoforge/test/EnergyDeviceTests.java",
         "docs/migration/energy-devices.md"
       ],
-      "note": "方向、电流档位、红石、充放电、菜单及保存已迁移；扳手拆卸的储能保留及完整 IC2 爆炸待验收。"
+      "note": "方向、红石、菜单、保存及扳手拆卸已验证；完整 IC2 爆炸和多人持续验收仍待完成。"
     },
     {
       "registry": "block",
@@ -7355,7 +7374,7 @@
         "neoforge/src/gameTest/java/ic2/neoforge/test/EnergyDeviceTests.java",
         "docs/migration/energy-devices.md"
       ],
-      "note": "方向、电流档位、红石、充放电、菜单及保存已迁移；扳手拆卸的储能保留及完整 IC2 爆炸待验收。"
+      "note": "方向、红石、菜单、保存及扳手拆卸已验证；完整 IC2 爆炸和多人持续验收仍待完成。"
     },
     {
       "registry": "block",
@@ -7370,7 +7389,7 @@
         "neoforge/src/gameTest/java/ic2/neoforge/test/EnergyDeviceTests.java",
         "docs/migration/energy-devices.md"
       ],
-      "note": "方向、电流档位、红石、充放电、菜单及保存已迁移；扳手拆卸的储能保留及完整 IC2 爆炸待验收。"
+      "note": "方向、红石、菜单、保存及扳手拆卸已验证；完整 IC2 爆炸和多人持续验收仍待完成。"
     },
     {
       "registry": "block",
@@ -7385,7 +7404,7 @@
         "neoforge/src/gameTest/java/ic2/neoforge/test/EnergyDeviceTests.java",
         "docs/migration/energy-devices.md"
       ],
-      "note": "方向、电流档位、红石、充放电、菜单及保存已迁移；扳手拆卸的储能保留及完整 IC2 爆炸待验收。"
+      "note": "方向、红石、菜单、保存及扳手拆卸已验证；完整 IC2 爆炸和多人持续验收仍待完成。"
     },
     {
       "registry": "block",
@@ -9913,7 +9932,7 @@
         "neoforge/src/gameTest/java/ic2/neoforge/test/EnergyDeviceTests.java",
         "docs/migration/energy-devices.md"
       ],
-      "note": "方向、电流档位、红石、充放电、菜单及保存已迁移；扳手拆卸的储能保留及完整 IC2 爆炸待验收。"
+      "note": "方向、红石、菜单、保存及扳手拆卸已验证；完整 IC2 爆炸和多人持续验收仍待完成。"
     },
     {
       "registry": "block_entity",
@@ -9928,7 +9947,7 @@
         "neoforge/src/gameTest/java/ic2/neoforge/test/EnergyDeviceTests.java",
         "docs/migration/energy-devices.md"
       ],
-      "note": "方向、电流档位、红石、充放电、菜单及保存已迁移；扳手拆卸的储能保留及完整 IC2 爆炸待验收。"
+      "note": "方向、红石、菜单、保存及扳手拆卸已验证；完整 IC2 爆炸和多人持续验收仍待完成。"
     },
     {
       "registry": "block_entity",
@@ -9943,7 +9962,7 @@
         "neoforge/src/gameTest/java/ic2/neoforge/test/EnergyDeviceTests.java",
         "docs/migration/energy-devices.md"
       ],
-      "note": "方向、电流档位、红石、充放电、菜单及保存已迁移；扳手拆卸的储能保留及完整 IC2 爆炸待验收。"
+      "note": "方向、红石、菜单、保存及扳手拆卸已验证；完整 IC2 爆炸和多人持续验收仍待完成。"
     },
     {
       "registry": "block_entity",
@@ -9958,7 +9977,7 @@
         "neoforge/src/gameTest/java/ic2/neoforge/test/EnergyDeviceTests.java",
         "docs/migration/energy-devices.md"
       ],
-      "note": "方向、电流档位、红石、充放电、菜单及保存已迁移；扳手拆卸的储能保留及完整 IC2 爆炸待验收。"
+      "note": "方向、红石、菜单、保存及扳手拆卸已验证；完整 IC2 爆炸和多人持续验收仍待完成。"
     },
     {
       "registry": "block_entity",
@@ -9983,7 +10002,7 @@
         "neoforge/src/gameTest/java/ic2/neoforge/test/EnergyDeviceTests.java",
         "docs/migration/energy-devices.md"
       ],
-      "note": "方向、电流档位、红石、充放电、菜单及保存已迁移；扳手拆卸的储能保留及完整 IC2 爆炸待验收。"
+      "note": "方向、红石、菜单、保存及扳手拆卸已验证；完整 IC2 爆炸和多人持续验收仍待完成。"
     },
     {
       "registry": "block_entity",
@@ -9998,7 +10017,7 @@
         "neoforge/src/gameTest/java/ic2/neoforge/test/EnergyDeviceTests.java",
         "docs/migration/energy-devices.md"
       ],
-      "note": "方向、电流档位、红石、充放电、菜单及保存已迁移；扳手拆卸的储能保留及完整 IC2 爆炸待验收。"
+      "note": "方向、红石、菜单、保存及扳手拆卸已验证；完整 IC2 爆炸和多人持续验收仍待完成。"
     },
     {
       "registry": "block_entity",
@@ -10013,7 +10032,7 @@
         "neoforge/src/gameTest/java/ic2/neoforge/test/EnergyDeviceTests.java",
         "docs/migration/energy-devices.md"
       ],
-      "note": "方向、电流档位、红石、充放电、菜单及保存已迁移；扳手拆卸的储能保留及完整 IC2 爆炸待验收。"
+      "note": "方向、红石、菜单、保存及扳手拆卸已验证；完整 IC2 爆炸和多人持续验收仍待完成。"
     },
     {
       "registry": "block_entity",
@@ -10028,7 +10047,7 @@
         "neoforge/src/gameTest/java/ic2/neoforge/test/EnergyDeviceTests.java",
         "docs/migration/energy-devices.md"
       ],
-      "note": "方向、电流档位、红石、充放电、菜单及保存已迁移；扳手拆卸的储能保留及完整 IC2 爆炸待验收。"
+      "note": "方向、红石、菜单、保存及扳手拆卸已验证；完整 IC2 爆炸和多人持续验收仍待完成。"
     },
     {
       "registry": "block_entity",

@@ -1,0 +1,62 @@
+package ic2.neoforge.registration;
+
+import ic2.neoforge.IndustrialCraft;
+import ic2.neoforge.item.*;
+
+import net.minecraft.core.component.DataComponents;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.Identifier;
+import net.minecraft.tags.TagKey;
+import net.minecraft.world.item.CreativeModeTabs;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.component.Tool;
+import net.minecraft.world.level.block.Block;
+import net.neoforged.bus.api.IEventBus;
+import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
+import net.neoforged.neoforge.registries.DeferredItem;
+import net.neoforged.neoforge.registries.DeferredRegister;
+
+import java.util.List;
+
+public final class ModTools {
+    private static final DeferredRegister.Items ITEMS =
+            DeferredRegister.createItems(IndustrialCraft.MOD_ID);
+    public static final TagKey<Block> WRENCH_TARGETS =
+            TagKey.create(
+                    Registries.BLOCK, Identifier.fromNamespaceAndPath("ic2", "mineable/wrench"));
+    public static final DeferredItem<WrenchItem> WRENCH =
+            ITEMS.registerItem("wrench", p -> new WrenchItem(tool(p.durability(120), 1)));
+    public static final DeferredItem<ElectricWrenchItem> ELECTRIC_WRENCH =
+            ITEMS.registerItem(
+                    "electric_wrench", p -> new ElectricWrenchItem(tool(p.stacksTo(1), 0)));
+    public static final DeferredItem<CraftingToolItem> FORGE_HAMMER =
+            ITEMS.registerItem("forge_hammer", p -> new CraftingToolItem(p.durability(80)));
+    public static final DeferredItem<CutterItem> CUTTER =
+            ITEMS.registerItem("cutter", p -> new CutterItem(p.durability(60)));
+
+    private static Item.Properties tool(Item.Properties properties, int damage) {
+        var blocks =
+                BuiltInRegistries.acquireBootstrapRegistrationLookup(BuiltInRegistries.BLOCK)
+                        .getOrThrow(WRENCH_TARGETS);
+        return properties.component(
+                DataComponents.TOOL,
+                new Tool(List.of(Tool.Rule.minesAndDrops(blocks, 6)), 1, damage, true));
+    }
+
+    public static void register(IEventBus bus) {
+        ITEMS.register(bus);
+        bus.addListener(ModTools::creativeContents);
+    }
+
+    private static void creativeContents(BuildCreativeModeTabContentsEvent event) {
+        if (event.getTabKey().equals(CreativeModeTabs.TOOLS_AND_UTILITIES)) {
+            event.accept(WRENCH);
+            event.accept(ELECTRIC_WRENCH);
+            event.accept(FORGE_HAMMER);
+            event.accept(CUTTER);
+        }
+    }
+
+    private ModTools() {}
+}

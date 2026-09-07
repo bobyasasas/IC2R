@@ -5,12 +5,14 @@ import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 
 import ic2.core.energy.grid.CableSpec;
+import ic2.neoforge.item.CutterItem;
 import ic2.neoforge.machine.MachineBlock;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -76,6 +78,15 @@ public final class CableBlock extends Block {
                 }
             shapes[mask] = shape.optimize();
         }
+    }
+
+    @Override
+    protected void attack(BlockState state, Level level, BlockPos pos, Player player) {
+        CutterItem.strip(player, level, pos, state);
+    }
+
+    public CableSpec.Material material() {
+        return material;
     }
 
     public CableSpec specification() {

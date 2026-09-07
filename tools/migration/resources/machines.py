@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Reproducibly port passive cable and machine assets to vanilla model formats."""
 import json
+import re
 from base import ROOT, OLD, NEW, ASSETS, write, copy, model, item
 
 machines = ['batbox', 'cesu', 'mfe', 'mfsu', 'lv_transformer', 'mv_transformer', 'hv_transformer', 'ev_transformer', 'canner', 'iron_furnace', 'generator', 'electric_furnace', 'macerator', 'extractor', 'compressor']
@@ -51,8 +52,19 @@ for identifier, material, insulation, diameter in cables:
         parts.append(part)
     write(ASSETS + 'blockstates/' + identifier + '.json', {'multipart': parts})
 
+legacy_blocks = (ROOT / 'legacy/forge-1.20.1/src/main/java/ic2/core/ref/Ic2Blocks.java').read_text()
 for identifier in machines + [entry[0] for entry in cables]:
-    write(f'data/ic2/loot_table/blocks/{identifier}.json', {'type': 'minecraft:block', 'pools': [{'rolls': 1, 'entries': [{'type': 'minecraft:item', 'name': 'ic2:' + identifier}], 'conditions': [{'condition': 'minecraft:survives_explosion'}]}]})
+    drop = identifier
+    if identifier in machines:
+        declaration = re.search(r'public static final (?:Block|Ic2TileEntityBlock) ' + identifier.upper() + r'\s*=(.*?);', legacy_blocks, re.S).group(1)
+        default_drop = re.search(r'DefaultDrop\.(\w+)', declaration).group(1)
+        drop = {'Self': identifier, 'Machine': 'machine', 'AdvMachine': 'advanced_machine'}[default_drop]
+    entry = {'type': 'minecraft:item', 'name': 'ic2:' + identifier}
+    if drop != identifier:
+        entry = {'type': 'minecraft:alternatives', 'children': [
+            {**entry, 'conditions': [{'condition': 'minecraft:match_tool', 'predicate': {'items': '#ic2:wrenches'}}]},
+            {'type': 'minecraft:item', 'name': 'ic2:' + drop}]}
+    write(f'data/ic2/loot_table/blocks/{identifier}.json', {'type': 'minecraft:block', 'pools': [{'rolls': 1, 'entries': [entry], 'conditions': [{'condition': 'minecraft:survives_explosion'}]}]})
 write('data/minecraft/tags/block/mineable/pickaxe.json', {'replace': False, 'values': ['ic2:' + identifier for identifier in machines]})
 for locale in ['en_us', 'zh_cn']:
     path = ASSETS + 'lang/' + locale + '.json'

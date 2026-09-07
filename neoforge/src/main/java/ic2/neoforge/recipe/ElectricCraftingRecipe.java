@@ -4,6 +4,7 @@ import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 
+import ic2.neoforge.item.CraftingToolItem;
 import ic2.neoforge.item.ElectricItemEnergy;
 import ic2.neoforge.registration.ModCraftingRecipes;
 
@@ -73,9 +74,16 @@ public record ElectricCraftingRecipe(CraftingRecipe delegate, boolean consuming,
 
     @Override
     public NonNullList<ItemStack> getRemainingItems(CraftingInput input) {
-        return consuming
-                ? NonNullList.withSize(input.size(), ItemStack.EMPTY)
-                : delegate.getRemainingItems(input);
+        if (consuming) return NonNullList.withSize(input.size(), ItemStack.EMPTY);
+        var remaining = delegate.getRemainingItems(input);
+        if (delegate instanceof ShapelessRecipe) {
+            for (int slot = 0; slot < input.size(); slot++) {
+                var stack = input.getItem(slot);
+                if (stack.getItem() instanceof CraftingToolItem tool)
+                    remaining.set(slot, tool.craftingRemainder(stack));
+            }
+        }
+        return remaining;
     }
 
     @Override

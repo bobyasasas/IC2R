@@ -1,9 +1,6 @@
 {
   "replace": false,
   "values": [
-    {
-      "id": "ic2:cutter",
-      "required": false
-    }
+    "ic2:cutter"
   ]
 }

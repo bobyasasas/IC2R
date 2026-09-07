@@ -2445,8 +2445,8 @@
     {
       "source": "shaped/cutter.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:cutter"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/cutter.json"
     },
     {
       "source": "shaped/desertification_tfbp.json",
@@ -2667,14 +2667,14 @@
     {
       "source": "shaped/forge_hammer.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:forge_hammer"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/forge_hammer.json"
     },
     {
       "source": "shaped/forge_hammer_2.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:forge_hammer"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/forge_hammer_2.json"
     },
     {
       "source": "shaped/frequency_transmitter.json",
@@ -4083,14 +4083,14 @@
     {
       "source": "shaped/wrench.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:wrench"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/wrench.json"
     },
     {
       "source": "shaped/wrench_down.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:wrench"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/wrench_down.json"
     },
     {
       "source": "shapeless/black_painter.json",
@@ -4245,8 +4245,8 @@
     {
       "source": "shapeless/electric_wrench.json",
       "type": "ic2:shapeless",
-      "status": "pending",
-      "reason": "unported result ic2:electric_wrench"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shapeless/electric_wrench.json"
     },
     {
       "source": "shapeless/fertilizer.json",

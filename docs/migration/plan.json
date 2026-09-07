@@ -180,14 +180,17 @@
     {
       "id": "M13",
       "title": "作物、世界生成及装备",
-      "status": "todo",
+      "status": "in_progress",
       "depends_on": [
         "M04",
         "M05",
         "M08"
       ],
       "acceptance": "进入阶段前按作物／树木矿物／工具装备拆子任务；资源生成和存档重载测试。",
-      "evidence": []
+      "evidence": [
+        "docs/migration/work-packages.json",
+        "docs/migration/tools.md"
+      ]
     },
     {
       "id": "M14",

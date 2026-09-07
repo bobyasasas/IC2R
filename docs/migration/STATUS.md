@@ -22,7 +22,7 @@
 | M10 菜单与网络同步 | 进行中 | M05, M09 | 类型化 payload、服务端校验；双人交互与断线重连；客户端渲染 API 更新。 |
 | M11 罐装机及其余加工机器 | 进行中 | M09, M10 | 按机器族拆分后续提交；优先覆盖 cannerfix1 路径，再覆盖升级、泵、存储和高阶机器。 |
 | M12 反应堆与爆炸系统 | 待开始 | M06, M09 | 热量规则独立测试；反应堆、核弹、炸药与遥控的游戏回归；权限与持久化验证。 |
-| M13 作物、世界生成及装备 | 待开始 | M04, M05, M08 | 进入阶段前按作物／树木矿物／工具装备拆子任务；资源生成和存档重载测试。 |
+| M13 作物、世界生成及装备 | 进行中 | M04, M05, M08 | 进入阶段前按作物／树木矿物／工具装备拆子任务；资源生成和存档重载测试。 |
 | M14 JEI、Jade 与 AE2 集成 | 待开始 | M10, M11 | 按实际支持 26.1.2 的版本接入；每个集成独立边界；缺少可选模组仍能启动。 |
 | M15 旧存档兼容策略 | 待开始 | M04, M05, M11, M12, M13 | 在副本上验证 ID、NBT 和版本跨度；给出可复现转换流程，或明确不支持的项目。 |
 | M16 客户端、多人及性能验收 | 待开始 | M10, M11, M12, M13, M14 | 客户端视觉检查、双人专服、保存重载与性能基线；不得以编译通过替代功能验收。 |
@@ -32,7 +32,7 @@
 
 | 注册类别 | 已实现 | 部分实现 | 基线总数 |
 |---|---:|---:|---:|
-| item | 177 | 48 | 528 |
+| item | 178 | 51 | 528 |
 | block | 13 | 44 | 264 |
 | block_entity | 0 | 15 | 157 |
 | entity | 0 | 0 | 8 |
@@ -49,7 +49,7 @@
 
 ## 配方迁移覆盖
 
-已转换并纳入加载测试：**401 / 796**。
+已转换并纳入加载测试：**407 / 796**。
 
 转换计数不等于生存模式可达率；原料、工具与前置机器仍需逐步验收。
 
@@ -76,7 +76,7 @@
 | P13 爆炸与电缆附加行为 | M12 | 待开始 | IC2 爆炸、核弹、炸药、遥控；电击、涂色、建筑泡沫。 |
 | P14 树木、矿石与世界生成 | M13 | 待开始 | 原木、树叶、橡胶采集、矿石和生成分布；自然生成、工具与存档验证。 |
 | P15 作物与农业 | M13 | 待开始 | 作物卡、杂交、养分、生长、收获、农药及种子持久化。 |
-| P16 工具与装备 | M13 | 待开始 | 扳手、切线钳、钻头、锯、喷枪、背包与护甲；消耗、附魔、渲染和同步。 |
+| P16 工具与装备 | M13 | 进行中 | 扳手、切线钳、钻头、锯、喷枪、背包与护甲；消耗、附魔、渲染和同步。 |
 | P17 可选集成 | M14 | 待开始 | 逐个核对 JEI、Jade、AE2 的目标版本与行为，缺少依赖仍可启动。 |
 | P18 旧存档转换 | M15 | 待开始 | 用副本建立跨版本数据迁移工具和可复现流程，列出不支持项。 |
 | P19 多人及性能 | M16 | 待开始 | 双人操作、断线、区块加载、重启、资源重载与性能基线。 |
@@ -95,6 +95,7 @@
 - M09：[WorldEnergyNetworks.java](../../neoforge/src/main/java/ic2/neoforge/energy/WorldEnergyNetworks.java), [MachineTests.java](../../neoforge/src/gameTest/java/ic2/neoforge/test/MachineTests.java), [first-machines.md](../../docs/migration/first-machines.md)
 - M10：[MachineMenu.java](../../neoforge/src/main/java/ic2/neoforge/menu/MachineMenu.java), [MachineScreen.java](../../neoforge/src/main/java/ic2/neoforge/client/MachineScreen.java)
 - M11：[ProcessingBlockEntity.java](../../neoforge/src/main/java/ic2/neoforge/machine/ProcessingBlockEntity.java), [ProcessingRecipe.java](../../neoforge/src/main/java/ic2/neoforge/recipe/ProcessingRecipe.java), [work-packages.json](../../docs/migration/work-packages.json), [canner-fluids.md](../../docs/migration/canner-fluids.md)
+- M13：[work-packages.json](../../docs/migration/work-packages.json), [tools.md](../../docs/migration/tools.md)
 
 ## 依赖关系
 
@@ -129,7 +130,7 @@ flowchart TD
   M12["M12 反应堆与爆炸系统 · 待开始"]
   M06 --> M12
   M09 --> M12
-  M13["M13 作物、世界生成及装备 · 待开始"]
+  M13["M13 作物、世界生成及装备 · 进行中"]
   M04 --> M13
   M05 --> M13
   M08 --> M13

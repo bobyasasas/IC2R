@@ -36,6 +36,15 @@ public final class ModDataComponents {
                                             ByteBufCodecs.DOUBLE.map(
                                                     ModDataComponents::validCharge,
                                                     ModDataComponents::validCharge)));
+    public static final Supplier<DataComponentType<Double>> STORED_ENERGY =
+            TYPES.<Double>registerComponentType(
+                    "stored_energy",
+                    builder ->
+                            builder.persistent(CHARGE_CODEC)
+                                    .networkSynchronized(
+                                            ByteBufCodecs.DOUBLE.map(
+                                                    ModDataComponents::validCharge,
+                                                    ModDataComponents::validCharge)));
     // Absence means empty; templates are immutable and safe to store in a component map.
     public static final Supplier<DataComponentType<FluidStackTemplate>> FLUID =
             TYPES.<FluidStackTemplate>registerComponentType(

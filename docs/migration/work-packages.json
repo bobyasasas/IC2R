@@ -134,9 +134,12 @@
       "id": "P16",
       "parent": "M13",
       "title": "工具与装备",
-      "status": "todo",
+      "status": "in_progress",
       "acceptance": "扳手、切线钳、钻头、锯、喷枪、背包与护甲；消耗、附魔、渲染和同步。",
-      "evidence": []
+      "evidence": [
+        "docs/migration/tools.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/ToolTests.java"
+      ]
     },
     {
       "id": "P17",
