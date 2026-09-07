@@ -1,0 +1,14 @@
+{
+  "type": "ic2:macerator",
+  "ingredient": "minecraft:quartz_stairs",
+  "input_count": 1,
+  "results": [
+    {
+      "stack": {
+        "id": "minecraft:quartz",
+        "count": 6
+      },
+      "weight": 1
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "type": "ic2:compressor",
+  "ingredient": "minecraft:blaze_powder",
+  "input_count": 5,
+  "results": [
+    {
+      "stack": {
+        "id": "minecraft:blaze_rod",
+        "count": 1
+      },
+      "weight": 1
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "type": "ic2:macerator",
+  "ingredient": "minecraft:lapis_block",
+  "input_count": 1,
+  "results": [
+    {
+      "stack": {
+        "id": "ic2:lapis_dust",
+        "count": 9
+      },
+      "weight": 1
+    }
+  ]
+}

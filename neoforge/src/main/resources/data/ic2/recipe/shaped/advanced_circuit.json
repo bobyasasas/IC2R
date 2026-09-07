@@ -1,0 +1,19 @@
+{
+  "type": "ic2:shaped",
+  "pattern": [
+    "RGR",
+    "LCL",
+    "RGR"
+  ],
+  "group": "advanced_circuit",
+  "result": {
+    "id": "ic2:advanced_circuit",
+    "count": 1
+  },
+  "key": {
+    "L": "minecraft:lapis_lazuli",
+    "G": "minecraft:glowstone_dust",
+    "R": "minecraft:redstone",
+    "C": "ic2:circuit"
+  }
+}

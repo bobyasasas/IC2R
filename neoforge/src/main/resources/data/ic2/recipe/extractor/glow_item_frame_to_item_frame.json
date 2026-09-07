@@ -1,0 +1,14 @@
+{
+  "type": "ic2:extractor",
+  "ingredient": "minecraft:glow_item_frame",
+  "input_count": 1,
+  "results": [
+    {
+      "stack": {
+        "id": "minecraft:item_frame",
+        "count": 1
+      },
+      "weight": 1
+    }
+  ]
+}

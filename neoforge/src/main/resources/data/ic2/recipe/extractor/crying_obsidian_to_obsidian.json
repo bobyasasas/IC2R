@@ -1,0 +1,14 @@
+{
+  "type": "ic2:extractor",
+  "ingredient": "minecraft:crying_obsidian",
+  "input_count": 1,
+  "results": [
+    {
+      "stack": {
+        "id": "minecraft:obsidian",
+        "count": 1
+      },
+      "weight": 1
+    }
+  ]
+}

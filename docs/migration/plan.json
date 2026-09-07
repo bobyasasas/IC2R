@@ -123,7 +123,7 @@
     {
       "id": "M09",
       "title": "首台可用电力机器",
-      "status": "in_progress",
+      "status": "done",
       "depends_on": [
         "M06",
         "M07",
@@ -132,7 +132,8 @@
       "acceptance": "发电机—导线—电炉的最小链路；耗能、配方、存取、区块重载与专服 GameTest 通过。",
       "evidence": [
         "neoforge/src/main/java/ic2/neoforge/energy/WorldEnergyNetworks.java",
-        "neoforge/src/gameTest/java/ic2/neoforge/test/MachineTests.java"
+        "neoforge/src/gameTest/java/ic2/neoforge/test/MachineTests.java",
+        "docs/migration/first-machines.md"
       ]
     },
     {
@@ -152,13 +153,16 @@
     {
       "id": "M11",
       "title": "罐装机及其余加工机器",
-      "status": "todo",
+      "status": "in_progress",
       "depends_on": [
         "M09",
         "M10"
       ],
       "acceptance": "按机器族拆分后续提交；优先覆盖 cannerfix1 路径，再覆盖升级、泵、存储和高阶机器。",
-      "evidence": []
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/machine/ProcessingBlockEntity.java",
+        "neoforge/src/main/java/ic2/neoforge/recipe/ProcessingRecipe.java"
+      ]
     },
     {
       "id": "M12",

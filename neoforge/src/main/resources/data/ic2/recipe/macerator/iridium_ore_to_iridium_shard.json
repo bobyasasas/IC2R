@@ -1,0 +1,14 @@
+{
+  "type": "ic2:macerator",
+  "ingredient": "ic2:iridium_ore",
+  "input_count": 1,
+  "results": [
+    {
+      "stack": {
+        "id": "ic2:iridium_shard",
+        "count": 9
+      },
+      "weight": 1
+    }
+  ]
+}

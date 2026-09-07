@@ -1,0 +1,14 @@
+{
+  "type": "ic2:macerator",
+  "ingredient": "minecraft:blaze_rod",
+  "input_count": 1,
+  "results": [
+    {
+      "stack": {
+        "id": "minecraft:blaze_powder",
+        "count": 5
+      },
+      "weight": 1
+    }
+  ]
+}

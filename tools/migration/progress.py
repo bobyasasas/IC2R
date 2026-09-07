@@ -19,6 +19,25 @@ def generate():
     assert originals == {p.relative_to(legacy).as_posix() for p in legacy.rglob("*.java")}, "legacy source set changed"
     for entry in inventory["files"]:
         assert hashlib.sha256((legacy / entry["source"]).read_bytes()).hexdigest() == entry["sha256"], entry["source"]
+    resources = json.loads((ROOT / "docs/migration/resource-inventory.json").read_text())
+    legacy_resources = ROOT / "legacy/forge-1.20.1/src/main/resources"
+    assert resources["baseline"] == plan["baseline"]
+    for entry in resources["files"]:
+        assert hashlib.sha256((legacy_resources / entry["path"]).read_bytes()).hexdigest() == entry["sha256"], entry["path"]
+    recipe_catalog = ROOT / "docs/migration/recipe-catalog.json"
+    recipes = json.loads(recipe_catalog.read_text())["entries"] if recipe_catalog.exists() else []
+    recipe_sources = set()
+    for recipe in recipes:
+        assert recipe["source"] not in recipe_sources, recipe["source"]
+        recipe_sources.add(recipe["source"])
+        assert (legacy_resources / "data/ic2/recipes" / recipe["source"]).is_file(), recipe["source"]
+        assert recipe["status"] in {"converted", "pending"}, recipe
+        if recipe["status"] == "converted":
+            assert (ROOT / recipe["target"]).is_file(), recipe["target"]
+        else:
+            assert recipe.get("reason"), recipe
+    if recipes:
+        assert recipe_sources == {path.relative_to(legacy_resources / "data/ic2/recipes").as_posix() for path in (legacy_resources / "data/ic2/recipes").rglob("*.json")}
     tasks = {t["id"]: t for t in plan["tasks"]}
     assert len(tasks) == len(plan["tasks"]), "duplicate task ID"
 
@@ -72,6 +91,8 @@ def generate():
             entries = [e for e in catalog if e["registry"] == kind]
             lines.append(f"| {kind} | {sum(e['status'] == 'implemented' for e in entries)} | {sum(e['status'] == 'partial' for e in entries)} | {len(entries)} |")
         lines += ["", "流体族尚须展开为实际流体与方块。完整状态见 [注册清单](registry-catalog.json)。"]
+    if recipes:
+        lines += ["", "## 配方迁移覆盖", "", f"已转换并纳入加载测试：**{sum(r['status'] == 'converted' for r in recipes)} / {len(recipes)}**。", "", "转换计数不等于生存模式可达率；原料、工具与前置机器仍需逐步验收。", "", "[逐条状态与待迁移原因](recipe-catalog.json)"]
     lines += ["", "## 验证证据", ""]
     for task in tasks.values():
         if task["evidence"]:

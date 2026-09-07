@@ -1,0 +1,14 @@
+{
+  "type": "ic2:macerator",
+  "ingredient": "minecraft:stone",
+  "input_count": 1,
+  "results": [
+    {
+      "stack": {
+        "id": "minecraft:cobblestone",
+        "count": 1
+      },
+      "weight": 1
+    }
+  ]
+}

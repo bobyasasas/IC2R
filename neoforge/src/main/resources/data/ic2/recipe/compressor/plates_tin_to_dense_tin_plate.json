@@ -1,0 +1,14 @@
+{
+  "type": "ic2:compressor",
+  "ingredient": "#c:plates/tin",
+  "input_count": 9,
+  "results": [
+    {
+      "stack": {
+        "id": "ic2:dense_tin_plate",
+        "count": 1
+      },
+      "weight": 1
+    }
+  ]
+}

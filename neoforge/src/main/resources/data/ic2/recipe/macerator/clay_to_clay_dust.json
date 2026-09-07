@@ -1,0 +1,14 @@
+{
+  "type": "ic2:macerator",
+  "ingredient": "minecraft:clay",
+  "input_count": 1,
+  "results": [
+    {
+      "stack": {
+        "id": "ic2:clay_dust",
+        "count": 2
+      },
+      "weight": 1
+    }
+  ]
+}

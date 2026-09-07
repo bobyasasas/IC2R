@@ -1,0 +1,16 @@
+{
+  "type": "ic2:shaped",
+  "pattern": [
+    "PSP",
+    "PSP",
+    "PSP"
+  ],
+  "result": {
+    "id": "ic2:iron_rotor_blade",
+    "count": 1
+  },
+  "key": {
+    "P": "#c:plates/iron",
+    "S": "minecraft:iron_ingot"
+  }
+}

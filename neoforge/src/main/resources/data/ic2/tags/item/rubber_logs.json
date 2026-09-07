@@ -1,0 +1,21 @@
+{
+  "replace": false,
+  "values": [
+    {
+      "id": "ic2:rubber_log",
+      "required": false
+    },
+    {
+      "id": "ic2:rubber_wood",
+      "required": false
+    },
+    {
+      "id": "ic2:stripped_rubber_log",
+      "required": false
+    },
+    {
+      "id": "ic2:stripped_rubber_wood",
+      "required": false
+    }
+  ]
+}

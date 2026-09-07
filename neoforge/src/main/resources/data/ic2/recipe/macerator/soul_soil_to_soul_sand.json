@@ -1,0 +1,14 @@
+{
+  "type": "ic2:macerator",
+  "ingredient": "minecraft:soul_soil",
+  "input_count": 1,
+  "results": [
+    {
+      "stack": {
+        "id": "minecraft:soul_sand",
+        "count": 1
+      },
+      "weight": 1
+    }
+  ]
+}

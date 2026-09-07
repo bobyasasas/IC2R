@@ -1,0 +1,17 @@
+{
+  "type": "ic2:shaped",
+  "pattern": [
+    "SAS",
+    "SCS",
+    "SAS"
+  ],
+  "result": {
+    "id": "ic2:cf_powder",
+    "count": 1
+  },
+  "key": {
+    "A": "minecraft:sand",
+    "C": "minecraft:clay_ball",
+    "S": "#c:dusts/stone"
+  }
+}

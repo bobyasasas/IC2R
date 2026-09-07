@@ -1,0 +1,14 @@
+{
+  "type": "ic2:macerator",
+  "ingredient": "minecraft:iron_chain",
+  "input_count": 1,
+  "results": [
+    {
+      "stack": {
+        "id": "minecraft:iron_nugget",
+        "count": 11
+      },
+      "weight": 1
+    }
+  ]
+}

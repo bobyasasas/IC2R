@@ -1,0 +1,14 @@
+{
+  "type": "ic2:macerator",
+  "ingredient": "minecraft:raw_gold",
+  "input_count": 1,
+  "results": [
+    {
+      "stack": {
+        "id": "ic2:crushed_gold",
+        "count": 2
+      },
+      "weight": 1
+    }
+  ]
+}

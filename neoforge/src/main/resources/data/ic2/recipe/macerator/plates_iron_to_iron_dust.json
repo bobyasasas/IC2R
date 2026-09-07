@@ -1,0 +1,14 @@
+{
+  "type": "ic2:macerator",
+  "ingredient": "#c:plates/iron",
+  "input_count": 1,
+  "results": [
+    {
+      "stack": {
+        "id": "ic2:iron_dust",
+        "count": 1
+      },
+      "weight": 1
+    }
+  ]
+}

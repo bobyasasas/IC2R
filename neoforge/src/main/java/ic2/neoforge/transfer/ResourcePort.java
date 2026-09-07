@@ -6,6 +6,7 @@ import net.neoforged.neoforge.transfer.resource.Resource;
 import net.neoforged.neoforge.transfer.transaction.TransactionContext;
 
 import java.util.Objects;
+import java.util.function.BiPredicate;
 import java.util.function.IntPredicate;
 
 /**
@@ -14,7 +15,7 @@ import java.util.function.IntPredicate;
 public final class ResourcePort<T extends Resource> implements ResourceHandler<T> {
     private final ResourceHandler<T> contents;
     private final IntPredicate canInsert, canExtract;
-    private final java.util.function.BiPredicate<Integer, T> accepts;
+    private final BiPredicate<Integer, T> accepts;
 
     public ResourcePort(
             ResourceHandler<T> contents, IntPredicate canInsert, IntPredicate canExtract) {
@@ -25,7 +26,7 @@ public final class ResourcePort<T extends Resource> implements ResourceHandler<T
             ResourceHandler<T> contents,
             IntPredicate canInsert,
             IntPredicate canExtract,
-            java.util.function.BiPredicate<Integer, T> accepts) {
+            BiPredicate<Integer, T> accepts) {
         this.accepts = Objects.requireNonNull(accepts);
         this.contents = contents;
         this.canInsert = canInsert;

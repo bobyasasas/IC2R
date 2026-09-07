@@ -1,7 +1,36 @@
 {
   "replace": false,
   "values": [
+    "ic2:advanced_machine",
+    "ic2:bronze_block",
+    "ic2:compressor",
+    "ic2:copper_cable",
+    "ic2:double_insulated_gold_cable",
+    "ic2:double_insulated_iron_cable",
+    "ic2:electric_furnace",
+    "ic2:extractor",
     "ic2:generator",
-    "ic2:electric_furnace"
+    "ic2:glass_fibre_cable",
+    "ic2:gold_cable",
+    "ic2:insulated_copper_cable",
+    "ic2:insulated_gold_cable",
+    "ic2:insulated_iron_cable",
+    "ic2:insulated_tin_cable",
+    "ic2:iron_cable",
+    "ic2:iron_furnace",
+    "ic2:lead_block",
+    "ic2:macerator",
+    "ic2:machine",
+    "ic2:raw_lead_block",
+    "ic2:raw_tin_block",
+    "ic2:raw_uranium_block",
+    "ic2:reactor_vessel",
+    "ic2:reinforced_stone",
+    "ic2:silver_block",
+    "ic2:steel_block",
+    "ic2:tin_block",
+    "ic2:tin_cable",
+    "ic2:triple_insulated_iron_cable",
+    "ic2:uranium_block"
   ]
 }

@@ -17,11 +17,11 @@ import net.neoforged.neoforge.transfer.item.ResourceHandlerSlot;
 public final class MachineMenu extends AbstractContainerMenu {
     private final MachineKind kind;
     private final BlockPos position;
-    private final PoweredBlockEntity machine;
+    private final MachineBlockEntity machine;
     private final ContainerData data;
     private final int machineSlots;
 
-    public MachineMenu(int id, Inventory playerInventory, PoweredBlockEntity machine) {
+    public MachineMenu(int id, Inventory playerInventory, MachineBlockEntity machine) {
         this(
                 id,
                 playerInventory,
@@ -38,8 +38,7 @@ public final class MachineMenu extends AbstractContainerMenu {
                 position,
                 kind,
                 null,
-                new MachineInventory(
-                        kind == MachineKind.GENERATOR ? 2 : 3, () -> {}, (slot, item) -> true));
+                new MachineInventory(kind.slots(), () -> {}, (slot, item) -> true));
     }
 
     private MachineMenu(
@@ -47,7 +46,7 @@ public final class MachineMenu extends AbstractContainerMenu {
             Inventory playerInventory,
             BlockPos position,
             MachineKind kind,
-            PoweredBlockEntity machine,
+            MachineBlockEntity machine,
             MachineInventory inventory) {
         super(ModMachines.menuType(kind), id);
         this.kind = kind;
@@ -56,17 +55,21 @@ public final class MachineMenu extends AbstractContainerMenu {
         machineSlots = inventory.size();
         data =
                 machine == null
-                        ? new SimpleContainerData(6)
+                        ? new SimpleContainerData(10)
                         : new ContainerData() {
                             @Override
                             public int get(int index) {
                                 return switch (index) {
-                                    case 0 -> (int) machine.energy().stored() & 0xffff;
-                                    case 1 -> (int) machine.energy().stored() >>> 16;
+                                    case 0 -> (int) machine.storedEnergy() & 0xffff;
+                                    case 1 -> (int) machine.storedEnergy() >>> 16;
                                     case 2 -> machine.progress() & 0xffff;
                                     case 3 -> machine.progress() >>> 16;
                                     case 4 -> machine.progressMaximum() & 0xffff;
                                     case 5 -> machine.progressMaximum() >>> 16;
+                                    case 6 -> machine.fuelRemaining() & 0xffff;
+                                    case 7 -> machine.fuelRemaining() >>> 16;
+                                    case 8 -> machine.fuelMaximum() & 0xffff;
+                                    case 9 -> machine.fuelMaximum() >>> 16;
                                     default -> throw new IndexOutOfBoundsException(index);
                                 };
                             }
@@ -78,7 +81,7 @@ public final class MachineMenu extends AbstractContainerMenu {
 
                             @Override
                             public int getCount() {
-                                return 6;
+                                return 10;
                             }
                         };
         if (kind == MachineKind.GENERATOR) {
@@ -105,11 +108,21 @@ public final class MachineMenu extends AbstractContainerMenu {
                         @Override
                         public void onTake(Player player, ItemStack stack) {
                             super.onTake(player, stack);
-                            if (machine instanceof ElectricFurnaceBlockEntity furnace)
-                                furnace.awardExperience(player);
+                            if (machine != null) machine.awardExperience(player);
                         }
                     });
-            addBatterySlot(inventory, 2, 56, 53);
+            if (kind == MachineKind.IRON_FURNACE) {
+                addSlot(
+                        new ResourceHandlerSlot(inventory, inventory::set, 2, 56, 53) {
+                            @Override
+                            public boolean mayPlace(ItemStack stack) {
+                                return stack.getBurnTime(
+                                                RecipeType.SMELTING,
+                                                playerInventory.player.level().fuelValues())
+                                        > 0;
+                            }
+                        });
+            } else addBatterySlot(inventory, 2, 56, 53);
         }
         addStandardInventorySlots(playerInventory, 8, 84);
         addDataSlots(data);
@@ -139,12 +152,20 @@ public final class MachineMenu extends AbstractContainerMenu {
         return kind;
     }
 
+    public int fuelRemaining() {
+        return integer(6);
+    }
+
+    public int fuelMaximum() {
+        return integer(8);
+    }
+
     public int energy() {
         return integer(0);
     }
 
     public int capacity() {
-        return kind == MachineKind.GENERATOR ? 4000 : 300;
+        return kind.capacity();
     }
 
     public int progress() {
@@ -179,8 +200,22 @@ public final class MachineMenu extends AbstractContainerMenu {
             if (!moveItemStackTo(stack, machineSlots, slots.size(), true)) return ItemStack.EMPTY;
         } else if (!moveItemStackTo(
                 stack,
-                stack.getItem() instanceof ElectricItem ? machineSlots - 1 : 0,
-                stack.getItem() instanceof ElectricItem ? machineSlots : 1,
+                (stack.getItem() instanceof ElectricItem
+                                || kind == MachineKind.IRON_FURNACE
+                                        && stack.getBurnTime(
+                                                        RecipeType.SMELTING,
+                                                        player.level().fuelValues())
+                                                > 0)
+                        ? machineSlots - 1
+                        : 0,
+                (stack.getItem() instanceof ElectricItem
+                                || kind == MachineKind.IRON_FURNACE
+                                        && stack.getBurnTime(
+                                                        RecipeType.SMELTING,
+                                                        player.level().fuelValues())
+                                                > 0)
+                        ? machineSlots
+                        : 1,
                 false)) {
             int hotbar = machineSlots + 27;
             if (!moveItemStackTo(

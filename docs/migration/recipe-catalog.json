@@ -1,0 +1,4780 @@
+{
+  "entries": [
+    {
+      "source": "blast_furnace/crushed_iron_to_steel_ingot.json",
+      "type": "ic2:blast_furnace",
+      "status": "pending",
+      "reason": "recipe family not ported"
+    },
+    {
+      "source": "blast_furnace/dusts_iron_to_steel_ingot.json",
+      "type": "ic2:blast_furnace",
+      "status": "pending",
+      "reason": "recipe family not ported"
+    },
+    {
+      "source": "blast_furnace/iron_ingot_to_steel_ingot.json",
+      "type": "ic2:blast_furnace",
+      "status": "pending",
+      "reason": "recipe family not ported"
+    },
+    {
+      "source": "blast_furnace/iron_ore_to_steel_ingot.json",
+      "type": "ic2:blast_furnace",
+      "status": "pending",
+      "reason": "recipe family not ported"
+    },
+    {
+      "source": "blast_furnace/purified_iron_to_steel_ingot.json",
+      "type": "ic2:blast_furnace",
+      "status": "pending",
+      "reason": "recipe family not ported"
+    },
+    {
+      "source": "block_cutter/acacia_logs_to_acacia_planks.json",
+      "type": "ic2:block_cutter",
+      "status": "pending",
+      "reason": "recipe family not ported"
+    },
+    {
+      "source": "block_cutter/birch_logs_to_birch_planks.json",
+      "type": "ic2:block_cutter",
+      "status": "pending",
+      "reason": "recipe family not ported"
+    },
+    {
+      "source": "block_cutter/blocks_bronze_to_bronze_plate.json",
+      "type": "ic2:block_cutter",
+      "status": "pending",
+      "reason": "recipe family not ported"
+    },
+    {
+      "source": "block_cutter/blocks_lead_to_lead_plate.json",
+      "type": "ic2:block_cutter",
+      "status": "pending",
+      "reason": "recipe family not ported"
+    },
+    {
+      "source": "block_cutter/blocks_steel_to_steel_plate.json",
+      "type": "ic2:block_cutter",
+      "status": "pending",
+      "reason": "recipe family not ported"
+    },
+    {
+      "source": "block_cutter/blocks_tin_to_tin_plate.json",
+      "type": "ic2:block_cutter",
+      "status": "pending",
+      "reason": "recipe family not ported"
+    },
+    {
+      "source": "block_cutter/copper_block_to_copper_plate.json",
+      "type": "ic2:block_cutter",
+      "status": "pending",
+      "reason": "recipe family not ported"
+    },
+    {
+      "source": "block_cutter/dark_oak_logs_to_dark_oak_planks.json",
+      "type": "ic2:block_cutter",
+      "status": "pending",
+      "reason": "recipe family not ported"
+    },
+    {
+      "source": "block_cutter/gold_block_to_gold_plate.json",
+      "type": "ic2:block_cutter",
+      "status": "pending",
+      "reason": "recipe family not ported"
+    },
+    {
+      "source": "block_cutter/iron_block_to_iron_plate.json",
+      "type": "ic2:block_cutter",
+      "status": "pending",
+      "reason": "recipe family not ported"
+    },
+    {
+      "source": "block_cutter/jungle_logs_to_jungle_planks.json",
+      "type": "ic2:block_cutter",
+      "status": "pending",
+      "reason": "recipe family not ported"
+    },
+    {
+      "source": "block_cutter/lapis_block_to_lapis_plate.json",
+      "type": "ic2:block_cutter",
+      "status": "pending",
+      "reason": "recipe family not ported"
+    },
+    {
+      "source": "block_cutter/mangrove_logs_to_mangrove_planks.json",
+      "type": "ic2:block_cutter",
+      "status": "pending",
+      "reason": "recipe family not ported"
+    },
+    {
+      "source": "block_cutter/oak_logs_to_oak_planks.json",
+      "type": "ic2:block_cutter",
+      "status": "pending",
+      "reason": "recipe family not ported"
+    },
+    {
+      "source": "block_cutter/obsidian_to_obsidian_plate.json",
+      "type": "ic2:block_cutter",
+      "status": "pending",
+      "reason": "recipe family not ported"
+    },
+    {
+      "source": "block_cutter/planks_to_stick.json",
+      "type": "ic2:block_cutter",
+      "status": "pending",
+      "reason": "recipe family not ported"
+    },
+    {
+      "source": "block_cutter/spruce_logs_to_spruce_planks.json",
+      "type": "ic2:block_cutter",
+      "status": "pending",
+      "reason": "recipe family not ported"
+    },
+    {
+      "source": "canner_bottle/apple_filled_tin_can.json",
+      "type": "ic2:canner_bottle",
+      "status": "pending",
+      "reason": "recipe family not ported"
+    },
+    {
+      "source": "canner_bottle/baked_potato_filled_tin_can.json",
+      "type": "ic2:canner_bottle",
+      "status": "pending",
+      "reason": "recipe family not ported"
+    },
+    {
+      "source": "canner_bottle/beef_filled_tin_can.json",
+      "type": "ic2:canner_bottle",
+      "status": "pending",
+      "reason": "recipe family not ported"
+    },
+    {
+      "source": "canner_bottle/beetroot_filled_tin_can.json",
+      "type": "ic2:canner_bottle",
+      "status": "pending",
+      "reason": "recipe family not ported"
+    },
+    {
+      "source": "canner_bottle/beetroot_soup_filled_tin_can.json",
+      "type": "ic2:canner_bottle",
+      "status": "pending",
+      "reason": "recipe family not ported"
+    },
+    {
+      "source": "canner_bottle/bread_filled_tin_can.json",
+      "type": "ic2:canner_bottle",
+      "status": "pending",
+      "reason": "recipe family not ported"
+    },
+    {
+      "source": "canner_bottle/carrot_filled_tin_can.json",
+      "type": "ic2:canner_bottle",
+      "status": "pending",
+      "reason": "recipe family not ported"
+    },
+    {
+      "source": "canner_bottle/chicken_filled_tin_can.json",
+      "type": "ic2:canner_bottle",
+      "status": "pending",
+      "reason": "recipe family not ported"
+    },
+    {
+      "source": "canner_bottle/chorus_fruit_filled_tin_can.json",
+      "type": "ic2:canner_bottle",
+      "status": "pending",
+      "reason": "recipe family not ported"
+    },
+    {
+      "source": "canner_bottle/cod_filled_tin_can.json",
+      "type": "ic2:canner_bottle",
+      "status": "pending",
+      "reason": "recipe family not ported"
+    },
+    {
+      "source": "canner_bottle/cooked_beef_filled_tin_can.json",
+      "type": "ic2:canner_bottle",
+      "status": "pending",
+      "reason": "recipe family not ported"
+    },
+    {
+      "source": "canner_bottle/cooked_chicken_filled_tin_can.json",
+      "type": "ic2:canner_bottle",
+      "status": "pending",
+      "reason": "recipe family not ported"
+    },
+    {
+      "source": "canner_bottle/cooked_cod_filled_tin_can.json",
+      "type": "ic2:canner_bottle",
+      "status": "pending",
+      "reason": "recipe family not ported"
+    },
+    {
+      "source": "canner_bottle/cooked_mutton_filled_tin_can.json",
+      "type": "ic2:canner_bottle",
+      "status": "pending",
+      "reason": "recipe family not ported"
+    },
+    {
+      "source": "canner_bottle/cooked_porkchop_filled_tin_can.json",
+      "type": "ic2:canner_bottle",
+      "status": "pending",
+      "reason": "recipe family not ported"
+    },
+    {
+      "source": "canner_bottle/cooked_rabbit_filled_tin_can.json",
+      "type": "ic2:canner_bottle",
+      "status": "pending",
+      "reason": "recipe family not ported"
+    },
+    {
+      "source": "canner_bottle/cooked_salmon_filled_tin_can.json",
+      "type": "ic2:canner_bottle",
+      "status": "pending",
+      "reason": "recipe family not ported"
+    },
+    {
+      "source": "canner_bottle/cookie_filled_tin_can.json",
+      "type": "ic2:canner_bottle",
+      "status": "pending",
+      "reason": "recipe family not ported"
+    },
+    {
+      "source": "canner_bottle/dried_kelp_filled_tin_can.json",
+      "type": "ic2:canner_bottle",
+      "status": "pending",
+      "reason": "recipe family not ported"
+    },
+    {
+      "source": "canner_bottle/enchanted_golden_apple_filled_tin_can.json",
+      "type": "ic2:canner_bottle",
+      "status": "pending",
+      "reason": "recipe family not ported"
+    },
+    {
+      "source": "canner_bottle/glow_berries_filled_tin_can.json",
+      "type": "ic2:canner_bottle",
+      "status": "pending",
+      "reason": "recipe family not ported"
+    },
+    {
+      "source": "canner_bottle/golden_apple_filled_tin_can.json",
+      "type": "ic2:canner_bottle",
+      "status": "pending",
+      "reason": "recipe family not ported"
+    },
+    {
+      "source": "canner_bottle/golden_carrot_filled_tin_can.json",
+      "type": "ic2:canner_bottle",
+      "status": "pending",
+      "reason": "recipe family not ported"
+    },
+    {
+      "source": "canner_bottle/honey_bottle_filled_tin_can.json",
+      "type": "ic2:canner_bottle",
+      "status": "pending",
+      "reason": "recipe family not ported"
+    },
+    {
+      "source": "canner_bottle/melon_slice_filled_tin_can.json",
+      "type": "ic2:canner_bottle",
+      "status": "pending",
+      "reason": "recipe family not ported"
+    },
+    {
+      "source": "canner_bottle/mox_fuel_rod.json",
+      "type": "ic2:canner_bottle",
+      "status": "pending",
+      "reason": "recipe family not ported"
+    },
+    {
+      "source": "canner_bottle/mushroom_stew_filled_tin_can.json",
+      "type": "ic2:canner_bottle",
+      "status": "pending",
+      "reason": "recipe family not ported"
+    },
+    {
+      "source": "canner_bottle/mutton_filled_tin_can.json",
+      "type": "ic2:canner_bottle",
+      "status": "pending",
+      "reason": "recipe family not ported"
+    },
+    {
+      "source": "canner_bottle/poisonous_potato_filled_tin_can.json",
+      "type": "ic2:canner_bottle",
+      "status": "pending",
+      "reason": "recipe family not ported"
+    },
+    {
+      "source": "canner_bottle/porkchop_filled_tin_can.json",
+      "type": "ic2:canner_bottle",
+      "status": "pending",
+      "reason": "recipe family not ported"
+    },
+    {
+      "source": "canner_bottle/potato_filled_tin_can.json",
+      "type": "ic2:canner_bottle",
+      "status": "pending",
+      "reason": "recipe family not ported"
+    },
+    {
+      "source": "canner_bottle/pumpkin_pie_filled_tin_can.json",
+      "type": "ic2:canner_bottle",
+      "status": "pending",
+      "reason": "recipe family not ported"
+    },
+    {
+      "source": "canner_bottle/rabbit_filled_tin_can.json",
+      "type": "ic2:canner_bottle",
+      "status": "pending",
+      "reason": "recipe family not ported"
+    },
+    {
+      "source": "canner_bottle/rabbit_stew_filled_tin_can.json",
+      "type": "ic2:canner_bottle",
+      "status": "pending",
+      "reason": "recipe family not ported"
+    },
+    {
+      "source": "canner_bottle/rotten_flesh_filled_tin_can.json",
+      "type": "ic2:canner_bottle",
+      "status": "pending",
+      "reason": "recipe family not ported"
+    },
+    {
+      "source": "canner_bottle/salmon_filled_tin_can.json",
+      "type": "ic2:canner_bottle",
+      "status": "pending",
+      "reason": "recipe family not ported"
+    },
+    {
+      "source": "canner_bottle/spider_eye_filled_tin_can.json",
+      "type": "ic2:canner_bottle",
+      "status": "pending",
+      "reason": "recipe family not ported"
+    },
+    {
+      "source": "canner_bottle/suspicious_stew_filled_tin_can.json",
+      "type": "ic2:canner_bottle",
+      "status": "pending",
+      "reason": "recipe family not ported"
+    },
+    {
+      "source": "canner_bottle/sweet_berries_filled_tin_can.json",
+      "type": "ic2:canner_bottle",
+      "status": "pending",
+      "reason": "recipe family not ported"
+    },
+    {
+      "source": "canner_bottle/tropical_fish_filled_tin_can.json",
+      "type": "ic2:canner_bottle",
+      "status": "pending",
+      "reason": "recipe family not ported"
+    },
+    {
+      "source": "canner_bottle/uranium_fuel_rod.json",
+      "type": "ic2:canner_bottle",
+      "status": "pending",
+      "reason": "recipe family not ported"
+    },
+    {
+      "source": "canner_enrich/biomass.json",
+      "type": "ic2:canner_enrich",
+      "status": "pending",
+      "reason": "recipe family not ported"
+    },
+    {
+      "source": "canner_enrich/construction_foam.json",
+      "type": "ic2:canner_enrich",
+      "status": "pending",
+      "reason": "recipe family not ported"
+    },
+    {
+      "source": "canner_enrich/coolant_from_distilled_water.json",
+      "type": "ic2:canner_enrich",
+      "status": "pending",
+      "reason": "recipe family not ported"
+    },
+    {
+      "source": "canner_enrich/coolant_from_water.json",
+      "type": "ic2:canner_enrich",
+      "status": "pending",
+      "reason": "recipe family not ported"
+    },
+    {
+      "source": "centrifuge/clay_dust_to_silicon_dioxide_dust.json",
+      "type": "ic2:centrifuge",
+      "status": "pending",
+      "reason": "recipe family not ported"
+    },
+    {
+      "source": "centrifuge/cobblestone_to_stone_dust.json",
+      "type": "ic2:centrifuge",
+      "status": "pending",
+      "reason": "recipe family not ported"
+    },
+    {
+      "source": "centrifuge/crushed_copper_to_copper_dust.json",
+      "type": "ic2:centrifuge",
+      "status": "pending",
+      "reason": "recipe family not ported"
+    },
+    {
+      "source": "centrifuge/crushed_gold_to_gold_dust.json",
+      "type": "ic2:centrifuge",
+      "status": "pending",
+      "reason": "recipe family not ported"
+    },
+    {
+      "source": "centrifuge/crushed_iron_to_iron_dust.json",
+      "type": "ic2:centrifuge",
+      "status": "pending",
+      "reason": "recipe family not ported"
+    },
+    {
+      "source": "centrifuge/crushed_lead_to_lead_dust.json",
+      "type": "ic2:centrifuge",
+      "status": "pending",
+      "reason": "recipe family not ported"
+    },
+    {
+      "source": "centrifuge/crushed_silver_to_silver_dust.json",
+      "type": "ic2:centrifuge",
+      "status": "pending",
+      "reason": "recipe family not ported"
+    },
+    {
+      "source": "centrifuge/crushed_tin_to_tin_dust.json",
+      "type": "ic2:centrifuge",
+      "status": "pending",
+      "reason": "recipe family not ported"
+    },
+    {
+      "source": "centrifuge/crushed_uranium_to_small_uranium_235.json",
+      "type": "ic2:centrifuge",
+      "status": "pending",
+      "reason": "recipe family not ported"
+    },
+    {
+      "source": "centrifuge/depleted_dual_mox_fuel_rod_to_small_plutonium.json",
+      "type": "ic2:centrifuge",
+      "status": "pending",
+      "reason": "recipe family not ported"
+    },
+    {
+      "source": "centrifuge/depleted_dual_uranium_fuel_rod_to_small_plutonium.json",
+      "type": "ic2:centrifuge",
+      "status": "pending",
+      "reason": "recipe family not ported"
+    },
+    {
+      "source": "centrifuge/depleted_mox_fuel_rod_to_small_plutonium.json",
+      "type": "ic2:centrifuge",
+      "status": "pending",
+      "reason": "recipe family not ported"
+    },
+    {
+      "source": "centrifuge/depleted_quad_mox_fuel_rod_to_small_plutonium.json",
+      "type": "ic2:centrifuge",
+      "status": "pending",
+      "reason": "recipe family not ported"
+    },
+    {
+      "source": "centrifuge/depleted_quad_uranium_fuel_rod_to_small_plutonium.json",
+      "type": "ic2:centrifuge",
+      "status": "pending",
+      "reason": "recipe family not ported"
+    },
+    {
+      "source": "centrifuge/depleted_uranium_fuel_rod_to_small_plutonium.json",
+      "type": "ic2:centrifuge",
+      "status": "pending",
+      "reason": "recipe family not ported"
+    },
+    {
+      "source": "centrifuge/purified_copper_to_copper_dust.json",
+      "type": "ic2:centrifuge",
+      "status": "pending",
+      "reason": "recipe family not ported"
+    },
+    {
+      "source": "centrifuge/purified_gold_to_gold_dust.json",
+      "type": "ic2:centrifuge",
+      "status": "pending",
+      "reason": "recipe family not ported"
+    },
+    {
+      "source": "centrifuge/purified_iron_to_iron_dust.json",
+      "type": "ic2:centrifuge",
+      "status": "pending",
+      "reason": "recipe family not ported"
+    },
+    {
+      "source": "centrifuge/purified_lead_to_lead_dust.json",
+      "type": "ic2:centrifuge",
+      "status": "pending",
+      "reason": "recipe family not ported"
+    },
+    {
+      "source": "centrifuge/purified_silver_to_silver_dust.json",
+      "type": "ic2:centrifuge",
+      "status": "pending",
+      "reason": "recipe family not ported"
+    },
+    {
+      "source": "centrifuge/purified_tin_to_tin_dust.json",
+      "type": "ic2:centrifuge",
+      "status": "pending",
+      "reason": "recipe family not ported"
+    },
+    {
+      "source": "centrifuge/purified_uranium_to_small_uranium_235.json",
+      "type": "ic2:centrifuge",
+      "status": "pending",
+      "reason": "recipe family not ported"
+    },
+    {
+      "source": "centrifuge/quartz_to_small_lithium_dust.json",
+      "type": "ic2:centrifuge",
+      "status": "pending",
+      "reason": "recipe family not ported"
+    },
+    {
+      "source": "centrifuge/rtg_pellet_to_plutonium.json",
+      "type": "ic2:centrifuge",
+      "status": "pending",
+      "reason": "recipe family not ported"
+    },
+    {
+      "source": "centrifuge/slag_to_small_gold_dust.json",
+      "type": "ic2:centrifuge",
+      "status": "pending",
+      "reason": "recipe family not ported"
+    },
+    {
+      "source": "centrifuge/uranium_to_uranium_238.json",
+      "type": "ic2:centrifuge",
+      "status": "pending",
+      "reason": "recipe family not ported"
+    },
+    {
+      "source": "compressor/amethyst_shard_to_amethyst_block.json",
+      "type": "ic2:compressor",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/compressor/amethyst_shard_to_amethyst_block.json"
+    },
+    {
+      "source": "compressor/blaze_powder_to_blaze_rod.json",
+      "type": "ic2:compressor",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/compressor/blaze_powder_to_blaze_rod.json"
+    },
+    {
+      "source": "compressor/brick_to_bricks.json",
+      "type": "ic2:compressor",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/compressor/brick_to_bricks.json"
+    },
+    {
+      "source": "compressor/carbon_mesh_to_carbon_plate.json",
+      "type": "ic2:compressor",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/compressor/carbon_mesh_to_carbon_plate.json"
+    },
+    {
+      "source": "compressor/clay_ball_to_clay.json",
+      "type": "ic2:compressor",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/compressor/clay_ball_to_clay.json"
+    },
+    {
+      "source": "compressor/coal_ball_to_coal_block.json",
+      "type": "ic2:compressor",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/compressor/coal_ball_to_coal_block.json"
+    },
+    {
+      "source": "compressor/coal_chunk_to_industrial_diamond.json",
+      "type": "ic2:compressor",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/compressor/coal_chunk_to_industrial_diamond.json"
+    },
+    {
+      "source": "compressor/copper_ingot_to_copper_block.json",
+      "type": "ic2:compressor",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/compressor/copper_ingot_to_copper_block.json"
+    },
+    {
+      "source": "compressor/dusts_lapis_to_lapis_plate.json",
+      "type": "ic2:compressor",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/compressor/dusts_lapis_to_lapis_plate.json"
+    },
+    {
+      "source": "compressor/dusts_obsidian_to_obsidian_plate.json",
+      "type": "ic2:compressor",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/compressor/dusts_obsidian_to_obsidian_plate.json"
+    },
+    {
+      "source": "compressor/energium_dust_to_energy_crystal.json",
+      "type": "ic2:compressor",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/compressor/energium_dust_to_energy_crystal.json"
+    },
+    {
+      "source": "compressor/facade_cell_to_air_cell.json",
+      "type": "ic2:compressor",
+      "status": "pending",
+      "reason": "unported item ic2:facade_cell"
+    },
+    {
+      "source": "compressor/glowstone_dust_to_glowstone.json",
+      "type": "ic2:compressor",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/compressor/glowstone_dust_to_glowstone.json"
+    },
+    {
+      "source": "compressor/gold_ingot_to_gold_block.json",
+      "type": "ic2:compressor",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/compressor/gold_ingot_to_gold_block.json"
+    },
+    {
+      "source": "compressor/honeycomb_to_honeycomb_block.json",
+      "type": "ic2:compressor",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/compressor/honeycomb_to_honeycomb_block.json"
+    },
+    {
+      "source": "compressor/ice_to_packed_ice.json",
+      "type": "ic2:compressor",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/compressor/ice_to_packed_ice.json"
+    },
+    {
+      "source": "compressor/ingots_bronze_to_bronze_block.json",
+      "type": "ic2:compressor",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/compressor/ingots_bronze_to_bronze_block.json"
+    },
+    {
+      "source": "compressor/ingots_lead_to_lead_block.json",
+      "type": "ic2:compressor",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/compressor/ingots_lead_to_lead_block.json"
+    },
+    {
+      "source": "compressor/ingots_silver_to_silver_block.json",
+      "type": "ic2:compressor",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/compressor/ingots_silver_to_silver_block.json"
+    },
+    {
+      "source": "compressor/ingots_steel_to_steel_block.json",
+      "type": "ic2:compressor",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/compressor/ingots_steel_to_steel_block.json"
+    },
+    {
+      "source": "compressor/ingots_tin_to_tin_block.json",
+      "type": "ic2:compressor",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/compressor/ingots_tin_to_tin_block.json"
+    },
+    {
+      "source": "compressor/iridium_shard_to_iridium_ore.json",
+      "type": "ic2:compressor",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/compressor/iridium_shard_to_iridium_ore.json"
+    },
+    {
+      "source": "compressor/iron_ingot_to_iron_block.json",
+      "type": "ic2:compressor",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/compressor/iron_ingot_to_iron_block.json"
+    },
+    {
+      "source": "compressor/lapis_lazuli_to_lapis_block.json",
+      "type": "ic2:compressor",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/compressor/lapis_lazuli_to_lapis_block.json"
+    },
+    {
+      "source": "compressor/mixed_metal_ingot_to_alloy.json",
+      "type": "ic2:compressor",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/compressor/mixed_metal_ingot_to_alloy.json"
+    },
+    {
+      "source": "compressor/moss_carpet_to_moss_block.json",
+      "type": "ic2:compressor",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/compressor/moss_carpet_to_moss_block.json"
+    },
+    {
+      "source": "compressor/nether_brick_to_nether_bricks.json",
+      "type": "ic2:compressor",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/compressor/nether_brick_to_nether_bricks.json"
+    },
+    {
+      "source": "compressor/packed_ice_to_blue_ice.json",
+      "type": "ic2:compressor",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/compressor/packed_ice_to_blue_ice.json"
+    },
+    {
+      "source": "compressor/plates_bronze_to_dense_bronze_plate.json",
+      "type": "ic2:compressor",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/compressor/plates_bronze_to_dense_bronze_plate.json"
+    },
+    {
+      "source": "compressor/plates_copper_to_dense_copper_plate.json",
+      "type": "ic2:compressor",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/compressor/plates_copper_to_dense_copper_plate.json"
+    },
+    {
+      "source": "compressor/plates_gold_to_dense_gold_plate.json",
+      "type": "ic2:compressor",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/compressor/plates_gold_to_dense_gold_plate.json"
+    },
+    {
+      "source": "compressor/plates_iron_to_dense_iron_plate.json",
+      "type": "ic2:compressor",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/compressor/plates_iron_to_dense_iron_plate.json"
+    },
+    {
+      "source": "compressor/plates_lapis_to_dense_lapis_plate.json",
+      "type": "ic2:compressor",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/compressor/plates_lapis_to_dense_lapis_plate.json"
+    },
+    {
+      "source": "compressor/plates_lead_to_dense_lead_plate.json",
+      "type": "ic2:compressor",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/compressor/plates_lead_to_dense_lead_plate.json"
+    },
+    {
+      "source": "compressor/plates_obsidian_to_dense_obsidian_plate.json",
+      "type": "ic2:compressor",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/compressor/plates_obsidian_to_dense_obsidian_plate.json"
+    },
+    {
+      "source": "compressor/plates_steel_to_dense_steel_plate.json",
+      "type": "ic2:compressor",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/compressor/plates_steel_to_dense_steel_plate.json"
+    },
+    {
+      "source": "compressor/plates_tin_to_dense_tin_plate.json",
+      "type": "ic2:compressor",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/compressor/plates_tin_to_dense_tin_plate.json"
+    },
+    {
+      "source": "compressor/quartz_to_quartz_block.json",
+      "type": "ic2:compressor",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/compressor/quartz_to_quartz_block.json"
+    },
+    {
+      "source": "compressor/raw_copper_to_raw_copper_block.json",
+      "type": "ic2:compressor",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/compressor/raw_copper_to_raw_copper_block.json"
+    },
+    {
+      "source": "compressor/raw_gold_to_raw_gold_block.json",
+      "type": "ic2:compressor",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/compressor/raw_gold_to_raw_gold_block.json"
+    },
+    {
+      "source": "compressor/raw_iron_to_raw_iron_block.json",
+      "type": "ic2:compressor",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/compressor/raw_iron_to_raw_iron_block.json"
+    },
+    {
+      "source": "compressor/raw_lead_to_raw_lead_block.json",
+      "type": "ic2:compressor",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/compressor/raw_lead_to_raw_lead_block.json"
+    },
+    {
+      "source": "compressor/raw_tin_to_raw_tin_block.json",
+      "type": "ic2:compressor",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/compressor/raw_tin_to_raw_tin_block.json"
+    },
+    {
+      "source": "compressor/raw_uranium_to_raw_uranium_block.json",
+      "type": "ic2:compressor",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/compressor/raw_uranium_to_raw_uranium_block.json"
+    },
+    {
+      "source": "compressor/redstone_to_redstone_block.json",
+      "type": "ic2:compressor",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/compressor/redstone_to_redstone_block.json"
+    },
+    {
+      "source": "compressor/sand_to_sandstone.json",
+      "type": "ic2:compressor",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/compressor/sand_to_sandstone.json"
+    },
+    {
+      "source": "compressor/sculk_vein_to_sculk.json",
+      "type": "ic2:compressor",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/compressor/sculk_vein_to_sculk.json"
+    },
+    {
+      "source": "compressor/small_bronze_dust_to_bronze_dust.json",
+      "type": "ic2:compressor",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/compressor/small_bronze_dust_to_bronze_dust.json"
+    },
+    {
+      "source": "compressor/small_copper_dust_to_copper_dust.json",
+      "type": "ic2:compressor",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/compressor/small_copper_dust_to_copper_dust.json"
+    },
+    {
+      "source": "compressor/small_gold_dust_to_gold_dust.json",
+      "type": "ic2:compressor",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/compressor/small_gold_dust_to_gold_dust.json"
+    },
+    {
+      "source": "compressor/small_iron_dust_to_iron_dust.json",
+      "type": "ic2:compressor",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/compressor/small_iron_dust_to_iron_dust.json"
+    },
+    {
+      "source": "compressor/small_lapis_dust_to_lapis_dust.json",
+      "type": "ic2:compressor",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/compressor/small_lapis_dust_to_lapis_dust.json"
+    },
+    {
+      "source": "compressor/small_lead_dust_to_lead_dust.json",
+      "type": "ic2:compressor",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/compressor/small_lead_dust_to_lead_dust.json"
+    },
+    {
+      "source": "compressor/small_lithium_dust_to_lithium_dust.json",
+      "type": "ic2:compressor",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/compressor/small_lithium_dust_to_lithium_dust.json"
+    },
+    {
+      "source": "compressor/small_obsidian_dust_to_obsidian_dust.json",
+      "type": "ic2:compressor",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/compressor/small_obsidian_dust_to_obsidian_dust.json"
+    },
+    {
+      "source": "compressor/small_plutonium_to_plutonium.json",
+      "type": "ic2:compressor",
+      "status": "pending",
+      "reason": "unported item ic2:small_plutonium"
+    },
+    {
+      "source": "compressor/small_silver_dust_to_silver_dust.json",
+      "type": "ic2:compressor",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/compressor/small_silver_dust_to_silver_dust.json"
+    },
+    {
+      "source": "compressor/small_sulfur_dust_to_sulfur_dust.json",
+      "type": "ic2:compressor",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/compressor/small_sulfur_dust_to_sulfur_dust.json"
+    },
+    {
+      "source": "compressor/small_tin_dust_to_tin_dust.json",
+      "type": "ic2:compressor",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/compressor/small_tin_dust_to_tin_dust.json"
+    },
+    {
+      "source": "compressor/small_uranium_235_to_uranium_235.json",
+      "type": "ic2:compressor",
+      "status": "pending",
+      "reason": "unported item ic2:small_uranium_235"
+    },
+    {
+      "source": "compressor/snow_block_to_ice.json",
+      "type": "ic2:compressor",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/compressor/snow_block_to_ice.json"
+    },
+    {
+      "source": "compressor/snowball_to_snow_block.json",
+      "type": "ic2:compressor",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/compressor/snowball_to_snow_block.json"
+    },
+    {
+      "source": "compressor/water_to_snow_block.json",
+      "type": "ic2:compressor",
+      "status": "pending",
+      "reason": "ingredient requires component/fluid conversion: {'fluid': 'minecraft:water', 'amount': 1000}"
+    },
+    {
+      "source": "extractor/air_cell_to_facade_cell.json",
+      "type": "ic2:extractor",
+      "status": "pending",
+      "reason": "unported item ic2:air_cell"
+    },
+    {
+      "source": "extractor/bamboo_to_stick.json",
+      "type": "ic2:extractor",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/extractor/bamboo_to_stick.json"
+    },
+    {
+      "source": "extractor/bee_nest_to_honeycomb.json",
+      "type": "ic2:extractor",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/extractor/bee_nest_to_honeycomb.json"
+    },
+    {
+      "source": "extractor/bricks_to_brick.json",
+      "type": "ic2:extractor",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/extractor/bricks_to_brick.json"
+    },
+    {
+      "source": "extractor/candles_to_honeycomb.json",
+      "type": "ic2:extractor",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/extractor/candles_to_honeycomb.json"
+    },
+    {
+      "source": "extractor/clay_to_clay_ball.json",
+      "type": "ic2:extractor",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/extractor/clay_to_clay_ball.json"
+    },
+    {
+      "source": "extractor/crying_obsidian_to_obsidian.json",
+      "type": "ic2:extractor",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/extractor/crying_obsidian_to_obsidian.json"
+    },
+    {
+      "source": "extractor/filled_tin_can_to_tin_can.json",
+      "type": "ic2:extractor",
+      "status": "pending",
+      "reason": "unported item ic2:filled_tin_can"
+    },
+    {
+      "source": "extractor/gilded_blackstone_to_gold_nugget.json",
+      "type": "ic2:extractor",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/extractor/gilded_blackstone_to_gold_nugget.json"
+    },
+    {
+      "source": "extractor/glow_item_frame_to_item_frame.json",
+      "type": "ic2:extractor",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/extractor/glow_item_frame_to_item_frame.json"
+    },
+    {
+      "source": "extractor/gunpowder_to_sulfur_dust.json",
+      "type": "ic2:extractor",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/extractor/gunpowder_to_sulfur_dust.json"
+    },
+    {
+      "source": "extractor/hydrated_tin_dust_to_iodine.json",
+      "type": "ic2:extractor",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/extractor/hydrated_tin_dust_to_iodine.json"
+    },
+    {
+      "source": "extractor/mud_to_clay_ball.json",
+      "type": "ic2:extractor",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/extractor/mud_to_clay_ball.json"
+    },
+    {
+      "source": "extractor/muddy_mangrove_roots_to_mud.json",
+      "type": "ic2:extractor",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/extractor/muddy_mangrove_roots_to_mud.json"
+    },
+    {
+      "source": "extractor/nether_bricks_to_nether_brick.json",
+      "type": "ic2:extractor",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/extractor/nether_bricks_to_nether_brick.json"
+    },
+    {
+      "source": "extractor/nether_gold_ore_to_gold_nugget.json",
+      "type": "ic2:extractor",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/extractor/nether_gold_ore_to_gold_nugget.json"
+    },
+    {
+      "source": "extractor/netherrack_dust_to_small_sulfur_dust.json",
+      "type": "ic2:extractor",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/extractor/netherrack_dust_to_small_sulfur_dust.json"
+    },
+    {
+      "source": "extractor/netherrack_to_small_sulfur_dust.json",
+      "type": "ic2:extractor",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/extractor/netherrack_to_small_sulfur_dust.json"
+    },
+    {
+      "source": "extractor/resin_to_rubber.json",
+      "type": "ic2:extractor",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/extractor/resin_to_rubber.json"
+    },
+    {
+      "source": "extractor/rubber_log_to_rubber.json",
+      "type": "ic2:extractor",
+      "status": "pending",
+      "reason": "unported item ic2:rubber_log"
+    },
+    {
+      "source": "extractor/rubber_sapling_to_rubber.json",
+      "type": "ic2:extractor",
+      "status": "pending",
+      "reason": "unported item ic2:rubber_sapling"
+    },
+    {
+      "source": "extractor/snow_block_to_snowball.json",
+      "type": "ic2:extractor",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/extractor/snow_block_to_snowball.json"
+    },
+    {
+      "source": "extractor/wart_blocks_to_nether_wart.json",
+      "type": "ic2:extractor",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/extractor/wart_blocks_to_nether_wart.json"
+    },
+    {
+      "source": "extractor/wool_to_white_wool.json",
+      "type": "ic2:extractor",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/extractor/wool_to_white_wool.json"
+    },
+    {
+      "source": "macerator/amethyst_block_to_amethyst_shard.json",
+      "type": "ic2:macerator",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/macerator/amethyst_block_to_amethyst_shard.json"
+    },
+    {
+      "source": "macerator/bio_chaff_to_dirt.json",
+      "type": "ic2:macerator",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/macerator/bio_chaff_to_dirt.json"
+    },
+    {
+      "source": "macerator/blaze_rod_to_blaze_powder.json",
+      "type": "ic2:macerator",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/macerator/blaze_rod_to_blaze_powder.json"
+    },
+    {
+      "source": "macerator/blue_ice_to_packed_ice.json",
+      "type": "ic2:macerator",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/macerator/blue_ice_to_packed_ice.json"
+    },
+    {
+      "source": "macerator/bone_to_white_dye.json",
+      "type": "ic2:macerator",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/macerator/bone_to_white_dye.json"
+    },
+    {
+      "source": "macerator/cactus_to_bio_chaff.json",
+      "type": "ic2:macerator",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/macerator/cactus_to_bio_chaff.json"
+    },
+    {
+      "source": "macerator/carrot_to_bio_chaff.json",
+      "type": "ic2:macerator",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/macerator/carrot_to_bio_chaff.json"
+    },
+    {
+      "source": "macerator/chain_to_iron_nugget.json",
+      "type": "ic2:macerator",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/macerator/chain_to_iron_nugget.json"
+    },
+    {
+      "source": "macerator/chiseled_quartz_block_to_quartz.json",
+      "type": "ic2:macerator",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/macerator/chiseled_quartz_block_to_quartz.json"
+    },
+    {
+      "source": "macerator/clay_to_clay_dust.json",
+      "type": "ic2:macerator",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/macerator/clay_to_clay_dust.json"
+    },
+    {
+      "source": "macerator/coal_block_to_coal_dust.json",
+      "type": "ic2:macerator",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/macerator/coal_block_to_coal_dust.json"
+    },
+    {
+      "source": "macerator/coal_to_coal_dust.json",
+      "type": "ic2:macerator",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/macerator/coal_to_coal_dust.json"
+    },
+    {
+      "source": "macerator/cobblestone_to_sand.json",
+      "type": "ic2:macerator",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/macerator/cobblestone_to_sand.json"
+    },
+    {
+      "source": "macerator/coffee_beans_to_coffee_powder.json",
+      "type": "ic2:macerator",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/macerator/coffee_beans_to_coffee_powder.json"
+    },
+    {
+      "source": "macerator/copper_ingot_to_copper_dust.json",
+      "type": "ic2:macerator",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/macerator/copper_ingot_to_copper_dust.json"
+    },
+    {
+      "source": "macerator/copper_ores_to_raw_copper.json",
+      "type": "ic2:macerator",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/macerator/copper_ores_to_raw_copper.json"
+    },
+    {
+      "source": "macerator/crushed_copper_to_copper_dust.json",
+      "type": "ic2:macerator",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/macerator/crushed_copper_to_copper_dust.json"
+    },
+    {
+      "source": "macerator/crushed_gold_to_gold_dust.json",
+      "type": "ic2:macerator",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/macerator/crushed_gold_to_gold_dust.json"
+    },
+    {
+      "source": "macerator/crushed_iron_to_iron_dust.json",
+      "type": "ic2:macerator",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/macerator/crushed_iron_to_iron_dust.json"
+    },
+    {
+      "source": "macerator/crushed_lead_to_lead_dust.json",
+      "type": "ic2:macerator",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/macerator/crushed_lead_to_lead_dust.json"
+    },
+    {
+      "source": "macerator/crushed_silver_to_silver_dust.json",
+      "type": "ic2:macerator",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/macerator/crushed_silver_to_silver_dust.json"
+    },
+    {
+      "source": "macerator/crushed_tin_to_tin_dust.json",
+      "type": "ic2:macerator",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/macerator/crushed_tin_to_tin_dust.json"
+    },
+    {
+      "source": "macerator/dark_prismarine_to_prismarine_shard.json",
+      "type": "ic2:macerator",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/macerator/dark_prismarine_to_prismarine_shard.json"
+    },
+    {
+      "source": "macerator/deepslate_to_cobbled_deepslate.json",
+      "type": "ic2:macerator",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/macerator/deepslate_to_cobbled_deepslate.json"
+    },
+    {
+      "source": "macerator/dense_bronze_plate_to_bronze_dust.json",
+      "type": "ic2:macerator",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/macerator/dense_bronze_plate_to_bronze_dust.json"
+    },
+    {
+      "source": "macerator/dense_copper_plate_to_copper_dust.json",
+      "type": "ic2:macerator",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/macerator/dense_copper_plate_to_copper_dust.json"
+    },
+    {
+      "source": "macerator/dense_gold_plate_to_gold_dust.json",
+      "type": "ic2:macerator",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/macerator/dense_gold_plate_to_gold_dust.json"
+    },
+    {
+      "source": "macerator/dense_iron_plate_to_iron_dust.json",
+      "type": "ic2:macerator",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/macerator/dense_iron_plate_to_iron_dust.json"
+    },
+    {
+      "source": "macerator/dense_lapis_plate_to_lapis_dust.json",
+      "type": "ic2:macerator",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/macerator/dense_lapis_plate_to_lapis_dust.json"
+    },
+    {
+      "source": "macerator/dense_lead_plate_to_lead_dust.json",
+      "type": "ic2:macerator",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/macerator/dense_lead_plate_to_lead_dust.json"
+    },
+    {
+      "source": "macerator/dense_obsidian_plate_to_obsidian_dust.json",
+      "type": "ic2:macerator",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/macerator/dense_obsidian_plate_to_obsidian_dust.json"
+    },
+    {
+      "source": "macerator/dense_tin_plate_to_tin_dust.json",
+      "type": "ic2:macerator",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/macerator/dense_tin_plate_to_tin_dust.json"
+    },
+    {
+      "source": "macerator/diamond_to_diamond_dust.json",
+      "type": "ic2:macerator",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/macerator/diamond_to_diamond_dust.json"
+    },
+    {
+      "source": "macerator/dripstone_block_to_pointed_dripstone.json",
+      "type": "ic2:macerator",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/macerator/dripstone_block_to_pointed_dripstone.json"
+    },
+    {
+      "source": "macerator/energy_crystal_to_energium_dust.json",
+      "type": "ic2:macerator",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/macerator/energy_crystal_to_energium_dust.json"
+    },
+    {
+      "source": "macerator/fuel_rod_to_iron_dust.json",
+      "type": "ic2:macerator",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/macerator/fuel_rod_to_iron_dust.json"
+    },
+    {
+      "source": "macerator/glowstone_to_glowstone_dust.json",
+      "type": "ic2:macerator",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/macerator/glowstone_to_glowstone_dust.json"
+    },
+    {
+      "source": "macerator/gold_ingot_to_gold_dust.json",
+      "type": "ic2:macerator",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/macerator/gold_ingot_to_gold_dust.json"
+    },
+    {
+      "source": "macerator/gold_ores_to_raw_gold.json",
+      "type": "ic2:macerator",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/macerator/gold_ores_to_raw_gold.json"
+    },
+    {
+      "source": "macerator/gravel_to_flint.json",
+      "type": "ic2:macerator",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/macerator/gravel_to_flint.json"
+    },
+    {
+      "source": "macerator/honeycomb_block_to_honeycomb.json",
+      "type": "ic2:macerator",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/macerator/honeycomb_block_to_honeycomb.json"
+    },
+    {
+      "source": "macerator/ice_to_snowball.json",
+      "type": "ic2:macerator",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/macerator/ice_to_snowball.json"
+    },
+    {
+      "source": "macerator/ingots_bronze_to_bronze_dust.json",
+      "type": "ic2:macerator",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/macerator/ingots_bronze_to_bronze_dust.json"
+    },
+    {
+      "source": "macerator/ingots_lead_to_lead_dust.json",
+      "type": "ic2:macerator",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/macerator/ingots_lead_to_lead_dust.json"
+    },
+    {
+      "source": "macerator/ingots_silver_to_silver_dust.json",
+      "type": "ic2:macerator",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/macerator/ingots_silver_to_silver_dust.json"
+    },
+    {
+      "source": "macerator/ingots_steel_to_iron_dust.json",
+      "type": "ic2:macerator",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/macerator/ingots_steel_to_iron_dust.json"
+    },
+    {
+      "source": "macerator/ingots_tin_to_tin_dust.json",
+      "type": "ic2:macerator",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/macerator/ingots_tin_to_tin_dust.json"
+    },
+    {
+      "source": "macerator/iridium_ore_to_iridium_shard.json",
+      "type": "ic2:macerator",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/macerator/iridium_ore_to_iridium_shard.json"
+    },
+    {
+      "source": "macerator/iron_ingot_to_iron_dust.json",
+      "type": "ic2:macerator",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/macerator/iron_ingot_to_iron_dust.json"
+    },
+    {
+      "source": "macerator/iron_ores_to_raw_iron.json",
+      "type": "ic2:macerator",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/macerator/iron_ores_to_raw_iron.json"
+    },
+    {
+      "source": "macerator/lapis_block_to_lapis_dust.json",
+      "type": "ic2:macerator",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/macerator/lapis_block_to_lapis_dust.json"
+    },
+    {
+      "source": "macerator/lapis_lazuli_to_lapis_dust.json",
+      "type": "ic2:macerator",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/macerator/lapis_lazuli_to_lapis_dust.json"
+    },
+    {
+      "source": "macerator/lead_block_to_lead_ingot.json",
+      "type": "ic2:macerator",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/macerator/lead_block_to_lead_ingot.json"
+    },
+    {
+      "source": "macerator/leaves_to_bio_chaff.json",
+      "type": "ic2:macerator",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/macerator/leaves_to_bio_chaff.json"
+    },
+    {
+      "source": "macerator/melon_seeds_to_bio_chaff.json",
+      "type": "ic2:macerator",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/macerator/melon_seeds_to_bio_chaff.json"
+    },
+    {
+      "source": "macerator/melon_to_bio_chaff.json",
+      "type": "ic2:macerator",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/macerator/melon_to_bio_chaff.json"
+    },
+    {
+      "source": "macerator/netherrack_to_netherrack_dust.json",
+      "type": "ic2:macerator",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/macerator/netherrack_to_netherrack_dust.json"
+    },
+    {
+      "source": "macerator/obsidian_to_obsidian_dust.json",
+      "type": "ic2:macerator",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/macerator/obsidian_to_obsidian_dust.json"
+    },
+    {
+      "source": "macerator/ores_lead_to_raw_lead.json",
+      "type": "ic2:macerator",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/macerator/ores_lead_to_raw_lead.json"
+    },
+    {
+      "source": "macerator/ores_silver_to_crushed_silver.json",
+      "type": "ic2:macerator",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/macerator/ores_silver_to_crushed_silver.json"
+    },
+    {
+      "source": "macerator/ores_tin_to_raw_tin.json",
+      "type": "ic2:macerator",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/macerator/ores_tin_to_raw_tin.json"
+    },
+    {
+      "source": "macerator/ores_uranium_to_raw_uranium.json",
+      "type": "ic2:macerator",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/macerator/ores_uranium_to_raw_uranium.json"
+    },
+    {
+      "source": "macerator/packed_ice_to_ice.json",
+      "type": "ic2:macerator",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/macerator/packed_ice_to_ice.json"
+    },
+    {
+      "source": "macerator/plant_ball_to_bio_chaff.json",
+      "type": "ic2:macerator",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/macerator/plant_ball_to_bio_chaff.json"
+    },
+    {
+      "source": "macerator/plates_bronze_to_bronze_dust.json",
+      "type": "ic2:macerator",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/macerator/plates_bronze_to_bronze_dust.json"
+    },
+    {
+      "source": "macerator/plates_copper_to_copper_dust.json",
+      "type": "ic2:macerator",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/macerator/plates_copper_to_copper_dust.json"
+    },
+    {
+      "source": "macerator/plates_gold_to_gold_dust.json",
+      "type": "ic2:macerator",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/macerator/plates_gold_to_gold_dust.json"
+    },
+    {
+      "source": "macerator/plates_iron_to_iron_dust.json",
+      "type": "ic2:macerator",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/macerator/plates_iron_to_iron_dust.json"
+    },
+    {
+      "source": "macerator/plates_lapis_to_lapis_dust.json",
+      "type": "ic2:macerator",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/macerator/plates_lapis_to_lapis_dust.json"
+    },
+    {
+      "source": "macerator/plates_lead_to_lead_dust.json",
+      "type": "ic2:macerator",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/macerator/plates_lead_to_lead_dust.json"
+    },
+    {
+      "source": "macerator/plates_obsidian_to_obsidian_dust.json",
+      "type": "ic2:macerator",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/macerator/plates_obsidian_to_obsidian_dust.json"
+    },
+    {
+      "source": "macerator/plates_tin_to_tin_dust.json",
+      "type": "ic2:macerator",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/macerator/plates_tin_to_tin_dust.json"
+    },
+    {
+      "source": "macerator/poisonous_potato_to_grin_powder.json",
+      "type": "ic2:macerator",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/macerator/poisonous_potato_to_grin_powder.json"
+    },
+    {
+      "source": "macerator/potato_to_bio_chaff.json",
+      "type": "ic2:macerator",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/macerator/potato_to_bio_chaff.json"
+    },
+    {
+      "source": "macerator/prismarine_bricks_to_prismarine_shard.json",
+      "type": "ic2:macerator",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/macerator/prismarine_bricks_to_prismarine_shard.json"
+    },
+    {
+      "source": "macerator/prismarine_stairs_to_prismarine_shard.json",
+      "type": "ic2:macerator",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/macerator/prismarine_stairs_to_prismarine_shard.json"
+    },
+    {
+      "source": "macerator/prismarine_to_prismarine_shard.json",
+      "type": "ic2:macerator",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/macerator/prismarine_to_prismarine_shard.json"
+    },
+    {
+      "source": "macerator/pumpkin_seeds_to_bio_chaff.json",
+      "type": "ic2:macerator",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/macerator/pumpkin_seeds_to_bio_chaff.json"
+    },
+    {
+      "source": "macerator/pumpkin_to_bio_chaff.json",
+      "type": "ic2:macerator",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/macerator/pumpkin_to_bio_chaff.json"
+    },
+    {
+      "source": "macerator/purified_copper_to_copper_dust.json",
+      "type": "ic2:macerator",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/macerator/purified_copper_to_copper_dust.json"
+    },
+    {
+      "source": "macerator/purified_gold_to_gold_dust.json",
+      "type": "ic2:macerator",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/macerator/purified_gold_to_gold_dust.json"
+    },
+    {
+      "source": "macerator/purified_iron_to_iron_dust.json",
+      "type": "ic2:macerator",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/macerator/purified_iron_to_iron_dust.json"
+    },
+    {
+      "source": "macerator/purified_lead_to_lead_dust.json",
+      "type": "ic2:macerator",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/macerator/purified_lead_to_lead_dust.json"
+    },
+    {
+      "source": "macerator/purified_silver_to_silver_dust.json",
+      "type": "ic2:macerator",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/macerator/purified_silver_to_silver_dust.json"
+    },
+    {
+      "source": "macerator/purified_tin_to_tin_dust.json",
+      "type": "ic2:macerator",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/macerator/purified_tin_to_tin_dust.json"
+    },
+    {
+      "source": "macerator/quartz_block_to_quartz.json",
+      "type": "ic2:macerator",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/macerator/quartz_block_to_quartz.json"
+    },
+    {
+      "source": "macerator/quartz_bricks_to_quartz.json",
+      "type": "ic2:macerator",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/macerator/quartz_bricks_to_quartz.json"
+    },
+    {
+      "source": "macerator/quartz_pillar_to_quartz.json",
+      "type": "ic2:macerator",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/macerator/quartz_pillar_to_quartz.json"
+    },
+    {
+      "source": "macerator/quartz_stairs_to_quartz.json",
+      "type": "ic2:macerator",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/macerator/quartz_stairs_to_quartz.json"
+    },
+    {
+      "source": "macerator/raw_copper_block_to_raw_copper.json",
+      "type": "ic2:macerator",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/macerator/raw_copper_block_to_raw_copper.json"
+    },
+    {
+      "source": "macerator/raw_copper_to_crushed_copper.json",
+      "type": "ic2:macerator",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/macerator/raw_copper_to_crushed_copper.json"
+    },
+    {
+      "source": "macerator/raw_gold_block_to_raw_gold.json",
+      "type": "ic2:macerator",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/macerator/raw_gold_block_to_raw_gold.json"
+    },
+    {
+      "source": "macerator/raw_gold_to_crushed_gold.json",
+      "type": "ic2:macerator",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/macerator/raw_gold_to_crushed_gold.json"
+    },
+    {
+      "source": "macerator/raw_iron_block_to_raw_iron.json",
+      "type": "ic2:macerator",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/macerator/raw_iron_block_to_raw_iron.json"
+    },
+    {
+      "source": "macerator/raw_iron_to_crushed_iron.json",
+      "type": "ic2:macerator",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/macerator/raw_iron_to_crushed_iron.json"
+    },
+    {
+      "source": "macerator/raw_lead_block_to_raw_lead.json",
+      "type": "ic2:macerator",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/macerator/raw_lead_block_to_raw_lead.json"
+    },
+    {
+      "source": "macerator/raw_ores_lead_to_crushed_lead.json",
+      "type": "ic2:macerator",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/macerator/raw_ores_lead_to_crushed_lead.json"
+    },
+    {
+      "source": "macerator/raw_ores_tin_to_crushed_tin.json",
+      "type": "ic2:macerator",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/macerator/raw_ores_tin_to_crushed_tin.json"
+    },
+    {
+      "source": "macerator/raw_ores_uranium_to_crushed_uranium.json",
+      "type": "ic2:macerator",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/macerator/raw_ores_uranium_to_crushed_uranium.json"
+    },
+    {
+      "source": "macerator/raw_tin_block_to_raw_tin.json",
+      "type": "ic2:macerator",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/macerator/raw_tin_block_to_raw_tin.json"
+    },
+    {
+      "source": "macerator/raw_uranium_block_to_raw_uranium.json",
+      "type": "ic2:macerator",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/macerator/raw_uranium_block_to_raw_uranium.json"
+    },
+    {
+      "source": "macerator/redstone_block_to_redstone.json",
+      "type": "ic2:macerator",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/macerator/redstone_block_to_redstone.json"
+    },
+    {
+      "source": "macerator/sandstone_to_sand.json",
+      "type": "ic2:macerator",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/macerator/sandstone_to_sand.json"
+    },
+    {
+      "source": "macerator/saplings_to_bio_chaff.json",
+      "type": "ic2:macerator",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/macerator/saplings_to_bio_chaff.json"
+    },
+    {
+      "source": "macerator/soul_soil_to_soul_sand.json",
+      "type": "ic2:macerator",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/macerator/soul_soil_to_soul_sand.json"
+    },
+    {
+      "source": "macerator/spider_eye_to_grin_powder.json",
+      "type": "ic2:macerator",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/macerator/spider_eye_to_grin_powder.json"
+    },
+    {
+      "source": "macerator/stone_to_cobblestone.json",
+      "type": "ic2:macerator",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/macerator/stone_to_cobblestone.json"
+    },
+    {
+      "source": "macerator/sugar_cane_to_bio_chaff.json",
+      "type": "ic2:macerator",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/macerator/sugar_cane_to_bio_chaff.json"
+    },
+    {
+      "source": "macerator/tall_grass_to_bio_chaff.json",
+      "type": "ic2:macerator",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/macerator/tall_grass_to_bio_chaff.json"
+    },
+    {
+      "source": "macerator/tin_block_to_tin_ingot.json",
+      "type": "ic2:macerator",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/macerator/tin_block_to_tin_ingot.json"
+    },
+    {
+      "source": "macerator/tin_can_to_tin_dust.json",
+      "type": "ic2:macerator",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/macerator/tin_can_to_tin_dust.json"
+    },
+    {
+      "source": "macerator/uranium_block_to_uranium_ingot.json",
+      "type": "ic2:macerator",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/macerator/uranium_block_to_uranium_ingot.json"
+    },
+    {
+      "source": "macerator/weed_to_bio_chaff.json",
+      "type": "ic2:macerator",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/macerator/weed_to_bio_chaff.json"
+    },
+    {
+      "source": "macerator/wheat_seeds_to_bio_chaff.json",
+      "type": "ic2:macerator",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/macerator/wheat_seeds_to_bio_chaff.json"
+    },
+    {
+      "source": "macerator/wheat_to_bio_chaff.json",
+      "type": "ic2:macerator",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/macerator/wheat_to_bio_chaff.json"
+    },
+    {
+      "source": "macerator/wool_to_string.json",
+      "type": "ic2:macerator",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/macerator/wool_to_string.json"
+    },
+    {
+      "source": "matter_fabricator/scrap_box_to_45000.json",
+      "type": "ic2:matter_fabricator",
+      "status": "pending",
+      "reason": "recipe family not ported"
+    },
+    {
+      "source": "matter_fabricator/scrap_to_5000.json",
+      "type": "ic2:matter_fabricator",
+      "status": "pending",
+      "reason": "recipe family not ported"
+    },
+    {
+      "source": "metal_former_cutting/iron_casing_to_coin.json",
+      "type": "ic2:metal_former_cutting",
+      "status": "pending",
+      "reason": "recipe family not ported"
+    },
+    {
+      "source": "metal_former_cutting/plates_copper_to_copper_cable.json",
+      "type": "ic2:metal_former_cutting",
+      "status": "pending",
+      "reason": "recipe family not ported"
+    },
+    {
+      "source": "metal_former_cutting/plates_gold_to_gold_cable.json",
+      "type": "ic2:metal_former_cutting",
+      "status": "pending",
+      "reason": "recipe family not ported"
+    },
+    {
+      "source": "metal_former_cutting/plates_iron_to_iron_cable.json",
+      "type": "ic2:metal_former_cutting",
+      "status": "pending",
+      "reason": "recipe family not ported"
+    },
+    {
+      "source": "metal_former_cutting/plates_tin_to_tin_cable.json",
+      "type": "ic2:metal_former_cutting",
+      "status": "pending",
+      "reason": "recipe family not ported"
+    },
+    {
+      "source": "metal_former_extruding/blocks_bronze_to_bronze_shaft.json",
+      "type": "ic2:metal_former_extruding",
+      "status": "pending",
+      "reason": "recipe family not ported"
+    },
+    {
+      "source": "metal_former_extruding/blocks_steel_to_steel_shaft.json",
+      "type": "ic2:metal_former_extruding",
+      "status": "pending",
+      "reason": "recipe family not ported"
+    },
+    {
+      "source": "metal_former_extruding/copper_ingot_to_copper_cable.json",
+      "type": "ic2:metal_former_extruding",
+      "status": "pending",
+      "reason": "recipe family not ported"
+    },
+    {
+      "source": "metal_former_extruding/gold_ingot_to_gold_cable.json",
+      "type": "ic2:metal_former_extruding",
+      "status": "pending",
+      "reason": "recipe family not ported"
+    },
+    {
+      "source": "metal_former_extruding/ingots_tin_to_tin_cable.json",
+      "type": "ic2:metal_former_extruding",
+      "status": "pending",
+      "reason": "recipe family not ported"
+    },
+    {
+      "source": "metal_former_extruding/iron_block_to_iron_shaft.json",
+      "type": "ic2:metal_former_extruding",
+      "status": "pending",
+      "reason": "recipe family not ported"
+    },
+    {
+      "source": "metal_former_extruding/iron_casing_to_iron_fence.json",
+      "type": "ic2:metal_former_extruding",
+      "status": "pending",
+      "reason": "recipe family not ported"
+    },
+    {
+      "source": "metal_former_extruding/iron_ingot_to_iron_cable.json",
+      "type": "ic2:metal_former_extruding",
+      "status": "pending",
+      "reason": "recipe family not ported"
+    },
+    {
+      "source": "metal_former_extruding/plates_iron_to_fuel_rod.json",
+      "type": "ic2:metal_former_extruding",
+      "status": "pending",
+      "reason": "recipe family not ported"
+    },
+    {
+      "source": "metal_former_extruding/tin_casing_to_tin_can.json",
+      "type": "ic2:metal_former_extruding",
+      "status": "pending",
+      "reason": "recipe family not ported"
+    },
+    {
+      "source": "metal_former_rolling/copper_ingot_to_copper_plate.json",
+      "type": "ic2:metal_former_rolling",
+      "status": "pending",
+      "reason": "recipe family not ported"
+    },
+    {
+      "source": "metal_former_rolling/gold_ingot_to_gold_plate.json",
+      "type": "ic2:metal_former_rolling",
+      "status": "pending",
+      "reason": "recipe family not ported"
+    },
+    {
+      "source": "metal_former_rolling/ingots_bronze_to_bronze_plate.json",
+      "type": "ic2:metal_former_rolling",
+      "status": "pending",
+      "reason": "recipe family not ported"
+    },
+    {
+      "source": "metal_former_rolling/ingots_lead_to_lead_plate.json",
+      "type": "ic2:metal_former_rolling",
+      "status": "pending",
+      "reason": "recipe family not ported"
+    },
+    {
+      "source": "metal_former_rolling/ingots_steel_to_steel_plate.json",
+      "type": "ic2:metal_former_rolling",
+      "status": "pending",
+      "reason": "recipe family not ported"
+    },
+    {
+      "source": "metal_former_rolling/ingots_tin_to_tin_plate.json",
+      "type": "ic2:metal_former_rolling",
+      "status": "pending",
+      "reason": "recipe family not ported"
+    },
+    {
+      "source": "metal_former_rolling/iron_ingot_to_iron_plate.json",
+      "type": "ic2:metal_former_rolling",
+      "status": "pending",
+      "reason": "recipe family not ported"
+    },
+    {
+      "source": "metal_former_rolling/plates_bronze_to_bronze_casing.json",
+      "type": "ic2:metal_former_rolling",
+      "status": "pending",
+      "reason": "recipe family not ported"
+    },
+    {
+      "source": "metal_former_rolling/plates_copper_to_copper_casing.json",
+      "type": "ic2:metal_former_rolling",
+      "status": "pending",
+      "reason": "recipe family not ported"
+    },
+    {
+      "source": "metal_former_rolling/plates_gold_to_gold_casing.json",
+      "type": "ic2:metal_former_rolling",
+      "status": "pending",
+      "reason": "recipe family not ported"
+    },
+    {
+      "source": "metal_former_rolling/plates_iron_to_iron_casing.json",
+      "type": "ic2:metal_former_rolling",
+      "status": "pending",
+      "reason": "recipe family not ported"
+    },
+    {
+      "source": "metal_former_rolling/plates_lead_to_lead_casing.json",
+      "type": "ic2:metal_former_rolling",
+      "status": "pending",
+      "reason": "recipe family not ported"
+    },
+    {
+      "source": "metal_former_rolling/plates_steel_to_steel_casing.json",
+      "type": "ic2:metal_former_rolling",
+      "status": "pending",
+      "reason": "recipe family not ported"
+    },
+    {
+      "source": "metal_former_rolling/plates_tin_to_tin_casing.json",
+      "type": "ic2:metal_former_rolling",
+      "status": "pending",
+      "reason": "recipe family not ported"
+    },
+    {
+      "source": "ore_washer/crushed_copper_to_purified_copper.json",
+      "type": "ic2:ore_washer",
+      "status": "pending",
+      "reason": "recipe family not ported"
+    },
+    {
+      "source": "ore_washer/crushed_gold_to_purified_gold.json",
+      "type": "ic2:ore_washer",
+      "status": "pending",
+      "reason": "recipe family not ported"
+    },
+    {
+      "source": "ore_washer/crushed_iron_to_purified_iron.json",
+      "type": "ic2:ore_washer",
+      "status": "pending",
+      "reason": "recipe family not ported"
+    },
+    {
+      "source": "ore_washer/crushed_lead_to_purified_lead.json",
+      "type": "ic2:ore_washer",
+      "status": "pending",
+      "reason": "recipe family not ported"
+    },
+    {
+      "source": "ore_washer/crushed_silver_to_purified_silver.json",
+      "type": "ic2:ore_washer",
+      "status": "pending",
+      "reason": "recipe family not ported"
+    },
+    {
+      "source": "ore_washer/crushed_tin_to_purified_tin.json",
+      "type": "ic2:ore_washer",
+      "status": "pending",
+      "reason": "recipe family not ported"
+    },
+    {
+      "source": "ore_washer/crushed_uranium_to_purified_uranium.json",
+      "type": "ic2:ore_washer",
+      "status": "pending",
+      "reason": "recipe family not ported"
+    },
+    {
+      "source": "ore_washer/gravel_to_stone_dust.json",
+      "type": "ic2:ore_washer",
+      "status": "pending",
+      "reason": "recipe family not ported"
+    },
+    {
+      "source": "shaped/advanced_batpack.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:advanced_batpack"
+    },
+    {
+      "source": "shaped/advanced_charging_re_battery.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:advanced_charging_re_battery"
+    },
+    {
+      "source": "shaped/advanced_circuit.json",
+      "type": "ic2:shaped",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/advanced_circuit.json"
+    },
+    {
+      "source": "shaped/advanced_circuit_vertical.json",
+      "type": "ic2:shaped",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/advanced_circuit_vertical.json"
+    },
+    {
+      "source": "shaped/advanced_heat_exchanger.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:advanced_heat_exchanger"
+    },
+    {
+      "source": "shaped/advanced_heat_vent.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:advanced_heat_vent"
+    },
+    {
+      "source": "shaped/advanced_machine.json",
+      "type": "ic2:shaped",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/advanced_machine.json"
+    },
+    {
+      "source": "shaped/advanced_machine_vertical.json",
+      "type": "ic2:shaped",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/advanced_machine_vertical.json"
+    },
+    {
+      "source": "shaped/advanced_miner.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:advanced_miner"
+    },
+    {
+      "source": "shaped/advanced_re_battery.json",
+      "type": "ic2:shaped",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/advanced_re_battery.json"
+    },
+    {
+      "source": "shaped/advanced_scanner.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:advanced_scanner"
+    },
+    {
+      "source": "shaped/alloy_chestplate.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:alloy_chestplate"
+    },
+    {
+      "source": "shaped/alloy_chestplate_2.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:alloy_chestplate"
+    },
+    {
+      "source": "shaped/batbox.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:batbox"
+    },
+    {
+      "source": "shaped/batbox_chargepad.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:batbox_chargepad"
+    },
+    {
+      "source": "shaped/batch_crafter.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:batch_crafter"
+    },
+    {
+      "source": "shaped/batpack.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:batpack"
+    },
+    {
+      "source": "shaped/blank_tfbp.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:blank_tfbp"
+    },
+    {
+      "source": "shaped/blast_furnace.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:blast_furnace"
+    },
+    {
+      "source": "shaped/block_cutter.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:block_cutter"
+    },
+    {
+      "source": "shaped/bronze_axe.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:bronze_axe"
+    },
+    {
+      "source": "shaped/bronze_block.json",
+      "type": "ic2:shaped",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/bronze_block.json"
+    },
+    {
+      "source": "shaped/bronze_boots.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:bronze_boots"
+    },
+    {
+      "source": "shaped/bronze_chestplate.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:bronze_chestplate"
+    },
+    {
+      "source": "shaped/bronze_dust.json",
+      "type": "ic2:shaped",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/bronze_dust.json"
+    },
+    {
+      "source": "shaped/bronze_helmet.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:bronze_helmet"
+    },
+    {
+      "source": "shaped/bronze_hoe.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:bronze_hoe"
+    },
+    {
+      "source": "shaped/bronze_ingot.json",
+      "type": "ic2:shaped",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/bronze_ingot.json"
+    },
+    {
+      "source": "shaped/bronze_leggings.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:bronze_leggings"
+    },
+    {
+      "source": "shaped/bronze_pickaxe.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:bronze_pickaxe"
+    },
+    {
+      "source": "shaped/bronze_rotor.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:bronze_rotor"
+    },
+    {
+      "source": "shaped/bronze_rotor_blade.json",
+      "type": "ic2:shaped",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/bronze_rotor_blade.json"
+    },
+    {
+      "source": "shaped/bronze_shovel.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:bronze_shovel"
+    },
+    {
+      "source": "shaped/bronze_storage_box.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:bronze_storage_box"
+    },
+    {
+      "source": "shaped/bronze_sword.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:bronze_sword"
+    },
+    {
+      "source": "shaped/bronze_tank.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:bronze_tank"
+    },
+    {
+      "source": "shaped/bucket.json",
+      "type": "ic2:shaped",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/bucket.json"
+    },
+    {
+      "source": "shaped/canner.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:canner"
+    },
+    {
+      "source": "shaped/carbon_boat.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:carbon_boat"
+    },
+    {
+      "source": "shaped/carbon_fibre.json",
+      "type": "ic2:shaped",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/carbon_fibre.json"
+    },
+    {
+      "source": "shaped/carbon_rotor.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:carbon_rotor"
+    },
+    {
+      "source": "shaped/carbon_rotor_blade.json",
+      "type": "ic2:shaped",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/carbon_rotor_blade.json"
+    },
+    {
+      "source": "shaped/centrifuge.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:centrifuge"
+    },
+    {
+      "source": "shaped/cesu.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:cesu"
+    },
+    {
+      "source": "shaped/cesu_chargepad.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:cesu_chargepad"
+    },
+    {
+      "source": "shaped/cf_pack.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:cf_pack"
+    },
+    {
+      "source": "shaped/cf_powder.json",
+      "type": "ic2:shaped",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/cf_powder.json"
+    },
+    {
+      "source": "shaped/chainsaw.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:chainsaw"
+    },
+    {
+      "source": "shaped/chainsaw_from_steel.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:chainsaw"
+    },
+    {
+      "source": "shaped/charging_energy_crystal.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:charging_energy_crystal"
+    },
+    {
+      "source": "shaped/charging_lapotron_crystal.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:charging_lapotron_crystal"
+    },
+    {
+      "source": "shaped/charging_re_battery.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:charging_re_battery"
+    },
+    {
+      "source": "shaped/chilling_tfbp.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:chilling_tfbp"
+    },
+    {
+      "source": "shaped/chunk_loader.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:chunk_loader"
+    },
+    {
+      "source": "shaped/circuit.json",
+      "type": "ic2:shaped",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/circuit.json"
+    },
+    {
+      "source": "shaped/circuit_vertical.json",
+      "type": "ic2:shaped",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/circuit_vertical.json"
+    },
+    {
+      "source": "shaped/coal_ball.json",
+      "type": "ic2:shaped",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/coal_ball.json"
+    },
+    {
+      "source": "shaped/coal_chunk.json",
+      "type": "ic2:shaped",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/coal_chunk.json"
+    },
+    {
+      "source": "shaped/coal_fuel_dust.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "ingredient requires component/fluid conversion: {'fluid': 'minecraft:water', 'amount': 1000}"
+    },
+    {
+      "source": "shaped/coil.json",
+      "type": "ic2:shaped",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/coil.json"
+    },
+    {
+      "source": "shaped/component_heat_exchanger.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:component_heat_exchanger"
+    },
+    {
+      "source": "shaped/component_heat_vent.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:component_heat_vent"
+    },
+    {
+      "source": "shaped/compressor.json",
+      "type": "ic2:shaped",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/compressor.json"
+    },
+    {
+      "source": "shaped/condenser.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:condenser"
+    },
+    {
+      "source": "shaped/containment_box.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:containment_box"
+    },
+    {
+      "source": "shaped/copper_boiler.json",
+      "type": "ic2:shaped",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/copper_boiler.json"
+    },
+    {
+      "source": "shaped/copper_dust.json",
+      "type": "ic2:shaped",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/copper_dust.json"
+    },
+    {
+      "source": "shaped/crop_analyzer.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:crop_analyzer"
+    },
+    {
+      "source": "shaped/crop_harvester.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:crop_harvester"
+    },
+    {
+      "source": "shaped/crop_stick.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:crop_stick"
+    },
+    {
+      "source": "shaped/cropmatron.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:cropmatron"
+    },
+    {
+      "source": "shaped/cultivation_tfbp.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:cultivation_tfbp"
+    },
+    {
+      "source": "shaped/cutter.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:cutter"
+    },
+    {
+      "source": "shaped/desertification_tfbp.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:desertification_tfbp"
+    },
+    {
+      "source": "shaped/detector_cable.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:detector_cable"
+    },
+    {
+      "source": "shaped/diamond_cutting_blade.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:diamond_cutting_blade"
+    },
+    {
+      "source": "shaped/diamond_drill.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:diamond_drill"
+    },
+    {
+      "source": "shaped/drill.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:drill"
+    },
+    {
+      "source": "shaped/dual_mox_fuel_rod.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:dual_mox_fuel_rod"
+    },
+    {
+      "source": "shaped/dual_uranium_fuel_rod.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:dual_uranium_fuel_rod"
+    },
+    {
+      "source": "shaped/dynamite_sticky.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:dynamite_sticky"
+    },
+    {
+      "source": "shaped/ejector_upgrade.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:ejector_upgrade"
+    },
+    {
+      "source": "shaped/ejector_upgrade_9.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:ejector_upgrade"
+    },
+    {
+      "source": "shaped/electric_boat.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:electric_boat"
+    },
+    {
+      "source": "shaped/electric_furnace.json",
+      "type": "ic2:shaped",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/electric_furnace.json"
+    },
+    {
+      "source": "shaped/electric_heat_generator.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:electric_heat_generator"
+    },
+    {
+      "source": "shaped/electric_kinetic_generator.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:electric_kinetic_generator"
+    },
+    {
+      "source": "shaped/electric_motor.json",
+      "type": "ic2:shaped",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/electric_motor.json"
+    },
+    {
+      "source": "shaped/electric_motor_vertical.json",
+      "type": "ic2:shaped",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/electric_motor_vertical.json"
+    },
+    {
+      "source": "shaped/electrolyzer.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:electrolyzer"
+    },
+    {
+      "source": "shaped/empty_mug.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:empty_mug"
+    },
+    {
+      "source": "shaped/energium_dust.json",
+      "type": "ic2:shaped",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/energium_dust.json"
+    },
+    {
+      "source": "shaped/energy_o_mat.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:energy_o_mat"
+    },
+    {
+      "source": "shaped/energy_pack.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:energy_pack"
+    },
+    {
+      "source": "shaped/energy_storage_upgrade.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:energy_storage_upgrade"
+    },
+    {
+      "source": "shaped/ev_transformer.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:ev_transformer"
+    },
+    {
+      "source": "shaped/extractor.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported item ic2:treetap"
+    },
+    {
+      "source": "shaped/facade_cell.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:facade_cell"
+    },
+    {
+      "source": "shaped/fermenter.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:fermenter"
+    },
+    {
+      "source": "shaped/flatification_tfbp.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:flatification_tfbp"
+    },
+    {
+      "source": "shaped/fluid_bottler.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:fluid_bottler"
+    },
+    {
+      "source": "shaped/fluid_distributor.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:fluid_distributor"
+    },
+    {
+      "source": "shaped/fluid_ejector_upgrade.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:fluid_ejector_upgrade"
+    },
+    {
+      "source": "shaped/fluid_ejector_upgrade_9.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:fluid_ejector_upgrade"
+    },
+    {
+      "source": "shaped/fluid_heat_generator.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:fluid_heat_generator"
+    },
+    {
+      "source": "shaped/fluid_pulling_upgrade.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:fluid_pulling_upgrade"
+    },
+    {
+      "source": "shaped/fluid_pulling_upgrade_9.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:fluid_pulling_upgrade"
+    },
+    {
+      "source": "shaped/fluid_regulator.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:fluid_regulator"
+    },
+    {
+      "source": "shaped/foam_sprayer.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:foam_sprayer"
+    },
+    {
+      "source": "shaped/forge_hammer.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:forge_hammer"
+    },
+    {
+      "source": "shaped/forge_hammer_2.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:forge_hammer"
+    },
+    {
+      "source": "shaped/frequency_transmitter.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:frequency_transmitter"
+    },
+    {
+      "source": "shaped/generator_from_furnace.json",
+      "type": "ic2:shaped",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/generator_from_furnace.json"
+    },
+    {
+      "source": "shaped/generator_from_iron_furnace.json",
+      "type": "ic2:shaped",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/generator_from_iron_furnace.json"
+    },
+    {
+      "source": "shaped/geo_generator.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:geo_generator"
+    },
+    {
+      "source": "shaped/glass_fibre_cable.json",
+      "type": "ic2:shaped",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/glass_fibre_cable.json"
+    },
+    {
+      "source": "shaped/glowstone_dust.json",
+      "type": "ic2:shaped",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/glowstone_dust.json"
+    },
+    {
+      "source": "shaped/gold_dust.json",
+      "type": "ic2:shaped",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/gold_dust.json"
+    },
+    {
+      "source": "shaped/gunpowder.json",
+      "type": "ic2:shaped",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/gunpowder.json"
+    },
+    {
+      "source": "shaped/hazmat_chestplate.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:hazmat_chestplate"
+    },
+    {
+      "source": "shaped/hazmat_helmet.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:hazmat_helmet"
+    },
+    {
+      "source": "shaped/hazmat_leggings.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:hazmat_leggings"
+    },
+    {
+      "source": "shaped/heat_conductor.json",
+      "type": "ic2:shaped",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/heat_conductor.json"
+    },
+    {
+      "source": "shaped/heat_exchanger_from_copper.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:heat_exchanger"
+    },
+    {
+      "source": "shaped/heat_vent.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:heat_vent"
+    },
+    {
+      "source": "shaped/heatpack.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:heatpack"
+    },
+    {
+      "source": "shaped/hv_transformer.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:hv_transformer"
+    },
+    {
+      "source": "shaped/induction_furnace.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:induction_furnace"
+    },
+    {
+      "source": "shaped/industrial_workbench.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:industrial_workbench"
+    },
+    {
+      "source": "shaped/iridium.json",
+      "type": "ic2:shaped",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/iridium.json"
+    },
+    {
+      "source": "shaped/iridium_drill.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:iridium_drill"
+    },
+    {
+      "source": "shaped/iridium_neutron_reflector.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:iridium_neutron_reflector"
+    },
+    {
+      "source": "shaped/iridium_neutron_reflector_vertical.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:iridium_neutron_reflector"
+    },
+    {
+      "source": "shaped/iridium_storage_box.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:iridium_storage_box"
+    },
+    {
+      "source": "shaped/iridium_tank.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:iridium_tank"
+    },
+    {
+      "source": "shaped/iron_cutting_blade.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:iron_cutting_blade"
+    },
+    {
+      "source": "shaped/iron_dust.json",
+      "type": "ic2:shaped",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/iron_dust.json"
+    },
+    {
+      "source": "shaped/iron_furnace.json",
+      "type": "ic2:shaped",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/iron_furnace.json"
+    },
+    {
+      "source": "shaped/iron_ingot_from_coin.json",
+      "type": "ic2:shaped",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/iron_ingot_from_coin.json"
+    },
+    {
+      "source": "shaped/iron_ingot_from_machine.json",
+      "type": "ic2:shaped",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/iron_ingot_from_machine.json"
+    },
+    {
+      "source": "shaped/iron_rotor.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:iron_rotor"
+    },
+    {
+      "source": "shaped/iron_rotor_blade.json",
+      "type": "ic2:shaped",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/iron_rotor_blade.json"
+    },
+    {
+      "source": "shaped/iron_storage_box.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:iron_storage_box"
+    },
+    {
+      "source": "shaped/iron_tank.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:iron_tank"
+    },
+    {
+      "source": "shaped/irrigation_tfbp.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:irrigation_tfbp"
+    },
+    {
+      "source": "shaped/item_buffer.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:item_buffer"
+    },
+    {
+      "source": "shaped/itnt.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:itnt"
+    },
+    {
+      "source": "shaped/itnt_vertical.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:itnt"
+    },
+    {
+      "source": "shaped/jetpack.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:jetpack"
+    },
+    {
+      "source": "shaped/jetpack_attachment.json",
+      "type": "ic2:jetpack_attachment",
+      "status": "pending",
+      "reason": "recipe family not ported"
+    },
+    {
+      "source": "shaped/jetpack_attachment_plate.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:jetpack_attachment_plate"
+    },
+    {
+      "source": "shaped/jetpack_electric.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:jetpack_electric"
+    },
+    {
+      "source": "shaped/kinetic_generator.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:kinetic_generator"
+    },
+    {
+      "source": "shaped/lapis_dust.json",
+      "type": "ic2:shaped",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/lapis_dust.json"
+    },
+    {
+      "source": "shaped/lapotron_crystal.json",
+      "type": "ic2:shaped",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/lapotron_crystal.json"
+    },
+    {
+      "source": "shaped/lappack.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:lappack"
+    },
+    {
+      "source": "shaped/lead_block.json",
+      "type": "ic2:shaped",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/lead_block.json"
+    },
+    {
+      "source": "shaped/lead_dust.json",
+      "type": "ic2:shaped",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/lead_dust.json"
+    },
+    {
+      "source": "shaped/lead_ingot.json",
+      "type": "ic2:shaped",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/lead_ingot.json"
+    },
+    {
+      "source": "shaped/liquid_heat_exchanger.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:liquid_heat_exchanger"
+    },
+    {
+      "source": "shaped/lithium_dust.json",
+      "type": "ic2:shaped",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/lithium_dust.json"
+    },
+    {
+      "source": "shaped/luminator.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:luminator"
+    },
+    {
+      "source": "shaped/lv_transformer.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:lv_transformer"
+    },
+    {
+      "source": "shaped/lzh_condensator.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:lzh_condensator"
+    },
+    {
+      "source": "shaped/macerator.json",
+      "type": "ic2:shaped",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/macerator.json"
+    },
+    {
+      "source": "shaped/machine.json",
+      "type": "ic2:shaped",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/machine.json"
+    },
+    {
+      "source": "shaped/magnetizer.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:magnetizer"
+    },
+    {
+      "source": "shaped/matter_generator.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:matter_generator"
+    },
+    {
+      "source": "shaped/metal_former.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:metal_former"
+    },
+    {
+      "source": "shaped/meter.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:meter"
+    },
+    {
+      "source": "shaped/mfe.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:mfe"
+    },
+    {
+      "source": "shaped/mfe_chargepad.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:mfe_chargepad"
+    },
+    {
+      "source": "shaped/mfsu.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:mfsu"
+    },
+    {
+      "source": "shaped/mfsu_chargepad.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:mfsu_chargepad"
+    },
+    {
+      "source": "shaped/miner.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:miner"
+    },
+    {
+      "source": "shaped/mining_laser.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:mining_laser"
+    },
+    {
+      "source": "shaped/mining_pipe.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:mining_pipe"
+    },
+    {
+      "source": "shaped/mixed_metal_ingot.json",
+      "type": "ic2:shaped",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/mixed_metal_ingot.json"
+    },
+    {
+      "source": "shaped/mox_1.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:mox"
+    },
+    {
+      "source": "shaped/mox_2.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:mox"
+    },
+    {
+      "source": "shaped/mox_3.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:mox"
+    },
+    {
+      "source": "shaped/mox_4.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:mox"
+    },
+    {
+      "source": "shaped/mushroom_tfbp.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:mushroom_tfbp"
+    },
+    {
+      "source": "shaped/mv_transformer.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:mv_transformer"
+    },
+    {
+      "source": "shaped/nano_boots.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:nano_boots"
+    },
+    {
+      "source": "shaped/nano_chestplate.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:nano_chestplate"
+    },
+    {
+      "source": "shaped/nano_helmet.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:nano_helmet"
+    },
+    {
+      "source": "shaped/nano_leggings.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:nano_leggings"
+    },
+    {
+      "source": "shaped/nano_saber.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:nano_saber"
+    },
+    {
+      "source": "shaped/neutron_reflector.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:neutron_reflector"
+    },
+    {
+      "source": "shaped/night_vision_goggles.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:night_vision_goggles"
+    },
+    {
+      "source": "shaped/nuclear_reactor.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:nuclear_reactor"
+    },
+    {
+      "source": "shaped/nuke.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:nuke"
+    },
+    {
+      "source": "shaped/obscurator.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:obscurator"
+    },
+    {
+      "source": "shaped/obsidian_dust.json",
+      "type": "ic2:shaped",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/obsidian_dust.json"
+    },
+    {
+      "source": "shaped/ore_washing_plant.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:ore_washing_plant"
+    },
+    {
+      "source": "shaped/overclocked_heat_vent.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:overclocked_heat_vent"
+    },
+    {
+      "source": "shaped/overclocker_upgrade_12.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:overclocker_upgrade"
+    },
+    {
+      "source": "shaped/overclocker_upgrade_2.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:overclocker_upgrade"
+    },
+    {
+      "source": "shaped/overclocker_upgrade_6.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:overclocker_upgrade"
+    },
+    {
+      "source": "shaped/painter.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:painter"
+    },
+    {
+      "source": "shaped/pattern_storage.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:pattern_storage"
+    },
+    {
+      "source": "shaped/personal_chest.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:personal_chest"
+    },
+    {
+      "source": "shaped/piston.json",
+      "type": "ic2:shaped",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/piston.json"
+    },
+    {
+      "source": "shaped/plant_ball_1.json",
+      "type": "ic2:shaped",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/plant_ball_1.json"
+    },
+    {
+      "source": "shaped/plant_ball_2.json",
+      "type": "ic2:shaped",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/plant_ball_2.json"
+    },
+    {
+      "source": "shaped/plant_ball_3.json",
+      "type": "ic2:shaped",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/plant_ball_3.json"
+    },
+    {
+      "source": "shaped/plant_ball_4.json",
+      "type": "ic2:shaped",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/plant_ball_4.json"
+    },
+    {
+      "source": "shaped/plant_ball_5.json",
+      "type": "ic2:shaped",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/plant_ball_5.json"
+    },
+    {
+      "source": "shaped/plant_ball_6.json",
+      "type": "ic2:shaped",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/plant_ball_6.json"
+    },
+    {
+      "source": "shaped/plant_ball_7.json",
+      "type": "ic2:shaped",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/plant_ball_7.json"
+    },
+    {
+      "source": "shaped/plutonium.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:plutonium"
+    },
+    {
+      "source": "shaped/power_unit.json",
+      "type": "ic2:shaped",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/power_unit.json"
+    },
+    {
+      "source": "shaped/pulling_upgrade.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:pulling_upgrade"
+    },
+    {
+      "source": "shaped/pulling_upgrade_9.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:pulling_upgrade"
+    },
+    {
+      "source": "shaped/pump.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:pump"
+    },
+    {
+      "source": "shaped/quad_mox_fuel_rod.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:quad_mox_fuel_rod"
+    },
+    {
+      "source": "shaped/quad_mox_fuel_rod_from_dual.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:quad_mox_fuel_rod"
+    },
+    {
+      "source": "shaped/quad_uranium_fuel_rod.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:quad_uranium_fuel_rod"
+    },
+    {
+      "source": "shaped/quad_uranium_fuel_rod_from_dual.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:quad_uranium_fuel_rod"
+    },
+    {
+      "source": "shaped/quantum_boots.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:quantum_boots"
+    },
+    {
+      "source": "shaped/quantum_chestplate.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:quantum_chestplate"
+    },
+    {
+      "source": "shaped/quantum_helmet.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:quantum_helmet"
+    },
+    {
+      "source": "shaped/quantum_leggings.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:quantum_leggings"
+    },
+    {
+      "source": "shaped/rail.json",
+      "type": "ic2:shaped",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/rail.json"
+    },
+    {
+      "source": "shaped/raw_crystal_memory.json",
+      "type": "ic2:shaped",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/raw_crystal_memory.json"
+    },
+    {
+      "source": "shaped/raw_lead_block.json",
+      "type": "ic2:shaped",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/raw_lead_block.json"
+    },
+    {
+      "source": "shaped/raw_tin_block.json",
+      "type": "ic2:shaped",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/raw_tin_block.json"
+    },
+    {
+      "source": "shaped/raw_uranium_block.json",
+      "type": "ic2:shaped",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/raw_uranium_block.json"
+    },
+    {
+      "source": "shaped/rci_lzh.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:rci_lzh"
+    },
+    {
+      "source": "shaped/rci_rsh.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:rci_rsh"
+    },
+    {
+      "source": "shaped/re_battery.json",
+      "type": "ic2:shaped",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/re_battery.json"
+    },
+    {
+      "source": "shaped/reactor_access_hatch.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:reactor_access_hatch"
+    },
+    {
+      "source": "shaped/reactor_chamber.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:reactor_chamber"
+    },
+    {
+      "source": "shaped/reactor_coolant_cell.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:reactor_coolant_cell"
+    },
+    {
+      "source": "shaped/reactor_fluid_port.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:reactor_fluid_port"
+    },
+    {
+      "source": "shaped/reactor_heat_exchanger.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:reactor_heat_exchanger"
+    },
+    {
+      "source": "shaped/reactor_heat_plating.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:reactor_heat_plating"
+    },
+    {
+      "source": "shaped/reactor_heat_vent.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:reactor_heat_vent"
+    },
+    {
+      "source": "shaped/reactor_redstone_port.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:reactor_redstone_port"
+    },
+    {
+      "source": "shaped/reactor_vessel.json",
+      "type": "ic2:shaped",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/reactor_vessel.json"
+    },
+    {
+      "source": "shaped/recycler.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:recycler"
+    },
+    {
+      "source": "shaped/redstone_inverter_upgrade.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:redstone_inverter_upgrade"
+    },
+    {
+      "source": "shaped/redstone_inverter_upgrade_9.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:redstone_inverter_upgrade"
+    },
+    {
+      "source": "shaped/refractory_bricks.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:refractory_bricks"
+    },
+    {
+      "source": "shaped/reinforced_door.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:reinforced_door"
+    },
+    {
+      "source": "shaped/reinforced_glass.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:reinforced_glass"
+    },
+    {
+      "source": "shaped/reinforced_glass_2.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:reinforced_glass"
+    },
+    {
+      "source": "shaped/reinforced_stone.json",
+      "type": "ic2:shaped",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/reinforced_stone.json"
+    },
+    {
+      "source": "shaped/remote.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:remote"
+    },
+    {
+      "source": "shaped/remote_from_frequency_transmitter.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:remote"
+    },
+    {
+      "source": "shaped/replicator.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:replicator"
+    },
+    {
+      "source": "shaped/resin_sheet.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:resin_sheet"
+    },
+    {
+      "source": "shaped/rsh_condensator.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:rsh_condensator"
+    },
+    {
+      "source": "shaped/rt_generator.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:rt_generator"
+    },
+    {
+      "source": "shaped/rt_heat_generator.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:rt_heat_generator"
+    },
+    {
+      "source": "shaped/rtg_pellet.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:rtg_pellet"
+    },
+    {
+      "source": "shaped/rtg_pellet_2.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:rtg_pellet"
+    },
+    {
+      "source": "shaped/rtg_pellet_vertical.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:rtg_pellet"
+    },
+    {
+      "source": "shaped/rtg_pellet_vertical_2.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:rtg_pellet"
+    },
+    {
+      "source": "shaped/rubber_boat.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:rubber_boat"
+    },
+    {
+      "source": "shaped/rubber_boots.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:rubber_boots"
+    },
+    {
+      "source": "shaped/rubber_door.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:rubber_door"
+    },
+    {
+      "source": "shaped/rubber_fence.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:rubber_fence"
+    },
+    {
+      "source": "shaped/rubber_fence_gate.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:rubber_fence_gate"
+    },
+    {
+      "source": "shaped/rubber_pressure_plate.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:rubber_pressure_plate"
+    },
+    {
+      "source": "shaped/rubber_sheet.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:rubber_sheet"
+    },
+    {
+      "source": "shaped/rubber_sign.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:rubber_sign"
+    },
+    {
+      "source": "shaped/rubber_slab.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:rubber_slab"
+    },
+    {
+      "source": "shaped/rubber_stairs.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:rubber_stairs"
+    },
+    {
+      "source": "shaped/rubber_trapdoor.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:rubber_trapdoor"
+    },
+    {
+      "source": "shaped/rubber_wood.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:rubber_wood"
+    },
+    {
+      "source": "shaped/scanner.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:scanner"
+    },
+    {
+      "source": "shaped/scrap_box.json",
+      "type": "ic2:shaped",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/scrap_box.json"
+    },
+    {
+      "source": "shaped/semifluid_generator.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:semifluid_generator"
+    },
+    {
+      "source": "shaped/sextuple_reactor_coolant_cell.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:sextuple_reactor_coolant_cell"
+    },
+    {
+      "source": "shaped/silver_block.json",
+      "type": "ic2:shaped",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/silver_block.json"
+    },
+    {
+      "source": "shaped/silver_dust.json",
+      "type": "ic2:shaped",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/silver_dust.json"
+    },
+    {
+      "source": "shaped/silver_ingot.json",
+      "type": "ic2:shaped",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/silver_ingot.json"
+    },
+    {
+      "source": "shaped/single_use_battery.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:single_use_battery"
+    },
+    {
+      "source": "shaped/single_use_battery_2.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:single_use_battery"
+    },
+    {
+      "source": "shaped/small_iron_dust.json",
+      "type": "ic2:shaped",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/small_iron_dust.json"
+    },
+    {
+      "source": "shaped/small_iron_dust_2.json",
+      "type": "ic2:shaped",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/small_iron_dust_2.json"
+    },
+    {
+      "source": "shaped/small_power_unit.json",
+      "type": "ic2:shaped",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/small_power_unit.json"
+    },
+    {
+      "source": "shaped/solar_distiller.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:solar_distiller"
+    },
+    {
+      "source": "shaped/solar_generator.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:solar_generator"
+    },
+    {
+      "source": "shaped/solar_helmet.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:solar_helmet"
+    },
+    {
+      "source": "shaped/solar_helmet_from_helmet.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:solar_helmet"
+    },
+    {
+      "source": "shaped/solid_canner.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:solid_canner"
+    },
+    {
+      "source": "shaped/solid_heat_generator_from_furnace.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:solid_heat_generator"
+    },
+    {
+      "source": "shaped/solid_heat_generator_from_iron_furnace.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:solid_heat_generator"
+    },
+    {
+      "source": "shaped/sorting_machine.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:sorting_machine"
+    },
+    {
+      "source": "shaped/splitter_cable.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:splitter_cable"
+    },
+    {
+      "source": "shaped/static_boots.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:static_boots"
+    },
+    {
+      "source": "shaped/static_boots_from_boots.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:static_boots"
+    },
+    {
+      "source": "shaped/steam_generator.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:steam_generator"
+    },
+    {
+      "source": "shaped/steam_kinetic_generator.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:steam_kinetic_generator"
+    },
+    {
+      "source": "shaped/steam_repressurizer_from_iron_tank.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:steam_repressurizer"
+    },
+    {
+      "source": "shaped/steam_repressurizer_from_tank.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:steam_repressurizer"
+    },
+    {
+      "source": "shaped/steam_turbine.json",
+      "type": "ic2:shaped",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/steam_turbine.json"
+    },
+    {
+      "source": "shaped/steam_turbine_blade.json",
+      "type": "ic2:shaped",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/steam_turbine_blade.json"
+    },
+    {
+      "source": "shaped/steam_turbine_vertical.json",
+      "type": "ic2:shaped",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/steam_turbine_vertical.json"
+    },
+    {
+      "source": "shaped/steel_block.json",
+      "type": "ic2:shaped",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/steel_block.json"
+    },
+    {
+      "source": "shaped/steel_cutting_blade.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:steel_cutting_blade"
+    },
+    {
+      "source": "shaped/steel_ingot.json",
+      "type": "ic2:shaped",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/steel_ingot.json"
+    },
+    {
+      "source": "shaped/steel_rotor.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:steel_rotor"
+    },
+    {
+      "source": "shaped/steel_rotor_blade.json",
+      "type": "ic2:shaped",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/steel_rotor_blade.json"
+    },
+    {
+      "source": "shaped/steel_storage_box.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:steel_storage_box"
+    },
+    {
+      "source": "shaped/steel_tank.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:steel_tank"
+    },
+    {
+      "source": "shaped/stirling_generator.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:stirling_generator"
+    },
+    {
+      "source": "shaped/stirling_kinetic_generator.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:stirling_kinetic_generator"
+    },
+    {
+      "source": "shaped/stripped_rubber_wood.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:stripped_rubber_wood"
+    },
+    {
+      "source": "shaped/sulfur_dust.json",
+      "type": "ic2:shaped",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/sulfur_dust.json"
+    },
+    {
+      "source": "shaped/tank.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:tank"
+    },
+    {
+      "source": "shaped/teleporter.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:teleporter"
+    },
+    {
+      "source": "shaped/terraformer.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:terraformer"
+    },
+    {
+      "source": "shaped/tesla_coil.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:tesla_coil"
+    },
+    {
+      "source": "shaped/thick_neutron_reflector.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:thick_neutron_reflector"
+    },
+    {
+      "source": "shaped/tin_block.json",
+      "type": "ic2:shaped",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/tin_block.json"
+    },
+    {
+      "source": "shaped/tin_dust.json",
+      "type": "ic2:shaped",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/tin_dust.json"
+    },
+    {
+      "source": "shaped/tin_ingot.json",
+      "type": "ic2:shaped",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/tin_ingot.json"
+    },
+    {
+      "source": "shaped/tool_box.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:tool_box"
+    },
+    {
+      "source": "shaped/torch.json",
+      "type": "ic2:shaped",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/torch.json"
+    },
+    {
+      "source": "shaped/trade_o_mat.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:trade_o_mat"
+    },
+    {
+      "source": "shaped/transformer_upgrade.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:transformer_upgrade"
+    },
+    {
+      "source": "shaped/treetap.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:treetap"
+    },
+    {
+      "source": "shaped/triple_reactor_coolant_cell.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:triple_reactor_coolant_cell"
+    },
+    {
+      "source": "shaped/uranium.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:uranium"
+    },
+    {
+      "source": "shaped/uranium_2.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:uranium"
+    },
+    {
+      "source": "shaped/uranium_235.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:uranium_235"
+    },
+    {
+      "source": "shaped/uranium_block.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported item ic2:uranium_238"
+    },
+    {
+      "source": "shaped/uranium_block_tagged.json",
+      "type": "ic2:shaped",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/uranium_block_tagged.json"
+    },
+    {
+      "source": "shaped/uu_scanner.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:uu_scanner"
+    },
+    {
+      "source": "shaped/water_generator.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:water_generator"
+    },
+    {
+      "source": "shaped/water_kinetic_generator.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:water_kinetic_generator"
+    },
+    {
+      "source": "shaped/weeding_trowel.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:weeding_trowel"
+    },
+    {
+      "source": "shaped/weighted_fluid_distributor.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:weighted_fluid_distributor"
+    },
+    {
+      "source": "shaped/weighted_item_distributor.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:weighted_item_distributor"
+    },
+    {
+      "source": "shaped/wind_generator.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:wind_generator"
+    },
+    {
+      "source": "shaped/wind_kinetic_generator.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:wind_kinetic_generator"
+    },
+    {
+      "source": "shaped/wind_meter.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:wind_meter"
+    },
+    {
+      "source": "shaped/wooden_rotor.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:wooden_rotor"
+    },
+    {
+      "source": "shaped/wooden_rotor_blade.json",
+      "type": "ic2:shaped",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/wooden_rotor_blade.json"
+    },
+    {
+      "source": "shaped/wooden_storage_box.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:wooden_storage_box"
+    },
+    {
+      "source": "shaped/wool_sheet.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:wool_sheet"
+    },
+    {
+      "source": "shaped/wrench.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:wrench"
+    },
+    {
+      "source": "shaped/wrench_down.json",
+      "type": "ic2:shaped",
+      "status": "pending",
+      "reason": "unported result ic2:wrench"
+    },
+    {
+      "source": "shapeless/black_painter.json",
+      "type": "ic2:shapeless",
+      "status": "pending",
+      "reason": "unported result ic2:black_painter"
+    },
+    {
+      "source": "shapeless/blue_painter.json",
+      "type": "ic2:shapeless",
+      "status": "pending",
+      "reason": "unported result ic2:blue_painter"
+    },
+    {
+      "source": "shapeless/bronze_casing.json",
+      "type": "ic2:shapeless",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shapeless/bronze_casing.json"
+    },
+    {
+      "source": "shapeless/bronze_dust.json",
+      "type": "ic2:shapeless",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shapeless/bronze_dust.json"
+    },
+    {
+      "source": "shapeless/bronze_plate.json",
+      "type": "ic2:shapeless",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shapeless/bronze_plate.json"
+    },
+    {
+      "source": "shapeless/brown_painter.json",
+      "type": "ic2:shapeless",
+      "status": "pending",
+      "reason": "unported result ic2:brown_painter"
+    },
+    {
+      "source": "shapeless/carbon_mesh.json",
+      "type": "ic2:shapeless",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shapeless/carbon_mesh.json"
+    },
+    {
+      "source": "shapeless/coal_fuel_dust.json",
+      "type": "ic2:shapeless",
+      "status": "pending",
+      "reason": "ingredient requires component/fluid conversion: {'fluid': 'minecraft:water', 'amount': 1000}"
+    },
+    {
+      "source": "shapeless/coffee_mug.json",
+      "type": "ic2:shapeless",
+      "status": "pending",
+      "reason": "unported result ic2:coffee_mug"
+    },
+    {
+      "source": "shapeless/coffee_powder.json",
+      "type": "ic2:shapeless",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shapeless/coffee_powder.json"
+    },
+    {
+      "source": "shapeless/coke_kiln.json",
+      "type": "ic2:shapeless",
+      "status": "pending",
+      "reason": "unported result ic2:coke_kiln"
+    },
+    {
+      "source": "shapeless/coke_kiln_grate.json",
+      "type": "ic2:shapeless",
+      "status": "pending",
+      "reason": "unported result ic2:coke_kiln_grate"
+    },
+    {
+      "source": "shapeless/coke_kiln_hatch.json",
+      "type": "ic2:shapeless",
+      "status": "pending",
+      "reason": "unported result ic2:coke_kiln_hatch"
+    },
+    {
+      "source": "shapeless/cold_coffee_mug.json",
+      "type": "ic2:shapeless",
+      "status": "pending",
+      "reason": "unported result ic2:cold_coffee_mug"
+    },
+    {
+      "source": "shapeless/containment_reactor_plating.json",
+      "type": "ic2:shapeless",
+      "status": "pending",
+      "reason": "unported result ic2:containment_reactor_plating"
+    },
+    {
+      "source": "shapeless/copper_cable.json",
+      "type": "ic2:shapeless",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shapeless/copper_cable.json"
+    },
+    {
+      "source": "shapeless/copper_casing.json",
+      "type": "ic2:shapeless",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shapeless/copper_casing.json"
+    },
+    {
+      "source": "shapeless/copper_plate.json",
+      "type": "ic2:shapeless",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shapeless/copper_plate.json"
+    },
+    {
+      "source": "shapeless/cyan_painter.json",
+      "type": "ic2:shapeless",
+      "status": "pending",
+      "reason": "unported result ic2:cyan_painter"
+    },
+    {
+      "source": "shapeless/double_insulated_gold_cable.json",
+      "type": "ic2:shapeless",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shapeless/double_insulated_gold_cable.json"
+    },
+    {
+      "source": "shapeless/double_insulated_gold_cable_2.json",
+      "type": "ic2:shapeless",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shapeless/double_insulated_gold_cable_2.json"
+    },
+    {
+      "source": "shapeless/double_insulated_iron_cable.json",
+      "type": "ic2:shapeless",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shapeless/double_insulated_iron_cable.json"
+    },
+    {
+      "source": "shapeless/double_insulated_iron_cable_2.json",
+      "type": "ic2:shapeless",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shapeless/double_insulated_iron_cable_2.json"
+    },
+    {
+      "source": "shapeless/dynamite.json",
+      "type": "ic2:shapeless",
+      "status": "pending",
+      "reason": "unported result ic2:dynamite"
+    },
+    {
+      "source": "shapeless/electric_treetap.json",
+      "type": "ic2:shapeless",
+      "status": "pending",
+      "reason": "unported result ic2:electric_treetap"
+    },
+    {
+      "source": "shapeless/electric_wrench.json",
+      "type": "ic2:shapeless",
+      "status": "pending",
+      "reason": "unported result ic2:electric_wrench"
+    },
+    {
+      "source": "shapeless/fertilizer.json",
+      "type": "ic2:shapeless",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shapeless/fertilizer.json"
+    },
+    {
+      "source": "shapeless/fertilizer_2.json",
+      "type": "ic2:shapeless",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shapeless/fertilizer_2.json"
+    },
+    {
+      "source": "shapeless/gold_cable.json",
+      "type": "ic2:shapeless",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shapeless/gold_cable.json"
+    },
+    {
+      "source": "shapeless/gold_casing.json",
+      "type": "ic2:shapeless",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shapeless/gold_casing.json"
+    },
+    {
+      "source": "shapeless/gold_plate.json",
+      "type": "ic2:shapeless",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shapeless/gold_plate.json"
+    },
+    {
+      "source": "shapeless/gray_painter.json",
+      "type": "ic2:shapeless",
+      "status": "pending",
+      "reason": "unported result ic2:gray_painter"
+    },
+    {
+      "source": "shapeless/green_painter.json",
+      "type": "ic2:shapeless",
+      "status": "pending",
+      "reason": "unported result ic2:green_painter"
+    },
+    {
+      "source": "shapeless/hydrated_tin_dust.json",
+      "type": "ic2:shapeless",
+      "status": "pending",
+      "reason": "ingredient requires component/fluid conversion: {'fluid': 'minecraft:water', 'amount': 1000}"
+    },
+    {
+      "source": "shapeless/insulated_copper_cable.json",
+      "type": "ic2:shapeless",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shapeless/insulated_copper_cable.json"
+    },
+    {
+      "source": "shapeless/insulated_gold_cable.json",
+      "type": "ic2:shapeless",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shapeless/insulated_gold_cable.json"
+    },
+    {
+      "source": "shapeless/insulated_iron_cable.json",
+      "type": "ic2:shapeless",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shapeless/insulated_iron_cable.json"
+    },
+    {
+      "source": "shapeless/insulated_tin_cable.json",
+      "type": "ic2:shapeless",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shapeless/insulated_tin_cable.json"
+    },
+    {
+      "source": "shapeless/iron_casing.json",
+      "type": "ic2:shapeless",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shapeless/iron_casing.json"
+    },
+    {
+      "source": "shapeless/iron_plate.json",
+      "type": "ic2:shapeless",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shapeless/iron_plate.json"
+    },
+    {
+      "source": "shapeless/lava_cell.json",
+      "type": "ic2:shapeless",
+      "status": "pending",
+      "reason": "unported result ic2:lava_cell"
+    },
+    {
+      "source": "shapeless/lead_casing.json",
+      "type": "ic2:shapeless",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shapeless/lead_casing.json"
+    },
+    {
+      "source": "shapeless/lead_plate.json",
+      "type": "ic2:shapeless",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shapeless/lead_plate.json"
+    },
+    {
+      "source": "shapeless/light_blue_painter.json",
+      "type": "ic2:shapeless",
+      "status": "pending",
+      "reason": "unported result ic2:light_blue_painter"
+    },
+    {
+      "source": "shapeless/light_gray_painter.json",
+      "type": "ic2:shapeless",
+      "status": "pending",
+      "reason": "unported result ic2:light_gray_painter"
+    },
+    {
+      "source": "shapeless/lime_painter.json",
+      "type": "ic2:shapeless",
+      "status": "pending",
+      "reason": "unported result ic2:lime_painter"
+    },
+    {
+      "source": "shapeless/lzh_condensator_lapis.json",
+      "type": "ic2:gradual",
+      "status": "pending",
+      "reason": "recipe family not ported"
+    },
+    {
+      "source": "shapeless/lzh_condensator_redstone.json",
+      "type": "ic2:gradual",
+      "status": "pending",
+      "reason": "recipe family not ported"
+    },
+    {
+      "source": "shapeless/magenta_painter.json",
+      "type": "ic2:shapeless",
+      "status": "pending",
+      "reason": "unported result ic2:magenta_painter"
+    },
+    {
+      "source": "shapeless/manual_kinetic_generator.json",
+      "type": "ic2:shapeless",
+      "status": "pending",
+      "reason": "unported result ic2:manual_kinetic_generator"
+    },
+    {
+      "source": "shapeless/mining_filter.json",
+      "type": "ic2:shapeless",
+      "status": "pending",
+      "reason": "unported result ic2:mining_filter_card"
+    },
+    {
+      "source": "shapeless/obsidian.json",
+      "type": "ic2:shapeless",
+      "status": "pending",
+      "reason": "ingredient requires component/fluid conversion: {'fluid': 'minecraft:water', 'amount': 1000}"
+    },
+    {
+      "source": "shapeless/orange_painter.json",
+      "type": "ic2:shapeless",
+      "status": "pending",
+      "reason": "unported result ic2:orange_painter"
+    },
+    {
+      "source": "shapeless/pink_painter.json",
+      "type": "ic2:shapeless",
+      "status": "pending",
+      "reason": "unported result ic2:pink_painter"
+    },
+    {
+      "source": "shapeless/purple_painter.json",
+      "type": "ic2:shapeless",
+      "status": "pending",
+      "reason": "unported result ic2:purple_painter"
+    },
+    {
+      "source": "shapeless/raw_ore/lead.json",
+      "type": "minecraft:crafting_shapeless",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shapeless/raw_ore/lead.json"
+    },
+    {
+      "source": "shapeless/raw_ore/tin.json",
+      "type": "minecraft:crafting_shapeless",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shapeless/raw_ore/tin.json"
+    },
+    {
+      "source": "shapeless/raw_ore/uranium.json",
+      "type": "minecraft:crafting_shapeless",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shapeless/raw_ore/uranium.json"
+    },
+    {
+      "source": "shapeless/reactor_plating.json",
+      "type": "ic2:shapeless",
+      "status": "pending",
+      "reason": "unported result ic2:reactor_plating"
+    },
+    {
+      "source": "shapeless/red_painter.json",
+      "type": "ic2:shapeless",
+      "status": "pending",
+      "reason": "unported result ic2:red_painter"
+    },
+    {
+      "source": "shapeless/rsh_condensator_redstone.json",
+      "type": "ic2:gradual",
+      "status": "pending",
+      "reason": "recipe family not ported"
+    },
+    {
+      "source": "shapeless/rubber_boat.json",
+      "type": "ic2:shapeless",
+      "status": "pending",
+      "reason": "unported result ic2:rubber_boat"
+    },
+    {
+      "source": "shapeless/rubber_button.json",
+      "type": "ic2:shapeless",
+      "status": "pending",
+      "reason": "unported result ic2:rubber_button"
+    },
+    {
+      "source": "shapeless/rubber_planks.json",
+      "type": "ic2:shapeless",
+      "status": "pending",
+      "reason": "unported result ic2:rubber_planks"
+    },
+    {
+      "source": "shapeless/small_plutonium.json",
+      "type": "ic2:shapeless",
+      "status": "pending",
+      "reason": "unported result ic2:small_plutonium"
+    },
+    {
+      "source": "shapeless/small_uranium_235.json",
+      "type": "ic2:shapeless",
+      "status": "pending",
+      "reason": "unported result ic2:small_uranium_235"
+    },
+    {
+      "source": "shapeless/sticky_piston.json",
+      "type": "ic2:shapeless",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shapeless/sticky_piston.json"
+    },
+    {
+      "source": "shapeless/tin_cable.json",
+      "type": "ic2:shapeless",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shapeless/tin_cable.json"
+    },
+    {
+      "source": "shapeless/tin_casing.json",
+      "type": "ic2:shapeless",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shapeless/tin_casing.json"
+    },
+    {
+      "source": "shapeless/tin_plate.json",
+      "type": "ic2:shapeless",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shapeless/tin_plate.json"
+    },
+    {
+      "source": "shapeless/triple_insulated_iron_cable.json",
+      "type": "ic2:shapeless",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shapeless/triple_insulated_iron_cable.json"
+    },
+    {
+      "source": "shapeless/triple_insulated_iron_cable_2.json",
+      "type": "ic2:shapeless",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shapeless/triple_insulated_iron_cable_2.json"
+    },
+    {
+      "source": "shapeless/triple_insulated_iron_cable_3.json",
+      "type": "ic2:shapeless",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shapeless/triple_insulated_iron_cable_3.json"
+    },
+    {
+      "source": "shapeless/uranium_238.json",
+      "type": "ic2:shapeless",
+      "status": "pending",
+      "reason": "unported result ic2:uranium_238"
+    },
+    {
+      "source": "shapeless/water_cell.json",
+      "type": "ic2:shapeless",
+      "status": "pending",
+      "reason": "unported result ic2:water_cell"
+    },
+    {
+      "source": "shapeless/weed_ex_bucket.json",
+      "type": "ic2:shapeless",
+      "status": "pending",
+      "reason": "unported result ic2:weed_ex_bucket"
+    },
+    {
+      "source": "shapeless/weed_ex_cell.json",
+      "type": "ic2:shapeless",
+      "status": "pending",
+      "reason": "unported result ic2:weed_ex_cell"
+    },
+    {
+      "source": "shapeless/white_painter.json",
+      "type": "ic2:shapeless",
+      "status": "pending",
+      "reason": "unported result ic2:white_painter"
+    },
+    {
+      "source": "shapeless/yellow_painter.json",
+      "type": "ic2:shapeless",
+      "status": "pending",
+      "reason": "unported result ic2:yellow_painter"
+    },
+    {
+      "source": "smelting/bronze_ingot_from_bronze_dust.json",
+      "type": "minecraft:smelting",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/smelting/bronze_ingot_from_bronze_dust.json"
+    },
+    {
+      "source": "smelting/coal_dust.json",
+      "type": "minecraft:smelting",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/smelting/coal_dust.json"
+    },
+    {
+      "source": "smelting/copper_ingot_from_copper_dust.json",
+      "type": "minecraft:smelting",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/smelting/copper_ingot_from_copper_dust.json"
+    },
+    {
+      "source": "smelting/copper_ingot_from_crushed_copper.json",
+      "type": "minecraft:smelting",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/smelting/copper_ingot_from_crushed_copper.json"
+    },
+    {
+      "source": "smelting/copper_ingot_from_purified_copper.json",
+      "type": "minecraft:smelting",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/smelting/copper_ingot_from_purified_copper.json"
+    },
+    {
+      "source": "smelting/crystal_memory.json",
+      "type": "minecraft:smelting",
+      "status": "pending",
+      "reason": "unported result ic2:crystal_memory"
+    },
+    {
+      "source": "smelting/dark_coffee_mug.json",
+      "type": "minecraft:smelting",
+      "status": "pending",
+      "reason": "unported result ic2:dark_coffee_mug"
+    },
+    {
+      "source": "smelting/gold_ingot_from_crushed_gold.json",
+      "type": "minecraft:smelting",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/smelting/gold_ingot_from_crushed_gold.json"
+    },
+    {
+      "source": "smelting/gold_ingot_from_gold_dust.json",
+      "type": "minecraft:smelting",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/smelting/gold_ingot_from_gold_dust.json"
+    },
+    {
+      "source": "smelting/gold_ingot_from_purified_gold.json",
+      "type": "minecraft:smelting",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/smelting/gold_ingot_from_purified_gold.json"
+    },
+    {
+      "source": "smelting/iron_ingot_from_crushed_iron.json",
+      "type": "minecraft:smelting",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/smelting/iron_ingot_from_crushed_iron.json"
+    },
+    {
+      "source": "smelting/iron_ingot_from_iron_dust.json",
+      "type": "minecraft:smelting",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/smelting/iron_ingot_from_iron_dust.json"
+    },
+    {
+      "source": "smelting/iron_ingot_from_purified_iron.json",
+      "type": "minecraft:smelting",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/smelting/iron_ingot_from_purified_iron.json"
+    },
+    {
+      "source": "smelting/jungle_log_from_rubber_log.json",
+      "type": "minecraft:smelting",
+      "status": "pending",
+      "reason": "unported item ic2:rubber_log"
+    },
+    {
+      "source": "smelting/lead_ingot.json",
+      "type": "minecraft:smelting",
+      "status": "pending",
+      "reason": "unported item ic2:lead_ore"
+    },
+    {
+      "source": "smelting/lead_ingot_from_crushed_lead.json",
+      "type": "minecraft:smelting",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/smelting/lead_ingot_from_crushed_lead.json"
+    },
+    {
+      "source": "smelting/lead_ingot_from_deepslate.json",
+      "type": "minecraft:smelting",
+      "status": "pending",
+      "reason": "unported item ic2:deepslate_lead_ore"
+    },
+    {
+      "source": "smelting/lead_ingot_from_lead_dust.json",
+      "type": "minecraft:smelting",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/smelting/lead_ingot_from_lead_dust.json"
+    },
+    {
+      "source": "smelting/lead_ingot_from_purified_lead.json",
+      "type": "minecraft:smelting",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/smelting/lead_ingot_from_purified_lead.json"
+    },
+    {
+      "source": "smelting/lead_ingot_from_raw_lead.json",
+      "type": "minecraft:smelting",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/smelting/lead_ingot_from_raw_lead.json"
+    },
+    {
+      "source": "smelting/rubber.json",
+      "type": "minecraft:smelting",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/smelting/rubber.json"
+    },
+    {
+      "source": "smelting/silver_ingot_from_crushed_silver.json",
+      "type": "minecraft:smelting",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/smelting/silver_ingot_from_crushed_silver.json"
+    },
+    {
+      "source": "smelting/silver_ingot_from_purified_silver.json",
+      "type": "minecraft:smelting",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/smelting/silver_ingot_from_purified_silver.json"
+    },
+    {
+      "source": "smelting/silver_ingot_from_silver_dust.json",
+      "type": "minecraft:smelting",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/smelting/silver_ingot_from_silver_dust.json"
+    },
+    {
+      "source": "smelting/tin_ingot.json",
+      "type": "minecraft:smelting",
+      "status": "pending",
+      "reason": "unported item ic2:tin_ore"
+    },
+    {
+      "source": "smelting/tin_ingot_from_crushed_tin.json",
+      "type": "minecraft:smelting",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/smelting/tin_ingot_from_crushed_tin.json"
+    },
+    {
+      "source": "smelting/tin_ingot_from_deepslate.json",
+      "type": "minecraft:smelting",
+      "status": "pending",
+      "reason": "unported item ic2:deepslate_tin_ore"
+    },
+    {
+      "source": "smelting/tin_ingot_from_purified_tin.json",
+      "type": "minecraft:smelting",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/smelting/tin_ingot_from_purified_tin.json"
+    },
+    {
+      "source": "smelting/tin_ingot_from_raw_tin.json",
+      "type": "minecraft:smelting",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/smelting/tin_ingot_from_raw_tin.json"
+    },
+    {
+      "source": "smelting/tin_ingot_from_tin_dust.json",
+      "type": "minecraft:smelting",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/smelting/tin_ingot_from_tin_dust.json"
+    },
+    {
+      "source": "smelting/uranium_ingot.json",
+      "type": "minecraft:smelting",
+      "status": "pending",
+      "reason": "unported item ic2:uranium_ore"
+    },
+    {
+      "source": "smelting/uranium_ingot_from_crushed_uranium.json",
+      "type": "minecraft:smelting",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/smelting/uranium_ingot_from_crushed_uranium.json"
+    },
+    {
+      "source": "smelting/uranium_ingot_from_deepslate.json",
+      "type": "minecraft:smelting",
+      "status": "pending",
+      "reason": "unported item ic2:deepslate_uranium_ore"
+    },
+    {
+      "source": "smelting/uranium_ingot_from_purified_uranium.json",
+      "type": "minecraft:smelting",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/smelting/uranium_ingot_from_purified_uranium.json"
+    },
+    {
+      "source": "smelting/uranium_ingot_from_raw_uranium.json",
+      "type": "minecraft:smelting",
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/smelting/uranium_ingot_from_raw_uranium.json"
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "type": "ic2:shaped",
+  "pattern": [
+    "BAC",
+    "BIM",
+    "BAC"
+  ],
+  "result": {
+    "id": "ic2:power_unit",
+    "count": 1
+  },
+  "key": {
+    "C": "ic2:iron_casing",
+    "B": "ic2:re_battery",
+    "I": "ic2:circuit",
+    "M": "ic2:electric_motor",
+    "A": "ic2:copper_cable"
+  }
+}

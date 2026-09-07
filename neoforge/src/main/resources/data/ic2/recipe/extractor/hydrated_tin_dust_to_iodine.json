@@ -1,0 +1,14 @@
+{
+  "type": "ic2:extractor",
+  "ingredient": "ic2:hydrated_tin_dust",
+  "input_count": 1,
+  "results": [
+    {
+      "stack": {
+        "id": "ic2:iodine",
+        "count": 1
+      },
+      "weight": 1
+    }
+  ]
+}

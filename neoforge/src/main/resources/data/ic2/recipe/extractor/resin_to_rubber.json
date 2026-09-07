@@ -1,0 +1,14 @@
+{
+  "type": "ic2:extractor",
+  "ingredient": "ic2:resin",
+  "input_count": 1,
+  "results": [
+    {
+      "stack": {
+        "id": "ic2:rubber",
+        "count": 3
+      },
+      "weight": 1
+    }
+  ]
+}

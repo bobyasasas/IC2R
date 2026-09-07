@@ -1,0 +1,14 @@
+{
+  "type": "ic2:compressor",
+  "ingredient": "ic2:mixed_metal_ingot",
+  "input_count": 1,
+  "results": [
+    {
+      "stack": {
+        "id": "ic2:alloy",
+        "count": 1
+      },
+      "weight": 1
+    }
+  ]
+}

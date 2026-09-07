@@ -1,0 +1,14 @@
+{
+  "type": "ic2:compressor",
+  "ingredient": "minecraft:brick",
+  "input_count": 4,
+  "results": [
+    {
+      "stack": {
+        "id": "minecraft:bricks",
+        "count": 1
+      },
+      "weight": 1
+    }
+  ]
+}

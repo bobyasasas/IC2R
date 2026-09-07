@@ -1,0 +1,12 @@
+{
+  "type": "ic2:shapeless",
+  "hidden": true,
+  "result": {
+    "id": "minecraft:sticky_piston",
+    "count": 1
+  },
+  "ingredients": [
+    "minecraft:piston",
+    "ic2:resin"
+  ]
+}

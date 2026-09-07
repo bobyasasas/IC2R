@@ -1,0 +1,14 @@
+{
+  "type": "ic2:macerator",
+  "ingredient": "minecraft:redstone_block",
+  "input_count": 1,
+  "results": [
+    {
+      "stack": {
+        "id": "minecraft:redstone",
+        "count": 9
+      },
+      "weight": 1
+    }
+  ]
+}

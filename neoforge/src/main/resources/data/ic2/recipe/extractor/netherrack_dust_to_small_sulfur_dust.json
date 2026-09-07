@@ -1,0 +1,14 @@
+{
+  "type": "ic2:extractor",
+  "ingredient": "ic2:netherrack_dust",
+  "input_count": 1,
+  "results": [
+    {
+      "stack": {
+        "id": "ic2:small_sulfur_dust",
+        "count": 1
+      },
+      "weight": 1
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "type": "ic2:macerator",
+  "ingredient": "ic2:crushed_silver",
+  "input_count": 1,
+  "results": [
+    {
+      "stack": {
+        "id": "ic2:silver_dust",
+        "count": 1
+      },
+      "weight": 1
+    }
+  ]
+}

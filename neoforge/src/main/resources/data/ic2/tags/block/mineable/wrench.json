@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+    "ic2:compressor",
+    "ic2:electric_furnace",
+    "ic2:extractor",
+    "ic2:generator",
+    "ic2:macerator"
+  ]
+}

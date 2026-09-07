@@ -1,0 +1,14 @@
+{
+  "type": "ic2:macerator",
+  "ingredient": "minecraft:gravel",
+  "input_count": 1,
+  "results": [
+    {
+      "stack": {
+        "id": "minecraft:flint",
+        "count": 1
+      },
+      "weight": 1
+    }
+  ]
+}

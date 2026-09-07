@@ -1,0 +1,14 @@
+{
+  "type": "ic2:macerator",
+  "ingredient": "minecraft:wheat",
+  "input_count": 8,
+  "results": [
+    {
+      "stack": {
+        "id": "ic2:bio_chaff",
+        "count": 1
+      },
+      "weight": 1
+    }
+  ]
+}

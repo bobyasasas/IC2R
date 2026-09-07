@@ -1,0 +1,14 @@
+{
+  "type": "ic2:macerator",
+  "ingredient": "minecraft:honeycomb_block",
+  "input_count": 1,
+  "results": [
+    {
+      "stack": {
+        "id": "minecraft:honeycomb",
+        "count": 4
+      },
+      "weight": 1
+    }
+  ]
+}

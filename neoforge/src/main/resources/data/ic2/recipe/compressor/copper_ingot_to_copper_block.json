@@ -1,0 +1,14 @@
+{
+  "type": "ic2:compressor",
+  "ingredient": "minecraft:copper_ingot",
+  "input_count": 9,
+  "results": [
+    {
+      "stack": {
+        "id": "minecraft:copper_block",
+        "count": 1
+      },
+      "weight": 1
+    }
+  ]
+}

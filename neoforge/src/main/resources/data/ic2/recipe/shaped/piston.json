@@ -1,0 +1,19 @@
+{
+  "type": "ic2:shaped",
+  "pattern": [
+    "TTT",
+    "#X#",
+    "#R#"
+  ],
+  "hidden": true,
+  "result": {
+    "id": "minecraft:piston",
+    "count": 1
+  },
+  "key": {
+    "#": "minecraft:cobblestone",
+    "X": "#c:ingots/bronze",
+    "R": "minecraft:redstone",
+    "T": "#minecraft:planks"
+  }
+}

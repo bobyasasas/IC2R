@@ -3,12 +3,14 @@ package ic2.neoforge.client;
 import ic2.neoforge.IndustrialCraft;
 import ic2.neoforge.item.ElectricItem;
 import ic2.neoforge.item.ElectricItemEnergy;
+import ic2.neoforge.registration.ModMachines;
 
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.common.Mod;
+import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
 import net.neoforged.neoforge.client.event.RegisterRangeSelectItemModelPropertyEvent;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.entity.player.ItemTooltipEvent;
@@ -21,13 +23,12 @@ public final class IndustrialCraftClient {
         NeoForge.EVENT_BUS.addListener(IndustrialCraftClient::addTooltip);
     }
 
-    private static void registerScreens(
-            net.neoforged.neoforge.client.event.RegisterMenuScreensEvent event) {
-        event.register(
-                ic2.neoforge.registration.ModMachines.GENERATOR_MENU.get(), MachineScreen::new);
-        event.register(
-                ic2.neoforge.registration.ModMachines.ELECTRIC_FURNACE_MENU.get(),
-                MachineScreen::new);
+    private static void registerScreens(RegisterMenuScreensEvent event) {
+        ModMachines.MACHINES
+                .values()
+                .forEach(
+                        registration ->
+                                event.register(registration.menu().get(), MachineScreen::new));
     }
 
     private static void addTooltip(ItemTooltipEvent event) {

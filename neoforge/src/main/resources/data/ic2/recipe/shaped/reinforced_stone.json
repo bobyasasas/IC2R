@@ -1,0 +1,16 @@
+{
+  "type": "ic2:shaped",
+  "pattern": [
+    "SSS",
+    "SAS",
+    "SSS"
+  ],
+  "result": {
+    "id": "ic2:reinforced_stone",
+    "count": 1
+  },
+  "key": {
+    "S": "#c:stones",
+    "A": "ic2:alloy"
+  }
+}

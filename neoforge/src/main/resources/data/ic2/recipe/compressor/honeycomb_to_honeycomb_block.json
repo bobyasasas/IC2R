@@ -1,0 +1,14 @@
+{
+  "type": "ic2:compressor",
+  "ingredient": "minecraft:honeycomb",
+  "input_count": 4,
+  "results": [
+    {
+      "stack": {
+        "id": "minecraft:honeycomb_block",
+        "count": 1
+      },
+      "weight": 1
+    }
+  ]
+}

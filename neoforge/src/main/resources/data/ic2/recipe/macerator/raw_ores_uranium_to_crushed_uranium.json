@@ -1,0 +1,14 @@
+{
+  "type": "ic2:macerator",
+  "ingredient": "#c:raw_materials/uranium",
+  "input_count": 1,
+  "results": [
+    {
+      "stack": {
+        "id": "ic2:crushed_uranium",
+        "count": 2
+      },
+      "weight": 1
+    }
+  ]
+}

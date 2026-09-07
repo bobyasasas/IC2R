@@ -1,0 +1,14 @@
+{
+  "type": "ic2:macerator",
+  "ingredient": "ic2:plant_ball",
+  "input_count": 1,
+  "results": [
+    {
+      "stack": {
+        "id": "ic2:bio_chaff",
+        "count": 1
+      },
+      "weight": 1
+    }
+  ]
+}

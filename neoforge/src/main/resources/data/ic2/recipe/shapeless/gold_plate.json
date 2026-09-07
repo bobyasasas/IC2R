@@ -1,0 +1,11 @@
+{
+  "type": "ic2:shapeless",
+  "result": {
+    "id": "ic2:gold_plate",
+    "count": 1
+  },
+  "ingredients": [
+    "minecraft:gold_ingot",
+    "#ic2:forge_hammers"
+  ]
+}

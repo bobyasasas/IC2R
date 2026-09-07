@@ -1,0 +1,14 @@
+{
+  "type": "ic2:extractor",
+  "ingredient": "minecraft:snow_block",
+  "input_count": 1,
+  "results": [
+    {
+      "stack": {
+        "id": "minecraft:snowball",
+        "count": 4
+      },
+      "weight": 1
+    }
+  ]
+}

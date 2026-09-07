@@ -1,0 +1,14 @@
+{
+  "type": "ic2:compressor",
+  "ingredient": "ic2:carbon_mesh",
+  "input_count": 1,
+  "results": [
+    {
+      "stack": {
+        "id": "ic2:carbon_plate",
+        "count": 1
+      },
+      "weight": 1
+    }
+  ]
+}

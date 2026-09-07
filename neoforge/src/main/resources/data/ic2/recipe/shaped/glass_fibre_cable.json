@@ -1,0 +1,17 @@
+{
+  "type": "ic2:shaped",
+  "pattern": [
+    "GGG",
+    "DRD",
+    "GGG"
+  ],
+  "result": {
+    "id": "ic2:glass_fibre_cable",
+    "count": 6
+  },
+  "key": {
+    "G": "minecraft:glass",
+    "R": "#c:dusts/silver",
+    "D": "ic2:energium_dust"
+  }
+}

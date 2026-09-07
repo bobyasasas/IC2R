@@ -1,0 +1,13 @@
+{
+  "replace": false,
+  "values": [
+    {
+      "id": "ic2:uranium_ore",
+      "required": false
+    },
+    {
+      "id": "ic2:deepslate_uranium_ore",
+      "required": false
+    }
+  ]
+}

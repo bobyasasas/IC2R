@@ -1,0 +1,13 @@
+{
+  "replace": false,
+  "values": [
+    {
+      "id": "ic2:wrench",
+      "required": false
+    },
+    {
+      "id": "ic2:electric_wrench",
+      "required": false
+    }
+  ]
+}

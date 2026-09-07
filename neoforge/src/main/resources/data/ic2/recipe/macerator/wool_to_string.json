@@ -1,0 +1,14 @@
+{
+  "type": "ic2:macerator",
+  "ingredient": "#minecraft:wool",
+  "input_count": 1,
+  "results": [
+    {
+      "stack": {
+        "id": "minecraft:string",
+        "count": 2
+      },
+      "weight": 1
+    }
+  ]
+}

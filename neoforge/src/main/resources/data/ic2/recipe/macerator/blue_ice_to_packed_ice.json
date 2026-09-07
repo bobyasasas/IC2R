@@ -1,0 +1,14 @@
+{
+  "type": "ic2:macerator",
+  "ingredient": "minecraft:blue_ice",
+  "input_count": 1,
+  "results": [
+    {
+      "stack": {
+        "id": "minecraft:packed_ice",
+        "count": 9
+      },
+      "weight": 1
+    }
+  ]
+}

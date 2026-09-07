@@ -1,0 +1,14 @@
+{
+  "type": "ic2:shaped",
+  "pattern": [
+    "CC",
+    "CC"
+  ],
+  "result": {
+    "id": "ic2:carbon_fibre",
+    "count": 1
+  },
+  "key": {
+    "C": "#c:dusts/coal"
+  }
+}

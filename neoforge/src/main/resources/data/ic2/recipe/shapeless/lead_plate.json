@@ -1,0 +1,11 @@
+{
+  "type": "ic2:shapeless",
+  "result": {
+    "id": "ic2:lead_plate",
+    "count": 1
+  },
+  "ingredients": [
+    "#c:ingots/lead",
+    "#ic2:forge_hammers"
+  ]
+}

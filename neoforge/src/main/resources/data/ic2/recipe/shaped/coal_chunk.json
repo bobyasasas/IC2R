@@ -1,0 +1,23 @@
+{
+  "type": "ic2:shaped",
+  "pattern": [
+    "###",
+    "#O#",
+    "###"
+  ],
+  "result": {
+    "id": "ic2:coal_chunk",
+    "count": 1
+  },
+  "key": {
+    "#": "ic2:coal_block",
+    "O": {
+      "neoforge:ingredient_type": "neoforge:compound",
+      "children": [
+        "minecraft:obsidian",
+        "minecraft:iron_block",
+        "minecraft:bricks"
+      ]
+    }
+  }
+}

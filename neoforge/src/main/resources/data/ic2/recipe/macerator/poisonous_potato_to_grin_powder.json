@@ -1,0 +1,14 @@
+{
+  "type": "ic2:macerator",
+  "ingredient": "minecraft:poisonous_potato",
+  "input_count": 1,
+  "results": [
+    {
+      "stack": {
+        "id": "ic2:grin_powder",
+        "count": 1
+      },
+      "weight": 1
+    }
+  ]
+}

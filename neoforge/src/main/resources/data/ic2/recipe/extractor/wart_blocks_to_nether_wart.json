@@ -1,0 +1,14 @@
+{
+  "type": "ic2:extractor",
+  "ingredient": "#minecraft:wart_blocks",
+  "input_count": 1,
+  "results": [
+    {
+      "stack": {
+        "id": "minecraft:nether_wart",
+        "count": 9
+      },
+      "weight": 1
+    }
+  ]
+}

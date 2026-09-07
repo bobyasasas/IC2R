@@ -1,0 +1,16 @@
+{
+  "type": "ic2:shaped",
+  "pattern": [
+    "UUU",
+    "UUU",
+    "UUU"
+  ],
+  "group": "uranium_block",
+  "result": {
+    "id": "ic2:uranium_block",
+    "count": 1
+  },
+  "key": {
+    "U": "#c:ingots/uranium"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "type": "ic2:macerator",
+  "ingredient": "minecraft:dark_prismarine",
+  "input_count": 1,
+  "results": [
+    {
+      "stack": {
+        "id": "minecraft:prismarine_shard",
+        "count": 8
+      },
+      "weight": 1
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "type": "ic2:shaped",
+  "pattern": [
+    "CTC",
+    "TST",
+    "TLT"
+  ],
+  "result": {
+    "id": "ic2:advanced_re_battery",
+    "count": 1
+  },
+  "key": {
+    "T": "ic2:bronze_casing",
+    "S": "#c:dusts/sulfur",
+    "L": "#c:dusts/lead",
+    "C": "ic2:insulated_copper_cable"
+  }
+}

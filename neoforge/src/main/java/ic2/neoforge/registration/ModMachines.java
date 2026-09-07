@@ -6,11 +6,13 @@ import ic2.neoforge.energy.CableBlock;
 import ic2.neoforge.machine.*;
 import ic2.neoforge.menu.MachineMenu;
 
+import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.MapColor;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.capabilities.Capabilities;
@@ -20,7 +22,9 @@ import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.registries.*;
 
 import java.util.Collections;
+import java.util.EnumMap;
 import java.util.LinkedHashMap;
+import java.util.Locale;
 import java.util.Map;
 
 public final class ModMachines {
@@ -32,54 +36,66 @@ public final class ModMachines {
             DeferredRegister.create(Registries.BLOCK_ENTITY_TYPE, IndustrialCraft.MOD_ID);
     private static final DeferredRegister<MenuType<?>> MENUS =
             DeferredRegister.create(Registries.MENU, IndustrialCraft.MOD_ID);
-    public static final DeferredBlock<MachineBlock> GENERATOR = machine(MachineKind.GENERATOR);
+
+    public record Registration(
+            DeferredBlock<MachineBlock> block,
+            DeferredHolder<BlockEntityType<?>, BlockEntityType<MachineBlockEntity>> entity,
+            DeferredHolder<MenuType<?>, MenuType<MachineMenu>> menu) {}
+
+    public static final Map<MachineKind, Registration> MACHINES = machines();
+    public static final DeferredBlock<MachineBlock> GENERATOR =
+            MACHINES.get(MachineKind.GENERATOR).block();
     public static final DeferredBlock<MachineBlock> ELECTRIC_FURNACE =
-            machine(MachineKind.ELECTRIC_FURNACE);
-    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<GeneratorBlockEntity>>
-            GENERATOR_ENTITY =
-                    ENTITIES.register(
-                            "generator",
-                            () ->
-                                    new BlockEntityType<>(
-                                            GeneratorBlockEntity::new, GENERATOR.get()));
-    public static final DeferredHolder<
-                    BlockEntityType<?>, BlockEntityType<ElectricFurnaceBlockEntity>>
-            ELECTRIC_FURNACE_ENTITY =
-                    ENTITIES.register(
-                            "electric_furnace",
-                            () ->
-                                    new BlockEntityType<>(
-                                            ElectricFurnaceBlockEntity::new,
-                                            ELECTRIC_FURNACE.get()));
-    public static final DeferredHolder<MenuType<?>, MenuType<MachineMenu>> GENERATOR_MENU =
-            menu(MachineKind.GENERATOR);
-    public static final DeferredHolder<MenuType<?>, MenuType<MachineMenu>> ELECTRIC_FURNACE_MENU =
-            menu(MachineKind.ELECTRIC_FURNACE);
+            MACHINES.get(MachineKind.ELECTRIC_FURNACE).block();
     public static final Map<String, DeferredBlock<CableBlock>> CABLES = cables();
 
-    private static DeferredBlock<MachineBlock> machine(MachineKind kind) {
-        var block =
-                BLOCKS.registerBlock(
-                        kind.getSerializedName(),
-                        properties ->
-                                new MachineBlock(
-                                        kind,
-                                        properties
-                                                .mapColor(MapColor.METAL)
-                                                .strength(2, 10)
-                                                .requiresCorrectToolForDrops()
-                                                .sound(SoundType.METAL)));
-        ITEMS.registerSimpleBlockItem(block);
-        return block;
+    private static Map<MachineKind, Registration> machines() {
+        var result = new EnumMap<MachineKind, Registration>(MachineKind.class);
+        for (MachineKind kind : MachineKind.values()) {
+            String id = kind.getSerializedName();
+            var block =
+                    BLOCKS.registerBlock(
+                            id,
+                            properties ->
+                                    new MachineBlock(
+                                            kind,
+                                            properties
+                                                    .mapColor(MapColor.METAL)
+                                                    .strength(2, 10)
+                                                    .requiresCorrectToolForDrops()
+                                                    .sound(SoundType.METAL)));
+            ITEMS.registerSimpleBlockItem(block);
+            DeferredHolder<BlockEntityType<?>, BlockEntityType<MachineBlockEntity>> entity =
+                    ENTITIES.register(
+                            id,
+                            () ->
+                                    new BlockEntityType<>(
+                                            (pos, state) -> createEntity(kind, pos, state),
+                                            block.get()));
+            DeferredHolder<MenuType<?>, MenuType<MachineMenu>> menu =
+                    MENUS.register(
+                            id,
+                            () ->
+                                    IMenuTypeExtension.create(
+                                            (containerId, inventory, data) ->
+                                                    new MachineMenu(
+                                                            containerId,
+                                                            inventory,
+                                                            data.readBlockPos(),
+                                                            kind)));
+            result.put(kind, new Registration(block, entity, menu));
+        }
+        return Collections.unmodifiableMap(result);
     }
 
-    private static DeferredHolder<MenuType<?>, MenuType<MachineMenu>> menu(MachineKind kind) {
-        return MENUS.register(
-                kind.getSerializedName(),
-                () ->
-                        IMenuTypeExtension.create(
-                                (id, inventory, data) ->
-                                        new MachineMenu(id, inventory, data.readBlockPos(), kind)));
+    public static MachineBlockEntity createEntity(
+            MachineKind kind, BlockPos pos, BlockState state) {
+        return switch (kind) {
+            case IRON_FURNACE -> new IronFurnaceBlockEntity(pos, state);
+            case GENERATOR -> new GeneratorBlockEntity(pos, state);
+            case ELECTRIC_FURNACE -> new ElectricFurnaceBlockEntity(pos, state);
+            case MACERATOR, EXTRACTOR, COMPRESSOR -> new SingleInputBlockEntity(pos, state);
+        };
     }
 
     private static Map<String, DeferredBlock<CableBlock>> cables() {
@@ -92,7 +108,7 @@ public final class ModMachines {
                     CableSpec.Material.IRON,
                     CableSpec.Material.TIN
                 }) {
-            String name = material.name().toLowerCase(java.util.Locale.ROOT) + "_cable";
+            String name = material.name().toLowerCase(Locale.ROOT) + "_cable";
             int max =
                     switch (material) {
                         case GOLD -> 2;
@@ -135,11 +151,15 @@ public final class ModMachines {
     }
 
     public static MenuType<MachineMenu> menuType(MachineKind kind) {
-        return (kind == MachineKind.GENERATOR ? GENERATOR_MENU : ELECTRIC_FURNACE_MENU).get();
+        return MACHINES.get(kind).menu().get();
     }
 
     public static MachineBlock block(MachineKind kind) {
-        return (kind == MachineKind.GENERATOR ? GENERATOR : ELECTRIC_FURNACE).get();
+        return MACHINES.get(kind).block().get();
+    }
+
+    public static BlockEntityType<MachineBlockEntity> entityType(MachineKind kind) {
+        return MACHINES.get(kind).entity().get();
     }
 
     public static void register(IEventBus bus) {
@@ -152,20 +172,18 @@ public final class ModMachines {
     }
 
     private static void capabilities(RegisterCapabilitiesEvent event) {
-        event.registerBlockEntity(
-                Capabilities.Item.BLOCK,
-                GENERATOR_ENTITY.get(),
-                (machine, side) -> machine.automation(side));
-        event.registerBlockEntity(
-                Capabilities.Item.BLOCK,
-                ELECTRIC_FURNACE_ENTITY.get(),
-                (machine, side) -> machine.automation(side));
+        MACHINES.values()
+                .forEach(
+                        registration ->
+                                event.registerBlockEntity(
+                                        Capabilities.Item.BLOCK,
+                                        registration.entity().get(),
+                                        (machine, side) -> machine.automation(side)));
     }
 
     private static void creativeContents(BuildCreativeModeTabContentsEvent event) {
         if (event.getTabKey().equals(CreativeModeTabs.FUNCTIONAL_BLOCKS)) {
-            event.accept(GENERATOR);
-            event.accept(ELECTRIC_FURNACE);
+            MACHINES.values().forEach(registration -> event.accept(registration.block()));
             CABLES.values().forEach(event::accept);
         }
     }

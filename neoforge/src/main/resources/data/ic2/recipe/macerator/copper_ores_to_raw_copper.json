@@ -1,0 +1,28 @@
+{
+  "type": "ic2:macerator",
+  "ingredient": "#minecraft:copper_ores",
+  "input_count": 1,
+  "results": [
+    {
+      "stack": {
+        "id": "minecraft:raw_copper",
+        "count": 6
+      },
+      "weight": 4
+    },
+    {
+      "stack": {
+        "id": "minecraft:raw_copper",
+        "count": 9
+      },
+      "weight": 3
+    },
+    {
+      "stack": {
+        "id": "minecraft:raw_copper",
+        "count": 10
+      },
+      "weight": 3
+    }
+  ]
+}

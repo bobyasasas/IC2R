@@ -1,0 +1,28 @@
+{
+  "type": "ic2:macerator",
+  "ingredient": "#minecraft:gold_ores",
+  "input_count": 1,
+  "results": [
+    {
+      "stack": {
+        "id": "minecraft:raw_gold",
+        "count": 2
+      },
+      "weight": 6
+    },
+    {
+      "stack": {
+        "id": "minecraft:raw_gold",
+        "count": 3
+      },
+      "weight": 2
+    },
+    {
+      "stack": {
+        "id": "minecraft:raw_gold",
+        "count": 4
+      },
+      "weight": 2
+    }
+  ]
+}

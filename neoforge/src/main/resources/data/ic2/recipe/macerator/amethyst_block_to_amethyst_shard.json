@@ -1,0 +1,14 @@
+{
+  "type": "ic2:macerator",
+  "ingredient": "minecraft:amethyst_block",
+  "input_count": 1,
+  "results": [
+    {
+      "stack": {
+        "id": "minecraft:amethyst_shard",
+        "count": 4
+      },
+      "weight": 1
+    }
+  ]
+}

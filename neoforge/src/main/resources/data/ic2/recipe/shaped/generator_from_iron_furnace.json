@@ -1,0 +1,17 @@
+{
+  "type": "ic2:shaped",
+  "pattern": [
+    " B ",
+    "III",
+    " F "
+  ],
+  "result": {
+    "id": "ic2:generator",
+    "count": 1
+  },
+  "key": {
+    "B": "ic2:re_battery",
+    "F": "ic2:iron_furnace",
+    "I": "#c:plates/iron"
+  }
+}

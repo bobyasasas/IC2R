@@ -22,6 +22,15 @@ public final class RegistrationTests {
             DeferredRegister.create(BuiltInRegistries.TEST_FUNCTION, "ic2_tests");
 
     static {
+        FUNCTIONS.register("iron_furnace", () -> MachineTests::ironFurnace);
+        FUNCTIONS.register("crafting_charge", () -> CraftingTests::charge);
+        FUNCTIONS.register("crafting_remainders", () -> CraftingTests::remainder);
+
+        FUNCTIONS.register("loaded_recipes", () -> ProcessingTests::loadedRecipes);
+        FUNCTIONS.register("processing_machines", () -> ProcessingTests::processing);
+        FUNCTIONS.register("weighted_persistence", () -> ProcessingTests::weightedPersistence);
+        FUNCTIONS.register("processing_recipe_codec", () -> ProcessingTests::recipeCodec);
+
         FUNCTIONS.register("machine_chain", () -> MachineTests::chain);
         FUNCTIONS.register("wire_reconnect", () -> MachineTests::reconnect);
         FUNCTIONS.register("furnace_persistence", () -> MachineTests::furnacePersistence);

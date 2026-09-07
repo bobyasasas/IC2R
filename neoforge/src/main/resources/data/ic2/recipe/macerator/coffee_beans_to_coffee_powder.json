@@ -1,0 +1,14 @@
+{
+  "type": "ic2:macerator",
+  "ingredient": "ic2:coffee_beans",
+  "input_count": 3,
+  "results": [
+    {
+      "stack": {
+        "id": "ic2:coffee_powder",
+        "count": 1
+      },
+      "weight": 1
+    }
+  ]
+}

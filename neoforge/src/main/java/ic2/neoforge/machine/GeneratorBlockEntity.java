@@ -4,13 +4,16 @@ import ic2.core.energy.grid.EnergyNode;
 import ic2.core.machine.FuelGenerator;
 import ic2.neoforge.item.ElectricItemEnergy;
 import ic2.neoforge.registration.ModMachines;
+import ic2.neoforge.transfer.ResourcePort;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.storage.ValueInput;
 import net.minecraft.world.level.storage.ValueOutput;
+import net.neoforged.neoforge.transfer.ResourceHandler;
 import net.neoforged.neoforge.transfer.item.ItemResource;
 import net.neoforged.neoforge.transfer.transaction.Transaction;
 
@@ -21,7 +24,29 @@ public final class GeneratorBlockEntity extends PoweredBlockEntity {
             new MachineJournal<>(energy, generator::state, generator::restore, this::setChanged);
 
     public GeneratorBlockEntity(BlockPos pos, BlockState state) {
-        super(ModMachines.GENERATOR_ENTITY.get(), pos, state, 4000, 2);
+        super(ModMachines.entityType(MachineKind.GENERATOR), pos, state, 4000, 2);
+    }
+
+    @Override
+    public ResourceHandler<ItemResource> automation(Direction side) {
+        return new ResourcePort<>(
+                inventory,
+                slot -> slot == FUEL && side != Direction.DOWN,
+                slot ->
+                        slot == FUEL
+                                && side == Direction.DOWN
+                                && level != null
+                                && inventory
+                                                .stack(FUEL)
+                                                .getBurnTime(
+                                                        RecipeType.SMELTING, level.fuelValues())
+                                        == 0,
+                (slot, item) ->
+                        level != null
+                                && item.toStack()
+                                                .getBurnTime(
+                                                        RecipeType.SMELTING, level.fuelValues())
+                                        > 0);
     }
 
     @Override

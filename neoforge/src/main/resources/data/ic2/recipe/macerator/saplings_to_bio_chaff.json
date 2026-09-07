@@ -1,0 +1,14 @@
+{
+  "type": "ic2:macerator",
+  "ingredient": "#minecraft:saplings",
+  "input_count": 4,
+  "results": [
+    {
+      "stack": {
+        "id": "ic2:bio_chaff",
+        "count": 1
+      },
+      "weight": 1
+    }
+  ]
+}

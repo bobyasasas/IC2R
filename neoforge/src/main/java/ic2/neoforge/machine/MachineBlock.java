@@ -4,8 +4,10 @@ import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 
 import ic2.neoforge.energy.WorldEnergyNetworks;
+import ic2.neoforge.registration.ModMachines;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -25,8 +27,7 @@ import net.minecraft.world.phys.BlockHitResult;
 
 public final class MachineBlock extends BaseEntityBlock {
     public static final BooleanProperty ACTIVE = BooleanProperty.create("active");
-    public static final EnumProperty<net.minecraft.core.Direction> FACING =
-            BlockStateProperties.HORIZONTAL_FACING;
+    public static final EnumProperty<Direction> FACING = BlockStateProperties.HORIZONTAL_FACING;
     public static final MapCodec<MachineBlock> CODEC =
             RecordCodecBuilder.mapCodec(
                     instance ->
@@ -42,10 +43,7 @@ public final class MachineBlock extends BaseEntityBlock {
         super(properties);
         this.kind = kind;
         registerDefaultState(
-                stateDefinition
-                        .any()
-                        .setValue(ACTIVE, false)
-                        .setValue(FACING, net.minecraft.core.Direction.NORTH));
+                stateDefinition.any().setValue(ACTIVE, false).setValue(FACING, Direction.NORTH));
     }
 
     public MachineKind kind() {
@@ -69,26 +67,16 @@ public final class MachineBlock extends BaseEntityBlock {
 
     @Override
     public BlockEntity newBlockEntity(BlockPos position, BlockState state) {
-        return switch (kind) {
-            case GENERATOR -> new GeneratorBlockEntity(position, state);
-            case ELECTRIC_FURNACE -> new ElectricFurnaceBlockEntity(position, state);
-        };
+        return ModMachines.createEntity(kind, position, state);
     }
 
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(
             Level level, BlockState state, BlockEntityType<T> type) {
-        return level.isClientSide()
-                        || type
-                                != (kind == MachineKind.GENERATOR
-                                        ? ic2.neoforge.registration.ModMachines.GENERATOR_ENTITY
-                                                .get()
-                                        : ic2.neoforge.registration.ModMachines
-                                                .ELECTRIC_FURNACE_ENTITY
-                                                .get())
+        return level.isClientSide() || type != ModMachines.entityType(kind)
                 ? null
                 : (world, pos, blockState, entity) -> {
-                    if (entity instanceof PoweredBlockEntity machine)
+                    if (entity instanceof MachineBlockEntity machine)
                         machine.serverTick((ServerLevel) world);
                 };
     }
@@ -97,7 +85,7 @@ public final class MachineBlock extends BaseEntityBlock {
     protected InteractionResult useWithoutItem(
             BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hit) {
         if (!level.isClientSide()
-                && level.getBlockEntity(pos) instanceof PoweredBlockEntity machine) {
+                && level.getBlockEntity(pos) instanceof MachineBlockEntity machine) {
             player.openMenu(machine, buffer -> buffer.writeBlockPos(pos));
         }
         return InteractionResult.SUCCESS;

@@ -1,0 +1,14 @@
+{
+  "type": "ic2:extractor",
+  "ingredient": "minecraft:nether_bricks",
+  "input_count": 1,
+  "results": [
+    {
+      "stack": {
+        "id": "minecraft:nether_brick",
+        "count": 4
+      },
+      "weight": 1
+    }
+  ]
+}

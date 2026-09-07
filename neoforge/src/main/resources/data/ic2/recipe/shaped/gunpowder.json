@@ -1,0 +1,17 @@
+{
+  "type": "ic2:shaped",
+  "pattern": [
+    "RCR",
+    "CRC",
+    "RCR"
+  ],
+  "hidden": true,
+  "result": {
+    "id": "minecraft:gunpowder",
+    "count": 3
+  },
+  "key": {
+    "R": "minecraft:redstone",
+    "C": "#c:dusts/coal"
+  }
+}

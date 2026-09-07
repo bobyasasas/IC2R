@@ -1,0 +1,14 @@
+{
+  "type": "ic2:extractor",
+  "ingredient": "minecraft:mud",
+  "input_count": 1,
+  "results": [
+    {
+      "stack": {
+        "id": "minecraft:clay_ball",
+        "count": 4
+      },
+      "weight": 1
+    }
+  ]
+}

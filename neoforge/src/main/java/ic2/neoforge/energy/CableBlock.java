@@ -1,9 +1,11 @@
 package ic2.neoforge.energy;
 
+import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 
 import ic2.core.energy.grid.CableSpec;
+import ic2.neoforge.machine.MachineBlock;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -23,11 +25,13 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
+import java.util.Locale;
+
 public final class CableBlock extends Block {
-    private static final com.mojang.serialization.Codec<CableSpec.Material> MATERIAL_CODEC =
-            com.mojang.serialization.Codec.STRING.xmap(
-                    name -> CableSpec.Material.valueOf(name.toUpperCase(java.util.Locale.ROOT)),
-                    material -> material.name().toLowerCase(java.util.Locale.ROOT));
+    private static final Codec<CableSpec.Material> MATERIAL_CODEC =
+            Codec.STRING.xmap(
+                    name -> CableSpec.Material.valueOf(name.toUpperCase(Locale.ROOT)),
+                    material -> material.name().toLowerCase(Locale.ROOT));
     public static final MapCodec<CableBlock> CODEC =
             RecordCodecBuilder.mapCodec(
                     instance ->
@@ -35,7 +39,7 @@ public final class CableBlock extends Block {
                                             MATERIAL_CODEC
                                                     .fieldOf("material")
                                                     .forGetter(block -> block.material),
-                                            com.mojang.serialization.Codec.INT
+                                            Codec.INT
                                                     .fieldOf("insulation")
                                                     .forGetter(block -> block.insulation),
                                             propertiesCodec())
@@ -125,7 +129,8 @@ public final class CableBlock extends Block {
 
     private static boolean connects(LevelReader level, BlockPos pos) {
         return level.getBlockState(pos).getBlock() instanceof CableBlock
-                || level.getBlockState(pos).getBlock() instanceof ic2.neoforge.machine.MachineBlock;
+                || level.getBlockState(pos).getBlock() instanceof MachineBlock machine
+                        && machine.kind().capacity() > 0;
     }
 
     @Override

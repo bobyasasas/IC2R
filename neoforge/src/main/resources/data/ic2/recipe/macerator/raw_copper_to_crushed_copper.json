@@ -1,0 +1,14 @@
+{
+  "type": "ic2:macerator",
+  "ingredient": "minecraft:raw_copper",
+  "input_count": 1,
+  "results": [
+    {
+      "stack": {
+        "id": "ic2:crushed_copper",
+        "count": 2
+      },
+      "weight": 1
+    }
+  ]
+}

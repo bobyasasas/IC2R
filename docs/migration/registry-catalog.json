@@ -69,7 +69,11 @@
       "factory": "register",
       "expression": "new ItemBlockIc2(Ic2Blocks.RAW_LEAD_BLOCK, new Properties())",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModMaterialBlocks.java",
+        "tools/migration/resources/material_blocks.py"
+      ]
     },
     {
       "registry": "item",
@@ -79,7 +83,11 @@
       "factory": "register",
       "expression": "new ItemBlockIc2(Ic2Blocks.RAW_TIN_BLOCK, new Properties())",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModMaterialBlocks.java",
+        "tools/migration/resources/material_blocks.py"
+      ]
     },
     {
       "registry": "item",
@@ -89,7 +97,11 @@
       "factory": "register",
       "expression": "new ItemBlockIc2(Ic2Blocks.RAW_URANIUM_BLOCK, new Properties())",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModMaterialBlocks.java",
+        "tools/migration/resources/material_blocks.py"
+      ]
     },
     {
       "registry": "item",
@@ -99,7 +111,11 @@
       "factory": "register",
       "expression": "new ItemBlockIc2(Ic2Blocks.BRONZE_BLOCK, new Properties())",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModMaterialBlocks.java",
+        "tools/migration/resources/material_blocks.py"
+      ]
     },
     {
       "registry": "item",
@@ -109,7 +125,11 @@
       "factory": "register",
       "expression": "new ItemBlockIc2(Ic2Blocks.LEAD_BLOCK, new Properties())",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModMaterialBlocks.java",
+        "tools/migration/resources/material_blocks.py"
+      ]
     },
     {
       "registry": "item",
@@ -119,7 +139,11 @@
       "factory": "register",
       "expression": "new ItemBlockIc2(Ic2Blocks.STEEL_BLOCK, new Properties())",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModMaterialBlocks.java",
+        "tools/migration/resources/material_blocks.py"
+      ]
     },
     {
       "registry": "item",
@@ -129,7 +153,11 @@
       "factory": "register",
       "expression": "new ItemBlockIc2(Ic2Blocks.TIN_BLOCK, new Properties())",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModMaterialBlocks.java",
+        "tools/migration/resources/material_blocks.py"
+      ]
     },
     {
       "registry": "item",
@@ -139,7 +167,11 @@
       "factory": "register",
       "expression": "new ItemBlockIc2(Ic2Blocks.URANIUM_BLOCK, new Properties())",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModMaterialBlocks.java",
+        "tools/migration/resources/material_blocks.py"
+      ]
     },
     {
       "registry": "item",
@@ -149,7 +181,11 @@
       "factory": "register",
       "expression": "new ItemBlockIc2(Ic2Blocks.REINFORCED_STONE, new Properties())",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModMaterialBlocks.java",
+        "tools/migration/resources/material_blocks.py"
+      ]
     },
     {
       "registry": "item",
@@ -169,7 +205,11 @@
       "factory": "register",
       "expression": "new ItemBlockIc2(Ic2Blocks.MACHINE, new Properties())",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModMaterialBlocks.java",
+        "tools/migration/resources/material_blocks.py"
+      ]
     },
     {
       "registry": "item",
@@ -179,7 +219,11 @@
       "factory": "register",
       "expression": "new ItemBlockIc2(Ic2Blocks.ADVANCED_MACHINE, new Properties())",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModMaterialBlocks.java",
+        "tools/migration/resources/material_blocks.py"
+      ]
     },
     {
       "registry": "item",
@@ -189,7 +233,11 @@
       "factory": "register",
       "expression": "new ItemBlockIc2(Ic2Blocks.SILVER_BLOCK, new Properties())",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModMaterialBlocks.java",
+        "tools/migration/resources/material_blocks.py"
+      ]
     },
     {
       "registry": "item",
@@ -1581,7 +1629,11 @@
       "factory": "register",
       "expression": "new ItemBlockIc2(Ic2Blocks.COMPRESSOR, new Properties())",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModMachines.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/ProcessingTests.java"
+      ]
     },
     {
       "registry": "item",
@@ -1605,7 +1657,11 @@
       "factory": "register",
       "expression": "new ItemBlockIc2(Ic2Blocks.EXTRACTOR, new Properties())",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModMachines.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/ProcessingTests.java"
+      ]
     },
     {
       "registry": "item",
@@ -1615,7 +1671,11 @@
       "factory": "register",
       "expression": "new ItemBlockIc2(Ic2Blocks.IRON_FURNACE, new Properties())",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModMachines.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/ProcessingTests.java"
+      ]
     },
     {
       "registry": "item",
@@ -1625,7 +1685,11 @@
       "factory": "register",
       "expression": "new ItemBlockIc2(Ic2Blocks.MACERATOR, new Properties())",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModMachines.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/ProcessingTests.java"
+      ]
     },
     {
       "registry": "item",
@@ -4057,7 +4121,11 @@
       "factory": "register",
       "expression": "new ItemBlockIc2(Ic2Blocks.REACTOR_VESSEL, new Properties())",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModMaterialBlocks.java",
+        "tools/migration/resources/material_blocks.py"
+      ]
     },
     {
       "registry": "item",
@@ -5827,7 +5895,11 @@
       "factory": "register",
       "expression": "new Block(Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).strength(3.0F, 11.0F).requiresCorrectToolForDrops())",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModMaterialBlocks.java",
+        "tools/migration/resources/material_blocks.py"
+      ]
     },
     {
       "registry": "block",
@@ -5837,7 +5909,11 @@
       "factory": "register",
       "expression": "new Block(Properties.of().mapColor(MapColor.SNOW).strength(4.0F, 12.0F).requiresCorrectToolForDrops())",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModMaterialBlocks.java",
+        "tools/migration/resources/material_blocks.py"
+      ]
     },
     {
       "registry": "block",
@@ -5847,7 +5923,11 @@
       "factory": "register",
       "expression": "new Block(Properties.of().mapColor(MapColor.COLOR_GREEN).strength(5.0F, 13.0F).requiresCorrectToolForDrops())",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModMaterialBlocks.java",
+        "tools/migration/resources/material_blocks.py"
+      ]
     },
     {
       "registry": "block",
@@ -5857,7 +5937,11 @@
       "factory": "register",
       "expression": "new Block(Properties.of().strength(5.0F, 10.0F).requiresCorrectToolForDrops().sound(SoundType.METAL))",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModMaterialBlocks.java",
+        "tools/migration/resources/material_blocks.py"
+      ]
     },
     {
       "registry": "block",
@@ -5867,7 +5951,11 @@
       "factory": "register",
       "expression": "new Block(Properties.of().strength(4.0F, 10.0F).requiresCorrectToolForDrops().sound(SoundType.METAL))",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModMaterialBlocks.java",
+        "tools/migration/resources/material_blocks.py"
+      ]
     },
     {
       "registry": "block",
@@ -5877,7 +5965,11 @@
       "factory": "register",
       "expression": "new Block(Properties.of().strength(8.0F, 10.0F).requiresCorrectToolForDrops().sound(SoundType.METAL))",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModMaterialBlocks.java",
+        "tools/migration/resources/material_blocks.py"
+      ]
     },
     {
       "registry": "block",
@@ -5887,7 +5979,11 @@
       "factory": "register",
       "expression": "new Block(Properties.of().strength(4.0F, 10.0F).requiresCorrectToolForDrops().sound(SoundType.METAL))",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModMaterialBlocks.java",
+        "tools/migration/resources/material_blocks.py"
+      ]
     },
     {
       "registry": "block",
@@ -5897,7 +5993,11 @@
       "factory": "register",
       "expression": "new Block(Properties.of().strength(6.0F, 10.0F).requiresCorrectToolForDrops().sound(SoundType.METAL))",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModMaterialBlocks.java",
+        "tools/migration/resources/material_blocks.py"
+      ]
     },
     {
       "registry": "block",
@@ -5907,7 +6007,11 @@
       "factory": "register",
       "expression": "new Block(Properties.of().strength(80.0F, 180.0F).requiresCorrectToolForDrops())",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModMaterialBlocks.java",
+        "tools/migration/resources/material_blocks.py"
+      ]
     },
     {
       "registry": "block",
@@ -5927,7 +6031,11 @@
       "factory": "register",
       "expression": "new Block(Properties.of().strength(5.0F, 10.0F).requiresCorrectToolForDrops().sound(SoundType.METAL))",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModMaterialBlocks.java",
+        "tools/migration/resources/material_blocks.py"
+      ]
     },
     {
       "registry": "block",
@@ -5937,7 +6045,11 @@
       "factory": "register",
       "expression": "new Block(Properties.of().strength(8.0F, 10.0F).requiresCorrectToolForDrops().sound(SoundType.METAL))",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModMaterialBlocks.java",
+        "tools/migration/resources/material_blocks.py"
+      ]
     },
     {
       "registry": "block",
@@ -5947,7 +6059,11 @@
       "factory": "register",
       "expression": "new Block(Properties.of().strength(40.0F, 90.0F).requiresCorrectToolForDrops())",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModMaterialBlocks.java",
+        "tools/migration/resources/material_blocks.py"
+      ]
     },
     {
       "registry": "block",
@@ -5957,7 +6073,11 @@
       "factory": "register",
       "expression": "new Block(Properties.of().strength(4.0F, 10.0F).requiresCorrectToolForDrops().sound(SoundType.METAL))",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModMaterialBlocks.java",
+        "tools/migration/resources/material_blocks.py"
+      ]
     },
     {
       "registry": "block",
@@ -6661,7 +6781,11 @@
       "factory": "register",
       "expression": "Ic2TileEntityBlock.create(Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).strength(2.0F, 10.0F).requiresCorrectToolForDrops().sound(SoundType.METAL), TileEntityCompressor.class, true, Ic2TileEntityBlock.DefaultDrop.Machine, Util.horizontalFacings, true)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModMachines.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/ProcessingTests.java"
+      ]
     },
     {
       "registry": "block",
@@ -6685,7 +6809,11 @@
       "factory": "register",
       "expression": "Ic2TileEntityBlock.create(Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).strength(2.0F, 10.0F).requiresCorrectToolForDrops().sound(SoundType.METAL), TileEntityExtractor.class, true, Ic2TileEntityBlock.DefaultDrop.Machine, Util.horizontalFacings, true)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModMachines.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/ProcessingTests.java"
+      ]
     },
     {
       "registry": "block",
@@ -6695,7 +6823,11 @@
       "factory": "register",
       "expression": "Ic2TileEntityBlock.create(Properties.of().strength(5.0F, 10.0F).requiresCorrectToolForDrops().sound(SoundType.METAL), TileEntityIronFurnace.class, true, Ic2TileEntityBlock.DefaultDrop.Self, Util.horizontalFacings, false)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModMachines.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/ProcessingTests.java"
+      ]
     },
     {
       "registry": "block",
@@ -6705,7 +6837,11 @@
       "factory": "register",
       "expression": "Ic2TileEntityBlock.create(Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).strength(2.0F, 10.0F).requiresCorrectToolForDrops().sound(SoundType.METAL), TileEntityMacerator.class, true, Ic2TileEntityBlock.DefaultDrop.Machine, Util.horizontalFacings, true)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModMachines.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/ProcessingTests.java"
+      ]
     },
     {
       "registry": "block",
@@ -9167,7 +9303,11 @@
       "factory": "register",
       "expression": "TileEntityCompressor::new",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModMachines.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/ProcessingTests.java"
+      ]
     },
     {
       "registry": "block_entity",
@@ -9211,7 +9351,11 @@
       "factory": "register",
       "expression": "TileEntityExtractor::new",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModMachines.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/ProcessingTests.java"
+      ]
     },
     {
       "registry": "block_entity",
@@ -9231,7 +9375,11 @@
       "factory": "register",
       "expression": "TileEntityIronFurnace::new",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModMachines.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/ProcessingTests.java"
+      ]
     },
     {
       "registry": "block_entity",
@@ -9251,7 +9399,11 @@
       "factory": "register",
       "expression": "TileEntityMacerator::new",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModMachines.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/ProcessingTests.java"
+      ]
     },
     {
       "registry": "block_entity",
@@ -11369,7 +11521,12 @@
       "factory": "register",
       "expression": "new Serializer()",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/recipe-catalog.json",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/ProcessingTests.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/CraftingTests.java"
+      ]
     },
     {
       "registry": "recipe_serializer",
@@ -11379,7 +11536,12 @@
       "factory": "register",
       "expression": "new ic2.core.recipe.AdvShapelessRecipe.Serializer()",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/recipe-catalog.json",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/ProcessingTests.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/CraftingTests.java"
+      ]
     },
     {
       "registry": "recipe_serializer",
@@ -11409,7 +11571,12 @@
       "factory": "register",
       "expression": "new WeightedMachineRecipeSerializer(Ic2RecipeTypes.MACERATOR, null)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/recipe-catalog.json",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/ProcessingTests.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/CraftingTests.java"
+      ]
     },
     {
       "registry": "recipe_serializer",
@@ -11419,7 +11586,12 @@
       "factory": "register",
       "expression": "new BasicMachineRecipeSerializer(Ic2RecipeTypes.EXTRACTOR, null)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/recipe-catalog.json",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/ProcessingTests.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/CraftingTests.java"
+      ]
     },
     {
       "registry": "recipe_serializer",
@@ -11429,7 +11601,12 @@
       "factory": "register",
       "expression": "new BasicMachineRecipeSerializer(Ic2RecipeTypes.COMPRESSOR, null)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/recipe-catalog.json",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/ProcessingTests.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/CraftingTests.java"
+      ]
     },
     {
       "registry": "recipe_serializer",
@@ -11539,7 +11716,12 @@
       "factory": "register",
       "expression": "",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/recipe-catalog.json",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/ProcessingTests.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/CraftingTests.java"
+      ]
     },
     {
       "registry": "recipe_type",
@@ -11549,7 +11731,12 @@
       "factory": "register",
       "expression": "",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/recipe-catalog.json",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/ProcessingTests.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/CraftingTests.java"
+      ]
     },
     {
       "registry": "recipe_type",
@@ -11559,7 +11746,12 @@
       "factory": "register",
       "expression": "",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/recipe-catalog.json",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/ProcessingTests.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/CraftingTests.java"
+      ]
     },
     {
       "registry": "recipe_type",

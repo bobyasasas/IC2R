@@ -1,0 +1,14 @@
+{
+  "type": "ic2:compressor",
+  "ingredient": "minecraft:sand",
+  "input_count": 4,
+  "results": [
+    {
+      "stack": {
+        "id": "minecraft:sandstone",
+        "count": 1
+      },
+      "weight": 1
+    }
+  ]
+}

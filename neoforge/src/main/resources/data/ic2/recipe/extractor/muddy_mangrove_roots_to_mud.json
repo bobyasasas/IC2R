@@ -1,0 +1,14 @@
+{
+  "type": "ic2:extractor",
+  "ingredient": "minecraft:muddy_mangrove_roots",
+  "input_count": 1,
+  "results": [
+    {
+      "stack": {
+        "id": "minecraft:mud",
+        "count": 1
+      },
+      "weight": 1
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:smelting",
+  "experience": 0.5,
+  "cookingtime": 200,
+  "result": {
+    "id": "ic2:uranium_ingot",
+    "count": 1
+  },
+  "ingredient": "ic2:raw_uranium"
+}

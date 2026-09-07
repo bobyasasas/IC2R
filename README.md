@@ -2,7 +2,7 @@
 
 [迁移任务与进度](docs/migration/STATUS.md) · [架构及验收约定](docs/migration/architecture.md) · [稳定 Forge Release](https://github.com/bobyasasas/IC2R/releases/tag/2.10.39-ex120-cannerfix1)
 
-**当前为开发基础版本，尚未完成全部功能迁移。** 已接入普通材料、电池及组件存储，抽离电力分配和机器状态逻辑；具体覆盖数、当前任务及剩余工作以迁移看板为准。
+**当前为开发基础版本，尚未完成全部功能迁移。** 已验证发电机—导线—电炉链路及客户端区块恢复，接入铁炉、打粉机、提取机、压缩机和部分合成配方；具体覆盖数、当前任务及剩余工作以迁移看板为准。
 
 目标工具链：Minecraft 26.1.2、NeoForge 26.1.2.107、Java 25、Gradle 9.2.1、ModDevGradle 2.0.146。
 

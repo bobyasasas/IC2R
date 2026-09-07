@@ -1,0 +1,14 @@
+{
+  "type": "ic2:macerator",
+  "ingredient": "minecraft:netherrack",
+  "input_count": 1,
+  "results": [
+    {
+      "stack": {
+        "id": "ic2:netherrack_dust",
+        "count": 1
+      },
+      "weight": 1
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "type": "ic2:macerator",
+  "ingredient": "#c:ores/tin",
+  "input_count": 1,
+  "results": [
+    {
+      "stack": {
+        "id": "ic2:raw_tin",
+        "count": 2
+      },
+      "weight": 6
+    },
+    {
+      "stack": {
+        "id": "ic2:raw_tin",
+        "count": 3
+      },
+      "weight": 2
+    },
+    {
+      "stack": {
+        "id": "ic2:raw_tin",
+        "count": 4
+      },
+      "weight": 2
+    }
+  ]
+}

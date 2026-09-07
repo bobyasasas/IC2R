@@ -1,0 +1,14 @@
+{
+  "type": "ic2:macerator",
+  "ingredient": "ic2:energy_crystal",
+  "input_count": 1,
+  "results": [
+    {
+      "stack": {
+        "id": "ic2:energium_dust",
+        "count": 9
+      },
+      "weight": 1
+    }
+  ]
+}

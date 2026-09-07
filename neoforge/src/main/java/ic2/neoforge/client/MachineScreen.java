@@ -7,6 +7,9 @@ import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.item.ItemStack;
+
+import java.util.List;
 
 /** Small shared screen; slot geometry is taken from the menu, so visuals cannot drift. */
 public final class MachineScreen extends AbstractContainerScreen<MachineMenu> {
@@ -28,7 +31,20 @@ public final class MachineScreen extends AbstractContainerScreen<MachineMenu> {
             graphics.fill(sx - 1, sy - 1, sx + 16, sy + 16, 0xff373737);
             graphics.fill(sx, sy, sx + 16, sy + 16, 0xff8b8b8b);
         }
-        int energyHeight = (int) Math.clamp(48L * menu.energy() / menu.capacity(), 0, 48);
+        int energyHeight =
+                (int)
+                        Math.clamp(
+                                48L
+                                        * (menu.capacity() > 0
+                                                ? menu.energy()
+                                                : menu.fuelRemaining())
+                                        / Math.max(
+                                                1,
+                                                menu.capacity() > 0
+                                                        ? menu.capacity()
+                                                        : menu.fuelMaximum()),
+                                0,
+                                48);
         graphics.fill(x + 25, y + 18, x + 37, y + 68, 0xff373737);
         graphics.fill(x + 26, y + 67 - energyHeight, x + 36, y + 67, 0xffe9ae23);
         int progressWidth =
@@ -48,18 +64,19 @@ public final class MachineScreen extends AbstractContainerScreen<MachineMenu> {
     public void extractRenderState(
             GuiGraphicsExtractor graphics, int mouseX, int mouseY, float partialTick) {
         super.extractRenderState(graphics, mouseX, mouseY, partialTick);
-        if (mouseX >= leftPos + 25
+        if (menu.capacity() > 0
+                && mouseX >= leftPos + 25
                 && mouseX < leftPos + 37
                 && mouseY >= topPos + 18
                 && mouseY < topPos + 68) {
             graphics.setComponentTooltipForNextFrame(
                     font,
-                    java.util.List.of(
+                    List.of(
                             Component.translatable(
                                     "ic2.tooltip.energy", menu.energy(), menu.capacity())),
                     mouseX,
                     mouseY,
-                    net.minecraft.world.item.ItemStack.EMPTY);
+                    ItemStack.EMPTY);
         }
     }
 }

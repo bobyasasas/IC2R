@@ -1,0 +1,17 @@
+{
+  "type": "ic2:shaped",
+  "pattern": [
+    "B B",
+    "BsB",
+    "B B"
+  ],
+  "hidden": true,
+  "result": {
+    "id": "minecraft:rail",
+    "count": 8
+  },
+  "key": {
+    "B": "#c:ingots/bronze",
+    "s": "minecraft:stick"
+  }
+}

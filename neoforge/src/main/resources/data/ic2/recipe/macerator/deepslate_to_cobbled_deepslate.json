@@ -1,0 +1,14 @@
+{
+  "type": "ic2:macerator",
+  "ingredient": "minecraft:deepslate",
+  "input_count": 1,
+  "results": [
+    {
+      "stack": {
+        "id": "minecraft:cobbled_deepslate",
+        "count": 1
+      },
+      "weight": 1
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "type": "ic2:macerator",
+  "ingredient": "ic2:raw_uranium_block",
+  "input_count": 1,
+  "results": [
+    {
+      "stack": {
+        "id": "ic2:raw_uranium",
+        "count": 9
+      },
+      "weight": 1
+    }
+  ]
+}

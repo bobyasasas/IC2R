@@ -1,0 +1,18 @@
+{
+  "type": "ic2:shaped",
+  "pattern": [
+    "SAS",
+    "CMC",
+    "SAS"
+  ],
+  "result": {
+    "id": "ic2:advanced_machine",
+    "count": 1
+  },
+  "key": {
+    "M": "ic2:machine",
+    "A": "ic2:alloy",
+    "S": "#c:plates/steel",
+    "C": "ic2:carbon_plate"
+  }
+}

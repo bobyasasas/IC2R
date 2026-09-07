@@ -1,0 +1,16 @@
+{
+  "type": "ic2:shaped",
+  "pattern": [
+    "PSP",
+    "SPS",
+    "PSP"
+  ],
+  "result": {
+    "id": "ic2:reactor_vessel",
+    "count": 4
+  },
+  "key": {
+    "P": "#c:plates/lead",
+    "S": "minecraft:stone"
+  }
+}

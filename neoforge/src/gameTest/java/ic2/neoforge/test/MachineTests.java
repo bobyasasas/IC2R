@@ -7,9 +7,11 @@ import ic2.neoforge.registration.ModItems;
 import ic2.neoforge.registration.ModMachines;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.gametest.framework.GameTestHelper;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.level.GameType;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.neoforged.neoforge.transfer.item.ItemResource;
@@ -166,7 +168,7 @@ final class MachineTests {
                 sink.energy().stored() == 100
                         && ElectricItemEnergy.charge(sink.inventory().stack(2)) == 200,
                 "Battery transfer must conserve charge and obey transfer limit");
-        var player = helper.makeMockServerPlayerInLevel();
+        var player = helper.makeMockPlayer(GameType.CREATIVE);
         player.setPos(
                 sink.getBlockPos().getX() + .5,
                 sink.getBlockPos().getY(),
@@ -185,12 +187,12 @@ final class MachineTests {
         helper.assertTrue(total == 8, "Shift extraction must neither duplicate nor lose items");
         try (var transaction = Transaction.openRoot()) {
             helper.assertTrue(
-                    sink.automation(net.minecraft.core.Direction.UP)
+                    sink.automation(Direction.UP)
                                     .insert(1, ItemResource.of(Items.DIAMOND), 1, transaction)
                             == 0,
                     "Automation cannot insert into output");
             helper.assertTrue(
-                    sink.automation(net.minecraft.core.Direction.DOWN)
+                    sink.automation(Direction.DOWN)
                                     .extract(
                                             2,
                                             ItemResource.of(sink.inventory().stack(2)),
@@ -201,6 +203,45 @@ final class MachineTests {
         }
         player.setPos(player.getX() + 20, player.getY(), player.getZ());
         helper.assertTrue(!menu.stillValid(player), "Distant interactions must be rejected");
+        helper.succeed();
+    }
+
+    static void ironFurnace(GameTestHelper helper) {
+        helper.setBlock(SINK, ModMachines.block(MachineKind.IRON_FURNACE));
+        var machine = helper.getBlockEntity(SINK, IronFurnaceBlockEntity.class);
+        machine.inventory().set(0, ItemResource.of(Items.RAW_IRON), 2);
+        machine.inventory().set(2, ItemResource.of(Items.COAL), 1);
+        var detached =
+                (IronFurnaceBlockEntity)
+                        BlockEntity.loadStatic(
+                                machine.getBlockPos(),
+                                machine.getBlockState(),
+                                machine.saveWithFullMetadata(helper.getLevel().registryAccess()),
+                                helper.getLevel().registryAccess());
+        for (int tick = 0; tick < 80; tick++) detached.serverTick(helper.getLevel());
+        helper.assertTrue(
+                detached.progress() == 80 && detached.fuelRemaining() == 1520,
+                "Iron furnace must use vanilla fuel duration and 160-tick processing");
+        var restored =
+                (IronFurnaceBlockEntity)
+                        BlockEntity.loadStatic(
+                                detached.getBlockPos(),
+                                detached.getBlockState(),
+                                detached.saveWithFullMetadata(helper.getLevel().registryAccess()),
+                                helper.getLevel().registryAccess());
+        for (int tick = 0; tick < 80; tick++) restored.serverTick(helper.getLevel());
+        helper.assertTrue(
+                restored.inventory().stack(1).is(Items.IRON_INGOT)
+                        && restored.inventory().stack(0).getCount() == 1,
+                "Iron furnace must resume saved processing without loss or duplication");
+        var player = helper.makeMockPlayer(GameType.CREATIVE);
+        player.getInventory().setItem(0, new ItemStack(Items.COAL, 8));
+        var menu = new MachineMenu(1, player.getInventory(), machine);
+        menu.quickMoveStack(player, machine.inventory().size() + 27);
+        helper.assertTrue(
+                machine.inventory().stack(2).getCount() == 9
+                        && machine.inventory().stack(0).getCount() == 2,
+                "Shift-click fuel must target fuel slot, not recipe input");
         helper.succeed();
     }
 

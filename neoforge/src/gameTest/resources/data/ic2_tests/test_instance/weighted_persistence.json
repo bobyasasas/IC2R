@@ -1,0 +1,7 @@
+{
+  "type": "minecraft:function",
+  "function": "ic2_tests:weighted_persistence",
+  "environment": "minecraft:default",
+  "structure": "ic2_tests:machine_room",
+  "max_ticks": 20
+}

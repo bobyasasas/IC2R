@@ -1,0 +1,17 @@
+{
+  "type": "ic2:shaped",
+  "pattern": [
+    "S S",
+    "SMS",
+    "SCS"
+  ],
+  "result": {
+    "id": "ic2:compressor",
+    "count": 1
+  },
+  "key": {
+    "S": "minecraft:stone",
+    "M": "ic2:machine",
+    "C": "ic2:circuit"
+  }
+}
