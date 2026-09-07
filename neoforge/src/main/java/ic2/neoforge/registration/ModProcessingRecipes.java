@@ -2,6 +2,7 @@ package ic2.neoforge.registration;
 
 import ic2.core.recipe.ProcessingMethod;
 import ic2.neoforge.IndustrialCraft;
+import ic2.neoforge.recipe.CentrifugeRecipe;
 import ic2.neoforge.recipe.ProcessingRecipe;
 import ic2.neoforge.recipe.WashingRecipe;
 
@@ -40,6 +41,24 @@ public final class ModProcessingRecipes {
                             () ->
                                     new RecipeSerializer<>(
                                             WashingRecipe.CODEC, WashingRecipe.STREAM_CODEC));
+    public static final DeferredHolder<RecipeType<?>, RecipeType<CentrifugeRecipe>>
+            CENTRIFUGE_TYPE =
+                    TYPES.register(
+                            "centrifuge",
+                            () ->
+                                    new RecipeType<CentrifugeRecipe>() {
+                                        @Override
+                                        public String toString() {
+                                            return "ic2:centrifuge";
+                                        }
+                                    });
+    public static final DeferredHolder<RecipeSerializer<?>, RecipeSerializer<CentrifugeRecipe>>
+            CENTRIFUGE_SERIALIZER =
+                    SERIALIZERS.register(
+                            "centrifuge",
+                            () ->
+                                    new RecipeSerializer<>(
+                                            CentrifugeRecipe.CODEC, CentrifugeRecipe.STREAM_CODEC));
     private static final Map<
                     ProcessingMethod, DeferredHolder<RecipeType<?>, RecipeType<ProcessingRecipe>>>
             RECIPE_TYPES = new EnumMap<>(ProcessingMethod.class);

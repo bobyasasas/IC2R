@@ -1388,5 +1388,6 @@
   "ic2.energy_device.output": "Out: %s V × %s A",
   "ic2.energy_device.charge": "Charge item",
   "ic2.energy_device.discharge": "Discharge item",
-  "ic2.solar.sunlight": "Sunlight: %s%%"
+  "ic2.solar.sunlight": "Sunlight: %s%%",
+  "ic2.tooltip.processing_heat": "Heat: %s / %s"
 }

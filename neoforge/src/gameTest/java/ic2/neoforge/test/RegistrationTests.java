@@ -75,6 +75,10 @@ public final class RegistrationTests {
         FUNCTIONS.register("washing_containers", () -> WashingTests::containers);
         FUNCTIONS.register("washing_pulling_upgrade", () -> WashingTests::pullingUpgrade);
         FUNCTIONS.register("washing_recipe_codec", () -> WashingTests::codec);
+        FUNCTIONS.register(
+                "centrifuge_processing", () -> CentrifugeTests::processingAndPersistence);
+        FUNCTIONS.register("centrifuge_redstone", () -> CentrifugeTests::redstoneAndOutputBlocking);
+        FUNCTIONS.register("centrifuge_recipe_codec", () -> CentrifugeTests::recipeCodec);
         FUNCTIONS.register("loaded_recipes", () -> ProcessingTests::loadedRecipes);
         FUNCTIONS.register("processing_machines", () -> ProcessingTests::processing);
         FUNCTIONS.register("weighted_persistence", () -> ProcessingTests::weightedPersistence);

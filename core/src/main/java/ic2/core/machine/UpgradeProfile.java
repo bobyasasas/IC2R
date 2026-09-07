@@ -13,6 +13,18 @@ public record UpgradeProfile(
         int classicVoltage,
         int workingVoltage,
         int amperage) {
+    public record Base(int ticks, int euPerTick, int capacity, int tier, int auxiliaryPower) {
+        public Base {
+            if (ticks <= 0
+                    || euPerTick <= 0
+                    || capacity <= 0
+                    || tier < 0
+                    || tier > 5
+                    || auxiliaryPower < 0)
+                throw new IllegalArgumentException("Invalid base machine specification");
+        }
+    }
+
     public static UpgradeProfile calculate(
             int baseTicks,
             int baseCost,
@@ -20,6 +32,16 @@ public record UpgradeProfile(
             int overclockers,
             int transformers,
             int storage) {
+        return calculate(
+                new Base(baseTicks, baseCost, baseCapacity, 1, 0),
+                overclockers,
+                transformers,
+                storage);
+    }
+
+    public static UpgradeProfile calculate(
+            Base base, int overclockers, int transformers, int storage) {
+        int baseTicks = base.ticks(), baseCost = base.euPerTick(), baseCapacity = base.capacity();
         if (baseTicks <= 0
                 || baseCost <= 0
                 || baseCapacity <= 0
@@ -34,9 +56,9 @@ public record UpgradeProfile(
         int ticks = Math.max(1, saturate(Math.round(duration * operations)));
         int cost = saturate(Math.round(baseCost * Math.pow(1.6, overclockers)));
         int capacity = saturate(baseCapacity + 10000L * storage + (long) ticks * cost);
-        int tier = Math.min(5, 1 + transformers);
+        int tier = Math.min(5, base.tier() + transformers);
         var nativeVoltage = VoltageTier.fromIcTier(tier);
-        int power = saturate((long) cost * operations);
+        int power = saturate((long) cost * operations + base.auxiliaryPower());
         var working = VoltageTier.fromPower(Math.max(nativeVoltage.getVoltage(), power));
         var electrical = new ElectricalProfile(working);
         electrical.setRecipePower(power);

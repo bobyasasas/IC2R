@@ -1,0 +1,12 @@
+{
+  "type": "ic2:centrifuge",
+  "ingredient": "ic2:clay_dust",
+  "input_count": 4,
+  "results": [
+    {
+      "id": "ic2:silicon_dioxide_dust",
+      "count": 1
+    }
+  ],
+  "min_heat": 250
+}

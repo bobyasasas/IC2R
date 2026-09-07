@@ -93,7 +93,10 @@ public final class MachineMenu extends AbstractContainerMenu {
                             inventory,
                             inventory::set,
                             1,
-                            kind == MachineKind.ORE_WASHING_PLANT ? 110 : 116,
+                            (kind == MachineKind.ORE_WASHING_PLANT
+                                            || kind == MachineKind.CENTRIFUGE)
+                                    ? 110
+                                    : 116,
                             35) {
                         @Override
                         public boolean mayPlace(ItemStack stack) {
@@ -119,9 +122,11 @@ public final class MachineMenu extends AbstractContainerMenu {
                         });
             } else addBatterySlot(inventory, 2, 56, 53);
         }
-        if (kind == MachineKind.ORE_WASHING_PLANT) {
+        if (kind == MachineKind.ORE_WASHING_PLANT || kind == MachineKind.CENTRIFUGE) {
             addOutputSlot(inventory, 3, 128, 35);
             addOutputSlot(inventory, 4, 146, 35);
+        }
+        if (kind == MachineKind.ORE_WASHING_PLANT) {
             addSlot(
                     new ResourceHandlerSlot(inventory, inventory::set, 5, 110, 53) {
                         @Override

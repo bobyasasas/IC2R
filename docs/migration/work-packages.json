@@ -86,11 +86,12 @@
       "parent": "M11",
       "title": "金属及高阶加工",
       "status": "in_progress",
-      "acceptance": "金属成型三模式、工具箱合成链及洗矿机多输出／水事务已验证；铁栅栏、离心、回收和感应炉待迁移。",
+      "acceptance": "金属成型、洗矿与离心热量已验证；离心机合成和核材料依赖、铁栅栏、回收与感应炉待迁移。",
       "evidence": [
         "docs/migration/metal-former-toolbox.md",
         "neoforge/src/gameTest/java/ic2/neoforge/test/MetalFormerTests.java",
-        "docs/migration/ore-washing.md"
+        "docs/migration/ore-washing.md",
+        "docs/migration/centrifuge.md"
       ]
     },
     {

@@ -1909,7 +1909,12 @@
       "factory": "register",
       "expression": "new ItemBlockIc2(Ic2Blocks.CENTRIFUGE, new Properties())",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/centrifuge.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/CentrifugeTests.java"
+      ],
+      "note": "16条配方、MV、预热和保存重载已验证；本体合成及核材料依赖待迁移。"
     },
     {
       "registry": "item",
@@ -7373,7 +7378,12 @@
       "factory": "register",
       "expression": "Ic2TileEntityBlock.create(Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).strength(2.0F, 10.0F).requiresCorrectToolForDrops().sound(SoundType.METAL), TileEntityCentrifuge.class, true, Ic2TileEntityBlock.DefaultDrop.Machine, Util.horizontalFacings, true)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/centrifuge.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/CentrifugeTests.java"
+      ],
+      "note": "16条配方、MV、预热和保存重载已验证；本体合成及核材料依赖待迁移。"
     },
     {
       "registry": "block",
@@ -10060,7 +10070,12 @@
       "factory": "register",
       "expression": "TileEntityCentrifuge::new",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/centrifuge.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/CentrifugeTests.java"
+      ],
+      "note": "16条配方、MV、预热和保存重载已验证；本体合成及核材料依赖待迁移。"
     },
     {
       "registry": "block_entity",
@@ -12238,7 +12253,12 @@
       "factory": "register",
       "expression": "new BasicMachineRecipeSerializer(Ic2RecipeTypes.CENTRIFUGE, intMeta(\"minHeat\"))",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/centrifuge.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/CentrifugeTests.java"
+      ],
+      "note": "16条配方、MV、预热和保存重载已验证；本体合成及核材料依赖待迁移。"
     },
     {
       "registry": "recipe_serializer",
@@ -12413,7 +12433,12 @@
       "factory": "register",
       "expression": "",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/centrifuge.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/CentrifugeTests.java"
+      ],
+      "note": "16条配方、MV、预热和保存重载已验证；本体合成及核材料依赖待迁移。"
     },
     {
       "registry": "recipe_type",

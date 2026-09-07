@@ -56,9 +56,12 @@ public abstract class UpgradeableBlockEntity extends PoweredBlockEntity {
         if (overclockers == speed && transformers == tier && storageUpgrades == storage) return;
         var next =
                 UpgradeProfile.calculate(
-                        kind().ticks(),
-                        kind().euPerTick(),
-                        kind().capacity(),
+                        new UpgradeProfile.Base(
+                                kind().ticks(),
+                                kind().euPerTick(),
+                                kind().capacity(),
+                                kind().electricalTier(),
+                                kind().auxiliaryPower()),
                         speed,
                         tier,
                         storage);

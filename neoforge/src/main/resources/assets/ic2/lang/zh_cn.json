@@ -1388,5 +1388,6 @@
   "ic2.energy_device.output": "输出：%s V × %s A",
   "ic2.energy_device.charge": "给物品充电",
   "ic2.energy_device.discharge": "从物品放电",
-  "ic2.solar.sunlight": "日照：%s%%"
+  "ic2.solar.sunlight": "日照：%s%%",
+  "ic2.tooltip.processing_heat": "热量：%s / %s"
 }

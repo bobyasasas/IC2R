@@ -405,158 +405,158 @@
     {
       "source": "centrifuge/clay_dust_to_silicon_dioxide_dust.json",
       "type": "ic2:centrifuge",
-      "status": "pending",
-      "reason": "recipe family not ported"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/centrifuge/clay_dust_to_silicon_dioxide_dust.json"
     },
     {
       "source": "centrifuge/cobblestone_to_stone_dust.json",
       "type": "ic2:centrifuge",
-      "status": "pending",
-      "reason": "recipe family not ported"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/centrifuge/cobblestone_to_stone_dust.json"
     },
     {
       "source": "centrifuge/crushed_copper_to_copper_dust.json",
       "type": "ic2:centrifuge",
-      "status": "pending",
-      "reason": "recipe family not ported"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/centrifuge/crushed_copper_to_copper_dust.json"
     },
     {
       "source": "centrifuge/crushed_gold_to_gold_dust.json",
       "type": "ic2:centrifuge",
-      "status": "pending",
-      "reason": "recipe family not ported"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/centrifuge/crushed_gold_to_gold_dust.json"
     },
     {
       "source": "centrifuge/crushed_iron_to_iron_dust.json",
       "type": "ic2:centrifuge",
-      "status": "pending",
-      "reason": "recipe family not ported"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/centrifuge/crushed_iron_to_iron_dust.json"
     },
     {
       "source": "centrifuge/crushed_lead_to_lead_dust.json",
       "type": "ic2:centrifuge",
-      "status": "pending",
-      "reason": "recipe family not ported"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/centrifuge/crushed_lead_to_lead_dust.json"
     },
     {
       "source": "centrifuge/crushed_silver_to_silver_dust.json",
       "type": "ic2:centrifuge",
-      "status": "pending",
-      "reason": "recipe family not ported"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/centrifuge/crushed_silver_to_silver_dust.json"
     },
     {
       "source": "centrifuge/crushed_tin_to_tin_dust.json",
       "type": "ic2:centrifuge",
-      "status": "pending",
-      "reason": "recipe family not ported"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/centrifuge/crushed_tin_to_tin_dust.json"
     },
     {
       "source": "centrifuge/crushed_uranium_to_small_uranium_235.json",
       "type": "ic2:centrifuge",
       "status": "pending",
-      "reason": "recipe family not ported"
+      "reason": "unported result ic2:small_uranium_235"
     },
     {
       "source": "centrifuge/depleted_dual_mox_fuel_rod_to_small_plutonium.json",
       "type": "ic2:centrifuge",
       "status": "pending",
-      "reason": "recipe family not ported"
+      "reason": "unported item ic2:depleted_dual_mox_fuel_rod"
     },
     {
       "source": "centrifuge/depleted_dual_uranium_fuel_rod_to_small_plutonium.json",
       "type": "ic2:centrifuge",
       "status": "pending",
-      "reason": "recipe family not ported"
+      "reason": "unported item ic2:depleted_dual_uranium_fuel_rod"
     },
     {
       "source": "centrifuge/depleted_mox_fuel_rod_to_small_plutonium.json",
       "type": "ic2:centrifuge",
       "status": "pending",
-      "reason": "recipe family not ported"
+      "reason": "unported item ic2:depleted_mox_fuel_rod"
     },
     {
       "source": "centrifuge/depleted_quad_mox_fuel_rod_to_small_plutonium.json",
       "type": "ic2:centrifuge",
       "status": "pending",
-      "reason": "recipe family not ported"
+      "reason": "unported item ic2:depleted_quad_mox_fuel_rod"
     },
     {
       "source": "centrifuge/depleted_quad_uranium_fuel_rod_to_small_plutonium.json",
       "type": "ic2:centrifuge",
       "status": "pending",
-      "reason": "recipe family not ported"
+      "reason": "unported item ic2:depleted_quad_uranium_fuel_rod"
     },
     {
       "source": "centrifuge/depleted_uranium_fuel_rod_to_small_plutonium.json",
       "type": "ic2:centrifuge",
       "status": "pending",
-      "reason": "recipe family not ported"
+      "reason": "unported item ic2:depleted_uranium_fuel_rod"
     },
     {
       "source": "centrifuge/purified_copper_to_copper_dust.json",
       "type": "ic2:centrifuge",
-      "status": "pending",
-      "reason": "recipe family not ported"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/centrifuge/purified_copper_to_copper_dust.json"
     },
     {
       "source": "centrifuge/purified_gold_to_gold_dust.json",
       "type": "ic2:centrifuge",
-      "status": "pending",
-      "reason": "recipe family not ported"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/centrifuge/purified_gold_to_gold_dust.json"
     },
     {
       "source": "centrifuge/purified_iron_to_iron_dust.json",
       "type": "ic2:centrifuge",
-      "status": "pending",
-      "reason": "recipe family not ported"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/centrifuge/purified_iron_to_iron_dust.json"
     },
     {
       "source": "centrifuge/purified_lead_to_lead_dust.json",
       "type": "ic2:centrifuge",
-      "status": "pending",
-      "reason": "recipe family not ported"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/centrifuge/purified_lead_to_lead_dust.json"
     },
     {
       "source": "centrifuge/purified_silver_to_silver_dust.json",
       "type": "ic2:centrifuge",
-      "status": "pending",
-      "reason": "recipe family not ported"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/centrifuge/purified_silver_to_silver_dust.json"
     },
     {
       "source": "centrifuge/purified_tin_to_tin_dust.json",
       "type": "ic2:centrifuge",
-      "status": "pending",
-      "reason": "recipe family not ported"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/centrifuge/purified_tin_to_tin_dust.json"
     },
     {
       "source": "centrifuge/purified_uranium_to_small_uranium_235.json",
       "type": "ic2:centrifuge",
       "status": "pending",
-      "reason": "recipe family not ported"
+      "reason": "unported result ic2:small_uranium_235"
     },
     {
       "source": "centrifuge/quartz_to_small_lithium_dust.json",
       "type": "ic2:centrifuge",
-      "status": "pending",
-      "reason": "recipe family not ported"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/centrifuge/quartz_to_small_lithium_dust.json"
     },
     {
       "source": "centrifuge/rtg_pellet_to_plutonium.json",
       "type": "ic2:centrifuge",
       "status": "pending",
-      "reason": "recipe family not ported"
+      "reason": "unported item ic2:rtg_pellet"
     },
     {
       "source": "centrifuge/slag_to_small_gold_dust.json",
       "type": "ic2:centrifuge",
-      "status": "pending",
-      "reason": "recipe family not ported"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/centrifuge/slag_to_small_gold_dust.json"
     },
     {
       "source": "centrifuge/uranium_to_uranium_238.json",
       "type": "ic2:centrifuge",
       "status": "pending",
-      "reason": "recipe family not ported"
+      "reason": "unported item ic2:uranium"
     },
     {
       "source": "compressor/amethyst_shard_to_amethyst_block.json",
@@ -2266,7 +2266,7 @@
       "source": "shaped/centrifuge.json",
       "type": "ic2:shaped",
       "status": "pending",
-      "reason": "unported result ic2:centrifuge"
+      "reason": "unported item ic2:mining_laser"
     },
     {
       "source": "shaped/cesu.json",

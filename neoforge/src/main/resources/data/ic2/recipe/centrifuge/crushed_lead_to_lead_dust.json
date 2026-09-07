@@ -1,0 +1,16 @@
+{
+  "type": "ic2:centrifuge",
+  "ingredient": "ic2:crushed_lead",
+  "input_count": 1,
+  "results": [
+    {
+      "id": "ic2:lead_dust",
+      "count": 1
+    },
+    {
+      "id": "ic2:stone_dust",
+      "count": 1
+    }
+  ],
+  "min_heat": 2000
+}

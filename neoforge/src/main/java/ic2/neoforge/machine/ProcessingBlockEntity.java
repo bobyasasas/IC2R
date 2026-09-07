@@ -76,6 +76,16 @@ public abstract class ProcessingBlockEntity extends UpgradeableBlockEntity {
         return inventory.extract(INPUT, input, job.inputCount(), transaction) == job.inputCount();
     }
 
+    protected boolean readyToProcess(Job job) {
+        return true;
+    }
+
+    protected final boolean canFitOutputs(Job job) {
+        try (var simulation = Transaction.openRoot()) {
+            return insertOutputs(job, simulation);
+        }
+    }
+
     private boolean insertOutputs(Job job, Transaction transaction) {
         var port = new ResourcePort<>(inventory, this::outputSlot, slot -> false);
         for (var output : job.outputs()) {
@@ -100,12 +110,7 @@ public abstract class ProcessingBlockEntity extends UpgradeableBlockEntity {
                                 job.recipe(),
                                 upgradeProfile().ticks(),
                                 upgradeProfile().euPerTick());
-        boolean fits = false;
-        if (job != null) {
-            try (var simulation = Transaction.openRoot()) {
-                fits = insertOutputs(job, simulation);
-            }
-        }
+        boolean fits = job != null && readyToProcess(job) && canFitOutputs(job);
         MachineProcess.Outcome outcome;
         try (var transaction = Transaction.openRoot()) {
             journal.updateSnapshots(transaction);
@@ -124,7 +129,7 @@ public abstract class ProcessingBlockEntity extends UpgradeableBlockEntity {
                     operation < Math.min(64, upgradeProfile().operations());
                     operation++) {
                 var extra = findJob(level);
-                if (extra == null) break;
+                if (extra == null || !readyToProcess(extra)) break;
                 var ingredient = inventory.stack(INPUT);
                 try (var transaction = Transaction.openRoot()) {
                     if (!consumeInputs(extra, ItemResource.of(ingredient), transaction)

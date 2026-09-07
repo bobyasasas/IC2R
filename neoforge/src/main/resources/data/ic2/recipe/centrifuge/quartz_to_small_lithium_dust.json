@@ -1,0 +1,12 @@
+{
+  "type": "ic2:centrifuge",
+  "ingredient": "minecraft:quartz",
+  "input_count": 2,
+  "results": [
+    {
+      "id": "ic2:small_lithium_dust",
+      "count": 1
+    }
+  ],
+  "min_heat": 500
+}
