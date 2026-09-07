@@ -14,9 +14,19 @@ import java.util.function.IntPredicate;
 public final class ResourcePort<T extends Resource> implements ResourceHandler<T> {
     private final ResourceHandler<T> contents;
     private final IntPredicate canInsert, canExtract;
+    private final java.util.function.BiPredicate<Integer, T> accepts;
 
     public ResourcePort(
             ResourceHandler<T> contents, IntPredicate canInsert, IntPredicate canExtract) {
+        this(contents, canInsert, canExtract, (slot, resource) -> true);
+    }
+
+    public ResourcePort(
+            ResourceHandler<T> contents,
+            IntPredicate canInsert,
+            IntPredicate canExtract,
+            java.util.function.BiPredicate<Integer, T> accepts) {
+        this.accepts = Objects.requireNonNull(accepts);
         this.contents = contents;
         this.canInsert = canInsert;
         this.canExtract = canExtract;
@@ -44,14 +54,16 @@ public final class ResourcePort<T extends Resource> implements ResourceHandler<T
 
     @Override
     public boolean isValid(int index, T resource) {
-        return canInsert.test(index) && contents.isValid(index, resource);
+        return canInsert.test(index)
+                && accepts.test(index, resource)
+                && contents.isValid(index, resource);
     }
 
     @Override
     public int insert(int index, T resource, int amount, TransactionContext transaction) {
         Objects.checkIndex(index, size());
         TransferPreconditions.checkNonEmptyNonNegative(resource, amount);
-        return canInsert.test(index) ? contents.insert(index, resource, amount, transaction) : 0;
+        return isValid(index, resource) ? contents.insert(index, resource, amount, transaction) : 0;
     }
 
     @Override

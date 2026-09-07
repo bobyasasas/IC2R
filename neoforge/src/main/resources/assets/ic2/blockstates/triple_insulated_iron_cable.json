@@ -1,0 +1,57 @@
+{
+  "multipart": [
+    {
+      "apply": {
+        "model": "ic2:block/cable/triple_insulated_iron_cable_center"
+      }
+    },
+    {
+      "apply": {
+        "model": "ic2:block/cable/triple_insulated_iron_cable_down"
+      },
+      "when": {
+        "down": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "ic2:block/cable/triple_insulated_iron_cable_up"
+      },
+      "when": {
+        "up": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "ic2:block/cable/triple_insulated_iron_cable_north"
+      },
+      "when": {
+        "north": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "ic2:block/cable/triple_insulated_iron_cable_south"
+      },
+      "when": {
+        "south": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "ic2:block/cable/triple_insulated_iron_cable_west"
+      },
+      "when": {
+        "west": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "ic2:block/cable/triple_insulated_iron_cable_east"
+      },
+      "when": {
+        "east": "true"
+      }
+    }
+  ]
+}

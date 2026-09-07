@@ -17,7 +17,17 @@ import net.neoforged.neoforge.event.entity.player.ItemTooltipEvent;
 public final class IndustrialCraftClient {
     public IndustrialCraftClient(IEventBus modBus) {
         modBus.addListener(IndustrialCraftClient::registerProperties);
+        modBus.addListener(IndustrialCraftClient::registerScreens);
         NeoForge.EVENT_BUS.addListener(IndustrialCraftClient::addTooltip);
+    }
+
+    private static void registerScreens(
+            net.neoforged.neoforge.client.event.RegisterMenuScreensEvent event) {
+        event.register(
+                ic2.neoforge.registration.ModMachines.GENERATOR_MENU.get(), MachineScreen::new);
+        event.register(
+                ic2.neoforge.registration.ModMachines.ELECTRIC_FURNACE_MENU.get(),
+                MachineScreen::new);
     }
 
     private static void addTooltip(ItemTooltipEvent event) {

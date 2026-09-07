@@ -639,7 +639,11 @@
       "factory": "register",
       "expression": "new ItemCable(Ic2Blocks.COPPER_CABLE, new Properties())",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModMachines.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/MachineTests.java"
+      ]
     },
     {
       "registry": "item",
@@ -649,7 +653,11 @@
       "factory": "register",
       "expression": "new ItemCable(Ic2Blocks.INSULATED_COPPER_CABLE, new Properties())",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModMachines.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/MachineTests.java"
+      ]
     },
     {
       "registry": "item",
@@ -659,7 +667,11 @@
       "factory": "register",
       "expression": "new ItemCable(Ic2Blocks.GLASS_FIBRE_CABLE, new Properties())",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModMachines.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/MachineTests.java"
+      ]
     },
     {
       "registry": "item",
@@ -669,7 +681,11 @@
       "factory": "register",
       "expression": "new ItemCable(Ic2Blocks.GOLD_CABLE, new Properties())",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModMachines.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/MachineTests.java"
+      ]
     },
     {
       "registry": "item",
@@ -679,7 +695,11 @@
       "factory": "register",
       "expression": "new ItemCable(Ic2Blocks.INSULATED_GOLD_CABLE, new Properties())",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModMachines.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/MachineTests.java"
+      ]
     },
     {
       "registry": "item",
@@ -689,7 +709,11 @@
       "factory": "register",
       "expression": "new ItemCable(Ic2Blocks.DOUBLE_INSULATED_GOLD_CABLE, new Properties())",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModMachines.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/MachineTests.java"
+      ]
     },
     {
       "registry": "item",
@@ -699,7 +723,11 @@
       "factory": "register",
       "expression": "new ItemCable(Ic2Blocks.IRON_CABLE, new Properties())",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModMachines.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/MachineTests.java"
+      ]
     },
     {
       "registry": "item",
@@ -709,7 +737,11 @@
       "factory": "register",
       "expression": "new ItemCable(Ic2Blocks.INSULATED_IRON_CABLE, new Properties())",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModMachines.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/MachineTests.java"
+      ]
     },
     {
       "registry": "item",
@@ -719,7 +751,11 @@
       "factory": "register",
       "expression": "new ItemCable(Ic2Blocks.DOUBLE_INSULATED_IRON_CABLE, new Properties())",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModMachines.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/MachineTests.java"
+      ]
     },
     {
       "registry": "item",
@@ -729,7 +765,11 @@
       "factory": "register",
       "expression": "new ItemCable(Ic2Blocks.TRIPLE_INSULATED_IRON_CABLE, new Properties())",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModMachines.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/MachineTests.java"
+      ]
     },
     {
       "registry": "item",
@@ -739,7 +779,11 @@
       "factory": "register",
       "expression": "new ItemCable(Ic2Blocks.TIN_CABLE, new Properties())",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModMachines.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/MachineTests.java"
+      ]
     },
     {
       "registry": "item",
@@ -749,7 +793,11 @@
       "factory": "register",
       "expression": "new ItemCable(Ic2Blocks.INSULATED_TIN_CABLE, new Properties())",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModMachines.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/MachineTests.java"
+      ]
     },
     {
       "registry": "item",
@@ -1099,7 +1147,11 @@
       "factory": "register",
       "expression": "new ItemBlockIc2(Ic2Blocks.GENERATOR, new Properties())",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModMachines.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/MachineTests.java"
+      ]
     },
     {
       "registry": "item",
@@ -1539,7 +1591,11 @@
       "factory": "register",
       "expression": "new ItemBlockIc2(Ic2Blocks.ELECTRIC_FURNACE, new Properties())",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModMachines.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/MachineTests.java"
+      ]
     },
     {
       "registry": "item",
@@ -6201,7 +6257,11 @@
       "factory": "register",
       "expression": "Ic2TileEntityBlock.create(Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).strength(2.0F, 10.0F).requiresCorrectToolForDrops().sound(SoundType.METAL), TileEntityGenerator.class, true, Ic2TileEntityBlock.DefaultDrop.Self, Util.horizontalFacings, true)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModMachines.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/MachineTests.java"
+      ]
     },
     {
       "registry": "block",
@@ -6611,7 +6671,11 @@
       "factory": "register",
       "expression": "Ic2TileEntityBlock.create(Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).strength(2.0F, 10.0F).requiresCorrectToolForDrops().sound(SoundType.METAL), TileEntityElectricFurnace.class, true, Ic2TileEntityBlock.DefaultDrop.Self, Util.horizontalFacings, true)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModMachines.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/MachineTests.java"
+      ]
     },
     {
       "registry": "block",
@@ -6861,7 +6925,11 @@
       "factory": "register",
       "expression": "CableBlock.create(Properties.of().strength(0.5F, 5.0F).sound(SoundType.GLASS), CableType.glass, 0, GLASS_FIBRE_FOAM_CABLE)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModMachines.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/MachineTests.java"
+      ]
     },
     {
       "registry": "block",
@@ -7401,7 +7469,11 @@
       "factory": "register",
       "expression": "CableBlock.create(cableSettings, CableType.copper, 0, COPPER_FOAM_CABLE)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModMachines.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/MachineTests.java"
+      ]
     },
     {
       "registry": "block",
@@ -7421,7 +7493,11 @@
       "factory": "register",
       "expression": "CableBlock.create(cableSettings, CableType.gold, 0, GOLD_FOAM_CABLE)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModMachines.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/MachineTests.java"
+      ]
     },
     {
       "registry": "block",
@@ -7441,7 +7517,11 @@
       "factory": "register",
       "expression": "CableBlock.create(cableSettings, CableType.iron, 0, IRON_FOAM_CABLE)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModMachines.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/MachineTests.java"
+      ]
     },
     {
       "registry": "block",
@@ -7461,7 +7541,11 @@
       "factory": "register",
       "expression": "CableBlock.create(cableSettings, CableType.tin, 0, TIN_FOAM_CABLE)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModMachines.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/MachineTests.java"
+      ]
     },
     {
       "registry": "block",
@@ -7521,7 +7605,11 @@
       "factory": "register",
       "expression": "CableBlock.create(insulatedCableSettings, CableType.copper, 1, INSULATED_COPPER_FOAM_CABLE)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModMachines.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/MachineTests.java"
+      ]
     },
     {
       "registry": "block",
@@ -7541,7 +7629,11 @@
       "factory": "register",
       "expression": "CableBlock.create(insulatedCableSettings, CableType.gold, 1, INSULATED_GOLD_FOAM_CABLE)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModMachines.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/MachineTests.java"
+      ]
     },
     {
       "registry": "block",
@@ -7561,7 +7653,11 @@
       "factory": "register",
       "expression": "CableBlock.create(insulatedCableSettings, CableType.gold, 2, DOUBLE_INSULATED_GOLD_FOAM_CABLE)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModMachines.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/MachineTests.java"
+      ]
     },
     {
       "registry": "block",
@@ -7581,7 +7677,11 @@
       "factory": "register",
       "expression": "CableBlock.create(insulatedCableSettings, CableType.iron, 1, INSULATED_IRON_FOAM_CABLE)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModMachines.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/MachineTests.java"
+      ]
     },
     {
       "registry": "block",
@@ -7601,7 +7701,11 @@
       "factory": "register",
       "expression": "CableBlock.create(insulatedCableSettings, CableType.iron, 2, DOUBLE_INSULATED_IRON_FOAM_CABLE)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModMachines.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/MachineTests.java"
+      ]
     },
     {
       "registry": "block",
@@ -7621,7 +7725,11 @@
       "factory": "register",
       "expression": "CableBlock.create(insulatedCableSettings, CableType.iron, 3, TRIPLE_INSULATED_IRON_FOAM_CABLE)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModMachines.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/MachineTests.java"
+      ]
     },
     {
       "registry": "block",
@@ -7641,7 +7749,11 @@
       "factory": "register",
       "expression": "CableBlock.create(insulatedCableSettings, CableType.tin, 1, INSULATED_TIN_FOAM_CABLE)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModMachines.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/MachineTests.java"
+      ]
     },
     {
       "registry": "block",
@@ -8251,7 +8363,11 @@
       "factory": "register",
       "expression": "TileEntityGenerator::new",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModMachines.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/MachineTests.java"
+      ]
     },
     {
       "registry": "block_entity",
@@ -9071,7 +9187,11 @@
       "factory": "register",
       "expression": "TileEntityElectricFurnace::new",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModMachines.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/MachineTests.java"
+      ]
     },
     {
       "registry": "block_entity",

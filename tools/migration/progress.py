@@ -54,8 +54,8 @@ def generate():
         assert key not in keys, f"duplicate registry entry {key}"
         keys.add(key)
         assert entry["decision"] in {"preserve", "replace", "remove"}
-        assert entry["status"] in {"pending", "implemented"}
-        if entry["status"] == "implemented":
+        assert entry["status"] in {"pending", "partial", "implemented"}
+        if entry["status"] != "pending":
             assert entry.get("evidence"), key
             assert all((ROOT / e).is_file() for e in entry["evidence"]), key
     done = sum(t["status"] == "done" for t in tasks.values())
@@ -67,10 +67,10 @@ def generate():
     for task in tasks.values():
         lines.append(f"| {task['id']} {task['title']} | {LABELS[task['status']]} | {', '.join(task['depends_on']) or '—'} | {task['acceptance']} |")
     if catalog:
-        lines += ["", "## 注册迁移覆盖", "", "| 注册类别 | 已实现 | 基线总数 |", "|---|---:|---:|"]
+        lines += ["", "## 注册迁移覆盖", "", "| 注册类别 | 已实现 | 部分实现 | 基线总数 |", "|---|---:|---:|---:|"]
         for kind in dict.fromkeys(e["registry"] for e in catalog):
             entries = [e for e in catalog if e["registry"] == kind]
-            lines.append(f"| {kind} | {sum(e['status'] == 'implemented' for e in entries)} | {len(entries)} |")
+            lines.append(f"| {kind} | {sum(e['status'] == 'implemented' for e in entries)} | {sum(e['status'] == 'partial' for e in entries)} | {len(entries)} |")
         lines += ["", "流体族尚须展开为实际流体与方块。完整状态见 [注册清单](registry-catalog.json)。"]
     lines += ["", "## 验证证据", ""]
     for task in tasks.values():

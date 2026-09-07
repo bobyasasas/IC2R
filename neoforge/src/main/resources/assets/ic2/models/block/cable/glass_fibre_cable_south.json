@@ -1,0 +1,40 @@
+{
+  "textures": {
+    "cable": "ic2:block/wiring/cable/glass_cable_0_light_gray",
+    "particle": "ic2:block/wiring/cable/glass_cable_0_light_gray"
+  },
+  "elements": [
+    {
+      "from": [
+        6.0,
+        6.0,
+        10.0
+      ],
+      "to": [
+        10.0,
+        10.0,
+        16
+      ],
+      "faces": {
+        "down": {
+          "texture": "#cable"
+        },
+        "up": {
+          "texture": "#cable"
+        },
+        "north": {
+          "texture": "#cable"
+        },
+        "south": {
+          "texture": "#cable"
+        },
+        "west": {
+          "texture": "#cable"
+        },
+        "east": {
+          "texture": "#cable"
+        }
+      }
+    }
+  ]
+}

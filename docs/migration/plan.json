@@ -94,12 +94,16 @@
     {
       "id": "M07",
       "title": "配方与机器状态机",
-      "status": "in_progress",
+      "status": "done",
       "depends_on": [
         "M02"
       ],
       "acceptance": "先迁移单输入机器；配方匹配、进度、暂停和产出以纯逻辑测试覆盖；无全局 IC2 服务读取。",
-      "evidence": []
+      "evidence": [
+        "core/src/main/java/ic2/core/machine/MachineProcess.java",
+        "core/src/test/java/ic2/core/machine/MachineProcessTest.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/MachineTests.java"
+      ]
     },
     {
       "id": "M08",
@@ -126,18 +130,24 @@
         "M08"
       ],
       "acceptance": "发电机—导线—电炉的最小链路；耗能、配方、存取、区块重载与专服 GameTest 通过。",
-      "evidence": []
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/energy/WorldEnergyNetworks.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/MachineTests.java"
+      ]
     },
     {
       "id": "M10",
       "title": "菜单与网络同步",
-      "status": "todo",
+      "status": "in_progress",
       "depends_on": [
         "M05",
         "M09"
       ],
       "acceptance": "类型化 payload、服务端校验；双人交互与断线重连；客户端渲染 API 更新。",
-      "evidence": []
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/menu/MachineMenu.java",
+        "neoforge/src/main/java/ic2/neoforge/client/MachineScreen.java"
+      ]
     },
     {
       "id": "M11",

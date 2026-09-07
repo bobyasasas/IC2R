@@ -32,7 +32,7 @@ with zipfile.ZipFile(jars[0]) as jar:
 
     visited = set()
     def check_model(identifier, ancestors=()):
-        namespace, model = identifier.split(':')
+        namespace, model = identifier.split(':') if ':' in identifier else ('minecraft', identifier)
         if namespace == 'minecraft':
             return
         assert identifier not in ancestors, f'cyclic model parent: {identifier}'
@@ -45,7 +45,7 @@ with zipfile.ZipFile(jars[0]) as jar:
         for texture in data.get('textures', {}).values():
             if texture.startswith('#'):
                 continue
-            ns, name = texture.split(':')
+            ns, name = texture.split(':') if ':' in texture else ('minecraft', texture)
             if ns != 'minecraft':
                 assert jar.read(f'assets/{ns}/textures/{name}.png').startswith(b'\x89PNG\r\n\x1a\n')
         visited.add(identifier)
@@ -59,6 +59,20 @@ with zipfile.ZipFile(jars[0]) as jar:
         elif isinstance(node, list):
             for value in node:
                 check_item_model(value)
+
+    def check_blockstate(node):
+        if isinstance(node, dict):
+            if 'model' in node:
+                check_model(node['model'])
+            for value in node.values():
+                check_blockstate(value)
+        elif isinstance(node, list):
+            for value in node:
+                check_blockstate(value)
+
+    for name in names:
+        if name.startswith('assets/ic2/blockstates/') and name.endswith('.json'):
+            check_blockstate(json.loads(jar.read(name)))
 
     item_names = []
     for name in sorted(names):
