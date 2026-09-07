@@ -1,0 +1,17 @@
+{
+  "type": "ic2:shaped",
+  "pattern": [
+    "B",
+    "M",
+    "F"
+  ],
+  "result": {
+    "id": "ic2:solid_heat_generator",
+    "count": 1
+  },
+  "key": {
+    "B": "ic2:heat_conductor",
+    "F": "minecraft:furnace",
+    "M": "ic2:machine"
+  }
+}

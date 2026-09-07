@@ -99,6 +99,11 @@ public final class RegistrationTests {
         FUNCTIONS.register("work_parts_menu", () -> WorkEnergyTests::installedPartsMenu);
         FUNCTIONS.register("heat_conversion_chain", () -> WorkEnergyTests::heatChain);
         FUNCTIONS.register("kinetic_conversion_chain", () -> WorkEnergyTests::kineticChain);
+        FUNCTIONS.register("solid_heat_reserve", () -> FuelHeatTests::solidReserve);
+        FUNCTIONS.register("solid_heat_output", () -> FuelHeatTests::solidOutputAndFuel);
+        FUNCTIONS.register("fluid_heat_prepaid", () -> FuelHeatTests::fluidPrepayment);
+        FUNCTIONS.register("fluid_heat_chain", () -> FuelHeatTests::fluidChain);
+        FUNCTIONS.register("heat_menu_transport", () -> FuelHeatTests::menuTransport);
         FUNCTIONS.register("loaded_recipes", () -> ProcessingTests::loadedRecipes);
         FUNCTIONS.register("processing_machines", () -> ProcessingTests::processing);
         FUNCTIONS.register("weighted_persistence", () -> ProcessingTests::weightedPersistence);

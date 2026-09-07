@@ -97,6 +97,7 @@ public final class ModMachines {
                     new TransformerBlockEntity(pos, state);
             case IRON_FURNACE -> new IronFurnaceBlockEntity(pos, state);
             case CANNER -> new CannerBlockEntity(pos, state);
+            case SOLID_HEAT_GENERATOR, FLUID_HEAT_GENERATOR -> new FuelHeatBlockEntity(pos, state);
             case ELECTRIC_HEAT_GENERATOR, ELECTRIC_KINETIC_GENERATOR ->
                     new ElectricWorkBlockEntity(pos, state);
             case STIRLING_GENERATOR, KINETIC_GENERATOR -> new WorkConversionBlockEntity(pos, state);
@@ -189,6 +190,14 @@ public final class ModMachines {
     }
 
     private static void capabilities(RegisterCapabilitiesEvent event) {
+        for (var kind :
+                new MachineKind[] {
+                    MachineKind.SOLID_HEAT_GENERATOR, MachineKind.FLUID_HEAT_GENERATOR
+                })
+            event.registerBlockEntity(
+                    ic2.neoforge.api.WorkCapabilities.HEAT,
+                    entityType(kind),
+                    (machine, side) -> ((FuelHeatBlockEntity) machine).output(side));
         event.registerBlockEntity(
                 ic2.neoforge.api.WorkCapabilities.HEAT,
                 entityType(MachineKind.ELECTRIC_HEAT_GENERATOR),
@@ -202,7 +211,9 @@ public final class ModMachines {
                 entityType(MachineKind.CANNER),
                 (machine, side) -> ((CannerBlockEntity) machine).fluidAutomation(side));
         for (var kind : MachineKind.values())
-            if (kind.fluidGenerator() || kind == MachineKind.ORE_WASHING_PLANT)
+            if (kind.fluidGenerator()
+                    || kind == MachineKind.ORE_WASHING_PLANT
+                    || kind == MachineKind.FLUID_HEAT_GENERATOR)
                 event.registerBlockEntity(
                         Capabilities.Fluid.BLOCK,
                         entityType(kind),

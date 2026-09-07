@@ -1499,7 +1499,12 @@
       "factory": "register",
       "expression": "new ItemBlockIc2(Ic2Blocks.FLUID_HEAT_GENERATOR, new Properties())",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/fuel-heat.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/FuelHeatTests.java"
+      ],
+      "note": "固体余热、流体预付批次、灰烬、事务能力、重载及真实转换链已接入；其余源设备和多人随 P10/M16 验收。"
     },
     {
       "registry": "item",
@@ -1519,7 +1524,12 @@
       "factory": "register",
       "expression": "new ItemBlockIc2(Ic2Blocks.SOLID_HEAT_GENERATOR, new Properties())",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/fuel-heat.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/FuelHeatTests.java"
+      ],
+      "note": "固体余热、流体预付批次、灰烬、事务能力、重载及真实转换链已接入；其余源设备和多人随 P10/M16 验收。"
     },
     {
       "registry": "item",
@@ -7028,7 +7038,12 @@
       "factory": "register",
       "expression": "Ic2TileEntityBlock.create(Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).strength(2.0F, 10.0F).requiresCorrectToolForDrops().sound(SoundType.METAL), TileEntityFluidHeatGenerator.class, true, Ic2TileEntityBlock.DefaultDrop.Self, Util.allFacings, true)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/fuel-heat.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/FuelHeatTests.java"
+      ],
+      "note": "固体余热、流体预付批次、灰烬、事务能力、重载及真实转换链已接入；其余源设备和多人随 P10/M16 验收。"
     },
     {
       "registry": "block",
@@ -7048,7 +7063,12 @@
       "factory": "register",
       "expression": "Ic2TileEntityBlock.create(Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).strength(2.0F, 10.0F).requiresCorrectToolForDrops().sound(SoundType.METAL), TileEntitySolidHeatGenerator.class, true, Ic2TileEntityBlock.DefaultDrop.Self, Util.allFacings, true)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/fuel-heat.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/FuelHeatTests.java"
+      ],
+      "note": "固体余热、流体预付批次、灰烬、事务能力、重载及真实转换链已接入；其余源设备和多人随 P10/M16 验收。"
     },
     {
       "registry": "block",
@@ -9370,7 +9390,12 @@
       "factory": "register",
       "expression": "TileEntityFluidHeatGenerator::new",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/fuel-heat.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/FuelHeatTests.java"
+      ],
+      "note": "固体余热、流体预付批次、灰烬、事务能力、重载及真实转换链已接入；其余源设备和多人随 P10/M16 验收。"
     },
     {
       "registry": "block_entity",
@@ -9410,7 +9435,12 @@
       "factory": "register",
       "expression": "TileEntitySolidHeatGenerator::new",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/fuel-heat.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/FuelHeatTests.java"
+      ],
+      "note": "固体余热、流体预付批次、灰烬、事务能力、重载及真实转换链已接入；其余源设备和多人随 P10/M16 验收。"
     },
     {
       "registry": "block_entity",
@@ -10880,7 +10910,12 @@
       "factory": "registerManagedBe",
       "expression": "",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/fuel-heat.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/FuelHeatTests.java"
+      ],
+      "note": "固体余热、流体预付批次、灰烬、事务能力、重载及真实转换链已接入；其余源设备和多人随 P10/M16 验收。"
     },
     {
       "registry": "menu",

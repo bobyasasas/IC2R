@@ -104,10 +104,11 @@
       "parent": "M11",
       "title": "热力与动能机器",
       "status": "in_progress",
-      "acceptance": "电热／电动动能、原生事务能力与两种转电链已接入；其余热源、热交换、蒸汽、锅炉、冷凝、电解及发酵待验收。",
+      "acceptance": "电热、电动动能、固体／流体热源、原生事务能力与转电链已接入；同位素热源、热交换、蒸汽、锅炉、冷凝、电解及发酵待验收。",
       "evidence": [
         "docs/migration/work-energy.md",
-        "neoforge/src/gameTest/java/ic2/neoforge/test/WorkEnergyTests.java"
+        "neoforge/src/gameTest/java/ic2/neoforge/test/WorkEnergyTests.java",
+        "docs/migration/fuel-heat.md"
       ]
     },
     {

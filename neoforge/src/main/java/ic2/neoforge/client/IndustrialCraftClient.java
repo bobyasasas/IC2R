@@ -67,7 +67,7 @@ public final class IndustrialCraftClient {
                 (kind, registration) -> {
                     if (kind.energyDevice())
                         event.register(registration.menu().get(), EnergyDeviceScreen::new);
-                    else if (kind.electricWork() || kind.workConversion())
+                    else if (kind.electricWork() || kind.workConversion() || kind.fuelHeat())
                         event.register(ModMachines.menuType(kind), WorkMachineScreen::new);
                     else if (kind.fluidGenerator() || kind == MachineKind.SOLAR_GENERATOR)
                         event.register(registration.menu().get(), GeneratorScreen::new);

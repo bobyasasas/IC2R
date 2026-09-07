@@ -67,7 +67,22 @@ public final class MachineMenu extends AbstractContainerMenu {
                 machine == null
                         ? new SimpleContainerData(MachineMenuData.SIZE)
                         : new MachineMenuData(machine);
-        if (kind.workConversion()) {
+        if (kind.fuelHeat()) {
+            addSlot(
+                    new ResourceHandlerSlot(inventory, inventory::set, 0, 56, 17) {
+                        @Override
+                        public boolean mayPlace(ItemStack stack) {
+                            return kind == MachineKind.FLUID_HEAT_GENERATOR
+                                    ? ItemAccess.forStack(stack.copy())
+                                                    .getCapability(Capabilities.Fluid.ITEM)
+                                            != null
+                                    : ic2.neoforge.machine.FuelHeatBlockEntity.solidBurnTime(
+                                                    stack, playerInventory.player.level())
+                                            > 0;
+                        }
+                    });
+            addOutputSlot(inventory, 1, 56, 53);
+        } else if (kind.workConversion()) {
             // Conversion generators have no inventory.
         } else if (kind.electricWork()) {
             for (int part = 0; part < 10; part++) {
@@ -250,7 +265,7 @@ public final class MachineMenu extends AbstractContainerMenu {
     }
 
     public int capacity() {
-        return integer(15);
+        return integer(20);
     }
 
     public int progress() {
@@ -262,15 +277,15 @@ public final class MachineMenu extends AbstractContainerMenu {
     }
 
     public int cannerMode() {
-        return data.get(10);
+        return familyValue(0);
     }
 
     public int tankAmount(boolean output) {
-        return data.get(output ? 12 : 11);
+        return familyValue(output ? 2 : 1);
     }
 
     public Fluid tankFluid(boolean output) {
-        return BuiltInRegistries.FLUID.byId(data.get(output ? 14 : 13));
+        return BuiltInRegistries.FLUID.byId(familyValue(output ? 4 : 3));
     }
 
     @Override
@@ -281,12 +296,17 @@ public final class MachineMenu extends AbstractContainerMenu {
                 && machine.menuAction(id);
     }
 
+    public float familyFloat(int index) {
+        return Float.intBitsToFloat(familyValue(index));
+    }
+
     public int familyValue(int index) {
-        return data.get(10 + Objects.checkIndex(index, 5));
+        return integer(10 + Objects.checkIndex(index, 5) * 2);
     }
 
     private int preferredSlot(ItemStack stack, Player player) {
         if (kind.workConversion()) return -1;
+        if (kind.fuelHeat()) return 0;
         if (kind.electricWork())
             return stack.getItem() instanceof ElectricItem
                     ? 10

@@ -11,6 +11,7 @@
     "ic2:electric_kinetic_generator",
     "ic2:ev_transformer",
     "ic2:extractor",
+    "ic2:fluid_heat_generator",
     "ic2:generator",
     "ic2:geo_generator",
     "ic2:hv_transformer",
@@ -26,6 +27,7 @@
     "ic2:recycler",
     "ic2:semifluid_generator",
     "ic2:solar_generator",
+    "ic2:solid_heat_generator",
     "ic2:stirling_generator",
     "ic2:water_generator",
     "ic2:wind_generator"

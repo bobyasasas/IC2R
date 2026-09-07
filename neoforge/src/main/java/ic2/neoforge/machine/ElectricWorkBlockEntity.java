@@ -19,7 +19,6 @@ import net.minecraft.world.level.storage.ValueOutput;
 import net.neoforged.neoforge.transfer.ResourceHandler;
 import net.neoforged.neoforge.transfer.item.ItemResource;
 import net.neoforged.neoforge.transfer.transaction.Transaction;
-import net.neoforged.neoforge.transfer.transaction.TransactionContext;
 
 /** Shared electric input, installed parts and sided output for electric heat/kinetic generators. */
 public final class ElectricWorkBlockEntity extends PoweredBlockEntity {
@@ -83,32 +82,7 @@ public final class ElectricWorkBlockEntity extends PoweredBlockEntity {
     }
 
     public WorkSource output(@org.jspecify.annotations.Nullable Direction side) {
-        return new WorkSource() {
-            private boolean connected() {
-                return !isRemoved()
-                        && level != null
-                        && !level.isClientSide()
-                        && side == getBlockState().getValue(MachineBlock.FACING);
-            }
-
-            @Override
-            public int bandwidth() {
-                return connected() ? ElectricWorkBlockEntity.this.bandwidth() : 0;
-            }
-
-            @Override
-            public int available() {
-                return connected() ? work.available(level.getGameTime(), bandwidth()) : 0;
-            }
-
-            @Override
-            public int extract(int maximum, TransactionContext transaction) {
-                if (maximum < 0) throw new IllegalArgumentException("Negative work request");
-                if (!connected()) return 0;
-                journal.updateSnapshots(transaction);
-                return work.extract(level.getGameTime(), bandwidth(), maximum);
-            }
-        };
+        return new WorkOutput(this, side, work, this::bandwidth, journal::updateSnapshots);
     }
 
     @Override

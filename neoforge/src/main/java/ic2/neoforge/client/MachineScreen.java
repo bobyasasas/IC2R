@@ -15,6 +15,10 @@ public class MachineScreen extends ContainerScreenBase<MachineMenu> {
         super(menu, inventory, title, menu.kind().upgradable() ? 202 : 176, 166);
     }
 
+    protected boolean showsEnergyBar() {
+        return true;
+    }
+
     protected boolean showsProgress() {
         return !menu.kind().energyDevice();
     }
@@ -38,8 +42,10 @@ public class MachineScreen extends ContainerScreenBase<MachineMenu> {
                                                         : menu.fuelMaximum()),
                                 0,
                                 48);
-        graphics.fill(x + 25, y + 18, x + 37, y + 68, 0xff373737);
-        graphics.fill(x + 26, y + 67 - energyHeight, x + 36, y + 67, 0xffe9ae23);
+        if (showsEnergyBar()) {
+            graphics.fill(x + 25, y + 18, x + 37, y + 68, 0xff373737);
+            graphics.fill(x + 26, y + 67 - energyHeight, x + 36, y + 67, 0xffe9ae23);
+        }
         if (!showsProgress()) return;
         int progressWidth =
                 menu.progressMaximum() <= 0

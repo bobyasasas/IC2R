@@ -2637,8 +2637,8 @@
     {
       "source": "shaped/fluid_heat_generator.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:fluid_heat_generator"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/fluid_heat_generator.json"
     },
     {
       "source": "shaped/fluid_pulling_upgrade.json",
@@ -3747,14 +3747,14 @@
     {
       "source": "shaped/solid_heat_generator_from_furnace.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:solid_heat_generator"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/solid_heat_generator_from_furnace.json"
     },
     {
       "source": "shaped/solid_heat_generator_from_iron_furnace.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:solid_heat_generator"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/solid_heat_generator_from_iron_furnace.json"
     },
     {
       "source": "shaped/sorting_machine.json",

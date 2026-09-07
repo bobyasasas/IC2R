@@ -28,6 +28,15 @@ public final class WorkBuffer {
         this.state = state;
     }
 
+    /** Add already paid units, retaining any excess in the caller's reserve. */
+    public int insert(int maximum, int target) {
+        if (maximum < 0 || target < 0 || target > capacity)
+            throw new IllegalArgumentException("Invalid work insertion");
+        int accepted = (int) Math.min(maximum, Math.max(0, target - state.stored()));
+        state = new State(state.stored() + accepted, state.tick(), state.extracted());
+        return accepted;
+    }
+
     public int available(long tick, int bandwidth) {
         if (bandwidth < 0) throw new IllegalArgumentException("Negative bandwidth");
         int used = tick == state.tick() ? state.extracted() : 0;
