@@ -12,7 +12,7 @@ import net.minecraft.world.item.ItemStack;
 import java.util.List;
 
 /** Small shared screen; slot geometry is taken from the menu, so visuals cannot drift. */
-public final class MachineScreen extends AbstractContainerScreen<MachineMenu> {
+public class MachineScreen extends AbstractContainerScreen<MachineMenu> {
     public MachineScreen(MachineMenu menu, Inventory inventory, Component title) {
         super(menu, inventory, title, 176, 166);
     }

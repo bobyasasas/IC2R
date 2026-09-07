@@ -1,0 +1,11 @@
+{
+  "type": "ic2:shapeless",
+  "result": {
+    "id": "ic2:water_cell",
+    "count": 1
+  },
+  "ingredients": [
+    "ic2:facade_cell",
+    "minecraft:water_bucket"
+  ]
+}

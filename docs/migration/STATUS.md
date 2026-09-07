@@ -32,26 +32,55 @@
 
 | 注册类别 | 已实现 | 部分实现 | 基线总数 |
 |---|---:|---:|---:|
-| item | 161 | 18 | 511 |
-| block | 13 | 18 | 247 |
-| block_entity | 0 | 6 | 157 |
+| item | 177 | 40 | 528 |
+| block | 13 | 36 | 264 |
+| block_entity | 0 | 7 | 157 |
 | entity | 0 | 0 | 8 |
-| menu | 0 | 0 | 55 |
+| menu | 0 | 1 | 55 |
 | sound | 62 | 0 | 62 |
-| recipe_serializer | 0 | 5 | 17 |
-| recipe_type | 0 | 3 | 13 |
-| fluid_family | 0 | 0 | 17 |
+| recipe_serializer | 0 | 7 | 17 |
+| recipe_type | 0 | 5 | 13 |
+| fluid_family | 0 | 17 | 17 |
 | game_event | 0 | 0 | 5 |
+| fluid_type | 17 | 0 | 17 |
+| fluid | 34 | 0 | 34 |
 
-流体族尚须展开为实际流体与方块。完整状态见 [注册清单](registry-catalog.json)。
+清单包含 17 个流体族及其动态生成的 85 个实际注册 ID；流体族行是分组，不另算功能。完整状态见 [注册清单](registry-catalog.json)。
 
 ## 配方迁移覆盖
 
-已转换并纳入加载测试：**341 / 796**。
+已转换并纳入加载测试：**393 / 796**。
 
 转换计数不等于生存模式可达率；原料、工具与前置机器仍需逐步验收。
 
 [逐条状态与待迁移原因](recipe-catalog.json)
+
+## 后续工作包
+
+阶段内按可独立验收的功能族推进；进行中表示仍有验收项未完成。
+
+| 工作包 | 阶段 | 状态 | 验收范围 |
+|---|---|---|---|
+| P01 基础加工与铁炉 | M11 | 进行中 | 配方、事务、随机产出持久化已通过；升级及特殊配方待验收。 |
+| P02 罐装机四模式 | M11 | 进行中 | 固体、装填、排空、富集及 cannerfix1 输出边界；升级、全部原料和声音验收。 |
+| P03 流体与单元 | M11 | 进行中 | 17 个流体族、20 个单元；特殊流体世界行为及所有容器交互。 |
+| P04 升级与侧面配置 | M11 | 待开始 | 速度、能耗、储能、电压及物品／流体自动进出；堆叠和配置持久化。 |
+| P05 电力储能与变压器 | M11 | 待开始 | BatBox、CESU、MFE、MFSU、四档变压器；方向、红石、供电模式、过压和重载。 |
+| P06 其余发电机 | M11 | 待开始 | 地热、水力、风力、太阳能、半流质及热能／动能转换。 |
+| P07 泵与采矿 | M11 | 待开始 | 泵、矿机、高级矿机；区块边界、液体源、钻头、管道和过滤。 |
+| P08 存储与辅助机器 | M11 | 待开始 | 储罐、箱子、充电站、分拣机、交易机、个人保护、传送与磁化。 |
+| P09 金属及高阶加工 | M11 | 待开始 | 金属成型、洗矿、离心、回收、感应炉；多输入、多输出、热量与升级。 |
+| P10 热力与动能机器 | M11 | 待开始 | 加热器、热交换、蒸汽、锅炉、冷凝、电解及发酵；守恒和回滚。 |
+| P11 UU 及复制系统 | M11 | 待开始 | 复制、扫描、模式存储和流体 UU；数据与网络同步。 |
+| P12 反应堆热量与组件 | M12 | 待开始 | 先抽离热量和组件规则，再验证液冷、红石、组件耐久和存档。 |
+| P13 爆炸与电缆附加行为 | M12 | 待开始 | IC2 爆炸、核弹、炸药、遥控；电击、涂色、建筑泡沫。 |
+| P14 树木、矿石与世界生成 | M13 | 待开始 | 原木、树叶、橡胶采集、矿石和生成分布；自然生成、工具与存档验证。 |
+| P15 作物与农业 | M13 | 待开始 | 作物卡、杂交、养分、生长、收获、农药及种子持久化。 |
+| P16 工具与装备 | M13 | 待开始 | 扳手、切线钳、钻头、锯、喷枪、背包与护甲；消耗、附魔、渲染和同步。 |
+| P17 可选集成 | M14 | 待开始 | 逐个核对 JEI、Jade、AE2 的目标版本与行为，缺少依赖仍可启动。 |
+| P18 旧存档转换 | M15 | 待开始 | 用副本建立跨版本数据迁移工具和可复现流程，列出不支持项。 |
+| P19 多人及性能 | M16 | 待开始 | 双人操作、断线、区块加载、重启、资源重载与性能基线。 |
+| P20 候选版本 | M17 | 待开始 | 所有清单验收后发布 Actions 候选 Release，保留校验和及回归记录。 |
 
 ## 验证证据
 
@@ -65,7 +94,7 @@
 - M08：[ResourcePort.java](../../neoforge/src/main/java/ic2/neoforge/transfer/ResourcePort.java), [TransferTests.java](../../neoforge/src/gameTest/java/ic2/neoforge/test/TransferTests.java), [energy-transfer.md](../../docs/migration/energy-transfer.md)
 - M09：[WorldEnergyNetworks.java](../../neoforge/src/main/java/ic2/neoforge/energy/WorldEnergyNetworks.java), [MachineTests.java](../../neoforge/src/gameTest/java/ic2/neoforge/test/MachineTests.java), [first-machines.md](../../docs/migration/first-machines.md)
 - M10：[MachineMenu.java](../../neoforge/src/main/java/ic2/neoforge/menu/MachineMenu.java), [MachineScreen.java](../../neoforge/src/main/java/ic2/neoforge/client/MachineScreen.java)
-- M11：[ProcessingBlockEntity.java](../../neoforge/src/main/java/ic2/neoforge/machine/ProcessingBlockEntity.java), [ProcessingRecipe.java](../../neoforge/src/main/java/ic2/neoforge/recipe/ProcessingRecipe.java)
+- M11：[ProcessingBlockEntity.java](../../neoforge/src/main/java/ic2/neoforge/machine/ProcessingBlockEntity.java), [ProcessingRecipe.java](../../neoforge/src/main/java/ic2/neoforge/recipe/ProcessingRecipe.java), [work-packages.json](../../docs/migration/work-packages.json), [canner-fluids.md](../../docs/migration/canner-fluids.md)
 
 ## 依赖关系
 

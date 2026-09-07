@@ -3,7 +3,7 @@
 import json
 from base import ROOT, OLD, NEW, ASSETS, write, copy, model, item
 
-machines = ['iron_furnace', 'generator', 'electric_furnace', 'macerator', 'extractor', 'compressor']
+machines = ['canner', 'iron_furnace', 'generator', 'electric_furnace', 'macerator', 'extractor', 'compressor']
 for identifier in machines:
     item(identifier)
     path = ASSETS + 'blockstates/' + identifier + '.json'

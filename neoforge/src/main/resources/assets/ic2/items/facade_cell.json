@@ -1,0 +1,11 @@
+{
+  "model": {
+    "type": "neoforge:fluid_container",
+    "fluid": "minecraft:empty",
+    "textures": {
+      "base": "ic2:item/cell/facade_cell",
+      "fluid": "ic2:item/cell/fluid_cell_window"
+    },
+    "flip_gas": false
+  }
+}

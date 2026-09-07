@@ -17,6 +17,7 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.storage.ValueInput;
 import net.minecraft.world.level.storage.ValueOutput;
+import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.transfer.ResourceHandler;
 import net.neoforged.neoforge.transfer.item.ItemResource;
 
@@ -64,6 +65,12 @@ public abstract class MachineBlockEntity extends BlockEntity implements MenuProv
         if (level != null && getBlockState().getValue(MachineBlock.ACTIVE) != active) {
             level.setBlock(worldPosition, getBlockState().setValue(MachineBlock.ACTIVE, active), 3);
         }
+    }
+
+    @Override
+    public void onLoad() {
+        super.onLoad();
+        NeoForge.EVENT_BUS.post(new MachineLoadedEvent(this));
     }
 
     @Override

@@ -1,7 +1,11 @@
 package ic2.neoforge.test;
 
+import com.mojang.logging.LogUtils;
+
 import ic2.core.energy.ElectricalProfile;
 import ic2.core.energy.VoltageTier;
+import ic2.core.energy.grid.EnergyMode;
+import ic2.neoforge.energy.EnergyConfig;
 import ic2.neoforge.registration.ModItems;
 
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -11,6 +15,8 @@ import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.ItemStack;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.common.Mod;
+import net.neoforged.neoforge.common.NeoForge;
+import net.neoforged.neoforge.event.server.ServerAboutToStartEvent;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
 import java.util.function.Consumer;
@@ -22,6 +28,14 @@ public final class RegistrationTests {
             DeferredRegister.create(BuiltInRegistries.TEST_FUNCTION, "ic2_tests");
 
     static {
+        FUNCTIONS.register("canner_solid", () -> CannerTests::solid);
+        FUNCTIONS.register("canner_fill_empty", () -> CannerTests::fillAndEmpty);
+        FUNCTIONS.register("canner_enrichment_rollback", () -> CannerTests::enrichmentRollback);
+        FUNCTIONS.register("canner_state_buttons", () -> CannerTests::stateAndButtons);
+
+        FUNCTIONS.register("fluid_world", () -> FluidTests::worldInteraction);
+        FUNCTIONS.register("fluid_families", () -> FluidTests::families);
+        FUNCTIONS.register("fluid_cells", () -> FluidTests::cells);
         FUNCTIONS.register("iron_furnace", () -> MachineTests::ironFurnace);
         FUNCTIONS.register("crafting_charge", () -> CraftingTests::charge);
         FUNCTIONS.register("crafting_remainders", () -> CraftingTests::remainder);
@@ -49,6 +63,13 @@ public final class RegistrationTests {
 
     public RegistrationTests(IEventBus modBus) {
         FUNCTIONS.register(modBus);
+        NeoForge.EVENT_BUS.addListener(
+                (ServerAboutToStartEvent event) -> {
+                    var mode =
+                            EnergyMode.valueOf(System.getProperty("ic2.tests.energyMode", "IC2"));
+                    EnergyConfig.MODE.set(mode);
+                    LogUtils.getLogger().info("IC2 GameTest energy mode: {}", mode);
+                });
     }
 
     private static void copperPlate(GameTestHelper helper) {

@@ -1,0 +1,7 @@
+{
+  "type": "minecraft:function",
+  "function": "ic2_tests:fluid_families",
+  "environment": "minecraft:default",
+  "structure": "ic2_tests:empty",
+  "max_ticks": 20
+}

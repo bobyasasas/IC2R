@@ -3,6 +3,7 @@ package ic2.neoforge.registration;
 import ic2.core.energy.ElectricItemSpec;
 import ic2.neoforge.IndustrialCraft;
 import ic2.neoforge.item.BatteryItem;
+import ic2.neoforge.item.TinCanItem;
 
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Item;
@@ -34,6 +35,9 @@ public final class ModItems {
         return Collections.unmodifiableMap(materials);
     }
 
+    public static final DeferredItem<TinCanItem> FILLED_TIN_CAN =
+            ITEMS.registerItem("filled_tin_can", TinCanItem::new);
+
     public static final DeferredItem<BatteryItem> RE_BATTERY =
             battery("re_battery", 10000, 100, 1, 64, Rarity.COMMON);
     public static final DeferredItem<BatteryItem> ADVANCED_RE_BATTERY =
@@ -63,6 +67,7 @@ public final class ModItems {
     private static void addCreativeContents(BuildCreativeModeTabContentsEvent event) {
         if (event.getTabKey().equals(CreativeModeTabs.INGREDIENTS)) {
             MATERIALS.values().forEach(event::accept);
+            event.accept(FILLED_TIN_CAN);
             event.accept(RE_BATTERY);
             event.accept(ADVANCED_RE_BATTERY);
             event.accept(ENERGY_CRYSTAL);

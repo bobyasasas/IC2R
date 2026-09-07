@@ -7,7 +7,7 @@ from base import ROOT, OLD, NEW, write
 registered = {'ic2:' + p.stem for p in (NEW / 'assets/ic2/items').glob('*.json')}
 recipe_root = OLD / 'data/ic2/recipes'
 ledger = []
-supported = {'ic2:shaped', 'ic2:shapeless', 'minecraft:crafting_shaped', 'minecraft:crafting_shapeless', 'minecraft:smelting', 'minecraft:blasting', 'ic2:macerator', 'ic2:extractor', 'ic2:compressor'}
+supported = {'ic2:canner_bottle', 'ic2:canner_enrich', 'ic2:shaped', 'ic2:shapeless', 'minecraft:crafting_shaped', 'minecraft:crafting_shapeless', 'minecraft:smelting', 'minecraft:blasting', 'ic2:macerator', 'ic2:extractor', 'ic2:compressor'}
 
 
 def common_tag(tag):
@@ -56,7 +56,16 @@ for file in sorted(recipe_root.rglob('*.json')):
     try:
         if 'conditions' in old:
             raise ValueError('conditional recipe requires explicit condition conversion')
-        if old['type'] in {'ic2:macerator', 'ic2:extractor', 'ic2:compressor'}:
+        if old['type'] == 'ic2:canner_bottle':
+            def counted(value):
+                return {'ingredient': ingredient(value), 'count': value.get('count', 1)}
+            new = {'type': old['type'], 'container': counted(old['container_ingredient']), 'additive': counted(old['fill_ingredient']), 'result': stack(old['result'])}
+        elif old['type'] == 'ic2:canner_enrich':
+            def fluid(value):
+                return {'id': value['fluid'], 'amount': value['amount']}
+            additive = old['additive_ingredient']
+            new = {'type': old['type'], 'input_fluid': fluid(old['input_ingredient']), 'additive': {'ingredient': ingredient(additive), 'count': additive.get('count', 1)}, 'result': fluid(old['result'])}
+        elif old['type'] in {'ic2:macerator', 'ic2:extractor', 'ic2:compressor'}:
             inputs = old['ingredient']
             results = old['result'] if isinstance(old['result'], list) else [old['result']]
             assert len(results) == 1 or old.get('weighted'), relative

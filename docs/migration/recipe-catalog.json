@@ -135,272 +135,272 @@
     {
       "source": "canner_bottle/apple_filled_tin_can.json",
       "type": "ic2:canner_bottle",
-      "status": "pending",
-      "reason": "recipe family not ported"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/canner_bottle/apple_filled_tin_can.json"
     },
     {
       "source": "canner_bottle/baked_potato_filled_tin_can.json",
       "type": "ic2:canner_bottle",
-      "status": "pending",
-      "reason": "recipe family not ported"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/canner_bottle/baked_potato_filled_tin_can.json"
     },
     {
       "source": "canner_bottle/beef_filled_tin_can.json",
       "type": "ic2:canner_bottle",
-      "status": "pending",
-      "reason": "recipe family not ported"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/canner_bottle/beef_filled_tin_can.json"
     },
     {
       "source": "canner_bottle/beetroot_filled_tin_can.json",
       "type": "ic2:canner_bottle",
-      "status": "pending",
-      "reason": "recipe family not ported"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/canner_bottle/beetroot_filled_tin_can.json"
     },
     {
       "source": "canner_bottle/beetroot_soup_filled_tin_can.json",
       "type": "ic2:canner_bottle",
-      "status": "pending",
-      "reason": "recipe family not ported"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/canner_bottle/beetroot_soup_filled_tin_can.json"
     },
     {
       "source": "canner_bottle/bread_filled_tin_can.json",
       "type": "ic2:canner_bottle",
-      "status": "pending",
-      "reason": "recipe family not ported"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/canner_bottle/bread_filled_tin_can.json"
     },
     {
       "source": "canner_bottle/carrot_filled_tin_can.json",
       "type": "ic2:canner_bottle",
-      "status": "pending",
-      "reason": "recipe family not ported"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/canner_bottle/carrot_filled_tin_can.json"
     },
     {
       "source": "canner_bottle/chicken_filled_tin_can.json",
       "type": "ic2:canner_bottle",
-      "status": "pending",
-      "reason": "recipe family not ported"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/canner_bottle/chicken_filled_tin_can.json"
     },
     {
       "source": "canner_bottle/chorus_fruit_filled_tin_can.json",
       "type": "ic2:canner_bottle",
-      "status": "pending",
-      "reason": "recipe family not ported"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/canner_bottle/chorus_fruit_filled_tin_can.json"
     },
     {
       "source": "canner_bottle/cod_filled_tin_can.json",
       "type": "ic2:canner_bottle",
-      "status": "pending",
-      "reason": "recipe family not ported"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/canner_bottle/cod_filled_tin_can.json"
     },
     {
       "source": "canner_bottle/cooked_beef_filled_tin_can.json",
       "type": "ic2:canner_bottle",
-      "status": "pending",
-      "reason": "recipe family not ported"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/canner_bottle/cooked_beef_filled_tin_can.json"
     },
     {
       "source": "canner_bottle/cooked_chicken_filled_tin_can.json",
       "type": "ic2:canner_bottle",
-      "status": "pending",
-      "reason": "recipe family not ported"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/canner_bottle/cooked_chicken_filled_tin_can.json"
     },
     {
       "source": "canner_bottle/cooked_cod_filled_tin_can.json",
       "type": "ic2:canner_bottle",
-      "status": "pending",
-      "reason": "recipe family not ported"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/canner_bottle/cooked_cod_filled_tin_can.json"
     },
     {
       "source": "canner_bottle/cooked_mutton_filled_tin_can.json",
       "type": "ic2:canner_bottle",
-      "status": "pending",
-      "reason": "recipe family not ported"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/canner_bottle/cooked_mutton_filled_tin_can.json"
     },
     {
       "source": "canner_bottle/cooked_porkchop_filled_tin_can.json",
       "type": "ic2:canner_bottle",
-      "status": "pending",
-      "reason": "recipe family not ported"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/canner_bottle/cooked_porkchop_filled_tin_can.json"
     },
     {
       "source": "canner_bottle/cooked_rabbit_filled_tin_can.json",
       "type": "ic2:canner_bottle",
-      "status": "pending",
-      "reason": "recipe family not ported"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/canner_bottle/cooked_rabbit_filled_tin_can.json"
     },
     {
       "source": "canner_bottle/cooked_salmon_filled_tin_can.json",
       "type": "ic2:canner_bottle",
-      "status": "pending",
-      "reason": "recipe family not ported"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/canner_bottle/cooked_salmon_filled_tin_can.json"
     },
     {
       "source": "canner_bottle/cookie_filled_tin_can.json",
       "type": "ic2:canner_bottle",
-      "status": "pending",
-      "reason": "recipe family not ported"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/canner_bottle/cookie_filled_tin_can.json"
     },
     {
       "source": "canner_bottle/dried_kelp_filled_tin_can.json",
       "type": "ic2:canner_bottle",
-      "status": "pending",
-      "reason": "recipe family not ported"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/canner_bottle/dried_kelp_filled_tin_can.json"
     },
     {
       "source": "canner_bottle/enchanted_golden_apple_filled_tin_can.json",
       "type": "ic2:canner_bottle",
-      "status": "pending",
-      "reason": "recipe family not ported"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/canner_bottle/enchanted_golden_apple_filled_tin_can.json"
     },
     {
       "source": "canner_bottle/glow_berries_filled_tin_can.json",
       "type": "ic2:canner_bottle",
-      "status": "pending",
-      "reason": "recipe family not ported"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/canner_bottle/glow_berries_filled_tin_can.json"
     },
     {
       "source": "canner_bottle/golden_apple_filled_tin_can.json",
       "type": "ic2:canner_bottle",
-      "status": "pending",
-      "reason": "recipe family not ported"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/canner_bottle/golden_apple_filled_tin_can.json"
     },
     {
       "source": "canner_bottle/golden_carrot_filled_tin_can.json",
       "type": "ic2:canner_bottle",
-      "status": "pending",
-      "reason": "recipe family not ported"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/canner_bottle/golden_carrot_filled_tin_can.json"
     },
     {
       "source": "canner_bottle/honey_bottle_filled_tin_can.json",
       "type": "ic2:canner_bottle",
-      "status": "pending",
-      "reason": "recipe family not ported"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/canner_bottle/honey_bottle_filled_tin_can.json"
     },
     {
       "source": "canner_bottle/melon_slice_filled_tin_can.json",
       "type": "ic2:canner_bottle",
-      "status": "pending",
-      "reason": "recipe family not ported"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/canner_bottle/melon_slice_filled_tin_can.json"
     },
     {
       "source": "canner_bottle/mox_fuel_rod.json",
       "type": "ic2:canner_bottle",
       "status": "pending",
-      "reason": "recipe family not ported"
+      "reason": "unported item ic2:mox"
     },
     {
       "source": "canner_bottle/mushroom_stew_filled_tin_can.json",
       "type": "ic2:canner_bottle",
-      "status": "pending",
-      "reason": "recipe family not ported"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/canner_bottle/mushroom_stew_filled_tin_can.json"
     },
     {
       "source": "canner_bottle/mutton_filled_tin_can.json",
       "type": "ic2:canner_bottle",
-      "status": "pending",
-      "reason": "recipe family not ported"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/canner_bottle/mutton_filled_tin_can.json"
     },
     {
       "source": "canner_bottle/poisonous_potato_filled_tin_can.json",
       "type": "ic2:canner_bottle",
-      "status": "pending",
-      "reason": "recipe family not ported"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/canner_bottle/poisonous_potato_filled_tin_can.json"
     },
     {
       "source": "canner_bottle/porkchop_filled_tin_can.json",
       "type": "ic2:canner_bottle",
-      "status": "pending",
-      "reason": "recipe family not ported"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/canner_bottle/porkchop_filled_tin_can.json"
     },
     {
       "source": "canner_bottle/potato_filled_tin_can.json",
       "type": "ic2:canner_bottle",
-      "status": "pending",
-      "reason": "recipe family not ported"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/canner_bottle/potato_filled_tin_can.json"
     },
     {
       "source": "canner_bottle/pumpkin_pie_filled_tin_can.json",
       "type": "ic2:canner_bottle",
-      "status": "pending",
-      "reason": "recipe family not ported"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/canner_bottle/pumpkin_pie_filled_tin_can.json"
     },
     {
       "source": "canner_bottle/rabbit_filled_tin_can.json",
       "type": "ic2:canner_bottle",
-      "status": "pending",
-      "reason": "recipe family not ported"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/canner_bottle/rabbit_filled_tin_can.json"
     },
     {
       "source": "canner_bottle/rabbit_stew_filled_tin_can.json",
       "type": "ic2:canner_bottle",
-      "status": "pending",
-      "reason": "recipe family not ported"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/canner_bottle/rabbit_stew_filled_tin_can.json"
     },
     {
       "source": "canner_bottle/rotten_flesh_filled_tin_can.json",
       "type": "ic2:canner_bottle",
-      "status": "pending",
-      "reason": "recipe family not ported"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/canner_bottle/rotten_flesh_filled_tin_can.json"
     },
     {
       "source": "canner_bottle/salmon_filled_tin_can.json",
       "type": "ic2:canner_bottle",
-      "status": "pending",
-      "reason": "recipe family not ported"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/canner_bottle/salmon_filled_tin_can.json"
     },
     {
       "source": "canner_bottle/spider_eye_filled_tin_can.json",
       "type": "ic2:canner_bottle",
-      "status": "pending",
-      "reason": "recipe family not ported"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/canner_bottle/spider_eye_filled_tin_can.json"
     },
     {
       "source": "canner_bottle/suspicious_stew_filled_tin_can.json",
       "type": "ic2:canner_bottle",
-      "status": "pending",
-      "reason": "recipe family not ported"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/canner_bottle/suspicious_stew_filled_tin_can.json"
     },
     {
       "source": "canner_bottle/sweet_berries_filled_tin_can.json",
       "type": "ic2:canner_bottle",
-      "status": "pending",
-      "reason": "recipe family not ported"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/canner_bottle/sweet_berries_filled_tin_can.json"
     },
     {
       "source": "canner_bottle/tropical_fish_filled_tin_can.json",
       "type": "ic2:canner_bottle",
-      "status": "pending",
-      "reason": "recipe family not ported"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/canner_bottle/tropical_fish_filled_tin_can.json"
     },
     {
       "source": "canner_bottle/uranium_fuel_rod.json",
       "type": "ic2:canner_bottle",
       "status": "pending",
-      "reason": "recipe family not ported"
+      "reason": "unported item ic2:uranium"
     },
     {
       "source": "canner_enrich/biomass.json",
       "type": "ic2:canner_enrich",
-      "status": "pending",
-      "reason": "recipe family not ported"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/canner_enrich/biomass.json"
     },
     {
       "source": "canner_enrich/construction_foam.json",
       "type": "ic2:canner_enrich",
-      "status": "pending",
-      "reason": "recipe family not ported"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/canner_enrich/construction_foam.json"
     },
     {
       "source": "canner_enrich/coolant_from_distilled_water.json",
       "type": "ic2:canner_enrich",
-      "status": "pending",
-      "reason": "recipe family not ported"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/canner_enrich/coolant_from_distilled_water.json"
     },
     {
       "source": "canner_enrich/coolant_from_water.json",
       "type": "ic2:canner_enrich",
-      "status": "pending",
-      "reason": "recipe family not ported"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/canner_enrich/coolant_from_water.json"
     },
     {
       "source": "centrifuge/clay_dust_to_silicon_dioxide_dust.json",
@@ -627,8 +627,8 @@
     {
       "source": "compressor/facade_cell_to_air_cell.json",
       "type": "ic2:compressor",
-      "status": "pending",
-      "reason": "unported item ic2:facade_cell"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/compressor/facade_cell_to_air_cell.json"
     },
     {
       "source": "compressor/glowstone_dust_to_glowstone.json",
@@ -939,8 +939,8 @@
     {
       "source": "extractor/air_cell_to_facade_cell.json",
       "type": "ic2:extractor",
-      "status": "pending",
-      "reason": "unported item ic2:air_cell"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/extractor/air_cell_to_facade_cell.json"
     },
     {
       "source": "extractor/bamboo_to_stick.json",
@@ -981,8 +981,8 @@
     {
       "source": "extractor/filled_tin_can_to_tin_can.json",
       "type": "ic2:extractor",
-      "status": "pending",
-      "reason": "unported item ic2:filled_tin_can"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/extractor/filled_tin_can_to_tin_can.json"
     },
     {
       "source": "extractor/gilded_blackstone_to_gold_nugget.json",
@@ -2235,8 +2235,8 @@
     {
       "source": "shaped/canner.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:canner"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/canner.json"
     },
     {
       "source": "shaped/carbon_boat.json",
@@ -2595,8 +2595,8 @@
     {
       "source": "shaped/facade_cell.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:facade_cell"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/facade_cell.json"
     },
     {
       "source": "shaped/fermenter.json",
@@ -4335,8 +4335,8 @@
     {
       "source": "shapeless/lava_cell.json",
       "type": "ic2:shapeless",
-      "status": "pending",
-      "reason": "unported result ic2:lava_cell"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shapeless/lava_cell.json"
     },
     {
       "source": "shapeless/lead_casing.json",
@@ -4539,20 +4539,20 @@
     {
       "source": "shapeless/water_cell.json",
       "type": "ic2:shapeless",
-      "status": "pending",
-      "reason": "unported result ic2:water_cell"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shapeless/water_cell.json"
     },
     {
       "source": "shapeless/weed_ex_bucket.json",
       "type": "ic2:shapeless",
-      "status": "pending",
-      "reason": "unported result ic2:weed_ex_bucket"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shapeless/weed_ex_bucket.json"
     },
     {
       "source": "shapeless/weed_ex_cell.json",
       "type": "ic2:shapeless",
-      "status": "pending",
-      "reason": "unported result ic2:weed_ex_cell"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shapeless/weed_ex_cell.json"
     },
     {
       "source": "shapeless/white_painter.json",

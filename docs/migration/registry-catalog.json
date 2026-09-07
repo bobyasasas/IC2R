@@ -1619,7 +1619,12 @@
       "factory": "register",
       "expression": "new ItemBlockIc2(Ic2Blocks.CANNER, new Properties())",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/machine/CannerBlockEntity.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/CannerTests.java"
+      ],
+      "note": "四模式、事务、储罐、菜单及循环声已迁移；升级和燃料棒配方仍待迁移。"
     },
     {
       "registry": "item",
@@ -5127,7 +5132,12 @@
       "factory": "register",
       "expression": "new ItemClassicCell(new Properties(), Fluids.EMPTY)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModCells.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
+      ],
+      "note": "原生流体能力、堆叠容器交换和资源已验证；世界交互继续验收。"
     },
     {
       "registry": "item",
@@ -5137,11 +5147,12 @@
       "factory": "register",
       "expression": "new ItemClassicCell(new Properties(), Fluids.WATER)",
       "decision": "preserve",
-      "status": "implemented",
+      "status": "partial",
       "evidence": [
-        "neoforge/src/main/java/ic2/neoforge/registration/ModItems.java",
-        "neoforge/src/gameTest/java/ic2/neoforge/test/ComponentTests.java"
-      ]
+        "neoforge/src/main/java/ic2/neoforge/registration/ModCells.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
+      ],
+      "note": "原生流体能力、堆叠容器交换和资源已验证；世界交互继续验收。"
     },
     {
       "registry": "item",
@@ -5151,7 +5162,12 @@
       "factory": "register",
       "expression": "new ItemClassicCell(new Properties(), Fluids.LAVA)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModCells.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
+      ],
+      "note": "原生流体能力、堆叠容器交换和资源已验证；世界交互继续验收。"
     },
     {
       "registry": "item",
@@ -5161,7 +5177,12 @@
       "factory": "register",
       "expression": "new ItemClassicCell(new Properties(), Ic2Fluids.AIR.still())",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModCells.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
+      ],
+      "note": "原生流体能力、堆叠容器交换和资源已验证；世界交互继续验收。"
     },
     {
       "registry": "item",
@@ -5185,7 +5206,12 @@
       "factory": "register",
       "expression": "new ItemClassicCell(new Properties(), Ic2Fluids.WEED_EX.still())",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModCells.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
+      ],
+      "note": "原生流体能力、堆叠容器交换和资源已验证；世界交互继续验收。"
     },
     {
       "registry": "item",
@@ -5205,7 +5231,12 @@
       "factory": "register",
       "expression": "new ItemClassicCell(new Properties(), Ic2Fluids.UU_MATTER.still())",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModCells.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
+      ],
+      "note": "原生流体能力、堆叠容器交换和资源已验证；世界交互继续验收。"
     },
     {
       "registry": "item",
@@ -5215,7 +5246,12 @@
       "factory": "register",
       "expression": "new ItemClassicCell(new Properties(), Ic2Fluids.CONSTRUCTION_FOAM.still())",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModCells.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
+      ],
+      "note": "原生流体能力、堆叠容器交换和资源已验证；世界交互继续验收。"
     },
     {
       "registry": "item",
@@ -5225,7 +5261,12 @@
       "factory": "register",
       "expression": "new ItemClassicCell(new Properties(), Ic2Fluids.COOLANT.still())",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModCells.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
+      ],
+      "note": "原生流体能力、堆叠容器交换和资源已验证；世界交互继续验收。"
     },
     {
       "registry": "item",
@@ -5235,7 +5276,12 @@
       "factory": "register",
       "expression": "new ItemClassicCell(new Properties(), Ic2Fluids.CREOSOTE.still())",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModCells.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
+      ],
+      "note": "原生流体能力、堆叠容器交换和资源已验证；世界交互继续验收。"
     },
     {
       "registry": "item",
@@ -5245,7 +5291,12 @@
       "factory": "register",
       "expression": "new ItemClassicCell(new Properties(), Ic2Fluids.HOT_COOLANT.still())",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModCells.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
+      ],
+      "note": "原生流体能力、堆叠容器交换和资源已验证；世界交互继续验收。"
     },
     {
       "registry": "item",
@@ -5255,7 +5306,12 @@
       "factory": "register",
       "expression": "new ItemClassicCell(new Properties(), Ic2Fluids.PAHOEHOE_LAVA.still())",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModCells.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
+      ],
+      "note": "原生流体能力、堆叠容器交换和资源已验证；世界交互继续验收。"
     },
     {
       "registry": "item",
@@ -5265,7 +5321,12 @@
       "factory": "register",
       "expression": "new ItemClassicCell(new Properties(), Ic2Fluids.BIOMASS.still())",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModCells.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
+      ],
+      "note": "原生流体能力、堆叠容器交换和资源已验证；世界交互继续验收。"
     },
     {
       "registry": "item",
@@ -5275,7 +5336,12 @@
       "factory": "register",
       "expression": "new ItemClassicCell(new Properties(), Ic2Fluids.BIOGAS.still())",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModCells.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
+      ],
+      "note": "原生流体能力、堆叠容器交换和资源已验证；世界交互继续验收。"
     },
     {
       "registry": "item",
@@ -5285,7 +5351,12 @@
       "factory": "register",
       "expression": "new ItemClassicCell(new Properties(), Ic2Fluids.DISTILLED_WATER.still())",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModCells.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
+      ],
+      "note": "原生流体能力、堆叠容器交换和资源已验证；世界交互继续验收。"
     },
     {
       "registry": "item",
@@ -5295,7 +5366,12 @@
       "factory": "register",
       "expression": "new ItemClassicCell(new Properties(), Ic2Fluids.SUPERHEATED_STEAM.still())",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModCells.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
+      ],
+      "note": "原生流体能力、堆叠容器交换和资源已验证；世界交互继续验收。"
     },
     {
       "registry": "item",
@@ -5305,7 +5381,12 @@
       "factory": "register",
       "expression": "new ItemClassicCell(new Properties(), Ic2Fluids.STEAM.still())",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModCells.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
+      ],
+      "note": "原生流体能力、堆叠容器交换和资源已验证；世界交互继续验收。"
     },
     {
       "registry": "item",
@@ -5315,7 +5396,12 @@
       "factory": "register",
       "expression": "new ItemClassicCell(new Properties(), Ic2Fluids.HOT_WATER.still())",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModCells.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
+      ],
+      "note": "原生流体能力、堆叠容器交换和资源已验证；世界交互继续验收。"
     },
     {
       "registry": "item",
@@ -5325,7 +5411,12 @@
       "factory": "register",
       "expression": "new ItemClassicCell(new Properties(), Ic2Fluids.HYDROGEN.still())",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModCells.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
+      ],
+      "note": "原生流体能力、堆叠容器交换和资源已验证；世界交互继续验收。"
     },
     {
       "registry": "item",
@@ -5335,7 +5426,12 @@
       "factory": "register",
       "expression": "new ItemClassicCell(new Properties(), Ic2Fluids.OXYGEN.still())",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModCells.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
+      ],
+      "note": "原生流体能力、堆叠容器交换和资源已验证；世界交互继续验收。"
     },
     {
       "registry": "item",
@@ -5345,7 +5441,12 @@
       "factory": "register",
       "expression": "new ItemClassicCell(new Properties(), Ic2Fluids.HEAVY_WATER.still())",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModCells.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
+      ],
+      "note": "原生流体能力、堆叠容器交换和资源已验证；世界交互继续验收。"
     },
     {
       "registry": "item",
@@ -5465,7 +5566,11 @@
       "factory": "register",
       "expression": "new ItemTinCan(new Properties())",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/item/TinCanItem.java"
+      ],
+      "note": "批量进食与容器返还待独立游戏验收。"
     },
     {
       "registry": "item",
@@ -6771,7 +6876,12 @@
       "factory": "register",
       "expression": "Ic2TileEntityBlock.create(Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).strength(2.0F, 10.0F).requiresCorrectToolForDrops().sound(SoundType.METAL), TileEntityCanner.class, true, Ic2TileEntityBlock.DefaultDrop.Machine, Util.horizontalFacings, true)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/machine/CannerBlockEntity.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/CannerTests.java"
+      ],
+      "note": "四模式、事务、储罐、菜单及循环声已迁移；升级和燃料棒配方仍待迁移。"
     },
     {
       "registry": "block",
@@ -9283,7 +9393,12 @@
       "factory": "register",
       "expression": "TileEntityCanner::new",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/machine/CannerBlockEntity.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/CannerTests.java"
+      ],
+      "note": "四模式、事务、储罐、菜单及循环声已迁移；升级和燃料棒配方仍待迁移。"
     },
     {
       "registry": "block_entity",
@@ -10313,7 +10428,12 @@
       "factory": "registerManagedBe",
       "expression": "",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/machine/CannerBlockEntity.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/CannerTests.java"
+      ],
+      "note": "四模式、事务、储罐、菜单及循环声已迁移；升级和燃料棒配方仍待迁移。"
     },
     {
       "registry": "menu",
@@ -11696,7 +11816,12 @@
       "factory": "register",
       "expression": "new CannerBottleRecipeSerializer()",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModCannerRecipes.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/CannerTests.java"
+      ],
+      "note": "当前可用原料配方已转换；所有旧配方状态见 recipe-catalog.json。"
     },
     {
       "registry": "recipe_serializer",
@@ -11706,7 +11831,12 @@
       "factory": "register",
       "expression": "new CannerEnrichRecipeSerializer()",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModCannerRecipes.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/CannerTests.java"
+      ],
+      "note": "当前可用原料配方已转换；所有旧配方状态见 recipe-catalog.json。"
     },
     {
       "registry": "recipe_type",
@@ -11841,7 +11971,12 @@
       "factory": "register",
       "expression": "",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModCannerRecipes.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/CannerTests.java"
+      ],
+      "note": "当前可用原料配方已转换；所有旧配方状态见 recipe-catalog.json。"
     },
     {
       "registry": "recipe_type",
@@ -11851,7 +11986,12 @@
       "factory": "register",
       "expression": "",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModCannerRecipes.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/CannerTests.java"
+      ],
+      "note": "当前可用原料配方已转换；所有旧配方状态见 recipe-catalog.json。"
     },
     {
       "registry": "fluid_family",
@@ -11861,7 +12001,12 @@
       "factory": "create",
       "expression": "3000",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModFluids.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
+      ],
+      "note": "已注册流体、桶和渲染；特殊流体方块行为仍待迁移。"
     },
     {
       "registry": "fluid_family",
@@ -11871,7 +12016,12 @@
       "factory": "create",
       "expression": "10000",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModFluids.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
+      ],
+      "note": "已注册流体、桶和渲染；特殊流体方块行为仍待迁移。"
     },
     {
       "registry": "fluid_family",
@@ -11881,7 +12031,12 @@
       "factory": "create",
       "expression": "1000",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModFluids.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
+      ],
+      "note": "已注册流体、桶和渲染；特殊流体方块行为仍待迁移。"
     },
     {
       "registry": "fluid_family",
@@ -11891,7 +12046,12 @@
       "factory": "create",
       "expression": "10000",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModFluids.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
+      ],
+      "note": "已注册流体、桶和渲染；特殊流体方块行为仍待迁移。"
     },
     {
       "registry": "fluid_family",
@@ -11901,7 +12061,12 @@
       "factory": "create",
       "expression": "1000",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModFluids.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
+      ],
+      "note": "已注册流体、桶和渲染；特殊流体方块行为仍待迁移。"
     },
     {
       "registry": "fluid_family",
@@ -11911,7 +12076,12 @@
       "factory": "create",
       "expression": "50000",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModFluids.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
+      ],
+      "note": "已注册流体、桶和渲染；特殊流体方块行为仍待迁移。"
     },
     {
       "registry": "fluid_family",
@@ -11921,7 +12091,12 @@
       "factory": "create",
       "expression": "1000",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModFluids.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
+      ],
+      "note": "已注册流体、桶和渲染；特殊流体方块行为仍待迁移。"
     },
     {
       "registry": "fluid_family",
@@ -11931,7 +12106,12 @@
       "factory": "create",
       "expression": "1000",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModFluids.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
+      ],
+      "note": "已注册流体、桶和渲染；特殊流体方块行为仍待迁移。"
     },
     {
       "registry": "fluid_family",
@@ -11941,7 +12121,12 @@
       "factory": "create",
       "expression": "1000",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModFluids.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
+      ],
+      "note": "已注册流体、桶和渲染；特殊流体方块行为仍待迁移。"
     },
     {
       "registry": "fluid_family",
@@ -11951,7 +12136,12 @@
       "factory": "create",
       "expression": "-3000",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModFluids.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
+      ],
+      "note": "已注册流体、桶和渲染；特殊流体方块行为仍待迁移。"
     },
     {
       "registry": "fluid_family",
@@ -11961,7 +12151,12 @@
       "factory": "create",
       "expression": "-800",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModFluids.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
+      ],
+      "note": "已注册流体、桶和渲染；特殊流体方块行为仍待迁移。"
     },
     {
       "registry": "fluid_family",
@@ -11971,7 +12166,12 @@
       "factory": "create",
       "expression": "1000",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModFluids.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
+      ],
+      "note": "已注册流体、桶和渲染；特殊流体方块行为仍待迁移。"
     },
     {
       "registry": "fluid_family",
@@ -11981,7 +12181,12 @@
       "factory": "create",
       "expression": "1000",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModFluids.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
+      ],
+      "note": "已注册流体、桶和渲染；特殊流体方块行为仍待迁移。"
     },
     {
       "registry": "fluid_family",
@@ -11991,7 +12196,12 @@
       "factory": "create",
       "expression": "-100",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModFluids.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
+      ],
+      "note": "已注册流体、桶和渲染；特殊流体方块行为仍待迁移。"
     },
     {
       "registry": "fluid_family",
@@ -12001,7 +12211,12 @@
       "factory": "create",
       "expression": "-100",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModFluids.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
+      ],
+      "note": "已注册流体、桶和渲染；特殊流体方块行为仍待迁移。"
     },
     {
       "registry": "fluid_family",
@@ -12011,7 +12226,12 @@
       "factory": "create",
       "expression": "0",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModFluids.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
+      ],
+      "note": "已注册流体、桶和渲染；特殊流体方块行为仍待迁移。"
     },
     {
       "registry": "fluid_family",
@@ -12021,7 +12241,12 @@
       "factory": "create",
       "expression": "1000",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModFluids.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
+      ],
+      "note": "已注册流体、桶和渲染；特殊流体方块行为仍待迁移。"
     },
     {
       "registry": "game_event",
@@ -12072,6 +12297,1281 @@
       "expression": "",
       "decision": "preserve",
       "status": "pending"
+    },
+    {
+      "registry": "fluid_type",
+      "id": "ic2:uu_matter",
+      "field": "UU_MATTER",
+      "source": "legacy/forge-1.20.1/src/main/java/ic2/forge/EnvFluidHandlerForge.java",
+      "factory": "dynamic fluid registration",
+      "expression": "ic2:uu_matter",
+      "decision": "preserve",
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModFluids.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
+      ],
+      "derived_from": "ic2:uu_matter"
+    },
+    {
+      "registry": "fluid",
+      "id": "ic2:uu_matter",
+      "field": "UU_MATTER",
+      "source": "legacy/forge-1.20.1/src/main/java/ic2/forge/EnvFluidHandlerForge.java",
+      "factory": "dynamic fluid registration",
+      "expression": "ic2:uu_matter",
+      "decision": "preserve",
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModFluids.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
+      ],
+      "derived_from": "ic2:uu_matter"
+    },
+    {
+      "registry": "fluid",
+      "id": "ic2:flowing_uu_matter",
+      "field": "UU_MATTER",
+      "source": "legacy/forge-1.20.1/src/main/java/ic2/forge/EnvFluidHandlerForge.java",
+      "factory": "dynamic fluid registration",
+      "expression": "ic2:uu_matter",
+      "decision": "preserve",
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModFluids.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
+      ],
+      "derived_from": "ic2:uu_matter"
+    },
+    {
+      "registry": "block",
+      "id": "ic2:fluid_block_uu_matter",
+      "field": "UU_MATTER",
+      "source": "legacy/forge-1.20.1/src/main/java/ic2/forge/EnvFluidHandlerForge.java",
+      "factory": "dynamic fluid registration",
+      "expression": "ic2:uu_matter",
+      "decision": "preserve",
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModFluids.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
+      ],
+      "derived_from": "ic2:uu_matter"
+    },
+    {
+      "registry": "item",
+      "id": "ic2:uu_matter_bucket",
+      "field": "UU_MATTER",
+      "source": "legacy/forge-1.20.1/src/main/java/ic2/forge/EnvFluidHandlerForge.java",
+      "factory": "dynamic fluid registration",
+      "expression": "ic2:uu_matter",
+      "decision": "preserve",
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModFluids.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
+      ],
+      "derived_from": "ic2:uu_matter"
+    },
+    {
+      "registry": "fluid_type",
+      "id": "ic2:construction_foam",
+      "field": "CONSTRUCTION_FOAM",
+      "source": "legacy/forge-1.20.1/src/main/java/ic2/forge/EnvFluidHandlerForge.java",
+      "factory": "dynamic fluid registration",
+      "expression": "ic2:construction_foam",
+      "decision": "preserve",
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModFluids.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
+      ],
+      "derived_from": "ic2:construction_foam"
+    },
+    {
+      "registry": "fluid",
+      "id": "ic2:construction_foam",
+      "field": "CONSTRUCTION_FOAM",
+      "source": "legacy/forge-1.20.1/src/main/java/ic2/forge/EnvFluidHandlerForge.java",
+      "factory": "dynamic fluid registration",
+      "expression": "ic2:construction_foam",
+      "decision": "preserve",
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModFluids.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
+      ],
+      "derived_from": "ic2:construction_foam"
+    },
+    {
+      "registry": "fluid",
+      "id": "ic2:flowing_construction_foam",
+      "field": "CONSTRUCTION_FOAM",
+      "source": "legacy/forge-1.20.1/src/main/java/ic2/forge/EnvFluidHandlerForge.java",
+      "factory": "dynamic fluid registration",
+      "expression": "ic2:construction_foam",
+      "decision": "preserve",
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModFluids.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
+      ],
+      "derived_from": "ic2:construction_foam"
+    },
+    {
+      "registry": "block",
+      "id": "ic2:fluid_block_construction_foam",
+      "field": "CONSTRUCTION_FOAM",
+      "source": "legacy/forge-1.20.1/src/main/java/ic2/forge/EnvFluidHandlerForge.java",
+      "factory": "dynamic fluid registration",
+      "expression": "ic2:construction_foam",
+      "decision": "preserve",
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModFluids.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
+      ],
+      "derived_from": "ic2:construction_foam"
+    },
+    {
+      "registry": "item",
+      "id": "ic2:construction_foam_bucket",
+      "field": "CONSTRUCTION_FOAM",
+      "source": "legacy/forge-1.20.1/src/main/java/ic2/forge/EnvFluidHandlerForge.java",
+      "factory": "dynamic fluid registration",
+      "expression": "ic2:construction_foam",
+      "decision": "preserve",
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModFluids.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
+      ],
+      "derived_from": "ic2:construction_foam"
+    },
+    {
+      "registry": "fluid_type",
+      "id": "ic2:coolant",
+      "field": "COOLANT",
+      "source": "legacy/forge-1.20.1/src/main/java/ic2/forge/EnvFluidHandlerForge.java",
+      "factory": "dynamic fluid registration",
+      "expression": "ic2:coolant",
+      "decision": "preserve",
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModFluids.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
+      ],
+      "derived_from": "ic2:coolant"
+    },
+    {
+      "registry": "fluid",
+      "id": "ic2:coolant",
+      "field": "COOLANT",
+      "source": "legacy/forge-1.20.1/src/main/java/ic2/forge/EnvFluidHandlerForge.java",
+      "factory": "dynamic fluid registration",
+      "expression": "ic2:coolant",
+      "decision": "preserve",
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModFluids.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
+      ],
+      "derived_from": "ic2:coolant"
+    },
+    {
+      "registry": "fluid",
+      "id": "ic2:flowing_coolant",
+      "field": "COOLANT",
+      "source": "legacy/forge-1.20.1/src/main/java/ic2/forge/EnvFluidHandlerForge.java",
+      "factory": "dynamic fluid registration",
+      "expression": "ic2:coolant",
+      "decision": "preserve",
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModFluids.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
+      ],
+      "derived_from": "ic2:coolant"
+    },
+    {
+      "registry": "block",
+      "id": "ic2:fluid_block_coolant",
+      "field": "COOLANT",
+      "source": "legacy/forge-1.20.1/src/main/java/ic2/forge/EnvFluidHandlerForge.java",
+      "factory": "dynamic fluid registration",
+      "expression": "ic2:coolant",
+      "decision": "preserve",
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModFluids.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
+      ],
+      "derived_from": "ic2:coolant"
+    },
+    {
+      "registry": "item",
+      "id": "ic2:coolant_bucket",
+      "field": "COOLANT",
+      "source": "legacy/forge-1.20.1/src/main/java/ic2/forge/EnvFluidHandlerForge.java",
+      "factory": "dynamic fluid registration",
+      "expression": "ic2:coolant",
+      "decision": "preserve",
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModFluids.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
+      ],
+      "derived_from": "ic2:coolant"
+    },
+    {
+      "registry": "fluid_type",
+      "id": "ic2:creosote",
+      "field": "CREOSOTE",
+      "source": "legacy/forge-1.20.1/src/main/java/ic2/forge/EnvFluidHandlerForge.java",
+      "factory": "dynamic fluid registration",
+      "expression": "ic2:creosote",
+      "decision": "preserve",
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModFluids.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
+      ],
+      "derived_from": "ic2:creosote"
+    },
+    {
+      "registry": "fluid",
+      "id": "ic2:creosote",
+      "field": "CREOSOTE",
+      "source": "legacy/forge-1.20.1/src/main/java/ic2/forge/EnvFluidHandlerForge.java",
+      "factory": "dynamic fluid registration",
+      "expression": "ic2:creosote",
+      "decision": "preserve",
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModFluids.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
+      ],
+      "derived_from": "ic2:creosote"
+    },
+    {
+      "registry": "fluid",
+      "id": "ic2:flowing_creosote",
+      "field": "CREOSOTE",
+      "source": "legacy/forge-1.20.1/src/main/java/ic2/forge/EnvFluidHandlerForge.java",
+      "factory": "dynamic fluid registration",
+      "expression": "ic2:creosote",
+      "decision": "preserve",
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModFluids.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
+      ],
+      "derived_from": "ic2:creosote"
+    },
+    {
+      "registry": "block",
+      "id": "ic2:fluid_block_creosote",
+      "field": "CREOSOTE",
+      "source": "legacy/forge-1.20.1/src/main/java/ic2/forge/EnvFluidHandlerForge.java",
+      "factory": "dynamic fluid registration",
+      "expression": "ic2:creosote",
+      "decision": "preserve",
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModFluids.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
+      ],
+      "derived_from": "ic2:creosote"
+    },
+    {
+      "registry": "item",
+      "id": "ic2:creosote_bucket",
+      "field": "CREOSOTE",
+      "source": "legacy/forge-1.20.1/src/main/java/ic2/forge/EnvFluidHandlerForge.java",
+      "factory": "dynamic fluid registration",
+      "expression": "ic2:creosote",
+      "decision": "preserve",
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModFluids.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
+      ],
+      "derived_from": "ic2:creosote"
+    },
+    {
+      "registry": "fluid_type",
+      "id": "ic2:hot_coolant",
+      "field": "HOT_COOLANT",
+      "source": "legacy/forge-1.20.1/src/main/java/ic2/forge/EnvFluidHandlerForge.java",
+      "factory": "dynamic fluid registration",
+      "expression": "ic2:hot_coolant",
+      "decision": "preserve",
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModFluids.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
+      ],
+      "derived_from": "ic2:hot_coolant"
+    },
+    {
+      "registry": "fluid",
+      "id": "ic2:hot_coolant",
+      "field": "HOT_COOLANT",
+      "source": "legacy/forge-1.20.1/src/main/java/ic2/forge/EnvFluidHandlerForge.java",
+      "factory": "dynamic fluid registration",
+      "expression": "ic2:hot_coolant",
+      "decision": "preserve",
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModFluids.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
+      ],
+      "derived_from": "ic2:hot_coolant"
+    },
+    {
+      "registry": "fluid",
+      "id": "ic2:flowing_hot_coolant",
+      "field": "HOT_COOLANT",
+      "source": "legacy/forge-1.20.1/src/main/java/ic2/forge/EnvFluidHandlerForge.java",
+      "factory": "dynamic fluid registration",
+      "expression": "ic2:hot_coolant",
+      "decision": "preserve",
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModFluids.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
+      ],
+      "derived_from": "ic2:hot_coolant"
+    },
+    {
+      "registry": "block",
+      "id": "ic2:fluid_block_hot_coolant",
+      "field": "HOT_COOLANT",
+      "source": "legacy/forge-1.20.1/src/main/java/ic2/forge/EnvFluidHandlerForge.java",
+      "factory": "dynamic fluid registration",
+      "expression": "ic2:hot_coolant",
+      "decision": "preserve",
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModFluids.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
+      ],
+      "derived_from": "ic2:hot_coolant"
+    },
+    {
+      "registry": "item",
+      "id": "ic2:hot_coolant_bucket",
+      "field": "HOT_COOLANT",
+      "source": "legacy/forge-1.20.1/src/main/java/ic2/forge/EnvFluidHandlerForge.java",
+      "factory": "dynamic fluid registration",
+      "expression": "ic2:hot_coolant",
+      "decision": "preserve",
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModFluids.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
+      ],
+      "derived_from": "ic2:hot_coolant"
+    },
+    {
+      "registry": "fluid_type",
+      "id": "ic2:pahoehoe_lava",
+      "field": "PAHOEHOE_LAVA",
+      "source": "legacy/forge-1.20.1/src/main/java/ic2/forge/EnvFluidHandlerForge.java",
+      "factory": "dynamic fluid registration",
+      "expression": "ic2:pahoehoe_lava",
+      "decision": "preserve",
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModFluids.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
+      ],
+      "derived_from": "ic2:pahoehoe_lava"
+    },
+    {
+      "registry": "fluid",
+      "id": "ic2:pahoehoe_lava",
+      "field": "PAHOEHOE_LAVA",
+      "source": "legacy/forge-1.20.1/src/main/java/ic2/forge/EnvFluidHandlerForge.java",
+      "factory": "dynamic fluid registration",
+      "expression": "ic2:pahoehoe_lava",
+      "decision": "preserve",
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModFluids.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
+      ],
+      "derived_from": "ic2:pahoehoe_lava"
+    },
+    {
+      "registry": "fluid",
+      "id": "ic2:flowing_pahoehoe_lava",
+      "field": "PAHOEHOE_LAVA",
+      "source": "legacy/forge-1.20.1/src/main/java/ic2/forge/EnvFluidHandlerForge.java",
+      "factory": "dynamic fluid registration",
+      "expression": "ic2:pahoehoe_lava",
+      "decision": "preserve",
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModFluids.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
+      ],
+      "derived_from": "ic2:pahoehoe_lava"
+    },
+    {
+      "registry": "block",
+      "id": "ic2:fluid_block_pahoehoe_lava",
+      "field": "PAHOEHOE_LAVA",
+      "source": "legacy/forge-1.20.1/src/main/java/ic2/forge/EnvFluidHandlerForge.java",
+      "factory": "dynamic fluid registration",
+      "expression": "ic2:pahoehoe_lava",
+      "decision": "preserve",
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModFluids.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
+      ],
+      "derived_from": "ic2:pahoehoe_lava"
+    },
+    {
+      "registry": "item",
+      "id": "ic2:pahoehoe_lava_bucket",
+      "field": "PAHOEHOE_LAVA",
+      "source": "legacy/forge-1.20.1/src/main/java/ic2/forge/EnvFluidHandlerForge.java",
+      "factory": "dynamic fluid registration",
+      "expression": "ic2:pahoehoe_lava",
+      "decision": "preserve",
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModFluids.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
+      ],
+      "derived_from": "ic2:pahoehoe_lava"
+    },
+    {
+      "registry": "fluid_type",
+      "id": "ic2:biomass",
+      "field": "BIOMASS",
+      "source": "legacy/forge-1.20.1/src/main/java/ic2/forge/EnvFluidHandlerForge.java",
+      "factory": "dynamic fluid registration",
+      "expression": "ic2:biomass",
+      "decision": "preserve",
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModFluids.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
+      ],
+      "derived_from": "ic2:biomass"
+    },
+    {
+      "registry": "fluid",
+      "id": "ic2:biomass",
+      "field": "BIOMASS",
+      "source": "legacy/forge-1.20.1/src/main/java/ic2/forge/EnvFluidHandlerForge.java",
+      "factory": "dynamic fluid registration",
+      "expression": "ic2:biomass",
+      "decision": "preserve",
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModFluids.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
+      ],
+      "derived_from": "ic2:biomass"
+    },
+    {
+      "registry": "fluid",
+      "id": "ic2:flowing_biomass",
+      "field": "BIOMASS",
+      "source": "legacy/forge-1.20.1/src/main/java/ic2/forge/EnvFluidHandlerForge.java",
+      "factory": "dynamic fluid registration",
+      "expression": "ic2:biomass",
+      "decision": "preserve",
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModFluids.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
+      ],
+      "derived_from": "ic2:biomass"
+    },
+    {
+      "registry": "block",
+      "id": "ic2:fluid_block_biomass",
+      "field": "BIOMASS",
+      "source": "legacy/forge-1.20.1/src/main/java/ic2/forge/EnvFluidHandlerForge.java",
+      "factory": "dynamic fluid registration",
+      "expression": "ic2:biomass",
+      "decision": "preserve",
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModFluids.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
+      ],
+      "derived_from": "ic2:biomass"
+    },
+    {
+      "registry": "item",
+      "id": "ic2:biomass_bucket",
+      "field": "BIOMASS",
+      "source": "legacy/forge-1.20.1/src/main/java/ic2/forge/EnvFluidHandlerForge.java",
+      "factory": "dynamic fluid registration",
+      "expression": "ic2:biomass",
+      "decision": "preserve",
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModFluids.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
+      ],
+      "derived_from": "ic2:biomass"
+    },
+    {
+      "registry": "fluid_type",
+      "id": "ic2:biogas",
+      "field": "BIOGAS",
+      "source": "legacy/forge-1.20.1/src/main/java/ic2/forge/EnvFluidHandlerForge.java",
+      "factory": "dynamic fluid registration",
+      "expression": "ic2:biogas",
+      "decision": "preserve",
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModFluids.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
+      ],
+      "derived_from": "ic2:biogas"
+    },
+    {
+      "registry": "fluid",
+      "id": "ic2:biogas",
+      "field": "BIOGAS",
+      "source": "legacy/forge-1.20.1/src/main/java/ic2/forge/EnvFluidHandlerForge.java",
+      "factory": "dynamic fluid registration",
+      "expression": "ic2:biogas",
+      "decision": "preserve",
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModFluids.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
+      ],
+      "derived_from": "ic2:biogas"
+    },
+    {
+      "registry": "fluid",
+      "id": "ic2:flowing_biogas",
+      "field": "BIOGAS",
+      "source": "legacy/forge-1.20.1/src/main/java/ic2/forge/EnvFluidHandlerForge.java",
+      "factory": "dynamic fluid registration",
+      "expression": "ic2:biogas",
+      "decision": "preserve",
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModFluids.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
+      ],
+      "derived_from": "ic2:biogas"
+    },
+    {
+      "registry": "block",
+      "id": "ic2:fluid_block_biogas",
+      "field": "BIOGAS",
+      "source": "legacy/forge-1.20.1/src/main/java/ic2/forge/EnvFluidHandlerForge.java",
+      "factory": "dynamic fluid registration",
+      "expression": "ic2:biogas",
+      "decision": "preserve",
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModFluids.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
+      ],
+      "derived_from": "ic2:biogas"
+    },
+    {
+      "registry": "item",
+      "id": "ic2:biogas_bucket",
+      "field": "BIOGAS",
+      "source": "legacy/forge-1.20.1/src/main/java/ic2/forge/EnvFluidHandlerForge.java",
+      "factory": "dynamic fluid registration",
+      "expression": "ic2:biogas",
+      "decision": "preserve",
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModFluids.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
+      ],
+      "derived_from": "ic2:biogas"
+    },
+    {
+      "registry": "fluid_type",
+      "id": "ic2:distilled_water",
+      "field": "DISTILLED_WATER",
+      "source": "legacy/forge-1.20.1/src/main/java/ic2/forge/EnvFluidHandlerForge.java",
+      "factory": "dynamic fluid registration",
+      "expression": "ic2:distilled_water",
+      "decision": "preserve",
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModFluids.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
+      ],
+      "derived_from": "ic2:distilled_water"
+    },
+    {
+      "registry": "fluid",
+      "id": "ic2:distilled_water",
+      "field": "DISTILLED_WATER",
+      "source": "legacy/forge-1.20.1/src/main/java/ic2/forge/EnvFluidHandlerForge.java",
+      "factory": "dynamic fluid registration",
+      "expression": "ic2:distilled_water",
+      "decision": "preserve",
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModFluids.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
+      ],
+      "derived_from": "ic2:distilled_water"
+    },
+    {
+      "registry": "fluid",
+      "id": "ic2:flowing_distilled_water",
+      "field": "DISTILLED_WATER",
+      "source": "legacy/forge-1.20.1/src/main/java/ic2/forge/EnvFluidHandlerForge.java",
+      "factory": "dynamic fluid registration",
+      "expression": "ic2:distilled_water",
+      "decision": "preserve",
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModFluids.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
+      ],
+      "derived_from": "ic2:distilled_water"
+    },
+    {
+      "registry": "block",
+      "id": "ic2:fluid_block_distilled_water",
+      "field": "DISTILLED_WATER",
+      "source": "legacy/forge-1.20.1/src/main/java/ic2/forge/EnvFluidHandlerForge.java",
+      "factory": "dynamic fluid registration",
+      "expression": "ic2:distilled_water",
+      "decision": "preserve",
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModFluids.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
+      ],
+      "derived_from": "ic2:distilled_water"
+    },
+    {
+      "registry": "item",
+      "id": "ic2:distilled_water_bucket",
+      "field": "DISTILLED_WATER",
+      "source": "legacy/forge-1.20.1/src/main/java/ic2/forge/EnvFluidHandlerForge.java",
+      "factory": "dynamic fluid registration",
+      "expression": "ic2:distilled_water",
+      "decision": "preserve",
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModFluids.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
+      ],
+      "derived_from": "ic2:distilled_water"
+    },
+    {
+      "registry": "fluid_type",
+      "id": "ic2:superheated_steam",
+      "field": "SUPERHEATED_STEAM",
+      "source": "legacy/forge-1.20.1/src/main/java/ic2/forge/EnvFluidHandlerForge.java",
+      "factory": "dynamic fluid registration",
+      "expression": "ic2:superheated_steam",
+      "decision": "preserve",
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModFluids.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
+      ],
+      "derived_from": "ic2:superheated_steam"
+    },
+    {
+      "registry": "fluid",
+      "id": "ic2:superheated_steam",
+      "field": "SUPERHEATED_STEAM",
+      "source": "legacy/forge-1.20.1/src/main/java/ic2/forge/EnvFluidHandlerForge.java",
+      "factory": "dynamic fluid registration",
+      "expression": "ic2:superheated_steam",
+      "decision": "preserve",
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModFluids.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
+      ],
+      "derived_from": "ic2:superheated_steam"
+    },
+    {
+      "registry": "fluid",
+      "id": "ic2:flowing_superheated_steam",
+      "field": "SUPERHEATED_STEAM",
+      "source": "legacy/forge-1.20.1/src/main/java/ic2/forge/EnvFluidHandlerForge.java",
+      "factory": "dynamic fluid registration",
+      "expression": "ic2:superheated_steam",
+      "decision": "preserve",
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModFluids.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
+      ],
+      "derived_from": "ic2:superheated_steam"
+    },
+    {
+      "registry": "block",
+      "id": "ic2:fluid_block_superheated_steam",
+      "field": "SUPERHEATED_STEAM",
+      "source": "legacy/forge-1.20.1/src/main/java/ic2/forge/EnvFluidHandlerForge.java",
+      "factory": "dynamic fluid registration",
+      "expression": "ic2:superheated_steam",
+      "decision": "preserve",
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModFluids.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
+      ],
+      "derived_from": "ic2:superheated_steam"
+    },
+    {
+      "registry": "item",
+      "id": "ic2:superheated_steam_bucket",
+      "field": "SUPERHEATED_STEAM",
+      "source": "legacy/forge-1.20.1/src/main/java/ic2/forge/EnvFluidHandlerForge.java",
+      "factory": "dynamic fluid registration",
+      "expression": "ic2:superheated_steam",
+      "decision": "preserve",
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModFluids.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
+      ],
+      "derived_from": "ic2:superheated_steam"
+    },
+    {
+      "registry": "fluid_type",
+      "id": "ic2:steam",
+      "field": "STEAM",
+      "source": "legacy/forge-1.20.1/src/main/java/ic2/forge/EnvFluidHandlerForge.java",
+      "factory": "dynamic fluid registration",
+      "expression": "ic2:steam",
+      "decision": "preserve",
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModFluids.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
+      ],
+      "derived_from": "ic2:steam"
+    },
+    {
+      "registry": "fluid",
+      "id": "ic2:steam",
+      "field": "STEAM",
+      "source": "legacy/forge-1.20.1/src/main/java/ic2/forge/EnvFluidHandlerForge.java",
+      "factory": "dynamic fluid registration",
+      "expression": "ic2:steam",
+      "decision": "preserve",
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModFluids.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
+      ],
+      "derived_from": "ic2:steam"
+    },
+    {
+      "registry": "fluid",
+      "id": "ic2:flowing_steam",
+      "field": "STEAM",
+      "source": "legacy/forge-1.20.1/src/main/java/ic2/forge/EnvFluidHandlerForge.java",
+      "factory": "dynamic fluid registration",
+      "expression": "ic2:steam",
+      "decision": "preserve",
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModFluids.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
+      ],
+      "derived_from": "ic2:steam"
+    },
+    {
+      "registry": "block",
+      "id": "ic2:fluid_block_steam",
+      "field": "STEAM",
+      "source": "legacy/forge-1.20.1/src/main/java/ic2/forge/EnvFluidHandlerForge.java",
+      "factory": "dynamic fluid registration",
+      "expression": "ic2:steam",
+      "decision": "preserve",
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModFluids.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
+      ],
+      "derived_from": "ic2:steam"
+    },
+    {
+      "registry": "item",
+      "id": "ic2:steam_bucket",
+      "field": "STEAM",
+      "source": "legacy/forge-1.20.1/src/main/java/ic2/forge/EnvFluidHandlerForge.java",
+      "factory": "dynamic fluid registration",
+      "expression": "ic2:steam",
+      "decision": "preserve",
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModFluids.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
+      ],
+      "derived_from": "ic2:steam"
+    },
+    {
+      "registry": "fluid_type",
+      "id": "ic2:hot_water",
+      "field": "HOT_WATER",
+      "source": "legacy/forge-1.20.1/src/main/java/ic2/forge/EnvFluidHandlerForge.java",
+      "factory": "dynamic fluid registration",
+      "expression": "ic2:hot_water",
+      "decision": "preserve",
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModFluids.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
+      ],
+      "derived_from": "ic2:hot_water"
+    },
+    {
+      "registry": "fluid",
+      "id": "ic2:hot_water",
+      "field": "HOT_WATER",
+      "source": "legacy/forge-1.20.1/src/main/java/ic2/forge/EnvFluidHandlerForge.java",
+      "factory": "dynamic fluid registration",
+      "expression": "ic2:hot_water",
+      "decision": "preserve",
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModFluids.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
+      ],
+      "derived_from": "ic2:hot_water"
+    },
+    {
+      "registry": "fluid",
+      "id": "ic2:flowing_hot_water",
+      "field": "HOT_WATER",
+      "source": "legacy/forge-1.20.1/src/main/java/ic2/forge/EnvFluidHandlerForge.java",
+      "factory": "dynamic fluid registration",
+      "expression": "ic2:hot_water",
+      "decision": "preserve",
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModFluids.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
+      ],
+      "derived_from": "ic2:hot_water"
+    },
+    {
+      "registry": "block",
+      "id": "ic2:fluid_block_hot_water",
+      "field": "HOT_WATER",
+      "source": "legacy/forge-1.20.1/src/main/java/ic2/forge/EnvFluidHandlerForge.java",
+      "factory": "dynamic fluid registration",
+      "expression": "ic2:hot_water",
+      "decision": "preserve",
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModFluids.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
+      ],
+      "derived_from": "ic2:hot_water"
+    },
+    {
+      "registry": "item",
+      "id": "ic2:hot_water_bucket",
+      "field": "HOT_WATER",
+      "source": "legacy/forge-1.20.1/src/main/java/ic2/forge/EnvFluidHandlerForge.java",
+      "factory": "dynamic fluid registration",
+      "expression": "ic2:hot_water",
+      "decision": "preserve",
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModFluids.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
+      ],
+      "derived_from": "ic2:hot_water"
+    },
+    {
+      "registry": "fluid_type",
+      "id": "ic2:weed_ex",
+      "field": "WEED_EX",
+      "source": "legacy/forge-1.20.1/src/main/java/ic2/forge/EnvFluidHandlerForge.java",
+      "factory": "dynamic fluid registration",
+      "expression": "ic2:weed_ex",
+      "decision": "preserve",
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModFluids.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
+      ],
+      "derived_from": "ic2:weed_ex"
+    },
+    {
+      "registry": "fluid",
+      "id": "ic2:weed_ex",
+      "field": "WEED_EX",
+      "source": "legacy/forge-1.20.1/src/main/java/ic2/forge/EnvFluidHandlerForge.java",
+      "factory": "dynamic fluid registration",
+      "expression": "ic2:weed_ex",
+      "decision": "preserve",
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModFluids.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
+      ],
+      "derived_from": "ic2:weed_ex"
+    },
+    {
+      "registry": "fluid",
+      "id": "ic2:flowing_weed_ex",
+      "field": "WEED_EX",
+      "source": "legacy/forge-1.20.1/src/main/java/ic2/forge/EnvFluidHandlerForge.java",
+      "factory": "dynamic fluid registration",
+      "expression": "ic2:weed_ex",
+      "decision": "preserve",
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModFluids.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
+      ],
+      "derived_from": "ic2:weed_ex"
+    },
+    {
+      "registry": "block",
+      "id": "ic2:fluid_block_weed_ex",
+      "field": "WEED_EX",
+      "source": "legacy/forge-1.20.1/src/main/java/ic2/forge/EnvFluidHandlerForge.java",
+      "factory": "dynamic fluid registration",
+      "expression": "ic2:weed_ex",
+      "decision": "preserve",
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModFluids.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
+      ],
+      "derived_from": "ic2:weed_ex"
+    },
+    {
+      "registry": "item",
+      "id": "ic2:weed_ex_bucket",
+      "field": "WEED_EX",
+      "source": "legacy/forge-1.20.1/src/main/java/ic2/forge/EnvFluidHandlerForge.java",
+      "factory": "dynamic fluid registration",
+      "expression": "ic2:weed_ex",
+      "decision": "preserve",
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModFluids.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
+      ],
+      "derived_from": "ic2:weed_ex"
+    },
+    {
+      "registry": "fluid_type",
+      "id": "ic2:air",
+      "field": "AIR",
+      "source": "legacy/forge-1.20.1/src/main/java/ic2/forge/EnvFluidHandlerForge.java",
+      "factory": "dynamic fluid registration",
+      "expression": "ic2:air",
+      "decision": "preserve",
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModFluids.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
+      ],
+      "derived_from": "ic2:air"
+    },
+    {
+      "registry": "fluid",
+      "id": "ic2:air",
+      "field": "AIR",
+      "source": "legacy/forge-1.20.1/src/main/java/ic2/forge/EnvFluidHandlerForge.java",
+      "factory": "dynamic fluid registration",
+      "expression": "ic2:air",
+      "decision": "preserve",
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModFluids.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
+      ],
+      "derived_from": "ic2:air"
+    },
+    {
+      "registry": "fluid",
+      "id": "ic2:flowing_air",
+      "field": "AIR",
+      "source": "legacy/forge-1.20.1/src/main/java/ic2/forge/EnvFluidHandlerForge.java",
+      "factory": "dynamic fluid registration",
+      "expression": "ic2:air",
+      "decision": "preserve",
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModFluids.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
+      ],
+      "derived_from": "ic2:air"
+    },
+    {
+      "registry": "block",
+      "id": "ic2:fluid_block_air",
+      "field": "AIR",
+      "source": "legacy/forge-1.20.1/src/main/java/ic2/forge/EnvFluidHandlerForge.java",
+      "factory": "dynamic fluid registration",
+      "expression": "ic2:air",
+      "decision": "preserve",
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModFluids.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
+      ],
+      "derived_from": "ic2:air"
+    },
+    {
+      "registry": "item",
+      "id": "ic2:air_bucket",
+      "field": "AIR",
+      "source": "legacy/forge-1.20.1/src/main/java/ic2/forge/EnvFluidHandlerForge.java",
+      "factory": "dynamic fluid registration",
+      "expression": "ic2:air",
+      "decision": "preserve",
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModFluids.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
+      ],
+      "derived_from": "ic2:air"
+    },
+    {
+      "registry": "fluid_type",
+      "id": "ic2:hydrogen",
+      "field": "HYDROGEN",
+      "source": "legacy/forge-1.20.1/src/main/java/ic2/forge/EnvFluidHandlerForge.java",
+      "factory": "dynamic fluid registration",
+      "expression": "ic2:hydrogen",
+      "decision": "preserve",
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModFluids.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
+      ],
+      "derived_from": "ic2:hydrogen"
+    },
+    {
+      "registry": "fluid",
+      "id": "ic2:hydrogen",
+      "field": "HYDROGEN",
+      "source": "legacy/forge-1.20.1/src/main/java/ic2/forge/EnvFluidHandlerForge.java",
+      "factory": "dynamic fluid registration",
+      "expression": "ic2:hydrogen",
+      "decision": "preserve",
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModFluids.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
+      ],
+      "derived_from": "ic2:hydrogen"
+    },
+    {
+      "registry": "fluid",
+      "id": "ic2:flowing_hydrogen",
+      "field": "HYDROGEN",
+      "source": "legacy/forge-1.20.1/src/main/java/ic2/forge/EnvFluidHandlerForge.java",
+      "factory": "dynamic fluid registration",
+      "expression": "ic2:hydrogen",
+      "decision": "preserve",
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModFluids.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
+      ],
+      "derived_from": "ic2:hydrogen"
+    },
+    {
+      "registry": "block",
+      "id": "ic2:fluid_block_hydrogen",
+      "field": "HYDROGEN",
+      "source": "legacy/forge-1.20.1/src/main/java/ic2/forge/EnvFluidHandlerForge.java",
+      "factory": "dynamic fluid registration",
+      "expression": "ic2:hydrogen",
+      "decision": "preserve",
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModFluids.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
+      ],
+      "derived_from": "ic2:hydrogen"
+    },
+    {
+      "registry": "item",
+      "id": "ic2:hydrogen_bucket",
+      "field": "HYDROGEN",
+      "source": "legacy/forge-1.20.1/src/main/java/ic2/forge/EnvFluidHandlerForge.java",
+      "factory": "dynamic fluid registration",
+      "expression": "ic2:hydrogen",
+      "decision": "preserve",
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModFluids.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
+      ],
+      "derived_from": "ic2:hydrogen"
+    },
+    {
+      "registry": "fluid_type",
+      "id": "ic2:oxygen",
+      "field": "OXYGEN",
+      "source": "legacy/forge-1.20.1/src/main/java/ic2/forge/EnvFluidHandlerForge.java",
+      "factory": "dynamic fluid registration",
+      "expression": "ic2:oxygen",
+      "decision": "preserve",
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModFluids.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
+      ],
+      "derived_from": "ic2:oxygen"
+    },
+    {
+      "registry": "fluid",
+      "id": "ic2:oxygen",
+      "field": "OXYGEN",
+      "source": "legacy/forge-1.20.1/src/main/java/ic2/forge/EnvFluidHandlerForge.java",
+      "factory": "dynamic fluid registration",
+      "expression": "ic2:oxygen",
+      "decision": "preserve",
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModFluids.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
+      ],
+      "derived_from": "ic2:oxygen"
+    },
+    {
+      "registry": "fluid",
+      "id": "ic2:flowing_oxygen",
+      "field": "OXYGEN",
+      "source": "legacy/forge-1.20.1/src/main/java/ic2/forge/EnvFluidHandlerForge.java",
+      "factory": "dynamic fluid registration",
+      "expression": "ic2:oxygen",
+      "decision": "preserve",
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModFluids.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
+      ],
+      "derived_from": "ic2:oxygen"
+    },
+    {
+      "registry": "block",
+      "id": "ic2:fluid_block_oxygen",
+      "field": "OXYGEN",
+      "source": "legacy/forge-1.20.1/src/main/java/ic2/forge/EnvFluidHandlerForge.java",
+      "factory": "dynamic fluid registration",
+      "expression": "ic2:oxygen",
+      "decision": "preserve",
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModFluids.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
+      ],
+      "derived_from": "ic2:oxygen"
+    },
+    {
+      "registry": "item",
+      "id": "ic2:oxygen_bucket",
+      "field": "OXYGEN",
+      "source": "legacy/forge-1.20.1/src/main/java/ic2/forge/EnvFluidHandlerForge.java",
+      "factory": "dynamic fluid registration",
+      "expression": "ic2:oxygen",
+      "decision": "preserve",
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModFluids.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
+      ],
+      "derived_from": "ic2:oxygen"
+    },
+    {
+      "registry": "fluid_type",
+      "id": "ic2:heavy_water",
+      "field": "HEAVY_WATER",
+      "source": "legacy/forge-1.20.1/src/main/java/ic2/forge/EnvFluidHandlerForge.java",
+      "factory": "dynamic fluid registration",
+      "expression": "ic2:heavy_water",
+      "decision": "preserve",
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModFluids.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
+      ],
+      "derived_from": "ic2:heavy_water"
+    },
+    {
+      "registry": "fluid",
+      "id": "ic2:heavy_water",
+      "field": "HEAVY_WATER",
+      "source": "legacy/forge-1.20.1/src/main/java/ic2/forge/EnvFluidHandlerForge.java",
+      "factory": "dynamic fluid registration",
+      "expression": "ic2:heavy_water",
+      "decision": "preserve",
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModFluids.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
+      ],
+      "derived_from": "ic2:heavy_water"
+    },
+    {
+      "registry": "fluid",
+      "id": "ic2:flowing_heavy_water",
+      "field": "HEAVY_WATER",
+      "source": "legacy/forge-1.20.1/src/main/java/ic2/forge/EnvFluidHandlerForge.java",
+      "factory": "dynamic fluid registration",
+      "expression": "ic2:heavy_water",
+      "decision": "preserve",
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModFluids.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
+      ],
+      "derived_from": "ic2:heavy_water"
+    },
+    {
+      "registry": "block",
+      "id": "ic2:fluid_block_heavy_water",
+      "field": "HEAVY_WATER",
+      "source": "legacy/forge-1.20.1/src/main/java/ic2/forge/EnvFluidHandlerForge.java",
+      "factory": "dynamic fluid registration",
+      "expression": "ic2:heavy_water",
+      "decision": "preserve",
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModFluids.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
+      ],
+      "derived_from": "ic2:heavy_water"
+    },
+    {
+      "registry": "item",
+      "id": "ic2:heavy_water_bucket",
+      "field": "HEAVY_WATER",
+      "source": "legacy/forge-1.20.1/src/main/java/ic2/forge/EnvFluidHandlerForge.java",
+      "factory": "dynamic fluid registration",
+      "expression": "ic2:heavy_water",
+      "decision": "preserve",
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModFluids.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
+      ],
+      "derived_from": "ic2:heavy_water"
     }
   ]
 }

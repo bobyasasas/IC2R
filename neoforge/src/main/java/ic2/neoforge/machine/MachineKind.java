@@ -7,6 +7,7 @@ import net.minecraft.util.StringRepresentable;
 /** Shared machine specification; UI capacity, inventory size and processing cost derive from it. */
 public enum MachineKind implements StringRepresentable {
     IRON_FURNACE("iron_furnace", 0, 3, 160, 0),
+    CANNER("canner", 800, 4, 200, 4),
     GENERATOR("generator", 4000, 2, 0, 0),
     ELECTRIC_FURNACE("electric_furnace", 300, 3, 100, 3),
     MACERATOR("macerator", 600, 3, 300, 2),

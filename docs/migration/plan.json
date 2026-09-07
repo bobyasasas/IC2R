@@ -161,7 +161,9 @@
       "acceptance": "按机器族拆分后续提交；优先覆盖 cannerfix1 路径，再覆盖升级、泵、存储和高阶机器。",
       "evidence": [
         "neoforge/src/main/java/ic2/neoforge/machine/ProcessingBlockEntity.java",
-        "neoforge/src/main/java/ic2/neoforge/recipe/ProcessingRecipe.java"
+        "neoforge/src/main/java/ic2/neoforge/recipe/ProcessingRecipe.java",
+        "docs/migration/work-packages.json",
+        "docs/migration/canner-fluids.md"
       ]
     },
     {

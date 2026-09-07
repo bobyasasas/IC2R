@@ -1,0 +1,12 @@
+{
+  "type": "ic2:shapeless",
+  "result": {
+    "id": "ic2:weed_ex_cell",
+    "count": 1
+  },
+  "ingredients": [
+    "ic2:facade_cell",
+    "minecraft:redstone",
+    "ic2:grin_powder"
+  ]
+}

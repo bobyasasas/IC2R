@@ -4,6 +4,7 @@ import ic2.core.energy.grid.CableSpec;
 import ic2.neoforge.IndustrialCraft;
 import ic2.neoforge.energy.CableBlock;
 import ic2.neoforge.machine.*;
+import ic2.neoforge.machine.CannerBlockEntity;
 import ic2.neoforge.menu.MachineMenu;
 
 import net.minecraft.core.BlockPos;
@@ -92,6 +93,7 @@ public final class ModMachines {
             MachineKind kind, BlockPos pos, BlockState state) {
         return switch (kind) {
             case IRON_FURNACE -> new IronFurnaceBlockEntity(pos, state);
+            case CANNER -> new CannerBlockEntity(pos, state);
             case GENERATOR -> new GeneratorBlockEntity(pos, state);
             case ELECTRIC_FURNACE -> new ElectricFurnaceBlockEntity(pos, state);
             case MACERATOR, EXTRACTOR, COMPRESSOR -> new SingleInputBlockEntity(pos, state);
@@ -172,6 +174,10 @@ public final class ModMachines {
     }
 
     private static void capabilities(RegisterCapabilitiesEvent event) {
+        event.registerBlockEntity(
+                Capabilities.Fluid.BLOCK,
+                entityType(MachineKind.CANNER),
+                (machine, side) -> ((CannerBlockEntity) machine).fluidAutomation(side));
         MACHINES.values()
                 .forEach(
                         registration ->

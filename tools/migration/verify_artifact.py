@@ -54,6 +54,11 @@ with zipfile.ZipFile(jars[0]) as jar:
         if isinstance(node, dict):
             if node.get('type') == 'minecraft:model':
                 check_model(node['model'])
+            if node.get('type') == 'neoforge:fluid_container':
+                for material in node.get('textures', {}).values():
+                    texture = material if isinstance(material, str) else material['sprite']
+                    if texture.startswith('ic2:'):
+                        assert jar.read(f'assets/ic2/textures/{texture[4:]}.png').startswith(b'\x89PNG\r\n\x1a\n')
             for value in node.values():
                 check_item_model(value)
         elif isinstance(node, list):

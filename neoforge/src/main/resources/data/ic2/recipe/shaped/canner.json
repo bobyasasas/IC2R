@@ -1,0 +1,17 @@
+{
+  "type": "ic2:shaped",
+  "pattern": [
+    "TCT",
+    "TMT",
+    "TTT"
+  ],
+  "result": {
+    "id": "ic2:canner",
+    "count": 1
+  },
+  "key": {
+    "T": "ic2:tin_casing",
+    "M": "ic2:machine",
+    "C": "ic2:circuit"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "type": "ic2:shaped",
+  "pattern": [
+    " C ",
+    "CGC",
+    " C "
+  ],
+  "result": {
+    "id": "ic2:facade_cell",
+    "count": 1
+  },
+  "key": {
+    "C": "ic2:tin_casing",
+    "G": "minecraft:glass_pane"
+  }
+}

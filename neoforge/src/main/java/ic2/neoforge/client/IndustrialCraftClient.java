@@ -3,6 +3,7 @@ package ic2.neoforge.client;
 import ic2.neoforge.IndustrialCraft;
 import ic2.neoforge.item.ElectricItem;
 import ic2.neoforge.item.ElectricItemEnergy;
+import ic2.neoforge.machine.MachineKind;
 import ic2.neoforge.registration.ModMachines;
 
 import net.minecraft.network.chat.Component;
@@ -19,16 +20,21 @@ import net.neoforged.neoforge.event.entity.player.ItemTooltipEvent;
 public final class IndustrialCraftClient {
     public IndustrialCraftClient(IEventBus modBus) {
         modBus.addListener(IndustrialCraftClient::registerProperties);
+        modBus.addListener(FluidModels::register);
+        modBus.addListener(MachineSounds::reloaded);
         modBus.addListener(IndustrialCraftClient::registerScreens);
         NeoForge.EVENT_BUS.addListener(IndustrialCraftClient::addTooltip);
+        NeoForge.EVENT_BUS.addListener(MachineSounds::loaded);
+        NeoForge.EVENT_BUS.addListener(MachineSounds::tick);
     }
 
     private static void registerScreens(RegisterMenuScreensEvent event) {
-        ModMachines.MACHINES
-                .values()
-                .forEach(
-                        registration ->
-                                event.register(registration.menu().get(), MachineScreen::new));
+        ModMachines.MACHINES.forEach(
+                (kind, registration) -> {
+                    if (kind == MachineKind.CANNER)
+                        event.register(registration.menu().get(), CannerScreen::new);
+                    else event.register(registration.menu().get(), MachineScreen::new);
+                });
     }
 
     private static void addTooltip(ItemTooltipEvent event) {

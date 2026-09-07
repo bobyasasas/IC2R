@@ -77,6 +77,13 @@ def generate():
         if entry["status"] != "pending":
             assert entry.get("evidence"), key
             assert all((ROOT / e).is_file() for e in entry["evidence"]), key
+    packages = json.loads((ROOT / "docs/migration/work-packages.json").read_text())["packages"]
+    assert len({p["id"] for p in packages}) == len(packages)
+    for package in packages:
+        assert package["parent"] in tasks and package["status"] in LABELS and package["acceptance"]
+        assert all((ROOT / e).is_file() for e in package["evidence"]), package["id"]
+        if package["status"] == "done":
+            assert package["evidence"], package["id"]
     done = sum(t["status"] == "done" for t in tasks.values())
     lines = ["# NeoForge 26.1.2 迁移进度", "", f"更新：{plan['updated']} · {plan['target']}", "",
              f"阶段完成：**{done} / {len(tasks)}**。完整迁移的旧 Java 文件：**{completed_ports} / {len(originals)}**。",
@@ -90,9 +97,12 @@ def generate():
         for kind in dict.fromkeys(e["registry"] for e in catalog):
             entries = [e for e in catalog if e["registry"] == kind]
             lines.append(f"| {kind} | {sum(e['status'] == 'implemented' for e in entries)} | {sum(e['status'] == 'partial' for e in entries)} | {len(entries)} |")
-        lines += ["", "流体族尚须展开为实际流体与方块。完整状态见 [注册清单](registry-catalog.json)。"]
+        lines += ["", "清单包含 17 个流体族及其动态生成的 85 个实际注册 ID；流体族行是分组，不另算功能。完整状态见 [注册清单](registry-catalog.json)。"]
     if recipes:
         lines += ["", "## 配方迁移覆盖", "", f"已转换并纳入加载测试：**{sum(r['status'] == 'converted' for r in recipes)} / {len(recipes)}**。", "", "转换计数不等于生存模式可达率；原料、工具与前置机器仍需逐步验收。", "", "[逐条状态与待迁移原因](recipe-catalog.json)"]
+    lines += ["", "## 后续工作包", "", "阶段内按可独立验收的功能族推进；进行中表示仍有验收项未完成。", "", "| 工作包 | 阶段 | 状态 | 验收范围 |", "|---|---|---|---|"]
+    for package in packages:
+        lines.append(f"| {package['id']} {package['title']} | {package['parent']} | {LABELS[package['status']]} | {package['acceptance']} |")
     lines += ["", "## 验证证据", ""]
     for task in tasks.values():
         if task["evidence"]:

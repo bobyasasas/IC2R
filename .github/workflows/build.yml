@@ -34,8 +34,16 @@ jobs:
         run: python3 tools/migration/progress.py --check
       - name: Build and test migration modules
         run: bash gradlew clean build --console=plain
-      - name: Run dedicated GameTest server
-        run: bash gradlew :neoforge:runGameTestServer --console=plain
+      - name: Run dedicated GameTest server (IC2)
+        run: |
+          bash gradlew :neoforge:runGameTestServer -PtestEnergyMode=IC2 --console=plain
+          mkdir -p neoforge/build/reports/gametest/IC2
+          cp neoforge/run/logs/latest.log neoforge/build/reports/gametest/IC2/
+      - name: Run dedicated GameTest server (GT)
+        run: |
+          bash gradlew :neoforge:runGameTestServer -PtestEnergyMode=GT --console=plain
+          mkdir -p neoforge/build/reports/gametest/GT
+          cp neoforge/run/logs/latest.log neoforge/build/reports/gametest/GT/
       - name: Inspect packaged mod
         run: python3 tools/migration/verify_artifact.py
       - name: Show migration progress
@@ -55,5 +63,6 @@ jobs:
           path: |
             core/build/reports/tests/
             neoforge/run/logs/
+            neoforge/build/reports/gametest/
             docs/migration/STATUS.md
           retention-days: 14

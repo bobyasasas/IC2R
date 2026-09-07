@@ -1,0 +1,12 @@
+{
+  "type": "ic2:shapeless",
+  "result": {
+    "id": "ic2:weed_ex_bucket",
+    "count": 1
+  },
+  "ingredients": [
+    "minecraft:bucket",
+    "minecraft:redstone",
+    "ic2:grin_powder"
+  ]
+}

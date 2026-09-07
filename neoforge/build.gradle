@@ -24,6 +24,7 @@ neoForge {
         gameTestServer {
             type = 'gameTestServer'
             systemProperty 'neoforge.enabledGameTestNamespaces', 'ic2_tests'
+            systemProperty 'ic2.tests.energyMode', providers.gradleProperty('testEnergyMode').getOrElse('IC2')
         }
     }
     mods {

@@ -1,0 +1,14 @@
+{
+  "type": "ic2:extractor",
+  "ingredient": "ic2:air_cell",
+  "input_count": 1,
+  "results": [
+    {
+      "stack": {
+        "id": "ic2:facade_cell",
+        "count": 1
+      },
+      "weight": 1
+    }
+  ]
+}

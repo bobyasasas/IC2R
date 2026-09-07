@@ -9,8 +9,10 @@ import ic2.neoforge.registration.ModMachines;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.BaseEntityBlock;
@@ -24,6 +26,9 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.phys.BlockHitResult;
+import net.neoforged.neoforge.capabilities.Capabilities;
+import net.neoforged.neoforge.transfer.access.ItemAccess;
+import net.neoforged.neoforge.transfer.fluid.FluidUtil;
 
 public final class MachineBlock extends BaseEntityBlock {
     public static final BooleanProperty ACTIVE = BooleanProperty.create("active");
@@ -79,6 +84,28 @@ public final class MachineBlock extends BaseEntityBlock {
                     if (entity instanceof MachineBlockEntity machine)
                         machine.serverTick((ServerLevel) world);
                 };
+    }
+
+    @Override
+    protected InteractionResult useItemOn(
+            ItemStack stack,
+            BlockState state,
+            Level level,
+            BlockPos pos,
+            Player player,
+            InteractionHand hand,
+            BlockHitResult hit) {
+        if (level.getCapability(Capabilities.Fluid.BLOCK, pos, hit.getDirection()) != null
+                && ItemAccess.forPlayerInteraction(player, hand)
+                                .oneByOne()
+                                .getCapability(Capabilities.Fluid.ITEM)
+                        != null) {
+            if (level.isClientSide()) return InteractionResult.SUCCESS;
+            if (FluidUtil.interactWithFluidHandler(
+                    player, hand, level, pos, hit.getDirection(), null))
+                return InteractionResult.SUCCESS;
+        }
+        return InteractionResult.TRY_WITH_EMPTY_HAND;
     }
 
     @Override

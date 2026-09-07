@@ -12,8 +12,8 @@
 `recipe-catalog.json` 覆盖旧目录全部 796 条 JSON。每条已转换配方纳入 GameTest 加载清单；其余逐条记录未迁移类型、原料、结果、组件或流体条件。
 这避免了数据包解析报错却被「服务器正常启动」掩盖。当前转换数量由 STATUS.md 自动统计。
 
-资源转换入口依次运行 `machines.py`、`material_blocks.py`、`recipes.py`。`base.py` 提供无导入副作用的公共函数。
+资源转换入口依次运行 `machines.py`、`material_blocks.py`、`fluids.py`、`recipes.py`。`base.py` 提供无导入副作用的公共函数。
 源 JAR 恢复基线保持不变；进度检查同时校验旧代码与旧资源哈希。
 
-目前通过 34 项核心单测、20 项 IC2 GameTest，另有 Minecraft 的 always_pass。
-基础机器仍标记「部分实现」：升级、声音、部分特殊配方和后续机器前置尚在迁移。
+自动化测试持续覆盖核心规则、机器事务和配方加载；具体运行记录见 Actions。
+基础机器仍标记「部分实现」：升级、部分声音细节、特殊配方和后续机器前置尚在迁移。
