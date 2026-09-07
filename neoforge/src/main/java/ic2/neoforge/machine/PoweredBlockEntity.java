@@ -5,6 +5,7 @@ import ic2.core.energy.grid.EnergyNode;
 import ic2.neoforge.energy.WorldEnergyNetworks;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
@@ -33,6 +34,14 @@ public abstract class PoweredBlockEntity extends MachineBlockEntity {
     }
 
     public abstract EnergyNode.Terminal energyNode();
+
+    public boolean emitsTo(Direction side) {
+        return true;
+    }
+
+    public boolean acceptsFrom(Direction side) {
+        return true;
+    }
 
     @Override
     public void onLoad() {

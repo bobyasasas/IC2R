@@ -7,6 +7,8 @@ from base import ROOT, OLD, NEW, write
 registered = {'ic2:' + p.stem for p in (NEW / 'assets/ic2/items').glob('*.json')}
 recipe_root = OLD / 'data/ic2/recipes'
 ledger = []
+ledger_path = ROOT / 'docs/migration/recipe-catalog.json'
+previous = json.loads(ledger_path.read_text())['entries'] if ledger_path.exists() else []
 supported = {'ic2:canner_bottle', 'ic2:canner_enrich', 'ic2:shaped', 'ic2:shapeless', 'minecraft:crafting_shaped', 'minecraft:crafting_shapeless', 'minecraft:smelting', 'minecraft:blasting', 'ic2:macerator', 'ic2:extractor', 'ic2:compressor'}
 
 
@@ -101,7 +103,16 @@ for namespace in ['ic2', 'forge']:
         target_namespace, target_path = target_tag.split(':')
         write(f'data/{target_namespace}/tags/item/{target_path}.json', {'replace': False, 'values': values})
 
-(ROOT / 'docs/migration/recipe-catalog.json').write_text(json.dumps({'entries': ledger}, indent=2, ensure_ascii=False) + '\n')
+# Remove only outputs previously owned by this converter if a recipe becomes unsupported.
+current_targets = {entry['target'] for entry in ledger if entry['status'] == 'converted'}
+for entry in previous:
+    target = entry.get('target')
+    if target and target not in current_targets:
+        path = (ROOT / target).resolve()
+        assert path.is_relative_to((NEW / 'data/ic2/recipe').resolve()) and path.suffix == '.json'
+        path.unlink(missing_ok=True)
+
+ledger_path.write_text(json.dumps({'entries': ledger}, indent=2, ensure_ascii=False) + '\n')
 from collections import Counter
 print(Counter(entry['status'] for entry in ledger))
 print(Counter(entry['type'] for entry in ledger if entry['status'] == 'converted'))

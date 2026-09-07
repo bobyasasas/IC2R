@@ -1,11 +1,19 @@
 {
   "replace": false,
   "values": [
+    "ic2:batbox",
     "ic2:canner",
+    "ic2:cesu",
     "ic2:compressor",
     "ic2:electric_furnace",
+    "ic2:ev_transformer",
     "ic2:extractor",
     "ic2:generator",
-    "ic2:macerator"
+    "ic2:hv_transformer",
+    "ic2:lv_transformer",
+    "ic2:macerator",
+    "ic2:mfe",
+    "ic2:mfsu",
+    "ic2:mv_transformer"
   ]
 }

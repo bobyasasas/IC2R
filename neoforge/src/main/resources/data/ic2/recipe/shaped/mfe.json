@@ -1,0 +1,17 @@
+{
+  "type": "ic2:shaped",
+  "pattern": [
+    "cCc",
+    "CMC",
+    "cCc"
+  ],
+  "result": {
+    "id": "ic2:mfe",
+    "count": 1
+  },
+  "key": {
+    "M": "ic2:machine",
+    "c": "ic2:double_insulated_gold_cable",
+    "C": "ic2:energy_crystal"
+  }
+}

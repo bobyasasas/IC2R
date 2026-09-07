@@ -1373,5 +1373,19 @@
   "ic2.canner.mode.bottle_liquid": "灌装流体",
   "ic2.canner.mode.enrich_liquid": "流体富集",
   "ic2.canner.empty": "空",
-  "ic2.item.fluid_cell.contents": "%s单元"
+  "ic2.item.fluid_cell.contents": "%s单元",
+  "ic2.energy_device.storage.0": "始终输出",
+  "ic2.energy_device.storage.1": "接近充满时发信号",
+  "ic2.energy_device.storage.2": "部分电量时发信号",
+  "ic2.energy_device.storage.3": "未满时发信号",
+  "ic2.energy_device.storage.4": "空电时发信号",
+  "ic2.energy_device.storage.5": "红石停止",
+  "ic2.energy_device.storage.6": "溢出输出",
+  "ic2.energy_device.transformer.0": "红石控制",
+  "ic2.energy_device.transformer.1": "降压",
+  "ic2.energy_device.transformer.2": "升压",
+  "ic2.energy_device.input": "输入：%s V × %s A",
+  "ic2.energy_device.output": "输出：%s V × %s A",
+  "ic2.energy_device.charge": "给物品充电",
+  "ic2.energy_device.discharge": "从物品放电"
 }

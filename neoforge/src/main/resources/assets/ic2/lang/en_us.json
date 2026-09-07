@@ -1373,5 +1373,19 @@
   "ic2.canner.mode.bottle_liquid": "Fill liquid",
   "ic2.canner.mode.enrich_liquid": "Enrich liquid",
   "ic2.canner.empty": "Empty",
-  "ic2.item.fluid_cell.contents": "%s Cell"
+  "ic2.item.fluid_cell.contents": "%s Cell",
+  "ic2.energy_device.storage.0": "Always on",
+  "ic2.energy_device.storage.1": "Full signal",
+  "ic2.energy_device.storage.2": "Charge signal",
+  "ic2.energy_device.storage.3": "Not full signal",
+  "ic2.energy_device.storage.4": "Empty signal",
+  "ic2.energy_device.storage.5": "Redstone stop",
+  "ic2.energy_device.storage.6": "Overflow",
+  "ic2.energy_device.transformer.0": "Automatic",
+  "ic2.energy_device.transformer.1": "Step-down",
+  "ic2.energy_device.transformer.2": "Step-up",
+  "ic2.energy_device.input": "In: %s V × %s A",
+  "ic2.energy_device.output": "Out: %s V × %s A",
+  "ic2.energy_device.charge": "Charge item",
+  "ic2.energy_device.discharge": "Discharge item"
 }

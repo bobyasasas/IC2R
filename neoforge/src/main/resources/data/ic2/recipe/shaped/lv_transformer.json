@@ -1,0 +1,17 @@
+{
+  "type": "ic2:shaped",
+  "pattern": [
+    "PCP",
+    "PcP",
+    "PCP"
+  ],
+  "result": {
+    "id": "ic2:lv_transformer",
+    "count": 1
+  },
+  "key": {
+    "P": "#minecraft:planks",
+    "C": "ic2:insulated_tin_cable",
+    "c": "ic2:coil"
+  }
+}

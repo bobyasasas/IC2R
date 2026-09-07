@@ -43,9 +43,12 @@
       "id": "P05",
       "parent": "M11",
       "title": "电力储能与变压器",
-      "status": "todo",
+      "status": "in_progress",
       "acceptance": "BatBox、CESU、MFE、MFSU、四档变压器；方向、红石、供电模式、过压和重载。",
-      "evidence": []
+      "evidence": [
+        "docs/migration/energy-devices.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/EnergyDeviceTests.java"
+      ]
     },
     {
       "id": "P06",

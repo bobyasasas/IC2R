@@ -1,0 +1,17 @@
+{
+  "type": "ic2:shaped",
+  "pattern": [
+    "PCP",
+    "BBB",
+    "PPP"
+  ],
+  "result": {
+    "id": "ic2:cesu",
+    "count": 1
+  },
+  "key": {
+    "P": "#c:plates/bronze",
+    "C": "ic2:insulated_copper_cable",
+    "B": "ic2:advanced_re_battery"
+  }
+}

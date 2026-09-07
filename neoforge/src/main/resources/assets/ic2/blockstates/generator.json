@@ -29,6 +29,22 @@
     "facing=west,active=true": {
       "model": "ic2:block/generator/electric/generator_active",
       "y": 270
+    },
+    "facing=up,active=false": {
+      "model": "ic2:block/generator/electric/generator",
+      "x": 270
+    },
+    "facing=down,active=false": {
+      "model": "ic2:block/generator/electric/generator",
+      "x": 90
+    },
+    "facing=up,active=true": {
+      "model": "ic2:block/generator/electric/generator_active",
+      "x": 270
+    },
+    "facing=down,active=true": {
+      "model": "ic2:block/generator/electric/generator_active",
+      "x": 90
     }
   }
 }

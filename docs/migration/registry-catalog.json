@@ -915,7 +915,12 @@
       "factory": "register",
       "expression": "new BlockItemEnergyStorage(Ic2Blocks.BATBOX, new Properties(), 40000)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/gameTest/java/ic2/neoforge/test/EnergyDeviceTests.java",
+        "docs/migration/energy-devices.md"
+      ],
+      "note": "方向、电流档位、红石、充放电、菜单及保存已迁移；扳手拆卸的储能保留及完整 IC2 爆炸待验收。"
     },
     {
       "registry": "item",
@@ -925,7 +930,12 @@
       "factory": "register",
       "expression": "new BlockItemEnergyStorage(Ic2Blocks.CESU, new Properties(), 300000)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/gameTest/java/ic2/neoforge/test/EnergyDeviceTests.java",
+        "docs/migration/energy-devices.md"
+      ],
+      "note": "方向、电流档位、红石、充放电、菜单及保存已迁移；扳手拆卸的储能保留及完整 IC2 爆炸待验收。"
     },
     {
       "registry": "item",
@@ -935,7 +945,12 @@
       "factory": "register",
       "expression": "new BlockItemEnergyStorage(Ic2Blocks.MFE, new Properties(), 4000000)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/gameTest/java/ic2/neoforge/test/EnergyDeviceTests.java",
+        "docs/migration/energy-devices.md"
+      ],
+      "note": "方向、电流档位、红石、充放电、菜单及保存已迁移；扳手拆卸的储能保留及完整 IC2 爆炸待验收。"
     },
     {
       "registry": "item",
@@ -945,7 +960,12 @@
       "factory": "register",
       "expression": "new BlockItemEnergyStorage(Ic2Blocks.MFSU, new Properties().rarity(Rarity.UNCOMMON), 40000000)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/gameTest/java/ic2/neoforge/test/EnergyDeviceTests.java",
+        "docs/migration/energy-devices.md"
+      ],
+      "note": "方向、电流档位、红石、充放电、菜单及保存已迁移；扳手拆卸的储能保留及完整 IC2 爆炸待验收。"
     },
     {
       "registry": "item",
@@ -955,7 +975,12 @@
       "factory": "register",
       "expression": "new ItemBlockIc2(Ic2Blocks.LV_TRANSFORMER, new Properties())",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/gameTest/java/ic2/neoforge/test/EnergyDeviceTests.java",
+        "docs/migration/energy-devices.md"
+      ],
+      "note": "方向、电流档位、红石、充放电、菜单及保存已迁移；扳手拆卸的储能保留及完整 IC2 爆炸待验收。"
     },
     {
       "registry": "item",
@@ -965,7 +990,12 @@
       "factory": "register",
       "expression": "new ItemBlockIc2(Ic2Blocks.MV_TRANSFORMER, new Properties())",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/gameTest/java/ic2/neoforge/test/EnergyDeviceTests.java",
+        "docs/migration/energy-devices.md"
+      ],
+      "note": "方向、电流档位、红石、充放电、菜单及保存已迁移；扳手拆卸的储能保留及完整 IC2 爆炸待验收。"
     },
     {
       "registry": "item",
@@ -975,7 +1005,12 @@
       "factory": "register",
       "expression": "new ItemBlockIc2(Ic2Blocks.HV_TRANSFORMER, new Properties().rarity(Rarity.UNCOMMON))",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/gameTest/java/ic2/neoforge/test/EnergyDeviceTests.java",
+        "docs/migration/energy-devices.md"
+      ],
+      "note": "方向、电流档位、红石、充放电、菜单及保存已迁移；扳手拆卸的储能保留及完整 IC2 爆炸待验收。"
     },
     {
       "registry": "item",
@@ -985,7 +1020,12 @@
       "factory": "register",
       "expression": "new ItemBlockIc2(Ic2Blocks.EV_TRANSFORMER, new Properties().rarity(Rarity.UNCOMMON))",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/gameTest/java/ic2/neoforge/test/EnergyDeviceTests.java",
+        "docs/migration/energy-devices.md"
+      ],
+      "note": "方向、电流档位、红石、充放电、菜单及保存已迁移；扳手拆卸的储能保留及完整 IC2 爆炸待验收。"
     },
     {
       "registry": "item",
@@ -7225,7 +7265,12 @@
       "factory": "register",
       "expression": "Ic2TileEntityBlock.create(Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).strength(2.0F, 10.0F).requiresCorrectToolForDrops().sound(SoundType.METAL), TileEntityElectricBatBox.class, false, Ic2TileEntityBlock.DefaultDrop.Self, Util.allFacings, true)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/gameTest/java/ic2/neoforge/test/EnergyDeviceTests.java",
+        "docs/migration/energy-devices.md"
+      ],
+      "note": "方向、电流档位、红石、充放电、菜单及保存已迁移；扳手拆卸的储能保留及完整 IC2 爆炸待验收。"
     },
     {
       "registry": "block",
@@ -7235,7 +7280,12 @@
       "factory": "register",
       "expression": "Ic2TileEntityBlock.create(Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).strength(2.0F, 10.0F).requiresCorrectToolForDrops().sound(SoundType.METAL), TileEntityElectricCESU.class, false, Ic2TileEntityBlock.DefaultDrop.Self, Util.allFacings, true)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/gameTest/java/ic2/neoforge/test/EnergyDeviceTests.java",
+        "docs/migration/energy-devices.md"
+      ],
+      "note": "方向、电流档位、红石、充放电、菜单及保存已迁移；扳手拆卸的储能保留及完整 IC2 爆炸待验收。"
     },
     {
       "registry": "block",
@@ -7245,7 +7295,12 @@
       "factory": "register",
       "expression": "Ic2TileEntityBlock.create(Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).strength(2.0F, 10.0F).requiresCorrectToolForDrops().sound(SoundType.METAL), TileEntityElectricMFE.class, false, Ic2TileEntityBlock.DefaultDrop.Machine, Util.allFacings, true)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/gameTest/java/ic2/neoforge/test/EnergyDeviceTests.java",
+        "docs/migration/energy-devices.md"
+      ],
+      "note": "方向、电流档位、红石、充放电、菜单及保存已迁移；扳手拆卸的储能保留及完整 IC2 爆炸待验收。"
     },
     {
       "registry": "block",
@@ -7255,7 +7310,12 @@
       "factory": "register",
       "expression": "Ic2TileEntityBlock.create(Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).strength(2.0F, 10.0F).requiresCorrectToolForDrops().sound(SoundType.METAL), TileEntityElectricMFSU.class, false, Ic2TileEntityBlock.DefaultDrop.AdvMachine, Util.allFacings, true)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/gameTest/java/ic2/neoforge/test/EnergyDeviceTests.java",
+        "docs/migration/energy-devices.md"
+      ],
+      "note": "方向、电流档位、红石、充放电、菜单及保存已迁移；扳手拆卸的储能保留及完整 IC2 爆炸待验收。"
     },
     {
       "registry": "block",
@@ -7275,7 +7335,12 @@
       "factory": "register",
       "expression": "Ic2TileEntityBlock.create(Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).strength(2.0F, 10.0F).requiresCorrectToolForDrops().sound(SoundType.METAL), TileEntityTransformerLV.class, true, Ic2TileEntityBlock.DefaultDrop.Self, Util.allFacings, true)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/gameTest/java/ic2/neoforge/test/EnergyDeviceTests.java",
+        "docs/migration/energy-devices.md"
+      ],
+      "note": "方向、电流档位、红石、充放电、菜单及保存已迁移；扳手拆卸的储能保留及完整 IC2 爆炸待验收。"
     },
     {
       "registry": "block",
@@ -7285,7 +7350,12 @@
       "factory": "register",
       "expression": "Ic2TileEntityBlock.create(Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).strength(2.0F, 10.0F).requiresCorrectToolForDrops().sound(SoundType.METAL), TileEntityTransformerMV.class, true, Ic2TileEntityBlock.DefaultDrop.Machine, Util.allFacings, true)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/gameTest/java/ic2/neoforge/test/EnergyDeviceTests.java",
+        "docs/migration/energy-devices.md"
+      ],
+      "note": "方向、电流档位、红石、充放电、菜单及保存已迁移；扳手拆卸的储能保留及完整 IC2 爆炸待验收。"
     },
     {
       "registry": "block",
@@ -7295,7 +7365,12 @@
       "factory": "register",
       "expression": "Ic2TileEntityBlock.create(Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).strength(2.0F, 10.0F).requiresCorrectToolForDrops().sound(SoundType.METAL), TileEntityTransformerHV.class, true, Ic2TileEntityBlock.DefaultDrop.Machine, Util.allFacings, true)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/gameTest/java/ic2/neoforge/test/EnergyDeviceTests.java",
+        "docs/migration/energy-devices.md"
+      ],
+      "note": "方向、电流档位、红石、充放电、菜单及保存已迁移；扳手拆卸的储能保留及完整 IC2 爆炸待验收。"
     },
     {
       "registry": "block",
@@ -7305,7 +7380,12 @@
       "factory": "register",
       "expression": "Ic2TileEntityBlock.create(Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).strength(2.0F, 10.0F).requiresCorrectToolForDrops().sound(SoundType.METAL), TileEntityTransformerEV.class, true, Ic2TileEntityBlock.DefaultDrop.Machine, Util.allFacings, true)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/gameTest/java/ic2/neoforge/test/EnergyDeviceTests.java",
+        "docs/migration/energy-devices.md"
+      ],
+      "note": "方向、电流档位、红石、充放电、菜单及保存已迁移；扳手拆卸的储能保留及完整 IC2 爆炸待验收。"
     },
     {
       "registry": "block",
@@ -9828,7 +9908,12 @@
       "factory": "register",
       "expression": "TileEntityElectricBatBox::new",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/gameTest/java/ic2/neoforge/test/EnergyDeviceTests.java",
+        "docs/migration/energy-devices.md"
+      ],
+      "note": "方向、电流档位、红石、充放电、菜单及保存已迁移；扳手拆卸的储能保留及完整 IC2 爆炸待验收。"
     },
     {
       "registry": "block_entity",
@@ -9838,7 +9923,12 @@
       "factory": "register",
       "expression": "TileEntityElectricCESU::new",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/gameTest/java/ic2/neoforge/test/EnergyDeviceTests.java",
+        "docs/migration/energy-devices.md"
+      ],
+      "note": "方向、电流档位、红石、充放电、菜单及保存已迁移；扳手拆卸的储能保留及完整 IC2 爆炸待验收。"
     },
     {
       "registry": "block_entity",
@@ -9848,7 +9938,12 @@
       "factory": "register",
       "expression": "TileEntityElectricMFE::new",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/gameTest/java/ic2/neoforge/test/EnergyDeviceTests.java",
+        "docs/migration/energy-devices.md"
+      ],
+      "note": "方向、电流档位、红石、充放电、菜单及保存已迁移；扳手拆卸的储能保留及完整 IC2 爆炸待验收。"
     },
     {
       "registry": "block_entity",
@@ -9858,7 +9953,12 @@
       "factory": "register",
       "expression": "TileEntityElectricMFSU::new",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/gameTest/java/ic2/neoforge/test/EnergyDeviceTests.java",
+        "docs/migration/energy-devices.md"
+      ],
+      "note": "方向、电流档位、红石、充放电、菜单及保存已迁移；扳手拆卸的储能保留及完整 IC2 爆炸待验收。"
     },
     {
       "registry": "block_entity",
@@ -9878,7 +9978,12 @@
       "factory": "register",
       "expression": "TileEntityTransformerLV::new",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/gameTest/java/ic2/neoforge/test/EnergyDeviceTests.java",
+        "docs/migration/energy-devices.md"
+      ],
+      "note": "方向、电流档位、红石、充放电、菜单及保存已迁移；扳手拆卸的储能保留及完整 IC2 爆炸待验收。"
     },
     {
       "registry": "block_entity",
@@ -9888,7 +9993,12 @@
       "factory": "register",
       "expression": "TileEntityTransformerMV::new",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/gameTest/java/ic2/neoforge/test/EnergyDeviceTests.java",
+        "docs/migration/energy-devices.md"
+      ],
+      "note": "方向、电流档位、红石、充放电、菜单及保存已迁移；扳手拆卸的储能保留及完整 IC2 爆炸待验收。"
     },
     {
       "registry": "block_entity",
@@ -9898,7 +10008,12 @@
       "factory": "register",
       "expression": "TileEntityTransformerHV::new",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/gameTest/java/ic2/neoforge/test/EnergyDeviceTests.java",
+        "docs/migration/energy-devices.md"
+      ],
+      "note": "方向、电流档位、红石、充放电、菜单及保存已迁移；扳手拆卸的储能保留及完整 IC2 爆炸待验收。"
     },
     {
       "registry": "block_entity",
@@ -9908,7 +10023,12 @@
       "factory": "register",
       "expression": "TileEntityTransformerEV::new",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/gameTest/java/ic2/neoforge/test/EnergyDeviceTests.java",
+        "docs/migration/energy-devices.md"
+      ],
+      "note": "方向、电流档位、红石、充放电、菜单及保存已迁移；扳手拆卸的储能保留及完整 IC2 爆炸待验收。"
     },
     {
       "registry": "block_entity",

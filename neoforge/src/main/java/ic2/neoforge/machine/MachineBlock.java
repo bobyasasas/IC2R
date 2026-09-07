@@ -14,6 +14,7 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.BaseEntityBlock;
 import net.minecraft.world.level.block.Block;
@@ -32,7 +33,7 @@ import net.neoforged.neoforge.transfer.fluid.FluidUtil;
 
 public final class MachineBlock extends BaseEntityBlock {
     public static final BooleanProperty ACTIVE = BooleanProperty.create("active");
-    public static final EnumProperty<Direction> FACING = BlockStateProperties.HORIZONTAL_FACING;
+    public static final EnumProperty<Direction> FACING = BlockStateProperties.FACING;
     public static final MapCodec<MachineBlock> CODEC =
             RecordCodecBuilder.mapCodec(
                     instance ->
@@ -67,7 +68,13 @@ public final class MachineBlock extends BaseEntityBlock {
 
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext context) {
-        return defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite());
+        return defaultBlockState()
+                .setValue(
+                        FACING,
+                        (kind.energyDevice()
+                                        ? context.getNearestLookingDirection()
+                                        : context.getHorizontalDirection())
+                                .getOpposite());
     }
 
     @Override
@@ -119,9 +126,35 @@ public final class MachineBlock extends BaseEntityBlock {
     }
 
     @Override
+    protected boolean isSignalSource(BlockState state) {
+        return kind.storage();
+    }
+
+    @Override
+    protected int getSignal(BlockState state, BlockGetter level, BlockPos pos, Direction side) {
+        return level.getBlockEntity(pos) instanceof EnergyStorageBlockEntity storage
+                ? storage.signal()
+                : 0;
+    }
+
+    @Override
+    protected boolean hasAnalogOutputSignal(BlockState state) {
+        return kind.storage();
+    }
+
+    @Override
+    protected int getAnalogOutputSignal(
+            BlockState state, Level level, BlockPos pos, Direction side) {
+        return level.getBlockEntity(pos) instanceof EnergyStorageBlockEntity storage
+                ? storage.comparator()
+                : 0;
+    }
+
+    @Override
     protected void onPlace(
             BlockState state, Level level, BlockPos pos, BlockState previous, boolean moved) {
-        if (state.getBlock() != previous.getBlock() && level instanceof ServerLevel server)
-            WorldEnergyNetworks.invalidate(server);
+        if ((state.getBlock() != previous.getBlock()
+                        || state.getValue(FACING) != previous.getValue(FACING))
+                && level instanceof ServerLevel server) WorldEnergyNetworks.invalidate(server);
     }
 }

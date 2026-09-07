@@ -91,7 +91,16 @@ final class MachineSounds {
             case MACERATOR -> ModSounds.MACHINE_MACERATOR_OPERATE.get();
             case EXTRACTOR -> ModSounds.MACHINE_EXTRACTOR_OPERATE.get();
             case COMPRESSOR -> ModSounds.MACHINE_COMPRESSOR_OPERATE.get();
-            case IRON_FURNACE -> null;
+            case IRON_FURNACE,
+                    BATBOX,
+                    CESU,
+                    MFE,
+                    MFSU,
+                    LV_TRANSFORMER,
+                    MV_TRANSFORMER,
+                    HV_TRANSFORMER,
+                    EV_TRANSFORMER ->
+                    null;
             case CANNER ->
                     switch (((CannerBlockEntity) machine).mode()) {
                         case BOTTLE_SOLID, BOTTLE_LIQUID -> ModSounds.MACHINE_CANNER_OPERATE.get();

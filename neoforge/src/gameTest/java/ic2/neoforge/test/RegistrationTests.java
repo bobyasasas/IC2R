@@ -28,6 +28,11 @@ public final class RegistrationTests {
             DeferredRegister.create(BuiltInRegistries.TEST_FUNCTION, "ic2_tests");
 
     static {
+        FUNCTIONS.register("transformer_profiles", () -> EnergyDeviceTests::profiles);
+        FUNCTIONS.register("storage_state", () -> EnergyDeviceTests::stateAndMenu);
+        FUNCTIONS.register("transformer_chain", () -> EnergyDeviceTests::transformerChain);
+        FUNCTIONS.register("storage_input", () -> EnergyDeviceTests::storageInput);
+        FUNCTIONS.register("storage_direction", () -> EnergyDeviceTests::storageDirection);
         FUNCTIONS.register("canner_solid", () -> CannerTests::solid);
         FUNCTIONS.register("canner_fill_empty", () -> CannerTests::fillAndEmpty);
         FUNCTIONS.register("canner_enrichment_rollback", () -> CannerTests::enrichmentRollback);

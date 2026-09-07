@@ -134,7 +134,12 @@ public final class WorldEnergyNetworks {
                     boolean accepts =
                             to instanceof EnergyNode.Conductor
                                     || ((EnergyNode.Terminal) to).input().isPresent();
-                    if (emits && accepts) graph.connect(grid(pos), grid(neighbor));
+                    if (emits
+                            && accepts
+                            && (!machines.containsKey(pos) || machines.get(pos).emitsTo(side))
+                            && (!machines.containsKey(neighbor)
+                                    || machines.get(neighbor).acceptsFrom(side.getOpposite())))
+                        graph.connect(grid(pos), grid(neighbor));
                     if (visited.add(neighbor)) queue.add(neighbor);
                 }
             }

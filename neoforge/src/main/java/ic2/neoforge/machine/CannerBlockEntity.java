@@ -99,6 +99,27 @@ public final class CannerBlockEntity extends PoweredBlockEntity {
         setChanged();
     }
 
+    @Override
+    public int menuValue(int index) {
+        return switch (index) {
+            case 0 -> mode.id();
+            case 1 -> inputTank.getAmountAsInt(0);
+            case 2 -> outputTank.getAmountAsInt(0);
+            case 3 -> BuiltInRegistries.FLUID.getId(inputTank.getResource(0).getFluid());
+            case 4 -> BuiltInRegistries.FLUID.getId(outputTank.getResource(0).getFluid());
+            default -> 0;
+        };
+    }
+
+    @Override
+    public boolean menuAction(int id) {
+        if (id >= 0 && id < CannerMode.values().length) {
+            setMode(CannerMode.byId(id));
+            return true;
+        }
+        return id == 5 && swapTanks();
+    }
+
     public boolean swapTanks() {
         if (progress() != 0) return false;
         try (var transaction = Transaction.openRoot()) {

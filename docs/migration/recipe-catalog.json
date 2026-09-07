@@ -2091,8 +2091,8 @@
     {
       "source": "shaped/batbox.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:batbox"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/batbox.json"
     },
     {
       "source": "shaped/batbox_chargepad.json",
@@ -2271,8 +2271,8 @@
     {
       "source": "shaped/cesu.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:cesu"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/cesu.json"
     },
     {
       "source": "shaped/cesu_chargepad.json",
@@ -2583,8 +2583,8 @@
     {
       "source": "shaped/ev_transformer.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:ev_transformer"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/ev_transformer.json"
     },
     {
       "source": "shaped/extractor.json",
@@ -2769,8 +2769,8 @@
     {
       "source": "shaped/hv_transformer.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:hv_transformer"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/hv_transformer.json"
     },
     {
       "source": "shaped/induction_furnace.json",
@@ -2985,8 +2985,8 @@
     {
       "source": "shaped/lv_transformer.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:lv_transformer"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/lv_transformer.json"
     },
     {
       "source": "shaped/lzh_condensator.json",
@@ -3033,8 +3033,8 @@
     {
       "source": "shaped/mfe.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:mfe"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/mfe.json"
     },
     {
       "source": "shaped/mfe_chargepad.json",
@@ -3045,8 +3045,8 @@
     {
       "source": "shaped/mfsu.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:mfsu"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/mfsu.json"
     },
     {
       "source": "shaped/mfsu_chargepad.json",
@@ -3111,8 +3111,8 @@
     {
       "source": "shaped/mv_transformer.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:mv_transformer"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/mv_transformer.json"
     },
     {
       "source": "shaped/nano_boots.json",

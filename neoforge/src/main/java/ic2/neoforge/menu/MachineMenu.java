@@ -1,7 +1,7 @@
 package ic2.neoforge.menu;
 
-import ic2.core.machine.CannerMode;
 import ic2.neoforge.item.ElectricItem;
+import ic2.neoforge.item.ElectricItemEnergy;
 import ic2.neoforge.machine.*;
 import ic2.neoforge.registration.MaterialDefinition;
 import ic2.neoforge.registration.ModItems;
@@ -19,6 +19,8 @@ import net.minecraft.world.level.material.Fluid;
 import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.transfer.access.ItemAccess;
 import net.neoforged.neoforge.transfer.item.ResourceHandlerSlot;
+
+import java.util.Objects;
 
 /** Vanilla container synchronization keeps inventory and progress server authoritative. */
 public final class MachineMenu extends AbstractContainerMenu {
@@ -62,62 +64,14 @@ public final class MachineMenu extends AbstractContainerMenu {
         machineSlots = inventory.size();
         data =
                 machine == null
-                        ? new SimpleContainerData(15)
-                        : new ContainerData() {
-                            @Override
-                            public int get(int index) {
-                                return switch (index) {
-                                    case 0 -> (int) machine.storedEnergy() & 0xffff;
-                                    case 1 -> (int) machine.storedEnergy() >>> 16;
-                                    case 2 -> machine.progress() & 0xffff;
-                                    case 3 -> machine.progress() >>> 16;
-                                    case 4 -> machine.progressMaximum() & 0xffff;
-                                    case 5 -> machine.progressMaximum() >>> 16;
-                                    case 6 -> machine.fuelRemaining() & 0xffff;
-                                    case 7 -> machine.fuelRemaining() >>> 16;
-                                    case 8 -> machine.fuelMaximum() & 0xffff;
-                                    case 9 -> machine.fuelMaximum() >>> 16;
-                                    case 10 ->
-                                            machine instanceof CannerBlockEntity canner
-                                                    ? canner.mode().id()
-                                                    : 0;
-                                    case 11 ->
-                                            machine instanceof CannerBlockEntity canner
-                                                    ? canner.inputTank().getAmountAsInt(0)
-                                                    : 0;
-                                    case 12 ->
-                                            machine instanceof CannerBlockEntity canner
-                                                    ? canner.outputTank().getAmountAsInt(0)
-                                                    : 0;
-                                    case 13 ->
-                                            machine instanceof CannerBlockEntity canner
-                                                    ? BuiltInRegistries.FLUID.getId(
-                                                            canner.inputTank()
-                                                                    .getResource(0)
-                                                                    .getFluid())
-                                                    : 0;
-                                    case 14 ->
-                                            machine instanceof CannerBlockEntity canner
-                                                    ? BuiltInRegistries.FLUID.getId(
-                                                            canner.outputTank()
-                                                                    .getResource(0)
-                                                                    .getFluid())
-                                                    : 0;
-                                    default -> throw new IndexOutOfBoundsException(index);
-                                };
-                            }
-
-                            @Override
-                            public void set(int index, int value) {
-                                /* Server owns machine state. */
-                            }
-
-                            @Override
-                            public int getCount() {
-                                return 15;
-                            }
-                        };
-        if (kind == MachineKind.GENERATOR) {
+                        ? new SimpleContainerData(MachineMenuData.SIZE)
+                        : new MachineMenuData(machine);
+        if (kind.storage()) {
+            addBatterySlot(inventory, 0, 56, 17);
+            addBatterySlot(inventory, 1, 56, 53);
+        } else if (kind.transformer()) {
+            // Transformers have no inventory.
+        } else if (kind == MachineKind.GENERATOR) {
             addSlot(
                     new ResourceHandlerSlot(inventory, inventory::set, 0, 56, 53) {
                         @Override
@@ -225,17 +179,22 @@ public final class MachineMenu extends AbstractContainerMenu {
 
     @Override
     public boolean clickMenuButton(Player player, int id) {
-        if (player.containerMenu != this
-                || !stillValid(player)
-                || !(machine instanceof CannerBlockEntity canner)) return false;
-        if (id >= 0 && id < CannerMode.values().length) {
-            canner.setMode(CannerMode.byId(id));
-            return true;
-        }
-        return id == 5 && canner.swapTanks();
+        return player.containerMenu == this
+                && stillValid(player)
+                && machine != null
+                && machine.menuAction(id);
+    }
+
+    public int familyValue(int index) {
+        return data.get(10 + Objects.checkIndex(index, 5));
     }
 
     private int preferredSlot(ItemStack stack, Player player) {
+        if (kind.transformer()) return -1;
+        if (kind.storage())
+            return stack.getItem() instanceof ElectricItem
+                    ? (ElectricItemEnergy.charge(stack) > 0 ? 1 : 0)
+                    : -1;
         if (stack.getItem() instanceof ElectricItem) return kind == MachineKind.GENERATOR ? 1 : 2;
         if (kind == MachineKind.IRON_FURNACE
                 && stack.getBurnTime(RecipeType.SMELTING, player.level().fuelValues()) > 0)
@@ -269,8 +228,12 @@ public final class MachineMenu extends AbstractContainerMenu {
         var original = stack.copy();
         if (index < machineSlots) {
             if (!moveItemStackTo(stack, machineSlots, slots.size(), true)) return ItemStack.EMPTY;
-        } else if (!moveItemStackTo(
-                stack, preferredSlot(stack, player), preferredSlot(stack, player) + 1, false)) {
+        } else if (preferredSlot(stack, player) < 0
+                || !moveItemStackTo(
+                        stack,
+                        preferredSlot(stack, player),
+                        preferredSlot(stack, player) + 1,
+                        false)) {
             int hotbar = machineSlots + 27;
             if (!moveItemStackTo(
                     stack,

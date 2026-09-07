@@ -1,0 +1,18 @@
+{
+  "type": "ic2:shaped",
+  "pattern": [
+    " c ",
+    "CED",
+    " c "
+  ],
+  "result": {
+    "id": "ic2:ev_transformer",
+    "count": 1
+  },
+  "key": {
+    "E": "ic2:hv_transformer",
+    "c": "ic2:triple_insulated_iron_cable",
+    "D": "ic2:lapotron_crystal",
+    "C": "ic2:advanced_circuit"
+  }
+}

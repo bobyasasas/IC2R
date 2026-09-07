@@ -31,7 +31,9 @@ public final class IndustrialCraftClient {
     private static void registerScreens(RegisterMenuScreensEvent event) {
         ModMachines.MACHINES.forEach(
                 (kind, registration) -> {
-                    if (kind == MachineKind.CANNER)
+                    if (kind.energyDevice())
+                        event.register(registration.menu().get(), EnergyDeviceScreen::new);
+                    else if (kind == MachineKind.CANNER)
                         event.register(registration.menu().get(), CannerScreen::new);
                     else event.register(registration.menu().get(), MachineScreen::new);
                 });

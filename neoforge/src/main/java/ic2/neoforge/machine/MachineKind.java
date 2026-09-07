@@ -6,6 +6,14 @@ import net.minecraft.util.StringRepresentable;
 
 /** Shared machine specification; UI capacity, inventory size and processing cost derive from it. */
 public enum MachineKind implements StringRepresentable {
+    BATBOX("batbox", 40000, 2, 0, 0),
+    CESU("cesu", 300000, 2, 0, 0),
+    MFE("mfe", 4000000, 2, 0, 0),
+    MFSU("mfsu", 40000000, 2, 0, 0),
+    LV_TRANSFORMER("lv_transformer", 256, 0, 0, 0),
+    MV_TRANSFORMER("mv_transformer", 1024, 0, 0, 0),
+    HV_TRANSFORMER("hv_transformer", 4096, 0, 0, 0),
+    EV_TRANSFORMER("ev_transformer", 16384, 0, 0, 0),
     IRON_FURNACE("iron_furnace", 0, 3, 160, 0),
     CANNER("canner", 800, 4, 200, 4),
     GENERATOR("generator", 4000, 2, 0, 0),
@@ -30,6 +38,34 @@ public enum MachineKind implements StringRepresentable {
     @Override
     public String getSerializedName() {
         return id;
+    }
+
+    public boolean storage() {
+        return switch (this) {
+            case BATBOX, CESU, MFE, MFSU -> true;
+            default -> false;
+        };
+    }
+
+    public boolean transformer() {
+        return switch (this) {
+            case LV_TRANSFORMER, MV_TRANSFORMER, HV_TRANSFORMER, EV_TRANSFORMER -> true;
+            default -> false;
+        };
+    }
+
+    public boolean energyDevice() {
+        return storage() || transformer();
+    }
+
+    public int electricalTier() {
+        return switch (this) {
+            case BATBOX, LV_TRANSFORMER -> 1;
+            case CESU, MV_TRANSFORMER -> 2;
+            case MFE, HV_TRANSFORMER -> 3;
+            case MFSU, EV_TRANSFORMER -> 4;
+            default -> 1;
+        };
     }
 
     public int capacity() {

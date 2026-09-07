@@ -47,6 +47,7 @@ public class MachineScreen extends AbstractContainerScreen<MachineMenu> {
                                 48);
         graphics.fill(x + 25, y + 18, x + 37, y + 68, 0xff373737);
         graphics.fill(x + 26, y + 67 - energyHeight, x + 36, y + 67, 0xffe9ae23);
+        if (menu.kind().energyDevice()) return;
         int progressWidth =
                 menu.progressMaximum() <= 0
                         ? 0

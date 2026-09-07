@@ -61,6 +61,17 @@ public abstract class MachineBlockEntity extends BlockEntity implements MenuProv
 
     public void awardExperience(Player player) {}
 
+    /**
+     * Five family-specific menu values; common energy/progress/fuel fields live in MachineMenuData.
+     */
+    public int menuValue(int index) {
+        return 0;
+    }
+
+    public boolean menuAction(int id) {
+        return false;
+    }
+
     protected final void setActive(boolean active) {
         if (level != null && getBlockState().getValue(MachineBlock.ACTIVE) != active) {
             level.setBlock(worldPosition, getBlockState().setValue(MachineBlock.ACTIVE, active), 3);

@@ -92,6 +92,9 @@ public final class ModMachines {
     public static MachineBlockEntity createEntity(
             MachineKind kind, BlockPos pos, BlockState state) {
         return switch (kind) {
+            case BATBOX, CESU, MFE, MFSU -> new EnergyStorageBlockEntity(pos, state);
+            case LV_TRANSFORMER, MV_TRANSFORMER, HV_TRANSFORMER, EV_TRANSFORMER ->
+                    new TransformerBlockEntity(pos, state);
             case IRON_FURNACE -> new IronFurnaceBlockEntity(pos, state);
             case CANNER -> new CannerBlockEntity(pos, state);
             case GENERATOR -> new GeneratorBlockEntity(pos, state);
