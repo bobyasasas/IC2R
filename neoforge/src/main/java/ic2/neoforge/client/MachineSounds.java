@@ -90,6 +90,7 @@ final class MachineSounds {
             case GEO_GENERATOR, SEMIFLUID_GENERATOR -> ModSounds.GENERATOR_GEOTHERMAL_LOOP.get();
             case GENERATOR -> ModSounds.GENERATOR_GENERATOR_LOOP.get();
             case ELECTRIC_FURNACE -> ModSounds.MACHINE_FURNACE_ELECTRIC_LOOP.get();
+            case INDUCTION_FURNACE -> ModSounds.MACHINE_FURNACE_INDUCTION_LOOP.get();
             case RECYCLER -> ModSounds.MACHINE_RECYCLER_OPERATE.get();
             case MACERATOR -> ModSounds.MACHINE_MACERATOR_OPERATE.get();
             case EXTRACTOR -> ModSounds.MACHINE_EXTRACTOR_OPERATE.get();

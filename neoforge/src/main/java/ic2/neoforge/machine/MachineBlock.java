@@ -177,15 +177,16 @@ public final class MachineBlock extends BaseEntityBlock {
 
     @Override
     protected boolean hasAnalogOutputSignal(BlockState state) {
-        return kind.storage();
+        return kind.storage() || kind == MachineKind.INDUCTION_FURNACE;
     }
 
     @Override
     protected int getAnalogOutputSignal(
             BlockState state, Level level, BlockPos pos, Direction side) {
-        return level.getBlockEntity(pos) instanceof EnergyStorageBlockEntity storage
-                ? storage.comparator()
-                : 0;
+        var machine = level.getBlockEntity(pos);
+        if (machine instanceof EnergyStorageBlockEntity storage) return storage.comparator();
+        if (machine instanceof InductionFurnaceBlockEntity furnace) return furnace.comparator();
+        return 0;
     }
 
     @Override

@@ -61,8 +61,9 @@ public final class IndustrialCraftClient {
                         event.register(registration.menu().get(), GeneratorScreen::new);
                     else if (kind == MachineKind.ORE_WASHING_PLANT)
                         event.register(registration.menu().get(), OreWashingScreen::new);
-                    else if (kind == MachineKind.CENTRIFUGE)
-                        event.register(registration.menu().get(), CentrifugeScreen::new);
+                    else if (kind == MachineKind.CENTRIFUGE
+                            || kind == MachineKind.INDUCTION_FURNACE)
+                        event.register(registration.menu().get(), HeatedMachineScreen::new);
                     else if (kind == MachineKind.METAL_FORMER)
                         event.register(registration.menu().get(), MetalFormerScreen::new);
                     else if (kind == MachineKind.CANNER)

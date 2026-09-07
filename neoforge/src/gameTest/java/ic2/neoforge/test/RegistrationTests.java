@@ -83,6 +83,9 @@ public final class RegistrationTests {
         FUNCTIONS.register("recycler_probability", () -> RecyclerTests::deterministicChance);
         FUNCTIONS.register("recycler_persistence", () -> RecyclerTests::persistenceAndBlocking);
         FUNCTIONS.register("recycler_components", () -> RecyclerTests::inputComponents);
+        FUNCTIONS.register("induction_two_rows", () -> InductionTests::twoRowsPersistence);
+        FUNCTIONS.register("induction_blocked_row", () -> InductionTests::blockedRow);
+        FUNCTIONS.register("induction_menu_upgrades", () -> InductionTests::menuAndUpgrades);
         FUNCTIONS.register("loaded_recipes", () -> ProcessingTests::loadedRecipes);
         FUNCTIONS.register("processing_machines", () -> ProcessingTests::processing);
         FUNCTIONS.register("weighted_persistence", () -> ProcessingTests::weightedPersistence);

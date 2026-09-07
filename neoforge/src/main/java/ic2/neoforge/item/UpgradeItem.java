@@ -35,6 +35,7 @@ public final class UpgradeItem extends Item {
         }
 
         public boolean suitable(MachineKind machine) {
+            if (machine == MachineKind.INDUCTION_FURNACE) return this == EJECTOR || this == PULLING;
             return machine.upgradable()
                     && (!fluid()
                             || machine == MachineKind.CANNER

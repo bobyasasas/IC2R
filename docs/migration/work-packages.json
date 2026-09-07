@@ -86,13 +86,14 @@
       "parent": "M11",
       "title": "金属及高阶加工",
       "status": "in_progress",
-      "acceptance": "金属成型、洗矿、离心及回收已验证；感应炉、离心机合成和核材料、铁栅栏待迁移。",
+      "acceptance": "金属成型、洗矿、离心、回收与感应炉主体已验证；离心机合成、核材料、铁栅栏、完整升级与多人验收待完成。",
       "evidence": [
         "docs/migration/metal-former-toolbox.md",
         "neoforge/src/gameTest/java/ic2/neoforge/test/MetalFormerTests.java",
         "docs/migration/ore-washing.md",
         "docs/migration/centrifuge.md",
-        "docs/migration/recycler.md"
+        "docs/migration/recycler.md",
+        "docs/migration/induction-furnace.md"
       ]
     },
     {

@@ -97,7 +97,7 @@ public final class MachineMenu extends AbstractContainerMenu {
                                             || kind == MachineKind.CENTRIFUGE)
                                     ? 110
                                     : 116,
-                            35) {
+                            kind == MachineKind.INDUCTION_FURNACE ? 17 : 35) {
                         @Override
                         public boolean mayPlace(ItemStack stack) {
                             return false;
@@ -138,10 +138,14 @@ public final class MachineMenu extends AbstractContainerMenu {
                     });
             addOutputSlot(inventory, 6, 146, 53);
         }
+        if (kind == MachineKind.INDUCTION_FURNACE) {
+            addSlot(new ResourceHandlerSlot(inventory, inventory::set, 3, 56, 35));
+            addOutputSlot(inventory, 4, 116, 35);
+        }
         if (kind == MachineKind.CANNER)
             addSlot(new ResourceHandlerSlot(inventory, inventory::set, 3, 92, 17));
         if (kind.upgradable()) {
-            for (int index = 0; index < 4; index++) {
+            for (int index = 0; index < kind.upgradeSlots(); index++) {
                 addSlot(
                         new ResourceHandlerSlot(
                                 inventory,
@@ -167,6 +171,12 @@ public final class MachineMenu extends AbstractContainerMenu {
                     @Override
                     public boolean mayPlace(ItemStack stack) {
                         return false;
+                    }
+
+                    @Override
+                    public void onTake(Player player, ItemStack stack) {
+                        super.onTake(player, stack);
+                        if (machine != null) machine.awardExperience(player);
                     }
                 });
     }
@@ -280,6 +290,23 @@ public final class MachineMenu extends AbstractContainerMenu {
                         ModMachines.block(kind));
     }
 
+    private boolean moveIntoMachine(ItemStack stack, Player player) {
+        int preferred = preferredSlot(stack, player);
+        if (preferred < 0) return false;
+        boolean moved =
+                moveItemStackTo(
+                        stack,
+                        preferred,
+                        preferred
+                                + (kind.upgradable() && preferred == kind.upgradeStart()
+                                        ? kind.upgradeSlots()
+                                        : 1),
+                        false);
+        if (kind == MachineKind.INDUCTION_FURNACE && preferred == 0 && !stack.isEmpty())
+            moved |= moveItemStackTo(stack, 3, 4, false);
+        return moved;
+    }
+
     @Override
     public ItemStack quickMoveStack(Player player, int index) {
         if (index < 0 || index >= slots.size()) return ItemStack.EMPTY;
@@ -289,17 +316,7 @@ public final class MachineMenu extends AbstractContainerMenu {
         var original = stack.copy();
         if (index < machineSlots) {
             if (!moveItemStackTo(stack, machineSlots, slots.size(), true)) return ItemStack.EMPTY;
-        } else if (preferredSlot(stack, player) < 0
-                || !moveItemStackTo(
-                        stack,
-                        preferredSlot(stack, player),
-                        preferredSlot(stack, player)
-                                + (kind.upgradable()
-                                                && preferredSlot(stack, player)
-                                                        == kind.upgradeStart()
-                                        ? 4
-                                        : 1),
-                        false)) {
+        } else if (!moveIntoMachine(stack, player)) {
             int hotbar = machineSlots + 27;
             if (!moveItemStackTo(
                     stack,

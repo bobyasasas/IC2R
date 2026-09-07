@@ -2775,8 +2775,8 @@
     {
       "source": "shaped/induction_furnace.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:induction_furnace"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/induction_furnace.json"
     },
     {
       "source": "shaped/industrial_workbench.json",

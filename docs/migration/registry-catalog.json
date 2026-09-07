@@ -1939,7 +1939,12 @@
       "factory": "register",
       "expression": "new ItemBlockIc2(Ic2Blocks.INDUCTION_FURNACE, new Properties().rarity(Rarity.UNCOMMON))",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/induction-furnace.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/InductionTests.java"
+      ],
+      "note": "双路熔炼、温度、电量与进度重载已验证；红石升级及多人整体验收待完成。"
     },
     {
       "registry": "item",
@@ -7413,7 +7418,12 @@
       "factory": "register",
       "expression": "Ic2TileEntityBlock.create(Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).strength(2.0F, 10.0F).requiresCorrectToolForDrops().sound(SoundType.METAL), TileEntityInduction.class, true, Ic2TileEntityBlock.DefaultDrop.AdvMachine, Util.horizontalFacings, true)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/induction-furnace.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/InductionTests.java"
+      ],
+      "note": "双路熔炼、温度、电量与进度重载已验证；红石升级及多人整体验收待完成。"
     },
     {
       "registry": "block",
@@ -10120,7 +10130,12 @@
       "factory": "register",
       "expression": "TileEntityInduction::new",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/induction-furnace.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/InductionTests.java"
+      ],
+      "note": "双路熔炼、温度、电量与进度重载已验证；红石升级及多人整体验收待完成。"
     },
     {
       "registry": "block_entity",

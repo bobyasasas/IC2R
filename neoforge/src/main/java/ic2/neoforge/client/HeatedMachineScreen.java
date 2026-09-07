@@ -9,8 +9,8 @@ import net.minecraft.world.item.ItemStack;
 
 import java.util.List;
 
-public final class CentrifugeScreen extends MachineScreen {
-    public CentrifugeScreen(MachineMenu menu, Inventory inventory, Component title) {
+public final class HeatedMachineScreen extends MachineScreen {
+    public HeatedMachineScreen(MachineMenu menu, Inventory inventory, Component title) {
         super(menu, inventory, title);
     }
 

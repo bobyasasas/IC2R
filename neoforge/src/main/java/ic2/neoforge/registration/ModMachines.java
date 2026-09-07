@@ -102,6 +102,7 @@ public final class ModMachines {
             case GENERATOR -> new GeneratorBlockEntity(pos, state);
             case ELECTRIC_FURNACE -> new ElectricFurnaceBlockEntity(pos, state);
             case ORE_WASHING_PLANT -> new OreWashingBlockEntity(pos, state);
+            case INDUCTION_FURNACE -> new InductionFurnaceBlockEntity(pos, state);
             case RECYCLER -> new RecyclerBlockEntity(pos, state);
             case CENTRIFUGE -> new CentrifugeBlockEntity(pos, state);
             case METAL_FORMER -> new MetalFormerBlockEntity(pos, state);

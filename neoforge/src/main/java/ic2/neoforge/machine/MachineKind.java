@@ -21,6 +21,7 @@ public enum MachineKind implements StringRepresentable {
     SEMIFLUID_GENERATOR("semifluid_generator", 32000, 3, 0, 0),
     GENERATOR("generator", 4000, 2, 0, 0),
     ELECTRIC_FURNACE("electric_furnace", 300, 3, 100, 3),
+    INDUCTION_FURNACE("induction_furnace", 10000, 5, 4000, 0),
     RECYCLER("recycler", 45, 3, 45, 1),
     CENTRIFUGE("centrifuge", 24000, 5, 500, 48),
     ORE_WASHING_PLANT("ore_washing_plant", 8000, 7, 500, 16),
@@ -76,7 +77,7 @@ public enum MachineKind implements StringRepresentable {
     public int electricalTier() {
         return switch (this) {
             case BATBOX, LV_TRANSFORMER -> 1;
-            case CESU, MV_TRANSFORMER, CENTRIFUGE -> 2;
+            case CESU, MV_TRANSFORMER, CENTRIFUGE, INDUCTION_FURNACE -> 2;
             case MFE, HV_TRANSFORMER -> 3;
             case MFSU, EV_TRANSFORMER -> 4;
             default -> 1;
@@ -92,7 +93,11 @@ public enum MachineKind implements StringRepresentable {
     }
 
     public boolean upgradable() {
-        return euPerTick > 0;
+        return upgradeSlots() > 0;
+    }
+
+    public int upgradeSlots() {
+        return this == INDUCTION_FURNACE ? 2 : euPerTick > 0 ? 4 : 0;
     }
 
     public int upgradeStart() {
@@ -100,7 +105,7 @@ public enum MachineKind implements StringRepresentable {
     }
 
     public int slots() {
-        return slots + (upgradable() ? 4 : 0);
+        return slots + upgradeSlots();
     }
 
     public int ticks() {

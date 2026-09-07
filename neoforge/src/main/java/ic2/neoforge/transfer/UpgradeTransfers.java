@@ -2,7 +2,7 @@ package ic2.neoforge.transfer;
 
 import ic2.neoforge.item.UpgradeItem;
 import ic2.neoforge.machine.FluidMachine;
-import ic2.neoforge.machine.UpgradeableBlockEntity;
+import ic2.neoforge.machine.MachineBlockEntity;
 
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
@@ -11,7 +11,7 @@ import net.neoforged.neoforge.transfer.ResourceHandlerUtil;
 
 /** Uses the same sided ports as external automation, with native transfer rollback. */
 public final class UpgradeTransfers {
-    public static void tick(ServerLevel level, UpgradeableBlockEntity machine) {
+    public static void tick(ServerLevel level, MachineBlockEntity machine) {
         var inventory = machine.inventory();
         for (int slot = machine.kind().upgradeStart(); slot < inventory.size(); slot++) {
             var stack = inventory.stack(slot);
