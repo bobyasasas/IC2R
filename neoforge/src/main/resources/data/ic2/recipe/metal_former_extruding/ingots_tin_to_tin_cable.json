@@ -1,0 +1,14 @@
+{
+  "type": "ic2:metal_former_extruding",
+  "ingredient": "#c:ingots/tin",
+  "input_count": 1,
+  "results": [
+    {
+      "stack": {
+        "id": "ic2:tin_cable",
+        "count": 3
+      },
+      "weight": 1
+    }
+  ]
+}

@@ -3,6 +3,7 @@ package ic2.neoforge.test;
 import com.google.gson.JsonParser;
 import com.mojang.serialization.JsonOps;
 
+import ic2.core.recipe.ProcessingMethod;
 import ic2.neoforge.machine.MachineKind;
 import ic2.neoforge.machine.SingleInputBlockEntity;
 import ic2.neoforge.recipe.ProcessingRecipe;
@@ -143,13 +144,13 @@ final class ProcessingTests {
     static void recipeCodec(GameTestHelper helper) {
         var original =
                 new ProcessingRecipe(
-                        MachineKind.COMPRESSOR,
+                        ProcessingMethod.COMPRESSOR,
                         Ingredient.of(Items.ICE),
                         2,
                         List.of(
                                 new ProcessingRecipe.Output(
                                         new ItemStackTemplate(Items.PACKED_ICE), 1)));
-        var codec = ProcessingRecipe.codec(MachineKind.COMPRESSOR).codec();
+        var codec = ProcessingRecipe.codec(ProcessingMethod.COMPRESSOR).codec();
         var ops = helper.getLevel().registryAccess().createSerializationContext(JsonOps.INSTANCE);
         var encoded = codec.encodeStart(ops, original).getOrThrow();
         var decoded = codec.parse(ops, encoded).getOrThrow();
@@ -159,7 +160,7 @@ final class ProcessingTests {
         var buffer =
                 new RegistryFriendlyByteBuf(Unpooled.buffer(), helper.getLevel().registryAccess());
         try {
-            var streamCodec = ProcessingRecipe.streamCodec(MachineKind.COMPRESSOR);
+            var streamCodec = ProcessingRecipe.streamCodec(ProcessingMethod.COMPRESSOR);
             streamCodec.encode(buffer, original);
             var network = streamCodec.decode(buffer);
             helper.assertTrue(

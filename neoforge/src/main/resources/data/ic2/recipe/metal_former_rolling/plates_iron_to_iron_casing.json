@@ -1,0 +1,14 @@
+{
+  "type": "ic2:metal_former_rolling",
+  "ingredient": "#c:plates/iron",
+  "input_count": 1,
+  "results": [
+    {
+      "stack": {
+        "id": "ic2:iron_casing",
+        "count": 2
+      },
+      "weight": 1
+    }
+  ]
+}

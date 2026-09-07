@@ -1,0 +1,14 @@
+{
+  "type": "ic2:metal_former_extruding",
+  "ingredient": "#c:plates/iron",
+  "input_count": 1,
+  "results": [
+    {
+      "stack": {
+        "id": "ic2:fuel_rod",
+        "count": 1
+      },
+      "weight": 1
+    }
+  ]
+}

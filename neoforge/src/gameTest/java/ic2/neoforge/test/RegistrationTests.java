@@ -66,6 +66,11 @@ public final class RegistrationTests {
         FUNCTIONS.register("crafting_charge", () -> CraftingTests::charge);
         FUNCTIONS.register("crafting_remainders", () -> CraftingTests::remainder);
 
+        FUNCTIONS.register("toolbox_storage", () -> ToolboxTests::storage);
+        FUNCTIONS.register("toolbox_menu_binding", () -> ToolboxTests::menuBinding);
+        FUNCTIONS.register("toolbox_crafting", () -> ToolboxTests::crafting);
+        FUNCTIONS.register("metal_former_modes", () -> MetalFormerTests::modes);
+        FUNCTIONS.register("metal_former_persistence", () -> MetalFormerTests::persistence);
         FUNCTIONS.register("loaded_recipes", () -> ProcessingTests::loadedRecipes);
         FUNCTIONS.register("processing_machines", () -> ProcessingTests::processing);
         FUNCTIONS.register("weighted_persistence", () -> ProcessingTests::weightedPersistence);

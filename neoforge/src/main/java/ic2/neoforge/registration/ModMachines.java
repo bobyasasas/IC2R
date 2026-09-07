@@ -101,6 +101,7 @@ public final class ModMachines {
             case GEO_GENERATOR, SEMIFLUID_GENERATOR -> new FluidGeneratorBlockEntity(pos, state);
             case GENERATOR -> new GeneratorBlockEntity(pos, state);
             case ELECTRIC_FURNACE -> new ElectricFurnaceBlockEntity(pos, state);
+            case METAL_FORMER -> new MetalFormerBlockEntity(pos, state);
             case MACERATOR, EXTRACTOR, COMPRESSOR -> new SingleInputBlockEntity(pos, state);
         };
     }

@@ -1,0 +1,15 @@
+{
+  "type": "ic2:shaped",
+  "pattern": [
+    "ICI",
+    "III"
+  ],
+  "result": {
+    "id": "ic2:tool_box",
+    "count": 1
+  },
+  "key": {
+    "C": "#c:chests/wooden",
+    "I": "ic2:bronze_casing"
+  }
+}

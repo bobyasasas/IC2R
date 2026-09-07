@@ -4,7 +4,7 @@ import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 
-import ic2.neoforge.machine.MachineKind;
+import ic2.core.recipe.ProcessingMethod;
 import ic2.neoforge.registration.ModProcessingRecipes;
 
 import net.minecraft.network.RegistryFriendlyByteBuf;
@@ -21,7 +21,7 @@ import java.util.Objects;
 
 /** Immutable counted-input recipe with explicit weighted outcomes. */
 public record ProcessingRecipe(
-        MachineKind kind, Ingredient ingredient, int inputCount, List<Output> outputs)
+        ProcessingMethod method, Ingredient ingredient, int inputCount, List<Output> outputs)
         implements Recipe<SingleRecipeInput> {
     public record Output(ItemStackTemplate stack, int weight) {
         public static final Codec<Output> CODEC =
@@ -51,14 +51,14 @@ public record ProcessingRecipe(
     }
 
     public ProcessingRecipe {
-        Objects.requireNonNull(kind);
+        Objects.requireNonNull(method);
         Objects.requireNonNull(ingredient);
         outputs = List.copyOf(outputs);
         if (inputCount < 1 || inputCount > 64 || outputs.isEmpty() || outputs.size() > 64)
             throw new IllegalArgumentException("Invalid processing recipe bounds");
     }
 
-    public static MapCodec<ProcessingRecipe> codec(MachineKind kind) {
+    public static MapCodec<ProcessingRecipe> codec(ProcessingMethod method) {
         return RecordCodecBuilder.mapCodec(
                 instance ->
                         instance.group(
@@ -76,11 +76,11 @@ public record ProcessingRecipe(
                                         instance,
                                         (ingredient, count, outputs) ->
                                                 new ProcessingRecipe(
-                                                        kind, ingredient, count, outputs)));
+                                                        method, ingredient, count, outputs)));
     }
 
     public static StreamCodec<RegistryFriendlyByteBuf, ProcessingRecipe> streamCodec(
-            MachineKind kind) {
+            ProcessingMethod method) {
         return StreamCodec.composite(
                 Ingredient.CONTENTS_STREAM_CODEC,
                 ProcessingRecipe::ingredient,
@@ -89,7 +89,7 @@ public record ProcessingRecipe(
                 Output.STREAM_CODEC.apply(ByteBufCodecs.list(64)),
                 ProcessingRecipe::outputs,
                 (ingredient, count, outputs) ->
-                        new ProcessingRecipe(kind, ingredient, count, outputs));
+                        new ProcessingRecipe(method, ingredient, count, outputs));
     }
 
     public ItemStackTemplate chooseOutput(RandomSource random) {
@@ -128,12 +128,12 @@ public record ProcessingRecipe(
 
     @Override
     public RecipeSerializer<ProcessingRecipe> getSerializer() {
-        return ModProcessingRecipes.serializer(kind);
+        return ModProcessingRecipes.serializer(method);
     }
 
     @Override
     public RecipeType<ProcessingRecipe> getType() {
-        return ModProcessingRecipes.type(kind);
+        return ModProcessingRecipes.type(method);
     }
 
     @Override

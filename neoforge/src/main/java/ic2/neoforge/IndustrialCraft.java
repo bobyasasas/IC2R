@@ -14,6 +14,7 @@ import ic2.neoforge.registration.ModMaterialBlocks;
 import ic2.neoforge.registration.ModProcessingRecipes;
 import ic2.neoforge.registration.ModRubberBuilding;
 import ic2.neoforge.registration.ModSounds;
+import ic2.neoforge.registration.ModToolbox;
 import ic2.neoforge.registration.ModTools;
 import ic2.neoforge.registration.ModUpgrades;
 import ic2.neoforge.registration.ModWorldContent;
@@ -36,6 +37,7 @@ public final class IndustrialCraft {
         ModWorldContent.register(modBus);
         ModRubberBuilding.register(modBus);
         ModTools.register(modBus);
+        ModToolbox.register(modBus);
         ModUpgrades.register(modBus);
         ModSounds.register(modBus);
         ModCannerRecipes.register(modBus);

@@ -1939,7 +1939,12 @@
       "factory": "register",
       "expression": "new ItemBlockIc2(Ic2Blocks.METAL_FORMER, new Properties())",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/metal-former-toolbox.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/MetalFormerTests.java"
+      ],
+      "note": "三模式与28条配方已实现；铁栅栏产出及多人整体验收待完成。"
     },
     {
       "registry": "item",
@@ -4683,7 +4688,12 @@
       "factory": "register",
       "expression": "new ItemToolbox(new Properties().stacksTo(1))",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "docs/migration/metal-former-toolbox.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/ToolboxTests.java"
+      ],
+      "note": "九格组件存储及菜单、合成保护已验证。"
     },
     {
       "registry": "item",
@@ -7388,7 +7398,12 @@
       "factory": "register",
       "expression": "Ic2TileEntityBlock.create(Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).strength(2.0F, 10.0F).requiresCorrectToolForDrops().sound(SoundType.METAL), TileEntityMetalFormer.class, true, Ic2TileEntityBlock.DefaultDrop.Machine, Util.horizontalFacings, true)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/metal-former-toolbox.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/MetalFormerTests.java"
+      ],
+      "note": "三模式与28条配方已实现；铁栅栏产出及多人整体验收待完成。"
     },
     {
       "registry": "block",
@@ -10075,7 +10090,12 @@
       "factory": "register",
       "expression": "TileEntityMetalFormer::new",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/metal-former-toolbox.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/MetalFormerTests.java"
+      ],
+      "note": "三模式与28条配方已实现；铁栅栏产出及多人整体验收待完成。"
     },
     {
       "registry": "block_entity",
@@ -10910,7 +10930,12 @@
       "factory": "registerManagedBe",
       "expression": "",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/metal-former-toolbox.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/MetalFormerTests.java"
+      ],
+      "note": "三模式与28条配方已实现；铁栅栏产出及多人整体验收待完成。"
     },
     {
       "registry": "menu",
@@ -11190,7 +11215,12 @@
       "factory": "registerManagedItem",
       "expression": "",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "docs/migration/metal-former-toolbox.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/ToolboxTests.java"
+      ],
+      "note": "九格组件存储及菜单、合成保护已验证。"
     },
     {
       "registry": "menu",
@@ -12223,7 +12253,12 @@
       "factory": "register",
       "expression": "new BasicMachineRecipeSerializer(Ic2RecipeTypes.METAL_FORMER_EXTRUDING, null)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/metal-former-toolbox.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/MetalFormerTests.java"
+      ],
+      "note": "三模式与28条配方已实现；铁栅栏产出及多人整体验收待完成。"
     },
     {
       "registry": "recipe_serializer",
@@ -12233,7 +12268,12 @@
       "factory": "register",
       "expression": "new BasicMachineRecipeSerializer(Ic2RecipeTypes.METAL_FORMER_CUTTING, null)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/metal-former-toolbox.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/MetalFormerTests.java"
+      ],
+      "note": "三模式与28条配方已实现；铁栅栏产出及多人整体验收待完成。"
     },
     {
       "registry": "recipe_serializer",
@@ -12243,7 +12283,12 @@
       "factory": "register",
       "expression": "new BasicMachineRecipeSerializer(Ic2RecipeTypes.METAL_FORMER_ROLLING, null)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/metal-former-toolbox.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/MetalFormerTests.java"
+      ],
+      "note": "三模式与28条配方已实现；铁栅栏产出及多人整体验收待完成。"
     },
     {
       "registry": "recipe_serializer",
@@ -12378,7 +12423,12 @@
       "factory": "register",
       "expression": "",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/metal-former-toolbox.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/MetalFormerTests.java"
+      ],
+      "note": "三模式与28条配方已实现；铁栅栏产出及多人整体验收待完成。"
     },
     {
       "registry": "recipe_type",
@@ -12388,7 +12438,12 @@
       "factory": "register",
       "expression": "",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/metal-former-toolbox.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/MetalFormerTests.java"
+      ],
+      "note": "三模式与28条配方已实现；铁栅栏产出及多人整体验收待完成。"
     },
     {
       "registry": "recipe_type",
@@ -12398,7 +12453,12 @@
       "factory": "register",
       "expression": "",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/metal-former-toolbox.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/MetalFormerTests.java"
+      ],
+      "note": "三模式与28条配方已实现；铁栅栏产出及多人整体验收待完成。"
     },
     {
       "registry": "recipe_type",

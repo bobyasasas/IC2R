@@ -86,7 +86,7 @@ final class MachineSounds {
 
     private static SoundEvent sound(MachineBlockEntity machine) {
         return switch (machine.kind()) {
-            case SOLAR_GENERATOR -> null;
+            case METAL_FORMER, SOLAR_GENERATOR -> null;
             case GEO_GENERATOR, SEMIFLUID_GENERATOR -> ModSounds.GENERATOR_GEOTHERMAL_LOOP.get();
             case GENERATOR -> ModSounds.GENERATOR_GENERATOR_LOOP.get();
             case ELECTRIC_FURNACE -> ModSounds.MACHINE_FURNACE_ELECTRIC_LOOP.get();

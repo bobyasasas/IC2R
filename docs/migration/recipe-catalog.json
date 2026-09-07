@@ -1791,176 +1791,176 @@
     {
       "source": "metal_former_cutting/iron_casing_to_coin.json",
       "type": "ic2:metal_former_cutting",
-      "status": "pending",
-      "reason": "recipe family not ported"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/metal_former_cutting/iron_casing_to_coin.json"
     },
     {
       "source": "metal_former_cutting/plates_copper_to_copper_cable.json",
       "type": "ic2:metal_former_cutting",
-      "status": "pending",
-      "reason": "recipe family not ported"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/metal_former_cutting/plates_copper_to_copper_cable.json"
     },
     {
       "source": "metal_former_cutting/plates_gold_to_gold_cable.json",
       "type": "ic2:metal_former_cutting",
-      "status": "pending",
-      "reason": "recipe family not ported"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/metal_former_cutting/plates_gold_to_gold_cable.json"
     },
     {
       "source": "metal_former_cutting/plates_iron_to_iron_cable.json",
       "type": "ic2:metal_former_cutting",
-      "status": "pending",
-      "reason": "recipe family not ported"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/metal_former_cutting/plates_iron_to_iron_cable.json"
     },
     {
       "source": "metal_former_cutting/plates_tin_to_tin_cable.json",
       "type": "ic2:metal_former_cutting",
-      "status": "pending",
-      "reason": "recipe family not ported"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/metal_former_cutting/plates_tin_to_tin_cable.json"
     },
     {
       "source": "metal_former_extruding/blocks_bronze_to_bronze_shaft.json",
       "type": "ic2:metal_former_extruding",
-      "status": "pending",
-      "reason": "recipe family not ported"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/metal_former_extruding/blocks_bronze_to_bronze_shaft.json"
     },
     {
       "source": "metal_former_extruding/blocks_steel_to_steel_shaft.json",
       "type": "ic2:metal_former_extruding",
-      "status": "pending",
-      "reason": "recipe family not ported"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/metal_former_extruding/blocks_steel_to_steel_shaft.json"
     },
     {
       "source": "metal_former_extruding/copper_ingot_to_copper_cable.json",
       "type": "ic2:metal_former_extruding",
-      "status": "pending",
-      "reason": "recipe family not ported"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/metal_former_extruding/copper_ingot_to_copper_cable.json"
     },
     {
       "source": "metal_former_extruding/gold_ingot_to_gold_cable.json",
       "type": "ic2:metal_former_extruding",
-      "status": "pending",
-      "reason": "recipe family not ported"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/metal_former_extruding/gold_ingot_to_gold_cable.json"
     },
     {
       "source": "metal_former_extruding/ingots_tin_to_tin_cable.json",
       "type": "ic2:metal_former_extruding",
-      "status": "pending",
-      "reason": "recipe family not ported"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/metal_former_extruding/ingots_tin_to_tin_cable.json"
     },
     {
       "source": "metal_former_extruding/iron_block_to_iron_shaft.json",
       "type": "ic2:metal_former_extruding",
-      "status": "pending",
-      "reason": "recipe family not ported"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/metal_former_extruding/iron_block_to_iron_shaft.json"
     },
     {
       "source": "metal_former_extruding/iron_casing_to_iron_fence.json",
       "type": "ic2:metal_former_extruding",
       "status": "pending",
-      "reason": "recipe family not ported"
+      "reason": "unported result ic2:iron_fence"
     },
     {
       "source": "metal_former_extruding/iron_ingot_to_iron_cable.json",
       "type": "ic2:metal_former_extruding",
-      "status": "pending",
-      "reason": "recipe family not ported"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/metal_former_extruding/iron_ingot_to_iron_cable.json"
     },
     {
       "source": "metal_former_extruding/plates_iron_to_fuel_rod.json",
       "type": "ic2:metal_former_extruding",
-      "status": "pending",
-      "reason": "recipe family not ported"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/metal_former_extruding/plates_iron_to_fuel_rod.json"
     },
     {
       "source": "metal_former_extruding/tin_casing_to_tin_can.json",
       "type": "ic2:metal_former_extruding",
-      "status": "pending",
-      "reason": "recipe family not ported"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/metal_former_extruding/tin_casing_to_tin_can.json"
     },
     {
       "source": "metal_former_rolling/copper_ingot_to_copper_plate.json",
       "type": "ic2:metal_former_rolling",
-      "status": "pending",
-      "reason": "recipe family not ported"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/metal_former_rolling/copper_ingot_to_copper_plate.json"
     },
     {
       "source": "metal_former_rolling/gold_ingot_to_gold_plate.json",
       "type": "ic2:metal_former_rolling",
-      "status": "pending",
-      "reason": "recipe family not ported"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/metal_former_rolling/gold_ingot_to_gold_plate.json"
     },
     {
       "source": "metal_former_rolling/ingots_bronze_to_bronze_plate.json",
       "type": "ic2:metal_former_rolling",
-      "status": "pending",
-      "reason": "recipe family not ported"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/metal_former_rolling/ingots_bronze_to_bronze_plate.json"
     },
     {
       "source": "metal_former_rolling/ingots_lead_to_lead_plate.json",
       "type": "ic2:metal_former_rolling",
-      "status": "pending",
-      "reason": "recipe family not ported"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/metal_former_rolling/ingots_lead_to_lead_plate.json"
     },
     {
       "source": "metal_former_rolling/ingots_steel_to_steel_plate.json",
       "type": "ic2:metal_former_rolling",
-      "status": "pending",
-      "reason": "recipe family not ported"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/metal_former_rolling/ingots_steel_to_steel_plate.json"
     },
     {
       "source": "metal_former_rolling/ingots_tin_to_tin_plate.json",
       "type": "ic2:metal_former_rolling",
-      "status": "pending",
-      "reason": "recipe family not ported"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/metal_former_rolling/ingots_tin_to_tin_plate.json"
     },
     {
       "source": "metal_former_rolling/iron_ingot_to_iron_plate.json",
       "type": "ic2:metal_former_rolling",
-      "status": "pending",
-      "reason": "recipe family not ported"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/metal_former_rolling/iron_ingot_to_iron_plate.json"
     },
     {
       "source": "metal_former_rolling/plates_bronze_to_bronze_casing.json",
       "type": "ic2:metal_former_rolling",
-      "status": "pending",
-      "reason": "recipe family not ported"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/metal_former_rolling/plates_bronze_to_bronze_casing.json"
     },
     {
       "source": "metal_former_rolling/plates_copper_to_copper_casing.json",
       "type": "ic2:metal_former_rolling",
-      "status": "pending",
-      "reason": "recipe family not ported"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/metal_former_rolling/plates_copper_to_copper_casing.json"
     },
     {
       "source": "metal_former_rolling/plates_gold_to_gold_casing.json",
       "type": "ic2:metal_former_rolling",
-      "status": "pending",
-      "reason": "recipe family not ported"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/metal_former_rolling/plates_gold_to_gold_casing.json"
     },
     {
       "source": "metal_former_rolling/plates_iron_to_iron_casing.json",
       "type": "ic2:metal_former_rolling",
-      "status": "pending",
-      "reason": "recipe family not ported"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/metal_former_rolling/plates_iron_to_iron_casing.json"
     },
     {
       "source": "metal_former_rolling/plates_lead_to_lead_casing.json",
       "type": "ic2:metal_former_rolling",
-      "status": "pending",
-      "reason": "recipe family not ported"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/metal_former_rolling/plates_lead_to_lead_casing.json"
     },
     {
       "source": "metal_former_rolling/plates_steel_to_steel_casing.json",
       "type": "ic2:metal_former_rolling",
-      "status": "pending",
-      "reason": "recipe family not ported"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/metal_former_rolling/plates_steel_to_steel_casing.json"
     },
     {
       "source": "metal_former_rolling/plates_tin_to_tin_casing.json",
       "type": "ic2:metal_former_rolling",
-      "status": "pending",
-      "reason": "recipe family not ported"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/metal_former_rolling/plates_tin_to_tin_casing.json"
     },
     {
       "source": "ore_washer/crushed_copper_to_purified_copper.json",
@@ -3021,8 +3021,8 @@
     {
       "source": "shaped/metal_former.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:metal_former"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/metal_former.json"
     },
     {
       "source": "shaped/meter.json",
@@ -3939,8 +3939,8 @@
     {
       "source": "shaped/tool_box.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:tool_box"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/tool_box.json"
     },
     {
       "source": "shaped/torch.json",

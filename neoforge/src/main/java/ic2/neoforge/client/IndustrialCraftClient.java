@@ -10,6 +10,7 @@ import ic2.neoforge.item.WrenchTool;
 import ic2.neoforge.machine.MachineKind;
 import ic2.neoforge.registration.ModMachines;
 import ic2.neoforge.registration.ModRubberBuilding;
+import ic2.neoforge.registration.ModToolbox;
 import ic2.neoforge.registration.ModWorldContent;
 
 import net.minecraft.client.Minecraft;
@@ -51,12 +52,15 @@ public final class IndustrialCraftClient {
     }
 
     private static void registerScreens(RegisterMenuScreensEvent event) {
+        event.register(ModToolbox.MENU.get(), ToolboxScreen::new);
         ModMachines.MACHINES.forEach(
                 (kind, registration) -> {
                     if (kind.energyDevice())
                         event.register(registration.menu().get(), EnergyDeviceScreen::new);
                     else if (kind.fluidGenerator() || kind == MachineKind.SOLAR_GENERATOR)
                         event.register(registration.menu().get(), GeneratorScreen::new);
+                    else if (kind == MachineKind.METAL_FORMER)
+                        event.register(registration.menu().get(), MetalFormerScreen::new);
                     else if (kind == MachineKind.CANNER)
                         event.register(registration.menu().get(), CannerScreen::new);
                     else event.register(registration.menu().get(), MachineScreen::new);
@@ -135,6 +139,7 @@ public final class IndustrialCraftClient {
     }
 
     private static void registerProperties(RegisterRangeSelectItemModelPropertyEvent event) {
+        event.register(Identifier.parse("ic2:tool_box_open"), ToolboxOpenProperty.CODEC);
         event.register(
                 Identifier.fromNamespaceAndPath(IndustrialCraft.MOD_ID, "upgrade_direction"),
                 UpgradeDirectionProperty.CODEC);

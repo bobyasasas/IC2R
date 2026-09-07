@@ -1,0 +1,14 @@
+{
+  "type": "ic2:metal_former_extruding",
+  "ingredient": "#c:blocks/bronze",
+  "input_count": 1,
+  "results": [
+    {
+      "stack": {
+        "id": "ic2:bronze_shaft",
+        "count": 1
+      },
+      "weight": 1
+    }
+  ]
+}

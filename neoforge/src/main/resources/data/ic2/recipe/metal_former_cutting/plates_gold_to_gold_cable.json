@@ -1,0 +1,14 @@
+{
+  "type": "ic2:metal_former_cutting",
+  "ingredient": "#c:plates/gold",
+  "input_count": 1,
+  "results": [
+    {
+      "stack": {
+        "id": "ic2:gold_cable",
+        "count": 4
+      },
+      "weight": 1
+    }
+  ]
+}

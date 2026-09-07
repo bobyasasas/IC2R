@@ -9,7 +9,8 @@ recipe_root = OLD / 'data/ic2/recipes'
 ledger = []
 ledger_path = ROOT / 'docs/migration/recipe-catalog.json'
 previous = json.loads(ledger_path.read_text())['entries'] if ledger_path.exists() else []
-supported = {'ic2:canner_bottle', 'ic2:canner_enrich', 'ic2:shaped', 'ic2:shapeless', 'minecraft:crafting_shaped', 'minecraft:crafting_shapeless', 'minecraft:smelting', 'minecraft:blasting', 'ic2:macerator', 'ic2:extractor', 'ic2:compressor'}
+processing_types = {'ic2:macerator', 'ic2:extractor', 'ic2:compressor', 'ic2:metal_former_extruding', 'ic2:metal_former_rolling', 'ic2:metal_former_cutting'}
+supported = processing_types | {'ic2:canner_bottle', 'ic2:canner_enrich', 'ic2:shaped', 'ic2:shapeless', 'minecraft:crafting_shaped', 'minecraft:crafting_shapeless', 'minecraft:smelting', 'minecraft:blasting', 'ic2:macerator', 'ic2:extractor', 'ic2:compressor'}
 
 
 def common_tag(tag):
@@ -30,6 +31,9 @@ def ingredient(value):
         identifier = {'minecraft:chain': 'minecraft:iron_chain'}.get(value['item'], value['item'])
         if identifier.startswith('ic2:') and identifier not in registered:
             raise ValueError('unported item ' + identifier)
+        if identifier == 'ic2:tool_box':
+            return {'neoforge:ingredient_type': 'neoforge:components', 'items': identifier,
+                    'components': {'ic2:toolbox_contents': []}}
         return identifier
     if 'tag' in value:
         return '#' + common_tag(value['tag'])
@@ -67,7 +71,7 @@ for file in sorted(recipe_root.rglob('*.json')):
                 return {'id': value['fluid'], 'amount': value['amount']}
             additive = old['additive_ingredient']
             new = {'type': old['type'], 'input_fluid': fluid(old['input_ingredient']), 'additive': {'ingredient': ingredient(additive), 'count': additive.get('count', 1)}, 'result': fluid(old['result'])}
-        elif old['type'] in {'ic2:macerator', 'ic2:extractor', 'ic2:compressor'}:
+        elif old['type'] in processing_types:
             inputs = old['ingredient']
             results = old['result'] if isinstance(old['result'], list) else [old['result']]
             assert len(results) == 1 or old.get('weighted'), relative

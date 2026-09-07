@@ -85,9 +85,12 @@
       "id": "P09",
       "parent": "M11",
       "title": "金属及高阶加工",
-      "status": "todo",
-      "acceptance": "金属成型、洗矿、离心、回收、感应炉；多输入、多输出、热量与升级。",
-      "evidence": []
+      "status": "in_progress",
+      "acceptance": "金属成型三模式、升级与工具箱合成链已接入；铁栅栏、洗矿、离心、回收和感应炉待迁移。",
+      "evidence": [
+        "docs/migration/metal-former-toolbox.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/MetalFormerTests.java"
+      ]
     },
     {
       "id": "P10",
@@ -159,7 +162,8 @@
       "acceptance": "扳手、切线钳、钻头、锯、喷枪、背包与护甲；消耗、附魔、渲染和同步。",
       "evidence": [
         "docs/migration/tools.md",
-        "neoforge/src/gameTest/java/ic2/neoforge/test/ToolTests.java"
+        "neoforge/src/gameTest/java/ic2/neoforge/test/ToolTests.java",
+        "docs/migration/metal-former-toolbox.md"
       ]
     },
     {

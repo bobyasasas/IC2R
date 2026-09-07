@@ -1,0 +1,14 @@
+{
+  "type": "ic2:metal_former_cutting",
+  "ingredient": "ic2:iron_casing",
+  "input_count": 1,
+  "results": [
+    {
+      "stack": {
+        "id": "ic2:coin",
+        "count": 1
+      },
+      "weight": 1
+    }
+  ]
+}

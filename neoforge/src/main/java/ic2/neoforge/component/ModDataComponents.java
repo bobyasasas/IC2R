@@ -6,13 +6,16 @@ import com.mojang.serialization.DataResult;
 import ic2.neoforge.IndustrialCraft;
 
 import net.minecraft.core.Direction;
+import net.minecraft.core.UUIDUtil;
 import net.minecraft.core.component.DataComponentType;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.codec.ByteBufCodecs;
+import net.minecraft.world.item.component.ItemContainerContents;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.fluids.FluidStackTemplate;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
+import java.util.UUID;
 import java.util.function.Supplier;
 
 public final class ModDataComponents {
@@ -52,6 +55,38 @@ public final class ModDataComponents {
                     builder ->
                             builder.persistent(Direction.CODEC)
                                     .networkSynchronized(Direction.STREAM_CODEC));
+    public static final Supplier<DataComponentType<UUID>> TOOLBOX_ID =
+            TYPES.<UUID>registerComponentType(
+                    "toolbox_id",
+                    builder ->
+                            builder.persistent(UUIDUtil.CODEC)
+                                    .networkSynchronized(UUIDUtil.STREAM_CODEC));
+    public static final Supplier<DataComponentType<ItemContainerContents>> TOOLBOX_CONTENTS =
+            TYPES.<ItemContainerContents>registerComponentType(
+                    "toolbox_contents",
+                    builder ->
+                            builder.persistent(
+                                            ItemContainerContents.CODEC.validate(
+                                                    contents ->
+                                                            contents.getSlots() <= 9
+                                                                    ? DataResult.success(contents)
+                                                                    : DataResult.error(
+                                                                            () ->
+                                                                                    "Toolbox"
+                                                                                        + " exceeds"
+                                                                                        + " nine"
+                                                                                        + " slots")))
+                                    .networkSynchronized(
+                                            ItemContainerContents.STREAM_CODEC.map(
+                                                    ModDataComponents::validToolbox,
+                                                    ModDataComponents::validToolbox)));
+
+    private static ItemContainerContents validToolbox(ItemContainerContents contents) {
+        if (contents.getSlots() > 9)
+            throw new IllegalArgumentException("Toolbox exceeds nine slots");
+        return contents;
+    }
+
     // Absence means empty; templates are immutable and safe to store in a component map.
     public static final Supplier<DataComponentType<FluidStackTemplate>> FLUID =
             TYPES.<FluidStackTemplate>registerComponentType(

@@ -1,5 +1,6 @@
 package ic2.neoforge.machine;
 
+import ic2.core.recipe.ProcessingMethod;
 import ic2.neoforge.recipe.ProcessingRecipe;
 import ic2.neoforge.registration.ModMachines;
 import ic2.neoforge.registration.ModProcessingRecipes;
@@ -14,26 +15,48 @@ import net.minecraft.world.level.storage.ValueInput;
 import net.minecraft.world.level.storage.ValueOutput;
 import net.neoforged.neoforge.transfer.item.ItemResource;
 
+import java.util.EnumMap;
+import java.util.Map;
+
 /** Weighted results are selected once and saved, including while output is blocked. */
-public final class SingleInputBlockEntity extends ProcessingBlockEntity {
-    private final RecipeManager.CachedCheck<SingleRecipeInput, ProcessingRecipe> recipes;
+public class SingleInputBlockEntity extends ProcessingBlockEntity {
+    private final Map<
+                    ProcessingMethod,
+                    RecipeManager.CachedCheck<SingleRecipeInput, ProcessingRecipe>>
+            checks = new EnumMap<>(ProcessingMethod.class);
     private String selectedRecipe = "";
     private ItemStackTemplate selectedOutput;
 
     public SingleInputBlockEntity(BlockPos pos, BlockState state) {
         super(ModMachines.entityType(((MachineBlock) state.getBlock()).kind()), pos, state);
-        recipes = RecipeManager.createCheck(ModProcessingRecipes.type(kind()));
+    }
+
+    protected ProcessingMethod method() {
+        return switch (kind()) {
+            case MACERATOR -> ProcessingMethod.MACERATOR;
+            case EXTRACTOR -> ProcessingMethod.EXTRACTOR;
+            case COMPRESSOR -> ProcessingMethod.COMPRESSOR;
+            default -> throw new IllegalStateException("Machine must select its processing family");
+        };
+    }
+
+    private RecipeManager.CachedCheck<SingleRecipeInput, ProcessingRecipe> recipes() {
+        return checks.computeIfAbsent(
+                method(), family -> RecipeManager.createCheck(ModProcessingRecipes.type(family)));
     }
 
     @Override
     protected boolean acceptsInput(ItemResource resource, ServerLevel level) {
-        return recipes.getRecipeFor(new SingleRecipeInput(resource.toStack(64)), level).isPresent();
+        return recipes()
+                .getRecipeFor(new SingleRecipeInput(resource.toStack(64)), level)
+                .isPresent();
     }
 
     @Override
     protected Job findJob(ServerLevel level) {
         var recipe =
-                recipes.getRecipeFor(new SingleRecipeInput(inventory.stack(INPUT)), level)
+                recipes()
+                        .getRecipeFor(new SingleRecipeInput(inventory.stack(INPUT)), level)
                         .orElse(null);
         if (recipe == null) {
             clearSelection();
@@ -57,7 +80,7 @@ public final class SingleInputBlockEntity extends ProcessingBlockEntity {
         clearSelection();
     }
 
-    private void clearSelection() {
+    protected final void clearSelection() {
         if (selectedOutput != null || !selectedRecipe.isEmpty()) {
             selectedOutput = null;
             selectedRecipe = "";

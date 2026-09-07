@@ -1,7 +1,7 @@
 package ic2.neoforge.registration;
 
+import ic2.core.recipe.ProcessingMethod;
 import ic2.neoforge.IndustrialCraft;
-import ic2.neoforge.machine.MachineKind;
 import ic2.neoforge.recipe.ProcessingRecipe;
 
 import net.minecraft.core.registries.Registries;
@@ -23,33 +23,30 @@ public final class ModProcessingRecipes {
     public static final DeferredHolder<RecipeBookCategory, RecipeBookCategory> CATEGORY =
             CATEGORIES.register("processing", RecipeBookCategory::new);
     private static final Map<
-                    MachineKind, DeferredHolder<RecipeType<?>, RecipeType<ProcessingRecipe>>>
-            RECIPE_TYPES = new EnumMap<>(MachineKind.class);
+                    ProcessingMethod, DeferredHolder<RecipeType<?>, RecipeType<ProcessingRecipe>>>
+            RECIPE_TYPES = new EnumMap<>(ProcessingMethod.class);
     private static final Map<
-                    MachineKind,
+                    ProcessingMethod,
                     DeferredHolder<RecipeSerializer<?>, RecipeSerializer<ProcessingRecipe>>>
-            RECIPE_SERIALIZERS = new EnumMap<>(MachineKind.class);
+            RECIPE_SERIALIZERS = new EnumMap<>(ProcessingMethod.class);
 
     static {
-        for (var kind :
-                new MachineKind[] {
-                    MachineKind.MACERATOR, MachineKind.EXTRACTOR, MachineKind.COMPRESSOR
-                }) {
+        for (var kind : ProcessingMethod.values()) {
             RECIPE_TYPES.put(
                     kind,
                     TYPES.register(
-                            kind.getSerializedName(),
+                            kind.id(),
                             () ->
                                     new RecipeType<ProcessingRecipe>() {
                                         @Override
                                         public String toString() {
-                                            return "ic2:" + kind.getSerializedName();
+                                            return "ic2:" + kind.id();
                                         }
                                     }));
             RECIPE_SERIALIZERS.put(
                     kind,
                     SERIALIZERS.register(
-                            kind.getSerializedName(),
+                            kind.id(),
                             () ->
                                     new RecipeSerializer<>(
                                             ProcessingRecipe.codec(kind),
@@ -57,11 +54,11 @@ public final class ModProcessingRecipes {
         }
     }
 
-    public static RecipeType<ProcessingRecipe> type(MachineKind kind) {
+    public static RecipeType<ProcessingRecipe> type(ProcessingMethod kind) {
         return RECIPE_TYPES.get(kind).get();
     }
 
-    public static RecipeSerializer<ProcessingRecipe> serializer(MachineKind kind) {
+    public static RecipeSerializer<ProcessingRecipe> serializer(ProcessingMethod kind) {
         return RECIPE_SERIALIZERS.get(kind).get();
     }
 

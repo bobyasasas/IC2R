@@ -88,34 +88,53 @@ final class GenerationTests {
         var pos = new BlockPos(8, 1, 8);
         helper.setBlock(pos, ModMachines.block(MachineKind.SOLAR_GENERATOR));
         var machine = helper.getBlockEntity(pos, SolarGeneratorBlockEntity.class);
-        helper.runAtTickTime(
-                8,
-                () -> {
-                    machine.sampleSunlight(helper.getLevel());
-                    double before = machine.energy().stored();
-                    machine.serverTick(helper.getLevel());
-                    helper.assertTrue(
-                            machine.progress() > 900 && machine.energy().stored() > before,
-                            "Daylight must produce real EU through the native sun attribute");
-                    helper.setBlock(pos.above(), Blocks.STONE);
-                });
-        helper.runAtTickTime(
-                16,
-                () -> {
-                    machine.sampleSunlight(helper.getLevel());
-                    helper.assertTrue(
-                            machine.progress() == 0, "Opaque cover must remove solar input");
-                    helper.setBlock(pos.above(), Blocks.AIR);
-                    helper.setTime(18000);
-                });
-        helper.runAtTickTime(
-                24,
-                () -> {
-                    machine.sampleSunlight(helper.getLevel());
-                    helper.assertTrue(machine.progress() == 0, "Night must remove solar input");
-                    helper.setTime(6000);
-                    helper.succeed();
-                });
+        // Sky light is propagated on a worker; fixed tick delays race on CI hosts.
+        helper.startSequence()
+                .thenWaitUntil(
+                        () -> {
+                            machine.sampleSunlight(helper.getLevel());
+                            helper.assertTrue(
+                                    machine.progress() > 900, "Daylight must reach the panel");
+                        })
+                .thenExecute(
+                        () -> {
+                            machine.energy().extract(machine.energy().stored());
+                            machine.serverTick(helper.getLevel());
+                            helper.assertTrue(
+                                    machine.energy().stored() > 0, "Daylight must produce real EU");
+                            helper.setBlock(pos.above(), Blocks.STONE);
+                        })
+                .thenWaitUntil(
+                        () -> {
+                            machine.sampleSunlight(helper.getLevel());
+                            helper.assertTrue(
+                                    machine.progress() == 0,
+                                    "Opaque cover must remove solar input");
+                        })
+                .thenExecute(
+                        () -> {
+                            helper.setBlock(pos.above(), Blocks.AIR);
+                        })
+                .thenWaitUntil(
+                        () ->
+                                helper.assertTrue(
+                                        helper.getLevel()
+                                                        .getBrightness(
+                                                                net.minecraft.world.level.LightLayer
+                                                                        .SKY,
+                                                                machine.getBlockPos().above())
+                                                == 15,
+                                        "Removing cover must restore sky light before checking"
+                                            + " night"))
+                .thenExecute(() -> helper.setTime(18000))
+                .thenWaitUntil(
+                        () -> {
+                            machine.sampleSunlight(helper.getLevel());
+                            helper.assertTrue(
+                                    machine.progress() == 0, "Night must remove solar input");
+                        })
+                .thenExecute(() -> helper.setTime(6000))
+                .thenSucceed();
     }
 
     private static FluidGeneratorBlockEntity fluidMachine(GameTestHelper helper, MachineKind kind) {
