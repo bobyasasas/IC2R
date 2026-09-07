@@ -97,6 +97,9 @@ public final class ModMachines {
                     new TransformerBlockEntity(pos, state);
             case IRON_FURNACE -> new IronFurnaceBlockEntity(pos, state);
             case CANNER -> new CannerBlockEntity(pos, state);
+            case ELECTRIC_HEAT_GENERATOR, ELECTRIC_KINETIC_GENERATOR ->
+                    new ElectricWorkBlockEntity(pos, state);
+            case STIRLING_GENERATOR, KINETIC_GENERATOR -> new WorkConversionBlockEntity(pos, state);
             case WIND_GENERATOR -> new WindGeneratorBlockEntity(pos, state);
             case WATER_GENERATOR -> new WaterGeneratorBlockEntity(pos, state);
             case SOLAR_GENERATOR -> new SolarGeneratorBlockEntity(pos, state);
@@ -186,6 +189,14 @@ public final class ModMachines {
     }
 
     private static void capabilities(RegisterCapabilitiesEvent event) {
+        event.registerBlockEntity(
+                ic2.neoforge.api.WorkCapabilities.HEAT,
+                entityType(MachineKind.ELECTRIC_HEAT_GENERATOR),
+                (machine, side) -> ((ElectricWorkBlockEntity) machine).output(side));
+        event.registerBlockEntity(
+                ic2.neoforge.api.WorkCapabilities.KINETIC,
+                entityType(MachineKind.ELECTRIC_KINETIC_GENERATOR),
+                (machine, side) -> ((ElectricWorkBlockEntity) machine).output(side));
         event.registerBlockEntity(
                 Capabilities.Fluid.BLOCK,
                 entityType(MachineKind.CANNER),

@@ -1393,5 +1393,10 @@
   "ic2.water.nearby": "Water blocks: %s",
   "ic2.tooltip.generation": "%s EU/t",
   "ic2.wind.obstructions": "Obstructions: %s",
-  "ic2.wind.overload": "Overspeed: %s%%"
+  "ic2.wind.overload": "Overspeed: %s%%",
+  "ic2.work.heat": "Stored: %s HU",
+  "ic2.work.kinetic": "Stored: %s KU",
+  "ic2.work.voltage": "Output: %s EU",
+  "ic2.work.heat_rate": "%s HU/t",
+  "ic2.work.kinetic_rate": "%s KU/t"
 }

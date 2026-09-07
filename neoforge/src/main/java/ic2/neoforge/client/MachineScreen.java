@@ -15,6 +15,10 @@ public class MachineScreen extends ContainerScreenBase<MachineMenu> {
         super(menu, inventory, title, menu.kind().upgradable() ? 202 : 176, 166);
     }
 
+    protected boolean showsProgress() {
+        return !menu.kind().energyDevice();
+    }
+
     @Override
     public void extractBackground(
             GuiGraphicsExtractor graphics, int mouseX, int mouseY, float partialTick) {
@@ -36,7 +40,7 @@ public class MachineScreen extends ContainerScreenBase<MachineMenu> {
                                 48);
         graphics.fill(x + 25, y + 18, x + 37, y + 68, 0xff373737);
         graphics.fill(x + 26, y + 67 - energyHeight, x + 36, y + 67, 0xffe9ae23);
-        if (menu.kind().energyDevice()) return;
+        if (!showsProgress()) return;
         int progressWidth =
                 menu.progressMaximum() <= 0
                         ? 0

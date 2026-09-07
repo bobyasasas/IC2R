@@ -59,12 +59,13 @@
       "parent": "M11",
       "title": "其余发电机",
       "status": "in_progress",
-      "acceptance": "太阳能、地热、半流质、水力、风力及转子已验证；同位素、转换机及其余配置待验收。",
+      "acceptance": "太阳能、地热、半流质、水力、风力、斯特林及动能转电已接入；同位素、其余配置及整体验收待完成。",
       "evidence": [
         "docs/migration/generators.md",
         "neoforge/src/gameTest/java/ic2/neoforge/test/GenerationTests.java",
         "docs/migration/water-generation.md",
-        "docs/migration/wind-generation.md"
+        "docs/migration/wind-generation.md",
+        "docs/migration/work-energy.md"
       ]
     },
     {
@@ -102,9 +103,12 @@
       "id": "P10",
       "parent": "M11",
       "title": "热力与动能机器",
-      "status": "todo",
-      "acceptance": "加热器、热交换、蒸汽、锅炉、冷凝、电解及发酵；守恒和回滚。",
-      "evidence": []
+      "status": "in_progress",
+      "acceptance": "电热／电动动能、原生事务能力与两种转电链已接入；其余热源、热交换、蒸汽、锅炉、冷凝、电解及发酵待验收。",
+      "evidence": [
+        "docs/migration/work-energy.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/WorkEnergyTests.java"
+      ]
     },
     {
       "id": "P11",

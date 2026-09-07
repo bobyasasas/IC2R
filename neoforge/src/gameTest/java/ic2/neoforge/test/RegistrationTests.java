@@ -94,6 +94,11 @@ public final class RegistrationTests {
         FUNCTIONS.register("wind_persistence", () -> WindGenerationTests::persistence);
         FUNCTIONS.register("wind_obstructions", () -> WindGenerationTests::obstructions);
         FUNCTIONS.register("wind_network_supply", () -> WindGenerationTests::networkSupply);
+        FUNCTIONS.register("heat_transactions", () -> WorkEnergyTests::heatTransactions);
+        FUNCTIONS.register("kinetic_persistence", () -> WorkEnergyTests::kineticPersistence);
+        FUNCTIONS.register("work_parts_menu", () -> WorkEnergyTests::installedPartsMenu);
+        FUNCTIONS.register("heat_conversion_chain", () -> WorkEnergyTests::heatChain);
+        FUNCTIONS.register("kinetic_conversion_chain", () -> WorkEnergyTests::kineticChain);
         FUNCTIONS.register("loaded_recipes", () -> ProcessingTests::loadedRecipes);
         FUNCTIONS.register("processing_machines", () -> ProcessingTests::processing);
         FUNCTIONS.register("weighted_persistence", () -> ProcessingTests::weightedPersistence);

@@ -31,7 +31,7 @@ public interface WrenchTool {
                         (float) hit.x,
                         (float) hit.y,
                         (float) hit.z);
-        if (!((MachineBlock) state.getBlock()).kind().energyDevice()
+        if (!((MachineBlock) state.getBlock()).kind().verticalFacing()
                 && (selected == FaceSelection.Face.UP || selected == FaceSelection.Face.DOWN))
             return InteractionResult.FAIL;
         if (!level.isClientSide()) {

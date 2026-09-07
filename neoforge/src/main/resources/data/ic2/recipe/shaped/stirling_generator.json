@@ -1,0 +1,17 @@
+{
+  "type": "ic2:shaped",
+  "pattern": [
+    "IHI",
+    "ICI",
+    "III"
+  ],
+  "result": {
+    "id": "ic2:stirling_generator",
+    "count": 1
+  },
+  "key": {
+    "C": "ic2:generator",
+    "H": "ic2:heat_conductor",
+    "I": "ic2:iron_casing"
+  }
+}

@@ -67,7 +67,35 @@ public final class MachineMenu extends AbstractContainerMenu {
                 machine == null
                         ? new SimpleContainerData(MachineMenuData.SIZE)
                         : new MachineMenuData(machine);
-        if ((kind == MachineKind.SOLAR_GENERATOR || kind == MachineKind.WIND_GENERATOR)) {
+        if (kind.workConversion()) {
+            // Conversion generators have no inventory.
+        } else if (kind.electricWork()) {
+            for (int part = 0; part < 10; part++) {
+                addSlot(
+                        new ResourceHandlerSlot(
+                                inventory,
+                                inventory::set,
+                                part,
+                                56 + part % 5 * 18,
+                                17 + part / 5 * 18) {
+                            @Override
+                            public boolean mayPlace(ItemStack stack) {
+                                return stack.is(
+                                        ModItems.MATERIALS
+                                                .get(
+                                                        ic2.neoforge.machine.ElectricWorkBlockEntity
+                                                                .part(kind))
+                                                .get());
+                            }
+
+                            @Override
+                            public int getMaxStackSize() {
+                                return 1;
+                            }
+                        });
+            }
+            addBatterySlot(inventory, 10, 56, 53);
+        } else if (kind == MachineKind.SOLAR_GENERATOR || kind == MachineKind.WIND_GENERATOR) {
             addBatterySlot(inventory, 0, 56, 53);
         } else if (kind.storage()) {
             addBatterySlot(inventory, 0, 56, 17);
@@ -258,6 +286,18 @@ public final class MachineMenu extends AbstractContainerMenu {
     }
 
     private int preferredSlot(ItemStack stack, Player player) {
+        if (kind.workConversion()) return -1;
+        if (kind.electricWork())
+            return stack.getItem() instanceof ElectricItem
+                    ? 10
+                    : stack.is(
+                                    ModItems.MATERIALS
+                                            .get(
+                                                    ic2.neoforge.machine.ElectricWorkBlockEntity
+                                                            .part(kind))
+                                            .get())
+                            ? 0
+                            : -1;
         if (stack.getItem() instanceof UpgradeItem item)
             return item.kind().suitable(kind) ? kind.upgradeStart() : -1;
         if ((kind == MachineKind.SOLAR_GENERATOR || kind == MachineKind.WIND_GENERATOR))
@@ -298,6 +338,12 @@ public final class MachineMenu extends AbstractContainerMenu {
     private boolean moveIntoMachine(ItemStack stack, Player player) {
         int preferred = preferredSlot(stack, player);
         if (preferred < 0) return false;
+        if (kind.electricWork() && preferred == 0) {
+            boolean installed = false;
+            for (int slot = 0; slot < 10 && !stack.isEmpty(); slot++)
+                installed |= moveItemStackTo(stack, slot, slot + 1, false);
+            return installed;
+        }
         boolean moved =
                 moveItemStackTo(
                         stack,

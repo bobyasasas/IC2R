@@ -2523,14 +2523,14 @@
     {
       "source": "shaped/electric_heat_generator.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:electric_heat_generator"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/electric_heat_generator.json"
     },
     {
       "source": "shaped/electric_kinetic_generator.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:electric_kinetic_generator"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/electric_kinetic_generator.json"
     },
     {
       "source": "shaped/electric_motor.json",
@@ -2925,8 +2925,8 @@
     {
       "source": "shaped/kinetic_generator.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:kinetic_generator"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/kinetic_generator.json"
     },
     {
       "source": "shaped/lapis_dust.json",
@@ -3867,8 +3867,8 @@
     {
       "source": "shaped/stirling_generator.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:stirling_generator"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/stirling_generator.json"
     },
     {
       "source": "shaped/stirling_kinetic_generator.json",

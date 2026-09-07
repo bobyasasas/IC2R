@@ -4,7 +4,7 @@ import json
 import re
 from base import ROOT, OLD, NEW, ASSETS, write, copy, model, item
 
-machines = ['metal_former', 'ore_washing_plant', 'centrifuge', 'recycler', 'induction_furnace', 'water_generator', 'wind_generator', 'solar_generator', 'geo_generator', 'semifluid_generator', 'batbox', 'cesu', 'mfe', 'mfsu', 'lv_transformer', 'mv_transformer', 'hv_transformer', 'ev_transformer', 'canner', 'iron_furnace', 'generator', 'electric_furnace', 'macerator', 'extractor', 'compressor']
+machines = ['electric_heat_generator', 'electric_kinetic_generator', 'stirling_generator', 'kinetic_generator', 'metal_former', 'ore_washing_plant', 'centrifuge', 'recycler', 'induction_furnace', 'water_generator', 'wind_generator', 'solar_generator', 'geo_generator', 'semifluid_generator', 'batbox', 'cesu', 'mfe', 'mfsu', 'lv_transformer', 'mv_transformer', 'hv_transformer', 'ev_transformer', 'canner', 'iron_furnace', 'generator', 'electric_furnace', 'macerator', 'extractor', 'compressor']
 for identifier in machines:
     item(identifier)
     path = ASSETS + 'blockstates/' + identifier + '.json'
@@ -93,6 +93,12 @@ write('data/ic2/tags/item/recycler_whitelist.json', {'values': []})
 copy(ASSETS + 'textures/item/rotor/iron_rotor_model.png')
 
 for language, labels in [('en_us', {'ic2.wind.overload': 'Overspeed: %s%%', 'ic2.wind.obstructions': 'Obstructions: %s', 'ic2.water.nearby': 'Water blocks: %s', 'ic2.tooltip.generation': '%s EU/t'}), ('zh_cn', {'ic2.wind.overload': '超速负荷：%s%%', 'ic2.wind.obstructions': '遮挡方块：%s', 'ic2.water.nearby': '周围水块：%s', 'ic2.tooltip.generation': '%s EU/t'})]:
+    path = ASSETS + 'lang/' + language + '.json'
+    data = json.loads((NEW / path).read_text())
+    data.update(labels)
+    write(path, data)
+
+for language, labels in [('en_us', {'ic2.work.heat': 'Stored: %s HU', 'ic2.work.heat_rate': '%s HU/t', 'ic2.work.kinetic': 'Stored: %s KU', 'ic2.work.kinetic_rate': '%s KU/t', 'ic2.work.voltage': 'Output: %s EU'}), ('zh_cn', {'ic2.work.heat': '储存：%s HU', 'ic2.work.heat_rate': '%s HU/t', 'ic2.work.kinetic': '储存：%s KU', 'ic2.work.kinetic_rate': '%s KU/t', 'ic2.work.voltage': '输出电压：%s EU'})]:
     path = ASSETS + 'lang/' + language + '.json'
     data = json.loads((NEW / path).read_text())
     data.update(labels)

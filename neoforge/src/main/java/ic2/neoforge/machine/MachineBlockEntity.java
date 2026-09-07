@@ -31,10 +31,19 @@ public abstract class MachineBlockEntity extends BlockEntity implements MenuProv
     protected MachineBlockEntity(
             BlockEntityType<?> type, BlockPos pos, BlockState state, int slots) {
         super(type, pos, state);
-        inventory = new MachineInventory(slots, this::setChanged, this::acceptsInventorySlot);
+        inventory =
+                new MachineInventory(
+                        slots,
+                        this::setChanged,
+                        this::acceptsInventorySlot,
+                        this::inventorySlotLimit);
     }
 
-    private boolean acceptsInventorySlot(int slot, ItemResource resource) {
+    protected int inventorySlotLimit(int slot) {
+        return Integer.MAX_VALUE;
+    }
+
+    protected boolean acceptsInventorySlot(int slot, ItemResource resource) {
         if (!kind().upgradable() || slot < kind().upgradeStart()) return true;
         return resource.getItem() instanceof UpgradeItem item && item.kind().suitable(kind());
     }

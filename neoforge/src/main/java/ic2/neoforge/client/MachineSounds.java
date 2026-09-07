@@ -86,7 +86,15 @@ final class MachineSounds {
 
     private static SoundEvent sound(MachineBlockEntity machine) {
         return switch (machine.kind()) {
-            case CENTRIFUGE, ORE_WASHING_PLANT, METAL_FORMER, SOLAR_GENERATOR -> null;
+            case ELECTRIC_HEAT_GENERATOR,
+                    ELECTRIC_KINETIC_GENERATOR,
+                    STIRLING_GENERATOR,
+                    KINETIC_GENERATOR,
+                    CENTRIFUGE,
+                    ORE_WASHING_PLANT,
+                    METAL_FORMER,
+                    SOLAR_GENERATOR ->
+                    null;
             case GEO_GENERATOR, SEMIFLUID_GENERATOR -> ModSounds.GENERATOR_GEOTHERMAL_LOOP.get();
             case WIND_GENERATOR -> ModSounds.GENERATOR_WIND_LOOP.get();
             case WATER_GENERATOR -> ModSounds.GENERATOR_WATER_LOOP.get();

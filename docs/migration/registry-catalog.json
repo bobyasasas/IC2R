@@ -1374,7 +1374,12 @@
       "factory": "register",
       "expression": "new ItemBlockIc2(Ic2Blocks.KINETIC_GENERATOR, new Properties())",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/work-energy.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/WorkEnergyTests.java"
+      ],
+      "note": "原生事务热能／动能接口、方向、安装件、缓冲、重载及双模式转换链已接入；其余源设备和多人随 P10/M16 验收。"
     },
     {
       "registry": "item",
@@ -1424,7 +1429,12 @@
       "factory": "register",
       "expression": "new ItemBlockIc2(Ic2Blocks.STIRLING_GENERATOR, new Properties())",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/work-energy.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/WorkEnergyTests.java"
+      ],
+      "note": "原生事务热能／动能接口、方向、安装件、缓冲、重载及双模式转换链已接入；其余源设备和多人随 P10/M16 验收。"
     },
     {
       "registry": "item",
@@ -1474,7 +1484,12 @@
       "factory": "register",
       "expression": "new ItemBlockIc2(Ic2Blocks.ELECTRIC_HEAT_GENERATOR, new Properties())",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/work-energy.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/WorkEnergyTests.java"
+      ],
+      "note": "原生事务热能／动能接口、方向、安装件、缓冲、重载及双模式转换链已接入；其余源设备和多人随 P10/M16 验收。"
     },
     {
       "registry": "item",
@@ -1514,7 +1529,12 @@
       "factory": "register",
       "expression": "new ItemBlockIc2(Ic2Blocks.ELECTRIC_KINETIC_GENERATOR, new Properties())",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/work-energy.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/WorkEnergyTests.java"
+      ],
+      "note": "原生事务热能／动能接口、方向、安装件、缓冲、重载及双模式转换链已接入；其余源设备和多人随 P10/M16 验收。"
     },
     {
       "registry": "item",
@@ -6893,7 +6913,12 @@
       "factory": "register",
       "expression": "Ic2TileEntityBlock.create(Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).strength(2.0F, 10.0F).requiresCorrectToolForDrops().sound(SoundType.METAL), TileEntityKineticGenerator.class, true, Ic2TileEntityBlock.DefaultDrop.Generator, Util.allFacings, true)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/work-energy.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/WorkEnergyTests.java"
+      ],
+      "note": "原生事务热能／动能接口、方向、安装件、缓冲、重载及双模式转换链已接入；其余源设备和多人随 P10/M16 验收。"
     },
     {
       "registry": "block",
@@ -6943,7 +6968,12 @@
       "factory": "register",
       "expression": "Ic2TileEntityBlock.create(Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).strength(2.0F, 10.0F).requiresCorrectToolForDrops().sound(SoundType.METAL), TileEntityStirlingGenerator.class, true, Ic2TileEntityBlock.DefaultDrop.Generator, Util.allFacings, true)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/work-energy.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/WorkEnergyTests.java"
+      ],
+      "note": "原生事务热能／动能接口、方向、安装件、缓冲、重载及双模式转换链已接入；其余源设备和多人随 P10/M16 验收。"
     },
     {
       "registry": "block",
@@ -6983,7 +7013,12 @@
       "factory": "register",
       "expression": "Ic2TileEntityBlock.create(Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).strength(2.0F, 10.0F).requiresCorrectToolForDrops().sound(SoundType.METAL), TileEntityElectricHeatGenerator.class, true, Ic2TileEntityBlock.DefaultDrop.Self, Util.allFacings, true)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/work-energy.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/WorkEnergyTests.java"
+      ],
+      "note": "原生事务热能／动能接口、方向、安装件、缓冲、重载及双模式转换链已接入；其余源设备和多人随 P10/M16 验收。"
     },
     {
       "registry": "block",
@@ -7023,7 +7058,12 @@
       "factory": "register",
       "expression": "Ic2TileEntityBlock.create(Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).strength(2.0F, 10.0F).requiresCorrectToolForDrops().sound(SoundType.METAL), TileEntityElectricKineticGenerator.class, true, Ic2TileEntityBlock.DefaultDrop.Self, Util.allFacings, true)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/work-energy.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/WorkEnergyTests.java"
+      ],
+      "note": "原生事务热能／动能接口、方向、安装件、缓冲、重载及双模式转换链已接入；其余源设备和多人随 P10/M16 验收。"
     },
     {
       "registry": "block",
@@ -9135,7 +9175,12 @@
       "factory": "register",
       "expression": "TileEntityKineticGenerator::new",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/work-energy.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/WorkEnergyTests.java"
+      ],
+      "note": "原生事务热能／动能接口、方向、安装件、缓冲、重载及双模式转换链已接入；其余源设备和多人随 P10/M16 验收。"
     },
     {
       "registry": "block_entity",
@@ -9225,7 +9270,12 @@
       "factory": "register",
       "expression": "TileEntityStirlingGenerator::new",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/work-energy.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/WorkEnergyTests.java"
+      ],
+      "note": "原生事务热能／动能接口、方向、安装件、缓冲、重载及双模式转换链已接入；其余源设备和多人随 P10/M16 验收。"
     },
     {
       "registry": "block_entity",
@@ -9295,7 +9345,12 @@
       "factory": "register",
       "expression": "TileEntityElectricHeatGenerator::new",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/work-energy.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/WorkEnergyTests.java"
+      ],
+      "note": "原生事务热能／动能接口、方向、安装件、缓冲、重载及双模式转换链已接入；其余源设备和多人随 P10/M16 验收。"
     },
     {
       "registry": "block_entity",
@@ -9375,7 +9430,12 @@
       "factory": "register",
       "expression": "TileEntityElectricKineticGenerator::new",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/work-energy.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/WorkEnergyTests.java"
+      ],
+      "note": "原生事务热能／动能接口、方向、安装件、缓冲、重载及双模式转换链已接入；其余源设备和多人随 P10/M16 验收。"
     },
     {
       "registry": "block_entity",
@@ -10805,7 +10865,12 @@
       "factory": "registerManagedBe",
       "expression": "",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/work-energy.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/WorkEnergyTests.java"
+      ],
+      "note": "原生事务热能／动能接口、方向、安装件、缓冲、重载及双模式转换链已接入；其余源设备和多人随 P10/M16 验收。"
     },
     {
       "registry": "menu",
@@ -10835,7 +10900,12 @@
       "factory": "registerManagedBe",
       "expression": "",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/work-energy.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/WorkEnergyTests.java"
+      ],
+      "note": "原生事务热能／动能接口、方向、安装件、缓冲、重载及双模式转换链已接入；其余源设备和多人随 P10/M16 验收。"
     },
     {
       "registry": "menu",

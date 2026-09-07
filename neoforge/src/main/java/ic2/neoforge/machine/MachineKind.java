@@ -16,6 +16,10 @@ public enum MachineKind implements StringRepresentable {
     EV_TRANSFORMER("ev_transformer", 16384, 0, 0, 0),
     IRON_FURNACE("iron_furnace", 0, 3, 160, 0),
     CANNER("canner", 800, 4, 200, 4),
+    ELECTRIC_HEAT_GENERATOR("electric_heat_generator", 10000, 11, 0, 0),
+    ELECTRIC_KINETIC_GENERATOR("electric_kinetic_generator", 10000, 11, 0, 0),
+    STIRLING_GENERATOR("stirling_generator", 16384, 0, 0, 0),
+    KINETIC_GENERATOR("kinetic_generator", 16384, 0, 0, 0),
     WIND_GENERATOR("wind_generator", 32, 1, 0, 0),
     WATER_GENERATOR("water_generator", 4, 2, 0, 0),
     SOLAR_GENERATOR("solar_generator", 32, 1, 0, 0),
@@ -50,6 +54,18 @@ public enum MachineKind implements StringRepresentable {
         return id;
     }
 
+    public boolean verticalFacing() {
+        return energyDevice() || electricWork() || workConversion();
+    }
+
+    public boolean electricWork() {
+        return this == ELECTRIC_HEAT_GENERATOR || this == ELECTRIC_KINETIC_GENERATOR;
+    }
+
+    public boolean workConversion() {
+        return this == STIRLING_GENERATOR || this == KINETIC_GENERATOR;
+    }
+
     public boolean fluidGenerator() {
         return this == GEO_GENERATOR || this == SEMIFLUID_GENERATOR;
     }
@@ -59,6 +75,7 @@ public enum MachineKind implements StringRepresentable {
                 || this == SOLAR_GENERATOR
                 || this == WATER_GENERATOR
                 || this == WIND_GENERATOR
+                || workConversion()
                 || fluidGenerator();
     }
 
@@ -85,7 +102,7 @@ public enum MachineKind implements StringRepresentable {
             case BATBOX, LV_TRANSFORMER -> 1;
             case CESU, MV_TRANSFORMER, CENTRIFUGE, INDUCTION_FURNACE -> 2;
             case MFE, HV_TRANSFORMER -> 3;
-            case MFSU, EV_TRANSFORMER -> 4;
+            case MFSU, EV_TRANSFORMER, ELECTRIC_HEAT_GENERATOR, ELECTRIC_KINETIC_GENERATOR -> 4;
             default -> 1;
         };
     }

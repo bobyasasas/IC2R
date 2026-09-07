@@ -1,0 +1,18 @@
+{
+  "type": "ic2:shaped",
+  "pattern": [
+    "III",
+    "MES",
+    "III"
+  ],
+  "result": {
+    "id": "ic2:kinetic_generator",
+    "count": 1
+  },
+  "key": {
+    "M": "ic2:generator",
+    "S": "ic2:iron_shaft",
+    "E": "ic2:electric_motor",
+    "I": "ic2:iron_casing"
+  }
+}

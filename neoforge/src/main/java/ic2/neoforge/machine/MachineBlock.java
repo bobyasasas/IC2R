@@ -78,7 +78,7 @@ public final class MachineBlock extends BaseEntityBlock {
         return defaultBlockState()
                 .setValue(
                         FACING,
-                        (kind.energyDevice()
+                        (kind.verticalFacing()
                                         ? context.getNearestLookingDirection()
                                         : context.getHorizontalDirection())
                                 .getOpposite());
