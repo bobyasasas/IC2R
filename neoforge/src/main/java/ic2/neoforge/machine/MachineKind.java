@@ -21,6 +21,7 @@ public enum MachineKind implements StringRepresentable {
     SEMIFLUID_GENERATOR("semifluid_generator", 32000, 3, 0, 0),
     GENERATOR("generator", 4000, 2, 0, 0),
     ELECTRIC_FURNACE("electric_furnace", 300, 3, 100, 3),
+    RECYCLER("recycler", 45, 3, 45, 1),
     CENTRIFUGE("centrifuge", 24000, 5, 500, 48),
     ORE_WASHING_PLANT("ore_washing_plant", 8000, 7, 500, 16),
     METAL_FORMER("metal_former", 2000, 3, 200, 10),

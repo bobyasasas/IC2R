@@ -4,7 +4,7 @@ import json
 import re
 from base import ROOT, OLD, NEW, ASSETS, write, copy, model, item
 
-machines = ['metal_former', 'ore_washing_plant', 'centrifuge', 'solar_generator', 'geo_generator', 'semifluid_generator', 'batbox', 'cesu', 'mfe', 'mfsu', 'lv_transformer', 'mv_transformer', 'hv_transformer', 'ev_transformer', 'canner', 'iron_furnace', 'generator', 'electric_furnace', 'macerator', 'extractor', 'compressor']
+machines = ['metal_former', 'ore_washing_plant', 'centrifuge', 'recycler', 'solar_generator', 'geo_generator', 'semifluid_generator', 'batbox', 'cesu', 'mfe', 'mfsu', 'lv_transformer', 'mv_transformer', 'hv_transformer', 'ev_transformer', 'canner', 'iron_furnace', 'generator', 'electric_furnace', 'macerator', 'extractor', 'compressor']
 for identifier in machines:
     item(identifier)
     path = ASSETS + 'blockstates/' + identifier + '.json'
@@ -85,3 +85,7 @@ for language, text in [('en_us', 'Heat: %s / %s'), ('zh_cn', '热量：%s / %s')
     data = json.loads((NEW / path).read_text())
     data['ic2.tooltip.processing_heat'] = text
     write(path, data)
+
+# Legacy snow_layer is the modern snow item; duplicate aliases collapse here.
+write('data/ic2/tags/item/recycler_blacklist.json', {'values': ['minecraft:glass_pane', 'minecraft:stick', 'minecraft:snowball', 'minecraft:snow']})
+write('data/ic2/tags/item/recycler_whitelist.json', {'values': []})

@@ -82,13 +82,17 @@ public abstract class ProcessingBlockEntity extends UpgradeableBlockEntity {
 
     protected final boolean canFitOutputs(Job job) {
         try (var simulation = Transaction.openRoot()) {
-            return insertOutputs(job, simulation);
+            return insertOutputs(job.outputs(), simulation);
         }
     }
 
-    private boolean insertOutputs(Job job, Transaction transaction) {
+    protected List<ItemStackTemplate> outputsOnCompletion(Job job, ServerLevel level) {
+        return job.outputs();
+    }
+
+    private boolean insertOutputs(List<ItemStackTemplate> outputs, Transaction transaction) {
         var port = new ResourcePort<>(inventory, this::outputSlot, slot -> false);
-        for (var output : job.outputs()) {
+        for (var output : outputs) {
             if (ResourceHandlerUtil.insertStacking(
                             port, ItemResource.of(output), output.count(), transaction)
                     != output.count()) return false;
@@ -117,7 +121,7 @@ public abstract class ProcessingBlockEntity extends UpgradeableBlockEntity {
             outcome = process.tick(order, fits, energy);
             if (outcome == MachineProcess.Outcome.COMPLETED) {
                 if (!consumeInputs(job, ItemResource.of(inputStack), transaction)
-                        || !insertOutputs(job, transaction)) return;
+                        || !insertOutputs(outputsOnCompletion(job, level), transaction)) return;
             }
             transaction.commit();
         }
@@ -129,11 +133,12 @@ public abstract class ProcessingBlockEntity extends UpgradeableBlockEntity {
                     operation < Math.min(64, upgradeProfile().operations());
                     operation++) {
                 var extra = findJob(level);
-                if (extra == null || !readyToProcess(extra)) break;
+                if (extra == null || !readyToProcess(extra) || !canFitOutputs(extra)) break;
                 var ingredient = inventory.stack(INPUT);
                 try (var transaction = Transaction.openRoot()) {
                     if (!consumeInputs(extra, ItemResource.of(ingredient), transaction)
-                            || !insertOutputs(extra, transaction)) break;
+                            || !insertOutputs(outputsOnCompletion(extra, level), transaction))
+                        break;
                     transaction.commit();
                 }
                 experience += extra.experience();

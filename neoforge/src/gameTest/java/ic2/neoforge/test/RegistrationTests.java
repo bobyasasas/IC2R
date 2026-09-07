@@ -79,6 +79,10 @@ public final class RegistrationTests {
                 "centrifuge_processing", () -> CentrifugeTests::processingAndPersistence);
         FUNCTIONS.register("centrifuge_redstone", () -> CentrifugeTests::redstoneAndOutputBlocking);
         FUNCTIONS.register("centrifuge_recipe_codec", () -> CentrifugeTests::recipeCodec);
+        FUNCTIONS.register("recycler_blacklist", () -> RecyclerTests::blacklist);
+        FUNCTIONS.register("recycler_probability", () -> RecyclerTests::deterministicChance);
+        FUNCTIONS.register("recycler_persistence", () -> RecyclerTests::persistenceAndBlocking);
+        FUNCTIONS.register("recycler_components", () -> RecyclerTests::inputComponents);
         FUNCTIONS.register("loaded_recipes", () -> ProcessingTests::loadedRecipes);
         FUNCTIONS.register("processing_machines", () -> ProcessingTests::processing);
         FUNCTIONS.register("weighted_persistence", () -> ProcessingTests::weightedPersistence);

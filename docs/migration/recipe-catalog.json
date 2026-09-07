@@ -3459,8 +3459,8 @@
     {
       "source": "shaped/recycler.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:recycler"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/recycler.json"
     },
     {
       "source": "shaped/redstone_inverter_upgrade.json",

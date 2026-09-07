@@ -1869,7 +1869,12 @@
       "factory": "register",
       "expression": "new ItemBlockIc2(Ic2Blocks.RECYCLER, new Properties())",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/recycler.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/RecyclerTests.java"
+      ],
+      "note": "概率、黑名单、输入组件和保存重载已验证；数据包白名单重载及多人整体验收待完成。"
     },
     {
       "registry": "item",
@@ -7338,7 +7343,12 @@
       "factory": "register",
       "expression": "Ic2TileEntityBlock.create(Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).strength(2.0F, 10.0F).requiresCorrectToolForDrops().sound(SoundType.METAL), TileEntityRecycler.class, true, Ic2TileEntityBlock.DefaultDrop.Machine, Util.horizontalFacings, true)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/recycler.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/RecyclerTests.java"
+      ],
+      "note": "概率、黑名单、输入组件和保存重载已验证；数据包白名单重载及多人整体验收待完成。"
     },
     {
       "registry": "block",
@@ -9990,7 +10000,12 @@
       "factory": "register",
       "expression": "TileEntityRecycler::new",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/recycler.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/RecyclerTests.java"
+      ],
+      "note": "概率、黑名单、输入组件和保存重载已验证；数据包白名单重载及多人整体验收待完成。"
     },
     {
       "registry": "block_entity",
