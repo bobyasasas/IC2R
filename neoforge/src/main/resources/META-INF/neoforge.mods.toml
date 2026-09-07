@@ -5,7 +5,7 @@ issueTrackerURL="https://github.com/bobyasasas/IC2R/issues"
 modId="ic2"
 version="${mod_version}"
 displayName="IndustrialCraft 2: Refactored"
-description='''Experimental migration to Minecraft 26.1.2. Currently contains the copper plate and electrical calculation foundation. See the migration dashboard for supported features.'''
+description='''Experimental migration to Minecraft 26.1.2. Contains the migrated materials and rechargeable batteries. Full machine and world compatibility migration is in progress. See the migration dashboard for supported features.'''
 
 [[dependencies.ic2]]
 modId="neoforge"

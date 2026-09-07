@@ -46,6 +46,18 @@ def generate():
     # Cheap source guard, in addition to core's empty production dependency classpath.
     for source in (ROOT / "core/src/main/java").rglob("*.java"):
         assert not re.search(r'\b(?:net\.minecraft|net\.neoforged|net\.minecraftforge|ic2\.neoforge)\b', source.read_text()), source
+    catalog_path = ROOT / "docs/migration/registry-catalog.json"
+    catalog = json.loads(catalog_path.read_text())["entries"] if catalog_path.exists() else []
+    keys = set()
+    for entry in catalog:
+        key = (entry["registry"], entry["id"])
+        assert key not in keys, f"duplicate registry entry {key}"
+        keys.add(key)
+        assert entry["decision"] in {"preserve", "replace", "remove"}
+        assert entry["status"] in {"pending", "implemented"}
+        if entry["status"] == "implemented":
+            assert entry.get("evidence"), key
+            assert all((ROOT / e).is_file() for e in entry["evidence"]), key
     done = sum(t["status"] == "done" for t in tasks.values())
     lines = ["# NeoForge 26.1.2 迁移进度", "", f"更新：{plan['updated']} · {plan['target']}", "",
              f"阶段完成：**{done} / {len(tasks)}**。完整迁移的旧 Java 文件：**{completed_ports} / {len(originals)}**。",
@@ -54,6 +66,12 @@ def generate():
              "| 任务 | 状态 | 前置任务 | 验收标准 |", "|---|---|---|---|"]
     for task in tasks.values():
         lines.append(f"| {task['id']} {task['title']} | {LABELS[task['status']]} | {', '.join(task['depends_on']) or '—'} | {task['acceptance']} |")
+    if catalog:
+        lines += ["", "## 注册迁移覆盖", "", "| 注册类别 | 已实现 | 基线总数 |", "|---|---:|---:|"]
+        for kind in dict.fromkeys(e["registry"] for e in catalog):
+            entries = [e for e in catalog if e["registry"] == kind]
+            lines.append(f"| {kind} | {sum(e['status'] == 'implemented' for e in entries)} | {len(entries)} |")
+        lines += ["", "流体族尚须展开为实际流体与方块。完整状态见 [注册清单](registry-catalog.json)。"]
     lines += ["", "## 验证证据", ""]
     for task in tasks.values():
         if task["evidence"]:

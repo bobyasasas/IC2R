@@ -1,0 +1,7 @@
+{
+  "type": "minecraft:function",
+  "function": "ic2_tests:inventory_transactions",
+  "environment": "minecraft:default",
+  "structure": "ic2_tests:empty",
+  "max_ticks": 20
+}

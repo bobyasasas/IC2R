@@ -29,6 +29,7 @@ jobs:
       - uses: gradle/actions/setup-gradle@9c971963bec38e04b3d30dcc455b5382be2fdbfb # v6.3.0
         with:
           cache-provider: basic
+          cache-read-only: ${{ github.event_name == 'pull_request' }}
       - name: Validate migration ledger
         run: python3 tools/migration/progress.py --check
       - name: Build and test migration modules

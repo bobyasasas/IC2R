@@ -24,6 +24,12 @@ public final class RegistrationTests {
     static {
         FUNCTIONS.register("copper_plate", () -> RegistrationTests::copperPlate);
         FUNCTIONS.register("core_available", () -> RegistrationTests::coreAvailable);
+        FUNCTIONS.register("materials", () -> ComponentTests::materials);
+        FUNCTIONS.register("components_round_trip", () -> ComponentTests::roundTrip);
+        FUNCTIONS.register("battery_transfer", () -> ComponentTests::battery);
+        FUNCTIONS.register("invalid_charge", () -> ComponentTests::invalidCharge);
+        FUNCTIONS.register("inventory_transactions", () -> TransferTests::inventory);
+        FUNCTIONS.register("fluid_transactions", () -> TransferTests::fluid);
     }
 
     public RegistrationTests(IEventBus modBus) {

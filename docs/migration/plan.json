@@ -46,39 +46,55 @@
     {
       "id": "M04",
       "title": "全部注册 ID 与资源清单",
-      "status": "todo",
+      "status": "done",
       "depends_on": [
         "M01",
         "M03"
       ],
       "acceptance": "逐项登记旧物品、方块、实体、菜单 ID；每项明确保留、替换或废弃；材质和模型检查通过。",
-      "evidence": []
+      "evidence": [
+        "docs/migration/registry-catalog.json",
+        "docs/migration/resource-inventory.json",
+        "tools/migration/catalog/RegistryScanner.java",
+        "tools/migration/verify_artifact.py",
+        "docs/migration/registry-components.md"
+      ]
     },
     {
       "id": "M05",
       "title": "物品数据组件与持久化",
-      "status": "todo",
+      "status": "done",
       "depends_on": [
         "M01",
         "M04"
       ],
       "acceptance": "用数据组件表达电量、流体、遥控绑定；保存与网络 Codec 往返测试；无静态 ItemStack 初始化。",
-      "evidence": []
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/component/ModDataComponents.java",
+        "neoforge/src/main/java/ic2/neoforge/component/RemoteLinks.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/ComponentTests.java",
+        "docs/migration/registry-components.md"
+      ]
     },
     {
       "id": "M06",
       "title": "能量网络计算内核",
-      "status": "todo",
+      "status": "done",
       "depends_on": [
         "M02"
       ],
       "acceptance": "抽离拓扑、损耗和分配规则；能量守恒、过压、断网重连测试；世界访问通过接口注入。",
-      "evidence": []
+      "evidence": [
+        "core/src/main/java/ic2/core/energy/grid/EnergyGraph.java",
+        "core/src/main/java/ic2/core/energy/grid/PacketDistributor.java",
+        "core/src/test/java/ic2/core/energy/grid/EnergyNetworkTest.java",
+        "docs/migration/energy-transfer.md"
+      ]
     },
     {
       "id": "M07",
       "title": "配方与机器状态机",
-      "status": "todo",
+      "status": "in_progress",
       "depends_on": [
         "M02"
       ],
@@ -88,18 +104,22 @@
     {
       "id": "M08",
       "title": "物品／流体传输适配",
-      "status": "todo",
+      "status": "done",
       "depends_on": [
         "M01",
         "M05"
       ],
       "acceptance": "对接 26.1.2 传输 API；模拟与提交一致；容量、侧面权限和回滚测试通过。",
-      "evidence": []
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/transfer/ResourcePort.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/TransferTests.java",
+        "docs/migration/energy-transfer.md"
+      ]
     },
     {
       "id": "M09",
       "title": "首台可用电力机器",
-      "status": "todo",
+      "status": "in_progress",
       "depends_on": [
         "M06",
         "M07",
