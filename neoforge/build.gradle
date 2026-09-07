@@ -1,0 +1,52 @@
+plugins { id 'net.neoforged.moddev' }
+
+base { archivesName = 'ic2-neoforge' }
+
+dependencies { implementation project(':core') }
+
+sourceSets {
+    gameTest {
+        compileClasspath += sourceSets.main.output
+        runtimeClasspath += sourceSets.main.output
+    }
+}
+configurations.gameTestImplementation.extendsFrom configurations.implementation
+
+neoForge {
+    version = project.neo_version
+    addModdingDependenciesTo sourceSets.gameTest
+    runs {
+        client { client() }
+        server {
+            server()
+            programArgument '--nogui'
+        }
+        gameTestServer {
+            type = 'gameTestServer'
+            systemProperty 'neoforge.enabledGameTestNamespaces', 'ic2_tests'
+        }
+    }
+    mods {
+        ic2 {
+            sourceSet sourceSets.main
+            sourceSet project(':core').sourceSets.main
+        }
+        ic2_tests { sourceSet sourceSets.gameTest }
+    }
+    runs.configureEach {
+        loadedMods = name == 'gameTestServer' ? [mods.ic2, mods.ic2_tests] : [mods.ic2]
+    }
+}
+
+def metadata = [mod_version: project.version, neo_version: project.neo_version]
+tasks.named('processResources') {
+    inputs.properties metadata
+    filesMatching('META-INF/neoforge.mods.toml') {
+        expand metadata
+    }
+}
+
+// Core is a plain Java library: embed its classes, not a second loader mod.
+tasks.named('jar') { from project(':core').sourceSets.main.output }
+tasks.named('sourcesJar') { from project(':core').sourceSets.main.allSource }
+tasks.named('check') { dependsOn tasks.named('gameTestClasses') }

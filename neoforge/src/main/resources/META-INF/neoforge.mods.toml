@@ -1,0 +1,22 @@
+license="All Rights Reserved"
+issueTrackerURL="https://github.com/bobyasasas/IC2R/issues"
+
+[[mods]]
+modId="ic2"
+version="${mod_version}"
+displayName="IndustrialCraft 2: Refactored"
+description='''Experimental migration to Minecraft 26.1.2. Currently contains the copper plate and electrical calculation foundation. See the migration dashboard for supported features.'''
+
+[[dependencies.ic2]]
+modId="neoforge"
+type="required"
+versionRange="[${neo_version},26.1.3)"
+ordering="NONE"
+side="BOTH"
+
+[[dependencies.ic2]]
+modId="minecraft"
+type="required"
+versionRange="[26.1.2]"
+ordering="NONE"
+side="BOTH"

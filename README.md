@@ -1,3 +1,28 @@
+# IC2R · NeoForge 26.1.2 迁移分支
+
+[迁移任务与进度](docs/migration/STATUS.md) · [架构及验收约定](docs/migration/architecture.md) · [稳定 Forge Release](https://github.com/bobyasasas/IC2R/releases/tag/2.10.39-ex120-cannerfix1)
+
+**当前为开发基础版本，尚未完成全部功能迁移。** 已接入铜板注册，抽离电压／电流规则；机器、能量网络、GUI、世界生成和旧存档兼容性仍在任务清单中。
+
+目标工具链：Minecraft 26.1.2、NeoForge 26.1.2.107、Java 25、Gradle 9.2.1、ModDevGradle 2.0.146。
+
+```bash
+# 推荐以 JDK 25 运行 Gradle；缺少编译工具链时由 Foojay 解析下载。
+bash gradlew build
+bash gradlew :neoforge:runGameTestServer
+python3 tools/migration/verify_artifact.py
+python3 tools/migration/progress.py --check
+# 可视客户端调试
+bash gradlew :neoforge:runClient
+```
+
+构建产物在 `neoforge/build/libs/`。CI 开发产物仅供验证当前已迁移切片。`legacy/forge-1.20.1` 是只读迁移对照，不参与构建；构建旧版请使用 `forge/1.20.1` 分支。
+
+每次更新 `docs/migration/plan.json` 后运行 `python3 tools/migration/progress.py` 并提交生成的看板。Actions 校验看板与任务状态一致，并在运行摘要中显示进度。
+
+<details>
+<summary>Forge 1.20.1 原项目说明（历史内容）</summary>
+
 
 # 工业时代 2：重构
 
@@ -75,3 +100,5 @@ gradlew build
 gradlew runClient
 gradlew runServer
 ```
+
+</details>

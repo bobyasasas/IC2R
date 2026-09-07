@@ -1,0 +1,4695 @@
+{
+  "baseline": "5d292712bf792ca67a7e1e519216dd7c694cbac9",
+  "files": [
+    {
+      "source": "ic2/api/block/BreakableBlock.java",
+      "sha256": "4bc63c30543ed84de6098bcb491199495ce279525a0db603f5d89646937cecad",
+      "lines": 14
+    },
+    {
+      "source": "ic2/api/block/IIdProvider.java",
+      "sha256": "6a707c94edfce46d4666ff3d10620287edde2155dba73e64eea750fec5b155d9",
+      "lines": 18
+    },
+    {
+      "source": "ic2/api/block/container/Ic2CraftingResultSlot.java",
+      "sha256": "afb95a6a76567159608183abc9740dde732bb1a21382720d5a3b2dd627674cec",
+      "lines": 22
+    },
+    {
+      "source": "ic2/api/crops/BaseSeed.java",
+      "sha256": "ecd4d7e48f6ef1f2f733df52d99766cca0aa016e65d3efa3fb2c64140f5ef63d",
+      "lines": 25
+    },
+    {
+      "source": "ic2/api/crops/CropCard.java",
+      "sha256": "190725500fe56c532ce1b07d14ae21cc16325ea7bb7e079e2afa3a2909135592",
+      "lines": 237
+    },
+    {
+      "source": "ic2/api/crops/CropProperties.java",
+      "sha256": "2a2b020644d6e00cab69fcef895e82517312dfdb9ade9b69b1b3d653051b1cf7",
+      "lines": 11
+    },
+    {
+      "source": "ic2/api/crops/CropSoilType.java",
+      "sha256": "370913545366a2698000ca84019e073c9e97ddb20fdf62bd851c5df443fba445",
+      "lines": 42
+    },
+    {
+      "source": "ic2/api/crops/Crops.java",
+      "sha256": "db8218da1629571affc0329a9455312569691526183e4376188f3cc8b1e4e2b9",
+      "lines": 55
+    },
+    {
+      "source": "ic2/api/crops/ExampleCropCard.java",
+      "sha256": "235c95afad8a25c3074f2a82431d06941e1535942f4c74fc7614418668f0d2d6",
+      "lines": 66
+    },
+    {
+      "source": "ic2/api/crops/ICropSeed.java",
+      "sha256": "9f6910c32e0132a0f7d5011dec5ec2459a926d9f9054c6ee81913db3510b3691",
+      "lines": 28
+    },
+    {
+      "source": "ic2/api/crops/ICropTile.java",
+      "sha256": "e972aad2ae9c258357215e42435ef6ac355ee844562ee72945c3923165678a3c",
+      "lines": 91
+    },
+    {
+      "source": "ic2/api/crops/ICropType.java",
+      "sha256": "cbcfd5f0ca52d3f87d213720529a6548a0906e328529958e2e4c364416b1946b",
+      "lines": 14
+    },
+    {
+      "source": "ic2/api/energy/EnergyNet.java",
+      "sha256": "c3f8fdea030869c329eb5e8271ced65d900d664525af0dd7383177d0c5d0dea8",
+      "lines": 6
+    },
+    {
+      "source": "ic2/api/energy/IEnergyNet.java",
+      "sha256": "9baa0a5cf8ef1dcb2daf050627e8b04ccd682b2692c513898bd4a7f16d2911a8",
+      "lines": 52
+    },
+    {
+      "source": "ic2/api/energy/IEnergyNetEventReceiver.java",
+      "sha256": "e4c58aade7d34fb8cdac3f67b36bf99b06a8639a5f0c8496b74948a077ed9ea0",
+      "lines": 10
+    },
+    {
+      "source": "ic2/api/energy/NodeStats.java",
+      "sha256": "7944b79368baec29dabe5c73dbe86425e00d40c0d702d23a2aef6e3f326ac1d3",
+      "lines": 30
+    },
+    {
+      "source": "ic2/api/energy/ProfileEvent.java",
+      "sha256": "603be5c898152c9ac30068dc5d7f7c957cf2a87b14ca664b4fbd701ff0ca6e81",
+      "lines": 32
+    },
+    {
+      "source": "ic2/api/energy/event/EnergyTileEvent.java",
+      "sha256": "898591826426c57f649f65be51d638d7543cffa3371e29154f610db39590b0cb",
+      "lines": 21
+    },
+    {
+      "source": "ic2/api/energy/event/EnergyTileLoadEvent.java",
+      "sha256": "323cb703d52de704608a3569c04766f33053d7c51f5a960d64c107406d0ddf38",
+      "lines": 11
+    },
+    {
+      "source": "ic2/api/energy/event/EnergyTileUnloadEvent.java",
+      "sha256": "bd25bbeca8935b1b883d984b269875f3ae875095b479d5e72fbc8cd68f8d4923",
+      "lines": 11
+    },
+    {
+      "source": "ic2/api/energy/prefab/BasicEnergyTe.java",
+      "sha256": "5b4640c2e3dc6f05f61f4c89833d56bfbeb37f5eee7c7b7018bb953c7d21d363",
+      "lines": 56
+    },
+    {
+      "source": "ic2/api/energy/prefab/BasicEnergyTile.java",
+      "sha256": "4fedb890a1276d2398ff739f4d4bd28d6c84f27cd4710e0726320db620bae9c6",
+      "lines": 252
+    },
+    {
+      "source": "ic2/api/energy/prefab/BasicSink.java",
+      "sha256": "deb4e10f05441c0b9b18ab5a23214de7ed2dfee493dcac7652c8180cc6ff01f4",
+      "lines": 88
+    },
+    {
+      "source": "ic2/api/energy/prefab/BasicSinkSource.java",
+      "sha256": "f63ceb005399f92ff065ecd84055f8b5a0f6d115080de8fb675e183f4ac2b5e2",
+      "lines": 151
+    },
+    {
+      "source": "ic2/api/energy/prefab/BasicSource.java",
+      "sha256": "598a00242579457268a53d4250f7213f78196574d8b23274ce3c33cba268c528",
+      "lines": 109
+    },
+    {
+      "source": "ic2/api/energy/profile/ICableSpec.java",
+      "sha256": "74c201478cb7a2fdb1c52cf40740aa691116740a2ae841258e9394a96c36419d",
+      "lines": 10
+    },
+    {
+      "source": "ic2/api/energy/profile/IElectricalNode.java",
+      "sha256": "1e7bf33eeffb6e079f1537470b7a0ff7062821e852094e13b2146b086d6bad84",
+      "lines": 23
+    },
+    {
+      "source": "ic2/api/energy/profile/VoltageTier.java",
+      "sha256": "1b5b03ee683e16f041aab175e64eb323c16698599f6fa18b7cb56ecbf3a5a8c2",
+      "lines": 69
+    },
+    {
+      "source": "ic2/api/energy/tile/IChargingSlot.java",
+      "sha256": "488eb7c62bfcd37c340f93779276e370d58dfe1ee753af84546e7f39134762e2",
+      "lines": 6
+    },
+    {
+      "source": "ic2/api/energy/tile/IColoredEnergyTile.java",
+      "sha256": "9539e2a03a3b7546923e290489f1a55f24fba669a04130b1d611f2b19f9ad5cb",
+      "lines": 22
+    },
+    {
+      "source": "ic2/api/energy/tile/IDischargingSlot.java",
+      "sha256": "4efcc36badf8cc6105a91cce5caff560fa2f11c79bcd0903c5659a398a6579a1",
+      "lines": 6
+    },
+    {
+      "source": "ic2/api/energy/tile/IEnergyAcceptor.java",
+      "sha256": "6d891b4fb3dcd19a8b9d75bc3b2eb07561c3311d73b11816af0852cccc88b7f7",
+      "lines": 8
+    },
+    {
+      "source": "ic2/api/energy/tile/IEnergyConductor.java",
+      "sha256": "d74c1f1a1edf3c513e2e7c222ff02b1b8e61b8058df119a580212a038f21cb73",
+      "lines": 16
+    },
+    {
+      "source": "ic2/api/energy/tile/IEnergyEmitter.java",
+      "sha256": "2252885f6cbf25def40a9f60d0f0e07da195470e777bea8565360935fedfab7e",
+      "lines": 8
+    },
+    {
+      "source": "ic2/api/energy/tile/IEnergySink.java",
+      "sha256": "da3c2a53fd32f672c510c076aaa56e51a87583841957724f5fc0f743e309acd0",
+      "lines": 12
+    },
+    {
+      "source": "ic2/api/energy/tile/IEnergySource.java",
+      "sha256": "678a1cf38701eada71a743dd0b2e0d324c014d858460ed771c34feed42d9af12",
+      "lines": 10
+    },
+    {
+      "source": "ic2/api/energy/tile/IEnergyTile.java",
+      "sha256": "66beb09df1b5f4bc2b08346a277c9aa693d2f0a695efab39032ff0e7b6c84ec7",
+      "lines": 8
+    },
+    {
+      "source": "ic2/api/energy/tile/IExplosionPowerOverride.java",
+      "sha256": "6646b9ec1fb9a104ed5bf2a469036e342ef0390e1e25e95ce55ed000d0801079",
+      "lines": 8
+    },
+    {
+      "source": "ic2/api/energy/tile/IHeatSource.java",
+      "sha256": "01d785cd04028b7f3135d4392edc2dea735acfcb85bfa84d7f510770d094d2d7",
+      "lines": 22
+    },
+    {
+      "source": "ic2/api/energy/tile/IKineticSource.java",
+      "sha256": "ed3d76b4d4771564318f5b59e5c82fb7ec914ad9afadf6b2e245d8ea532516b6",
+      "lines": 23
+    },
+    {
+      "source": "ic2/api/energy/tile/IMetaDelegate.java",
+      "sha256": "9e5111b1c02a740841af7314cba6eeeff682b9e9fdd51f5c334e543eab10e4bc",
+      "lines": 8
+    },
+    {
+      "source": "ic2/api/energy/tile/IMultiEnergySource.java",
+      "sha256": "ab43b3e388216a92d9f0860cfa5ff6a68db4112aa600834a1e289529fa149eab",
+      "lines": 8
+    },
+    {
+      "source": "ic2/api/energy/tile/IOverloadHandler.java",
+      "sha256": "55e36994d4d54373d22b632f9a6990cf56e0b4c4c7b2edcfdd99aa480c12618d",
+      "lines": 6
+    },
+    {
+      "source": "ic2/api/entity/block/ExplosiveEntity.java",
+      "sha256": "13a5ca66cff7edbdf17f0eb1689412247ba8643b880ef37e16f922fa1b995cfe",
+      "lines": 182
+    },
+    {
+      "source": "ic2/api/entity/boat/AbstractBoatEntity.java",
+      "sha256": "56259601d016d8f56295f427ee402683008434cf59155d9404da9b8641ec47c6",
+      "lines": 283
+    },
+    {
+      "source": "ic2/api/entity/boat/BoatType.java",
+      "sha256": "fbcacbc3a6eab5c365945407047d4d366c873bfec85f37505684f0214e0a53dc",
+      "lines": 43
+    },
+    {
+      "source": "ic2/api/event/ExplosionEvent.java",
+      "sha256": "4ae4be586800179ddb04dcf5a481d9cbac7e20ac75323306d0872d0e1f2e5e93",
+      "lines": 30
+    },
+    {
+      "source": "ic2/api/event/RetextureEvent.java",
+      "sha256": "b074168626804f4859bf0d7c9afd648b6d420cc96da4ddcb429382b13080cf56",
+      "lines": 91
+    },
+    {
+      "source": "ic2/api/info/IInfoProvider.java",
+      "sha256": "939deef5469cf6558520dc7cf9e167d1487dc6fcae42aa8116d2465dc087f6d9",
+      "lines": 10
+    },
+    {
+      "source": "ic2/api/info/ILocatable.java",
+      "sha256": "7402cd3e4e142864e0c35e5bd07a28046bf57e690c5d8279d5d1daeb6fbac4fe",
+      "lines": 11
+    },
+    {
+      "source": "ic2/api/info/Info.java",
+      "sha256": "03e91788d47761b18691412864ea3adbcf761ff0e8ce69fbaa9f5b7af6ab7f5a",
+      "lines": 75
+    },
+    {
+      "source": "ic2/api/item/BlockBreakableItem.java",
+      "sha256": "1f3de8d1474614c4f8528b45c84d6a7cdd4c7924229a403826da4f7b5f3b589f",
+      "lines": 20
+    },
+    {
+      "source": "ic2/api/item/ElectricItem.java",
+      "sha256": "20bacc26dd9b4f0fda8df6b2057ad521821f6e9310e2787562a3c7a9000bdd49",
+      "lines": 31
+    },
+    {
+      "source": "ic2/api/item/HudMode.java",
+      "sha256": "a1bda802c5a924149ce498b453eb5d43962add001c2737a5f35060e9fdc42862",
+      "lines": 47
+    },
+    {
+      "source": "ic2/api/item/IBackupElectricItemManager.java",
+      "sha256": "694757fdd30c4d925c39231db39854c516b558d3c11706c51514468b275bd9a7",
+      "lines": 8
+    },
+    {
+      "source": "ic2/api/item/IBlockCuttingBlade.java",
+      "sha256": "5f0a09c5bfa9a112093d5244bac57af312feb7afbfd5a8dae833259f583c3b99",
+      "lines": 8
+    },
+    {
+      "source": "ic2/api/item/IBoxable.java",
+      "sha256": "f4b8818b68de9db7a8b5c3b61e4aeb3149cb1c443bf65d5d3f75a67f9307ad9b",
+      "lines": 8
+    },
+    {
+      "source": "ic2/api/item/IDebuggable.java",
+      "sha256": "96df45356e5404719c409b745d707166fb69c9595749dc524d39e8b0e09f13f1",
+      "lines": 8
+    },
+    {
+      "source": "ic2/api/item/IElectricItem.java",
+      "sha256": "bcc5306ae40c8d5b60558f04ba097fee8b55352c8992317c17cdef897a5a91db",
+      "lines": 14
+    },
+    {
+      "source": "ic2/api/item/IElectricItemManager.java",
+      "sha256": "4f5f5b7426ad93a4584ccdb23880b7f027c840c1caae2e7737b9ec26b879d85d",
+      "lines": 39
+    },
+    {
+      "source": "ic2/api/item/IEnhancedOverlayProvider.java",
+      "sha256": "227b87e568579dd976138e1db495f87a61998ee41b24026931842d8bbbd51ab4",
+      "lines": 12
+    },
+    {
+      "source": "ic2/api/item/IEntityAttackableItem.java",
+      "sha256": "5b5d325968cc662f9afd0aaa3f46ce6139da86dee3e91cf5bfe8b58e384d15b1",
+      "lines": 9
+    },
+    {
+      "source": "ic2/api/item/IHazmatLike.java",
+      "sha256": "f40e8b76ddb9902ddf6f7b53f67de6153e1e8abb079621e52c29a22969e3616c",
+      "lines": 43
+    },
+    {
+      "source": "ic2/api/item/IItemHudInfo.java",
+      "sha256": "df7acd1fe1c2efe94bf79ecd2bb30e7fe27dac7be6fb6a1317047a984d1cfe5f",
+      "lines": 10
+    },
+    {
+      "source": "ic2/api/item/IItemHudProvider.java",
+      "sha256": "e973008eb62b2038d97a0c2f72cb0afb8f37ba31ba443c4ecc0b03cc94964f84",
+      "lines": 15
+    },
+    {
+      "source": "ic2/api/item/IKineticRotor.java",
+      "sha256": "f946b89828fbd7cabd8f2c600d3fafd881d6bbfbfd118f5aef4c5f9aa5790375",
+      "lines": 25
+    },
+    {
+      "source": "ic2/api/item/IMetalArmor.java",
+      "sha256": "e87bab79b05d5abe6c9e508071d9ea7adcf962ca30d5223117f9954efdac5d3d",
+      "lines": 9
+    },
+    {
+      "source": "ic2/api/item/IMiningDrill.java",
+      "sha256": "c070e9e8bac40a0311e065d8f7fdb7663eb6942c26b45ade7f58d442a36b916e",
+      "lines": 20
+    },
+    {
+      "source": "ic2/api/item/INanoSaberState.java",
+      "sha256": "f55d76c663e0424271c2c05447eb2ad6f0bd4a050107323c6bdbe39feb1dbfb7",
+      "lines": 12
+    },
+    {
+      "source": "ic2/api/item/ISpecialElectricItem.java",
+      "sha256": "2962cf74ba8d9e113dfbc95d3bf389737a01bc96b1677843465b265af8c27404",
+      "lines": 8
+    },
+    {
+      "source": "ic2/api/item/ITerraformingBP.java",
+      "sha256": "d0e510a0b029eee0ce370173966557226fa05087eda9031129e6fdc449a6bb54",
+      "lines": 17
+    },
+    {
+      "source": "ic2/api/item/ItemWrapper.java",
+      "sha256": "d6ae64be2d1bfbf0bda7e9ccb7c4fdd4542ca7fd2a8fc012d4fdd5636aed561b",
+      "lines": 53
+    },
+    {
+      "source": "ic2/api/network/ClientModifiable.java",
+      "sha256": "d2a9a1ff09c359abe47e5e7cfb9cb8165f58f8ab5480872d0ad99e8974061733",
+      "lines": 12
+    },
+    {
+      "source": "ic2/api/network/IGrowingBuffer.java",
+      "sha256": "86ca8d9b74bc009457701a36c27448deec5a73a11bcf9667f7cdf25542c55ac3",
+      "lines": 15
+    },
+    {
+      "source": "ic2/api/network/INetworkClientTileEntityEventListener.java",
+      "sha256": "a8d90d01cc0e17e9de732e32e5ba4321ba6442ae90c425f38409f76bd2ffbdcd",
+      "lines": 8
+    },
+    {
+      "source": "ic2/api/network/INetworkCustomEncoder.java",
+      "sha256": "abb544b9a22330381ed88183f0f1b0408817539f4108d72db1908a781f5efdb8",
+      "lines": 10
+    },
+    {
+      "source": "ic2/api/network/INetworkDataProvider.java",
+      "sha256": "e375ccd369be73451aced472f0299c72a5a75ca425c4020fae8b1948b2bff660",
+      "lines": 8
+    },
+    {
+      "source": "ic2/api/network/INetworkItemEventListener.java",
+      "sha256": "77b294d075fd076df1c3a57a0d1f1066b9eee291e482fe9bedfbfdded6bcbf5e",
+      "lines": 9
+    },
+    {
+      "source": "ic2/api/network/INetworkManager.java",
+      "sha256": "aa315e350d064e7dbb716a1429d52e1558681bb0c2dfa02b8b226486fb7c8ec8",
+      "lines": 20
+    },
+    {
+      "source": "ic2/api/network/INetworkTileEntityEventListener.java",
+      "sha256": "bae2d204a65bdccfb4af882d9a90a001faa48b09fb8bf4150298e150b4a8e976",
+      "lines": 6
+    },
+    {
+      "source": "ic2/api/network/INetworkUpdateListener.java",
+      "sha256": "ea2d513d1d196fe93dec5d0ebadceec58250d5b66e25670a4c8e18f48afd07cc",
+      "lines": 6
+    },
+    {
+      "source": "ic2/api/network/NetworkHelper.java",
+      "sha256": "eb9a6a5ca9b1e916aeb01482b4a67f8374880baafc71debe68a0783123fc7f4b",
+      "lines": 64
+    },
+    {
+      "source": "ic2/api/reactor/IBaseReactorComponent.java",
+      "sha256": "63b067a47ff2b9bc095d121324f18ed9b520f1ae42f5f6b9dbbf89cb667b9002",
+      "lines": 8
+    },
+    {
+      "source": "ic2/api/reactor/IReactor.java",
+      "sha256": "802801c99d945096824278ecf3cd3a3b0f8231061b99e07eb9014c4e8b6d8fcc",
+      "lines": 44
+    },
+    {
+      "source": "ic2/api/reactor/IReactorChamber.java",
+      "sha256": "3f454170df8fa6a1554846d66678f087ff9f61d1a661587db6c41618128da205",
+      "lines": 8
+    },
+    {
+      "source": "ic2/api/reactor/IReactorComponent.java",
+      "sha256": "1ebd3530fbffcd21b59f5b6c3b180f09c75285e3b4a056f990498b46bf1a170d",
+      "lines": 20
+    },
+    {
+      "source": "ic2/api/recipe/IBasicMachineRecipeManager.java",
+      "sha256": "e34e69b975b962e00e0c44d3e6ce4541090919bc923a7c51ce3631a16eed6210",
+      "lines": 11
+    },
+    {
+      "source": "ic2/api/recipe/ICannerBottleRecipeManager.java",
+      "sha256": "a8a1ccc50c6150018bdb39a03f4f7dabf7b823c7c9edae46b01bbbd86a4dd7e2",
+      "lines": 25
+    },
+    {
+      "source": "ic2/api/recipe/ICannerEnrichRecipeManager.java",
+      "sha256": "65a3fc82cb42bd4e37c3bd3d5cbe22a60fd3c6b74639685f69c198cce2d4646f",
+      "lines": 23
+    },
+    {
+      "source": "ic2/api/recipe/ICraftingRecipeManager.java",
+      "sha256": "a45eda865f8f8355357d609ac17712a7e5d0d32ae84f22ef2577dfb243b0ce9f",
+      "lines": 19
+    },
+    {
+      "source": "ic2/api/recipe/IElectrolyzerRecipeManager.java",
+      "sha256": "1879d9f9e3af956101374813d1e0c4c1f084a648232c0433a3af9cc4e7e01c81",
+      "lines": 70
+    },
+    {
+      "source": "ic2/api/recipe/IEmptyFluidContainerRecipeManager.java",
+      "sha256": "72d9b046de659b34362c853925c2aad23d2644408a0480f9159325d2d231a963",
+      "lines": 18
+    },
+    {
+      "source": "ic2/api/recipe/IFermenterRecipeManager.java",
+      "sha256": "43a4a294e31858ac023a235bdc9be4fb2bcafb821bfd7958adb7a2b0ff905f59",
+      "lines": 27
+    },
+    {
+      "source": "ic2/api/recipe/IFillFluidContainerRecipeManager.java",
+      "sha256": "dbeb103ff4b6739a623822c4b26d97484cbc97f1ce19ab4ad3a38afe6a771f17",
+      "lines": 19
+    },
+    {
+      "source": "ic2/api/recipe/IFluidHeatManager.java",
+      "sha256": "abf486b173d3bdafad21411695d42470c51c74e24e74ec74620eb26e4d1000a3",
+      "lines": 18
+    },
+    {
+      "source": "ic2/api/recipe/ILiquidAcceptManager.java",
+      "sha256": "6cd3486f5ce588e6dc3a1c607c2e4bf7f81480bac18e7066ca96abb26846e9ff",
+      "lines": 12
+    },
+    {
+      "source": "ic2/api/recipe/ILiquidHeatExchangerManager.java",
+      "sha256": "8ca6fef90833544a976b51f6de4381baec41a32007e2b7eaf8ea9f7e30179b00",
+      "lines": 20
+    },
+    {
+      "source": "ic2/api/recipe/IListRecipeManager.java",
+      "sha256": "1e3ba58d5990f84de9406f5bfc30a4ffcd8f475b414208cd97dd960d433ee72f",
+      "lines": 16
+    },
+    {
+      "source": "ic2/api/recipe/IMachineRecipeManager.java",
+      "sha256": "025691a64642fe5bd24280e7778f450fe0d5e00abef508a6adeab04a37a8239b",
+      "lines": 10
+    },
+    {
+      "source": "ic2/api/recipe/IPatternStorage.java",
+      "sha256": "7432fb02b6a8d2599eaf3a13774e0673f61af690bef8dd81bb613c292616d945",
+      "lines": 12
+    },
+    {
+      "source": "ic2/api/recipe/IRecipeInput.java",
+      "sha256": "1da83fe3d2b62e0e58ff9bc4a6e2034304648df367563f6899bbf7ba5674d53c",
+      "lines": 22
+    },
+    {
+      "source": "ic2/api/recipe/IRecipeInputFactory.java",
+      "sha256": "17c5ae78ee8d6b55f214451118cee61e497ecb0ceb66f12d28655e311b4252f1",
+      "lines": 24
+    },
+    {
+      "source": "ic2/api/recipe/IScrapboxManager.java",
+      "sha256": "68eb380b33bf9892f7361fc263a851047a1fe8e65d3f7a4c545aaf580a4db473",
+      "lines": 12
+    },
+    {
+      "source": "ic2/api/recipe/ISemiFluidFuelManager.java",
+      "sha256": "0f2498d9b97ab1414b29e4e5f8c53bad988d684a108cdcf093a4591156ec33a7",
+      "lines": 18
+    },
+    {
+      "source": "ic2/api/recipe/MachineRecipe.java",
+      "sha256": "881eeb7e43bada20f54e595df1f26e9516a2f65031a9731bba2bf5191333e75b",
+      "lines": 44
+    },
+    {
+      "source": "ic2/api/recipe/MachineRecipeResult.java",
+      "sha256": "8cece3ac71b29edc449085f26dc90b8268f6268b66411176794dc8aee6a60582",
+      "lines": 13
+    },
+    {
+      "source": "ic2/api/recipe/MachineRecipeWeighted.java",
+      "sha256": "0da783adf2692785dd3b2309f6e57dbbd3131bd10b65bd4f72e6b4928d3450d8",
+      "lines": 34
+    },
+    {
+      "source": "ic2/api/recipe/RecipeOutput.java",
+      "sha256": "bf51ae560e4aab8c6fd8d6c714c31f6e1e99bd1218ea9f27490e08b2cf59f662",
+      "lines": 60
+    },
+    {
+      "source": "ic2/api/recipe/RecipeOutputWeighted.java",
+      "sha256": "44822c7d2f3d44781afe204fe629b72bb23ccc2358494a3959baf03ca6ead5e3",
+      "lines": 79
+    },
+    {
+      "source": "ic2/api/recipe/Recipes.java",
+      "sha256": "cab91cdfa76958cb91c47ad3b55b018c50d10e6ca4cc5f1c3b7dd1f13aff4824",
+      "lines": 41
+    },
+    {
+      "source": "ic2/api/sound/item/ISwingSoundItem.java",
+      "sha256": "2bbefc0bf540f88493d1e3032d091a624152376691536fd3f53e7ffa4f178099",
+      "lines": 10
+    },
+    {
+      "source": "ic2/api/tile/ExplosionWhitelist.java",
+      "sha256": "0540fe6a09eed794bcbb71f6b5d60e8df8a377b9af3798b9bbfadf1a1cab17c2",
+      "lines": 27
+    },
+    {
+      "source": "ic2/api/tile/IEnergyStorage.java",
+      "sha256": "1e9ff4316163109bc58e5522ea34aa787a566a5bb9985acba2d93cfe26e99e07",
+      "lines": 20
+    },
+    {
+      "source": "ic2/api/tile/IRotorProvider.java",
+      "sha256": "86674fcc5e260095b7bc8cfac23e8dfba8cf8f106ff1c29254695f9bb323b2d8",
+      "lines": 18
+    },
+    {
+      "source": "ic2/api/tile/IWrenchAble.java",
+      "sha256": "0a49dbf2978d8e5c7a4508d3dbbbf309161b08ef2d80888454002017cb3acae1",
+      "lines": 22
+    },
+    {
+      "source": "ic2/api/tile/RetexturableBlock.java",
+      "sha256": "cfe37d769310fb7ab2c88c1762eb53cc168a3e9ceeb6082fe6c2e2bf5db4d05e",
+      "lines": 12
+    },
+    {
+      "source": "ic2/api/tile/RotorRegistry.java",
+      "sha256": "5154239e965dfe2e433dd7400f3cdf354ce2a00ab8e276ec1980dc94c00f852b",
+      "lines": 13
+    },
+    {
+      "source": "ic2/api/tile/StainableBlock.java",
+      "sha256": "d5894abcd027708c8ce7d0131a75d839644551f6fa24d3c1770ab482a4c273ed",
+      "lines": 13
+    },
+    {
+      "source": "ic2/api/upgrade/IAugmentationUpgrade.java",
+      "sha256": "bc1541a023ec6eb21d8ee89401f31585472d466bbe65b86f886c7d652f7e01a0",
+      "lines": 8
+    },
+    {
+      "source": "ic2/api/upgrade/IEnergyStorageUpgrade.java",
+      "sha256": "3ebecd7aae65ffd8d8df38d87f882047925475c14e5b43ff216d7357b5aaa5c1",
+      "lines": 10
+    },
+    {
+      "source": "ic2/api/upgrade/IFluidConsumingUpgrade.java",
+      "sha256": "a3409f32cd05e5fbd944e16a22fefb85cd8bea261c2364d6984bdf42e9ba4f4e",
+      "lines": 5
+    },
+    {
+      "source": "ic2/api/upgrade/IFluidProducingUpgrade.java",
+      "sha256": "1b57624ef25c58700ec748491bcc88ae920b012f2f8525acf21fda3dd30fa9c5",
+      "lines": 5
+    },
+    {
+      "source": "ic2/api/upgrade/IFullUpgrade.java",
+      "sha256": "ca13391ba05c96e445e80bd4aec5fa63a43fad8db035f6adc83cad033e74178a",
+      "lines": 15
+    },
+    {
+      "source": "ic2/api/upgrade/IItemConsumingUpgrade.java",
+      "sha256": "c382d14ec0b6316e7bdb0cbb2f496b9ea3b88b0d3b1be4ff924b040951b19257",
+      "lines": 5
+    },
+    {
+      "source": "ic2/api/upgrade/IItemProducingUpgrade.java",
+      "sha256": "dec318d0f7f9833e104ea076d4f10551479e9c8660b22ffb208f563e7a952003",
+      "lines": 5
+    },
+    {
+      "source": "ic2/api/upgrade/IProcessingUpgrade.java",
+      "sha256": "59732b2f578e9856e2ad9973ae0bc321bed7158eeedf6ae50bc552b68c49f55b",
+      "lines": 14
+    },
+    {
+      "source": "ic2/api/upgrade/IRedstoneSensitiveUpgrade.java",
+      "sha256": "cd5d19404bd5edc788930fdfdefff06fe527c8ceb12470f50e431e1c8fd0d57c",
+      "lines": 10
+    },
+    {
+      "source": "ic2/api/upgrade/IRemoteAccessUpgrade.java",
+      "sha256": "8ff1ddf737e786fc165644c951339e66fc5cc783370d877d62f8ed7073178521",
+      "lines": 8
+    },
+    {
+      "source": "ic2/api/upgrade/ITransformerUpgrade.java",
+      "sha256": "dd1e4df19ad5d33df554b209959ccd957dc990a58da8e29c3a7601bebc22ef94",
+      "lines": 8
+    },
+    {
+      "source": "ic2/api/upgrade/IUpgradableBlock.java",
+      "sha256": "3bf80533ca6aa9d9c9840f33ad719733b60730fb0fe973773bfb393194030ca2",
+      "lines": 12
+    },
+    {
+      "source": "ic2/api/upgrade/IUpgradeItem.java",
+      "sha256": "29c32144a2d15becca287a1eeee25d5e84d0d4ff9fa3a052aebff7a853b19046",
+      "lines": 15
+    },
+    {
+      "source": "ic2/api/upgrade/UpgradableProperty.java",
+      "sha256": "b9a100eeabf54218bae83bf7ae2d4c0feb16cf9db7193c0fd7e832572dff85b1",
+      "lines": 15
+    },
+    {
+      "source": "ic2/api/upgrade/UpgradeRegistry.java",
+      "sha256": "8dc5c9ea1ac0ac115d83358558697bf4031a9a629e6b2ac1c92396d81fa0400d",
+      "lines": 28
+    },
+    {
+      "source": "ic2/api/util/CoreAccess.java",
+      "sha256": "9c779931be28bab4ed79d93a50a9abc049c1f6495b2750396459bbf91c94105a",
+      "lines": 30
+    },
+    {
+      "source": "ic2/api/util/CoreAccessRef.java",
+      "sha256": "67b1afc3a1a6f8bfe918c09b5d7a7fc11ca71a867e50b811cc1af2b1ee2a5fd5",
+      "lines": 26
+    },
+    {
+      "source": "ic2/api/util/FluidContainerOutputMode.java",
+      "sha256": "6c0247a3aa669825d351651ec61e1268f78a775c09758c437f34127fdc8af513",
+      "lines": 21
+    },
+    {
+      "source": "ic2/api/util/IKeyboard.java",
+      "sha256": "32cd8c35c991030f6b6ced235fd0dfbbf08247b6213a2bf395a51191f2585fc4",
+      "lines": 22
+    },
+    {
+      "source": "ic2/api/util/Keys.java",
+      "sha256": "d0873a07cc48134b00c5c2b36bf09041ffa9183866390b43083271a51f0f0e49",
+      "lines": 6
+    },
+    {
+      "source": "ic2/compat/Ic2CraftingRecipe.java",
+      "sha256": "23df4f6f4d1139239f521f1b58c167bc44c7f00abd46ec864c8cb0f8cbc057c0",
+      "lines": 24
+    },
+    {
+      "source": "ic2/core/ChunkLoaderLogic.java",
+      "sha256": "2cc1f0dfd78412837f8f9cc1d47932a9951436719674a5502c463470d7c5e370",
+      "lines": 243
+    },
+    {
+      "source": "ic2/core/ContainerBase.java",
+      "sha256": "4ef0b562bc8124a958d8a9921cee8cc5b013ee85415a3b38956c837cd4a6a1ee",
+      "lines": 267
+    },
+    {
+      "source": "ic2/core/ContainerFullInv.java",
+      "sha256": "a8ab48fe62ce805229f031479edd5d2a2bb2004037caf69f79992ec870532e1b",
+      "lines": 20
+    },
+    {
+      "source": "ic2/core/FluidHeatManager.java",
+      "sha256": "63caf6e347bda8978b392e228f5afb4befc9de5b235373e440343c14b09f7bde",
+      "lines": 50
+    },
+    {
+      "source": "ic2/core/GuiOverlayer.java",
+      "sha256": "0588b1b4a3edef3c6b57364bed46fc69dae74187175abe8410acc318bb307ec5",
+      "lines": 211
+    },
+    {
+      "source": "ic2/core/IC2.java",
+      "sha256": "357a2742b6b4bb71d3be6cab4b9f9dd462795e56547af0bb0779f80c6ed36460",
+      "lines": 118
+    },
+    {
+      "source": "ic2/core/IHasGui.java",
+      "sha256": "f0997e38c866db54c4685ac6ce97b55520f4860fd88cbb0012a611da6c60b448",
+      "lines": 98
+    },
+    {
+      "source": "ic2/core/IHitSoundOverride.java",
+      "sha256": "ab62b387e8a6dac2aee161b3f829232b601606ebedcecbcb1ba09740aee3fa2a",
+      "lines": 19
+    },
+    {
+      "source": "ic2/core/Ic2DamageSource.java",
+      "sha256": "88a321572cbda2f5aa0d4e86a2c804acc5d05fa8453da32bad0fef04ef319161",
+      "lines": 52
+    },
+    {
+      "source": "ic2/core/Ic2Explosion.java",
+      "sha256": "b263518315312e6e1e28eca1d957034d441e751063eeb9d63bea5d9495a06977",
+      "lines": 644
+    },
+    {
+      "source": "ic2/core/Ic2Gui.java",
+      "sha256": "7224d8c4296aed3348b8a1d618a9d4e498306808488ec2087fecc9ef341bf4ac",
+      "lines": 685
+    },
+    {
+      "source": "ic2/core/Ic2ItemGroupType.java",
+      "sha256": "f457273fcbbcaa6fd26aff6ea080f54b84c6c05662af6c3f5e317076b96d1891",
+      "lines": 13
+    },
+    {
+      "source": "ic2/core/Ic2Player.java",
+      "sha256": "4f80db43f78a6c3979da034b25fdfdaf68d9f378f9d0b0391d1aa81a777dd5f8",
+      "lines": 27
+    },
+    {
+      "source": "ic2/core/Ic2Potion.java",
+      "sha256": "6f59bd183b822100137b6c9e2b718f0c403231fd07aa25382910cefaf136788b",
+      "lines": 42
+    },
+    {
+      "source": "ic2/core/ItemGroupIconSupplier.java",
+      "sha256": "ac649be3befc5e01e895a67d86ef4c879274b10f8b05cf94fe9583ff256eb9c8",
+      "lines": 59
+    },
+    {
+      "source": "ic2/core/LiquidHeatExchangerManager.java",
+      "sha256": "fb0469b6c5b08d8c767cea339b4ad50f087f678bfea500f90c9787b8f074723f",
+      "lines": 134
+    },
+    {
+      "source": "ic2/core/PointExplosion.java",
+      "sha256": "45f003777182b4abd9f5a9fa980dd481f39aaeda9144e0f996531c87f25883a9",
+      "lines": 156
+    },
+    {
+      "source": "ic2/core/SemiFluidFuelManager.java",
+      "sha256": "6df3f42b4854b319a7346e2dfd4e7dd7482a312537d5b91de484148369e871d2",
+      "lines": 50
+    },
+    {
+      "source": "ic2/core/WindSim.java",
+      "sha256": "a0c89936a689f12ee099811fb89859820f0e24b0268af640d070ff8941a39af0",
+      "lines": 142
+    },
+    {
+      "source": "ic2/core/apihelper/CoreAccessImpl.java",
+      "sha256": "6698bae8f39944b110e4130f8246740fdc75a4ac5d6e8d054270235d0d02479d",
+      "lines": 90
+    },
+    {
+      "source": "ic2/core/block/BehaviorDynamiteDispense.java",
+      "sha256": "3cb74160e1e6f37901867f5cc1060e6639e40be97861674000b07b245e4a77eb",
+      "lines": 54
+    },
+    {
+      "source": "ic2/core/block/BlockDynamite.java",
+      "sha256": "288a0b4472938ac1194ee137eb6841c8d78aa007e086ddaee0d4e47dfd63193e",
+      "lines": 237
+    },
+    {
+      "source": "ic2/core/block/ChunkLoadAwareBlock.java",
+      "sha256": "cfa107f169b3676fa0b237480beac87427af1583d31a8548115c4eca5d2cf8d5",
+      "lines": 20
+    },
+    {
+      "source": "ic2/core/block/ChunkLoadAwareBlockHandler.java",
+      "sha256": "71451a02bf70116199ba7339d2735152ded0dd4c1eb690eb1f25320f5461c0bf",
+      "lines": 95
+    },
+    {
+      "source": "ic2/core/block/DynamicBeModel.java",
+      "sha256": "ac636689ea8748d03259e8e691d3cb0403097561aa2bdd9542031a895c3d1dd2",
+      "lines": 282
+    },
+    {
+      "source": "ic2/core/block/IInventorySlotHolder.java",
+      "sha256": "95b5fe441d525451be719a8e3027fc5f18f4df4e7cd629415ecb9e197f0ef246",
+      "lines": 16
+    },
+    {
+      "source": "ic2/core/block/SimpleCraftingInventory.java",
+      "sha256": "67634fbae132f3db5689da2105d3820b1fff952136aa69860cebf6a90bd61d48",
+      "lines": 176
+    },
+    {
+      "source": "ic2/core/block/beam/BeamRenderer.java",
+      "sha256": "82b7c74c0b672a02775b8723b08d14ba00278adfeec4bf55ea06f5fca3b117ce",
+      "lines": 84
+    },
+    {
+      "source": "ic2/core/block/beam/ParticleEntity.java",
+      "sha256": "3355683245e5b4833f333689d6fd6669dc4d58c5e27db8ee52dc2d191cd3b70e",
+      "lines": 62
+    },
+    {
+      "source": "ic2/core/block/beam/TileEntityEmitter.java",
+      "sha256": "a2c9b65d84ce146b5a9285f5050cb4b9632fd64fec2a72da21a99f6527bcd496",
+      "lines": 32
+    },
+    {
+      "source": "ic2/core/block/comp/BasicRedstoneComponent.java",
+      "sha256": "9697493990bb4dae6bc6e4bec66e7ac235ab77fc1631200b232e4233ed04c192",
+      "lines": 50
+    },
+    {
+      "source": "ic2/core/block/comp/ComparatorEmitter.java",
+      "sha256": "588597a5a2e769f0b7897947bfcf803254499354f0c2422a869589eca3e4175f",
+      "lines": 17
+    },
+    {
+      "source": "ic2/core/block/comp/Components.java",
+      "sha256": "d08050b6b36296896d03054b6a863ded9ea7c1adc61c3993058da85d533fad42",
+      "lines": 49
+    },
+    {
+      "source": "ic2/core/block/comp/Energy.java",
+      "sha256": "3111acf95a0f6e04ecbd5dea1bb1c2ecfe7ac26f4a26305c4c07c47bde383714",
+      "lines": 783
+    },
+    {
+      "source": "ic2/core/block/comp/FluidReactorLookup.java",
+      "sha256": "3d75798815082b401ce99dee48b8c4d6fd06a2fbcf570b8e16a37bff05e1abc1",
+      "lines": 75
+    },
+    {
+      "source": "ic2/core/block/comp/Fluids.java",
+      "sha256": "2dfa9afad3c3301a7fccb4d693186c675fdd1fbe8e49c20700a5630dec54cb05",
+      "lines": 431
+    },
+    {
+      "source": "ic2/core/block/comp/Kinetic.java",
+      "sha256": "c385f4a6335cc97abd71d539a8072f05e2a98026cb1e80dc5b7e242dd996a3bf",
+      "lines": 20
+    },
+    {
+      "source": "ic2/core/block/comp/Obscuration.java",
+      "sha256": "f03c2c744acc9634c1f43dfbe37ab9eb45a6ec705ab133e7d7cede92981797ec",
+      "lines": 160
+    },
+    {
+      "source": "ic2/core/block/comp/Process.java",
+      "sha256": "808167c87780d22a336d176598919b681b6de8d72e1bab543db92cffbde577ab",
+      "lines": 289
+    },
+    {
+      "source": "ic2/core/block/comp/Redstone.java",
+      "sha256": "d1a1618adc4151a375f951d9b9c949b53b2e9921e8b05e0246cb1a5fa3212cda",
+      "lines": 256
+    },
+    {
+      "source": "ic2/core/block/comp/RedstoneEmitter.java",
+      "sha256": "8d74a2d2b4913bb711b245e86913f0652c5faaa937f0392699a0a07136d979ea",
+      "lines": 17
+    },
+    {
+      "source": "ic2/core/block/comp/TileEntityComponent.java",
+      "sha256": "9efad6101cb7159d2847125a9d2e81f4c93f787729713cf4d6a8e0d40122dc4b",
+      "lines": 71
+    },
+    {
+      "source": "ic2/core/block/generator/container/ContainerSolarGenerator.java",
+      "sha256": "6c356382d9ace0ecfba5e478a0ba143ebe6df8493e4c2145ab9b6ce7428b25dd",
+      "lines": 27
+    },
+    {
+      "source": "ic2/core/block/generator/gui/GuiSolarGenerator.java",
+      "sha256": "2a566474de3a5a19b66233ebb953b5648158de8aa7410d03f20b411981a334fa",
+      "lines": 49
+    },
+    {
+      "source": "ic2/core/block/generator/tileentity/TileEntityBaseGenerator.java",
+      "sha256": "72bce298b8c05ce75270e0c1a3c3e94b35dc2c0958a5f410ed41e473c2a034aa",
+      "lines": 146
+    },
+    {
+      "source": "ic2/core/block/generator/tileentity/TileEntityBaseRotorGenerator.java",
+      "sha256": "acb6c59c352b8ce5bb00432f82cefe3b6b305240543cd4ebc872b962c57cc07f",
+      "lines": 62
+    },
+    {
+      "source": "ic2/core/block/generator/tileentity/TileEntityConversionGenerator.java",
+      "sha256": "9ce15b700fb914de6eb7f405097e02e6bf2b6d2ede277fc38e178f360ef1525f",
+      "lines": 248
+    },
+    {
+      "source": "ic2/core/block/generator/tileentity/TileEntityCreativeGenerator.java",
+      "sha256": "39c66f7253cd5a81e17a62a1e6ee0398540d8e809a92b17aa6fa6a343b5d0adf",
+      "lines": 76
+    },
+    {
+      "source": "ic2/core/block/generator/tileentity/TileEntityGenerator.java",
+      "sha256": "5812c49621f8a08a9fb04881414608fc12bdf85853f12d81eed5ecfb5880bae7",
+      "lines": 98
+    },
+    {
+      "source": "ic2/core/block/generator/tileentity/TileEntityGeoGenerator.java",
+      "sha256": "ef30d8a4e3d387950e61bb942f81df71d99b5f77a686f664a09b969a4a3ac7df",
+      "lines": 75
+    },
+    {
+      "source": "ic2/core/block/generator/tileentity/TileEntityKineticGenerator.java",
+      "sha256": "dd9e9ac8d34a9742386cdaa7ee54370dc29a5a27c34919a0bb71ce8617efb256",
+      "lines": 110
+    },
+    {
+      "source": "ic2/core/block/generator/tileentity/TileEntityRTGenerator.java",
+      "sha256": "3ecc5cfe5830d5f851d67984e6d51d06212c4ed94f788e61d2b945ed6be69302",
+      "lines": 63
+    },
+    {
+      "source": "ic2/core/block/generator/tileentity/TileEntitySemifluidGenerator.java",
+      "sha256": "2c2f1433aa035bcb1aa54bb2860aebdf36c74207cf7764196a33d796f7f02eda",
+      "lines": 89
+    },
+    {
+      "source": "ic2/core/block/generator/tileentity/TileEntitySolarGenerator.java",
+      "sha256": "31aa0f858b0d917adfe24bb07691e1861fbe2913ec15c3a8ea45ebcd04f72064",
+      "lines": 116
+    },
+    {
+      "source": "ic2/core/block/generator/tileentity/TileEntityStirlingGenerator.java",
+      "sha256": "678f4e7d859ab2f8e261bcbb3cd5aae98c6d57ffd70169c393e1eb150b263965",
+      "lines": 91
+    },
+    {
+      "source": "ic2/core/block/generator/tileentity/TileEntityWaterGenerator.java",
+      "sha256": "211ab79b62d9dd7a2310698116641abddea29e78655f102ecd6c4fc88a6bd0f2",
+      "lines": 174
+    },
+    {
+      "source": "ic2/core/block/generator/tileentity/TileEntityWindGenerator.java",
+      "sha256": "86e53b3e4e66d5fdd64424411379d01d959534aa5fcb9307547a6f87c80f8c0c",
+      "lines": 180
+    },
+    {
+      "source": "ic2/core/block/heatgenerator/container/ContainerElectricHeatGenerator.java",
+      "sha256": "b6e8674851dbc5e0e7cf3514c1257fbbfe1e68364fb896107fdf67e8c9ed9547",
+      "lines": 39
+    },
+    {
+      "source": "ic2/core/block/heatgenerator/container/ContainerFluidHeatGenerator.java",
+      "sha256": "f03b37edbc652dd07eac63917f96b778af09e0368d620d03d92d204520b51ebc",
+      "lines": 30
+    },
+    {
+      "source": "ic2/core/block/heatgenerator/container/ContainerRTHeatGenerator.java",
+      "sha256": "36f453fcaa39c3d774ba81aff76b228dc09044c7fc036cc9f4a08aaa6122d1f7",
+      "lines": 37
+    },
+    {
+      "source": "ic2/core/block/heatgenerator/gui/GuiElectricHeatGenerator.java",
+      "sha256": "21b903cf94be97b2b2b2749bbd902a82fcda2459fe5a42cb1fc0e420cf6ad4c0",
+      "lines": 30
+    },
+    {
+      "source": "ic2/core/block/heatgenerator/gui/GuiFluidHeatGenerator.java",
+      "sha256": "a0141450d652c09635e6bc6402747704aeb36f1ddb6b4f65564dc009dbd5100a",
+      "lines": 34
+    },
+    {
+      "source": "ic2/core/block/heatgenerator/gui/GuiRTHeatGenerator.java",
+      "sha256": "acc6664c9e9839ab03b2768de853ed01cbdd86710b1050863aec6c6ccbc8fa2c",
+      "lines": 26
+    },
+    {
+      "source": "ic2/core/block/heatgenerator/tileentity/TileEntityElectricHeatGenerator.java",
+      "sha256": "ced578e123bdc46ff8752a354cd10076eb2df4a2d71645b56c8be32a1b625a6e",
+      "lines": 100
+    },
+    {
+      "source": "ic2/core/block/heatgenerator/tileentity/TileEntityFluidHeatGenerator.java",
+      "sha256": "e4ef5b2678e262debf3348600047e552d679a3a39a7af5c53841e4ce890a058e",
+      "lines": 217
+    },
+    {
+      "source": "ic2/core/block/heatgenerator/tileentity/TileEntityRTHeatGenerator.java",
+      "sha256": "e1e5658c138af3eeede42e43f9531f4e1cfc95c09fddb8ebf801cff7eaf37d1e",
+      "lines": 85
+    },
+    {
+      "source": "ic2/core/block/heatgenerator/tileentity/TileEntitySolidHeatGenerator.java",
+      "sha256": "ff72d5862838a899f3c21728cc8a2d500096d8c6da300051beadeb77ea446a63",
+      "lines": 193
+    },
+    {
+      "source": "ic2/core/block/inherit/Ic2FenceBlock.java",
+      "sha256": "8a52692623aba21967177a2e529583664d14473d3b5e91103f2fcacad211053a",
+      "lines": 395
+    },
+    {
+      "source": "ic2/core/block/inherit/Ic2GlassBlock.java",
+      "sha256": "7a60578f3e3f40d6e654a77ae0f2580483e5f65f836ee8b92aa6da9b1e626fe5",
+      "lines": 22
+    },
+    {
+      "source": "ic2/core/block/inherit/Ic2SheetBlock.java",
+      "sha256": "f297460446e9d0821e476c6723aa9f78fca54d8ef265473e568e2f4ab59b7cf2",
+      "lines": 208
+    },
+    {
+      "source": "ic2/core/block/inherit/Ic2SignBlock.java",
+      "sha256": "6bfb0e9e9a10c998a723ff98ac022b518f856d2ee8562520f4add970eb36ece9",
+      "lines": 22
+    },
+    {
+      "source": "ic2/core/block/inherit/Ic2WallSignBlock.java",
+      "sha256": "1e946e5ee0e468ac7b00e55e765c55add20b8b5dfcd9788515d57449b24ee42f",
+      "lines": 22
+    },
+    {
+      "source": "ic2/core/block/invslot/InvSlot.java",
+      "sha256": "074df51abb15d883dff287389e69cd3e43475f9c86ddfea4e5a5433b4de51328",
+      "lines": 402
+    },
+    {
+      "source": "ic2/core/block/invslot/InvSlotCharge.java",
+      "sha256": "36592ff2de42a61310db6b4fd8e88b0a031b0e6eb1b8cf8193e2187ebd3cc4af",
+      "lines": 41
+    },
+    {
+      "source": "ic2/core/block/invslot/InvSlotConsumable.java",
+      "sha256": "5dd8faf6ef29107bcd9224c54b15f6afedbdf3d1a6fc8961cf9d5b53d3e40150",
+      "lines": 150
+    },
+    {
+      "source": "ic2/core/block/invslot/InvSlotConsumableBlock.java",
+      "sha256": "6045151a95d90962c168659315e8390a9d9952b73049a10833e52d60fb42aa02",
+      "lines": 24
+    },
+    {
+      "source": "ic2/core/block/invslot/InvSlotConsumableCanner.java",
+      "sha256": "903a7133adef80b996f74629fa278f0df4ea6c396ab64ba909747202262b37ea",
+      "lines": 27
+    },
+    {
+      "source": "ic2/core/block/invslot/InvSlotConsumableClass.java",
+      "sha256": "9570e9b2132d440a71013b21fcd2b85bd4a42b915f7373d90c14024f0e8f3cfa",
+      "lines": 36
+    },
+    {
+      "source": "ic2/core/block/invslot/InvSlotConsumableFuel.java",
+      "sha256": "896b6a811d42ac811544d7cdc7d97850384cd523da79034c83d9641e63fafc23",
+      "lines": 28
+    },
+    {
+      "source": "ic2/core/block/invslot/InvSlotConsumableId.java",
+      "sha256": "8d5b405ed77a529d24dcd29ef7c64d1924cd8d634ab673b77746b247168133ac",
+      "lines": 32
+    },
+    {
+      "source": "ic2/core/block/invslot/InvSlotConsumableItemStack.java",
+      "sha256": "a330874808034c6b903949eee30166a5cb6ff27420115796d71446202c64c3e2",
+      "lines": 37
+    },
+    {
+      "source": "ic2/core/block/invslot/InvSlotConsumableKineticRotor.java",
+      "sha256": "19ede165c34beec960053e705a6e0ac162fba7bfcab285e4131c4a0e025598f5",
+      "lines": 43
+    },
+    {
+      "source": "ic2/core/block/invslot/InvSlotConsumableLinked.java",
+      "sha256": "ea26af9a697bde161f713153ff7c49d1a84eff600627d7bb82b41b3789d4cd84",
+      "lines": 36
+    },
+    {
+      "source": "ic2/core/block/invslot/InvSlotConsumableLiquid.java",
+      "sha256": "52ce2944d99d7389d3fb2e7ab165964bbdadd4ce63e894a692bd80949d89bde8",
+      "lines": 272
+    },
+    {
+      "source": "ic2/core/block/invslot/InvSlotConsumableLiquidByList.java",
+      "sha256": "da3321d72da1516952535264b6cbce0742df4418e6a1cc6510c92c9bfd1e21df",
+      "lines": 46
+    },
+    {
+      "source": "ic2/core/block/invslot/InvSlotConsumableLiquidByManager.java",
+      "sha256": "2a8e56a5b91849ad288076082836e2abfde897ca5baebca6d3a6d6a51c0a8ecf",
+      "lines": 42
+    },
+    {
+      "source": "ic2/core/block/invslot/InvSlotConsumableLiquidByTank.java",
+      "sha256": "d512fb80c1592106855c2c81fecc9a506b19ad1c0359e7ea83a261b92a96d762",
+      "lines": 41
+    },
+    {
+      "source": "ic2/core/block/invslot/InvSlotConsumableSolidCanner.java",
+      "sha256": "efb8e981d6d32ef7185cd767e43de0bf89f645d5bc2436b43ce95e6dc6d139b8",
+      "lines": 23
+    },
+    {
+      "source": "ic2/core/block/invslot/InvSlotConsumableTag.java",
+      "sha256": "1d144e8b3a4d6d1aa2c68ddbb1b0f995ca207c1c3f2c7cf7f9c2b83a7fbfdfe9",
+      "lines": 30
+    },
+    {
+      "source": "ic2/core/block/invslot/InvSlotDischarge.java",
+      "sha256": "14c4ced83e7beb32d00ba139b2f7fe85903538b44b81f1ea61ca568f35799e2b",
+      "lines": 81
+    },
+    {
+      "source": "ic2/core/block/invslot/InvSlotOutput.java",
+      "sha256": "8b598a09fdadccb3ddbee6937ff3ec8b0d7226b2149b8cd16ffcca3c10cfd5b1",
+      "lines": 129
+    },
+    {
+      "source": "ic2/core/block/invslot/InvSlotProcessable.java",
+      "sha256": "659fbc7c38a233457694fc401b4b310a70bc0316c81fe9d37b2035a922dad8a3",
+      "lines": 67
+    },
+    {
+      "source": "ic2/core/block/invslot/InvSlotProcessableCanner.java",
+      "sha256": "b7a05906bd42b5e5df5a4f9f05ba867c4b52d94131d9f249194cb8fac06ca671",
+      "lines": 131
+    },
+    {
+      "source": "ic2/core/block/invslot/InvSlotProcessableGeneric.java",
+      "sha256": "e00a7ffb10bccc559f032374899822ccb26d454da276970e5ba4a0a71c656bf6",
+      "lines": 33
+    },
+    {
+      "source": "ic2/core/block/invslot/InvSlotProcessableSmelting.java",
+      "sha256": "342fef68c131befb1c93f376eeef1f0f8130568406923d61f8bf178501fa040f",
+      "lines": 23
+    },
+    {
+      "source": "ic2/core/block/invslot/InvSlotProcessableSolidCanner.java",
+      "sha256": "57a1a3e830a8c12cf1e6ec308c1b8aa8f8b2f06bcbcb027c6363afb96389e667",
+      "lines": 25
+    },
+    {
+      "source": "ic2/core/block/invslot/InvSlotReactor.java",
+      "sha256": "b9e1b0bc60f93dfd0b9d679e532f768600d0e74b9c417f31f7c4965ccc162678",
+      "lines": 80
+    },
+    {
+      "source": "ic2/core/block/invslot/InvSlotScannable.java",
+      "sha256": "74040b9494830687a0cd3c465990eca6057226f27c7745f77338b033b66c12c2",
+      "lines": 52
+    },
+    {
+      "source": "ic2/core/block/invslot/InvSlotUpgrade.java",
+      "sha256": "87dce5cd8d046fc859734b23f47dac102b4d58e19c92ab63c24bbfa31a63c289",
+      "lines": 236
+    },
+    {
+      "source": "ic2/core/block/kineticgenerator/container/ContainerElectricKineticGenerator.java",
+      "sha256": "260ea1bacc3166b1029b88b6a30b8593ecf9d74bb5b1a5416d2830a018b39bd6",
+      "lines": 27
+    },
+    {
+      "source": "ic2/core/block/kineticgenerator/container/ContainerSteamKineticGenerator.java",
+      "sha256": "ee2f7e0820e027dd66e89a681b314950a617d8a24cbbcdab0631da059b8f358c",
+      "lines": 32
+    },
+    {
+      "source": "ic2/core/block/kineticgenerator/container/ContainerStirlingKineticGenerator.java",
+      "sha256": "59fd6b05a0d85084101b46aebc70ccf711ec4d61c27614b77699bca72634eaf2",
+      "lines": 36
+    },
+    {
+      "source": "ic2/core/block/kineticgenerator/container/ContainerWaterKineticGenerator.java",
+      "sha256": "fec46c62d5b5fbbc6aadd23e7c5b34eec2fd4593c6f8c217b88fe270549577e1",
+      "lines": 28
+    },
+    {
+      "source": "ic2/core/block/kineticgenerator/container/ContainerWindKineticGenerator.java",
+      "sha256": "7c72b52fde03dae8fca837762ac3c86125c1fd23c67e6240678f44938424fb17",
+      "lines": 27
+    },
+    {
+      "source": "ic2/core/block/kineticgenerator/gui/GuiElectricKineticGenerator.java",
+      "sha256": "a36b1f14c36563b9116bbda2ff47d3e2acc19ddf484a8dd71a82af0e76039fde",
+      "lines": 30
+    },
+    {
+      "source": "ic2/core/block/kineticgenerator/gui/GuiSteamKineticGenerator.java",
+      "sha256": "aa20eb72f157537e4b8b5354e5dc93a6ac7cb2436c1b652e472ea17a260937a4",
+      "lines": 53
+    },
+    {
+      "source": "ic2/core/block/kineticgenerator/gui/GuiStirlingKineticGenerator.java",
+      "sha256": "35af009c770f125335f5686c54c7e91adada5d7078373d49b69b75b22ddd119b",
+      "lines": 24
+    },
+    {
+      "source": "ic2/core/block/kineticgenerator/gui/GuiWaterKineticGenerator.java",
+      "sha256": "f13a3ac720fbf50c1eb44e8f1e175e71f9b0979188faafbef5d87af1a733a00e",
+      "lines": 38
+    },
+    {
+      "source": "ic2/core/block/kineticgenerator/gui/GuiWindKineticGenerator.java",
+      "sha256": "52862501aef59d18cf0f8459c544be56a63677e33289470624a155d48e487113",
+      "lines": 53
+    },
+    {
+      "source": "ic2/core/block/kineticgenerator/tileentity/TileEntityAbstractKineticGenerator.java",
+      "sha256": "b99ea7399d9986776084bab7dbe362469b758e3b4da383a13848fae4e6abc121",
+      "lines": 37
+    },
+    {
+      "source": "ic2/core/block/kineticgenerator/tileentity/TileEntityElectricKineticGenerator.java",
+      "sha256": "1c52c37138110124e53dc266406bd0d03c98486b01cb1bbb5e425f6cfdef05dc",
+      "lines": 154
+    },
+    {
+      "source": "ic2/core/block/kineticgenerator/tileentity/TileEntityManualKineticGenerator.java",
+      "sha256": "af2e7f3e01173f93aa47e116e9b9546fbc7b7f9d81b42f98ba62da5dd7eea2f7",
+      "lines": 91
+    },
+    {
+      "source": "ic2/core/block/kineticgenerator/tileentity/TileEntitySteamKineticGenerator.java",
+      "sha256": "4d8e2def755f51592ff7e4fd8afcb3208caad8874575bc48374bac8a4e5d0d3d",
+      "lines": 295
+    },
+    {
+      "source": "ic2/core/block/kineticgenerator/tileentity/TileEntityStirlingKineticGenerator.java",
+      "sha256": "cd47eaeeebd30ca0642e5ca0ce3c392b45218d6c8e2dae88633ab2ab26fe390a",
+      "lines": 262
+    },
+    {
+      "source": "ic2/core/block/kineticgenerator/tileentity/TileEntityWaterKineticGenerator.java",
+      "sha256": "e3c873135c62b3c77f5ad9b9fc2de2b3c38000103fc1c4c406af9f967a04c51a",
+      "lines": 414
+    },
+    {
+      "source": "ic2/core/block/kineticgenerator/tileentity/TileEntityWindKineticGenerator.java",
+      "sha256": "551e6527a081db456ac8e10278f874ada2a470dd3f5a6ac5cf883cdad4a59b73",
+      "lines": 364
+    },
+    {
+      "source": "ic2/core/block/machine/CannerBottleRecipeManager.java",
+      "sha256": "3facefa83d9d5ee93dbf9c500d701c847c8de72344e3b0000854ad599b82dc5b",
+      "lines": 193
+    },
+    {
+      "source": "ic2/core/block/machine/CannerEnrichRecipeManager.java",
+      "sha256": "63d96284cf82541312da9412c3d69b8c3e88469e86075bd9daa30d25d5d5f634",
+      "lines": 159
+    },
+    {
+      "source": "ic2/core/block/machine/EmptyFluidContainerRecipeManager.java",
+      "sha256": "839826047764aeab64551376f130d87cd18e2e1d477864138e8a79e2f55f5e66",
+      "lines": 60
+    },
+    {
+      "source": "ic2/core/block/machine/FillFluidContainerRecipeManager.java",
+      "sha256": "58e9aae33845f024d8dfa42ad443e8b4f1fbe738fba341e5837cf05f4f7007b1",
+      "lines": 79
+    },
+    {
+      "source": "ic2/core/block/machine/MiningPipeBlock.java",
+      "sha256": "3cf49ae06d87768253933d064791fc3ab1c8e0e12f15a2d9d5ced8821e1ca447",
+      "lines": 30
+    },
+    {
+      "source": "ic2/core/block/machine/container/ContainerAdvMiner.java",
+      "sha256": "a580e6dd27a5769db0f0455bdf4eb272c3869fafe6ec363df703c2ba5cfb243e",
+      "lines": 42
+    },
+    {
+      "source": "ic2/core/block/machine/container/ContainerBatchCrafter.java",
+      "sha256": "7cdc8668acab69bc0d099d6aa8254928e5eaaa4bbdcc57081854e47a98494f9e",
+      "lines": 84
+    },
+    {
+      "source": "ic2/core/block/machine/container/ContainerCanner.java",
+      "sha256": "7de1379ebf35a021c8f5ef3dbb0d0979c2cf3ba49a356b476dd4fc523e32d29c",
+      "lines": 28
+    },
+    {
+      "source": "ic2/core/block/machine/container/ContainerChunkLoader.java",
+      "sha256": "6fb406ae376987d4370a2c2c5f01a329fa3c6b3b6caeae1e82840d6cdd348efd",
+      "lines": 32
+    },
+    {
+      "source": "ic2/core/block/machine/container/ContainerCondenser.java",
+      "sha256": "4e88d803e4bce92fa9333b6715b468c314a5a950d7aeb037e2315e4ed7f2d908",
+      "lines": 36
+    },
+    {
+      "source": "ic2/core/block/machine/container/ContainerCropHarvester.java",
+      "sha256": "fa641f5577829b1207a800e3c142d54a7216e53eca251141c9e90281684a6424",
+      "lines": 38
+    },
+    {
+      "source": "ic2/core/block/machine/container/ContainerCropmatron.java",
+      "sha256": "72a9f9c853d8b2ac9ad19d9e51a2d4c5a3a863e301359cea8eb7a9df5763d6a7",
+      "lines": 41
+    },
+    {
+      "source": "ic2/core/block/machine/container/ContainerElectricMachine.java",
+      "sha256": "1fb5e98da4ba1010f8817ab8b2100434d9384d4c7ceab159c326b63d6f75869d",
+      "lines": 18
+    },
+    {
+      "source": "ic2/core/block/machine/container/ContainerElectrolyzer.java",
+      "sha256": "ae0c9daed16b3ecaac65d0599279c129da3c1bb836aa86adf6caaa364a8c47df",
+      "lines": 32
+    },
+    {
+      "source": "ic2/core/block/machine/container/ContainerFermenter.java",
+      "sha256": "03c1f6e301d8c25936deb78bb4613b43a2a6489d8c8e80ca452439e43a1e3ac0",
+      "lines": 39
+    },
+    {
+      "source": "ic2/core/block/machine/container/ContainerFluidBottler.java",
+      "sha256": "795d7d37139bff277ba693a16c592e778e12400fa220aef076d89e8a8275e79e",
+      "lines": 27
+    },
+    {
+      "source": "ic2/core/block/machine/container/ContainerFluidDistributor.java",
+      "sha256": "a1077a837fc3ccbf0384879216a08557079bd4c7cb9cc369190ca27b91fe6f74",
+      "lines": 28
+    },
+    {
+      "source": "ic2/core/block/machine/container/ContainerFluidRegulator.java",
+      "sha256": "5c44f528c608aa952d4e76e65efe86b915ed32993f4af8b96b76cd88b3e81aea",
+      "lines": 29
+    },
+    {
+      "source": "ic2/core/block/machine/container/ContainerIndustrialWorkbench.java",
+      "sha256": "5ae5116418051cbaecf90d79093e7cddf9ee7325cb00392d976b8a93a48308a6",
+      "lines": 280
+    },
+    {
+      "source": "ic2/core/block/machine/container/ContainerItemBuffer.java",
+      "sha256": "34b0cab6e638d555e4db9441720799b792c089e2df8554381734ba045a17827e",
+      "lines": 36
+    },
+    {
+      "source": "ic2/core/block/machine/container/ContainerLiquidHeatExchanger.java",
+      "sha256": "57c9a91d30b7eb869e084ce5ca55da622ed92b7b18d3a5f2b7a1529703f5e8dd",
+      "lines": 48
+    },
+    {
+      "source": "ic2/core/block/machine/container/ContainerMagnetizer.java",
+      "sha256": "4667bea1f92cf5aace3f69d4fd9cc904c44b321d7138ced075117b2295304802",
+      "lines": 23
+    },
+    {
+      "source": "ic2/core/block/machine/container/ContainerMatter.java",
+      "sha256": "8dfbe755f32aa11f9431b4c304fe28c445927fcb4466bfc529221a0f6aea76a4",
+      "lines": 36
+    },
+    {
+      "source": "ic2/core/block/machine/container/ContainerMetalFormer.java",
+      "sha256": "e6426cad0b6dd0c78ed7c90e365a5dd010b121b2d1d4b8c3026348cf695b522c",
+      "lines": 24
+    },
+    {
+      "source": "ic2/core/block/machine/container/ContainerMiner.java",
+      "sha256": "a2fd521d31a0968eab5610f87bd547f686aa3557936bf4519a46461d9f3ec8bf",
+      "lines": 38
+    },
+    {
+      "source": "ic2/core/block/machine/container/ContainerPatternStorage.java",
+      "sha256": "828c4f5e243dda8e3696d012852d54fa68a0cbcf8b3620b3a03623ca5fb2b2c7",
+      "lines": 31
+    },
+    {
+      "source": "ic2/core/block/machine/container/ContainerReplicator.java",
+      "sha256": "2a412a93c8c9c48b5e319b2ce8066558128db4b3b8a3809ab4de160a32f3ff5a",
+      "lines": 40
+    },
+    {
+      "source": "ic2/core/block/machine/container/ContainerScanner.java",
+      "sha256": "9eae76428334c05b4d6876c7fa1cc525d67adce9868522cf9bef5597cfec9f32",
+      "lines": 30
+    },
+    {
+      "source": "ic2/core/block/machine/container/ContainerSolarDistiller.java",
+      "sha256": "0b7f5109a989df9317690ed434f85cced520a7db0e8a08ae2019b9e8ac83b925",
+      "lines": 37
+    },
+    {
+      "source": "ic2/core/block/machine/container/ContainerSortingMachine.java",
+      "sha256": "e2098ec1088380b132aa54236d3f5871436e8abe60daaf0644edac1e7ccb7010",
+      "lines": 50
+    },
+    {
+      "source": "ic2/core/block/machine/container/ContainerStandardMachine.java",
+      "sha256": "5d9c95d79f9fd69df36f9a4cb6e8185e93af466200fe986f653dddacfb192447",
+      "lines": 58
+    },
+    {
+      "source": "ic2/core/block/machine/container/ContainerSteamGenerator.java",
+      "sha256": "32389bd73b1e89f3903a354e05f4cd1213469536dce6097d4a8f96e342c1ddb7",
+      "lines": 32
+    },
+    {
+      "source": "ic2/core/block/machine/container/ContainerWeightedFluidDistributor.java",
+      "sha256": "036dfff42bc5ebadeff6b9321f19f801ce200b29f7596164b9e3da40c231156a",
+      "lines": 30
+    },
+    {
+      "source": "ic2/core/block/machine/container/ContainerWeightedItemDistributor.java",
+      "sha256": "a4946e3e76c8e3c97ed8b8380f3e67dfad18169236b52b069f67b1789bb1981b",
+      "lines": 22
+    },
+    {
+      "source": "ic2/core/block/machine/gui/GuiAdvMiner.java",
+      "sha256": "fd2019d0b1fbce217d810c357c5d6412aa8f6b519fbf4f26df9c39d3f87b576b",
+      "lines": 50
+    },
+    {
+      "source": "ic2/core/block/machine/gui/GuiBatchCrafter.java",
+      "sha256": "46f849b780bbeed40fae4e11c4936d9ed95dd32e3ea8a326dc39f1927fdf022d",
+      "lines": 31
+    },
+    {
+      "source": "ic2/core/block/machine/gui/GuiCanner.java",
+      "sha256": "0ea34b58626983c924e35cb0b5eb4c38379890206802c29111715e93700be9a9",
+      "lines": 93
+    },
+    {
+      "source": "ic2/core/block/machine/gui/GuiChunkLoader.java",
+      "sha256": "8491df75739661278e41046b0d86e0613a48de4d65cd17cdbf8567e15dd24a16",
+      "lines": 188
+    },
+    {
+      "source": "ic2/core/block/machine/gui/GuiCondenser.java",
+      "sha256": "0929dda35da3947f5ea0b6d1f1500001b7da0b318129f5b5f87fdb4cac3c1f2c",
+      "lines": 37
+    },
+    {
+      "source": "ic2/core/block/machine/gui/GuiCropHarvester.java",
+      "sha256": "585c4b0060a731ccc06648700769bccc13a83fe57894fe567d62995fc3180774",
+      "lines": 23
+    },
+    {
+      "source": "ic2/core/block/machine/gui/GuiCropmatron.java",
+      "sha256": "b598f80cdac99bb7228763db5bd319a2794a4a2bfd658b89337e1afca136cff7",
+      "lines": 26
+    },
+    {
+      "source": "ic2/core/block/machine/gui/GuiElectrolyzer.java",
+      "sha256": "7b2d87f93d2f4912d0f8be8b69385abaf12e65ae481a4b05ae54a6e9c19a74de",
+      "lines": 75
+    },
+    {
+      "source": "ic2/core/block/machine/gui/GuiFermenter.java",
+      "sha256": "d6ce36f4f0ed7053076cd372841fc253de8b181f832e4b453dfdb33f1722f427",
+      "lines": 30
+    },
+    {
+      "source": "ic2/core/block/machine/gui/GuiFluidBottler.java",
+      "sha256": "7c8f4feba2a3ae08d49bfea184bf853cff6a72708c53f0348975d03edde69c66",
+      "lines": 40
+    },
+    {
+      "source": "ic2/core/block/machine/gui/GuiFluidDistributor.java",
+      "sha256": "7865b777d84c4b9c28e543f5ec3fa28e20f90b4360949d1f21c3b20236da3a4e",
+      "lines": 52
+    },
+    {
+      "source": "ic2/core/block/machine/gui/GuiFluidRegulator.java",
+      "sha256": "c062b0967388d751424a730608613b1c6ac1e3b9408a40a7c0a6631f34422c50",
+      "lines": 42
+    },
+    {
+      "source": "ic2/core/block/machine/gui/GuiIndustrialWorkbench.java",
+      "sha256": "851e2d63d3247d4712b944ab917edef1aef44e0b65befed8925b6701ce578479",
+      "lines": 160
+    },
+    {
+      "source": "ic2/core/block/machine/gui/GuiItemBuffer.java",
+      "sha256": "b0ed80960a58c889dfcd8084a8d545e4f1b21794f4c525690cf106977062abb2",
+      "lines": 21
+    },
+    {
+      "source": "ic2/core/block/machine/gui/GuiLiquidHeatExchanger.java",
+      "sha256": "c14192fa5217a0363257255f036371b557ac6118a92c86de84e61f12f2c2b9b1",
+      "lines": 30
+    },
+    {
+      "source": "ic2/core/block/machine/gui/GuiMagnetizer.java",
+      "sha256": "a287bc5dedab04982ddcb5ee4103931646eb38c75f7865b5e5f3663699dd5db2",
+      "lines": 38
+    },
+    {
+      "source": "ic2/core/block/machine/gui/GuiMatter.java",
+      "sha256": "df5f8cd61fe709da10ff4b3d69c0423992202b37500a6eedce0dd916e9669f7c",
+      "lines": 42
+    },
+    {
+      "source": "ic2/core/block/machine/gui/GuiMetalFormer.java",
+      "sha256": "4fca8d61bad816ecbfa595c7805070d3a42b9cff6141293dc09d18892e62eb2a",
+      "lines": 51
+    },
+    {
+      "source": "ic2/core/block/machine/gui/GuiMiner.java",
+      "sha256": "c469263429ea35f065efc1bced369deae01f11be98b5671e5546fed5b6d884f1",
+      "lines": 31
+    },
+    {
+      "source": "ic2/core/block/machine/gui/GuiPatternStorage.java",
+      "sha256": "ebb80cd7d9eecc4d3019c064262250ecf51a6affc1765c2e967925a2d8971c97",
+      "lines": 128
+    },
+    {
+      "source": "ic2/core/block/machine/gui/GuiReplicator.java",
+      "sha256": "9bf68f9fd25c302f0ca8fa20c366a06400d25c377de248d27e0e53b1db788876",
+      "lines": 116
+    },
+    {
+      "source": "ic2/core/block/machine/gui/GuiScanner.java",
+      "sha256": "657799ab6e0829c7f3d014cb90b25771cdc51d334eff21b61300bfb4a73cd43d",
+      "lines": 135
+    },
+    {
+      "source": "ic2/core/block/machine/gui/GuiSolarDestiller.java",
+      "sha256": "7f6bfe2de619027b90b9112d3e533a395b23d56c4923f2fa5c58be329fa487d8",
+      "lines": 36
+    },
+    {
+      "source": "ic2/core/block/machine/gui/GuiSortingMachine.java",
+      "sha256": "91a910b3ac8ffa9cccb39f494d143ab5ea7d39fbf6a4b5633cadbd50a9104111",
+      "lines": 64
+    },
+    {
+      "source": "ic2/core/block/machine/gui/GuiSteamGenerator.java",
+      "sha256": "aa2caa416ca49a85f4bc9c76fb6037c0c15beea55c7b46265877bc901268da10",
+      "lines": 67
+    },
+    {
+      "source": "ic2/core/block/machine/gui/GuiWeightedDistributor.java",
+      "sha256": "5cfb4553dc2891669ec37b63e49d5928d13af52674c2e4b8d765ee9065f5640b",
+      "lines": 162
+    },
+    {
+      "source": "ic2/core/block/machine/gui/GuiWeightedFluidDistributor.java",
+      "sha256": "50777d6cc7ae1804c777926817a6ca9247d9356631c69f9e8a0624ff7c62925a",
+      "lines": 24
+    },
+    {
+      "source": "ic2/core/block/machine/gui/GuiWeightedItemDistributor.java",
+      "sha256": "ca4ee6885704e9cb1979be680860ecb835f9027bc85c70deb5296e40a558dfcc",
+      "lines": 22
+    },
+    {
+      "source": "ic2/core/block/machine/tileentity/IWeightedDistributor.java",
+      "sha256": "6b072234ec30d735f7aeb46af72be7b1657e406e0d7b71ba5ca74f13e4808972",
+      "lines": 15
+    },
+    {
+      "source": "ic2/core/block/machine/tileentity/TileEntityAdvMiner.java",
+      "sha256": "ac94bdaccac25f22c0252828045c657f2843c0a4c0fa399a4860491374e73469",
+      "lines": 423
+    },
+    {
+      "source": "ic2/core/block/machine/tileentity/TileEntityBatchCrafter.java",
+      "sha256": "f5ce78ceaf92d428253e2875cf234b056aace20ec9796f42b927d7102b6c9010",
+      "lines": 462
+    },
+    {
+      "source": "ic2/core/block/machine/tileentity/TileEntityBlastFurnace.java",
+      "sha256": "00ecb2c20ac1f4eacb55570cfd74c69c5c457985b8beaac2452f04e01516f293",
+      "lines": 227
+    },
+    {
+      "source": "ic2/core/block/machine/tileentity/TileEntityBlockCutter.java",
+      "sha256": "9f178368d93abd8571114dcf204d9cc62d159735d9e69add65cf82b0bb3b5d76",
+      "lines": 100
+    },
+    {
+      "source": "ic2/core/block/machine/tileentity/TileEntityBridgeNuke.java",
+      "sha256": "5e7db269fbd456c50c38e1dd6bf970efa4ddd6a74f1f634b63c062191d57074f",
+      "lines": 66
+    },
+    {
+      "source": "ic2/core/block/machine/tileentity/TileEntityCanner.java",
+      "sha256": "ce73fc0a15bb230ec837c52bce12408118252a3276017523fa0b9789fc4b49e3",
+      "lines": 307
+    },
+    {
+      "source": "ic2/core/block/machine/tileentity/TileEntityCentrifuge.java",
+      "sha256": "cf3ded75a3e13248fbb3aec8fc808f332dca96f9d0d397f174cf1b87e5809661",
+      "lines": 149
+    },
+    {
+      "source": "ic2/core/block/machine/tileentity/TileEntityChunkLoader.java",
+      "sha256": "e8421efae14e2b2924e8dfc0fde8cc02b9d66e874c1fb2bb2072ae2c682b3655",
+      "lines": 263
+    },
+    {
+      "source": "ic2/core/block/machine/tileentity/TileEntityCompressor.java",
+      "sha256": "d357898944f25e65e50bab34ab81cde31db985920dfdfb2ff4359551b5c0a3c6",
+      "lines": 155
+    },
+    {
+      "source": "ic2/core/block/machine/tileentity/TileEntityCondenser.java",
+      "sha256": "57db65be6cd24025de2d0aac25a64a9bc689a64338a9f3c3f3871ab9a9713a22",
+      "lines": 214
+    },
+    {
+      "source": "ic2/core/block/machine/tileentity/TileEntityCropHarvester.java",
+      "sha256": "577b337f0c70d30ea062acc3f9dc5cc94c335e04761175346ab8dc55a91f7b3e",
+      "lines": 153
+    },
+    {
+      "source": "ic2/core/block/machine/tileentity/TileEntityCropmatron.java",
+      "sha256": "cb89fd3dcef2eb61da6e2fe479b99fd4247f822aecd776df7df4e22530ec564a",
+      "lines": 186
+    },
+    {
+      "source": "ic2/core/block/machine/tileentity/TileEntityElectricFurnace.java",
+      "sha256": "3b30e1e370587373f45fc9fa0ab0b21610ba074a534bc139195629987ce5f530",
+      "lines": 103
+    },
+    {
+      "source": "ic2/core/block/machine/tileentity/TileEntityElectricMachine.java",
+      "sha256": "a1fe018f81b8881ccaca393b4a0efc3673cf64aa43022d092e8cf75773ce3b89",
+      "lines": 40
+    },
+    {
+      "source": "ic2/core/block/machine/tileentity/TileEntityElectrolyzer.java",
+      "sha256": "2b1f0d66359d9610cbcd612822bc086b89a9fe14c1094f5fb33ef5f6dc612b99",
+      "lines": 215
+    },
+    {
+      "source": "ic2/core/block/machine/tileentity/TileEntityExplosive.java",
+      "sha256": "96e269f517bfb05bda95c6a21f6f64ab16088d94723fa19e12569a24e46c0b55",
+      "lines": 140
+    },
+    {
+      "source": "ic2/core/block/machine/tileentity/TileEntityExtractor.java",
+      "sha256": "6f94f888f88d4e005991d2278c20aafec42e9676401a739af1f57b6c9d238282",
+      "lines": 55
+    },
+    {
+      "source": "ic2/core/block/machine/tileentity/TileEntityFermenter.java",
+      "sha256": "8cc6d078fb07304aecdecbae0cf33d68083615550d1adddfba8dc14349ab25e1",
+      "lines": 253
+    },
+    {
+      "source": "ic2/core/block/machine/tileentity/TileEntityFluidBottler.java",
+      "sha256": "8f4c59d414a2a74cfdaf5c5704d7f29799d83f02d57a5339dfcb8f596b0d8dd4",
+      "lines": 131
+    },
+    {
+      "source": "ic2/core/block/machine/tileentity/TileEntityFluidDistributor.java",
+      "sha256": "44c601ae21f90471265d7c50c1e370741e25a110d3c4ce5506c2b03ae41524e3",
+      "lines": 226
+    },
+    {
+      "source": "ic2/core/block/machine/tileentity/TileEntityFluidRegulator.java",
+      "sha256": "e04b5eb36fdc2cacd3acb05d806b689e685a04db81d114027b3a7d9f8d066e0c",
+      "lines": 208
+    },
+    {
+      "source": "ic2/core/block/machine/tileentity/TileEntityITnt.java",
+      "sha256": "a3828f482d2b9705b93e58b78804283549b254d16d59ce136636867ef4022019",
+      "lines": 28
+    },
+    {
+      "source": "ic2/core/block/machine/tileentity/TileEntityInduction.java",
+      "sha256": "4322e5cd7349526d261ead3a7e07874f87ce1c75164f6f2a29041cda5e1f270a",
+      "lines": 271
+    },
+    {
+      "source": "ic2/core/block/machine/tileentity/TileEntityIndustrialWorkbench.java",
+      "sha256": "de1da2781e7b03bcc5cd68e2ab35bd1d9769e7a963d0b45b0157ab2234454114",
+      "lines": 316
+    },
+    {
+      "source": "ic2/core/block/machine/tileentity/TileEntityIronFurnace.java",
+      "sha256": "908df28a233c0116b8a7b91fa0f87ad9faedeab597fa0e056058691a6d25f54c",
+      "lines": 236
+    },
+    {
+      "source": "ic2/core/block/machine/tileentity/TileEntityItemBuffer.java",
+      "sha256": "0d0be411e059f3e65955edd1b3ca58d3dccaa4dedc135e9b5aac3ca410e500d9",
+      "lines": 114
+    },
+    {
+      "source": "ic2/core/block/machine/tileentity/TileEntityLiquidHeatExchanger.java",
+      "sha256": "61aa90094f393ed781b39f82adf0b0be22c5b455cb7004860138e25a95979f72",
+      "lines": 249
+    },
+    {
+      "source": "ic2/core/block/machine/tileentity/TileEntityMacerator.java",
+      "sha256": "d5bbd712613a5997decce27155cf35911901e792e1013659d71171070e0601cb",
+      "lines": 79
+    },
+    {
+      "source": "ic2/core/block/machine/tileentity/TileEntityMagnetizer.java",
+      "sha256": "3a9f2c01a3dc085973188fcfeb39784968af5a6dce6e22f2ff6754fed7256c8f",
+      "lines": 100
+    },
+    {
+      "source": "ic2/core/block/machine/tileentity/TileEntityMatter.java",
+      "sha256": "1de87440dbf7533dc907e1934c8dde0ea07a4c69a774df80554e00a57dad308e",
+      "lines": 320
+    },
+    {
+      "source": "ic2/core/block/machine/tileentity/TileEntityMetalFormer.java",
+      "sha256": "575f4518b1baa8c8b12bf3b8e537aa29e4a9b56f71a80aac8066ee9cbe7db747",
+      "lines": 127
+    },
+    {
+      "source": "ic2/core/block/machine/tileentity/TileEntityMiner.java",
+      "sha256": "b9368f2182f67589d6aa35bcaf659ec0e697d680cd46db953dcf3d602ca0409b",
+      "lines": 727
+    },
+    {
+      "source": "ic2/core/block/machine/tileentity/TileEntityNuke.java",
+      "sha256": "f004ff11ef3f921e51c9083c5b45c5631796d9769f50a02d465c2b89ac4f1e48",
+      "lines": 134
+    },
+    {
+      "source": "ic2/core/block/machine/tileentity/TileEntityOreWashing.java",
+      "sha256": "c6e673cfa19217935ed5645ac2e6862d8c3a7b0e70d78b4d3aad860216b916c3",
+      "lines": 115
+    },
+    {
+      "source": "ic2/core/block/machine/tileentity/TileEntityPatternStorage.java",
+      "sha256": "8f40e611c378813e65f4bb50f662b5c25147ef0044237a0ace64a4bdbef1d74a",
+      "lines": 206
+    },
+    {
+      "source": "ic2/core/block/machine/tileentity/TileEntityPump.java",
+      "sha256": "dc090ca5b25a40491567055c9450c583ba6f1f8fa87639fed14dcfb6a4822306",
+      "lines": 289
+    },
+    {
+      "source": "ic2/core/block/machine/tileentity/TileEntityRecycler.java",
+      "sha256": "b8196aecb3162b0cfc424bdb40092be56a86e74f813ea30b2731a9c950c82838",
+      "lines": 169
+    },
+    {
+      "source": "ic2/core/block/machine/tileentity/TileEntityReplicator.java",
+      "sha256": "cec9bdc32ef975a79154e7e7ae3349f750a4817f6679c0f8bd9fb1c888639b53",
+      "lines": 358
+    },
+    {
+      "source": "ic2/core/block/machine/tileentity/TileEntityScanner.java",
+      "sha256": "b56342b680bd6b036f2196e6a92c72722568ff52a9391be26efa03127618ecbe",
+      "lines": 273
+    },
+    {
+      "source": "ic2/core/block/machine/tileentity/TileEntitySolarDistiller.java",
+      "sha256": "cf962f291ca4f22fafc47f7638a700df9c61e56ce42a7d8b1d09eea7c4f3a640",
+      "lines": 148
+    },
+    {
+      "source": "ic2/core/block/machine/tileentity/TileEntitySolidCanner.java",
+      "sha256": "b311f0cf4167c6d351e740542b3bf75ec4c5a685106eb5c19ec9af8daa80ffd6",
+      "lines": 59
+    },
+    {
+      "source": "ic2/core/block/machine/tileentity/TileEntitySortingMachine.java",
+      "sha256": "63e735d972307d36231983cb657e3b59f8334fb0ce6143976c1c2031190bff6a",
+      "lines": 260
+    },
+    {
+      "source": "ic2/core/block/machine/tileentity/TileEntityStandardMachine.java",
+      "sha256": "d1b6c2c48c9f2462f8ff6de0f3e66e37b14acf36180029d36f77a698c5654d30",
+      "lines": 285
+    },
+    {
+      "source": "ic2/core/block/machine/tileentity/TileEntitySteamGenerator.java",
+      "sha256": "460b2cbe25eb69f45fc4afd337e782f8e5893be1147391c17a06b3ee5b3cb44d",
+      "lines": 387
+    },
+    {
+      "source": "ic2/core/block/machine/tileentity/TileEntitySteamRepressurizer.java",
+      "sha256": "ff8d37c40fc3cbece3391d718f174bb919d64bc8d8e924a4f72399a3bd372550",
+      "lines": 179
+    },
+    {
+      "source": "ic2/core/block/machine/tileentity/TileEntityTank.java",
+      "sha256": "2f7cc90ce3c0b4ba9de19a5383380b7db7006f89aa8aa72b5f2bd5b79b341dd1",
+      "lines": 89
+    },
+    {
+      "source": "ic2/core/block/machine/tileentity/TileEntityTeleporter.java",
+      "sha256": "a83dd3b3f9001d4ba5953d0d6df6a1ee549912bd73567557069db9ccc97c31a6",
+      "lines": 404
+    },
+    {
+      "source": "ic2/core/block/machine/tileentity/TileEntityTerra.java",
+      "sha256": "9f9dcbc81301d48a11432deb0cd41972e15658fb438f58592ea6a895f834063d",
+      "lines": 221
+    },
+    {
+      "source": "ic2/core/block/machine/tileentity/TileEntityTesla.java",
+      "sha256": "23dfce6b0f3f57a1af499bcb5bb8d410be5908e970d194d86c39334537295738",
+      "lines": 115
+    },
+    {
+      "source": "ic2/core/block/machine/tileentity/TileEntityWeightedFluidDistributor.java",
+      "sha256": "c8e38e941d058ec4d24d99eed328bb554d3ae5802e5ffa7f8cee7f6990052bac",
+      "lines": 150
+    },
+    {
+      "source": "ic2/core/block/machine/tileentity/TileEntityWeightedItemDistributor.java",
+      "sha256": "ba0e2d6db6520a403b5344e4c91033e95283cd30ee36bb6d62d51e0c0f9e4304",
+      "lines": 169
+    },
+    {
+      "source": "ic2/core/block/misc/AirBlock.java",
+      "sha256": "42ff6e03604d6d546ea3fc022132641f9364b5c65005aff915a2bb5364f4c339",
+      "lines": 21
+    },
+    {
+      "source": "ic2/core/block/misc/ConstructionFoamBlock.java",
+      "sha256": "f17e2721d748eb7cf684a765bb3925e944623b2a182bae7c48029ca25ca3a58b",
+      "lines": 28
+    },
+    {
+      "source": "ic2/core/block/misc/FoamBlock.java",
+      "sha256": "981f064d1fb22a33691ed346589f645ecc3200fe3fe4e4194c40859638606558",
+      "lines": 130
+    },
+    {
+      "source": "ic2/core/block/misc/HotCoolantBlock.java",
+      "sha256": "44453daec935be0d4166c3cb824c57bc94339c7e6e43439ca9a0ed1feb3fce94",
+      "lines": 25
+    },
+    {
+      "source": "ic2/core/block/misc/HotWaterBlock.java",
+      "sha256": "a03ae13f7ece3d3aa9c9d3bad42001909b8c5347b5dd48f6fe0d98034de48ec7",
+      "lines": 50
+    },
+    {
+      "source": "ic2/core/block/misc/HydrogenBlock.java",
+      "sha256": "dec0e0a10246411c785ed210be035b0c14d2765802a7905aaa3cd8599e7af791",
+      "lines": 62
+    },
+    {
+      "source": "ic2/core/block/misc/PahoehoeLavaBlock.java",
+      "sha256": "537c250557d997cdd0ce4c16214c405c1c16f411dc1f9d551cf8877a4e7ccd8c",
+      "lines": 74
+    },
+    {
+      "source": "ic2/core/block/misc/RubberLogBlock.java",
+      "sha256": "6c7c235df80ec9fa4a9ebc2fd0bf27e10e130b23c30646c2cb338b2009b91459",
+      "lines": 212
+    },
+    {
+      "source": "ic2/core/block/misc/RubberWoodBlock.java",
+      "sha256": "452a53ee3e602a2d12152f56ce755a9b399364138db8301d7493c7ade9fdb8fd",
+      "lines": 36
+    },
+    {
+      "source": "ic2/core/block/misc/SteamBlock.java",
+      "sha256": "7afd22b661b2557acec892512d6cf46728c063f45ff7a8123a3fbff3f4d04302",
+      "lines": 28
+    },
+    {
+      "source": "ic2/core/block/misc/UUMatterBlock.java",
+      "sha256": "0ae29a97ac90446d2291e0025196ae12d7d9052077da9092ee5134c0410448a1",
+      "lines": 96
+    },
+    {
+      "source": "ic2/core/block/misc/WallBlock.java",
+      "sha256": "b1819a3c63a8fff834e5c8d8ed48c8ba95ea6507322a5a6a8f11e1409a271da0",
+      "lines": 85
+    },
+    {
+      "source": "ic2/core/block/personal/ContainerEnergyOMatClosed.java",
+      "sha256": "0c1310d51c3894f92285a7c667af90c7a085f5e15fb875ef8d921c496f07dd58",
+      "lines": 43
+    },
+    {
+      "source": "ic2/core/block/personal/ContainerEnergyOMatOpen.java",
+      "sha256": "dba069db8dc408770a4105c9b150ca92f36968079ff584ae4d8c75510372ee23",
+      "lines": 44
+    },
+    {
+      "source": "ic2/core/block/personal/ContainerTradeOMatClosed.java",
+      "sha256": "1979d783e6a7a3952c02d1e76ae5d515e2ca242cc1eadc221d2a1806eed03c49",
+      "lines": 30
+    },
+    {
+      "source": "ic2/core/block/personal/ContainerTradeOMatOpen.java",
+      "sha256": "7708872bb7f9331d8135661007f7939559d82701882dfa6ed021e3322aaa30db",
+      "lines": 33
+    },
+    {
+      "source": "ic2/core/block/personal/GuiEnergyOMatClosed.java",
+      "sha256": "e107b39b983049a97a85369a7c9188fde91330636c513ad046e65bd1066d0534",
+      "lines": 34
+    },
+    {
+      "source": "ic2/core/block/personal/GuiEnergyOMatOpen.java",
+      "sha256": "f70d4601535972e90496b0d006c75ada58b4f7de627acb546d3086265571ebdd",
+      "lines": 41
+    },
+    {
+      "source": "ic2/core/block/personal/GuiTradeOMatClosed.java",
+      "sha256": "48d6a755529b17f9e5d36b5e532e2a383429cd8cf85e91a0aa8fe5b0cb37942f",
+      "lines": 35
+    },
+    {
+      "source": "ic2/core/block/personal/GuiTradeOMatOpen.java",
+      "sha256": "980f36a03d86b29d9b6208289dd9311648c4a26aa4f5c6f54191ce1b876751c7",
+      "lines": 50
+    },
+    {
+      "source": "ic2/core/block/personal/IPersonalBlock.java",
+      "sha256": "4c574be4c5dd4975f8b36145ac19439246911ac73840ac41eb1f503a39b5443a",
+      "lines": 15
+    },
+    {
+      "source": "ic2/core/block/personal/TileEntityEnergyOMat.java",
+      "sha256": "df4abe6188b8f8aa558082461839ded0c45e3fcb8dbb52ecb2c4f5b6a6cd8b95",
+      "lines": 364
+    },
+    {
+      "source": "ic2/core/block/personal/TileEntityPersonalChest.java",
+      "sha256": "6b0f7829860c66661258ed86b29f5373f605beba57dabb39e2bd453b9a02c8b1",
+      "lines": 351
+    },
+    {
+      "source": "ic2/core/block/personal/TileEntityTradeOMat.java",
+      "sha256": "0efe8ad6e6eb5af811208077cb3b9eda5041f7cecb84cf2d3ae1ef6fd343ab18",
+      "lines": 409
+    },
+    {
+      "source": "ic2/core/block/personal/TradingMarket.java",
+      "sha256": "07173ca8ea69f960e25cc4744195360f22de58108737f70d979d166f325fc44e",
+      "lines": 105
+    },
+    {
+      "source": "ic2/core/block/reactor/container/ContainerNuclearReactor.java",
+      "sha256": "df3bdbe2600e009bdfd1d80023ce5647e33ef5105fbf3be5ed6780b90f763757",
+      "lines": 45
+    },
+    {
+      "source": "ic2/core/block/reactor/gui/GuiNuclearReactor.java",
+      "sha256": "04ac15aff5859986fbe99a2b1eb0680496a07dba2c68f50a0aaa587e7c87675b",
+      "lines": 113
+    },
+    {
+      "source": "ic2/core/block/reactor/tileentity/TileEntityAbstractRCI.java",
+      "sha256": "e1a4bc97e7f40ebab59c2b7b0750d954dc9f5c64c2833e5b9f583cbaeb8115c5",
+      "lines": 182
+    },
+    {
+      "source": "ic2/core/block/reactor/tileentity/TileEntityNuclearReactorElectric.java",
+      "sha256": "3b1b26bae6c9d7390314face7e56ff16f23cdab79429d0583b4822fbe57ba9b1",
+      "lines": 1114
+    },
+    {
+      "source": "ic2/core/block/reactor/tileentity/TileEntityRCI_LZH.java",
+      "sha256": "0e353b1de667a3e4a47c56e598d028b3d125d7c30e2ab70e2d096380760c3451",
+      "lines": 18
+    },
+    {
+      "source": "ic2/core/block/reactor/tileentity/TileEntityRCI_RSH.java",
+      "sha256": "f15365b23f9694cabe1e8be1f481aec31741808536eef5cb31c8a7ff3099987e",
+      "lines": 18
+    },
+    {
+      "source": "ic2/core/block/reactor/tileentity/TileEntityReactorAccessHatch.java",
+      "sha256": "7d7bd1a3d110f6df2d133dbfed7329ea91da821c48a6234cc82ee5125e8806d8",
+      "lines": 113
+    },
+    {
+      "source": "ic2/core/block/reactor/tileentity/TileEntityReactorChamberElectric.java",
+      "sha256": "20b8893a3ca38e62e0d00fb5f93aaec7cb1ea25781847c80dbf109720a5a39d0",
+      "lines": 248
+    },
+    {
+      "source": "ic2/core/block/reactor/tileentity/TileEntityReactorFluidPort.java",
+      "sha256": "569655ea50c2c3a9bc62f06c114b9e679f23931a98c1da55a184267eb7182428",
+      "lines": 91
+    },
+    {
+      "source": "ic2/core/block/reactor/tileentity/TileEntityReactorRedstonePort.java",
+      "sha256": "576c92f2405692d85a7bcfd3f81d80f7a62adf6a7e3c828d12f4c472b36f352e",
+      "lines": 35
+    },
+    {
+      "source": "ic2/core/block/reactor/tileentity/TileEntityReactorVessel.java",
+      "sha256": "ea57e52907a6c0fa7fd83b7f445d3acfae3aefcf22863e18ff88a5b36c761f76",
+      "lines": 29
+    },
+    {
+      "source": "ic2/core/block/renderer/KineticGeneratorRenderer.java",
+      "sha256": "80e97954804d0c693b49baf2c325c4aca3cab2134990eaeeb347f6a2a62907d0",
+      "lines": 111
+    },
+    {
+      "source": "ic2/core/block/state/BlockStateUtil.java",
+      "sha256": "6f487631083e90b51fdbcb65265a1b8dfff5da4f5b23728d82a03645cfe94d7c",
+      "lines": 101
+    },
+    {
+      "source": "ic2/core/block/steam/BlockRefractoryBricks.java",
+      "sha256": "c8844c9bff418e92b4b06431cc7966abe45be1dc3020d0eae873a795065ce52b",
+      "lines": 15
+    },
+    {
+      "source": "ic2/core/block/steam/TileEntityCokeKiln.java",
+      "sha256": "3bf397e51a10980d1aa2bc371e56e29831528ca81bba8026a3494441c2acc7f0",
+      "lines": 506
+    },
+    {
+      "source": "ic2/core/block/steam/TileEntityCokeKilnGrate.java",
+      "sha256": "a44cff927b0a087dfd0f0c46ad2f1f281679ec91b3d9e7d5b8bbd15d3c35ba44",
+      "lines": 66
+    },
+    {
+      "source": "ic2/core/block/steam/TileEntityCokeKilnHatch.java",
+      "sha256": "ef84be694f4c509ae20ffde6b1d5121845638a6f05880ec18a8ef52ee882fd52",
+      "lines": 48
+    },
+    {
+      "source": "ic2/core/block/storage/box/TileEntityBronzeStorageBox.java",
+      "sha256": "0bb8271c7cdf3751b8b9ede572b2643f9af36281e28b32e3c2fd66b15399ab20",
+      "lines": 13
+    },
+    {
+      "source": "ic2/core/block/storage/box/TileEntityIridiumStorageBox.java",
+      "sha256": "cbdbd0cc3f9c2aad78abba8550f958d7a5b4a6f9a61ea01abdd72fa07ef112af",
+      "lines": 13
+    },
+    {
+      "source": "ic2/core/block/storage/box/TileEntityIronStorageBox.java",
+      "sha256": "a07582a118aa6d4eae01d71f00056754fd7e55a6c720a0f8f5f12f859e5f431c",
+      "lines": 13
+    },
+    {
+      "source": "ic2/core/block/storage/box/TileEntitySteelStorageBox.java",
+      "sha256": "306c4b53af9ef16999c9035cc34947e669b18255e550a90c29077334d19c11f5",
+      "lines": 13
+    },
+    {
+      "source": "ic2/core/block/storage/box/TileEntityStorageBox.java",
+      "sha256": "daf266b475bd0dadf93adbeb3f1a7fe4bb36a4d2b407a00d4e4dc229003daeff",
+      "lines": 85
+    },
+    {
+      "source": "ic2/core/block/storage/box/TileEntityWoodenStorageBox.java",
+      "sha256": "c6029525d562e957a0b412492d9c1a30ea32b76bc91a61d8c85bb592d516f560",
+      "lines": 13
+    },
+    {
+      "source": "ic2/core/block/storage/tank/TileEntityBronzeTank.java",
+      "sha256": "0a40c70a47c325202d3e7ddd545fa57e84137ab76b18dfb7149ed11b2e256fb3",
+      "lines": 13
+    },
+    {
+      "source": "ic2/core/block/storage/tank/TileEntityIridiumTank.java",
+      "sha256": "d3ebfc07e9bd38fe5a2e7def5e0ff86d51570e0754aa15e7a4c0e4066559452d",
+      "lines": 13
+    },
+    {
+      "source": "ic2/core/block/storage/tank/TileEntityIronTank.java",
+      "sha256": "11ea048d9505887db6419d80c62e81df1e3364cbfdb06facb8f1119438efe841",
+      "lines": 13
+    },
+    {
+      "source": "ic2/core/block/storage/tank/TileEntitySteelTank.java",
+      "sha256": "c250a2d4e6207633a93e181a19954df872e3155e53401c581a362f1a2a5afd69",
+      "lines": 13
+    },
+    {
+      "source": "ic2/core/block/storage/tank/TileEntityTank.java",
+      "sha256": "51d7693b4861e301eaffcad1b38b98437435fc2161827730dcb4f9b87c31428d",
+      "lines": 199
+    },
+    {
+      "source": "ic2/core/block/tileentity/Ic2SignBlockEntity.java",
+      "sha256": "6c6ba3718fe703c8308e1f8681cf2e24ca203e60cf95213fee2a71195d9566ef",
+      "lines": 20
+    },
+    {
+      "source": "ic2/core/block/tileentity/Ic2TileEntity.java",
+      "sha256": "f18b0f24fe3d6cf8d5a46962c9fed0dc76044f3ce887d5f4ce0d2f3e7a22d769",
+      "lines": 688
+    },
+    {
+      "source": "ic2/core/block/tileentity/Ic2TileEntityBlock.java",
+      "sha256": "9f8562e3e03519745ce36f1be56250c0e0206c7f82233014cafdac3286a88907",
+      "lines": 674
+    },
+    {
+      "source": "ic2/core/block/tileentity/TileEntityBase.java",
+      "sha256": "9e5d8aea1cafa6c1377b3ef123b4887dbe19752e6a64d5a5a659cd48b2095225",
+      "lines": 404
+    },
+    {
+      "source": "ic2/core/block/tileentity/TileEntityHeatSourceInventory.java",
+      "sha256": "c2156ad0ef9809c40ae5cd032533dc9e7ba6476d0e686157c4af3eb7a1d8fea3",
+      "lines": 152
+    },
+    {
+      "source": "ic2/core/block/tileentity/TileEntityInventory.java",
+      "sha256": "5981f0bd73c52bf3ba11e5cc12a2c953e214e37bc344d13c8eb5d803dc4be1cf",
+      "lines": 450
+    },
+    {
+      "source": "ic2/core/block/tileentity/TileEntityWall.java",
+      "sha256": "6f09aec2841de23cc547f457bd8961b069665a739a3cb8034b6e9fe0b286aae0",
+      "lines": 194
+    },
+    {
+      "source": "ic2/core/block/transport/cover/CoverProperty.java",
+      "sha256": "3e46cad322d1191d0f87542c662d4720d69fa9646a128a97cc3b86ff77d12ea7",
+      "lines": 6
+    },
+    {
+      "source": "ic2/core/block/transport/cover/Covers.java",
+      "sha256": "8090c15294a32140e60cb9a05b7f1259577d8af3d48ced7d18fe5c489842c279",
+      "lines": 140
+    },
+    {
+      "source": "ic2/core/block/transport/cover/ICoverHolder.java",
+      "sha256": "46835ccb815f2257b06e6a155b807b6251c8bb320e7ddc4fa522976c13ab364f",
+      "lines": 21
+    },
+    {
+      "source": "ic2/core/block/transport/cover/ICoverItem.java",
+      "sha256": "f65b3b417ed72ecdf1f5b3daa5e9b36e4c60e95a762c9190967a9b2c1d3c32ee",
+      "lines": 22
+    },
+    {
+      "source": "ic2/core/block/wiring/AbstractCableBlock.java",
+      "sha256": "42794da543a20dc920a391cadfd0e55286759f2f53778b7d49c703feff66c72f",
+      "lines": 708
+    },
+    {
+      "source": "ic2/core/block/wiring/AbstractDetectorCableBlock.java",
+      "sha256": "e1f72cb344c506e73f2dba5289d9b7b6dd7f76fa772922e4a172a128befc5f42",
+      "lines": 93
+    },
+    {
+      "source": "ic2/core/block/wiring/AbstractSplitterCableBlock.java",
+      "sha256": "4c2f9c0027525b89967bf307b145f9f66ca7d2e4ad61496c9c642e90a4190f9a",
+      "lines": 66
+    },
+    {
+      "source": "ic2/core/block/wiring/CableBlock.java",
+      "sha256": "f0f85a11c3aa1ed60862bfa45b4f36364e603d61282ceaf25515610e362f2912",
+      "lines": 38
+    },
+    {
+      "source": "ic2/core/block/wiring/CableFoam.java",
+      "sha256": "666a6232c502a2c7ec31ad893c44df8c61837f4ce617b221b1762cc07660bd65",
+      "lines": 112
+    },
+    {
+      "source": "ic2/core/block/wiring/CableType.java",
+      "sha256": "15cf3d2329f2c7e274c9feb682cd1d042cfee4c30a7cabdfb35bf1b30e234054",
+      "lines": 34
+    },
+    {
+      "source": "ic2/core/block/wiring/ContainerChargepadBlock.java",
+      "sha256": "21a21553ba589d7cfe6ce1a827d2d5860709418c442b73f45dcdecced2882e61",
+      "lines": 28
+    },
+    {
+      "source": "ic2/core/block/wiring/ContainerElectricBlock.java",
+      "sha256": "21032560884da54663f0c212f73b39c3a6c72559a6eb0cd1d9549bdbad052d47",
+      "lines": 36
+    },
+    {
+      "source": "ic2/core/block/wiring/ContainerTransformer.java",
+      "sha256": "801b8bd5e74a406092001d194c548c11e3592db4368554ac2beb23ad556eb5d2",
+      "lines": 26
+    },
+    {
+      "source": "ic2/core/block/wiring/DetectorCableBlock.java",
+      "sha256": "f8307374f50882a52f6789820342d2e3ed5f89753e437cf30dbe95e16a01c8f6",
+      "lines": 39
+    },
+    {
+      "source": "ic2/core/block/wiring/DetectorFoamCableBlock.java",
+      "sha256": "7417d4e8ad2c247d5e850ce8bc1fc3f49be25a87c3179ebe9239e2e1d90c171b",
+      "lines": 30
+    },
+    {
+      "source": "ic2/core/block/wiring/DynamicCableModel.java",
+      "sha256": "1bbbbb98791abb22be57f263c7e030f611590e5972d94a624bc62d4da81c0d81",
+      "lines": 334
+    },
+    {
+      "source": "ic2/core/block/wiring/FoamCableBlock.java",
+      "sha256": "7e3b793890ad5116bdca999ed3d5e383f00baa5875e74f62db0788694b4e44be",
+      "lines": 31
+    },
+    {
+      "source": "ic2/core/block/wiring/GuiChargePadBlock.java",
+      "sha256": "f9b6d4fd51b1a3b36e5f62c9a503f5e8d32a4d6cba3aaf28c841185fe66183ff",
+      "lines": 38
+    },
+    {
+      "source": "ic2/core/block/wiring/GuiElectricBlock.java",
+      "sha256": "08e502ba544f1273bda1658b3d2407c59d08ab20f3fae4eb478cca94f99e6352",
+      "lines": 51
+    },
+    {
+      "source": "ic2/core/block/wiring/GuiTransformer.java",
+      "sha256": "115e423655f56645ab7f4377c73bac5f1c07eac9ade85dc40b5eedecf788d3ed",
+      "lines": 40
+    },
+    {
+      "source": "ic2/core/block/wiring/SplitterCableBlock.java",
+      "sha256": "bdfc160015b48b7210cc23b2822cf67f7c1d2aee7274156c8861ec35fb208136",
+      "lines": 38
+    },
+    {
+      "source": "ic2/core/block/wiring/SplitterFoamCableBlock.java",
+      "sha256": "2c64b085ac97e47504a2e260f30d222f30f69bbec32162e4fc8169eccb6c3761",
+      "lines": 29
+    },
+    {
+      "source": "ic2/core/block/wiring/tileentity/TileEntityChargePadBatBox.java",
+      "sha256": "9b3e387fb1ef9e22f797ed9fb9a6ebd3a2fcde87c96a2740717edcd3701ca8db",
+      "lines": 15
+    },
+    {
+      "source": "ic2/core/block/wiring/tileentity/TileEntityChargePadBlock.java",
+      "sha256": "ac4e355a6c175d886277f1b365990357f4b5b0a88713cee0540ca23e9ca31eea",
+      "lines": 252
+    },
+    {
+      "source": "ic2/core/block/wiring/tileentity/TileEntityChargePadCESU.java",
+      "sha256": "b2efd455de9c50b0012b8bdfe6d8884eedb0e285e73f4ff66705fa23ad314f53",
+      "lines": 15
+    },
+    {
+      "source": "ic2/core/block/wiring/tileentity/TileEntityChargePadMFE.java",
+      "sha256": "3aaac1a101487d9feaf053f8c372302fa01494e4b849494ae6423f5d6eeded92",
+      "lines": 15
+    },
+    {
+      "source": "ic2/core/block/wiring/tileentity/TileEntityChargePadMFSU.java",
+      "sha256": "6124a339bbf626bb7533dd241a8c84e62bd2d431fc06fdeac15767d5efcd5aff",
+      "lines": 15
+    },
+    {
+      "source": "ic2/core/block/wiring/tileentity/TileEntityElectricBatBox.java",
+      "sha256": "684d1f2a8a8d1befb11bbf580993eb6df89001858ee6084a5d1ac1e6a0878f17",
+      "lines": 13
+    },
+    {
+      "source": "ic2/core/block/wiring/tileentity/TileEntityElectricBlock.java",
+      "sha256": "67832f6ed4aa48c8f73c60093a025f65e97db81ca6a7dec1c561071016af7d79",
+      "lines": 244
+    },
+    {
+      "source": "ic2/core/block/wiring/tileentity/TileEntityElectricCESU.java",
+      "sha256": "5a558893254024de73de3255fbd4ff16650a33c453996fd144ad92d28723ac9f",
+      "lines": 15
+    },
+    {
+      "source": "ic2/core/block/wiring/tileentity/TileEntityElectricMFE.java",
+      "sha256": "7de7f9f7ccace380003fd360778d4e4cc34e3d4b40c5e9a7493a49a618a10ca7",
+      "lines": 13
+    },
+    {
+      "source": "ic2/core/block/wiring/tileentity/TileEntityElectricMFSU.java",
+      "sha256": "c7519a0774590199b0bef74d327d34d877197dbe42cff7c055c3d975d071f8da",
+      "lines": 13
+    },
+    {
+      "source": "ic2/core/block/wiring/tileentity/TileEntityLuminator.java",
+      "sha256": "13c234239964e0796b4ba4f77f1e95571206439f9dda88e67b5d8c562b793340",
+      "lines": 230
+    },
+    {
+      "source": "ic2/core/block/wiring/tileentity/TileEntityTransformer.java",
+      "sha256": "e7c6aee206e229d677d3fc63fdc6fdaf01982ca6f7db5c2ba7246d67118f8753",
+      "lines": 256
+    },
+    {
+      "source": "ic2/core/block/wiring/tileentity/TileEntityTransformerEV.java",
+      "sha256": "cd6b50e6dfefa68e6ef8a51284625442d19e38e8601f8acda71c1cd750f3229f",
+      "lines": 15
+    },
+    {
+      "source": "ic2/core/block/wiring/tileentity/TileEntityTransformerHV.java",
+      "sha256": "432b78d741c95871913416b54b5b92ecc91d987f1298a60f15a1039e66ba488c",
+      "lines": 13
+    },
+    {
+      "source": "ic2/core/block/wiring/tileentity/TileEntityTransformerLV.java",
+      "sha256": "efd39ee24f09c556d41b3e5d37de06814c24cf03c1341188a6de052cf08a9af5",
+      "lines": 13
+    },
+    {
+      "source": "ic2/core/block/wiring/tileentity/TileEntityTransformerMV.java",
+      "sha256": "a2b0db906d005f70ba58e89ce0e20e990f887241da76ab4344db87630ca43070",
+      "lines": 13
+    },
+    {
+      "source": "ic2/core/command/CommandIc2.java",
+      "sha256": "5c7f170ae4107cc37de9c0037e8f161c73f367aae80206698f650a1d6c726bf9",
+      "lines": 475
+    },
+    {
+      "source": "ic2/core/command/CommandIc2c.java",
+      "sha256": "b293498faeb9e771c968b058abc7abbbfc010574e26740cb6567a1fd10e631cc",
+      "lines": 113
+    },
+    {
+      "source": "ic2/core/crop/CropBase.java",
+      "sha256": "92f92eaf58288d467ebfcbd337251d1fb559edea67ff23a9bbdcbc94c885afa1",
+      "lines": 15
+    },
+    {
+      "source": "ic2/core/crop/CropVanilla.java",
+      "sha256": "c9e8720a5afd29b631a1d68ed1f66fb63bcb32ee552d7bf1f2ba1477a83d2ebe",
+      "lines": 64
+    },
+    {
+      "source": "ic2/core/crop/CropVanillaStem.java",
+      "sha256": "7544744f3c7243d92063b9635dc2affd46fc0fb5d25cdb6fed391e0219538ee3",
+      "lines": 34
+    },
+    {
+      "source": "ic2/core/crop/Ic2CropCard.java",
+      "sha256": "557842e71e4a0c4455ebad9bd31a9a28d3a461a7dc6a9136307a26cd855d38fa",
+      "lines": 42
+    },
+    {
+      "source": "ic2/core/crop/Ic2CropType.java",
+      "sha256": "bf42f2e37bbd5f5a487038a199c9ca0670a03f93893691d5d6a029fda681a688",
+      "lines": 127
+    },
+    {
+      "source": "ic2/core/crop/Ic2Crops.java",
+      "sha256": "b1d54c2be4e9c5291f22cd0fa8451ff40169046a2843f578cf9278803067c0ac",
+      "lines": 434
+    },
+    {
+      "source": "ic2/core/crop/ItemCrop.java",
+      "sha256": "9b5eaab3c3d4a55914d94d084f254e8940a5ef73b3b8e4c3a6e4e5f92c249c69",
+      "lines": 29
+    },
+    {
+      "source": "ic2/core/crop/TileEntityCrop.java",
+      "sha256": "0960f05830888532fca507113a47db8382dbee53ac61eb53cabab113f40dce83",
+      "lines": 1411
+    },
+    {
+      "source": "ic2/core/crop/cropcard/CropBaseMetalCommon.java",
+      "sha256": "2344539a1e0f25c735d7ef7f4f002ff98977b7cffc082c6217ee6c401b19ccbd",
+      "lines": 103
+    },
+    {
+      "source": "ic2/core/crop/cropcard/CropBaseMetalUncommon.java",
+      "sha256": "e016cdcafd68908d58d907fcb6553699f15de3db10110fe9a90a89205dc524ab",
+      "lines": 39
+    },
+    {
+      "source": "ic2/core/crop/cropcard/CropBaseMushroom.java",
+      "sha256": "7b658c7595ed82d0d0b0fa7f61b394f17cd4783a13ec867d5cba3607cf4214fb",
+      "lines": 51
+    },
+    {
+      "source": "ic2/core/crop/cropcard/CropBaseSapling.java",
+      "sha256": "8c2eb7f65fe3e3908dbaaddef38fef2ead8faa67da411b7105717e0444386520",
+      "lines": 95
+    },
+    {
+      "source": "ic2/core/crop/cropcard/CropBeetroots.java",
+      "sha256": "2413ba13b6d86887461ea43fc73845c464758017a7accf1da2ec7a2038f4c556",
+      "lines": 47
+    },
+    {
+      "source": "ic2/core/crop/cropcard/CropCarrots.java",
+      "sha256": "9d11f55a8d2b1b930e8702842714bd10eba9d20a6c6d4b0a2c904cb2552cf0ee",
+      "lines": 47
+    },
+    {
+      "source": "ic2/core/crop/cropcard/CropCocoa.java",
+      "sha256": "0be8f40d3cbe88f13d54c910cc4bc3f19fe028a7065adeaf829da7a5524f3776",
+      "lines": 72
+    },
+    {
+      "source": "ic2/core/crop/cropcard/CropCoffee.java",
+      "sha256": "17c09c5cfa8ea9a2f96efe6c946bb85880cefa5cc967a02d5b4def7dd6a634a3",
+      "lines": 84
+    },
+    {
+      "source": "ic2/core/crop/cropcard/CropColorFlower.java",
+      "sha256": "6c9861f338d742049437bdf852283933da0a75090bf747d8908a506dc4bdee4d",
+      "lines": 75
+    },
+    {
+      "source": "ic2/core/crop/cropcard/CropEating.java",
+      "sha256": "99ad29ec45a1c239afeacd19470cfff948046986c6b5e73da94b9b120a4de00f",
+      "lines": 180
+    },
+    {
+      "source": "ic2/core/crop/cropcard/CropFlax.java",
+      "sha256": "d6ddc074effcfdbe634c85030d9e3e3527daddbac60c53adc2895e683e31dd86",
+      "lines": 54
+    },
+    {
+      "source": "ic2/core/crop/cropcard/CropHops.java",
+      "sha256": "609870bb831004561b74db36234f68b1c8bb5d751226d2383a9b9193671463be",
+      "lines": 60
+    },
+    {
+      "source": "ic2/core/crop/cropcard/CropMelon.java",
+      "sha256": "e942b0271537f2ce9640f2972245ca28e25369d19c9a8fe0d1eb5697197bd471",
+      "lines": 62
+    },
+    {
+      "source": "ic2/core/crop/cropcard/CropNetherWart.java",
+      "sha256": "2b4d23c2e453a1e58421970211d87ec1d18da6eb751edd9406ad50c29c4c5720",
+      "lines": 77
+    },
+    {
+      "source": "ic2/core/crop/cropcard/CropPotato.java",
+      "sha256": "08af20b63cd468a0d396c2d5602fa90286ca50b4caee624b6cdbd85e60fee708",
+      "lines": 67
+    },
+    {
+      "source": "ic2/core/crop/cropcard/CropPumpkin.java",
+      "sha256": "6c0990bb4d495bce0acf78836363880f852e383688014c77a90328eadbc9df74",
+      "lines": 56
+    },
+    {
+      "source": "ic2/core/crop/cropcard/CropRedWheat.java",
+      "sha256": "0f644de07b46cb59edb0577117716a54085ec43051f5a3363b7f6488052f1f48",
+      "lines": 94
+    },
+    {
+      "source": "ic2/core/crop/cropcard/CropReed.java",
+      "sha256": "20f280831c1a8d4ebaac72e427ac425d408693281a97f400f3518c34989eeb9b",
+      "lines": 73
+    },
+    {
+      "source": "ic2/core/crop/cropcard/CropStickyReed.java",
+      "sha256": "f6134c690d4df3b54e23ad613a69ebd5436c03b496eecdf009c6bf080cc71dd7",
+      "lines": 81
+    },
+    {
+      "source": "ic2/core/crop/cropcard/CropTerraWart.java",
+      "sha256": "a93c1cbab15a5ddabe731fa85de3c2b0290c0672273cd3c50be409f933c0dbba",
+      "lines": 71
+    },
+    {
+      "source": "ic2/core/crop/cropcard/CropVenomilia.java",
+      "sha256": "5f80a6b572575713889dc9348116264f017490b77b81c893bbfa8795f380a28a",
+      "lines": 137
+    },
+    {
+      "source": "ic2/core/crop/cropcard/CropWeed.java",
+      "sha256": "39ee0de25d22d48523105056b6ed105864698adf554eaf1bf8f9bfc78f641ddc",
+      "lines": 73
+    },
+    {
+      "source": "ic2/core/crop/cropcard/CropWheat.java",
+      "sha256": "a3d907ae5ce6722a9b346e2dcc8918735a1e840f1edf54435383e33c82031e2e",
+      "lines": 54
+    },
+    {
+      "source": "ic2/core/crop/cropcard/GenericCropCard.java",
+      "sha256": "7893440ac2105e890b82a9f35f577d6b5897ae3e946d962e0085c5b896c00e9c",
+      "lines": 355
+    },
+    {
+      "source": "ic2/core/energy/EnergyNetMode.java",
+      "sha256": "f57bd5dd05965e60120efae6d9edf494fdaa4d0681d8f35b47f9de5e68c63046",
+      "lines": 12
+    },
+    {
+      "source": "ic2/core/energy/grid/ChangeHandler.java",
+      "sha256": "6aee0a2b555cebd4e62e56830a89f614bf5abb3cf1d4810f55e66051f72295ec",
+      "lines": 493
+    },
+    {
+      "source": "ic2/core/energy/grid/ElectricalNodes.java",
+      "sha256": "3740c3c5d659f8e1bdf12e7dcedb6ee535b72c0f6156c88a7d2654da00903416",
+      "lines": 144
+    },
+    {
+      "source": "ic2/core/energy/grid/EnergyCalculatorGT.java",
+      "sha256": "ad33e993a5cf32cf3235b986cabb22de82285b53a493d7f0c1793fb7caf2b4bf",
+      "lines": 458
+    },
+    {
+      "source": "ic2/core/energy/grid/EnergyCalculatorUnified.java",
+      "sha256": "5a8a414052722607f57433e4dccf4e917f8f95b24a884c955cd91e213fc8ae11",
+      "lines": 923
+    },
+    {
+      "source": "ic2/core/energy/grid/EnergyNetExplosions.java",
+      "sha256": "ade491010c9f9d82ca220229386103e8ae95105286c7c4b1819a20cc1fbb8ade",
+      "lines": 72
+    },
+    {
+      "source": "ic2/core/energy/grid/EnergyNetGlobal.java",
+      "sha256": "5c5d462e04757e45fb06a854d0fd8ae6b46ef19e0c3a634cae4bbb972647a2e0",
+      "lines": 241
+    },
+    {
+      "source": "ic2/core/energy/grid/EnergyNetLocal.java",
+      "sha256": "bae82206ee896227b70c84dbc0affa689c27276870f6110076209c06b9b0586d",
+      "lines": 392
+    },
+    {
+      "source": "ic2/core/energy/grid/EnergyNetSettings.java",
+      "sha256": "ddef53353ffde36b2231087798e1083861216898ae6880a1de6b2c61e18be793",
+      "lines": 17
+    },
+    {
+      "source": "ic2/core/energy/grid/EnergyPath.java",
+      "sha256": "8fffa0703aa8bc85897119478cdaa15fc9457199bfd17f6be975baff2f86ce36",
+      "lines": 92
+    },
+    {
+      "source": "ic2/core/energy/grid/Grid.java",
+      "sha256": "8bc76c1b3977d025efa28cdf9f2fe820cfdded9d6b424e4cf455bd6382431e3d",
+      "lines": 526
+    },
+    {
+      "source": "ic2/core/energy/grid/GridChange.java",
+      "sha256": "cf42b4f76590eca3426187ad401d839126e2a4db6b958788c542ba6aeac03f08",
+      "lines": 28
+    },
+    {
+      "source": "ic2/core/energy/grid/GridData.java",
+      "sha256": "b8a98a7b2e6c3b3225e64aba53f672b3fa61f0b60e00b8f015bd38f90a099300",
+      "lines": 43
+    },
+    {
+      "source": "ic2/core/energy/grid/GridInfo.java",
+      "sha256": "13bab091860116b42008cb78e2f3dbebfd26e7fb57aa490d057044e4d0dc6510",
+      "lines": 6
+    },
+    {
+      "source": "ic2/core/energy/grid/GridUpdater.java",
+      "sha256": "0666b93ae160431c0948d03180960e671483d71b76d25f1ff10c5bda3dee490d",
+      "lines": 293
+    },
+    {
+      "source": "ic2/core/energy/grid/IEnergyCalculator.java",
+      "sha256": "1086ead83a4ec368de2e19e8e3a4cb4189914b5216ba9aca2910577886f67b81",
+      "lines": 24
+    },
+    {
+      "source": "ic2/core/energy/grid/Node.java",
+      "sha256": "d19439050dd4914d5d6a1078b7805df2cffb49228e3508c5f6316f92714c9d94",
+      "lines": 126
+    },
+    {
+      "source": "ic2/core/energy/grid/NodeLink.java",
+      "sha256": "453570513e03811843482e956eb0ca3d8c7784708541bdaf8c4e6374392e38af",
+      "lines": 116
+    },
+    {
+      "source": "ic2/core/energy/grid/NodeType.java",
+      "sha256": "309400e58a99953f74dd6e6cc9ef7ca74931508c09bd94b827656f6243034a93",
+      "lines": 8
+    },
+    {
+      "source": "ic2/core/energy/grid/Tile.java",
+      "sha256": "0152e578359e4f7aee2c31bc6b34de4a13f52ca3f648b92654bc8663c8fe24ad",
+      "lines": 168
+    },
+    {
+      "source": "ic2/core/energy/profile/CableSpec.java",
+      "sha256": "1644f25d5e08d19a279daafea62cef84b6f2055c73c6b4750d4e2966daf0d13e",
+      "lines": 138
+    },
+    {
+      "source": "ic2/core/energy/profile/ElectricalDisplay.java",
+      "sha256": "6ece0acaf6f0701511bfba56a9468eae2945cf0a4ee24191f9a6d36d2a541926",
+      "lines": 127
+    },
+    {
+      "source": "ic2/core/energy/profile/ElectricalProfile.java",
+      "sha256": "1eabcbaeff11202e0bb97202eca4a7342d7fc32b6dcc2c144a7fb7eee60bd81d",
+      "lines": 77
+    },
+    {
+      "source": "ic2/core/entity/DynamiteEntity.java",
+      "sha256": "97547f5392104c75839f911df8d5c142cfc8c26cab1a9314d8f0851c67e64902",
+      "lines": 268
+    },
+    {
+      "source": "ic2/core/entity/LaserBulletEntity.java",
+      "sha256": "b504aeb5b996efb345ee78864a93775d90504226e1ec29864f134c9e0a24ebd4",
+      "lines": 307
+    },
+    {
+      "source": "ic2/core/entity/StickyDynamiteEntity.java",
+      "sha256": "8570581a41a17efee29d34c3d32316dbc31582b078827f7fd0529a1e18b78bdb",
+      "lines": 42
+    },
+    {
+      "source": "ic2/core/entity/block/ITntEntity.java",
+      "sha256": "338b6190d987e986c29bcd2ec79f337a53d23e4bcfb92901ec3b9356e0c8b256",
+      "lines": 20
+    },
+    {
+      "source": "ic2/core/entity/block/NukeEntity.java",
+      "sha256": "26e8519ce15429dab7d1e3ce2172f3ec6cb995ffe247781c7c783fb935adf560",
+      "lines": 47
+    },
+    {
+      "source": "ic2/core/entity/boat/CarbonBoatEntity.java",
+      "sha256": "d0fc1123dbe0512184574a2e0e476367845f6c715ce4870fb2babd5ed1f02e73",
+      "lines": 60
+    },
+    {
+      "source": "ic2/core/entity/boat/ElectricBoatEntity.java",
+      "sha256": "3086936b4f47a2df8256e26c439099d653db561382d73bfb3b3008b47e64d00d",
+      "lines": 104
+    },
+    {
+      "source": "ic2/core/entity/boat/RubberBoatEntity.java",
+      "sha256": "16d3e91b1d8b90c9975f90bc7fd267af67da20443438baf56ec40ee41ec5b7cc",
+      "lines": 54
+    },
+    {
+      "source": "ic2/core/entity/render/BoatEntityRenderer.java",
+      "sha256": "27b992465a8fe501b2712762bc5c6d7c6db7fe94194809bac168bf77605f8802",
+      "lines": 95
+    },
+    {
+      "source": "ic2/core/entity/render/ExplosiveBlockRenderer.java",
+      "sha256": "437aaa928bda08c52ff46ac81b8c76363ecef56c11988cdf4a0a3d5f4da604a8",
+      "lines": 53
+    },
+    {
+      "source": "ic2/core/entity/render/LaserBulletEntityRenderer.java",
+      "sha256": "6b53d6d613efde1151d1ac1d1a734d9c89514578d5d203d7647009cbd5b59216",
+      "lines": 91
+    },
+    {
+      "source": "ic2/core/event/EventHandler.java",
+      "sha256": "beb1946fb1dd5eeaf7fe8ab6fb50e61c4c06f0cc3c863f3036c8a50c49e3594f",
+      "lines": 346
+    },
+    {
+      "source": "ic2/core/event/EventHandlerClient.java",
+      "sha256": "c80b4c0cf829acc657f8042ff4331d41d372187e2554f587dd10f1681f47774e",
+      "lines": 273
+    },
+    {
+      "source": "ic2/core/event/IWorldTickCallback.java",
+      "sha256": "f5a7a267be52d2dc519c80d8f683c0766f048b6fa9ef1e1bd8ef198cdac86db9",
+      "lines": 8
+    },
+    {
+      "source": "ic2/core/event/TickHandler.java",
+      "sha256": "c9f3c1dd282703a0dfa02ecbc7dadd509c44cdfcb399f01b4257c883f28fd8b4",
+      "lines": 148
+    },
+    {
+      "source": "ic2/core/event/WorldData.java",
+      "sha256": "5f5b667de1c3e2f0b5b6b7f3173bf24999cfea14c093838e8bcf0a2e91868589",
+      "lines": 116
+    },
+    {
+      "source": "ic2/core/fluid/EnvFluidHandler.java",
+      "sha256": "72e96508abd5c1754aa4b446839cdfca38c8bb8169754bace29f7ad5e1f774bc",
+      "lines": 119
+    },
+    {
+      "source": "ic2/core/fluid/FluidBeBridge.java",
+      "sha256": "2d25f94790ea4d297d8cdeadb0bb66eb346ce7e3739e3f3770db60b2babd39f9",
+      "lines": 6
+    },
+    {
+      "source": "ic2/core/fluid/FluidHandler.java",
+      "sha256": "d9c9d0a5954771373dbb7ccdc182415c2f5156c80a28a8366da51cb4ada3b52a",
+      "lines": 202
+    },
+    {
+      "source": "ic2/core/fluid/FluidTankInfo.java",
+      "sha256": "a20c0957d12fceaa0ca6d8966ddee26667e839f61815fe0e35740e8e8efc6c1e",
+      "lines": 8
+    },
+    {
+      "source": "ic2/core/fluid/Ic2FluidBlock.java",
+      "sha256": "502aabf27aa6fb878ac68d53ab336e32289bdd497de2f1c09277d2b3bced7f98",
+      "lines": 20
+    },
+    {
+      "source": "ic2/core/fluid/Ic2FluidItem.java",
+      "sha256": "52ca9fb923a45a427f55cce029db0e7106c4cb92ae08199165ea2672192c3503",
+      "lines": 17
+    },
+    {
+      "source": "ic2/core/fluid/Ic2FluidStack.java",
+      "sha256": "745213c1d18aee2a019fc308f4d25f0ebe21e49fdc4b7b56aa8541b94699a5f5",
+      "lines": 81
+    },
+    {
+      "source": "ic2/core/fluid/Ic2FluidTank.java",
+      "sha256": "c3644fdb5b03f13efefc5e349ff4a5beda288948a8e884da524d7bc9b8ab4168",
+      "lines": 204
+    },
+    {
+      "source": "ic2/core/fluid/StandardFluidItem.java",
+      "sha256": "4922483ebb34cf6172f15a28dc4e25c10e2206d5d786b169f7cd5cf1f955e42f",
+      "lines": 257
+    },
+    {
+      "source": "ic2/core/gui/AbstractFluidSlot.java",
+      "sha256": "cb764f51e7f1baefa1dc5404e7d7533573aa1f69df86b9b7f84944a742c8d0ae",
+      "lines": 78
+    },
+    {
+      "source": "ic2/core/gui/AbstractScrollingList.java",
+      "sha256": "00e1ef8ee10e96ff3a235a1dc8e6f546ca61fcc4fecd02cb72791e6c4f21eb30",
+      "lines": 260
+    },
+    {
+      "source": "ic2/core/gui/Area.java",
+      "sha256": "2bd4462487fcbd968e6811911787bf2d06644327ac9f39d4b225f02253fb2e6f",
+      "lines": 11
+    },
+    {
+      "source": "ic2/core/gui/BasicButton.java",
+      "sha256": "d996f2e8867e9e8afc98e26f28168e21c9decfd97c4c123aa88cbb44b7650645",
+      "lines": 48
+    },
+    {
+      "source": "ic2/core/gui/Button.java",
+      "sha256": "628f97ea98ab40d070c4e29a5187acd34939bb397185ea94d87975e69156e8f9",
+      "lines": 76
+    },
+    {
+      "source": "ic2/core/gui/CustomButton.java",
+      "sha256": "d66a7b4ca4d3471457c06e9b8f9b11eb40d0dd6132d56fdf2099540b202bdfbb",
+      "lines": 58
+    },
+    {
+      "source": "ic2/core/gui/CustomGauge.java",
+      "sha256": "6d8cfe4afafecad2ab0807c3ccf907d04c46e68d67609f12de5ba0ac58a93edc",
+      "lines": 35
+    },
+    {
+      "source": "ic2/core/gui/CycleHandler.java",
+      "sha256": "da844f32741c734da9d247b8b48c69a8107a935dbe75b280ddeb2922580e3330",
+      "lines": 81
+    },
+    {
+      "source": "ic2/core/gui/ElectrolyzerTank.java",
+      "sha256": "f3ca777b91a0347e3517e8898979ab0d1425f1895d9f4119de019b4cce8cfb22",
+      "lines": 94
+    },
+    {
+      "source": "ic2/core/gui/EnergyGauge.java",
+      "sha256": "9496d47701587b873e299ede3b8ddd1a3812470d50e22acd4776e1fe3fbd2167",
+      "lines": 86
+    },
+    {
+      "source": "ic2/core/gui/EnumCycleHandler.java",
+      "sha256": "ffcfa8f0ba2835bdcc111a1361c33a64a23e4167d904d8ae4eb045e774b3b68c",
+      "lines": 60
+    },
+    {
+      "source": "ic2/core/gui/FixedSizeOverlaySupplier.java",
+      "sha256": "60193c95b8f0e3e4f3c92f50972649a2d415e6d8abc6dfdc59e1a312fb3239f2",
+      "lines": 30
+    },
+    {
+      "source": "ic2/core/gui/Gauge.java",
+      "sha256": "360be2db75e1238280fbd5a6a290d7904bdd4b11dc780e8d96aed8a17691b87a",
+      "lines": 417
+    },
+    {
+      "source": "ic2/core/gui/GlTexture.java",
+      "sha256": "b8ff97937e7981882a523f72e67bd2427a0f1ad742b548352c4927280cbe1ffc",
+      "lines": 162
+    },
+    {
+      "source": "ic2/core/gui/GuiDefaultBackground.java",
+      "sha256": "8b3a1dce0bbd9dd6b7ce6bd16b92cb6e567e6582c95b5fef51b70db63f06193b",
+      "lines": 80
+    },
+    {
+      "source": "ic2/core/gui/GuiElement.java",
+      "sha256": "36307a2f85d40bf5285d50f4d80e840781c3e13600d624614776898da8d909c5",
+      "lines": 282
+    },
+    {
+      "source": "ic2/core/gui/GuiFullInv.java",
+      "sha256": "1a61b12ef20fc9ce9d90ee723e19f2b1617620b2f1c3224fe8fa8fee39ae4a3e",
+      "lines": 34
+    },
+    {
+      "source": "ic2/core/gui/IClickHandler.java",
+      "sha256": "6023dc4a4837e6f8ce3a7cc95a2d81feb81aae1921c09553f6f534b9b650bfe7",
+      "lines": 6
+    },
+    {
+      "source": "ic2/core/gui/IEnableHandler.java",
+      "sha256": "9637010fb0b2887380811d1cc06a27a8fa5b8c2741cefcbd282814d4db8ba6be",
+      "lines": 36
+    },
+    {
+      "source": "ic2/core/gui/IKeyboardDependent.java",
+      "sha256": "6e1446bcbd941ff9feb3991b3021537619c1f70b505976b5a420505a2abebff4",
+      "lines": 5
+    },
+    {
+      "source": "ic2/core/gui/INumericValueHandler.java",
+      "sha256": "b1eec13e3a00547fbaf6606d94051b0a126a53e49fe72a0a3236f416dcb5a21d",
+      "lines": 8
+    },
+    {
+      "source": "ic2/core/gui/IOverlaySupplier.java",
+      "sha256": "f25f0c61ab06844f3942fa10f25119fff041ed34dc61cde408f27383f11d69e7",
+      "lines": 12
+    },
+    {
+      "source": "ic2/core/gui/Image.java",
+      "sha256": "42b9e2525c5af3d4ec1f7cae15bdb6dfd7f1b383bc58a6a97bc6ff91fef24213",
+      "lines": 125
+    },
+    {
+      "source": "ic2/core/gui/ItemImage.java",
+      "sha256": "af21e758ee8f8fdf6eadeaefe45825a42774474029e2420a024ea0b371e12ed9",
+      "lines": 31
+    },
+    {
+      "source": "ic2/core/gui/ItemStackImage.java",
+      "sha256": "94a03a5708ef5200ecb5b1b660536bf6110695baec7a4647da399b040d6d76aa",
+      "lines": 43
+    },
+    {
+      "source": "ic2/core/gui/LinkedGauge.java",
+      "sha256": "8c3c4947759e123ecf87613e13776e4f24ebcead14ffaf61b38294f8964664e4",
+      "lines": 23
+    },
+    {
+      "source": "ic2/core/gui/MouseButton.java",
+      "sha256": "954dd8e3b8c909354f951d2f407ad9199ee4b04939282559efe4f537965b5c09",
+      "lines": 48
+    },
+    {
+      "source": "ic2/core/gui/OverlaySupplier.java",
+      "sha256": "7f9d43b17f9176528ed6b269943c4a5e25365054a81f43eec767f43fbe1f79ef",
+      "lines": 41
+    },
+    {
+      "source": "ic2/core/gui/PlayerHead.java",
+      "sha256": "0ab18a010ffba60b8e26f2f1f8a3f3a5350d37863cb4cd0c5af36fc6ae8bd3f7",
+      "lines": 68
+    },
+    {
+      "source": "ic2/core/gui/ProgressGauge.java",
+      "sha256": "5cd6edd933504529a147bc943de146eb013320b9eb538a3ccb4b0bf6ab893e41",
+      "lines": 63
+    },
+    {
+      "source": "ic2/core/gui/RecipeButton.java",
+      "sha256": "e863c8283ea72d225af7fd8b6cf203630ab48d8d08bfb9f0a3eb53b556458292",
+      "lines": 43
+    },
+    {
+      "source": "ic2/core/gui/ScrollDirection.java",
+      "sha256": "0d4d3eef99d798316f97261e71b2835075553cb392751aaaea12f5f23e16fb7c",
+      "lines": 15
+    },
+    {
+      "source": "ic2/core/gui/ScrollableList.java",
+      "sha256": "8953d5d767d054182d4d4df109b476ccd4bbbadd9092ff444f622e1453997863",
+      "lines": 29
+    },
+    {
+      "source": "ic2/core/gui/ScrollableSelectiveList.java",
+      "sha256": "88a76d4ae0b37462cb7da34490c9b6f4b20f502c6c202f969f3e1689e00bef3a",
+      "lines": 81
+    },
+    {
+      "source": "ic2/core/gui/SlotGrid.java",
+      "sha256": "a0599df95a46fea43acbcceeea7871dc0b04bbcd66cf44f0d3ed35f72f626747",
+      "lines": 123
+    },
+    {
+      "source": "ic2/core/gui/StickyVanillaButton.java",
+      "sha256": "a59fda284f2d11cd474b8e277c43d45510a08e24824add22bcad979426712b0d",
+      "lines": 47
+    },
+    {
+      "source": "ic2/core/gui/TankFluidSlot.java",
+      "sha256": "b72c8fe6d1952816e7d5b68244afe5707002e6977b755060fe0460d59a4fc6cb",
+      "lines": 51
+    },
+    {
+      "source": "ic2/core/gui/TankGauge.java",
+      "sha256": "15bdae6fb79f49f2bbf2456d8d5114e777345a6cfaf74ffcae618a14dc3a90ed",
+      "lines": 138
+    },
+    {
+      "source": "ic2/core/gui/TextBox.java",
+      "sha256": "933d713a252ea24cf2ff4c23ebab2b03a65240b9a0ffeb153921eee0737845e5",
+      "lines": 612
+    },
+    {
+      "source": "ic2/core/gui/TextLabel.java",
+      "sha256": "c8fe9d34573e03cb81b84dc8b456c5e6b49a451ac051448bab907f5a181b5579",
+      "lines": 262
+    },
+    {
+      "source": "ic2/core/gui/UpgradesWidget.java",
+      "sha256": "a6c9576f3d1591a986862a4ee6acb4572f549757fb0f65db083bd45d4f7d65c7",
+      "lines": 68
+    },
+    {
+      "source": "ic2/core/gui/VanillaButton.java",
+      "sha256": "ed407528a2b7c108227f44f9c980d4b582d26860c483d877a5fe3c425f6f3654",
+      "lines": 145
+    },
+    {
+      "source": "ic2/core/gui/dynamic/DynamicContainer.java",
+      "sha256": "730a50b9fb9c9128063aaad080554fbf22295fbaa79164f8550d85be22a52bfd",
+      "lines": 250
+    },
+    {
+      "source": "ic2/core/gui/dynamic/DynamicGui.java",
+      "sha256": "58fce31170de834d3f2c1a472376542c00c202b4ebc328bb0dc3c61d8435fba0",
+      "lines": 306
+    },
+    {
+      "source": "ic2/core/gui/dynamic/DynamicHandHeldContainer.java",
+      "sha256": "4d7e89a755370eaf6ce5bf674e1f0002ef6301c8c7cc0d019f5a0f151c2972b1",
+      "lines": 73
+    },
+    {
+      "source": "ic2/core/gui/dynamic/GuiDefinition.java",
+      "sha256": "59627457538c79055a29146a84617c631b33c593b3d0c8efd9a283a2df31239e",
+      "lines": 5
+    },
+    {
+      "source": "ic2/core/gui/dynamic/GuiEnvironment.java",
+      "sha256": "e82107bc5fb935b60c1a742137ff13e034de2b513e3803bf4d48f60f97dd762c",
+      "lines": 32
+    },
+    {
+      "source": "ic2/core/gui/dynamic/GuiParser.java",
+      "sha256": "1cb52dad256815860fbb8cfb26496b08236238e0b5623a96a271e7c44d369012",
+      "lines": 1061
+    },
+    {
+      "source": "ic2/core/gui/dynamic/IGuiConditionProvider.java",
+      "sha256": "4cf6fee17861c6a7b592815deee0ca7a618a61117c61bb94931f1edd18ab44f1",
+      "lines": 6
+    },
+    {
+      "source": "ic2/core/gui/dynamic/IGuiValueProvider.java",
+      "sha256": "f050c7d500405c41284bd10fe2e50b805f6300e34a0c9252ca011068ff056ecb",
+      "lines": 11
+    },
+    {
+      "source": "ic2/core/gui/dynamic/IHolographicSlotProvider.java",
+      "sha256": "42e0770129af33f6f7d2c422461df72d4aac77b45ed4d70c00eb57a440cb8c62",
+      "lines": 8
+    },
+    {
+      "source": "ic2/core/gui/dynamic/TextProvider.java",
+      "sha256": "bce9d15c92546e2767ed12af588a271bde0c0def7909d90f9fe5800d6ab9d947",
+      "lines": 556
+    },
+    {
+      "source": "ic2/core/init/BlocksItems.java",
+      "sha256": "ca914859e8801d614305fc64270b144445df86140b334b1f2faeb1329e233e21",
+      "lines": 34
+    },
+    {
+      "source": "ic2/core/init/IC2ClientConfig.java",
+      "sha256": "32760e3569b9ab9ca8b2c817bc3f542017c445830c116122cfc78edf1b4f623d",
+      "lines": 59
+    },
+    {
+      "source": "ic2/core/init/IC2Config.java",
+      "sha256": "d8b577c687ad3073ed916f8c272ca82a8b3d4a8c5d6b5ac2262acb233f6ef263",
+      "lines": 526
+    },
+    {
+      "source": "ic2/core/init/IC2UuScanConfig.java",
+      "sha256": "4ee141f092e3dadfd43d72ca3594d6f5d8f5c0d9c04f6bf7aa6a989318df1fd0",
+      "lines": 164
+    },
+    {
+      "source": "ic2/core/init/Ic2Constants.java",
+      "sha256": "6619b14908b43d4cc64130ae8530b852277664c81c485bf6108c2f410f9cf744",
+      "lines": 34
+    },
+    {
+      "source": "ic2/core/init/MainConfig.java",
+      "sha256": "fa5814b1846652348a2c6ae4f82a1b6d10cc10c19cbe174a06efe1b46ad87bb6",
+      "lines": 10
+    },
+    {
+      "source": "ic2/core/init/OreValues.java",
+      "sha256": "97d95b55915fb56ea2f548a7845f548ef8e8d36413cdc8f39a79e8e18e429ba1",
+      "lines": 53
+    },
+    {
+      "source": "ic2/core/init/Rezepte.java",
+      "sha256": "f40e595120c7a5d67eee545416bd04b54ee55ea7a72b2e745c0f61e873f23d88",
+      "lines": 96
+    },
+    {
+      "source": "ic2/core/item/BaseElectricItem.java",
+      "sha256": "4db3b3dde111bc4d62120080545524d6e3a3b1217ecfb4e9d0287ba50761d8e2",
+      "lines": 84
+    },
+    {
+      "source": "ic2/core/item/BlockItemEnergyStorage.java",
+      "sha256": "aa4296a34b22e70e35452b3c359d5290b6d7663d143937d3feacbf1e3f3502b4",
+      "lines": 14
+    },
+    {
+      "source": "ic2/core/item/ContainerHandHeldInventory.java",
+      "sha256": "e6a1e1ca1327670d528cb47c5b131eedb512f9762f8e0d5e1ef9288203e73874",
+      "lines": 93
+    },
+    {
+      "source": "ic2/core/item/DamageHandler.java",
+      "sha256": "5b289078b6cba674a5aecf5dca6276be86ad0a88e5bf9355e599673e1e74bfbe",
+      "lines": 65
+    },
+    {
+      "source": "ic2/core/item/ElectricItemManager.java",
+      "sha256": "1623816aa0919c8e39842ab3793fac03d80972536528a37efb2aaa21bf155ced",
+      "lines": 253
+    },
+    {
+      "source": "ic2/core/item/ElectricItemTooltipHandler.java",
+      "sha256": "95d6a4e0073035bd8f2bb7a019aa888d1ce440294440faa6edb4c6ed6a020c77",
+      "lines": 31
+    },
+    {
+      "source": "ic2/core/item/EnvItemHandler.java",
+      "sha256": "61539321fbd7f7565a5476542bbaaab27ba436e6e528664234ed5b66e9cd6d07",
+      "lines": 40
+    },
+    {
+      "source": "ic2/core/item/GatewayElectricItemManager.java",
+      "sha256": "216c1a74c2b8562f5f6cd39791656e280f8658d17d82330f34db1ff16c5e46e4",
+      "lines": 158
+    },
+    {
+      "source": "ic2/core/item/IHandHeldInventory.java",
+      "sha256": "4ae0ba8a5e5d049c9a9f084fc6081a1c4f585344c534a7618ac690b5134232e5",
+      "lines": 11
+    },
+    {
+      "source": "ic2/core/item/IHandHeldSubInventory.java",
+      "sha256": "3f7f5211062cc205e1a8ce4168aa160dc4079fe6c92a3cec1002a1c25ce04f7b",
+      "lines": 11
+    },
+    {
+      "source": "ic2/core/item/IPseudoDamageItem.java",
+      "sha256": "70039149cd3be89db4bc856a7212377eeda465398acaf0178515c0ab0943f82f",
+      "lines": 8
+    },
+    {
+      "source": "ic2/core/item/Ic2BucketItem.java",
+      "sha256": "27d5cc2f38657c38ca386da1bfefb7a10a47d789906e36c5cc826fab99154c14",
+      "lines": 290
+    },
+    {
+      "source": "ic2/core/item/InfiniteElectricItemManager.java",
+      "sha256": "1556022b93d400024885d8e23d3a3095ca48a86d9a594e360175abce09080897",
+      "lines": 67
+    },
+    {
+      "source": "ic2/core/item/ItemBattery.java",
+      "sha256": "d61a2c22ba68f5f4d08367aa431d7fe0619402cf5f8f1d2bc78efc3cf4f4524e",
+      "lines": 77
+    },
+    {
+      "source": "ic2/core/item/ItemBatteryChargeHotbar.java",
+      "sha256": "704a80ea270b99c9643d607df004d5116aae8ef76a10876095fe9c81cc7d4c46",
+      "lines": 138
+    },
+    {
+      "source": "ic2/core/item/ItemBatterySU.java",
+      "sha256": "b5af43cb4e1ae7c46fe40e8f31cc18a6e06e2623b9f8f77231378c79e50d922c",
+      "lines": 70
+    },
+    {
+      "source": "ic2/core/item/ItemBlockIc2.java",
+      "sha256": "545603fad99e53bde57a871d79d9dcddc8695a691c86995b8e5da1192ed82c4f",
+      "lines": 32
+    },
+    {
+      "source": "ic2/core/item/ItemCable.java",
+      "sha256": "9a101d02f148f4c3dea50947653268cf806ebcbb0dd57739fd1c79ab2001c350",
+      "lines": 30
+    },
+    {
+      "source": "ic2/core/item/ItemClassicCell.java",
+      "sha256": "a86129e7f7354e23b1bd73ff934ab4a9fb25cbf4b6667ad0850066c55726d4b7",
+      "lines": 389
+    },
+    {
+      "source": "ic2/core/item/ItemCoke.java",
+      "sha256": "6cdab647620893837ea23e31ff8fa3f360c63dddb6dbeaf9b786f27b9bc2d4de",
+      "lines": 18
+    },
+    {
+      "source": "ic2/core/item/ItemCropSeed.java",
+      "sha256": "cb351ad8e1cac8fa77625f5f15251b332423000ed856dc069beb761fe762e82c",
+      "lines": 227
+    },
+    {
+      "source": "ic2/core/item/ItemCrystalMemory.java",
+      "sha256": "1c52fdea8d44362f1284d82863188e4adff9571384d4518939d2168ffd770080",
+      "lines": 63
+    },
+    {
+      "source": "ic2/core/item/ItemHydrationCell.java",
+      "sha256": "714c641936158bae36e9108eaa9a7298029eb773a00296c32679ea83b8f98d5d",
+      "lines": 113
+    },
+    {
+      "source": "ic2/core/item/ItemMug.java",
+      "sha256": "7ccbb1a3a355ee448418aff1d41ed7a021c33c2a3988ce550c4b5895fb36f6f2",
+      "lines": 153
+    },
+    {
+      "source": "ic2/core/item/ItemNuclearResource.java",
+      "sha256": "aa338fd6f780aa52a1217cc1b6e491e5a9ff66e91da964f192d38ff31adc174c",
+      "lines": 42
+    },
+    {
+      "source": "ic2/core/item/ItemTerraWart.java",
+      "sha256": "88cdde7f9a7d711e8a513a8ac6f6fd89fd7fc12ad962697154f3f0f8734e3ac4",
+      "lines": 44
+    },
+    {
+      "source": "ic2/core/item/ItemTinCan.java",
+      "sha256": "033087fea3237a39cd5652fc1b08e92cc930d3adf552a9c83435fcea1aabdc1e",
+      "lines": 48
+    },
+    {
+      "source": "ic2/core/item/PriorityUsableItem.java",
+      "sha256": "4126de619731fc64f4d276c79021f1e63d2b01a8afda22caf259c0b4515057a3",
+      "lines": 10
+    },
+    {
+      "source": "ic2/core/item/armor/ItemArmorAdvBatpack.java",
+      "sha256": "3b366dfb7bf116f602442610b3cea3dae4f9ec270186b5b8f9d415bb8475079b",
+      "lines": 31
+    },
+    {
+      "source": "ic2/core/item/armor/ItemArmorBatpack.java",
+      "sha256": "fd3152fc41749d5a7ffa2917884d7aa0eae1a0f8792ab9609a4c5866710abe3e",
+      "lines": 31
+    },
+    {
+      "source": "ic2/core/item/armor/ItemArmorCFPack.java",
+      "sha256": "bdc3b470a760a13b0f360bfc763ca8056c2ecb760e390a067e86ab75fc9d237c",
+      "lines": 23
+    },
+    {
+      "source": "ic2/core/item/armor/ItemArmorElectric.java",
+      "sha256": "78b06ee842c52df9e26b905616d0764d23a774d054c36aab27147e0085d0425c",
+      "lines": 234
+    },
+    {
+      "source": "ic2/core/item/armor/ItemArmorEnergypack.java",
+      "sha256": "9404aa3ead4dffe55a8a0786ed46febf54ccb046525dd34d29724a6addff844a",
+      "lines": 31
+    },
+    {
+      "source": "ic2/core/item/armor/ItemArmorFluidTank.java",
+      "sha256": "77ddf725cf2a326c0f44e9622ee2eea4dc5e4c3c99c2fef5f2b584fa578c302c",
+      "lines": 112
+    },
+    {
+      "source": "ic2/core/item/armor/ItemArmorHazmat.java",
+      "sha256": "ff26c5c0d4b91662e9b9c7d43969618e2385ef046b170365b582406691791fbe",
+      "lines": 79
+    },
+    {
+      "source": "ic2/core/item/armor/ItemArmorIC2.java",
+      "sha256": "d7ae1fc503f0a6171dabadde377a1492391f74977adeabffe1b2348ec4c2930a",
+      "lines": 35
+    },
+    {
+      "source": "ic2/core/item/armor/ItemArmorJetpack.java",
+      "sha256": "9e7fdcfcf0d61acd63c7214cd03f2f18c48bc1057a0931daa9869dde3e19d19b",
+      "lines": 78
+    },
+    {
+      "source": "ic2/core/item/armor/ItemArmorJetpackElectric.java",
+      "sha256": "96b080bb3f541f82c0f6505ed3203847a3c93c0fbfaef080a0b94cce99a1a644",
+      "lines": 88
+    },
+    {
+      "source": "ic2/core/item/armor/ItemArmorLappack.java",
+      "sha256": "54061af3ae8d4ba2f0d386c5dcffff25f80a8ef92eb38d0103be5432eabe4717",
+      "lines": 32
+    },
+    {
+      "source": "ic2/core/item/armor/ItemArmorNanoSuit.java",
+      "sha256": "c98a040b79263a74a9a63343a8777a5a03ca1294675e61d70a66fd2cea1f4bfa",
+      "lines": 173
+    },
+    {
+      "source": "ic2/core/item/armor/ItemArmorNightVisionGoggles.java",
+      "sha256": "9a60560d054a47efafe07a9f5e49364fc5f47fd274a997ca71bfc75710a8cc3a",
+      "lines": 108
+    },
+    {
+      "source": "ic2/core/item/armor/ItemArmorQuantumSuit.java",
+      "sha256": "5ac8c42c38eb33d5e85b5e0729c09ff20c15033f35cca97472f49f54a2316aa9",
+      "lines": 538
+    },
+    {
+      "source": "ic2/core/item/armor/ItemArmorSolarHelmet.java",
+      "sha256": "3129835e5ca96ca3bb33db9ba5c38d8e053b9de12bdf2ca2ab9e48c618c2f92d",
+      "lines": 57
+    },
+    {
+      "source": "ic2/core/item/armor/ItemArmorStaticBoots.java",
+      "sha256": "75829967ad44a005747694e48ee70c331045cf6a56584665c392db8e34732224",
+      "lines": 75
+    },
+    {
+      "source": "ic2/core/item/armor/ItemArmorUtility.java",
+      "sha256": "14a3482dabb01f49e0a120540e28d516a7a460ea5de3fe0c0269c5a34a9aa5a0",
+      "lines": 26
+    },
+    {
+      "source": "ic2/core/item/armor/jetpack/IBoostingJetpack.java",
+      "sha256": "f9cdf68d3afd087a0bac045d7ba4aaa89c7a05ef253ce82362453d534f3d3f57",
+      "lines": 15
+    },
+    {
+      "source": "ic2/core/item/armor/jetpack/IJetpack.java",
+      "sha256": "236e6dd71dc3cccc1b02b91ed7a2d739734583558230b9ad28ef424176ba49fc",
+      "lines": 20
+    },
+    {
+      "source": "ic2/core/item/armor/jetpack/JetpackAttachmentRecipe.java",
+      "sha256": "4451e099a25237bd256c2f9318cc53474508826db9e59937643ebd15cf72b016",
+      "lines": 169
+    },
+    {
+      "source": "ic2/core/item/armor/jetpack/JetpackHandler.java",
+      "sha256": "f070ae0fc6ad8e8bc1a6957ec08e6fe5e5d159f321b117d41312d17c3320983a",
+      "lines": 331
+    },
+    {
+      "source": "ic2/core/item/armor/jetpack/JetpackLogic.java",
+      "sha256": "2d139b593c97a47ca170d1cab5d74d69c895d50486f2967e43fa97f1cbc5cdfa",
+      "lines": 198
+    },
+    {
+      "source": "ic2/core/item/armor/jetpack/LayerJetpackOverride.java",
+      "sha256": "b591e51b807debca7ff6a994114cc8f3905ce124578e8b1ae516cc6d7b9f8b40",
+      "lines": 64
+    },
+    {
+      "source": "ic2/core/item/block/ItemDynamite.java",
+      "sha256": "1b3b1e04cd9fab6005e80542af4196c78a5fc9b81786cf2f60e33444e8a9d208",
+      "lines": 111
+    },
+    {
+      "source": "ic2/core/item/boat/BoatItem.java",
+      "sha256": "b472988eb25321a0158a30bb0ce4007b8fadc8056b3d80b66b34a75bf0192763",
+      "lines": 113
+    },
+    {
+      "source": "ic2/core/item/crafting/BlockCuttingBlade.java",
+      "sha256": "d8e245b9e0e649f9f4ba7f07591bf33f15c521338a756208be23085a8311cd73",
+      "lines": 47
+    },
+    {
+      "source": "ic2/core/item/reactor/AbstractDamageableReactorComponent.java",
+      "sha256": "5de5f7af8ae7256203e7b983dea31754bab87182694047caf63098a2fe27b626",
+      "lines": 125
+    },
+    {
+      "source": "ic2/core/item/reactor/AbstractReactorComponent.java",
+      "sha256": "d08955bfe2e104b74ed1efc2420e9fea54ae6156119c409f5311cb57390c9f68",
+      "lines": 62
+    },
+    {
+      "source": "ic2/core/item/reactor/ItemReactorCondensator.java",
+      "sha256": "e5277fdb787fcb26af07bc094c88ca21aaf30d709749da8b4005d187c0756820",
+      "lines": 45
+    },
+    {
+      "source": "ic2/core/item/reactor/ItemReactorDepletedUranium.java",
+      "sha256": "3796707d6e630c8d5e293abd739b17adf351e03a243d1754e2c102b426773329",
+      "lines": 40
+    },
+    {
+      "source": "ic2/core/item/reactor/ItemReactorHeatStorage.java",
+      "sha256": "2126b0eaf774a72e52a529744d65824b295aa22c31005d54436771a8a8e51ce0",
+      "lines": 76
+    },
+    {
+      "source": "ic2/core/item/reactor/ItemReactorHeatSwitch.java",
+      "sha256": "0fcac44f59b56825e97035774587b266a33f624a7ea432a695167b6117fa01b2",
+      "lines": 158
+    },
+    {
+      "source": "ic2/core/item/reactor/ItemReactorHeatpack.java",
+      "sha256": "3e3de30a35a78de17c1bcfa023468444bf47cb78e568d9fe09c83c79cf8d5398",
+      "lines": 67
+    },
+    {
+      "source": "ic2/core/item/reactor/ItemReactorIridiumReflector.java",
+      "sha256": "40cbe36654778b4730153e885442bc2becb976796919fe1583ef5dfcc633d2b5",
+      "lines": 34
+    },
+    {
+      "source": "ic2/core/item/reactor/ItemReactorLithiumCell.java",
+      "sha256": "05a7e0d86dbc132f8af163ac8fa6f0fa473a68072000bae63f79a83e122c1ac4",
+      "lines": 40
+    },
+    {
+      "source": "ic2/core/item/reactor/ItemReactorMOX.java",
+      "sha256": "c00ec709d0234530e98747e58a221779fdd5e532a5912e9071b65a5f586aafa2",
+      "lines": 56
+    },
+    {
+      "source": "ic2/core/item/reactor/ItemReactorPlating.java",
+      "sha256": "96b005bbb5e3385b817272ed4edafa5a3a9e5431528438604d162ced401ed0a4",
+      "lines": 34
+    },
+    {
+      "source": "ic2/core/item/reactor/ItemReactorReflector.java",
+      "sha256": "fa5639c227f713391fa5074182458f0e9079579d226df517367e00b3d3abfd90",
+      "lines": 38
+    },
+    {
+      "source": "ic2/core/item/reactor/ItemReactorUranium.java",
+      "sha256": "c66f04415a5e1ab6ef70686dc1058acc09fbb907b18b4412154d3db12df90a29",
+      "lines": 164
+    },
+    {
+      "source": "ic2/core/item/reactor/ItemReactorVent.java",
+      "sha256": "cdf236b9e7e4910bace200d1d79982897b6df74f687d2a6b0af6cb0bda35ded7",
+      "lines": 49
+    },
+    {
+      "source": "ic2/core/item/reactor/ItemReactorVentSpread.java",
+      "sha256": "3ed25e7c50cf40ed698021bef40dfb2418b78b755acdd44d2382d3d938039bc8",
+      "lines": 45
+    },
+    {
+      "source": "ic2/core/item/resources/ItemWindRotor.java",
+      "sha256": "c1dcf21de36d6abe218edee1b4fde02bd2306348bb1c328252c2fa74996c7a67",
+      "lines": 100
+    },
+    {
+      "source": "ic2/core/item/tfbp/Chilling.java",
+      "sha256": "b93a1ba2963a4d687d0b50ea3d45aa27147bbc29bfb3e87e4922efb2628f8a5f",
+      "lines": 105
+    },
+    {
+      "source": "ic2/core/item/tfbp/Cultivation.java",
+      "sha256": "e95fdd2187f4076955da4ed24af4e9477779fe9c2e228ef130de41f3264bdb4b",
+      "lines": 127
+    },
+    {
+      "source": "ic2/core/item/tfbp/Desertification.java",
+      "sha256": "7ffb88a9c5fa33eed2beb340b7b6aef664d799898e3074294d9eef5a0ab9fdba",
+      "lines": 76
+    },
+    {
+      "source": "ic2/core/item/tfbp/Flatification.java",
+      "sha256": "1c358c4141b86f7dbded8616ebca0a477ac164fece92ee9da0fe5746ebc3d729",
+      "lines": 84
+    },
+    {
+      "source": "ic2/core/item/tfbp/Irrigation.java",
+      "sha256": "cd24a84ed1996098c24ab2716f1205eafb4d5dcad3ef9cd643250cc91a1996fc",
+      "lines": 141
+    },
+    {
+      "source": "ic2/core/item/tfbp/Mushroom.java",
+      "sha256": "8290409f7c47b2e59c27e1f3b697a1741ff67a6a932e2c90e9cf162ddd4f65b5",
+      "lines": 145
+    },
+    {
+      "source": "ic2/core/item/tfbp/TerraformerBase.java",
+      "sha256": "2177ffbe7c1366e2404d9d5775834f89b3e6dcbc2a2196da7112c5cdd3e9de2e",
+      "lines": 22
+    },
+    {
+      "source": "ic2/core/item/tfbp/Tfbp.java",
+      "sha256": "2af80c633bc65b71260c220dfb302cacec9087223a5447a2eefe2e7d3cd3e343",
+      "lines": 72
+    },
+    {
+      "source": "ic2/core/item/tool/AbstractItemNanoSaber.java",
+      "sha256": "0c85e3276a679f17005342ee203332d5f31401b10c194324bf3501676a5856a4",
+      "lines": 325
+    },
+    {
+      "source": "ic2/core/item/tool/ContainerAnalyzer.java",
+      "sha256": "219b0f1cef64fcccaeb6dacec6611724220ce24e896d1a12a3453934e0c0495f",
+      "lines": 46
+    },
+    {
+      "source": "ic2/core/item/tool/ContainerContainmentbox.java",
+      "sha256": "546ab91a6c7e84b689c327f04c1c97867dc4c8765bf10c258a1ff08c2630afbc",
+      "lines": 27
+    },
+    {
+      "source": "ic2/core/item/tool/ContainerMeter.java",
+      "sha256": "375d7a213493d758ba22ededbb08d64d02f6105d877de110d8aae29fc24108c7",
+      "lines": 162
+    },
+    {
+      "source": "ic2/core/item/tool/ContainerMiningFilter.java",
+      "sha256": "0512a6694ad09a807a9198ebd06e7f9937aece8247a393c16331901e3c4ae558",
+      "lines": 42
+    },
+    {
+      "source": "ic2/core/item/tool/ContainerToolScanner.java",
+      "sha256": "463a1ad4fa40c2767cbc83a8875b813764ccb3b445a5b13814e74143280f200d",
+      "lines": 28
+    },
+    {
+      "source": "ic2/core/item/tool/ContainerToolbox.java",
+      "sha256": "cf91c247f7f25187f0eead03d7563c26880817296c8a04a9abe5a8ccc84b1979",
+      "lines": 40
+    },
+    {
+      "source": "ic2/core/item/tool/GuiContainmentbox.java",
+      "sha256": "13b9def5bad3021a0db14ae56646dc12e931f10698579af59695348f6ac365f0",
+      "lines": 22
+    },
+    {
+      "source": "ic2/core/item/tool/GuiCropAnalyzer.java",
+      "sha256": "853c8bac1ba24353f5cb669c08ca70dfb52343a2ba68ea41503a322ba0f9d428",
+      "lines": 66
+    },
+    {
+      "source": "ic2/core/item/tool/GuiMiningFilter.java",
+      "sha256": "3ef8b0ea5fc19ddd6fce6cd8726965c60bc4ce882fe7777118afe524fd2d57bc",
+      "lines": 38
+    },
+    {
+      "source": "ic2/core/item/tool/GuiToolMeter.java",
+      "sha256": "4c791175d11003c789afea543a19ef64c697cdb2a67f44fbe7eaa8c189d7699f",
+      "lines": 112
+    },
+    {
+      "source": "ic2/core/item/tool/GuiToolScanner.java",
+      "sha256": "b5e2b35619437594df9b0ea510473c156bb46fe3b2ba141156d41c6be2181426",
+      "lines": 64
+    },
+    {
+      "source": "ic2/core/item/tool/GuiToolbox.java",
+      "sha256": "14b01400afd3ecbe2fec382a5b6a88f4596d4182200544b708bcf5356d32c69c",
+      "lines": 33
+    },
+    {
+      "source": "ic2/core/item/tool/HandHeldContainmentbox.java",
+      "sha256": "0d3dda80e720a831a96b213c7992666ed1c0849fe93f6041630472232f89d0b8",
+      "lines": 38
+    },
+    {
+      "source": "ic2/core/item/tool/HandHeldCropAnalyzer.java",
+      "sha256": "0b304a5808bb4aca9174cf741715b106d7c92a76dd949a1c6ee9096aa9e1000b",
+      "lines": 180
+    },
+    {
+      "source": "ic2/core/item/tool/HandHeldInventory.java",
+      "sha256": "1bafabd5f4eee82ae2ca5543ae54722cda5bde4fa761ed4cfdb82b4a11abc22d",
+      "lines": 339
+    },
+    {
+      "source": "ic2/core/item/tool/HandHeldMeter.java",
+      "sha256": "fc2ed0eafcfba1033b944fdb0e24b34c12433e4f3798eecaea1d651276c39914",
+      "lines": 37
+    },
+    {
+      "source": "ic2/core/item/tool/HandHeldMiningFilter.java",
+      "sha256": "f393c600afad54537972761b5feea3cb56a2e3057f2cadfaf9510b988706f557",
+      "lines": 45
+    },
+    {
+      "source": "ic2/core/item/tool/HandHeldScanner.java",
+      "sha256": "3923d5bfe6076e907fab4227e4ca742b251e3bef11db1071063cba32ba881b7b",
+      "lines": 33
+    },
+    {
+      "source": "ic2/core/item/tool/HandHeldToolbox.java",
+      "sha256": "9f838f68f4a4a738ad6a62aae891efcac7e73e10f0f73f1ce5d9af1fba3e7496",
+      "lines": 36
+    },
+    {
+      "source": "ic2/core/item/tool/Ic2Axe.java",
+      "sha256": "9a5297bd1fd9768b81eded8be7538d63b720cd83d806bc3e8d3dc598ce891368",
+      "lines": 13
+    },
+    {
+      "source": "ic2/core/item/tool/Ic2Hoe.java",
+      "sha256": "dca481611455be2ac1b4da01398a220641bf1825d5f4da35c72596f66e9481c6",
+      "lines": 13
+    },
+    {
+      "source": "ic2/core/item/tool/Ic2Pickaxe.java",
+      "sha256": "ade2c9bd35b73fa0788abd8db345c6fe120b8187d6e195d60e152f8fdf5b9fa9",
+      "lines": 13
+    },
+    {
+      "source": "ic2/core/item/tool/ItemContainmentbox.java",
+      "sha256": "0d62afbb79204090982a966a0632aa568e28813f1c903dea7e815a4da9371788",
+      "lines": 58
+    },
+    {
+      "source": "ic2/core/item/tool/ItemCropAnalyzer.java",
+      "sha256": "5ce85220137f6fcc737e497a5c024127a0168084185ac1e5e8f4df17125e93af",
+      "lines": 108
+    },
+    {
+      "source": "ic2/core/item/tool/ItemDebug.java",
+      "sha256": "cf34c20b27db881a06fbaa18bdb0d03f43d18aaa1a6c2d5c75f02485bbdb14ce",
+      "lines": 756
+    },
+    {
+      "source": "ic2/core/item/tool/ItemDrill.java",
+      "sha256": "fb70b75aa7a532f3680afb2537911bc4341ad5461af0d9ff38e34556332c5580",
+      "lines": 171
+    },
+    {
+      "source": "ic2/core/item/tool/ItemDrillIridium.java",
+      "sha256": "2c59c03b2ae427f14f8fbe666f0a24affbb76ef03dcd9c1c536e1d334f614f89",
+      "lines": 104
+    },
+    {
+      "source": "ic2/core/item/tool/ItemElectricTool.java",
+      "sha256": "3d890dd7d574b6b2031ff8ada9219fc3c873331a3216c0904439c929ebbf0055",
+      "lines": 360
+    },
+    {
+      "source": "ic2/core/item/tool/ItemElectricToolChainsaw.java",
+      "sha256": "e6be2f7020c71726f311c62d46cdab88a1e4f0ca74a94cae11106287bd967334",
+      "lines": 226
+    },
+    {
+      "source": "ic2/core/item/tool/ItemFrequencyTransmitter.java",
+      "sha256": "f39c43a7c4450b1c9cbc375eb807d39a3972bfae30996c04543629d79a47320b",
+      "lines": 121
+    },
+    {
+      "source": "ic2/core/item/tool/ItemMiningFilterCard.java",
+      "sha256": "585ca0e28a3c8968ab4aded3f49096204e090e100273612ccdc4439e1bbc6d13",
+      "lines": 62
+    },
+    {
+      "source": "ic2/core/item/tool/ItemNanoSaber.java",
+      "sha256": "e8e7f59522bcaa4ad8eb20efb0a1bd6f0d976554a2e736702be4a86ea3c51f6d",
+      "lines": 47
+    },
+    {
+      "source": "ic2/core/item/tool/ItemObscurator.java",
+      "sha256": "8714ac753261a1373bea9941a9f5e316bfe964094b4e32efe0ed58e59a1b5d98",
+      "lines": 407
+    },
+    {
+      "source": "ic2/core/item/tool/ItemRemote.java",
+      "sha256": "c316b70ccbbfdc7d437195b7dc191b0b64d7b8a7a64304774d63fc109f4dc0c7",
+      "lines": 202
+    },
+    {
+      "source": "ic2/core/item/tool/ItemScanner.java",
+      "sha256": "992dad6a68975754691e7a90cdd262a1a51701011840e76e792c9008a8fd2f4c",
+      "lines": 160
+    },
+    {
+      "source": "ic2/core/item/tool/ItemScannerAdv.java",
+      "sha256": "be8f76753cc89e102207bafa08facfdca541c3d931445bd544a50a247707bb0f",
+      "lines": 25
+    },
+    {
+      "source": "ic2/core/item/tool/ItemSprayer.java",
+      "sha256": "9e8b6a450c9accf6b86bb7405b0f58e85b25b66ce3f882364bc45fcb7b7f566a",
+      "lines": 257
+    },
+    {
+      "source": "ic2/core/item/tool/ItemToolCrafting.java",
+      "sha256": "b10423f2920167a61984a7af11fa75883a198866e40577713074792189bc17bb",
+      "lines": 48
+    },
+    {
+      "source": "ic2/core/item/tool/ItemToolCrowbar.java",
+      "sha256": "37098ac4dff4c8e544de6494697d6cc557974eaa458bb9260530aa3e1e903ca1",
+      "lines": 124
+    },
+    {
+      "source": "ic2/core/item/tool/ItemToolCutter.java",
+      "sha256": "ea437e65edc5e72b69f199766eee970a48ff4dd1d3cc07096b8d075fbe1c00ec",
+      "lines": 76
+    },
+    {
+      "source": "ic2/core/item/tool/ItemToolMeter.java",
+      "sha256": "8f7e641ba44d29acbe9ad094bd8d74df6f75494ece6642a3d9a3e8ca2a17bc59",
+      "lines": 88
+    },
+    {
+      "source": "ic2/core/item/tool/ItemToolMiningLaser.java",
+      "sha256": "afe004a0774f11294152f43bd04c65ce4ff567fe558eb5eb3e0f1cdf95fe2367",
+      "lines": 375
+    },
+    {
+      "source": "ic2/core/item/tool/ItemToolPainter.java",
+      "sha256": "9408b96dcae84cb2f67f6a00d20a929c18b5722f9a71be17acfde7f5169ca62c",
+      "lines": 322
+    },
+    {
+      "source": "ic2/core/item/tool/ItemToolWrench.java",
+      "sha256": "6d456b03988d6b5d51074f804c6f8874edb448a0e571c8d67d144d533dc23fc7",
+      "lines": 277
+    },
+    {
+      "source": "ic2/core/item/tool/ItemToolWrenchElectric.java",
+      "sha256": "51a19ffbe2210852d993bddbee14d296c21f5fc0013e894863f4c4dc53e44ce0",
+      "lines": 154
+    },
+    {
+      "source": "ic2/core/item/tool/ItemToolbox.java",
+      "sha256": "dc1a283f7614fc7906442da64ea32dc3090dbc151f8d492eb7b89e858d084aca",
+      "lines": 60
+    },
+    {
+      "source": "ic2/core/item/tool/ItemTreetap.java",
+      "sha256": "ebf1c71738a812e0800abd418ad79a564b311e0449904a4b7ae8bb669dfb356d",
+      "lines": 151
+    },
+    {
+      "source": "ic2/core/item/tool/ItemTreetapElectric.java",
+      "sha256": "0d7501b234ace59a4c32de430b164948e0fffcc210152fbf5ea631d70745ec79",
+      "lines": 50
+    },
+    {
+      "source": "ic2/core/item/tool/ItemWeedingTrowel.java",
+      "sha256": "d9643f4af622aefe67e212c6c5914619240433eac4f219c5cc0d03e165f7c2f7",
+      "lines": 50
+    },
+    {
+      "source": "ic2/core/item/tool/ItemWindMeter.java",
+      "sha256": "0e70bc514fc83782d2b6414713bbba7189f2c20404e0c565afafe0023761f665",
+      "lines": 146
+    },
+    {
+      "source": "ic2/core/item/type/BlockCuttingBladeType.java",
+      "sha256": "e532fdaed877abf5fd4fe3baa7d3a5d7208b1087812192b4ab2468ea7a50c7d0",
+      "lines": 31
+    },
+    {
+      "source": "ic2/core/item/upgrade/AdvancedUpgradeScreenFactory.java",
+      "sha256": "c2c66dcb79838a2b1befd11582233d6a4fc28d954122b34da111a0c687a91697",
+      "lines": 47
+    },
+    {
+      "source": "ic2/core/item/upgrade/ComparisonSettings.java",
+      "sha256": "e111bed91bf3219a042f07aa2bce54218a73e8fb274911c6e8075a63bbe238b9",
+      "lines": 61
+    },
+    {
+      "source": "ic2/core/item/upgrade/ComparisonType.java",
+      "sha256": "cf191ab5898d69ab59bd6a4cf6304d13f22cea1b1bb4710435bb417d95cbc1c0",
+      "lines": 34
+    },
+    {
+      "source": "ic2/core/item/upgrade/HandHeldAdvancedUpgrade.java",
+      "sha256": "cf8989bc6d4d70df74edaf38bd97b3dc553ce7050c1802a65239cb4fcc1cd40d",
+      "lines": 217
+    },
+    {
+      "source": "ic2/core/item/upgrade/HandHeldOre.java",
+      "sha256": "c5baf62b15001b56bd39ccfd421d55c483fe87b6be3f00a76e365b2afa1b24f4",
+      "lines": 108
+    },
+    {
+      "source": "ic2/core/item/upgrade/HandHeldUpgradeOption.java",
+      "sha256": "a9d3a113c01ac8498160f0d349eaea227e420ddb8d67266a9ccae71eaa083b51",
+      "lines": 31
+    },
+    {
+      "source": "ic2/core/item/upgrade/HandHeldValueConfig.java",
+      "sha256": "dcad7e6aa21c7024fdc4910700171d6f45b72d938ec97ac1d8d17ad4409f216a",
+      "lines": 257
+    },
+    {
+      "source": "ic2/core/item/upgrade/ItemUpgradeModule.java",
+      "sha256": "071f6cc0fddf14d061865a4f19ad632b92666b48e944cfe6cce71e800478f122",
+      "lines": 588
+    },
+    {
+      "source": "ic2/core/item/upgrade/MoveableButton.java",
+      "sha256": "826302a6bd8ae717900a049924524502cc4727ca1238304cd86911e3140ee49d",
+      "lines": 50
+    },
+    {
+      "source": "ic2/core/item/upgrade/MoveableTextBox.java",
+      "sha256": "7350b85d70436d6ed6dfd3f5f2c0aef27982dbbc399107aa8b85c7c1800e987b",
+      "lines": 49
+    },
+    {
+      "source": "ic2/core/item/upgrade/NbtSettings.java",
+      "sha256": "5978c0a6ae5ef4b967b8416f55cbed40db784ce9e2dedaa77564dce08277d0e4",
+      "lines": 28
+    },
+    {
+      "source": "ic2/core/item/upgrade/UpgradeSettings.java",
+      "sha256": "3e24eff8c029fdd2964fe0a9cd61f0cf625b34b3918f7c6843bf6ce14d7665fc",
+      "lines": 66
+    },
+    {
+      "source": "ic2/core/loot/Ic2BlockNbtProvider.java",
+      "sha256": "a36e391edbc81d7e0b1189a6029d9c43b58e444850b75801420f049db3d2f1b1",
+      "lines": 69
+    },
+    {
+      "source": "ic2/core/loot/Ic2LootNbtProviderTypes.java",
+      "sha256": "ad5d4934c898fd1fe5c1f4f146cc20932fc176f775658cab57522e103b906e0f",
+      "lines": 22
+    },
+    {
+      "source": "ic2/core/model/ModelUtil.java",
+      "sha256": "9b42916771428c4dee0bb6163a8e3f3b780fcb4b5e29fd05b69e43efe10cb5af",
+      "lines": 42
+    },
+    {
+      "source": "ic2/core/network/DataEncoder.java",
+      "sha256": "92cf4526d6bb38da5fac1742965c3a1520d7b2752206ff311c326c979f034f77",
+      "lines": 944
+    },
+    {
+      "source": "ic2/core/network/GrowingBuffer.java",
+      "sha256": "2e39047a803940f6ac3eebadd3054628de220af408da3145e916b396855db2fa",
+      "lines": 600
+    },
+    {
+      "source": "ic2/core/network/GuiSynced.java",
+      "sha256": "438684c0cc4a5ee8d7ac7f85b73690664daeb7dafa788a495349d796d1ac2c44",
+      "lines": 12
+    },
+    {
+      "source": "ic2/core/network/IPlayerItemDataListener.java",
+      "sha256": "cb143ceffa5cd62495dc471766bf86030238fa9e4f81f4a89cb9ca0d4355b2b6",
+      "lines": 8
+    },
+    {
+      "source": "ic2/core/network/IRpcProvider.java",
+      "sha256": "d3278e3aeb17e93edb1fce6dc0295c9d155485320b2bb22f801c7059b3f930c6",
+      "lines": 6
+    },
+    {
+      "source": "ic2/core/network/NetworkManager.java",
+      "sha256": "038cb7c905e3294882ed20e1562cff40f5619aae2a5f6b4558df6fe49757490e",
+      "lines": 785
+    },
+    {
+      "source": "ic2/core/network/NetworkManagerClient.java",
+      "sha256": "46c1222dea4217c2ba1c7e99e4db51ebf4adfc7cd6d62b7e3182486da639c9f5",
+      "lines": 386
+    },
+    {
+      "source": "ic2/core/network/Rpc.java",
+      "sha256": "991bede1aa461a223b57730dc3de786ebc8490484806a26ee0eaf5bdab7d2ccc",
+      "lines": 82
+    },
+    {
+      "source": "ic2/core/network/RpcHandler.java",
+      "sha256": "b981d2d79f0d37167ea98a4d29c286cd9fd4551b88cd065715ab16325f288a4b",
+      "lines": 81
+    },
+    {
+      "source": "ic2/core/network/SubPacketType.java",
+      "sha256": "41096451c6a1f2c671b3e6d10e738199e61f3c43875ceed817146c1cbc4d2818",
+      "lines": 74
+    },
+    {
+      "source": "ic2/core/network/TeUpdate.java",
+      "sha256": "cf9247145096f465d9c68b70b41d589c3359c0d07530076143ba246514eb331e",
+      "lines": 314
+    },
+    {
+      "source": "ic2/core/network/TeUpdateDataClient.java",
+      "sha256": "1631b7713846954d623d6fe668ba50235c6fd7b1d53b3d473fd827dcf8b3de8e",
+      "lines": 68
+    },
+    {
+      "source": "ic2/core/network/TeUpdateDataServer.java",
+      "sha256": "055149cafab187aa0d46abbf7da4dd770fc7cd0c6d1ec20ac619b6b5ac2dee8d",
+      "lines": 42
+    },
+    {
+      "source": "ic2/core/profile/Both.java",
+      "sha256": "3cb6b1f4d9a94207584f3aa70635b936ebbeb2eace85e8ce21f274baf55b84dd",
+      "lines": 12
+    },
+    {
+      "source": "ic2/core/profile/NotClassic.java",
+      "sha256": "7f904876747f9be9bea920922ecbbdd1583f6042170640b1c8b8148bab656caf",
+      "lines": 12
+    },
+    {
+      "source": "ic2/core/profile/NotExperimental.java",
+      "sha256": "76a0decb1760575564f9469c319f7c669259b2d13e55bb8ed39d209d35fbf33a",
+      "lines": 12
+    },
+    {
+      "source": "ic2/core/proxy/ClientEnvProxy.java",
+      "sha256": "bade3323889229fb870d5b0e9b8c1139f7863eecc3036e49d55b5108b04ec922",
+      "lines": 130
+    },
+    {
+      "source": "ic2/core/proxy/EnvProxy.java",
+      "sha256": "7cab2ff4b65ac3ae82895a3b3fec8bcc5b5c2d363977a926faa237422f663495",
+      "lines": 201
+    },
+    {
+      "source": "ic2/core/proxy/SideProxy.java",
+      "sha256": "76df5478c374929ffde0e50e527d1b83741dc0d2dfe73665f3a792dc1378f711",
+      "lines": 62
+    },
+    {
+      "source": "ic2/core/proxy/SideProxyClient.java",
+      "sha256": "bb2892f15d8d347ab406f202d114755c20eff5c9f9a4e0a0bc65ace206337ab7",
+      "lines": 422
+    },
+    {
+      "source": "ic2/core/proxy/SideProxyServer.java",
+      "sha256": "e7a876a6b27f79932a98d3e2b6488086fc6665c84bc937873fb3fab9de2e359d",
+      "lines": 245
+    },
+    {
+      "source": "ic2/core/recipe/AdvRecipe.java",
+      "sha256": "6882731d0ec82850e9d76dbfcbaf85775e469e2d85d4bb74c3f8e4cf07f6bb98",
+      "lines": 482
+    },
+    {
+      "source": "ic2/core/recipe/AdvShapelessRecipe.java",
+      "sha256": "cdbd860a8def8d4cac85dd1c3bd8106b3bf933bdd89232be28b7ee7dedd7db4f",
+      "lines": 244
+    },
+    {
+      "source": "ic2/core/recipe/BasicListRecipeManager.java",
+      "sha256": "61a21b4f86b5ed96973a1e9e114b58f85e10b846cc481249f1a6cead6a70b522",
+      "lines": 98
+    },
+    {
+      "source": "ic2/core/recipe/BasicMachineRecipeManager.java",
+      "sha256": "90ba9e9d5f2646467cf5ceab6579acc7b990f63c1ec94eb25fc86be68ffc8e22",
+      "lines": 270
+    },
+    {
+      "source": "ic2/core/recipe/ElectrolyzerRecipeManager.java",
+      "sha256": "97f0a98d174ecb618df81f591f39c59967a96ca2e7e53cd34805f8d429829553",
+      "lines": 63
+    },
+    {
+      "source": "ic2/core/recipe/FermenterRecipeManager.java",
+      "sha256": "f95dcd7db0145c58d831d169f4efbda6d330a5c04a21958a79a41ec03692b3c4",
+      "lines": 64
+    },
+    {
+      "source": "ic2/core/recipe/GradualRecipe.java",
+      "sha256": "7ea9e6d689e26a8511d26b9710aed152338b5160d298f94702a1b6fd8dc66929",
+      "lines": 189
+    },
+    {
+      "source": "ic2/core/recipe/MachineRecipeHelper.java",
+      "sha256": "2dc7115aaa4c4953b46b4aed16fbb1e5e11847bacd997897ed2d8bf4da84e481",
+      "lines": 243
+    },
+    {
+      "source": "ic2/core/recipe/MatterAmplifierRecipeManager.java",
+      "sha256": "f5d64d86acc153117dd92751b34d3852a055ee8394dc04c6fed37b0d34ae94d9",
+      "lines": 74
+    },
+    {
+      "source": "ic2/core/recipe/ScrapboxRecipeManager.java",
+      "sha256": "54c4389267b3e2430a56a0239afc04ebf1664af8890aa7df3ca7e66e498d8f78",
+      "lines": 254
+    },
+    {
+      "source": "ic2/core/recipe/SmeltingRecipeManager.java",
+      "sha256": "d8df5dd4bdf0dfe5ced0a3ee192678f26f9589db03a3ee6bdd972493c3c820ac",
+      "lines": 88
+    },
+    {
+      "source": "ic2/core/recipe/input/RecipeInputBase.java",
+      "sha256": "71e5c86f8a83c7a26a9b533f8d91bc5ad79267be32b39a8e19b96f650ff8b0bd",
+      "lines": 37
+    },
+    {
+      "source": "ic2/core/recipe/input/RecipeInputFactory.java",
+      "sha256": "6fc82ed3b18c551b73258d89abdfc0e639c9637f0f81fdbcc29264033bdde749",
+      "lines": 58
+    },
+    {
+      "source": "ic2/core/recipe/input/RecipeInputFluidContainer.java",
+      "sha256": "dd75de089a3a05cf00b888a02d77b84324571130828fed0ac943647d24683fe8",
+      "lines": 155
+    },
+    {
+      "source": "ic2/core/recipe/input/RecipeInputIngredient.java",
+      "sha256": "d4eeec5411f5625a768e90ec6f641ccb0b00c808aa71c5dc85ede842621ae441",
+      "lines": 67
+    },
+    {
+      "source": "ic2/core/recipe/input/RecipeInputItemStack.java",
+      "sha256": "73c7e4cd23a9edfdc6b236eb381e7a0573d7c830296aac92e1d191ae5e6cc5b3",
+      "lines": 149
+    },
+    {
+      "source": "ic2/core/recipe/input/RecipeInputMultiple.java",
+      "sha256": "acf8860eff9ad91cae1a1202aee146f2ebee742c5117a15bcfd2eb4ecfd2b14a",
+      "lines": 127
+    },
+    {
+      "source": "ic2/core/recipe/v2/BasicMachineRecipeSerializer.java",
+      "sha256": "549e524eeb86d514e14f49ff1d256f88eccc5eca6c3f1449e4ef08e9985f34d4",
+      "lines": 57
+    },
+    {
+      "source": "ic2/core/recipe/v2/CannerBottleRecipeSerializer.java",
+      "sha256": "fbe5fcf913d224af9fb9e38374abd98b4bb1d1eee0cffddd96e20474e96b941e",
+      "lines": 38
+    },
+    {
+      "source": "ic2/core/recipe/v2/CannerEnrichRecipeSerializer.java",
+      "sha256": "a2d5ad9de7cfe307ac9f96c7ea4d47fdb6e90b3a22b7db01d3e2df4adec9f8eb",
+      "lines": 38
+    },
+    {
+      "source": "ic2/core/recipe/v2/IntegerOutputRecipeSerializer.java",
+      "sha256": "e5c6bd6eb2412ea907b9d1040d8feeedf0a6a469dde033d02def178fa87b7108",
+      "lines": 55
+    },
+    {
+      "source": "ic2/core/recipe/v2/RecipeHolder.java",
+      "sha256": "22e253d0d6814631324c621301122b7ff058947b1634d836d42bd32df4052a88",
+      "lines": 61
+    },
+    {
+      "source": "ic2/core/recipe/v2/RecipeIo.java",
+      "sha256": "b5929d295fa70861e6c38c85a033f51bbd5f1cc3958ea8e04241717fbfe59a3f",
+      "lines": 356
+    },
+    {
+      "source": "ic2/core/recipe/v2/RecipeManagerGetter.java",
+      "sha256": "cf85b4f61f7aeaeea4a5df4a267fed31c52cc0036e6beff8c1cc60fa338dd980",
+      "lines": 27
+    },
+    {
+      "source": "ic2/core/recipe/v2/WeightedItemStack.java",
+      "sha256": "8646878a90ede7f56bf44cb6c557ee936d300a69519d14a7d57d0cb030a86ce6",
+      "lines": 35
+    },
+    {
+      "source": "ic2/core/recipe/v2/WeightedMachineRecipeSerializer.java",
+      "sha256": "52ad0ca5074f4e58d52d06ac93562ebd040f750c06953d946de74750e3e37c2f",
+      "lines": 86
+    },
+    {
+      "source": "ic2/core/ref/IC2Material.java",
+      "sha256": "54f4a6deaf5c3fab2392f89a5b1970d9791274f0426aadad68fa44985866907b",
+      "lines": 11
+    },
+    {
+      "source": "ic2/core/ref/Ic2ArmorMaterials.java",
+      "sha256": "19521ad4e05d81bc0c78fac385077bb5c3dfbabc4e24b86f0cd2306aff2f3309",
+      "lines": 103
+    },
+    {
+      "source": "ic2/core/ref/Ic2BlockEntities.java",
+      "sha256": "84267fdcfa5b40766c5618ecbb9080bfb9608d6497f50ac0a5c3ef26a194f68f",
+      "lines": 306
+    },
+    {
+      "source": "ic2/core/ref/Ic2BlockTags.java",
+      "sha256": "3e5b587e12e7f04821dd4601a9c1b64851f926ff88cb3f7d3f90c9a5f511c54e",
+      "lines": 39
+    },
+    {
+      "source": "ic2/core/ref/Ic2Blocks.java",
+      "sha256": "b096477a1f261c12f6ca1a44d41725a9650cf0469c4e0b00e118dc0862bdb965",
+      "lines": 2744
+    },
+    {
+      "source": "ic2/core/ref/Ic2BoatTypes.java",
+      "sha256": "d84389f7c3c68cdb423d821d6c5aec16777258a00269c7317efcf1acf96af171",
+      "lines": 14
+    },
+    {
+      "source": "ic2/core/ref/Ic2Entities.java",
+      "sha256": "914af290bd04eb5d85041f91e3aa764ab1ba43006573b18973e511298340ac73",
+      "lines": 83
+    },
+    {
+      "source": "ic2/core/ref/Ic2FluidTags.java",
+      "sha256": "396da8b268ef7e40efd14422d901d5db25ff14265a0e0073bf2507ef1eb728b8",
+      "lines": 22
+    },
+    {
+      "source": "ic2/core/ref/Ic2Fluids.java",
+      "sha256": "c0e7ff0b77dfc510e673ad2bcd23f3cd58d59400760c0afee4e535011c21c427",
+      "lines": 65
+    },
+    {
+      "source": "ic2/core/ref/Ic2GameEvents.java",
+      "sha256": "0054082d5d3acfde54d8324337c77c59cac6f103066e22577238e981a1d0b5d6",
+      "lines": 27
+    },
+    {
+      "source": "ic2/core/ref/Ic2ItemTags.java",
+      "sha256": "785f0be0940e8da37b6df6a6cffd84efbdc27f7b350bf292ad102d8cc705ba26",
+      "lines": 77
+    },
+    {
+      "source": "ic2/core/ref/Ic2Items.java",
+      "sha256": "121071570c31e8150b8077f0873cbe9a6530689e55aac32a3793a046f2c6ac2a",
+      "lines": 2120
+    },
+    {
+      "source": "ic2/core/ref/Ic2RecipeSerializers.java",
+      "sha256": "66272a358917477a7daa8612f1832b900263274d4990a1b53d83e096550a145a",
+      "lines": 108
+    },
+    {
+      "source": "ic2/core/ref/Ic2RecipeTypes.java",
+      "sha256": "f1c0df0606098119024569683797cc51273bce7c3aa119e34803f9b001ee9b9d",
+      "lines": 40
+    },
+    {
+      "source": "ic2/core/ref/Ic2ScreenHandlers.java",
+      "sha256": "ebd0d81533eb111ba5238557e052da596cda6b8eef4188a6b46f05cd2afc77d7",
+      "lines": 301
+    },
+    {
+      "source": "ic2/core/ref/Ic2SignType.java",
+      "sha256": "cff3366e72d3ba20b981197600f75da7cfe0f8c0f39add1ad8299ea0111142b7",
+      "lines": 13
+    },
+    {
+      "source": "ic2/core/ref/Ic2SoundEvents.java",
+      "sha256": "19b338d2aefe8608f5b9f8af29fb180599d88d25e6e21c5405cf2ad75153bbb3",
+      "lines": 95
+    },
+    {
+      "source": "ic2/core/ref/Ic2ToolMaterials.java",
+      "sha256": "7cf67b087ef9aa48286ee2240b7c8abeabc4d89ca979a5b3cb60c714a1403e7d",
+      "lines": 60
+    },
+    {
+      "source": "ic2/core/slot/ArmorSlot.java",
+      "sha256": "d9ada09129e7043846ab3e2ebe8f4a6ab5dccbf687691e3bed510f7c2b5fcdeb",
+      "lines": 65
+    },
+    {
+      "source": "ic2/core/slot/SlotArmor.java",
+      "sha256": "52be81ae4c29804728c1047f48f862329eb54ec5584229c767abed1a218a7fbc",
+      "lines": 37
+    },
+    {
+      "source": "ic2/core/slot/SlotBoxable.java",
+      "sha256": "b06e3cb0587689d90539bca5a3ad1f5c3efe4399617938647067e14143a679c9",
+      "lines": 19
+    },
+    {
+      "source": "ic2/core/slot/SlotDischarge.java",
+      "sha256": "6a16cbece4cc47aeb0998e821481fdbf644c510de53ac0bc7896dfe9150641a9",
+      "lines": 36
+    },
+    {
+      "source": "ic2/core/slot/SlotHologramSlot.java",
+      "sha256": "8e7e404a4fc8e18d69d3d94e8cca2d569ffd03c2fed637e4730e5ac86d291b8a",
+      "lines": 185
+    },
+    {
+      "source": "ic2/core/slot/SlotInvSlot.java",
+      "sha256": "b1f4a5d593697b8196728b5f7aaf298d24f4d72b1f8e94fcfb87c97c3b110cea",
+      "lines": 77
+    },
+    {
+      "source": "ic2/core/slot/SlotInvSlotReadOnly.java",
+      "sha256": "4946b1fc901bd6337fcc479bae3f5343396b9031ea86ea5c7babbdadb7abf233",
+      "lines": 36
+    },
+    {
+      "source": "ic2/core/slot/SlotRadioactive.java",
+      "sha256": "c91a4cbf55cc03f4e59022c610bfde88358cd740f75f6449913a45884fe1e34c",
+      "lines": 18
+    },
+    {
+      "source": "ic2/core/sound/DeferredSoundOps.java",
+      "sha256": "66f8d1a9b679d8e86dffc60b3c2d97cbc023e72957f0d370c73e34ca57c7cb75",
+      "lines": 31
+    },
+    {
+      "source": "ic2/core/sound/EntityTrackingSoundInstance.java",
+      "sha256": "d7d910a22084d367353312dad963fa7bb1b95eee1b63a6caecf80fe01cdb3830",
+      "lines": 84
+    },
+    {
+      "source": "ic2/core/sound/ListenableSoundInstance.java",
+      "sha256": "bd91b7f237fe2d883cad567d6d0f9621c9005a597a5b4c6c3989a989da2cc8b9",
+      "lines": 12
+    },
+    {
+      "source": "ic2/core/sound/PositionedSoundInstance.java",
+      "sha256": "62dcd2b42b9a3f8ccd84390721fe08c478bb6ea5466a6d706985ad76f909d467",
+      "lines": 46
+    },
+    {
+      "source": "ic2/core/sound/RepeatablePositionedSoundInstance.java",
+      "sha256": "c0ec05e1e5765e1559734fc25280a44153448c66a5a0aa21a9a85dd43a77fb81",
+      "lines": 14
+    },
+    {
+      "source": "ic2/core/sound/Sound.java",
+      "sha256": "ffc6e9cf02417a7e89a8894815a5916abc3c952b7ea53b86f3823626eb39e519",
+      "lines": 37
+    },
+    {
+      "source": "ic2/core/sound/SoundClient.java",
+      "sha256": "d610a70604a3e389f92dccc2661b74220b50cc86d8d90370eba231fb01739780",
+      "lines": 267
+    },
+    {
+      "source": "ic2/core/sound/SoundManager.java",
+      "sha256": "7de356f9a1e42e1cae98c6620e12f1e0a44637d6695e5e55420cbcc63aeddf89",
+      "lines": 52
+    },
+    {
+      "source": "ic2/core/sound/SoundManagerClient.java",
+      "sha256": "785395a64238c8ba06d18139c53acafc26afe87f74ed193dfe548add50d74b01",
+      "lines": 224
+    },
+    {
+      "source": "ic2/core/util/BiomeUtil.java",
+      "sha256": "17eaa322b4290852332a4b18d3feec9ee3f6093963c620a82bac3d4994522e1a",
+      "lines": 114
+    },
+    {
+      "source": "ic2/core/util/ConfigUtil.java",
+      "sha256": "5091e725728ecf815493ac57a74711caefe4036c0d263d5b31d5b4fa921a16cf",
+      "lines": 187
+    },
+    {
+      "source": "ic2/core/util/Constants.java",
+      "sha256": "5d61e3fa3a4c407134d70f9403b90573bb48e34fbea53de2343db84fb842fbd9",
+      "lines": 18
+    },
+    {
+      "source": "ic2/core/util/DelegatingInventory.java",
+      "sha256": "bae98ca9b2866007efdc82528f95b18e478db25a0ef57952cb22a00aea26874f",
+      "lines": 93
+    },
+    {
+      "source": "ic2/core/util/EnhancedOverlayRenderer.java",
+      "sha256": "fce819cfc1bb4e08f72711c355247449560b5f0806c7bb3e96950d821ea2e522",
+      "lines": 216
+    },
+    {
+      "source": "ic2/core/util/Ic2Color.java",
+      "sha256": "47a7cc40bfb66562ac6e082609a00b693ae71fc14c35eb68ed94b737d22e643f",
+      "lines": 69
+    },
+    {
+      "source": "ic2/core/util/Ic2Tooltip.java",
+      "sha256": "a9521bf3ab07c575e02790d741b31332642e787d03dc1830579910c6e3d63673",
+      "lines": 67
+    },
+    {
+      "source": "ic2/core/util/IdentifierUtil.java",
+      "sha256": "928086a0662a010626f92b6e4c1cc8648c2327da9a5d58071deb921b940180f3",
+      "lines": 17
+    },
+    {
+      "source": "ic2/core/util/ItemComparableItemStack.java",
+      "sha256": "163ccfd90fbf63afc4385c6df035f9affc27b9232b07f8c74d46b60074daa023",
+      "lines": 120
+    },
+    {
+      "source": "ic2/core/util/ItemInfo.java",
+      "sha256": "ad54479b5b389b2538eb759269400b145ed855e9c49d337db6ed457f67cc5cf3",
+      "lines": 56
+    },
+    {
+      "source": "ic2/core/util/Keyboard.java",
+      "sha256": "e634eb57e94858a81b8050fea2246d06c09f9670158c461ef38593c898badcda",
+      "lines": 151
+    },
+    {
+      "source": "ic2/core/util/KeyboardClient.java",
+      "sha256": "94e88aadb8a5d09622383014fb3563a6202da62768a56b3b05507271b802d4de",
+      "lines": 97
+    },
+    {
+      "source": "ic2/core/util/LiquidUtil.java",
+      "sha256": "95a3fcb0873fbbc6e589b6818c9a39acf55d309d8eee7812351a26d28cb69d54",
+      "lines": 836
+    },
+    {
+      "source": "ic2/core/util/Log.java",
+      "sha256": "98312e43a67eb3fc7f0dcf191eed434dff0fe1745f2ce99206c79de0e9edbd37",
+      "lines": 201
+    },
+    {
+      "source": "ic2/core/util/LogCategory.java",
+      "sha256": "c63e4c87760dbb793de5d1846396c2b501cdc3303f62446a42413fbbc9be6087",
+      "lines": 20
+    },
+    {
+      "source": "ic2/core/util/LogOutputStream.java",
+      "sha256": "0e0a3c0a7a56395bb93f8d3f64d64320608c5c6e4e33eccf87880b9ca23551d7",
+      "lines": 133
+    },
+    {
+      "source": "ic2/core/util/ParticleUtil.java",
+      "sha256": "e9850977b4d0f38e47201aaa887047b091e30a1f4d0258577572e26ade3671b6",
+      "lines": 35
+    },
+    {
+      "source": "ic2/core/util/PriorityExecutor.java",
+      "sha256": "5deb5e57e93f2d40dc0d600dfc9fb347a669a888a9bb07caa814abf26bbc6fa2",
+      "lines": 362
+    },
+    {
+      "source": "ic2/core/util/PumpUtil.java",
+      "sha256": "3ecd8ae62efa1fb33cce239acbb7d1ec78fd9f2e10cb0833fed0b004d65b8d40",
+      "lines": 383
+    },
+    {
+      "source": "ic2/core/util/Quaternion.java",
+      "sha256": "3149acf5da5f2e2684919ad99a3f93c43a05b3b59f8d2b8a925e2bdf6c3e93f2",
+      "lines": 70
+    },
+    {
+      "source": "ic2/core/util/ReflectionUtil.java",
+      "sha256": "dcc1d8d0998ea52d86b0565a93e4b0d662ad23cd4c6ae91966747cdb5ddc4fd7",
+      "lines": 222
+    },
+    {
+      "source": "ic2/core/util/RotationUtil.java",
+      "sha256": "cb6eddc1338ac0cc1440d445d67403515a94f8e4646f1b376e72fc479a1b25dc",
+      "lines": 261
+    },
+    {
+      "source": "ic2/core/util/SideGateway.java",
+      "sha256": "c6edf030ef46542c91df7f695356289dfe141bc0b2d9e3bd505296f359b8c242",
+      "lines": 34
+    },
+    {
+      "source": "ic2/core/util/StackUtil.java",
+      "sha256": "c1e43a4bad8391b834c97b27aa8b202ae6c4d92dd9fa014fe2c30b18a55dfd9f",
+      "lines": 1001
+    },
+    {
+      "source": "ic2/core/util/Tuple.java",
+      "sha256": "900414d487fdf53ce8f58f7f406a4ae09d4fa7ec7f6d6986dca176499dad6edb",
+      "lines": 47
+    },
+    {
+      "source": "ic2/core/util/Util.java",
+      "sha256": "b9dcd76d19e8b787d3c085e81fd0755909ea9414c696b9b9144b093bf562c7c0",
+      "lines": 658
+    },
+    {
+      "source": "ic2/core/util/VanillaColorBlockId.java",
+      "sha256": "39a4c9a08e1a690be1bc89f5d4b474134060e593bc51f746dad8cf387c708b97",
+      "lines": 33
+    },
+    {
+      "source": "ic2/core/util/Vector2.java",
+      "sha256": "a0d81b2760956e448c629d95873365aec7e12efc45560a309db4df497d3d43aa",
+      "lines": 145
+    },
+    {
+      "source": "ic2/core/util/Vector3.java",
+      "sha256": "d2c99b59736c7f87695bee03df960e03f0fe8916487c38decfdda9c82e782399",
+      "lines": 196
+    },
+    {
+      "source": "ic2/core/util/WorldUtil.java",
+      "sha256": "41a3d1baa8a02bd9ab8807babb30cdebd8f48d968888ba37a93543c8c61936bd",
+      "lines": 70
+    },
+    {
+      "source": "ic2/core/util/XmlUtil.java",
+      "sha256": "aebed418f40a2d34f39e00f8a224abc8dcf41702d2242bd4b17605c53bd1240f",
+      "lines": 101
+    },
+    {
+      "source": "ic2/core/uu/CannerBottleSolidResolver.java",
+      "sha256": "77bf7073e60f67e48a05b8f80419b61d0d7ff5d84b0a077baca3ed6c8be88bd7",
+      "lines": 15
+    },
+    {
+      "source": "ic2/core/uu/DropScan.java",
+      "sha256": "b015986e57b715ba8586873e7144a2654d2894de5d153ed13801573db2e42f38",
+      "lines": 423
+    },
+    {
+      "source": "ic2/core/uu/ILateRecipeResolver.java",
+      "sha256": "ed4a0c2bb9dedc1a889694023ba031b82e8cab0ffbc1ebd0f6c3e334ca40e507",
+      "lines": 8
+    },
+    {
+      "source": "ic2/core/uu/IRecipeResolver.java",
+      "sha256": "ade8de21e7724e9c10e8d35f90a85983244adae29c71f4de8c7b0a22e771f383",
+      "lines": 8
+    },
+    {
+      "source": "ic2/core/uu/LeanItemStack.java",
+      "sha256": "c40fbdea8ddf26fc4828a4f519b62a44711bd5a256343bc69aecb07666e9d220",
+      "lines": 132
+    },
+    {
+      "source": "ic2/core/uu/MachineRecipeResolver.java",
+      "sha256": "e81b4c2ee0265632aa94b4739d884020239c08f2e29dfe985f8e49a30f062cbe",
+      "lines": 51
+    },
+    {
+      "source": "ic2/core/uu/ManualRecipeResolver.java",
+      "sha256": "c42d5d188920871be2610cce12101af59c73109be504edbad4f6f4b9ba8b430a",
+      "lines": 40
+    },
+    {
+      "source": "ic2/core/uu/RecipeResolver.java",
+      "sha256": "c2c597c0ae9aac7e18418c5570e984ab31c97f121f69ca1fb69a4e0f5bc73228",
+      "lines": 55
+    },
+    {
+      "source": "ic2/core/uu/RecipeTransformation.java",
+      "sha256": "bdd025ace3daa6679dddbef933122510df680de6e14777d9957729abb5ae0497",
+      "lines": 155
+    },
+    {
+      "source": "ic2/core/uu/RecipeUtil.java",
+      "sha256": "c42db1eccd28f9c805452ac4df0bf28adf3de2c02a463b4170d08156984ebf65",
+      "lines": 69
+    },
+    {
+      "source": "ic2/core/uu/RecyclerResolver.java",
+      "sha256": "f05dcb5b398d8081b8c5e322e78b1cdb90db3d5df65ed10718155b04348103f1",
+      "lines": 34
+    },
+    {
+      "source": "ic2/core/uu/ScrapBoxResolver.java",
+      "sha256": "316f91e9e72a7c9b79d8d7e516937e546ed301a68d1cfa81478851fa860433ae",
+      "lines": 42
+    },
+    {
+      "source": "ic2/core/uu/UuGraph.java",
+      "sha256": "2120966be2287fa5a13036e4d1092823f51823a6fb7efd8985e2a614d93e08fc",
+      "lines": 334
+    },
+    {
+      "source": "ic2/core/uu/UuIndex.java",
+      "sha256": "6ba95a6da2b9fcd48305c13cca06c356f9c60dd08a351171350a2cfb31920d74",
+      "lines": 108
+    },
+    {
+      "source": "ic2/core/uu/VanillaSmeltingResolver.java",
+      "sha256": "18ff0fbbcc5353d30a1d119fa19a70add3778dbfb74678fe2c28dabaa7213b60",
+      "lines": 36
+    },
+    {
+      "source": "ic2/core/world/Ic2WorldGen.java",
+      "sha256": "f0d5f7e41940fe30f84bb5b60237d874ff7677698c080970010fb61f831bba56",
+      "lines": 99
+    },
+    {
+      "source": "ic2/core/world/RubberTreeFoliagePlacer.java",
+      "sha256": "8af3d03219f25eb779f65c8594497c3742c9c90b90c356d1444b76df51d56dd3",
+      "lines": 122
+    },
+    {
+      "source": "ic2/forge/BlockFluidCapImpl.java",
+      "sha256": "cdc4d44053b46b7db8c764826e8a2cd15494b73cf81d712a13db21b38997328a",
+      "lines": 168
+    },
+    {
+      "source": "ic2/forge/ClientEnvFluidHandlerForge.java",
+      "sha256": "8a37bedd279a0bd11f5cc7212bb7184e69aee759acb6538eaf962e30fc93a00b",
+      "lines": 26
+    },
+    {
+      "source": "ic2/forge/ClientEnvProxyForge.java",
+      "sha256": "37348c101b1c930697bdba95dd0557e06b49f4d1deb3f2b075e639f07312096b",
+      "lines": 161
+    },
+    {
+      "source": "ic2/forge/ClientEventHandlerForge.java",
+      "sha256": "400e980659fd2c81ffecc7484571d735a4e49edd9b80e8889cbf8338882b8d5b",
+      "lines": 163
+    },
+    {
+      "source": "ic2/forge/ClientModEventHandlerForge.java",
+      "sha256": "6066831876aed3facc904d95dd7e7509c2fb223244f09297bbe0e2e1f951960f",
+      "lines": 108
+    },
+    {
+      "source": "ic2/forge/EnvFluidHandlerForge.java",
+      "sha256": "2655bac8688934137f92c8a58cc6f57765f227840e9d59ed3d7c59aca1bfd5c4",
+      "lines": 638
+    },
+    {
+      "source": "ic2/forge/EnvItemHandlerForge.java",
+      "sha256": "9f9e2d4a37071758a6dba6096ba486e5fe2bd02b7155736f592e0ba7a626beac",
+      "lines": 324
+    },
+    {
+      "source": "ic2/forge/EnvProxyForge.java",
+      "sha256": "3f4fde508be277017943007ddd9982d6caca3af8684984b6b8ec2c4ce3e68050",
+      "lines": 503
+    },
+    {
+      "source": "ic2/forge/EventHandlerForge.java",
+      "sha256": "fd31fe7e89cce0a9ba6863a2b4e265246ac9d664e2ce21cbc42c0280f4c6d101",
+      "lines": 380
+    },
+    {
+      "source": "ic2/forge/FmlMod.java",
+      "sha256": "4dfe2aa64c88007b1618cabfdd48bec6744f183c2db4b7d4f8cdd7b3940d74bb",
+      "lines": 210
+    },
+    {
+      "source": "ic2/forge/ForgeNetworkHandler.java",
+      "sha256": "1f061fcc9b1a6e6178c4b17cfc0d67182ddc3b9111a58e59b99dc405a799dd07",
+      "lines": 24
+    },
+    {
+      "source": "ic2/forge/Ic2FluidStackImpl.java",
+      "sha256": "5e11605c16e547be3897b2726f967e3f2dc524feea24698692afe09200c14ea3",
+      "lines": 106
+    },
+    {
+      "source": "ic2/forge/Ic2LootModifier.java",
+      "sha256": "c0bcc9802a6dc00526dc1919189d1c7139b90030279db3310b45dca7ce6097c1",
+      "lines": 75
+    },
+    {
+      "source": "ic2/forge/ItemFluidCapImpl.java",
+      "sha256": "3c746fa88a6851bfa279440df3dff87d7c52d484044836de3b33bf6dffb1fe24",
+      "lines": 136
+    },
+    {
+      "source": "ic2/forge/ItemNanoSaberCapImpl.java",
+      "sha256": "8b3849beaef0b35d3d072da9a58161b75e21b69fa4e498fab76d4e4cc6e75baa",
+      "lines": 26
+    },
+    {
+      "source": "ic2/forge/LazyBlockFluidCapImpl.java",
+      "sha256": "579fac87afe235d704e0ff4a94fcc46665b249a92ddacbf47e3c0e1a8b6bb5d4",
+      "lines": 46
+    },
+    {
+      "source": "ic2/forge/NanoSaberCapabilities.java",
+      "sha256": "4bb25e2cdf8192f70d3aae9fb672ede0241433ec90442bc37451978db1f5ae9a",
+      "lines": 88
+    },
+    {
+      "source": "ic2/forge/NanoSaberStateImpl.java",
+      "sha256": "0cb8752815d52a4cdf9f42c6fb4160a3cff265c976460b5052020d97a64d0b03",
+      "lines": 44
+    },
+    {
+      "source": "ic2/forge/model/BeModelLoader.java",
+      "sha256": "585ed6bf8f51315360eeb4a4c871557bdd611ce6e0c7b680c1854fb28870bfa9",
+      "lines": 15
+    },
+    {
+      "source": "ic2/forge/model/CableModelLoader.java",
+      "sha256": "09c9b2cef4c6a9605ac0a04a6def1314825bf6e117eb11242dddb75a28dafee1",
+      "lines": 19
+    },
+    {
+      "source": "ic2/forge/model/DynamicBeModelForge.java",
+      "sha256": "6706a13e0ab4009bb5b21b754df91d39171b542e423b5d5f3d9e889dbc39d200",
+      "lines": 267
+    },
+    {
+      "source": "ic2/forge/model/DynamicCableModelForge.java",
+      "sha256": "aea3fff85e7209bd5d0d78fca2b501a161eab182707b52c21a97aa69a13a8e09",
+      "lines": 254
+    },
+    {
+      "source": "ic2/forge/model/Ic2Model.java",
+      "sha256": "4b56e0d3563afc0ff064125f46f8be51c8d2ec3c701bd74470550d9b193a9777",
+      "lines": 7
+    },
+    {
+      "source": "ic2/forge/model/MaskOverlayItemLoader.java",
+      "sha256": "ff793aeed508cb1959e1ce4da1c56143d0ac42b21b82ec86c0fbac5a3a1570a3",
+      "lines": 19
+    },
+    {
+      "source": "ic2/forge/model/MaskOverlayItemModel.java",
+      "sha256": "cd32045c969e7279614a2ffb9e194bec0cf2a03279ff75cecb3ccfef88f40210",
+      "lines": 480
+    },
+    {
+      "source": "ic2/forge/model/OverlayRenderUtil.java",
+      "sha256": "746ae1620d11d7ee0327a350f579310c6aa38861f706fd08ed1eeaa082ea461b",
+      "lines": 170
+    },
+    {
+      "source": "ic2/forge/model/WallModelForge.java",
+      "sha256": "4faf5468289fa2820e6ab27c9660dbd4393e5813c9cef26b1a3fec71566546c6",
+      "lines": 226
+    },
+    {
+      "source": "ic2/forge/model/WallModelLoader.java",
+      "sha256": "fea3758560335b9ac6b787eb7f90d5107223e005f0103c215e014fbdd972db7e",
+      "lines": 14
+    },
+    {
+      "source": "ic2/integration/ae2/Ic2Ae2Plugin.java",
+      "sha256": "ec48a1692383fcec38426c8f99d7fde3c13a5591415908775ad3355f62640cb0",
+      "lines": 431
+    },
+    {
+      "source": "ic2/integration/jade/Ic2EnergyProvider.java",
+      "sha256": "eb778f27ceebc9634cc15fdc2c66513b6ac9c27791b60387ce6a0289da9dc416",
+      "lines": 74
+    },
+    {
+      "source": "ic2/integration/jade/Ic2JadePlugin.java",
+      "sha256": "ff8bb5c619538bf8f73d52ccf213b79874d4be3dcf0087c2218390fd8ecc866a",
+      "lines": 36
+    },
+    {
+      "source": "ic2/integration/jade/Ic2JadePluginConfigs.java",
+      "sha256": "d7779775ef52723f891e824dceb8fc681693dd540ed468ce49638728aa67034c",
+      "lines": 93
+    },
+    {
+      "source": "ic2/integration/jade/Ic2MachineTooltipProvider.java",
+      "sha256": "e7ae6bab0814b067eaace01a84c03a3d418a52884bc9e980401c0e88ce570f0c",
+      "lines": 119
+    },
+    {
+      "source": "ic2/integration/jade/Ic2ProgressProvider.java",
+      "sha256": "f25b7f45edc620918229ba48f21279e90fe1b2ada504d5666f0cac603c4fce56",
+      "lines": 165
+    },
+    {
+      "source": "ic2/integration/jade/JadeConfigHelper.java",
+      "sha256": "7737b5788dcd9184517bffae2b95c0f8d6678f3ea5ca8c045d4f175fc57da141",
+      "lines": 180
+    },
+    {
+      "source": "ic2/integration/jade/JadeDisplayMode.java",
+      "sha256": "95eebbf19bec5ee59fc82d410925a244c799b180f483bbd5f75d8526ab89b490",
+      "lines": 15
+    },
+    {
+      "source": "ic2/integration/jade/JadeEnergyTextMode.java",
+      "sha256": "2d11d8e345c7371c896b2a094b341f554bb6dad65a1caa980c1fbfd2c6ac2d1f",
+      "lines": 8
+    },
+    {
+      "source": "ic2/integration/jade/JadeProgressTextMode.java",
+      "sha256": "e5e943706b617794b9d903f581a0bbce402823b4671c7d6cbd61d2bb88d3f330",
+      "lines": 8
+    },
+    {
+      "source": "ic2/integration/jei/Ic2JeiPlugin.java",
+      "sha256": "d6dda5df0466f79834a06c4dfa3fba4be26e5325731d739c776867bc604e9333",
+      "lines": 1001
+    },
+    {
+      "source": "ic2/integration/jei/recipe/machine/CannerBottleCategory.java",
+      "sha256": "083cbd409a557714568e12b80ee5e6b62bf00ae4f0346de978066258433ed47b",
+      "lines": 96
+    },
+    {
+      "source": "ic2/integration/jei/recipe/machine/CannerBottleLiquidCategory.java",
+      "sha256": "eba30f8a5c6accce002823d348c63a2bc5f06e22e8a5abe2762132426c1a6307",
+      "lines": 86
+    },
+    {
+      "source": "ic2/integration/jei/recipe/machine/CannerBottleLiquidRecipeWrapper.java",
+      "sha256": "17b6e4c4e2df9a7882d1aa64e9f7260b2e9910a666ed9ad92acb294f0d852e27",
+      "lines": 37
+    },
+    {
+      "source": "ic2/integration/jei/recipe/machine/CannerBottleRecipeWrapper.java",
+      "sha256": "48c1e3f9dd86041bb5980551845623f6b69d3bd7963e788b87a1318f913cca7d",
+      "lines": 32
+    },
+    {
+      "source": "ic2/integration/jei/recipe/machine/CannerEmptyLiquidCategory.java",
+      "sha256": "4e3c671021c7285a70ac0a52c3ba88940a0bd9f5434c1e3a70383abf6149e523",
+      "lines": 81
+    },
+    {
+      "source": "ic2/integration/jei/recipe/machine/CannerEmptyLiquidRecipeWrapper.java",
+      "sha256": "edd54f843849999bf5b596f3eae386f3a4dbc116f828f4e9bd4e126358f7de1b",
+      "lines": 37
+    },
+    {
+      "source": "ic2/integration/jei/recipe/machine/CannerEnrichCategory.java",
+      "sha256": "a9edc580d7e57cecd19356c418e47b9712ddea765d21f931425074412e1f1203",
+      "lines": 86
+    },
+    {
+      "source": "ic2/integration/jei/recipe/machine/CannerEnrichRecipeWrapper.java",
+      "sha256": "7b31189771f455a553e492d48f1016b11c8c32a0809b225b48312ea9c29c514e",
+      "lines": 39
+    },
+    {
+      "source": "ic2/integration/jei/recipe/machine/DynamicCategory.java",
+      "sha256": "73102cd01b9c93487a9e060bd9465312f7635a85cac19bce6f33176d3666d65d",
+      "lines": 292
+    },
+    {
+      "source": "ic2/integration/jei/recipe/machine/IJeiRecipeWrapper.java",
+      "sha256": "3c51e783afcd862e782cba1f11061d2be30752b9875732f4bbc3f86624f084ff",
+      "lines": 12
+    },
+    {
+      "source": "ic2/integration/jei/recipe/machine/IORecipeCategory.java",
+      "sha256": "3bc94cad5bbb704faa547aa76de31fd971b6617ecbe0ac333318c5ee82f0a670",
+      "lines": 74
+    },
+    {
+      "source": "ic2/integration/jei/recipe/machine/IORecipeWrapper.java",
+      "sha256": "f072294d489d37cc659a60c75ecdf543020b94db59f56390915be0bc2c338efe",
+      "lines": 39
+    },
+    {
+      "source": "ic2/integration/jei/recipe/machine/MetalFormerCategory.java",
+      "sha256": "739a090fe3c81723496bf6596b8350cd404932aa9295020b152a0fd2f9b3366f",
+      "lines": 30
+    },
+    {
+      "source": "ic2/integration/jeirei/SlotPosition.java",
+      "sha256": "f1b8feff220a799fa50eadd4439cf093feccccbd3f04d2e13e3980c83a24f7ac",
+      "lines": 17
+    },
+    {
+      "source": "ic2/mixin/RecipeManagerMixin.java",
+      "sha256": "059449f8448d29210a3178b2fb50d23d2e920965a2f36fcc11249936feb38732",
+      "lines": 30
+    }
+  ]
+}

@@ -1,0 +1,82 @@
+#!/usr/bin/env python3
+"""Validate the migration ledger and render its GitHub-readable status view."""
+import argparse
+import hashlib
+import json
+from pathlib import Path
+import re
+
+ROOT = Path(__file__).resolve().parents[2]
+LABELS = {"todo": "待开始", "in_progress": "进行中", "done": "已完成", "blocked": "受阻"}
+
+
+def generate():
+    plan = json.loads((ROOT / "docs/migration/plan.json").read_text())
+    inventory = json.loads((ROOT / "docs/migration/legacy-inventory.json").read_text())
+    assert plan["baseline"] == inventory["baseline"], "baseline mismatch"
+    legacy = ROOT / "legacy/forge-1.20.1/src/main/java"
+    originals = {f["source"] for f in inventory["files"]}
+    assert originals == {p.relative_to(legacy).as_posix() for p in legacy.rglob("*.java")}, "legacy source set changed"
+    for entry in inventory["files"]:
+        assert hashlib.sha256((legacy / entry["source"]).read_bytes()).hexdigest() == entry["sha256"], entry["source"]
+    tasks = {t["id"]: t for t in plan["tasks"]}
+    assert len(tasks) == len(plan["tasks"]), "duplicate task ID"
+
+    def visit(task_id, ancestors):
+        assert task_id not in ancestors, "cyclic task dependency"
+        for dependency in tasks[task_id]["depends_on"]:
+            assert dependency in tasks, f"unknown dependency {dependency}"
+            visit(dependency, ancestors | {task_id})
+
+    for task in tasks.values():
+        assert task["status"] in LABELS and task["acceptance"], task["id"]
+        visit(task["id"], set())
+        for evidence in task["evidence"]:
+            assert (ROOT / evidence).is_file(), f"missing evidence {evidence}"
+        if task["status"] == "done":
+            assert task["evidence"], f"missing evidence for {task['id']}"
+            assert all(tasks[d]["status"] == "done" for d in task["depends_on"]), task["id"]
+    sources = set()
+    completed_ports = 0
+    for port in plan["ports"]:
+        assert port["source"] in originals and port["source"] not in sources, port["source"]
+        sources.add(port["source"])
+        assert (ROOT / port["target"]).is_file(), port["target"]
+        completed_ports += tasks[port["task"]]["status"] == "done"
+    # Cheap source guard, in addition to core's empty production dependency classpath.
+    for source in (ROOT / "core/src/main/java").rglob("*.java"):
+        assert not re.search(r'\b(?:net\.minecraft|net\.neoforged|net\.minecraftforge|ic2\.neoforge)\b', source.read_text()), source
+    done = sum(t["status"] == "done" for t in tasks.values())
+    lines = ["# NeoForge 26.1.2 迁移进度", "", f"更新：{plan['updated']} · {plan['target']}", "",
+             f"阶段完成：**{done} / {len(tasks)}**。完整迁移的旧 Java 文件：**{completed_ports} / {len(originals)}**。",
+             "", "这些计数不表示功能完成率或工时进度。当前是迁移开发版本，旧机器与旧世界兼容性仍待验收。", "",
+             "此页由 `plan.json` 生成；修改后运行 `python3 tools/migration/progress.py`。", "",
+             "| 任务 | 状态 | 前置任务 | 验收标准 |", "|---|---|---|---|"]
+    for task in tasks.values():
+        lines.append(f"| {task['id']} {task['title']} | {LABELS[task['status']]} | {', '.join(task['depends_on']) or '—'} | {task['acceptance']} |")
+    lines += ["", "## 验证证据", ""]
+    for task in tasks.values():
+        if task["evidence"]:
+            links = ", ".join(f"[{Path(p).name}](../../{p})" for p in task["evidence"])
+            lines.append(f"- {task['id']}：{links}")
+    lines += ["", "## 依赖关系", "", "```mermaid", "flowchart TD"]
+    for task in tasks.values():
+        lines.append(f'  {task["id"]}["{task["id"]} {task["title"]} · {LABELS[task["status"]]}"]')
+        for dependency in task["depends_on"]:
+            lines.append(f'  {dependency} --> {task["id"]}')
+    lines += ["```", "", "[架构与工作约定](architecture.md) · [原始文件清单](legacy-inventory.json)", ""]
+    return "\n".join(lines)
+
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--check", action="store_true", help="fail if the committed view is stale")
+    args = parser.parse_args()
+    rendered = generate()
+    target = ROOT / "docs/migration/STATUS.md"
+    if args.check:
+        assert target.read_text() == rendered, "stale STATUS.md; run tools/migration/progress.py"
+        print("Migration ledger, baseline, boundaries and generated status: OK")
+    else:
+        target.write_text(rendered)
+        print(target.relative_to(ROOT))

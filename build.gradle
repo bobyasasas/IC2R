@@ -1,128 +1,28 @@
 plugins {
-    id 'eclipse'
-    id 'idea'
-    id 'maven-publish'
-    id 'net.minecraftforge.gradle' version '6.0.54'
-    id 'com.modrinth.minotaur' version '2.9.0'
-    id 'org.spongepowered.mixin' version '0.7.38'
+    id 'base'
+    id 'net.neoforged.moddev' version '2.0.146' apply false
 }
 
-version = System.getenv("MOD_VERSION") ?: mod_version
-group = mod_group_id
+subprojects {
+    apply plugin: 'java-library'
+    group = 'ic2'
+    version = rootProject.mod_version
 
-base {
-    archivesName = "${mod_id}-forge"
-}
-
-java {
-    toolchain {
-        languageVersion = JavaLanguageVersion.of(17)
+    repositories { mavenCentral() }
+    java {
+        toolchain.languageVersion = JavaLanguageVersion.of(25)
+        withSourcesJar()
+    }
+    tasks.withType(JavaCompile).configureEach {
+        options.encoding = 'UTF-8'
+        options.release = 25
+    }
+    tasks.withType(AbstractArchiveTask).configureEach {
+        preserveFileTimestamps = false
+        reproducibleFileOrder = true
     }
 }
 
-mixin {
-    add sourceSets.main, "ic2.refmap.json"
-    config "ic2.mixins.json"
-}
-
-println "Java: ${System.getProperty 'java.version'}, JVM: ${System.getProperty 'java.vm.version'} (${System.getProperty 'java.vendor'}), Arch: ${System.getProperty 'os.arch'}"
-minecraft {
-    mappings channel: mapping_channel, version: mapping_version
-    copyIdeResources = true
-
-    runs {
-        configureEach {
-            workingDirectory project.file('run')
-            property 'forge.logging.markers', 'REGISTRIES'
-            property 'forge.logging.console.level', 'debug'
-            mods {
-                "${mod_id}" {
-                    source sourceSets.main
-                }
-            }
-        }
-        client {
-            property 'forge.enabledGameTestNamespaces', mod_id
-        }
-        server {
-            property 'forge.enabledGameTestNamespaces', mod_id
-            args '--nogui'
-        }
-        gameTestServer {
-            property 'forge.enabledGameTestNamespaces', mod_id
-        }
-    }
-}
-
-repositories {
-    mavenCentral()
-    maven { url = "https://maven.blamejared.com/" }
-    maven { url "https://api.modrinth.com/maven" }
-}
-
-dependencies {
-    minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
-    compileOnly "mezz.jei:jei-1.20.1-forge-api:${jei_version}"
-    runtimeOnly fg.deobf("mezz.jei:jei-1.20.1-forge:${jei_version}")
-
-    compileOnly fg.deobf("maven.modrinth:ae2:7KVs6HMQ")
-    // Jade 11.13.2 for Minecraft 1.20.1 / Forge; optional at runtime.
-    compileOnly fg.deobf("maven.modrinth:jade:LecuGude")
-    // compileOnly "org.appliedenergistics:appliedenergistics2:${ae2_version}:api"
-}
-
-reobf {
-}
-
-tasks.named('processResources', ProcessResources).configure {
-    var replaceProperties = [
-            minecraft_version   : minecraft_version, minecraft_version_range: minecraft_version_range,
-            forge_version       : forge_version, forge_version_range: forge_version_range,
-            loader_version_range: loader_version_range,
-            mod_id              : mod_id, mod_name: mod_name, mod_license: mod_license, mod_version: mod_version,
-            mod_authors         : mod_authors, mod_description: mod_description,
-    ]
-    inputs.properties replaceProperties
-
-    filesMatching(['META-INF/mods.toml', 'pack.mcmeta']) {
-        expand replaceProperties + [project: project]
-    }
-}
-
-publishing {
-    publications {
-        register('mavenJava', MavenPublication) {
-            artifact jar
-        }
-    }
-}
-
-tasks.withType(JavaCompile).configureEach {
-    options.encoding = 'UTF-8'
-}
-
-tasks.register('syncVersion') {
-    doLast {
-        def version = mod_version
-        def badgeVersion = version.replace('-', '--')
-
-        def readmeFile = file('README.md')
-        def readmeContent = readmeFile.text
-        readmeContent = readmeContent.replaceAll(
-                /(Version-)[^"<\s]+(-blue)/,
-                "\$1${badgeVersion}\$2"
-        )
-        readmeContent = readmeContent.replaceAll(
-                /alt="Version [^"]+"/,
-                "alt=\"Version ${version}\""
-        )
-        readmeFile.text = readmeContent
-
-        def releaseFile = file('release.md')
-        def releaseContent = releaseFile.text
-        releaseContent = releaseContent.replaceAll(/^# .+/, "# ${version}")
-        releaseFile.text = releaseContent
-
-        logger.error("Notice: current version is: ${version}")
-    }
-}
+tasks.named('build') { dependsOn ':core:build', ':neoforge:build' }
+tasks.named('check') { dependsOn ':core:check', ':neoforge:check' }
+tasks.named('clean') { dependsOn ':core:clean', ':neoforge:clean' }

@@ -1,0 +1,53 @@
+package ic2.neoforge.test;
+
+import ic2.core.energy.ElectricalProfile;
+import ic2.core.energy.VoltageTier;
+import ic2.neoforge.registration.ModItems;
+
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.gametest.framework.GameTestHelper;
+import net.minecraft.network.chat.Component;
+import net.minecraft.resources.Identifier;
+import net.minecraft.world.item.ItemStack;
+import net.neoforged.bus.api.IEventBus;
+import net.neoforged.fml.common.Mod;
+import net.neoforged.neoforge.registries.DeferredRegister;
+
+import java.util.function.Consumer;
+
+/** Development-only test mod; never included in the production JAR. */
+@Mod("ic2_tests")
+public final class RegistrationTests {
+    private static final DeferredRegister<Consumer<GameTestHelper>> FUNCTIONS =
+            DeferredRegister.create(BuiltInRegistries.TEST_FUNCTION, "ic2_tests");
+
+    static {
+        FUNCTIONS.register("copper_plate", () -> RegistrationTests::copperPlate);
+        FUNCTIONS.register("core_available", () -> RegistrationTests::coreAvailable);
+    }
+
+    public RegistrationTests(IEventBus modBus) {
+        FUNCTIONS.register(modBus);
+    }
+
+    private static void copperPlate(GameTestHelper helper) {
+        ItemStack stack = new ItemStack(ModItems.COPPER_PLATE.get());
+        helper.assertTrue(
+                !stack.isEmpty(), Component.literal("Copper plate must create a non-empty stack"));
+        helper.assertTrue(
+                BuiltInRegistries.ITEM
+                        .getKey(stack.getItem())
+                        .equals(Identifier.fromNamespaceAndPath("ic2", "copper_plate")),
+                Component.literal("Copper plate must preserve the legacy registry ID"));
+        helper.succeed();
+    }
+
+    private static void coreAvailable(GameTestHelper helper) {
+        ElectricalProfile profile = new ElectricalProfile(VoltageTier.LV);
+        profile.setRecipePower(33);
+        helper.assertTrue(
+                profile.getWorkingCurrent() == 2,
+                Component.literal("The mod runtime must load the core module"));
+        helper.succeed();
+    }
+}

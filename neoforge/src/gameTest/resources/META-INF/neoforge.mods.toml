@@ -1,0 +1,11 @@
+license="All Rights Reserved"
+[[mods]]
+modId="ic2_tests"
+version="1.0.0"
+displayName="IC2R development tests"
+[[dependencies.ic2_tests]]
+modId="ic2"
+type="required"
+versionRange="[3.0.0-migration.1,)"
+ordering="AFTER"
+side="BOTH"
