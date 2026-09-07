@@ -97,6 +97,7 @@ public final class ModMachines {
                     new TransformerBlockEntity(pos, state);
             case IRON_FURNACE -> new IronFurnaceBlockEntity(pos, state);
             case CANNER -> new CannerBlockEntity(pos, state);
+            case WATER_GENERATOR -> new WaterGeneratorBlockEntity(pos, state);
             case SOLAR_GENERATOR -> new SolarGeneratorBlockEntity(pos, state);
             case GEO_GENERATOR, SEMIFLUID_GENERATOR -> new FluidGeneratorBlockEntity(pos, state);
             case GENERATOR -> new GeneratorBlockEntity(pos, state);

@@ -1434,7 +1434,12 @@
       "factory": "register",
       "expression": "new ItemBlockIc2(Ic2Blocks.WATER_GENERATOR, new Properties())",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/water-generation.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/WaterGenerationTests.java"
+      ],
+      "note": "水源、容器、批次重载、转子及双能源模式网络供电已验证；多人整体验收待完成。"
     },
     {
       "registry": "item",
@@ -6943,7 +6948,12 @@
       "factory": "register",
       "expression": "Ic2TileEntityBlock.create(Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).strength(2.0F, 10.0F).requiresCorrectToolForDrops().sound(SoundType.METAL), TileEntityWaterGenerator.class, true, Ic2TileEntityBlock.DefaultDrop.Generator, Util.horizontalFacings, true)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/water-generation.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/WaterGenerationTests.java"
+      ],
+      "note": "水源、容器、批次重载、转子及双能源模式网络供电已验证；多人整体验收待完成。"
     },
     {
       "registry": "block",
@@ -9225,7 +9235,12 @@
       "factory": "register",
       "expression": "TileEntityWaterGenerator::new",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/water-generation.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/WaterGenerationTests.java"
+      ],
+      "note": "水源、容器、批次重载、转子及双能源模式网络供电已验证；多人整体验收待完成。"
     },
     {
       "registry": "block_entity",

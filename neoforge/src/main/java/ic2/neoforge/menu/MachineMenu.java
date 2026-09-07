@@ -74,11 +74,15 @@ public final class MachineMenu extends AbstractContainerMenu {
             addBatterySlot(inventory, 1, 56, 53);
         } else if (kind.transformer()) {
             // Transformers have no inventory.
-        } else if (kind == MachineKind.GENERATOR) {
+        } else if (kind == MachineKind.GENERATOR || kind == MachineKind.WATER_GENERATOR) {
             addSlot(
                     new ResourceHandlerSlot(inventory, inventory::set, 0, 56, 53) {
                         @Override
                         public boolean mayPlace(ItemStack stack) {
+                            if (kind == MachineKind.WATER_GENERATOR)
+                                return WaterGeneratorBlockEntity.containsWater(
+                                        net.neoforged.neoforge.transfer.item.ItemResource.of(
+                                                stack));
                             return stack.getBurnTime(
                                             RecipeType.SMELTING,
                                             playerInventory.player.level().fuelValues())
@@ -263,7 +267,8 @@ public final class MachineMenu extends AbstractContainerMenu {
             return stack.getItem() instanceof ElectricItem
                     ? (ElectricItemEnergy.charge(stack) > 0 ? 1 : 0)
                     : -1;
-        if (stack.getItem() instanceof ElectricItem) return kind == MachineKind.GENERATOR ? 1 : 2;
+        if (stack.getItem() instanceof ElectricItem)
+            return kind == MachineKind.GENERATOR || kind == MachineKind.WATER_GENERATOR ? 1 : 2;
         if (kind == MachineKind.IRON_FURNACE
                 && stack.getBurnTime(RecipeType.SMELTING, player.level().fuelValues()) > 0)
             return 2;

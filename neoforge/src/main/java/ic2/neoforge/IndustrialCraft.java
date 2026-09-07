@@ -3,6 +3,7 @@ package ic2.neoforge;
 import ic2.neoforge.component.ModDataComponents;
 import ic2.neoforge.energy.EnergyConfig;
 import ic2.neoforge.energy.WorldEnergyNetworks;
+import ic2.neoforge.machine.GenerationConfig;
 import ic2.neoforge.registration.ModCannerRecipes;
 import ic2.neoforge.registration.ModCells;
 import ic2.neoforge.registration.ModCraftingRecipes;
@@ -48,6 +49,8 @@ public final class IndustrialCraft {
         ModProcessingRecipes.register(modBus);
         ModMachines.register(modBus);
         container.registerConfig(ModConfig.Type.SERVER, EnergyConfig.SPEC);
+        container.registerConfig(
+                ModConfig.Type.SERVER, GenerationConfig.SPEC, "ic2-generation-server.toml");
         var gameBus = NeoForge.EVENT_BUS;
         gameBus.addListener(WorldEnergyNetworks::onUnload);
         gameBus.addListener(WorldEnergyNetworks::onChunkLoad);

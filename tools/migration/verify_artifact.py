@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Validate packaged classes, development boundaries, item models and sound resources."""
 import json
+import re
 from pathlib import Path
 import struct
 import tomllib
@@ -22,6 +23,9 @@ with zipfile.ZipFile(jars[0]) as jar:
         assert name.startswith(('ic2/core/', 'ic2/neoforge/')), f'unexpected class: {name}'
         assert not name.startswith('ic2/neoforge/test/'), f'development test leaked: {name}'
         assert b'net/minecraftforge/' not in bytecode, f'Forge reference: {name}'
+        for texture in re.findall(rb'ic2:textures/[a-z0-9_./-]+\.png', bytecode):
+            path = texture.decode().replace('ic2:', 'assets/ic2/', 1)
+            assert jar.read(path).startswith(b'\x89PNG\r\n\x1a\n'), f'invalid renderer texture: {path}'
         if name.startswith('ic2/core/'):
             assert not any(p in bytecode for p in [b'net/minecraft/', b'net/neoforged/', b'ic2/neoforge/']), name
         if not name.startswith('ic2/neoforge/client/'):

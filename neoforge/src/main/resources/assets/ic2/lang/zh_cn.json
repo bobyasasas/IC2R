@@ -1389,5 +1389,7 @@
   "ic2.energy_device.charge": "给物品充电",
   "ic2.energy_device.discharge": "从物品放电",
   "ic2.solar.sunlight": "日照：%s%%",
-  "ic2.tooltip.processing_heat": "热量：%s / %s"
+  "ic2.tooltip.processing_heat": "热量：%s / %s",
+  "ic2.water.nearby": "周围水块：%s",
+  "ic2.tooltip.generation": "%s EU/t"
 }

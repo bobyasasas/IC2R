@@ -86,6 +86,11 @@ public final class RegistrationTests {
         FUNCTIONS.register("induction_two_rows", () -> InductionTests::twoRowsPersistence);
         FUNCTIONS.register("induction_blocked_row", () -> InductionTests::blockedRow);
         FUNCTIONS.register("induction_menu_upgrades", () -> InductionTests::menuAndUpgrades);
+        FUNCTIONS.register(
+                "water_bucket_persistence", () -> WaterGenerationTests::bucketPersistence);
+        FUNCTIONS.register("water_cell_automation", () -> WaterGenerationTests::cellAndAutomation);
+        FUNCTIONS.register("water_ambient_rotor", () -> WaterGenerationTests::ambientAndRotor);
+        FUNCTIONS.register("water_network_supply", () -> WaterGenerationTests::networkSupply);
         FUNCTIONS.register("loaded_recipes", () -> ProcessingTests::loadedRecipes);
         FUNCTIONS.register("processing_machines", () -> ProcessingTests::processing);
         FUNCTIONS.register("weighted_persistence", () -> ProcessingTests::weightedPersistence);

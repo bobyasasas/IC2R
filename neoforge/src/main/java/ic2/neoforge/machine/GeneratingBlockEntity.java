@@ -30,7 +30,12 @@ public abstract class GeneratingBlockEntity extends PoweredBlockEntity {
     @Override
     public final void serverTick(ServerLevel level) {
         boolean active = generate(level);
-        int slot = kind() == MachineKind.SOLAR_GENERATOR ? 0 : 2;
+        int slot =
+                switch (kind()) {
+                    case SOLAR_GENERATOR -> 0;
+                    case WATER_GENERATOR -> 1;
+                    default -> 2;
+                };
         var battery = inventory.stack(slot);
         double charged = ElectricItemEnergy.charge(battery, energy.stored(), 1, false, false);
         if (charged > 0) {

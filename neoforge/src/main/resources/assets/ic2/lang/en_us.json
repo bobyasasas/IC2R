@@ -1389,5 +1389,7 @@
   "ic2.energy_device.charge": "Charge item",
   "ic2.energy_device.discharge": "Discharge item",
   "ic2.solar.sunlight": "Sunlight: %s%%",
-  "ic2.tooltip.processing_heat": "Heat: %s / %s"
+  "ic2.tooltip.processing_heat": "Heat: %s / %s",
+  "ic2.water.nearby": "Water blocks: %s",
+  "ic2.tooltip.generation": "%s EU/t"
 }

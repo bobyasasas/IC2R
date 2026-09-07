@@ -88,6 +88,7 @@ final class MachineSounds {
         return switch (machine.kind()) {
             case CENTRIFUGE, ORE_WASHING_PLANT, METAL_FORMER, SOLAR_GENERATOR -> null;
             case GEO_GENERATOR, SEMIFLUID_GENERATOR -> ModSounds.GENERATOR_GEOTHERMAL_LOOP.get();
+            case WATER_GENERATOR -> ModSounds.GENERATOR_WATER_LOOP.get();
             case GENERATOR -> ModSounds.GENERATOR_GENERATOR_LOOP.get();
             case ELECTRIC_FURNACE -> ModSounds.MACHINE_FURNACE_ELECTRIC_LOOP.get();
             case INDUCTION_FURNACE -> ModSounds.MACHINE_FURNACE_INDUCTION_LOOP.get();
