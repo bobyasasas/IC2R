@@ -12,6 +12,7 @@ import net.minecraft.world.item.crafting.SingleRecipeInput;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.storage.ValueInput;
 import net.minecraft.world.level.storage.ValueOutput;
+import net.neoforged.neoforge.transfer.item.ItemResource;
 
 /** Weighted results are selected once and saved, including while output is blocked. */
 public final class SingleInputBlockEntity extends ProcessingBlockEntity {
@@ -22,6 +23,11 @@ public final class SingleInputBlockEntity extends ProcessingBlockEntity {
     public SingleInputBlockEntity(BlockPos pos, BlockState state) {
         super(ModMachines.entityType(((MachineBlock) state.getBlock()).kind()), pos, state);
         recipes = RecipeManager.createCheck(ModProcessingRecipes.type(kind()));
+    }
+
+    @Override
+    protected boolean acceptsInput(ItemResource resource, ServerLevel level) {
+        return recipes.getRecipeFor(new SingleRecipeInput(resource.toStack(64)), level).isPresent();
     }
 
     @Override

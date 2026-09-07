@@ -2,6 +2,7 @@ package ic2.neoforge.menu;
 
 import ic2.neoforge.item.ElectricItem;
 import ic2.neoforge.item.ElectricItemEnergy;
+import ic2.neoforge.item.UpgradeItem;
 import ic2.neoforge.machine.*;
 import ic2.neoforge.registration.MaterialDefinition;
 import ic2.neoforge.registration.ModItems;
@@ -113,6 +114,23 @@ public final class MachineMenu extends AbstractContainerMenu {
         }
         if (kind == MachineKind.CANNER)
             addSlot(new ResourceHandlerSlot(inventory, inventory::set, 3, 92, 17));
+        if (kind.upgradable()) {
+            for (int index = 0; index < 4; index++) {
+                addSlot(
+                        new ResourceHandlerSlot(
+                                inventory,
+                                inventory::set,
+                                kind.upgradeStart() + index,
+                                180,
+                                17 + 18 * index) {
+                            @Override
+                            public boolean mayPlace(ItemStack stack) {
+                                return stack.getItem() instanceof UpgradeItem item
+                                        && item.kind().suitable(kind);
+                            }
+                        });
+            }
+        }
         addStandardInventorySlots(playerInventory, 8, 84);
         addDataSlots(data);
     }
@@ -154,7 +172,7 @@ public final class MachineMenu extends AbstractContainerMenu {
     }
 
     public int capacity() {
-        return kind.capacity();
+        return integer(15);
     }
 
     public int progress() {
@@ -190,6 +208,8 @@ public final class MachineMenu extends AbstractContainerMenu {
     }
 
     private int preferredSlot(ItemStack stack, Player player) {
+        if (stack.getItem() instanceof UpgradeItem item)
+            return item.kind().suitable(kind) ? kind.upgradeStart() : -1;
         if (kind.transformer()) return -1;
         if (kind.storage())
             return stack.getItem() instanceof ElectricItem
@@ -232,7 +252,12 @@ public final class MachineMenu extends AbstractContainerMenu {
                 || !moveItemStackTo(
                         stack,
                         preferredSlot(stack, player),
-                        preferredSlot(stack, player) + 1,
+                        preferredSlot(stack, player)
+                                + (kind.upgradable()
+                                                && preferredSlot(stack, player)
+                                                        == kind.upgradeStart()
+                                        ? 4
+                                        : 1),
                         false)) {
             int hotbar = machineSlots + 27;
             if (!moveItemStackTo(

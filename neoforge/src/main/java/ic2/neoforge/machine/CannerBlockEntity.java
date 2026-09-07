@@ -1,9 +1,7 @@
 package ic2.neoforge.machine;
 
-import ic2.core.energy.grid.EnergyNode;
 import ic2.core.machine.CannerMode;
 import ic2.core.machine.MachineProcess;
-import ic2.neoforge.item.ElectricItemEnergy;
 import ic2.neoforge.recipe.CannerInput;
 import ic2.neoforge.recipe.EnrichingRecipe;
 import ic2.neoforge.recipe.SolidCanningRecipe;
@@ -35,11 +33,8 @@ import net.neoforged.neoforge.transfer.transaction.TransactionContext;
 import java.util.Objects;
 
 /** Four typed operations share one atomic boundary for fluids, items, EU and progress. */
-public final class CannerBlockEntity extends PoweredBlockEntity {
+public final class CannerBlockEntity extends UpgradeableBlockEntity {
     public static final int ADDITIVE = 0, OUTPUT = 1, BATTERY = 2, CONTAINER = 3;
-    private final MachineProcess process = new MachineProcess();
-    private final MachineJournal<MachineProcess.State> journal =
-            new MachineJournal<>(energy, process::state, process::restore, this::setChanged);
     private final MachineFluidTank inputTank =
             new MachineFluidTank(8000, this::setChanged, fluid -> true);
     private final MachineFluidTank outputTank =
@@ -58,22 +53,7 @@ public final class CannerBlockEntity extends PoweredBlockEntity {
     private record Job(String key, Operation operation) {}
 
     public CannerBlockEntity(BlockPos pos, BlockState state) {
-        super(ModMachines.entityType(MachineKind.CANNER), pos, state, 800, 4);
-    }
-
-    @Override
-    public EnergyNode.Terminal energyNode() {
-        return EnergyNode.Terminal.sink(energy, 32, 1);
-    }
-
-    @Override
-    public int progress() {
-        return process.state().progress();
-    }
-
-    @Override
-    public int progressMaximum() {
-        return 200;
+        super(ModMachines.entityType(MachineKind.CANNER), pos, state);
     }
 
     public CannerMode mode() {
@@ -143,7 +123,40 @@ public final class CannerBlockEntity extends PoweredBlockEntity {
         return new ResourcePort<>(
                 inventory,
                 slot -> slot == CONTAINER || slot == ADDITIVE && mode.acceptsAdditive(),
-                slot -> slot == OUTPUT);
+                slot -> slot == OUTPUT,
+                this::acceptsAutomationInput);
+    }
+
+    private boolean acceptsAutomationInput(int slot, ItemResource resource) {
+        if (!(level instanceof ServerLevel server)) return false;
+        var stack = resource.toStack(1);
+        var recipes = server.recipeAccess().recipeMap();
+        if (slot == CONTAINER) {
+            if (mode == CannerMode.BOTTLE_SOLID)
+                return recipes.byType(ModCannerRecipes.SOLID.get()).stream()
+                        .anyMatch(holder -> holder.value().container().ingredient().test(stack));
+            return ItemAccess.forStack(stack).getCapability(Capabilities.Fluid.ITEM) != null;
+        }
+        return slot == ADDITIVE
+                && switch (mode) {
+                    case BOTTLE_SOLID ->
+                            recipes.byType(ModCannerRecipes.SOLID.get()).stream()
+                                    .anyMatch(
+                                            holder ->
+                                                    holder.value()
+                                                            .additive()
+                                                            .ingredient()
+                                                            .test(stack));
+                    case ENRICH_LIQUID ->
+                            recipes.byType(ModCannerRecipes.ENRICH.get()).stream()
+                                    .anyMatch(
+                                            holder ->
+                                                    holder.value()
+                                                            .additive()
+                                                            .ingredient()
+                                                            .test(stack));
+                    default -> false;
+                };
     }
 
     public ResourceHandler<FluidResource> fluidAutomation(Direction side) {
@@ -349,13 +362,7 @@ public final class CannerBlockEntity extends PoweredBlockEntity {
 
     @Override
     public void serverTick(ServerLevel level) {
-        var battery = inventory.stack(BATTERY);
-        double charge = ElectricItemEnergy.discharge(battery, energy.free(), 1, false, true, false);
-        if (charge > 0) {
-            inventory.set(BATTERY, ItemResource.of(battery), battery.getCount());
-            energy.insert(charge);
-            setChanged();
-        }
+        beginProcessingTick();
         Job job = findJob(level);
         boolean fits = false;
         if (job != null)
@@ -366,7 +373,9 @@ public final class CannerBlockEntity extends PoweredBlockEntity {
                 job == null
                         ? null
                         : new MachineProcess.WorkOrder(
-                                mode.serializedName() + "/" + job.key(), 200, 4);
+                                mode.serializedName() + "/" + job.key(),
+                                upgradeProfile().ticks(),
+                                upgradeProfile().euPerTick());
         MachineProcess.Outcome outcome;
         try (var transaction = Transaction.openRoot()) {
             journal.updateSnapshots(transaction);
@@ -375,6 +384,19 @@ public final class CannerBlockEntity extends PoweredBlockEntity {
                 return;
             transaction.commit();
         }
+        if (outcome == MachineProcess.Outcome.COMPLETED) {
+            for (int operation = 1;
+                    operation < Math.min(64, upgradeProfile().operations());
+                    operation++) {
+                var extra = findJob(level);
+                if (extra == null) break;
+                try (var transaction = Transaction.openRoot()) {
+                    if (!extra.operation().apply(transaction)) break;
+                    transaction.commit();
+                }
+            }
+        }
+        finishProcessingTick(level);
         setActive(
                 outcome == MachineProcess.Outcome.RUNNING
                         || outcome == MachineProcess.Outcome.COMPLETED);
@@ -403,7 +425,7 @@ public final class CannerBlockEntity extends PoweredBlockEntity {
         process.restore(
                 new MachineProcess.State(
                         input.getStringOr("recipe", ""),
-                        Math.clamp(input.getIntOr("progress", 0), 0, 199)));
+                        Math.clamp(input.getIntOr("progress", 0), 0, progressMaximum() - 1)));
         inputTank.deserialize(input.childOrEmpty("inputTank"));
         outputTank.deserialize(input.childOrEmpty("outputTank"));
     }

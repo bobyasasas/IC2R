@@ -72,8 +72,16 @@ public enum MachineKind implements StringRepresentable {
         return capacity;
     }
 
-    public int slots() {
+    public boolean upgradable() {
+        return euPerTick > 0;
+    }
+
+    public int upgradeStart() {
         return slots;
+    }
+
+    public int slots() {
+        return slots + (upgradable() ? 4 : 0);
     }
 
     public int ticks() {

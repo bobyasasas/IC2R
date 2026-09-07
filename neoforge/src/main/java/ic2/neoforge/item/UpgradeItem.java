@@ -1,0 +1,90 @@
+package ic2.neoforge.item;
+
+import ic2.neoforge.component.ModDataComponents;
+import ic2.neoforge.machine.MachineKind;
+
+import net.minecraft.core.Direction;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.context.UseOnContext;
+
+import org.jspecify.annotations.Nullable;
+
+public final class UpgradeItem extends Item {
+    public enum Kind {
+        OVERCLOCKER,
+        TRANSFORMER,
+        ENERGY_STORAGE,
+        EJECTOR,
+        PULLING,
+        FLUID_EJECTOR,
+        FLUID_PULLING;
+
+        public boolean directional() {
+            return this == EJECTOR || this == PULLING || fluid();
+        }
+
+        public boolean fluid() {
+            return this == FLUID_EJECTOR || this == FLUID_PULLING;
+        }
+
+        public boolean pulling() {
+            return this == PULLING || this == FLUID_PULLING;
+        }
+
+        public boolean suitable(MachineKind machine) {
+            return machine.upgradable() && (!fluid() || machine == MachineKind.CANNER);
+        }
+    }
+
+    private final Kind kind;
+
+    public UpgradeItem(Kind kind, Properties properties) {
+        super(properties);
+        this.kind = kind;
+    }
+
+    public Kind kind() {
+        return kind;
+    }
+
+    public static @Nullable Direction direction(ItemStack stack) {
+        return stack.get(ModDataComponents.UPGRADE_DIRECTION);
+    }
+
+    public static Component directionName(ItemStack stack) {
+        var direction = direction(stack);
+        return Component.translatable(
+                direction == null
+                        ? "ic2.tooltip.upgrade.ejector.anyside"
+                        : switch (direction) {
+                            case DOWN -> "ic2.dir.bottom";
+                            case UP -> "ic2.dir.top";
+                            default -> "ic2.dir." + direction.getSerializedName();
+                        });
+    }
+
+    @Override
+    public InteractionResult onItemUseFirst(ItemStack stack, UseOnContext context) {
+        if (!kind.directional()) return InteractionResult.PASS;
+        var player = context.getPlayer();
+        if (player == null
+                || !context.getLevel().mayInteract(player, context.getClickedPos())
+                || !player.mayUseItemAt(context.getClickedPos(), context.getClickedFace(), stack))
+            return InteractionResult.FAIL;
+        if (!context.getLevel().isClientSide()) {
+            if (direction(stack) == context.getClickedFace())
+                stack.remove(ModDataComponents.UPGRADE_DIRECTION);
+            else stack.set(ModDataComponents.UPGRADE_DIRECTION, context.getClickedFace());
+            player.sendOverlayMessage(
+                    Component.translatable(
+                            kind.pulling()
+                                    ? "ic2.tooltip.upgrade.pulling"
+                                    : "ic2.tooltip.upgrade.ejector",
+                            directionName(stack)));
+        }
+        return InteractionResult.SUCCESS;
+    }
+}

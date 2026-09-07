@@ -1,5 +1,6 @@
 package ic2.neoforge.machine;
 
+import ic2.neoforge.item.UpgradeItem;
 import ic2.neoforge.menu.MachineMenu;
 import ic2.neoforge.registration.ModGameEvents;
 import ic2.neoforge.transfer.MachineInventory;
@@ -30,7 +31,16 @@ public abstract class MachineBlockEntity extends BlockEntity implements MenuProv
     protected MachineBlockEntity(
             BlockEntityType<?> type, BlockPos pos, BlockState state, int slots) {
         super(type, pos, state);
-        inventory = new MachineInventory(slots, this::setChanged, (slot, resource) -> true);
+        inventory = new MachineInventory(slots, this::setChanged, this::acceptsInventorySlot);
+    }
+
+    private boolean acceptsInventorySlot(int slot, ItemResource resource) {
+        if (!kind().upgradable() || slot < kind().upgradeStart()) return true;
+        return resource.getItem() instanceof UpgradeItem item && item.kind().suitable(kind());
+    }
+
+    public double energyCapacity() {
+        return kind().capacity();
     }
 
     public final MachineInventory inventory() {

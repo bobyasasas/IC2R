@@ -2,13 +2,21 @@ package ic2.core.energy;
 
 /** Bounded EU storage. All mutations are owned by the server thread. */
 public final class EnergyStore {
-    private final double capacity;
+    private double capacity;
     private double stored;
 
     public EnergyStore(double capacity) {
         if (!Double.isFinite(capacity) || capacity <= 0)
             throw new IllegalArgumentException("Invalid capacity");
         this.capacity = capacity;
+    }
+
+    /** Removing storage upgrades discards only energy above the new physical capacity. */
+    public void resize(double capacity) {
+        if (!Double.isFinite(capacity) || capacity <= 0)
+            throw new IllegalArgumentException("Invalid capacity");
+        this.capacity = capacity;
+        stored = Math.min(stored, capacity);
     }
 
     public double capacity() {

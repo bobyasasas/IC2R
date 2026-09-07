@@ -28,6 +28,11 @@ public final class RegistrationTests {
             DeferredRegister.create(BuiltInRegistries.TEST_FUNCTION, "ic2_tests");
 
     static {
+        FUNCTIONS.register("upgrade_rates", () -> UpgradeTests::ratesAndPersistence);
+        FUNCTIONS.register("upgrade_batch", () -> UpgradeTests::batch);
+        FUNCTIONS.register("upgrade_transfers", () -> UpgradeTests::transfers);
+        FUNCTIONS.register("upgrade_fluids", () -> UpgradeTests::fluids);
+
         FUNCTIONS.register("building_redstone", () -> BuildingTests::redstoneAndShapes);
         FUNCTIONS.register("building_signs", () -> BuildingTests::signs);
         FUNCTIONS.register("rubber_leaf_support", () -> WorldContentTests::leafSupport);

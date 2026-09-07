@@ -8,7 +8,7 @@ import java.util.Objects;
 
 /** Vanilla properties transport 16-bit words. Energy and tick counters use paired words. */
 final class MachineMenuData implements ContainerData {
-    static final int SIZE = 15;
+    static final int SIZE = 17;
     private final MachineBlockEntity machine;
 
     MachineMenuData(MachineBlockEntity machine) {
@@ -18,7 +18,11 @@ final class MachineMenuData implements ContainerData {
     @Override
     public int get(int index) {
         Objects.checkIndex(index, SIZE);
-        if (index >= 10 && index < SIZE) return machine.menuValue(index - 10);
+        if (index >= 10 && index < 15) return machine.menuValue(index - 10);
+        if (index >= 15) {
+            int capacity = (int) machine.energyCapacity();
+            return index == 15 ? capacity & 0xffff : capacity >>> 16;
+        }
         int value =
                 switch (index / 2) {
                     case 0 -> (int) machine.storedEnergy();

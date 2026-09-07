@@ -5,6 +5,7 @@ import com.mojang.serialization.DataResult;
 
 import ic2.neoforge.IndustrialCraft;
 
+import net.minecraft.core.Direction;
 import net.minecraft.core.component.DataComponentType;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.codec.ByteBufCodecs;
@@ -45,6 +46,12 @@ public final class ModDataComponents {
                                             ByteBufCodecs.DOUBLE.map(
                                                     ModDataComponents::validCharge,
                                                     ModDataComponents::validCharge)));
+    public static final Supplier<DataComponentType<Direction>> UPGRADE_DIRECTION =
+            TYPES.<Direction>registerComponentType(
+                    "upgrade_direction",
+                    builder ->
+                            builder.persistent(Direction.CODEC)
+                                    .networkSynchronized(Direction.STREAM_CODEC));
     // Absence means empty; templates are immutable and safe to store in a component map.
     public static final Supplier<DataComponentType<FluidStackTemplate>> FLUID =
             TYPES.<FluidStackTemplate>registerComponentType(

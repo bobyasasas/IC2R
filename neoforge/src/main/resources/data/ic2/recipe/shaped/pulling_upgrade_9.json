@@ -1,0 +1,17 @@
+{
+  "type": "ic2:shaped",
+  "pattern": [
+    "T T",
+    " P ",
+    "T T"
+  ],
+  "group": "pulling_upgrade",
+  "result": {
+    "id": "ic2:pulling_upgrade",
+    "count": 9
+  },
+  "key": {
+    "T": "ic2:dense_tin_plate",
+    "P": "minecraft:sticky_piston"
+  }
+}

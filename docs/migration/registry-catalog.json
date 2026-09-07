@@ -5634,7 +5634,12 @@
       "factory": "register",
       "expression": "new ItemUpgradeModule(new Properties(), UpgradeType.overclocker)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/upgrades.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/UpgradeTests.java"
+      ],
+      "note": "基础加工和罐装机支持升级槽、倍率、容量与自动传输；其他机器适用性待迁移。"
     },
     {
       "registry": "item",
@@ -5644,7 +5649,12 @@
       "factory": "register",
       "expression": "new ItemUpgradeModule(new Properties(), UpgradeType.transformer)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/upgrades.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/UpgradeTests.java"
+      ],
+      "note": "基础加工和罐装机支持升级槽、倍率、容量与自动传输；其他机器适用性待迁移。"
     },
     {
       "registry": "item",
@@ -5654,7 +5664,12 @@
       "factory": "register",
       "expression": "new ItemUpgradeModule(new Properties(), UpgradeType.energy_storage)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/upgrades.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/UpgradeTests.java"
+      ],
+      "note": "基础加工和罐装机支持升级槽、倍率、容量与自动传输；其他机器适用性待迁移。"
     },
     {
       "registry": "item",
@@ -5674,7 +5689,12 @@
       "factory": "register",
       "expression": "new ItemUpgradeModule(new Properties(), UpgradeType.ejector)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/upgrades.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/UpgradeTests.java"
+      ],
+      "note": "基础加工和罐装机支持升级槽、倍率、容量与自动传输；其他机器适用性待迁移。"
     },
     {
       "registry": "item",
@@ -5694,7 +5714,12 @@
       "factory": "register",
       "expression": "new ItemUpgradeModule(new Properties(), UpgradeType.pulling)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/upgrades.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/UpgradeTests.java"
+      ],
+      "note": "基础加工和罐装机支持升级槽、倍率、容量与自动传输；其他机器适用性待迁移。"
     },
     {
       "registry": "item",
@@ -5714,7 +5739,12 @@
       "factory": "register",
       "expression": "new ItemUpgradeModule(new Properties(), UpgradeType.fluid_ejector)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/upgrades.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/UpgradeTests.java"
+      ],
+      "note": "基础加工和罐装机支持升级槽、倍率、容量与自动传输；其他机器适用性待迁移。"
     },
     {
       "registry": "item",
@@ -5724,7 +5754,12 @@
       "factory": "register",
       "expression": "new ItemUpgradeModule(new Properties(), UpgradeType.fluid_pulling)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/upgrades.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/UpgradeTests.java"
+      ],
+      "note": "基础加工和罐装机支持升级槽、倍率、容量与自动传输；其他机器适用性待迁移。"
     },
     {
       "registry": "item",

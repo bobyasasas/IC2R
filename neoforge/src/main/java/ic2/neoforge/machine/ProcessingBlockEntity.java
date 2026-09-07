@@ -1,8 +1,6 @@
 package ic2.neoforge.machine;
 
-import ic2.core.energy.grid.EnergyNode;
 import ic2.core.machine.MachineProcess;
-import ic2.neoforge.item.ElectricItemEnergy;
 import ic2.neoforge.transfer.ResourcePort;
 
 import net.minecraft.core.BlockPos;
@@ -25,11 +23,8 @@ import java.util.Objects;
  * Shared atomic processing; recipe lookup and outcome selection are the only machine-specific
  * parts.
  */
-public abstract class ProcessingBlockEntity extends PoweredBlockEntity {
+public abstract class ProcessingBlockEntity extends UpgradeableBlockEntity {
     public static final int INPUT = 0, OUTPUT = 1, BATTERY = 2;
-    protected final MachineProcess process = new MachineProcess();
-    private final MachineJournal<MachineProcess.State> journal =
-            new MachineJournal<>(energy, process::state, process::restore, this::setChanged);
     private double experience;
 
     protected record Job(
@@ -44,56 +39,39 @@ public abstract class ProcessingBlockEntity extends PoweredBlockEntity {
     }
 
     protected ProcessingBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState state) {
-        super(
-                type,
-                pos,
-                state,
-                ((MachineBlock) state.getBlock()).kind().capacity(),
-                ((MachineBlock) state.getBlock()).kind().slots());
+        super(type, pos, state);
     }
 
     @Override
     public ResourceHandler<ItemResource> automation(Direction side) {
         return new ResourcePort<>(
-                inventory, slot -> slot == INPUT && side != Direction.DOWN, slot -> slot == OUTPUT);
+                inventory,
+                slot -> slot == INPUT && side != Direction.DOWN,
+                slot -> slot == OUTPUT,
+                (slot, resource) ->
+                        slot != INPUT
+                                || level instanceof ServerLevel server
+                                        && acceptsInput(resource, server));
     }
+
+    protected abstract boolean acceptsInput(ItemResource resource, ServerLevel level);
 
     protected abstract Job findJob(ServerLevel level);
 
     protected void completed() {}
 
     @Override
-    public EnergyNode.Terminal energyNode() {
-        return EnergyNode.Terminal.sink(energy, 32, 1);
-    }
-
-    @Override
-    public int progress() {
-        return process.state().progress();
-    }
-
-    @Override
-    public int progressMaximum() {
-        return kind().ticks();
-    }
-
-    @Override
     public final void serverTick(ServerLevel level) {
-        var battery = inventory.stack(BATTERY);
-        double extracted =
-                ElectricItemEnergy.discharge(battery, energy.free(), 1, false, true, false);
-        if (extracted > 0) {
-            inventory.set(BATTERY, ItemResource.of(battery), battery.getCount());
-            energy.insert(extracted);
-            setChanged();
-        }
+        beginProcessingTick();
         Job job = findJob(level);
         var inputStack = inventory.stack(INPUT);
         var order =
                 job == null
                         ? null
                         : new MachineProcess.WorkOrder(
-                                job.recipe(), kind().ticks(), kind().euPerTick());
+                                job.recipe(),
+                                upgradeProfile().ticks(),
+                                upgradeProfile().euPerTick());
         boolean fits = false;
         if (job != null) {
             try (var simulation = Transaction.openRoot()) {
@@ -131,6 +109,33 @@ public abstract class ProcessingBlockEntity extends PoweredBlockEntity {
             completed();
             setChanged();
         }
+        if (outcome == MachineProcess.Outcome.COMPLETED) {
+            for (int operation = 1;
+                    operation < Math.min(64, upgradeProfile().operations());
+                    operation++) {
+                var extra = findJob(level);
+                if (extra == null) break;
+                var ingredient = inventory.stack(INPUT);
+                try (var transaction = Transaction.openRoot()) {
+                    if (inventory.extract(
+                                            INPUT,
+                                            ItemResource.of(ingredient),
+                                            extra.inputCount(),
+                                            transaction)
+                                    != extra.inputCount()
+                            || inventory.insert(
+                                            OUTPUT,
+                                            ItemResource.of(extra.output()),
+                                            extra.output().count(),
+                                            transaction)
+                                    != extra.output().count()) break;
+                    transaction.commit();
+                }
+                experience += extra.experience();
+                completed();
+            }
+        }
+        finishProcessingTick(level);
         setActive(
                 outcome == MachineProcess.Outcome.RUNNING
                         || outcome == MachineProcess.Outcome.COMPLETED);
@@ -151,7 +156,7 @@ public abstract class ProcessingBlockEntity extends PoweredBlockEntity {
         process.restore(
                 new MachineProcess.State(
                         input.getStringOr("recipe", ""),
-                        Math.clamp(input.getIntOr("progress", 0), 0, kind().ticks() - 1)));
+                        Math.clamp(input.getIntOr("progress", 0), 0, progressMaximum() - 1)));
         double savedExperience = input.getDoubleOr("xp", 0);
         experience = Double.isFinite(savedExperience) ? Math.max(0, savedExperience) : 0;
     }

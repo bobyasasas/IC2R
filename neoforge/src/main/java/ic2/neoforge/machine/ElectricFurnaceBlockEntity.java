@@ -10,6 +10,7 @@ import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.item.crafting.SingleRecipeInput;
 import net.minecraft.world.item.crafting.SmeltingRecipe;
 import net.minecraft.world.level.block.state.BlockState;
+import net.neoforged.neoforge.transfer.item.ItemResource;
 
 public final class ElectricFurnaceBlockEntity extends ProcessingBlockEntity {
     private final RecipeManager.CachedCheck<SingleRecipeInput, SmeltingRecipe> recipes =
@@ -17,6 +18,11 @@ public final class ElectricFurnaceBlockEntity extends ProcessingBlockEntity {
 
     public ElectricFurnaceBlockEntity(BlockPos pos, BlockState state) {
         super(ModMachines.entityType(MachineKind.ELECTRIC_FURNACE), pos, state);
+    }
+
+    @Override
+    protected boolean acceptsInput(ItemResource resource, ServerLevel level) {
+        return recipes.getRecipeFor(new SingleRecipeInput(resource.toStack(64)), level).isPresent();
     }
 
     @Override

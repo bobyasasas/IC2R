@@ -1,0 +1,18 @@
+{
+  "type": "ic2:shaped",
+  "pattern": [
+    "GGG",
+    "WTW",
+    "GEG"
+  ],
+  "result": {
+    "id": "ic2:transformer_upgrade",
+    "count": 1
+  },
+  "key": {
+    "G": "minecraft:glass",
+    "W": "ic2:double_insulated_gold_cable",
+    "T": "ic2:mv_transformer",
+    "E": "ic2:circuit"
+  }
+}

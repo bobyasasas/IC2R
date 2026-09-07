@@ -1,0 +1,17 @@
+{
+  "type": "ic2:shaped",
+  "pattern": [
+    "T T",
+    " P ",
+    "T T"
+  ],
+  "group": "ejector_upgrade",
+  "result": {
+    "id": "ic2:ejector_upgrade",
+    "count": 1
+  },
+  "key": {
+    "T": "#c:plates/tin",
+    "P": "minecraft:piston"
+  }
+}

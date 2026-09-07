@@ -24,6 +24,11 @@ public abstract class PoweredBlockEntity extends MachineBlockEntity {
         energy = new EnergyStore(capacity);
     }
 
+    @Override
+    public final double energyCapacity() {
+        return energy.capacity();
+    }
+
     public final EnergyStore energy() {
         return energy;
     }
@@ -55,9 +60,12 @@ public abstract class PoweredBlockEntity extends MachineBlockEntity {
         super.setRemoved();
     }
 
+    protected void prepareEnergyLoad() {}
+
     @Override
     protected void loadAdditional(ValueInput input) {
         super.loadAdditional(input);
+        prepareEnergyLoad();
         double stored = input.getDoubleOr("energy", 0);
         energy.restore(Double.isFinite(stored) ? Math.clamp(stored, 0, energy.capacity()) : 0);
     }

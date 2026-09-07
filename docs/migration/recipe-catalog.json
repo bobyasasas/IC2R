@@ -2499,14 +2499,14 @@
     {
       "source": "shaped/ejector_upgrade.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:ejector_upgrade"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/ejector_upgrade.json"
     },
     {
       "source": "shaped/ejector_upgrade_9.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:ejector_upgrade"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/ejector_upgrade_9.json"
     },
     {
       "source": "shaped/electric_boat.json",
@@ -2577,8 +2577,8 @@
     {
       "source": "shaped/energy_storage_upgrade.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:energy_storage_upgrade"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/energy_storage_upgrade.json"
     },
     {
       "source": "shaped/ev_transformer.json",
@@ -2625,14 +2625,14 @@
     {
       "source": "shaped/fluid_ejector_upgrade.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:fluid_ejector_upgrade"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/fluid_ejector_upgrade.json"
     },
     {
       "source": "shaped/fluid_ejector_upgrade_9.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:fluid_ejector_upgrade"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/fluid_ejector_upgrade_9.json"
     },
     {
       "source": "shaped/fluid_heat_generator.json",
@@ -2643,14 +2643,14 @@
     {
       "source": "shaped/fluid_pulling_upgrade.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:fluid_pulling_upgrade"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/fluid_pulling_upgrade.json"
     },
     {
       "source": "shaped/fluid_pulling_upgrade_9.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:fluid_pulling_upgrade"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/fluid_pulling_upgrade_9.json"
     },
     {
       "source": "shaped/fluid_regulator.json",
@@ -3196,19 +3196,19 @@
       "source": "shaped/overclocker_upgrade_12.json",
       "type": "ic2:shaped",
       "status": "pending",
-      "reason": "unported result ic2:overclocker_upgrade"
+      "reason": "unported item ic2:sextuple_reactor_coolant_cell"
     },
     {
       "source": "shaped/overclocker_upgrade_2.json",
       "type": "ic2:shaped",
       "status": "pending",
-      "reason": "unported result ic2:overclocker_upgrade"
+      "reason": "unported item ic2:reactor_coolant_cell"
     },
     {
       "source": "shaped/overclocker_upgrade_6.json",
       "type": "ic2:shaped",
       "status": "pending",
-      "reason": "unported result ic2:overclocker_upgrade"
+      "reason": "unported item ic2:triple_reactor_coolant_cell"
     },
     {
       "source": "shaped/painter.json",
@@ -3291,14 +3291,14 @@
     {
       "source": "shaped/pulling_upgrade.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:pulling_upgrade"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/pulling_upgrade.json"
     },
     {
       "source": "shaped/pulling_upgrade_9.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:pulling_upgrade"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/pulling_upgrade_9.json"
     },
     {
       "source": "shaped/pump.json",
@@ -3957,8 +3957,8 @@
     {
       "source": "shaped/transformer_upgrade.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:transformer_upgrade"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/transformer_upgrade.json"
     },
     {
       "source": "shaped/treetap.json",

@@ -14,7 +14,7 @@ import java.util.List;
 /** Small shared screen; slot geometry is taken from the menu, so visuals cannot drift. */
 public class MachineScreen extends AbstractContainerScreen<MachineMenu> {
     public MachineScreen(MachineMenu menu, Inventory inventory, Component title) {
-        super(menu, inventory, title, 176, 166);
+        super(menu, inventory, title, menu.kind().upgradable() ? 202 : 176, 166);
     }
 
     @Override

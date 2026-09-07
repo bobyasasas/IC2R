@@ -35,9 +35,13 @@
       "id": "P04",
       "parent": "M11",
       "title": "升级与侧面配置",
-      "status": "todo",
-      "acceptance": "速度、能耗、储能、电压及物品／流体自动进出；堆叠和配置持久化。",
-      "evidence": []
+      "status": "in_progress",
+      "acceptance": "倍率、容量、升级槽与定向自动进出已验证；高级过滤、反相、远程及其他机器待验收。",
+      "evidence": [
+        "docs/migration/upgrades.md",
+        "core/src/test/java/ic2/core/machine/UpgradeProfileTest.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/UpgradeTests.java"
+      ]
     },
     {
       "id": "P05",

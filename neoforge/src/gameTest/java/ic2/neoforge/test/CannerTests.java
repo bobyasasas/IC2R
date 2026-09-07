@@ -175,7 +175,7 @@ final class CannerTests {
                 menu.clickMenuButton(player, 1) && placed.mode() == CannerMode.EMPTY_LIQUID,
                 "Valid server action must update the typed mode");
         helper.assertTrue(
-                menu.slots.size() == 40,
+                menu.slots.size() == 44,
                 "Canner menu must include four machine slots plus player inventory");
         player.setPos(player.getX() + 20, player.getY(), player.getZ());
         helper.assertTrue(

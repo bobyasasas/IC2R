@@ -1,0 +1,18 @@
+{
+  "type": "ic2:shaped",
+  "pattern": [
+    "www",
+    "WBW",
+    "wEw"
+  ],
+  "result": {
+    "id": "ic2:energy_storage_upgrade",
+    "count": 1
+  },
+  "key": {
+    "w": "#minecraft:planks",
+    "W": "ic2:insulated_copper_cable",
+    "B": "ic2:re_battery",
+    "E": "ic2:circuit"
+  }
+}

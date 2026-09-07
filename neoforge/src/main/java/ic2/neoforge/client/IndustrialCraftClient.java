@@ -5,6 +5,7 @@ import ic2.neoforge.component.ModDataComponents;
 import ic2.neoforge.item.CraftingToolItem;
 import ic2.neoforge.item.ElectricItem;
 import ic2.neoforge.item.ElectricItemEnergy;
+import ic2.neoforge.item.UpgradeItem;
 import ic2.neoforge.item.WrenchTool;
 import ic2.neoforge.machine.MachineKind;
 import ic2.neoforge.registration.ModMachines;
@@ -62,6 +63,42 @@ public final class IndustrialCraftClient {
 
     private static void addTooltip(ItemTooltipEvent event) {
         var stack = event.getItemStack();
+        if (stack.getItem() instanceof UpgradeItem item) {
+            int count = stack.getCount();
+            var format = new java.text.DecimalFormat("0.##");
+            switch (item.kind()) {
+                case OVERCLOCKER -> {
+                    event.getToolTip()
+                            .add(
+                                    Component.translatable(
+                                            "ic2.tooltip.upgrade.overclocker.time",
+                                            format.format(100 * Math.pow(.7, count))));
+                    event.getToolTip()
+                            .add(
+                                    Component.translatable(
+                                            "ic2.tooltip.upgrade.overclocker.power",
+                                            format.format(100 * Math.pow(1.6, count))));
+                }
+                case TRANSFORMER ->
+                        event.getToolTip()
+                                .add(
+                                        Component.translatable(
+                                                "ic2.tooltip.upgrade.transformer", count));
+                case ENERGY_STORAGE ->
+                        event.getToolTip()
+                                .add(
+                                        Component.translatable(
+                                                "ic2.tooltip.upgrade.storage", 10000 * count));
+                default ->
+                        event.getToolTip()
+                                .add(
+                                        Component.translatable(
+                                                item.kind().pulling()
+                                                        ? "ic2.tooltip.upgrade.pulling"
+                                                        : "ic2.tooltip.upgrade.ejector",
+                                                UpgradeItem.directionName(stack)));
+            }
+        }
         if (stack.getItem() instanceof WrenchTool) {
             var options = Minecraft.getInstance().options;
             event.getToolTip()
@@ -96,6 +133,9 @@ public final class IndustrialCraftClient {
     }
 
     private static void registerProperties(RegisterRangeSelectItemModelPropertyEvent event) {
+        event.register(
+                Identifier.fromNamespaceAndPath(IndustrialCraft.MOD_ID, "upgrade_direction"),
+                UpgradeDirectionProperty.CODEC);
         event.register(
                 Identifier.fromNamespaceAndPath(IndustrialCraft.MOD_ID, "charge"),
                 ChargeProperty.CODEC);
