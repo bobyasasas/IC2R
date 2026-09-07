@@ -1,0 +1,18 @@
+{
+  "type": "ic2:shaped",
+  "pattern": [
+    "ICI",
+    "CGC",
+    "ICI"
+  ],
+  "consuming": true,
+  "result": {
+    "id": "ic2:semifluid_generator",
+    "count": 1
+  },
+  "key": {
+    "G": "ic2:geo_generator",
+    "C": "ic2:facade_cell",
+    "I": "ic2:iron_casing"
+  }
+}

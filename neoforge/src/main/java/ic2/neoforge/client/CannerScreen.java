@@ -7,10 +7,6 @@ import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Inventory;
-import net.minecraft.world.item.ItemStack;
-import net.neoforged.neoforge.fluids.FluidStack;
-
-import java.util.List;
 
 public final class CannerScreen extends MachineScreen {
     private Button modeButton;
@@ -55,27 +51,14 @@ public final class CannerScreen extends MachineScreen {
     }
 
     private void drawTank(GuiGraphicsExtractor graphics, boolean output, int offset) {
-        int amount = menu.tankAmount(output);
-        int height = Math.clamp(amount * 35 / 8000, 0, 35);
-        int color = 0xff3f76e4;
-        var fluid = menu.tankFluid(output);
-        if (amount > 0 && fluid != null) {
-            var tint =
-                    minecraft
-                            .getModelManager()
-                            .getFluidStateModelSet()
-                            .get(fluid.defaultFluidState())
-                            .fluidTintSource();
-            if (tint != null) color = tint.colorAsStack(new FluidStack(fluid, amount)) | 0xff000000;
-        }
-        graphics.fill(
-                leftPos + offset, topPos + 18, leftPos + offset + 12, topPos + 55, 0xff373737);
-        graphics.fill(
-                leftPos + offset + 1,
-                topPos + 54 - height,
-                leftPos + offset + 11,
-                topPos + 54,
-                color);
+        FluidTankDisplay.draw(
+                minecraft,
+                graphics,
+                leftPos + offset,
+                topPos + 18,
+                menu.tankFluid(output),
+                menu.tankAmount(output),
+                8000);
     }
 
     @Override
@@ -83,25 +66,16 @@ public final class CannerScreen extends MachineScreen {
             GuiGraphicsExtractor graphics, int mouseX, int mouseY, float partialTick) {
         modeButton.setMessage(modeLabel());
         super.extractRenderState(graphics, mouseX, mouseY, partialTick);
-        for (boolean output : new boolean[] {false, true}) {
-            int offset = output ? 151 : 8;
-            if (mouseX >= leftPos + offset
-                    && mouseX < leftPos + offset + 12
-                    && mouseY >= topPos + 18
-                    && mouseY < topPos + 55) {
-                var fluid = menu.tankFluid(output);
-                int amount = menu.tankAmount(output);
-                Component content =
-                        amount <= 0 || fluid == null
-                                ? Component.translatable("ic2.canner.empty")
-                                : new FluidStack(fluid, amount).getHoverName();
-                graphics.setComponentTooltipForNextFrame(
-                        font,
-                        List.of(content, Component.literal(amount + " / 8000 mB")),
-                        mouseX,
-                        mouseY,
-                        ItemStack.EMPTY);
-            }
-        }
+        for (boolean output : new boolean[] {false, true})
+            FluidTankDisplay.tooltip(
+                    minecraft,
+                    graphics,
+                    leftPos + (output ? 151 : 8),
+                    topPos + 18,
+                    mouseX,
+                    mouseY,
+                    menu.tankFluid(output),
+                    menu.tankAmount(output),
+                    8000);
     }
 }

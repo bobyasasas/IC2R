@@ -58,9 +58,12 @@
       "id": "P06",
       "parent": "M11",
       "title": "其余发电机",
-      "status": "todo",
-      "acceptance": "地热、水力、风力、太阳能、半流质及热能／动能转换。",
-      "evidence": []
+      "status": "in_progress",
+      "acceptance": "太阳能、地热、半流质已接入并验证；水力、风力、同位素、转换机及平衡配置待验收。",
+      "evidence": [
+        "docs/migration/generators.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/GenerationTests.java"
+      ]
     },
     {
       "id": "P07",

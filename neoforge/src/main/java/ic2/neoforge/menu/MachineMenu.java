@@ -67,7 +67,9 @@ public final class MachineMenu extends AbstractContainerMenu {
                 machine == null
                         ? new SimpleContainerData(MachineMenuData.SIZE)
                         : new MachineMenuData(machine);
-        if (kind.storage()) {
+        if (kind == MachineKind.SOLAR_GENERATOR) {
+            addBatterySlot(inventory, 0, 56, 53);
+        } else if (kind.storage()) {
             addBatterySlot(inventory, 0, 56, 17);
             addBatterySlot(inventory, 1, 56, 53);
         } else if (kind.transformer()) {
@@ -210,6 +212,8 @@ public final class MachineMenu extends AbstractContainerMenu {
     private int preferredSlot(ItemStack stack, Player player) {
         if (stack.getItem() instanceof UpgradeItem item)
             return item.kind().suitable(kind) ? kind.upgradeStart() : -1;
+        if (kind == MachineKind.SOLAR_GENERATOR)
+            return stack.getItem() instanceof ElectricItem ? 0 : -1;
         if (kind.transformer()) return -1;
         if (kind.storage())
             return stack.getItem() instanceof ElectricItem

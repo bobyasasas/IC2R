@@ -28,6 +28,10 @@ public final class RegistrationTests {
             DeferredRegister.create(BuiltInRegistries.TEST_FUNCTION, "ic2_tests");
 
     static {
+        FUNCTIONS.register("generation_geothermal", () -> GenerationTests::geothermal);
+        FUNCTIONS.register("generation_semifluid", () -> GenerationTests::semifluidPersistence);
+        FUNCTIONS.register("generation_solar", () -> GenerationTests::solar);
+
         FUNCTIONS.register("upgrade_rates", () -> UpgradeTests::ratesAndPersistence);
         FUNCTIONS.register("upgrade_batch", () -> UpgradeTests::batch);
         FUNCTIONS.register("upgrade_transfers", () -> UpgradeTests::transfers);

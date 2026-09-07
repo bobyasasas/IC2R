@@ -2697,8 +2697,8 @@
     {
       "source": "shaped/geo_generator.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:geo_generator"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/geo_generator.json"
     },
     {
       "source": "shaped/glass_fibre_cable.json",
@@ -3657,8 +3657,8 @@
     {
       "source": "shaped/semifluid_generator.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:semifluid_generator"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/semifluid_generator.json"
     },
     {
       "source": "shaped/sextuple_reactor_coolant_cell.json",
@@ -3723,8 +3723,8 @@
     {
       "source": "shaped/solar_generator.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:solar_generator"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/solar_generator.json"
     },
     {
       "source": "shaped/solar_helmet.json",

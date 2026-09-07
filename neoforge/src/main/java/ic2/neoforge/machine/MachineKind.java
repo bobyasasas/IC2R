@@ -16,6 +16,9 @@ public enum MachineKind implements StringRepresentable {
     EV_TRANSFORMER("ev_transformer", 16384, 0, 0, 0),
     IRON_FURNACE("iron_furnace", 0, 3, 160, 0),
     CANNER("canner", 800, 4, 200, 4),
+    SOLAR_GENERATOR("solar_generator", 32, 1, 0, 0),
+    GEO_GENERATOR("geo_generator", 2400, 3, 0, 0),
+    SEMIFLUID_GENERATOR("semifluid_generator", 32000, 3, 0, 0),
     GENERATOR("generator", 4000, 2, 0, 0),
     ELECTRIC_FURNACE("electric_furnace", 300, 3, 100, 3),
     MACERATOR("macerator", 600, 3, 300, 2),
@@ -38,6 +41,14 @@ public enum MachineKind implements StringRepresentable {
     @Override
     public String getSerializedName() {
         return id;
+    }
+
+    public boolean fluidGenerator() {
+        return this == GEO_GENERATOR || this == SEMIFLUID_GENERATOR;
+    }
+
+    public boolean generating() {
+        return this == GENERATOR || this == SOLAR_GENERATOR || fluidGenerator();
     }
 
     public boolean storage() {

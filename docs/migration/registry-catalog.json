@@ -1359,7 +1359,12 @@
       "factory": "register",
       "expression": "new ItemBlockIc2(Ic2Blocks.GEO_GENERATOR, new Properties())",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/generators.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/GenerationTests.java"
+      ],
+      "note": "默认日照、熔岩与沼气供电、容量、燃料、容器与重载已验证；完整配置和多人行为待验收。"
     },
     {
       "registry": "item",
@@ -1389,7 +1394,12 @@
       "factory": "register",
       "expression": "new ItemBlockIc2(Ic2Blocks.SEMIFLUID_GENERATOR, new Properties())",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/generators.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/GenerationTests.java"
+      ],
+      "note": "默认日照、熔岩与沼气供电、容量、燃料、容器与重载已验证；完整配置和多人行为待验收。"
     },
     {
       "registry": "item",
@@ -1399,7 +1409,12 @@
       "factory": "register",
       "expression": "new ItemBlockIc2(Ic2Blocks.SOLAR_GENERATOR, new Properties())",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/generators.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/GenerationTests.java"
+      ],
+      "note": "默认日照、熔岩与沼气供电、容量、燃料、容器与重载已验证；完整配置和多人行为待验收。"
     },
     {
       "registry": "item",
@@ -6823,7 +6838,12 @@
       "factory": "register",
       "expression": "Ic2TileEntityBlock.create(Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).strength(2.0F, 10.0F).requiresCorrectToolForDrops().sound(SoundType.METAL), TileEntityGeoGenerator.class, true, Ic2TileEntityBlock.DefaultDrop.Generator, Util.horizontalFacings, true)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/generators.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/GenerationTests.java"
+      ],
+      "note": "默认日照、熔岩与沼气供电、容量、燃料、容器与重载已验证；完整配置和多人行为待验收。"
     },
     {
       "registry": "block",
@@ -6853,7 +6873,12 @@
       "factory": "register",
       "expression": "Ic2TileEntityBlock.create(Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).strength(2.0F, 10.0F).requiresCorrectToolForDrops().sound(SoundType.METAL), TileEntitySemifluidGenerator.class, true, Ic2TileEntityBlock.DefaultDrop.Generator, Util.horizontalFacings, true)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/generators.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/GenerationTests.java"
+      ],
+      "note": "默认日照、熔岩与沼气供电、容量、燃料、容器与重载已验证；完整配置和多人行为待验收。"
     },
     {
       "registry": "block",
@@ -6863,7 +6888,12 @@
       "factory": "register",
       "expression": "Ic2TileEntityBlock.create(Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).strength(2.0F, 10.0F).requiresCorrectToolForDrops().sound(SoundType.METAL), TileEntitySolarGenerator.class, true, Ic2TileEntityBlock.DefaultDrop.Generator, Util.horizontalFacings, true)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/generators.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/GenerationTests.java"
+      ],
+      "note": "默认日照、熔岩与沼气供电、容量、燃料、容器与重载已验证；完整配置和多人行为待验收。"
     },
     {
       "registry": "block",
@@ -9005,7 +9035,12 @@
       "factory": "register",
       "expression": "TileEntityGeoGenerator::new",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/generators.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/GenerationTests.java"
+      ],
+      "note": "默认日照、熔岩与沼气供电、容量、燃料、容器与重载已验证；完整配置和多人行为待验收。"
     },
     {
       "registry": "block_entity",
@@ -9065,7 +9100,12 @@
       "factory": "register",
       "expression": "TileEntitySemifluidGenerator::new",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/generators.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/GenerationTests.java"
+      ],
+      "note": "默认日照、熔岩与沼气供电、容量、燃料、容器与重载已验证；完整配置和多人行为待验收。"
     },
     {
       "registry": "block_entity",
@@ -9085,7 +9125,12 @@
       "factory": "register",
       "expression": "TileEntitySolarGenerator::new",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/generators.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/GenerationTests.java"
+      ],
+      "note": "默认日照、熔岩与沼气供电、容量、燃料、容器与重载已验证；完整配置和多人行为待验收。"
     },
     {
       "registry": "block_entity",

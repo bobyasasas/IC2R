@@ -89,7 +89,7 @@ public abstract class MachineBlockEntity extends BlockEntity implements MenuProv
             level.setBlock(worldPosition, getBlockState().setValue(MachineBlock.ACTIVE, active), 3);
             if (!level.isClientSide()) {
                 var event =
-                        kind() == MachineKind.GENERATOR
+                        kind().generating()
                                 ? (active
                                         ? ModGameEvents.GENERATOR_ACTIVATE
                                         : ModGameEvents.GENERATOR_DEACTIVATE)

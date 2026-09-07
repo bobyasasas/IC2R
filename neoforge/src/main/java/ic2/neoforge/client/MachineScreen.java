@@ -1,6 +1,5 @@
 package ic2.neoforge.client;
 
-import ic2.neoforge.machine.MachineKind;
 import ic2.neoforge.menu.MachineMenu;
 
 import net.minecraft.client.gui.GuiGraphicsExtractor;
@@ -58,7 +57,7 @@ public class MachineScreen extends AbstractContainerScreen<MachineMenu> {
                 y + 36,
                 x + 79 + progressWidth,
                 y + 45,
-                menu.kind() == MachineKind.GENERATOR ? 0xffff8f35 : 0xffe9ae23);
+                menu.kind().generating() ? 0xffff8f35 : 0xffe9ae23);
     }
 
     @Override

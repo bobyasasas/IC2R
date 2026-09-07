@@ -97,6 +97,8 @@ public final class ModMachines {
                     new TransformerBlockEntity(pos, state);
             case IRON_FURNACE -> new IronFurnaceBlockEntity(pos, state);
             case CANNER -> new CannerBlockEntity(pos, state);
+            case SOLAR_GENERATOR -> new SolarGeneratorBlockEntity(pos, state);
+            case GEO_GENERATOR, SEMIFLUID_GENERATOR -> new FluidGeneratorBlockEntity(pos, state);
             case GENERATOR -> new GeneratorBlockEntity(pos, state);
             case ELECTRIC_FURNACE -> new ElectricFurnaceBlockEntity(pos, state);
             case MACERATOR, EXTRACTOR, COMPRESSOR -> new SingleInputBlockEntity(pos, state);
@@ -181,6 +183,13 @@ public final class ModMachines {
                 Capabilities.Fluid.BLOCK,
                 entityType(MachineKind.CANNER),
                 (machine, side) -> ((CannerBlockEntity) machine).fluidAutomation(side));
+        for (var kind : MachineKind.values())
+            if (kind.fluidGenerator())
+                event.registerBlockEntity(
+                        Capabilities.Fluid.BLOCK,
+                        entityType(kind),
+                        (machine, side) ->
+                                ((FluidGeneratorBlockEntity) machine).fluidAutomation(side));
         MACHINES.values()
                 .forEach(
                         registration ->

@@ -4,7 +4,7 @@ import json
 import re
 from base import ROOT, OLD, NEW, ASSETS, write, copy, model, item
 
-machines = ['batbox', 'cesu', 'mfe', 'mfsu', 'lv_transformer', 'mv_transformer', 'hv_transformer', 'ev_transformer', 'canner', 'iron_furnace', 'generator', 'electric_furnace', 'macerator', 'extractor', 'compressor']
+machines = ['solar_generator', 'geo_generator', 'semifluid_generator', 'batbox', 'cesu', 'mfe', 'mfsu', 'lv_transformer', 'mv_transformer', 'hv_transformer', 'ev_transformer', 'canner', 'iron_furnace', 'generator', 'electric_furnace', 'macerator', 'extractor', 'compressor']
 for identifier in machines:
     item(identifier)
     path = ASSETS + 'blockstates/' + identifier + '.json'
@@ -58,7 +58,7 @@ for identifier in machines + [entry[0] for entry in cables]:
     if identifier in machines:
         declaration = re.search(r'public static final (?:Block|Ic2TileEntityBlock) ' + identifier.upper() + r'\s*=(.*?);', legacy_blocks, re.S).group(1)
         default_drop = re.search(r'DefaultDrop\.(\w+)', declaration).group(1)
-        drop = {'Self': identifier, 'Machine': 'machine', 'AdvMachine': 'advanced_machine'}[default_drop]
+        drop = {'Self': identifier, 'Machine': 'machine', 'AdvMachine': 'advanced_machine', 'Generator': 'generator'}[default_drop]
     entry = {'type': 'minecraft:item', 'name': 'ic2:' + identifier}
     if drop != identifier:
         entry = {'type': 'minecraft:alternatives', 'children': [
@@ -73,3 +73,9 @@ for locale in ['en_us', 'zh_cn']:
         key = 'block.ic2.' + identifier
         current[key] = old[key]
     write(path, current)
+
+for locale, label in [('en_us', 'Sunlight: %s%%'), ('zh_cn', '日照：%s%%')]:
+    path = ASSETS + 'lang/' + locale + '.json'
+    data = json.loads((NEW / path).read_text())
+    data['ic2.solar.sunlight'] = label
+    write(path, data)
