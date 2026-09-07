@@ -43,6 +43,11 @@ public final class IndustrialCraftClient {
                         event.registerBlockEntityRenderer(
                                 ModMachines.entityType(MachineKind.WATER_GENERATOR),
                                 RotorRenderer::new));
+        modBus.addListener(
+                (EntityRenderersEvent.RegisterRenderers event) ->
+                        event.registerBlockEntityRenderer(
+                                ModMachines.entityType(MachineKind.WIND_GENERATOR),
+                                RotorRenderer::new));
         modBus.addListener(FluidModels::register);
         modBus.addListener(
                 (RegisterColorHandlersEvent.BlockTintSources event) ->
@@ -64,8 +69,9 @@ public final class IndustrialCraftClient {
                         event.register(registration.menu().get(), EnergyDeviceScreen::new);
                     else if (kind.fluidGenerator() || kind == MachineKind.SOLAR_GENERATOR)
                         event.register(registration.menu().get(), GeneratorScreen::new);
-                    else if (kind == MachineKind.WATER_GENERATOR)
-                        event.register(registration.menu().get(), WaterGeneratorScreen::new);
+                    else if (kind == MachineKind.WATER_GENERATOR
+                            || kind == MachineKind.WIND_GENERATOR)
+                        event.register(registration.menu().get(), RotorGeneratorScreen::new);
                     else if (kind == MachineKind.ORE_WASHING_PLANT)
                         event.register(registration.menu().get(), OreWashingScreen::new);
                     else if (kind == MachineKind.CENTRIFUGE

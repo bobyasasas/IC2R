@@ -1449,7 +1449,12 @@
       "factory": "register",
       "expression": "new ItemBlockIc2(Ic2Blocks.WIND_GENERATOR, new Properties())",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/gameTest/java/ic2/neoforge/test/WindGenerationTests.java",
+        "docs/migration/wind-generation.md"
+      ],
+      "note": "原生持久化风场、遮挡、倍率、转子、菜单与双能量模式网络已接入；全配置及多人验收随 P06/M16 推进。"
     },
     {
       "registry": "item",
@@ -6963,7 +6968,12 @@
       "factory": "register",
       "expression": "Ic2TileEntityBlock.create(Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).strength(2.0F, 10.0F).requiresCorrectToolForDrops().sound(SoundType.METAL), TileEntityWindGenerator.class, true, Ic2TileEntityBlock.DefaultDrop.Generator, Util.horizontalFacings, true)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/gameTest/java/ic2/neoforge/test/WindGenerationTests.java",
+        "docs/migration/wind-generation.md"
+      ],
+      "note": "原生持久化风场、遮挡、倍率、转子、菜单与双能量模式网络已接入；全配置及多人验收随 P06/M16 推进。"
     },
     {
       "registry": "block",
@@ -9260,7 +9270,12 @@
       "factory": "register",
       "expression": "TileEntityWindGenerator::new",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/gameTest/java/ic2/neoforge/test/WindGenerationTests.java",
+        "docs/migration/wind-generation.md"
+      ],
+      "note": "原生持久化风场、遮挡、倍率、转子、菜单与双能量模式网络已接入；全配置及多人验收随 P06/M16 推进。"
     },
     {
       "registry": "block_entity",

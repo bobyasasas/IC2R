@@ -4,6 +4,7 @@ import ic2.neoforge.component.ModDataComponents;
 import ic2.neoforge.energy.EnergyConfig;
 import ic2.neoforge.energy.WorldEnergyNetworks;
 import ic2.neoforge.machine.GenerationConfig;
+import ic2.neoforge.machine.WorldWind;
 import ic2.neoforge.registration.ModCannerRecipes;
 import ic2.neoforge.registration.ModCells;
 import ic2.neoforge.registration.ModCraftingRecipes;
@@ -56,5 +57,6 @@ public final class IndustrialCraft {
         gameBus.addListener(WorldEnergyNetworks::onChunkLoad);
         gameBus.addListener(WorldEnergyNetworks::onChunkUnload);
         gameBus.addListener(WorldEnergyNetworks::tick);
+        gameBus.addListener(WorldWind::tick);
     }
 }

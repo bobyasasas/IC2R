@@ -30,9 +30,10 @@ public abstract class GeneratingBlockEntity extends PoweredBlockEntity {
     @Override
     public final void serverTick(ServerLevel level) {
         boolean active = generate(level);
+        if (isRemoved()) return;
         int slot =
                 switch (kind()) {
-                    case SOLAR_GENERATOR -> 0;
+                    case SOLAR_GENERATOR, WIND_GENERATOR -> 0;
                     case WATER_GENERATOR -> 1;
                     default -> 2;
                 };

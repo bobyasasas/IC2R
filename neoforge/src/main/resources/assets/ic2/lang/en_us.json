@@ -1391,5 +1391,7 @@
   "ic2.solar.sunlight": "Sunlight: %s%%",
   "ic2.tooltip.processing_heat": "Heat: %s / %s",
   "ic2.water.nearby": "Water blocks: %s",
-  "ic2.tooltip.generation": "%s EU/t"
+  "ic2.tooltip.generation": "%s EU/t",
+  "ic2.wind.obstructions": "Obstructions: %s",
+  "ic2.wind.overload": "Overspeed: %s%%"
 }

@@ -59,11 +59,12 @@
       "parent": "M11",
       "title": "其余发电机",
       "status": "in_progress",
-      "acceptance": "太阳能、地热、半流质、水力及转子已验证；风力、同位素、转换机及其余配置待验收。",
+      "acceptance": "太阳能、地热、半流质、水力、风力及转子已验证；同位素、转换机及其余配置待验收。",
       "evidence": [
         "docs/migration/generators.md",
         "neoforge/src/gameTest/java/ic2/neoforge/test/GenerationTests.java",
-        "docs/migration/water-generation.md"
+        "docs/migration/water-generation.md",
+        "docs/migration/wind-generation.md"
       ]
     },
     {

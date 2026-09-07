@@ -23,6 +23,7 @@
     "ic2:recycler",
     "ic2:semifluid_generator",
     "ic2:solar_generator",
-    "ic2:water_generator"
+    "ic2:water_generator",
+    "ic2:wind_generator"
   ]
 }

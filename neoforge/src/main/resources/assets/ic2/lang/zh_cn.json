@@ -1391,5 +1391,7 @@
   "ic2.solar.sunlight": "日照：%s%%",
   "ic2.tooltip.processing_heat": "热量：%s / %s",
   "ic2.water.nearby": "周围水块：%s",
-  "ic2.tooltip.generation": "%s EU/t"
+  "ic2.tooltip.generation": "%s EU/t",
+  "ic2.wind.obstructions": "遮挡方块：%s",
+  "ic2.wind.overload": "超速负荷：%s%%"
 }

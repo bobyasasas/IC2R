@@ -91,6 +91,9 @@ public final class RegistrationTests {
         FUNCTIONS.register("water_cell_automation", () -> WaterGenerationTests::cellAndAutomation);
         FUNCTIONS.register("water_ambient_rotor", () -> WaterGenerationTests::ambientAndRotor);
         FUNCTIONS.register("water_network_supply", () -> WaterGenerationTests::networkSupply);
+        FUNCTIONS.register("wind_persistence", () -> WindGenerationTests::persistence);
+        FUNCTIONS.register("wind_obstructions", () -> WindGenerationTests::obstructions);
+        FUNCTIONS.register("wind_network_supply", () -> WindGenerationTests::networkSupply);
         FUNCTIONS.register("loaded_recipes", () -> ProcessingTests::loadedRecipes);
         FUNCTIONS.register("processing_machines", () -> ProcessingTests::processing);
         FUNCTIONS.register("weighted_persistence", () -> ProcessingTests::weightedPersistence);

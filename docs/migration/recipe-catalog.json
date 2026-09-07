@@ -4041,8 +4041,8 @@
     {
       "source": "shaped/wind_generator.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:wind_generator"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/wind_generator.json"
     },
     {
       "source": "shaped/wind_kinetic_generator.json",

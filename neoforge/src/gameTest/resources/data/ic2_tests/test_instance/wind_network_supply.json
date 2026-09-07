@@ -1,0 +1,7 @@
+{
+  "type": "minecraft:function",
+  "function": "ic2_tests:wind_network_supply",
+  "environment": "minecraft:default",
+  "structure": "ic2_tests:wind_room",
+  "max_ticks": 400
+}

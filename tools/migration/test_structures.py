@@ -25,3 +25,8 @@ blocks = [int_list('pos', [x, 0, z]) + integer('state', 0) for x in range(17) fo
 root = integer('DataVersion', 4790) + int_list('size', [17, 24, 17]) + compound_list('palette', palette) + compound_list('blocks', blocks) + compound_list('entities', [])
 target = ROOT / 'neoforge/src/gameTest/resources/data/ic2_tests/structure/world_room.nbt'
 target.write_bytes(gzip.compress(tag(10, '', root + b'\x00'), mtime=0))
+
+# Wind tests must reach positive world Y even when the test server starts structures at -60.
+root = integer('DataVersion', 4790) + int_list('size', [17, 192, 17]) + compound_list('palette', palette) + compound_list('blocks', blocks) + compound_list('entities', [])
+target = ROOT / 'neoforge/src/gameTest/resources/data/ic2_tests/structure/wind_room.nbt'
+target.write_bytes(gzip.compress(tag(10, '', root + b'\x00'), mtime=0))

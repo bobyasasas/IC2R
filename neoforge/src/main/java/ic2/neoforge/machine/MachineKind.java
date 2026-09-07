@@ -16,6 +16,7 @@ public enum MachineKind implements StringRepresentable {
     EV_TRANSFORMER("ev_transformer", 16384, 0, 0, 0),
     IRON_FURNACE("iron_furnace", 0, 3, 160, 0),
     CANNER("canner", 800, 4, 200, 4),
+    WIND_GENERATOR("wind_generator", 32, 1, 0, 0),
     WATER_GENERATOR("water_generator", 4, 2, 0, 0),
     SOLAR_GENERATOR("solar_generator", 32, 1, 0, 0),
     GEO_GENERATOR("geo_generator", 2400, 3, 0, 0),
@@ -57,6 +58,7 @@ public enum MachineKind implements StringRepresentable {
         return this == GENERATOR
                 || this == SOLAR_GENERATOR
                 || this == WATER_GENERATOR
+                || this == WIND_GENERATOR
                 || fluidGenerator();
     }
 
