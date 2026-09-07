@@ -8,6 +8,9 @@
     "ic2:cesu",
     "ic2:compressor",
     "ic2:copper_cable",
+    "ic2:deepslate_lead_ore",
+    "ic2:deepslate_tin_ore",
+    "ic2:deepslate_uranium_ore",
     "ic2:double_insulated_gold_cable",
     "ic2:double_insulated_iron_cable",
     "ic2:electric_furnace",
@@ -24,6 +27,7 @@
     "ic2:iron_cable",
     "ic2:iron_furnace",
     "ic2:lead_block",
+    "ic2:lead_ore",
     "ic2:lv_transformer",
     "ic2:macerator",
     "ic2:machine",
@@ -39,7 +43,9 @@
     "ic2:steel_block",
     "ic2:tin_block",
     "ic2:tin_cable",
+    "ic2:tin_ore",
     "ic2:triple_insulated_iron_cable",
-    "ic2:uranium_block"
+    "ic2:uranium_block",
+    "ic2:uranium_ore"
   ]
 }

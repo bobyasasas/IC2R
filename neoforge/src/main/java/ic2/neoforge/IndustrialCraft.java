@@ -7,12 +7,14 @@ import ic2.neoforge.registration.ModCannerRecipes;
 import ic2.neoforge.registration.ModCells;
 import ic2.neoforge.registration.ModCraftingRecipes;
 import ic2.neoforge.registration.ModFluids;
+import ic2.neoforge.registration.ModGameEvents;
 import ic2.neoforge.registration.ModItems;
 import ic2.neoforge.registration.ModMachines;
 import ic2.neoforge.registration.ModMaterialBlocks;
 import ic2.neoforge.registration.ModProcessingRecipes;
 import ic2.neoforge.registration.ModSounds;
 import ic2.neoforge.registration.ModTools;
+import ic2.neoforge.registration.ModWorldContent;
 
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModContainer;
@@ -28,6 +30,8 @@ public final class IndustrialCraft {
     public IndustrialCraft(IEventBus modBus, ModContainer container) {
         ModDataComponents.register(modBus);
         ModItems.register(modBus);
+        ModGameEvents.register(modBus);
+        ModWorldContent.register(modBus);
         ModTools.register(modBus);
         ModSounds.register(modBus);
         ModCannerRecipes.register(modBus);

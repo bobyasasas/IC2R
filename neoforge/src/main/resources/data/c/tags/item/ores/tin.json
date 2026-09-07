@@ -1,13 +1,7 @@
 {
   "replace": false,
   "values": [
-    {
-      "id": "ic2:tin_ore",
-      "required": false
-    },
-    {
-      "id": "ic2:deepslate_tin_ore",
-      "required": false
-    }
+    "ic2:tin_ore",
+    "ic2:deepslate_tin_ore"
   ]
 }

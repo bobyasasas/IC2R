@@ -1,0 +1,15 @@
+{
+  "type": "ic2:shaped",
+  "pattern": [
+    " P ",
+    "PPP",
+    "P  "
+  ],
+  "result": {
+    "id": "ic2:treetap",
+    "count": 1
+  },
+  "key": {
+    "P": "#minecraft:planks"
+  }
+}

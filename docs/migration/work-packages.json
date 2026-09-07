@@ -118,9 +118,12 @@
       "id": "P14",
       "parent": "M13",
       "title": "树木、矿石与世界生成",
-      "status": "todo",
+      "status": "in_progress",
       "acceptance": "原木、树叶、橡胶采集、矿石和生成分布；自然生成、工具与存档验证。",
-      "evidence": []
+      "evidence": [
+        "docs/migration/world-content.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/WorldContentTests.java"
+      ]
     },
     {
       "id": "P15",

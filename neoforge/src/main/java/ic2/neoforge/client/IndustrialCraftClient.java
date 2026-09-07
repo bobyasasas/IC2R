@@ -8,23 +8,33 @@ import ic2.neoforge.item.ElectricItemEnergy;
 import ic2.neoforge.item.WrenchTool;
 import ic2.neoforge.machine.MachineKind;
 import ic2.neoforge.registration.ModMachines;
+import ic2.neoforge.registration.ModWorldContent;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.color.block.BlockTintSources;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.common.Mod;
+import net.neoforged.neoforge.client.event.RegisterColorHandlersEvent;
 import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
 import net.neoforged.neoforge.client.event.RegisterRangeSelectItemModelPropertyEvent;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.entity.player.ItemTooltipEvent;
+
+import java.util.List;
 
 @Mod(value = IndustrialCraft.MOD_ID, dist = Dist.CLIENT)
 public final class IndustrialCraftClient {
     public IndustrialCraftClient(IEventBus modBus) {
         modBus.addListener(IndustrialCraftClient::registerProperties);
         modBus.addListener(FluidModels::register);
+        modBus.addListener(
+                (RegisterColorHandlersEvent.BlockTintSources event) ->
+                        event.register(
+                                List.of(BlockTintSources.constant(0xff000000 | 6723908)),
+                                ModWorldContent.RUBBER_LEAVES.get()));
         modBus.addListener(MachineSounds::reloaded);
         modBus.addListener(IndustrialCraftClient::registerScreens);
         NeoForge.EVENT_BUS.addListener(IndustrialCraftClient::addTooltip);

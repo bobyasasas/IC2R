@@ -1,6 +1,7 @@
 package ic2.neoforge.machine;
 
 import ic2.neoforge.menu.MachineMenu;
+import ic2.neoforge.registration.ModGameEvents;
 import ic2.neoforge.transfer.MachineInventory;
 
 import net.minecraft.core.BlockPos;
@@ -15,6 +16,7 @@ import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.level.storage.ValueInput;
 import net.minecraft.world.level.storage.ValueOutput;
 import net.neoforged.neoforge.common.NeoForge;
@@ -75,6 +77,17 @@ public abstract class MachineBlockEntity extends BlockEntity implements MenuProv
     protected final void setActive(boolean active) {
         if (level != null && getBlockState().getValue(MachineBlock.ACTIVE) != active) {
             level.setBlock(worldPosition, getBlockState().setValue(MachineBlock.ACTIVE, active), 3);
+            if (!level.isClientSide()) {
+                var event =
+                        kind() == MachineKind.GENERATOR
+                                ? (active
+                                        ? ModGameEvents.GENERATOR_ACTIVATE
+                                        : ModGameEvents.GENERATOR_DEACTIVATE)
+                                : (active
+                                        ? ModGameEvents.MACHINE_ACTIVATE
+                                        : ModGameEvents.MACHINE_DEACTIVATE);
+                level.gameEvent(event, worldPosition, GameEvent.Context.of(getBlockState()));
+            }
         }
     }
 

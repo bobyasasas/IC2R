@@ -1,0 +1,14 @@
+{
+  "type": "ic2:shaped",
+  "pattern": [
+    "LL",
+    "LL"
+  ],
+  "result": {
+    "id": "ic2:rubber_wood",
+    "count": 3
+  },
+  "key": {
+    "L": "ic2:rubber_log"
+  }
+}

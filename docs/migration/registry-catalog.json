@@ -9,7 +9,12 @@
       "factory": "register",
       "expression": "new ItemBlockIc2(Ic2Blocks.LEAD_ORE, new Properties())",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/gameTest/java/ic2/neoforge/test/WorldContentTests.java",
+        "docs/migration/world-content.md"
+      ],
+      "note": "矿脉、树苗、采胶、掉落、树叶衰减及自然区块已验证；建筑部件和船只另行迁移。"
     },
     {
       "registry": "item",
@@ -19,7 +24,12 @@
       "factory": "register",
       "expression": "new ItemBlockIc2(Ic2Blocks.TIN_ORE, new Properties())",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/gameTest/java/ic2/neoforge/test/WorldContentTests.java",
+        "docs/migration/world-content.md"
+      ],
+      "note": "矿脉、树苗、采胶、掉落、树叶衰减及自然区块已验证；建筑部件和船只另行迁移。"
     },
     {
       "registry": "item",
@@ -29,7 +39,12 @@
       "factory": "register",
       "expression": "new ItemBlockIc2(Ic2Blocks.URANIUM_ORE, new Properties())",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/gameTest/java/ic2/neoforge/test/WorldContentTests.java",
+        "docs/migration/world-content.md"
+      ],
+      "note": "矿脉、树苗、采胶、掉落、树叶衰减及自然区块已验证；建筑部件和船只另行迁移。"
     },
     {
       "registry": "item",
@@ -39,7 +54,12 @@
       "factory": "register",
       "expression": "new ItemBlockIc2(Ic2Blocks.DEEPSLATE_URANIUM_ORE, new Properties())",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/gameTest/java/ic2/neoforge/test/WorldContentTests.java",
+        "docs/migration/world-content.md"
+      ],
+      "note": "矿脉、树苗、采胶、掉落、树叶衰减及自然区块已验证；建筑部件和船只另行迁移。"
     },
     {
       "registry": "item",
@@ -49,7 +69,12 @@
       "factory": "register",
       "expression": "new ItemBlockIc2(Ic2Blocks.DEEPSLATE_TIN_ORE, new Properties())",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/gameTest/java/ic2/neoforge/test/WorldContentTests.java",
+        "docs/migration/world-content.md"
+      ],
+      "note": "矿脉、树苗、采胶、掉落、树叶衰减及自然区块已验证；建筑部件和船只另行迁移。"
     },
     {
       "registry": "item",
@@ -59,7 +84,12 @@
       "factory": "register",
       "expression": "new ItemBlockIc2(Ic2Blocks.DEEPSLATE_LEAD_ORE, new Properties())",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/gameTest/java/ic2/neoforge/test/WorldContentTests.java",
+        "docs/migration/world-content.md"
+      ],
+      "note": "矿脉、树苗、采胶、掉落、树叶衰减及自然区块已验证；建筑部件和船只另行迁移。"
     },
     {
       "registry": "item",
@@ -247,7 +277,12 @@
       "factory": "register",
       "expression": "new ItemBlockIc2(Ic2Blocks.RUBBER_LEAVES, new Properties())",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/gameTest/java/ic2/neoforge/test/WorldContentTests.java",
+        "docs/migration/world-content.md"
+      ],
+      "note": "矿脉、树苗、采胶、掉落、树叶衰减及自然区块已验证；建筑部件和船只另行迁移。"
     },
     {
       "registry": "item",
@@ -257,7 +292,12 @@
       "factory": "register",
       "expression": "new ItemBlockIc2(Ic2Blocks.RUBBER_LOG, new Properties())",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/gameTest/java/ic2/neoforge/test/WorldContentTests.java",
+        "docs/migration/world-content.md"
+      ],
+      "note": "矿脉、树苗、采胶、掉落、树叶衰减及自然区块已验证；建筑部件和船只另行迁移。"
     },
     {
       "registry": "item",
@@ -267,7 +307,12 @@
       "factory": "register",
       "expression": "new ItemBlockIc2(Ic2Blocks.STRIPPED_RUBBER_LOG, new Properties())",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/gameTest/java/ic2/neoforge/test/WorldContentTests.java",
+        "docs/migration/world-content.md"
+      ],
+      "note": "矿脉、树苗、采胶、掉落、树叶衰减及自然区块已验证；建筑部件和船只另行迁移。"
     },
     {
       "registry": "item",
@@ -277,7 +322,12 @@
       "factory": "register",
       "expression": "new ItemBlockIc2(Ic2Blocks.RUBBER_WOOD, new Properties())",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/gameTest/java/ic2/neoforge/test/WorldContentTests.java",
+        "docs/migration/world-content.md"
+      ],
+      "note": "矿脉、树苗、采胶、掉落、树叶衰减及自然区块已验证；建筑部件和船只另行迁移。"
     },
     {
       "registry": "item",
@@ -287,7 +337,12 @@
       "factory": "register",
       "expression": "new ItemBlockIc2(Ic2Blocks.STRIPPED_RUBBER_WOOD, new Properties())",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/gameTest/java/ic2/neoforge/test/WorldContentTests.java",
+        "docs/migration/world-content.md"
+      ],
+      "note": "矿脉、树苗、采胶、掉落、树叶衰减及自然区块已验证；建筑部件和船只另行迁移。"
     },
     {
       "registry": "item",
@@ -297,7 +352,12 @@
       "factory": "register",
       "expression": "new ItemBlockIc2(Ic2Blocks.RUBBER_PLANKS, new Properties())",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/gameTest/java/ic2/neoforge/test/WorldContentTests.java",
+        "docs/migration/world-content.md"
+      ],
+      "note": "矿脉、树苗、采胶、掉落、树叶衰减及自然区块已验证；建筑部件和船只另行迁移。"
     },
     {
       "registry": "item",
@@ -307,7 +367,12 @@
       "factory": "register",
       "expression": "new ItemBlockIc2(Ic2Blocks.RUBBER_SAPLING, new Properties())",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/gameTest/java/ic2/neoforge/test/WorldContentTests.java",
+        "docs/migration/world-content.md"
+      ],
+      "note": "矿脉、树苗、采胶、掉落、树叶衰减及自然区块已验证；建筑部件和船只另行迁移。"
     },
     {
       "registry": "item",
@@ -4588,7 +4653,11 @@
       "factory": "register",
       "expression": "new ItemTreetap(new Properties().durability(16))",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/gameTest/java/ic2/neoforge/test/WorldContentTests.java"
+      ],
+      "note": "树脂与工具消耗验证通过；工具箱及完整客户端验收待完成。"
     },
     {
       "registry": "item",
@@ -4753,7 +4822,11 @@
       "factory": "register",
       "expression": "new ItemTreetapElectric(new Properties().stacksTo(1))",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/gameTest/java/ic2/neoforge/test/WorldContentTests.java"
+      ],
+      "note": "树脂与工具消耗验证通过；工具箱及完整客户端验收待完成。"
     },
     {
       "registry": "item",
@@ -5999,7 +6072,12 @@
       "factory": "register",
       "expression": "new Block(Properties.of().strength(2.0F, 4.0F).requiresCorrectToolForDrops())",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/gameTest/java/ic2/neoforge/test/WorldContentTests.java",
+        "docs/migration/world-content.md"
+      ],
+      "note": "矿脉、树苗、采胶、掉落、树叶衰减及自然区块已验证；建筑部件和船只另行迁移。"
     },
     {
       "registry": "block",
@@ -6009,7 +6087,12 @@
       "factory": "register",
       "expression": "new Block(Properties.of().strength(3.0F, 5.0F).requiresCorrectToolForDrops())",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/gameTest/java/ic2/neoforge/test/WorldContentTests.java",
+        "docs/migration/world-content.md"
+      ],
+      "note": "矿脉、树苗、采胶、掉落、树叶衰减及自然区块已验证；建筑部件和船只另行迁移。"
     },
     {
       "registry": "block",
@@ -6019,7 +6102,12 @@
       "factory": "register",
       "expression": "new Block(Properties.of().strength(4.0F, 6.0F).requiresCorrectToolForDrops())",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/gameTest/java/ic2/neoforge/test/WorldContentTests.java",
+        "docs/migration/world-content.md"
+      ],
+      "note": "矿脉、树苗、采胶、掉落、树叶衰减及自然区块已验证；建筑部件和船只另行迁移。"
     },
     {
       "registry": "block",
@@ -6029,7 +6117,12 @@
       "factory": "register",
       "expression": "new Block(Properties.of().mapColor(MapColor.DEEPSLATE).strength(3.0F, 6.0F).requiresCorrectToolForDrops().sound(SoundType.DEEPSLATE))",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/gameTest/java/ic2/neoforge/test/WorldContentTests.java",
+        "docs/migration/world-content.md"
+      ],
+      "note": "矿脉、树苗、采胶、掉落、树叶衰减及自然区块已验证；建筑部件和船只另行迁移。"
     },
     {
       "registry": "block",
@@ -6039,7 +6132,12 @@
       "factory": "register",
       "expression": "new Block(Properties.of().mapColor(MapColor.DEEPSLATE).strength(4.0F, 7.0F).requiresCorrectToolForDrops().sound(SoundType.DEEPSLATE))",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/gameTest/java/ic2/neoforge/test/WorldContentTests.java",
+        "docs/migration/world-content.md"
+      ],
+      "note": "矿脉、树苗、采胶、掉落、树叶衰减及自然区块已验证；建筑部件和船只另行迁移。"
     },
     {
       "registry": "block",
@@ -6049,7 +6147,12 @@
       "factory": "register",
       "expression": "new Block(Properties.of().mapColor(MapColor.DEEPSLATE).strength(5.0F, 8.0F).requiresCorrectToolForDrops().sound(SoundType.DEEPSLATE))",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/gameTest/java/ic2/neoforge/test/WorldContentTests.java",
+        "docs/migration/world-content.md"
+      ],
+      "note": "矿脉、树苗、采胶、掉落、树叶衰减及自然区块已验证；建筑部件和船只另行迁移。"
     },
     {
       "registry": "block",
@@ -6251,7 +6354,12 @@
       "factory": "register",
       "expression": "new LeavesBlock(Properties.of().strength(0.2F).randomTicks().sound(SoundType.GRASS).noOcclusion().isValidSpawn(Ic2Blocks::canSpawnOnLeaves).isSuffocating(Ic2Blocks::never).isViewBlocking(Ic2Blocks::never))",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/gameTest/java/ic2/neoforge/test/WorldContentTests.java",
+        "docs/migration/world-content.md"
+      ],
+      "note": "矿脉、树苗、采胶、掉落、树叶衰减及自然区块已验证；建筑部件和船只另行迁移。"
     },
     {
       "registry": "block",
@@ -6261,7 +6369,12 @@
       "factory": "register",
       "expression": "new RubberLogBlock(Properties.of().mapColor((state)->state.getValue(RotatedPillarBlock.AXIS) == Axis.Y ? MapColor.PODZOL : MapColor.COLOR_BROWN).randomTicks().strength(2.0F, 3.0F).sound(SoundType.WOOD))",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/gameTest/java/ic2/neoforge/test/WorldContentTests.java",
+        "docs/migration/world-content.md"
+      ],
+      "note": "矿脉、树苗、采胶、掉落、树叶衰减及自然区块已验证；建筑部件和船只另行迁移。"
     },
     {
       "registry": "block",
@@ -6271,7 +6384,12 @@
       "factory": "register",
       "expression": "new RotatedPillarBlock(Properties.of().mapColor((state)->state.getValue(RotatedPillarBlock.AXIS) == Axis.Y ? MapColor.PODZOL : MapColor.COLOR_BROWN).strength(2.0F, 3.0F).sound(SoundType.WOOD))",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/gameTest/java/ic2/neoforge/test/WorldContentTests.java",
+        "docs/migration/world-content.md"
+      ],
+      "note": "矿脉、树苗、采胶、掉落、树叶衰减及自然区块已验证；建筑部件和船只另行迁移。"
     },
     {
       "registry": "block",
@@ -6281,7 +6399,12 @@
       "factory": "register",
       "expression": "new RubberWoodBlock(Properties.of().mapColor(MapColor.COLOR_BROWN).strength(2.0F, 3.0F).sound(SoundType.WOOD))",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/gameTest/java/ic2/neoforge/test/WorldContentTests.java",
+        "docs/migration/world-content.md"
+      ],
+      "note": "矿脉、树苗、采胶、掉落、树叶衰减及自然区块已验证；建筑部件和船只另行迁移。"
     },
     {
       "registry": "block",
@@ -6291,7 +6414,12 @@
       "factory": "register",
       "expression": "new Block(Properties.of().mapColor(MapColor.PODZOL).strength(2.0F, 3.0F).sound(SoundType.WOOD))",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/gameTest/java/ic2/neoforge/test/WorldContentTests.java",
+        "docs/migration/world-content.md"
+      ],
+      "note": "矿脉、树苗、采胶、掉落、树叶衰减及自然区块已验证；建筑部件和船只另行迁移。"
     },
     {
       "registry": "block",
@@ -6301,7 +6429,12 @@
       "factory": "register",
       "expression": "new SaplingBlock(new AbstractTreeGrower(){\n    \n    @Override\n    protected ResourceKey<ConfiguredFeature<?, ?>> getConfiguredFeature(@NotNull\n    RandomSource random, boolean bees) {\n        return ResourceKey.create(Registries.CONFIGURED_FEATURE, IC2.getIdentifier(\"rubber_tree\"));\n    }\n}, Properties.of().noCollission().randomTicks().instabreak().sound(SoundType.GRASS)){\n}",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/gameTest/java/ic2/neoforge/test/WorldContentTests.java",
+        "docs/migration/world-content.md"
+      ],
+      "note": "矿脉、树苗、采胶、掉落、树叶衰减及自然区块已验证；建筑部件和船只另行迁移。"
     },
     {
       "registry": "block",
@@ -6311,7 +6444,12 @@
       "factory": "register",
       "expression": "new Block(Properties.of().mapColor(MapColor.PODZOL).strength(2.0F, 3.0F).sound(SoundType.WOOD))",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/gameTest/java/ic2/neoforge/test/WorldContentTests.java",
+        "docs/migration/world-content.md"
+      ],
+      "note": "矿脉、树苗、采胶、掉落、树叶衰减及自然区块已验证；建筑部件和船只另行迁移。"
     },
     {
       "registry": "block",
@@ -12395,7 +12533,11 @@
       "factory": "register",
       "expression": "",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModGameEvents.java",
+        "neoforge/src/main/java/ic2/neoforge/machine/MachineBlockEntity.java"
+      ]
     },
     {
       "registry": "game_event",
@@ -12405,7 +12547,11 @@
       "factory": "register",
       "expression": "",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModGameEvents.java",
+        "neoforge/src/main/java/ic2/neoforge/machine/MachineBlockEntity.java"
+      ]
     },
     {
       "registry": "game_event",
@@ -12415,7 +12561,11 @@
       "factory": "register",
       "expression": "",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModGameEvents.java",
+        "neoforge/src/main/java/ic2/neoforge/machine/MachineBlockEntity.java"
+      ]
     },
     {
       "registry": "game_event",
@@ -12425,7 +12575,11 @@
       "factory": "register",
       "expression": "",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModGameEvents.java",
+        "neoforge/src/main/java/ic2/neoforge/machine/MachineBlockEntity.java"
+      ]
     },
     {
       "registry": "game_event",
@@ -12435,7 +12589,11 @@
       "factory": "register",
       "expression": "",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModGameEvents.java",
+        "neoforge/src/main/java/ic2/neoforge/machine/MachineBlockEntity.java"
+      ]
     },
     {
       "registry": "fluid_type",
@@ -13711,6 +13869,335 @@
         "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
       ],
       "derived_from": "ic2:heavy_water"
+    },
+    {
+      "registry": "configured_feature",
+      "id": "ic2:lead_ore",
+      "field": "lead_ore",
+      "source": "legacy/forge-1.20.1/src/main/resources/data/ic2/worldgen/configured_feature/lead_ore.json",
+      "factory": "data pack",
+      "expression": "minecraft:ore",
+      "decision": "preserve",
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/gameTest/java/ic2/neoforge/test/WorldContentTests.java",
+        "docs/migration/world-content.md"
+      ],
+      "note": "矿脉、树苗、采胶、掉落、树叶衰减及自然区块已验证；建筑部件和船只另行迁移。"
+    },
+    {
+      "registry": "configured_feature",
+      "id": "ic2:rubber_tree",
+      "field": "rubber_tree",
+      "source": "legacy/forge-1.20.1/src/main/resources/data/ic2/worldgen/configured_feature/rubber_tree.json",
+      "factory": "data pack",
+      "expression": "minecraft:tree",
+      "decision": "preserve",
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/gameTest/java/ic2/neoforge/test/WorldContentTests.java",
+        "docs/migration/world-content.md"
+      ],
+      "note": "矿脉、树苗、采胶、掉落、树叶衰减及自然区块已验证；建筑部件和船只另行迁移。"
+    },
+    {
+      "registry": "configured_feature",
+      "id": "ic2:tin_ore",
+      "field": "tin_ore",
+      "source": "legacy/forge-1.20.1/src/main/resources/data/ic2/worldgen/configured_feature/tin_ore.json",
+      "factory": "data pack",
+      "expression": "minecraft:ore",
+      "decision": "preserve",
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/gameTest/java/ic2/neoforge/test/WorldContentTests.java",
+        "docs/migration/world-content.md"
+      ],
+      "note": "矿脉、树苗、采胶、掉落、树叶衰减及自然区块已验证；建筑部件和船只另行迁移。"
+    },
+    {
+      "registry": "configured_feature",
+      "id": "ic2:tin_ore_small",
+      "field": "tin_ore_small",
+      "source": "legacy/forge-1.20.1/src/main/resources/data/ic2/worldgen/configured_feature/tin_ore_small.json",
+      "factory": "data pack",
+      "expression": "minecraft:ore",
+      "decision": "preserve",
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/gameTest/java/ic2/neoforge/test/WorldContentTests.java",
+        "docs/migration/world-content.md"
+      ],
+      "note": "矿脉、树苗、采胶、掉落、树叶衰减及自然区块已验证；建筑部件和船只另行迁移。"
+    },
+    {
+      "registry": "configured_feature",
+      "id": "ic2:uranium_ore",
+      "field": "uranium_ore",
+      "source": "legacy/forge-1.20.1/src/main/resources/data/ic2/worldgen/configured_feature/uranium_ore.json",
+      "factory": "data pack",
+      "expression": "minecraft:ore",
+      "decision": "preserve",
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/gameTest/java/ic2/neoforge/test/WorldContentTests.java",
+        "docs/migration/world-content.md"
+      ],
+      "note": "矿脉、树苗、采胶、掉落、树叶衰减及自然区块已验证；建筑部件和船只另行迁移。"
+    },
+    {
+      "registry": "configured_feature",
+      "id": "ic2:uranium_ore_buried",
+      "field": "uranium_ore_buried",
+      "source": "legacy/forge-1.20.1/src/main/resources/data/ic2/worldgen/configured_feature/uranium_ore_buried.json",
+      "factory": "data pack",
+      "expression": "minecraft:ore",
+      "decision": "preserve",
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/gameTest/java/ic2/neoforge/test/WorldContentTests.java",
+        "docs/migration/world-content.md"
+      ],
+      "note": "矿脉、树苗、采胶、掉落、树叶衰减及自然区块已验证；建筑部件和船只另行迁移。"
+    },
+    {
+      "registry": "configured_feature",
+      "id": "ic2:uranium_ore_large",
+      "field": "uranium_ore_large",
+      "source": "legacy/forge-1.20.1/src/main/resources/data/ic2/worldgen/configured_feature/uranium_ore_large.json",
+      "factory": "data pack",
+      "expression": "minecraft:ore",
+      "decision": "preserve",
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/gameTest/java/ic2/neoforge/test/WorldContentTests.java",
+        "docs/migration/world-content.md"
+      ],
+      "note": "矿脉、树苗、采胶、掉落、树叶衰减及自然区块已验证；建筑部件和船只另行迁移。"
+    },
+    {
+      "registry": "placed_feature",
+      "id": "ic2:lead_ore",
+      "field": "lead_ore",
+      "source": "legacy/forge-1.20.1/src/main/resources/data/ic2/worldgen/placed_feature/lead_ore.json",
+      "factory": "data pack",
+      "expression": "worldgen/placed_feature",
+      "decision": "preserve",
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/gameTest/java/ic2/neoforge/test/WorldContentTests.java",
+        "docs/migration/world-content.md"
+      ],
+      "note": "矿脉、树苗、采胶、掉落、树叶衰减及自然区块已验证；建筑部件和船只另行迁移。"
+    },
+    {
+      "registry": "placed_feature",
+      "id": "ic2:lead_ore_lower",
+      "field": "lead_ore_lower",
+      "source": "legacy/forge-1.20.1/src/main/resources/data/ic2/worldgen/placed_feature/lead_ore_lower.json",
+      "factory": "data pack",
+      "expression": "worldgen/placed_feature",
+      "decision": "preserve",
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/gameTest/java/ic2/neoforge/test/WorldContentTests.java",
+        "docs/migration/world-content.md"
+      ],
+      "note": "矿脉、树苗、采胶、掉落、树叶衰减及自然区块已验证；建筑部件和船只另行迁移。"
+    },
+    {
+      "registry": "placed_feature",
+      "id": "ic2:tin_ore_small",
+      "field": "tin_ore_small",
+      "source": "legacy/forge-1.20.1/src/main/resources/data/ic2/worldgen/placed_feature/tin_ore_small.json",
+      "factory": "data pack",
+      "expression": "worldgen/placed_feature",
+      "decision": "preserve",
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/gameTest/java/ic2/neoforge/test/WorldContentTests.java",
+        "docs/migration/world-content.md"
+      ],
+      "note": "矿脉、树苗、采胶、掉落、树叶衰减及自然区块已验证；建筑部件和船只另行迁移。"
+    },
+    {
+      "registry": "placed_feature",
+      "id": "ic2:tin_ore_upper",
+      "field": "tin_ore_upper",
+      "source": "legacy/forge-1.20.1/src/main/resources/data/ic2/worldgen/placed_feature/tin_ore_upper.json",
+      "factory": "data pack",
+      "expression": "worldgen/placed_feature",
+      "decision": "preserve",
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/gameTest/java/ic2/neoforge/test/WorldContentTests.java",
+        "docs/migration/world-content.md"
+      ],
+      "note": "矿脉、树苗、采胶、掉落、树叶衰减及自然区块已验证；建筑部件和船只另行迁移。"
+    },
+    {
+      "registry": "placed_feature",
+      "id": "ic2:trees_rubber_forest",
+      "field": "trees_rubber_forest",
+      "source": "legacy/forge-1.20.1/src/main/resources/data/ic2/worldgen/placed_feature/trees_rubber_forest.json",
+      "factory": "data pack",
+      "expression": "worldgen/placed_feature",
+      "decision": "preserve",
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/gameTest/java/ic2/neoforge/test/WorldContentTests.java",
+        "docs/migration/world-content.md"
+      ],
+      "note": "矿脉、树苗、采胶、掉落、树叶衰减及自然区块已验证；建筑部件和船只另行迁移。"
+    },
+    {
+      "registry": "placed_feature",
+      "id": "ic2:trees_rubber_jungle",
+      "field": "trees_rubber_jungle",
+      "source": "legacy/forge-1.20.1/src/main/resources/data/ic2/worldgen/placed_feature/trees_rubber_jungle.json",
+      "factory": "data pack",
+      "expression": "worldgen/placed_feature",
+      "decision": "preserve",
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/gameTest/java/ic2/neoforge/test/WorldContentTests.java",
+        "docs/migration/world-content.md"
+      ],
+      "note": "矿脉、树苗、采胶、掉落、树叶衰减及自然区块已验证；建筑部件和船只另行迁移。"
+    },
+    {
+      "registry": "placed_feature",
+      "id": "ic2:trees_rubber_swamp",
+      "field": "trees_rubber_swamp",
+      "source": "legacy/forge-1.20.1/src/main/resources/data/ic2/worldgen/placed_feature/trees_rubber_swamp.json",
+      "factory": "data pack",
+      "expression": "worldgen/placed_feature",
+      "decision": "preserve",
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/gameTest/java/ic2/neoforge/test/WorldContentTests.java",
+        "docs/migration/world-content.md"
+      ],
+      "note": "矿脉、树苗、采胶、掉落、树叶衰减及自然区块已验证；建筑部件和船只另行迁移。"
+    },
+    {
+      "registry": "placed_feature",
+      "id": "ic2:uranium_ore",
+      "field": "uranium_ore",
+      "source": "legacy/forge-1.20.1/src/main/resources/data/ic2/worldgen/placed_feature/uranium_ore.json",
+      "factory": "data pack",
+      "expression": "worldgen/placed_feature",
+      "decision": "preserve",
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/gameTest/java/ic2/neoforge/test/WorldContentTests.java",
+        "docs/migration/world-content.md"
+      ],
+      "note": "矿脉、树苗、采胶、掉落、树叶衰减及自然区块已验证；建筑部件和船只另行迁移。"
+    },
+    {
+      "registry": "placed_feature",
+      "id": "ic2:uranium_ore_buried",
+      "field": "uranium_ore_buried",
+      "source": "legacy/forge-1.20.1/src/main/resources/data/ic2/worldgen/placed_feature/uranium_ore_buried.json",
+      "factory": "data pack",
+      "expression": "worldgen/placed_feature",
+      "decision": "preserve",
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/gameTest/java/ic2/neoforge/test/WorldContentTests.java",
+        "docs/migration/world-content.md"
+      ],
+      "note": "矿脉、树苗、采胶、掉落、树叶衰减及自然区块已验证；建筑部件和船只另行迁移。"
+    },
+    {
+      "registry": "placed_feature",
+      "id": "ic2:uranium_ore_large",
+      "field": "uranium_ore_large",
+      "source": "legacy/forge-1.20.1/src/main/resources/data/ic2/worldgen/placed_feature/uranium_ore_large.json",
+      "factory": "data pack",
+      "expression": "worldgen/placed_feature",
+      "decision": "preserve",
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/gameTest/java/ic2/neoforge/test/WorldContentTests.java",
+        "docs/migration/world-content.md"
+      ],
+      "note": "矿脉、树苗、采胶、掉落、树叶衰减及自然区块已验证；建筑部件和船只另行迁移。"
+    },
+    {
+      "registry": "biome_modifier",
+      "id": "ic2:add_ore_features",
+      "field": "add_ore_features",
+      "source": "legacy/forge-1.20.1/src/main/resources/data/ic2/forge/biome_modifier/add_ore_features.json",
+      "factory": "data pack",
+      "expression": "forge:add_features",
+      "decision": "preserve",
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/gameTest/java/ic2/neoforge/test/WorldContentTests.java",
+        "docs/migration/world-content.md"
+      ],
+      "note": "矿脉、树苗、采胶、掉落、树叶衰减及自然区块已验证；建筑部件和船只另行迁移。"
+    },
+    {
+      "registry": "biome_modifier",
+      "id": "ic2:add_rubber_tree_feature_forest",
+      "field": "add_rubber_tree_feature_forest",
+      "source": "legacy/forge-1.20.1/src/main/resources/data/ic2/forge/biome_modifier/add_rubber_tree_feature_forest.json",
+      "factory": "data pack",
+      "expression": "forge:add_features",
+      "decision": "preserve",
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/gameTest/java/ic2/neoforge/test/WorldContentTests.java",
+        "docs/migration/world-content.md"
+      ],
+      "note": "矿脉、树苗、采胶、掉落、树叶衰减及自然区块已验证；建筑部件和船只另行迁移。"
+    },
+    {
+      "registry": "biome_modifier",
+      "id": "ic2:add_rubber_tree_feature_jungle",
+      "field": "add_rubber_tree_feature_jungle",
+      "source": "legacy/forge-1.20.1/src/main/resources/data/ic2/forge/biome_modifier/add_rubber_tree_feature_jungle.json",
+      "factory": "data pack",
+      "expression": "forge:add_features",
+      "decision": "preserve",
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/gameTest/java/ic2/neoforge/test/WorldContentTests.java",
+        "docs/migration/world-content.md"
+      ],
+      "note": "矿脉、树苗、采胶、掉落、树叶衰减及自然区块已验证；建筑部件和船只另行迁移。"
+    },
+    {
+      "registry": "biome_modifier",
+      "id": "ic2:add_rubber_tree_feature_swamp",
+      "field": "add_rubber_tree_feature_swamp",
+      "source": "legacy/forge-1.20.1/src/main/resources/data/ic2/forge/biome_modifier/add_rubber_tree_feature_swamp.json",
+      "factory": "data pack",
+      "expression": "forge:add_features",
+      "decision": "preserve",
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/gameTest/java/ic2/neoforge/test/WorldContentTests.java",
+        "docs/migration/world-content.md"
+      ],
+      "note": "矿脉、树苗、采胶、掉落、树叶衰减及自然区块已验证；建筑部件和船只另行迁移。"
+    },
+    {
+      "registry": "foliage_placer_type",
+      "id": "ic2:rubber_tree",
+      "field": "TYPE",
+      "source": "legacy/forge-1.20.1/src/main/java/ic2/core/world/RubberTreeFoliagePlacer.java",
+      "factory": "registerFoliagePlacer",
+      "expression": "RubberTreeFoliagePlacer.CODEC",
+      "decision": "preserve",
+      "status": "partial",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/world/RubberFoliagePlacer.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/WorldContentTests.java"
+      ]
     }
   ]
 }

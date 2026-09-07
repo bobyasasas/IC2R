@@ -6,6 +6,7 @@
     "ic2:canner",
     "ic2:cesu",
     "ic2:compressor",
+    "ic2:deepslate_uranium_ore",
     "ic2:electric_furnace",
     "ic2:ev_transformer",
     "ic2:extractor",
@@ -21,6 +22,7 @@
     "ic2:raw_uranium_block",
     "ic2:reactor_vessel",
     "ic2:silver_block",
-    "ic2:uranium_block"
+    "ic2:uranium_block",
+    "ic2:uranium_ore"
   ]
 }

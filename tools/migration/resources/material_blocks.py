@@ -21,13 +21,33 @@ for locale in ['en_us', 'zh_cn']:
     data.update({'block.ic2.' + identifier: old['block.ic2.' + identifier] for identifier in identifiers})
     write(path, data)
 registered = {'ic2:' + p.stem for p in (NEW / (ASSETS + 'blockstates')).glob('*.json')}
+# Follow tag references as well as direct block IDs. Dropping #forge:rubber_logs from
+# minecraft:logs would make native leaves fail to recognize their supporting trunk.
+definitions = {}
 for namespace in ['minecraft', 'forge', 'ic2']:
     folder = OLD / ('data/' + namespace + '/tags/blocks')
     for file in folder.rglob('*.json'):
-        data = json.loads(file.read_text())
-        values = [value for value in data['values'] if isinstance(value, str) and value in registered]
-        if not values: continue
-        relative = file.relative_to(folder)
-        target = f'data/{"c" if namespace == "forge" else namespace}/tags/block/{relative}'
-        existing = json.loads((NEW / target).read_text()) if (NEW / target).exists() else {'values': []}
-        write(target, {'replace': False, 'values': sorted(set(existing['values']) | set(values))})
+        key = namespace + ':' + file.relative_to(folder).as_posix().removesuffix('.json')
+        definitions[key] = json.loads(file.read_text())['values']
+
+def identifier(value):
+    return value if isinstance(value, str) else value['id']
+
+def contains_ported(key, ancestors=frozenset()):
+    if key in ancestors: return False
+    return any(identifier(value) in registered or
+               identifier(value).startswith('#') and contains_ported(identifier(value)[1:], ancestors | {key})
+               for value in definitions.get(key, []))
+
+def common(value):
+    return value.replace('forge:', 'c:', 1) if value.startswith(('forge:', '#forge:')) else value
+
+for key, entries in definitions.items():
+    if not contains_ported(key): continue
+    values = [common(identifier(value)) for value in entries
+              if identifier(value) in registered or
+              identifier(value).startswith('#') and contains_ported(identifier(value)[1:])]
+    namespace, relative = common(key).split(':')
+    target = f'data/{namespace}/tags/block/{relative}.json'
+    existing = json.loads((NEW / target).read_text()) if (NEW / target).exists() else {'values': []}
+    write(target, {'replace': False, 'values': sorted(set(existing['values']) | set(values))})

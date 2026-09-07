@@ -2,10 +2,14 @@
   "replace": false,
   "values": [
     "ic2:bronze_block",
+    "ic2:deepslate_lead_ore",
+    "ic2:deepslate_tin_ore",
     "ic2:lead_block",
+    "ic2:lead_ore",
     "ic2:raw_lead_block",
     "ic2:raw_tin_block",
     "ic2:steel_block",
-    "ic2:tin_block"
+    "ic2:tin_block",
+    "ic2:tin_ore"
   ]
 }

@@ -2,6 +2,8 @@ package ic2.neoforge.registration;
 
 import ic2.neoforge.IndustrialCraft;
 import ic2.neoforge.item.*;
+import ic2.neoforge.item.ElectricTreetapItem;
+import ic2.neoforge.item.TreetapItem;
 
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -35,6 +37,11 @@ public final class ModTools {
     public static final DeferredItem<CutterItem> CUTTER =
             ITEMS.registerItem("cutter", p -> new CutterItem(p.durability(60)));
 
+    public static final DeferredItem<TreetapItem> TREETAP =
+            ITEMS.registerItem("treetap", p -> new TreetapItem(p.durability(16)));
+    public static final DeferredItem<ElectricTreetapItem> ELECTRIC_TREETAP =
+            ITEMS.registerItem("electric_treetap", p -> new ElectricTreetapItem(p.stacksTo(1)));
+
     private static Item.Properties tool(Item.Properties properties, int damage) {
         var blocks =
                 BuiltInRegistries.acquireBootstrapRegistrationLookup(BuiltInRegistries.BLOCK)
@@ -55,6 +62,8 @@ public final class ModTools {
             event.accept(ELECTRIC_WRENCH);
             event.accept(FORGE_HAMMER);
             event.accept(CUTTER);
+            event.accept(TREETAP);
+            event.accept(ELECTRIC_TREETAP);
         }
     }
 

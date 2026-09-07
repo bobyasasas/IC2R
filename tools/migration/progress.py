@@ -97,7 +97,7 @@ def generate():
         for kind in dict.fromkeys(e["registry"] for e in catalog):
             entries = [e for e in catalog if e["registry"] == kind]
             lines.append(f"| {kind} | {sum(e['status'] == 'implemented' for e in entries)} | {sum(e['status'] == 'partial' for e in entries)} | {len(entries)} |")
-        lines += ["", "清单包含 17 个流体族及其动态生成的 85 个实际注册 ID；流体族行是分组，不另算功能。完整状态见 [注册清单](registry-catalog.json)。"]
+        lines += ["", "清单包含 17 个流体族及其动态生成的 85 个实际注册 ID；另含 22 个世界生成注册项；流体族行是分组，不另算功能。完整状态见 [注册清单](registry-catalog.json)。"]
     if recipes:
         lines += ["", "## 配方迁移覆盖", "", f"已转换并纳入加载测试：**{sum(r['status'] == 'converted' for r in recipes)} / {len(recipes)}**。", "", "转换计数不等于生存模式可达率；原料、工具与前置机器仍需逐步验收。", "", "[逐条状态与待迁移原因](recipe-catalog.json)"]
     lines += ["", "## 后续工作包", "", "阶段内按可独立验收的功能族推进；进行中表示仍有验收项未完成。", "", "| 工作包 | 阶段 | 状态 | 验收范围 |", "|---|---|---|---|"]

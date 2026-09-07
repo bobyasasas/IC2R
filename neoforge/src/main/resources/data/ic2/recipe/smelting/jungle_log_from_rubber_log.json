@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:smelting",
+  "category": "blocks",
+  "experience": 0.1,
+  "cookingtime": 200,
+  "result": {
+    "id": "minecraft:jungle_log",
+    "count": 1
+  },
+  "ingredient": "ic2:rubber_log"
+}

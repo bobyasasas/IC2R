@@ -1053,14 +1053,14 @@
     {
       "source": "extractor/rubber_log_to_rubber.json",
       "type": "ic2:extractor",
-      "status": "pending",
-      "reason": "unported item ic2:rubber_log"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/extractor/rubber_log_to_rubber.json"
     },
     {
       "source": "extractor/rubber_sapling_to_rubber.json",
       "type": "ic2:extractor",
-      "status": "pending",
-      "reason": "unported item ic2:rubber_sapling"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/extractor/rubber_sapling_to_rubber.json"
     },
     {
       "source": "extractor/snow_block_to_snowball.json",
@@ -2589,8 +2589,8 @@
     {
       "source": "shaped/extractor.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported item ic2:treetap"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/extractor.json"
     },
     {
       "source": "shaped/facade_cell.json",
@@ -3639,8 +3639,8 @@
     {
       "source": "shaped/rubber_wood.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:rubber_wood"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/rubber_wood.json"
     },
     {
       "source": "shaped/scanner.json",
@@ -3879,8 +3879,8 @@
     {
       "source": "shaped/stripped_rubber_wood.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:stripped_rubber_wood"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/stripped_rubber_wood.json"
     },
     {
       "source": "shaped/sulfur_dust.json",
@@ -3963,8 +3963,8 @@
     {
       "source": "shaped/treetap.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:treetap"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/treetap.json"
     },
     {
       "source": "shaped/triple_reactor_coolant_cell.json",
@@ -4239,8 +4239,8 @@
     {
       "source": "shapeless/electric_treetap.json",
       "type": "ic2:shapeless",
-      "status": "pending",
-      "reason": "unported result ic2:electric_treetap"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shapeless/electric_treetap.json"
     },
     {
       "source": "shapeless/electric_wrench.json",
@@ -4473,8 +4473,8 @@
     {
       "source": "shapeless/rubber_planks.json",
       "type": "ic2:shapeless",
-      "status": "pending",
-      "reason": "unported result ic2:rubber_planks"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shapeless/rubber_planks.json"
     },
     {
       "source": "shapeless/small_plutonium.json",
@@ -4647,14 +4647,14 @@
     {
       "source": "smelting/jungle_log_from_rubber_log.json",
       "type": "minecraft:smelting",
-      "status": "pending",
-      "reason": "unported item ic2:rubber_log"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/smelting/jungle_log_from_rubber_log.json"
     },
     {
       "source": "smelting/lead_ingot.json",
       "type": "minecraft:smelting",
-      "status": "pending",
-      "reason": "unported item ic2:lead_ore"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/smelting/lead_ingot.json"
     },
     {
       "source": "smelting/lead_ingot_from_crushed_lead.json",
@@ -4665,8 +4665,8 @@
     {
       "source": "smelting/lead_ingot_from_deepslate.json",
       "type": "minecraft:smelting",
-      "status": "pending",
-      "reason": "unported item ic2:deepslate_lead_ore"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/smelting/lead_ingot_from_deepslate.json"
     },
     {
       "source": "smelting/lead_ingot_from_lead_dust.json",
@@ -4713,8 +4713,8 @@
     {
       "source": "smelting/tin_ingot.json",
       "type": "minecraft:smelting",
-      "status": "pending",
-      "reason": "unported item ic2:tin_ore"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/smelting/tin_ingot.json"
     },
     {
       "source": "smelting/tin_ingot_from_crushed_tin.json",
@@ -4725,8 +4725,8 @@
     {
       "source": "smelting/tin_ingot_from_deepslate.json",
       "type": "minecraft:smelting",
-      "status": "pending",
-      "reason": "unported item ic2:deepslate_tin_ore"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/smelting/tin_ingot_from_deepslate.json"
     },
     {
       "source": "smelting/tin_ingot_from_purified_tin.json",
@@ -4749,8 +4749,8 @@
     {
       "source": "smelting/uranium_ingot.json",
       "type": "minecraft:smelting",
-      "status": "pending",
-      "reason": "unported item ic2:uranium_ore"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/smelting/uranium_ingot.json"
     },
     {
       "source": "smelting/uranium_ingot_from_crushed_uranium.json",
@@ -4761,8 +4761,8 @@
     {
       "source": "smelting/uranium_ingot_from_deepslate.json",
       "type": "minecraft:smelting",
-      "status": "pending",
-      "reason": "unported item ic2:deepslate_uranium_ore"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/smelting/uranium_ingot_from_deepslate.json"
     },
     {
       "source": "smelting/uranium_ingot_from_purified_uranium.json",
