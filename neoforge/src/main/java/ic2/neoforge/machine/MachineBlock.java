@@ -158,7 +158,10 @@ public final class MachineBlock extends BaseEntityBlock {
             BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hit) {
         if (!level.isClientSide()
                 && level.getBlockEntity(pos) instanceof MachineBlockEntity machine) {
-            player.openMenu(machine, buffer -> buffer.writeBlockPos(pos));
+            if (machine instanceof ManualKineticBlockEntity manual
+                    && player instanceof net.minecraft.server.level.ServerPlayer serverPlayer)
+                manual.turn(serverPlayer);
+            else player.openMenu(machine, buffer -> buffer.writeBlockPos(pos));
         }
         return InteractionResult.SUCCESS;
     }

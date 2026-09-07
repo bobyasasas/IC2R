@@ -1554,7 +1554,12 @@
       "factory": "register",
       "expression": "new ItemBlockIc2(Ic2Blocks.MANUAL_KINETIC_GENERATOR, new Properties())",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/manual-kinetic.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/ManualKineticTests.java"
+      ],
+      "note": "原生右键、体力、模拟玩家、点击限额、事务能力、重载及双模式转电链已接入；多人随 M16 验收。"
     },
     {
       "registry": "item",
@@ -7093,7 +7098,12 @@
       "factory": "register",
       "expression": "Ic2TileEntityBlock.create(Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).strength(2.0F, 10.0F).requiresCorrectToolForDrops().sound(SoundType.METAL), TileEntityManualKineticGenerator.class, false, Ic2TileEntityBlock.DefaultDrop.Self, Util.allFacings, true)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/manual-kinetic.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/ManualKineticTests.java"
+      ],
+      "note": "原生右键、体力、模拟玩家、点击限额、事务能力、重载及双模式转电链已接入；多人随 M16 验收。"
     },
     {
       "registry": "block",
@@ -9485,7 +9495,12 @@
       "factory": "register",
       "expression": "TileEntityManualKineticGenerator::new",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/manual-kinetic.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/ManualKineticTests.java"
+      ],
+      "note": "原生右键、体力、模拟玩家、点击限额、事务能力、重载及双模式转电链已接入；多人随 M16 验收。"
     },
     {
       "registry": "block_entity",

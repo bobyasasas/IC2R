@@ -104,6 +104,9 @@ public final class RegistrationTests {
         FUNCTIONS.register("fluid_heat_prepaid", () -> FuelHeatTests::fluidPrepayment);
         FUNCTIONS.register("fluid_heat_chain", () -> FuelHeatTests::fluidChain);
         FUNCTIONS.register("heat_menu_transport", () -> FuelHeatTests::menuTransport);
+        FUNCTIONS.register("manual_interaction", () -> ManualKineticTests::interaction);
+        FUNCTIONS.register("manual_hunger_outputs", () -> ManualKineticTests::hungerAndOutputs);
+        FUNCTIONS.register("manual_network_supply", () -> ManualKineticTests::networkSupply);
         FUNCTIONS.register("loaded_recipes", () -> ProcessingTests::loadedRecipes);
         FUNCTIONS.register("processing_machines", () -> ProcessingTests::processing);
         FUNCTIONS.register("weighted_persistence", () -> ProcessingTests::weightedPersistence);

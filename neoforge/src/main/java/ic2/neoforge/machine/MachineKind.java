@@ -16,6 +16,7 @@ public enum MachineKind implements StringRepresentable {
     EV_TRANSFORMER("ev_transformer", 16384, 0, 0, 0),
     IRON_FURNACE("iron_furnace", 0, 3, 160, 0),
     CANNER("canner", 800, 4, 200, 4),
+    MANUAL_KINETIC_GENERATOR("manual_kinetic_generator", 0, 0, 0, 0),
     SOLID_HEAT_GENERATOR("solid_heat_generator", 0, 2, 0, 0),
     FLUID_HEAT_GENERATOR("fluid_heat_generator", 0, 2, 0, 0),
     ELECTRIC_HEAT_GENERATOR("electric_heat_generator", 10000, 11, 0, 0),
@@ -57,7 +58,11 @@ public enum MachineKind implements StringRepresentable {
     }
 
     public boolean verticalFacing() {
-        return energyDevice() || electricWork() || workConversion() || fuelHeat();
+        return energyDevice()
+                || electricWork()
+                || workConversion()
+                || fuelHeat()
+                || this == MANUAL_KINETIC_GENERATOR;
     }
 
     public boolean fuelHeat() {

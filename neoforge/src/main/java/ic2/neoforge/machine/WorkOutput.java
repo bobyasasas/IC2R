@@ -14,6 +14,7 @@ import java.util.function.IntSupplier;
 /** Live sided view; retaining a capability never bypasses rotation, removal or tick budgets. */
 final class WorkOutput implements WorkSource {
     private final MachineBlockEntity owner;
+    private final boolean directional;
     private final @Nullable Direction side;
     private final WorkBuffer work;
     private final IntSupplier bandwidth;
@@ -25,6 +26,17 @@ final class WorkOutput implements WorkSource {
             WorkBuffer work,
             IntSupplier bandwidth,
             Consumer<TransactionContext> enlist) {
+        this(owner, side, work, bandwidth, enlist, true);
+    }
+
+    WorkOutput(
+            MachineBlockEntity owner,
+            @Nullable Direction side,
+            WorkBuffer work,
+            IntSupplier bandwidth,
+            Consumer<TransactionContext> enlist,
+            boolean directional) {
+        this.directional = directional;
         this.owner = owner;
         this.side = side;
         this.work = work;
@@ -37,7 +49,7 @@ final class WorkOutput implements WorkSource {
         return !owner.isRemoved()
                 && level != null
                 && !level.isClientSide()
-                && side == owner.getBlockState().getValue(MachineBlock.FACING);
+                && (!directional || side == owner.getBlockState().getValue(MachineBlock.FACING));
     }
 
     @Override

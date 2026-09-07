@@ -461,6 +461,7 @@
   "ic2:shapeless/lava_cell",
   "ic2:shapeless/lead_casing",
   "ic2:shapeless/lead_plate",
+  "ic2:shapeless/manual_kinetic_generator",
   "ic2:shapeless/raw_ore/lead",
   "ic2:shapeless/raw_ore/tin",
   "ic2:shapeless/raw_ore/uranium",

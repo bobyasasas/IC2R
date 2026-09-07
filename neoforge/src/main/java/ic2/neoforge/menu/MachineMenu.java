@@ -82,7 +82,7 @@ public final class MachineMenu extends AbstractContainerMenu {
                         }
                     });
             addOutputSlot(inventory, 1, 56, 53);
-        } else if (kind.workConversion()) {
+        } else if (kind.workConversion() || kind == MachineKind.MANUAL_KINETIC_GENERATOR) {
             // Conversion generators have no inventory.
         } else if (kind.electricWork()) {
             for (int part = 0; part < 10; part++) {
@@ -305,7 +305,7 @@ public final class MachineMenu extends AbstractContainerMenu {
     }
 
     private int preferredSlot(ItemStack stack, Player player) {
-        if (kind.workConversion()) return -1;
+        if (kind.workConversion() || kind == MachineKind.MANUAL_KINETIC_GENERATOR) return -1;
         if (kind.fuelHeat()) return 0;
         if (kind.electricWork())
             return stack.getItem() instanceof ElectricItem

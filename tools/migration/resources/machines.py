@@ -4,7 +4,7 @@ import json
 import re
 from base import ROOT, OLD, NEW, ASSETS, write, copy, model, item
 
-machines = ['solid_heat_generator', 'fluid_heat_generator', 'electric_heat_generator', 'electric_kinetic_generator', 'stirling_generator', 'kinetic_generator', 'metal_former', 'ore_washing_plant', 'centrifuge', 'recycler', 'induction_furnace', 'water_generator', 'wind_generator', 'solar_generator', 'geo_generator', 'semifluid_generator', 'batbox', 'cesu', 'mfe', 'mfsu', 'lv_transformer', 'mv_transformer', 'hv_transformer', 'ev_transformer', 'canner', 'iron_furnace', 'generator', 'electric_furnace', 'macerator', 'extractor', 'compressor']
+machines = ['manual_kinetic_generator', 'solid_heat_generator', 'fluid_heat_generator', 'electric_heat_generator', 'electric_kinetic_generator', 'stirling_generator', 'kinetic_generator', 'metal_former', 'ore_washing_plant', 'centrifuge', 'recycler', 'induction_furnace', 'water_generator', 'wind_generator', 'solar_generator', 'geo_generator', 'semifluid_generator', 'batbox', 'cesu', 'mfe', 'mfsu', 'lv_transformer', 'mv_transformer', 'hv_transformer', 'ev_transformer', 'canner', 'iron_furnace', 'generator', 'electric_furnace', 'macerator', 'extractor', 'compressor']
 for identifier in machines:
     item(identifier)
     path = ASSETS + 'blockstates/' + identifier + '.json'
@@ -99,6 +99,12 @@ for language, labels in [('en_us', {'ic2.wind.overload': 'Overspeed: %s%%', 'ic2
     write(path, data)
 
 for language, labels in [('en_us', {'ic2.work.heat': 'Stored: %s HU', 'ic2.work.heat_rate': '%s HU/t', 'ic2.work.kinetic': 'Stored: %s KU', 'ic2.work.kinetic_rate': '%s KU/t', 'ic2.work.voltage': 'Output: %s EU'}), ('zh_cn', {'ic2.work.heat': '储存：%s HU', 'ic2.work.heat_rate': '%s HU/t', 'ic2.work.kinetic': '储存：%s KU', 'ic2.work.kinetic_rate': '%s KU/t', 'ic2.work.voltage': '输出电压：%s EU'})]:
+    path = ASSETS + 'lang/' + language + '.json'
+    data = json.loads((NEW / path).read_text())
+    data.update(labels)
+    write(path, data)
+
+for language, labels in [('en_us', {'ic2.manual.added': '+%s KU (%s / 1000)', 'ic2.manual.hungry': 'Eat before turning the crank.'}), ('zh_cn', {'ic2.manual.added': '+%s KU（%s / 1000）', 'ic2.manual.hungry': '需要先补充食物才能转动手柄。'})]:
     path = ASSETS + 'lang/' + language + '.json'
     data = json.loads((NEW / path).read_text())
     data.update(labels)

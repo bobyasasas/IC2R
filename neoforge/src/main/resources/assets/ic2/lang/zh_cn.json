@@ -1398,5 +1398,7 @@
   "ic2.work.kinetic": "储存：%s KU",
   "ic2.work.voltage": "输出电压：%s EU",
   "ic2.work.heat_rate": "%s HU/t",
-  "ic2.work.kinetic_rate": "%s KU/t"
+  "ic2.work.kinetic_rate": "%s KU/t",
+  "ic2.manual.added": "+%s KU（%s / 1000）",
+  "ic2.manual.hungry": "需要先补充食物才能转动手柄。"
 }

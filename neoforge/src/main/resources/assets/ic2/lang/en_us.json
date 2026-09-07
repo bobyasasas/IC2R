@@ -1398,5 +1398,7 @@
   "ic2.work.kinetic": "Stored: %s KU",
   "ic2.work.voltage": "Output: %s EU",
   "ic2.work.heat_rate": "%s HU/t",
-  "ic2.work.kinetic_rate": "%s KU/t"
+  "ic2.work.kinetic_rate": "%s KU/t",
+  "ic2.manual.added": "+%s KU (%s / 1000)",
+  "ic2.manual.hungry": "Eat before turning the crank."
 }

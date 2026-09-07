@@ -1,0 +1,11 @@
+{
+  "type": "ic2:shapeless",
+  "result": {
+    "id": "ic2:manual_kinetic_generator",
+    "count": 1
+  },
+  "ingredients": [
+    "ic2:machine",
+    "minecraft:lever"
+  ]
+}

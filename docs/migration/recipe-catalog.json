@@ -4389,8 +4389,8 @@
     {
       "source": "shapeless/manual_kinetic_generator.json",
       "type": "ic2:shapeless",
-      "status": "pending",
-      "reason": "unported result ic2:manual_kinetic_generator"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shapeless/manual_kinetic_generator.json"
     },
     {
       "source": "shapeless/mining_filter.json",
