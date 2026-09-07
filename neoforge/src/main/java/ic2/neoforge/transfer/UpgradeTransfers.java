@@ -1,7 +1,7 @@
 package ic2.neoforge.transfer;
 
 import ic2.neoforge.item.UpgradeItem;
-import ic2.neoforge.machine.CannerBlockEntity;
+import ic2.neoforge.machine.FluidMachine;
 import ic2.neoforge.machine.UpgradeableBlockEntity;
 
 import net.minecraft.core.Direction;
@@ -25,8 +25,8 @@ public final class UpgradeTransfers {
                 var target = machine.getBlockPos().relative(side);
                 if (!level.getChunkSource().hasChunk(target.getX() >> 4, target.getZ() >> 4))
                     continue;
-                if (item.kind().fluid() && machine instanceof CannerBlockEntity canner) {
-                    var local = canner.fluidAutomation(side);
+                if (item.kind().fluid() && machine instanceof FluidMachine fluids) {
+                    var local = fluids.fluidAutomation(side);
                     var adjacent =
                             level.getCapability(
                                     Capabilities.Fluid.BLOCK, target, side.getOpposite());

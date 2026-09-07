@@ -35,7 +35,10 @@ public final class UpgradeItem extends Item {
         }
 
         public boolean suitable(MachineKind machine) {
-            return machine.upgradable() && (!fluid() || machine == MachineKind.CANNER);
+            return machine.upgradable()
+                    && (!fluid()
+                            || machine == MachineKind.CANNER
+                            || this == FLUID_PULLING && machine == MachineKind.ORE_WASHING_PLANT);
         }
     }
 

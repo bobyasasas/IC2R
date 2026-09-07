@@ -10,7 +10,7 @@ ledger = []
 ledger_path = ROOT / 'docs/migration/recipe-catalog.json'
 previous = json.loads(ledger_path.read_text())['entries'] if ledger_path.exists() else []
 processing_types = {'ic2:macerator', 'ic2:extractor', 'ic2:compressor', 'ic2:metal_former_extruding', 'ic2:metal_former_rolling', 'ic2:metal_former_cutting'}
-supported = processing_types | {'ic2:canner_bottle', 'ic2:canner_enrich', 'ic2:shaped', 'ic2:shapeless', 'minecraft:crafting_shaped', 'minecraft:crafting_shapeless', 'minecraft:smelting', 'minecraft:blasting', 'ic2:macerator', 'ic2:extractor', 'ic2:compressor'}
+supported = processing_types | {'ic2:ore_washer', 'ic2:canner_bottle', 'ic2:canner_enrich', 'ic2:shaped', 'ic2:shapeless', 'minecraft:crafting_shaped', 'minecraft:crafting_shapeless', 'minecraft:smelting', 'minecraft:blasting', 'ic2:macerator', 'ic2:extractor', 'ic2:compressor'}
 
 
 def common_tag(tag):
@@ -62,7 +62,11 @@ for file in sorted(recipe_root.rglob('*.json')):
     try:
         if 'conditions' in old:
             raise ValueError('conditional recipe requires explicit condition conversion')
-        if old['type'] == 'ic2:canner_bottle':
+        if old['type'] == 'ic2:ore_washer':
+            results = old['result'] if isinstance(old['result'], list) else [old['result']]
+            new = {'type': old['type'], 'ingredient': ingredient(old['ingredient']), 'input_count': old['ingredient'].get('count', 1),
+                   'results': [stack(result) for result in results], 'water': old['amount']}
+        elif old['type'] == 'ic2:canner_bottle':
             def counted(value):
                 return {'ingredient': ingredient(value), 'count': value.get('count', 1)}
             new = {'type': old['type'], 'container': counted(old['container_ingredient']), 'additive': counted(old['fill_ingredient']), 'result': stack(old['result'])}

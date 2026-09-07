@@ -22,7 +22,7 @@ import net.neoforged.neoforge.transfer.fluid.FluidResource;
 import net.neoforged.neoforge.transfer.item.ItemResource;
 import net.neoforged.neoforge.transfer.transaction.Transaction;
 
-public final class FluidGeneratorBlockEntity extends GeneratingBlockEntity {
+public final class FluidGeneratorBlockEntity extends GeneratingBlockEntity implements FluidMachine {
     private static final FluidFuelBurner.Fuel LAVA = new FluidFuelBurner.Fuel(2, 1, 20);
     private static final FluidFuelBurner.Fuel BIOGAS = new FluidFuelBurner.Fuel(10, 10, 16);
     private final FluidFuelBurner burner = new FluidFuelBurner();

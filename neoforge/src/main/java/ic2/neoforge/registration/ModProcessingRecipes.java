@@ -3,6 +3,7 @@ package ic2.neoforge.registration;
 import ic2.core.recipe.ProcessingMethod;
 import ic2.neoforge.IndustrialCraft;
 import ic2.neoforge.recipe.ProcessingRecipe;
+import ic2.neoforge.recipe.WashingRecipe;
 
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.item.crafting.*;
@@ -22,6 +23,23 @@ public final class ModProcessingRecipes {
             DeferredRegister.create(Registries.RECIPE_BOOK_CATEGORY, IndustrialCraft.MOD_ID);
     public static final DeferredHolder<RecipeBookCategory, RecipeBookCategory> CATEGORY =
             CATEGORIES.register("processing", RecipeBookCategory::new);
+    public static final DeferredHolder<RecipeType<?>, RecipeType<WashingRecipe>> WASHING_TYPE =
+            TYPES.register(
+                    "ore_washer",
+                    () ->
+                            new RecipeType<WashingRecipe>() {
+                                @Override
+                                public String toString() {
+                                    return "ic2:ore_washer";
+                                }
+                            });
+    public static final DeferredHolder<RecipeSerializer<?>, RecipeSerializer<WashingRecipe>>
+            WASHING_SERIALIZER =
+                    SERIALIZERS.register(
+                            "ore_washer",
+                            () ->
+                                    new RecipeSerializer<>(
+                                            WashingRecipe.CODEC, WashingRecipe.STREAM_CODEC));
     private static final Map<
                     ProcessingMethod, DeferredHolder<RecipeType<?>, RecipeType<ProcessingRecipe>>>
             RECIPE_TYPES = new EnumMap<>(ProcessingMethod.class);

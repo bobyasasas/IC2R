@@ -71,6 +71,10 @@ public final class RegistrationTests {
         FUNCTIONS.register("toolbox_crafting", () -> ToolboxTests::crafting);
         FUNCTIONS.register("metal_former_modes", () -> MetalFormerTests::modes);
         FUNCTIONS.register("metal_former_persistence", () -> MetalFormerTests::persistence);
+        FUNCTIONS.register("washing_atomic_outputs", () -> WashingTests::atomicOutputs);
+        FUNCTIONS.register("washing_containers", () -> WashingTests::containers);
+        FUNCTIONS.register("washing_pulling_upgrade", () -> WashingTests::pullingUpgrade);
+        FUNCTIONS.register("washing_recipe_codec", () -> WashingTests::codec);
         FUNCTIONS.register("loaded_recipes", () -> ProcessingTests::loadedRecipes);
         FUNCTIONS.register("processing_machines", () -> ProcessingTests::processing);
         FUNCTIONS.register("weighted_persistence", () -> ProcessingTests::weightedPersistence);

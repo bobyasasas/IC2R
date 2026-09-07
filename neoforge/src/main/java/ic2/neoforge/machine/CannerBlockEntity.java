@@ -33,7 +33,7 @@ import net.neoforged.neoforge.transfer.transaction.TransactionContext;
 import java.util.Objects;
 
 /** Four typed operations share one atomic boundary for fluids, items, EU and progress. */
-public final class CannerBlockEntity extends UpgradeableBlockEntity {
+public final class CannerBlockEntity extends UpgradeableBlockEntity implements FluidMachine {
     public static final int ADDITIVE = 0, OUTPUT = 1, BATTERY = 2, CONTAINER = 3;
     private final MachineFluidTank inputTank =
             new MachineFluidTank(8000, this::setChanged, fluid -> true);

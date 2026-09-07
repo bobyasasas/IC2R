@@ -1,0 +1,20 @@
+{
+  "type": "ic2:ore_washer",
+  "ingredient": "ic2:crushed_iron",
+  "input_count": 1,
+  "results": [
+    {
+      "id": "ic2:purified_iron",
+      "count": 1
+    },
+    {
+      "id": "ic2:small_iron_dust",
+      "count": 2
+    },
+    {
+      "id": "ic2:stone_dust",
+      "count": 1
+    }
+  ],
+  "water": 1000
+}

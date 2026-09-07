@@ -1954,7 +1954,12 @@
       "factory": "register",
       "expression": "new ItemBlockIc2(Ic2Blocks.ORE_WASHING_PLANT, new Properties())",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/ore-washing.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/WashingTests.java"
+      ],
+      "note": "八条配方、多输出、水与容器事务已实现；完整配置及多人整体验收待完成。"
     },
     {
       "registry": "item",
@@ -7413,7 +7418,12 @@
       "factory": "register",
       "expression": "Ic2TileEntityBlock.create(Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).strength(2.0F, 10.0F).requiresCorrectToolForDrops().sound(SoundType.METAL), TileEntityOreWashing.class, true, Ic2TileEntityBlock.DefaultDrop.Machine, Util.horizontalFacings, true)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/ore-washing.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/WashingTests.java"
+      ],
+      "note": "八条配方、多输出、水与容器事务已实现；完整配置及多人整体验收待完成。"
     },
     {
       "registry": "block",
@@ -10105,7 +10115,12 @@
       "factory": "register",
       "expression": "TileEntityOreWashing::new",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/ore-washing.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/WashingTests.java"
+      ],
+      "note": "八条配方、多输出、水与容器事务已实现；完整配置及多人整体验收待完成。"
     },
     {
       "registry": "block_entity",
@@ -12298,7 +12313,12 @@
       "factory": "register",
       "expression": "new BasicMachineRecipeSerializer(Ic2RecipeTypes.ORE_WASHER, intMeta(\"amount\"))",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/ore-washing.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/WashingTests.java"
+      ],
+      "note": "八条配方、多输出、水与容器事务已实现；完整配置及多人整体验收待完成。"
     },
     {
       "registry": "recipe_serializer",

@@ -14,27 +14,35 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.storage.ValueInput;
 import net.minecraft.world.level.storage.ValueOutput;
 import net.neoforged.neoforge.transfer.ResourceHandler;
+import net.neoforged.neoforge.transfer.ResourceHandlerUtil;
 import net.neoforged.neoforge.transfer.item.ItemResource;
 import net.neoforged.neoforge.transfer.transaction.Transaction;
 
+import java.util.List;
 import java.util.Objects;
 
 /**
- * Shared atomic processing; recipe lookup and outcome selection are the only machine-specific
- * parts.
+ * Shared atomic processing supports multiple outputs and additional resource costs. Recipe
+ * selection and machine-specific environment updates remain in each family.
  */
 public abstract class ProcessingBlockEntity extends UpgradeableBlockEntity {
     public static final int INPUT = 0, OUTPUT = 1, BATTERY = 2;
     private double experience;
 
     protected record Job(
-            String recipe, int inputCount, ItemStackTemplate output, double experience) {
+            String recipe, int inputCount, List<ItemStackTemplate> outputs, double experience) {
         protected Job {
             if (recipe.isBlank()
                     || inputCount < 1
                     || !Double.isFinite(experience)
                     || experience < 0) throw new IllegalArgumentException("Invalid processing job");
-            Objects.requireNonNull(output);
+            outputs = List.copyOf(outputs);
+            if (outputs.size() > 3)
+                throw new IllegalArgumentException("Too many processing outputs");
+        }
+
+        protected Job(String recipe, int inputCount, ItemStackTemplate output, double experience) {
+            this(recipe, inputCount, List.of(Objects.requireNonNull(output)), experience);
         }
     }
 
@@ -47,7 +55,7 @@ public abstract class ProcessingBlockEntity extends UpgradeableBlockEntity {
         return new ResourcePort<>(
                 inventory,
                 slot -> slot == INPUT && side != Direction.DOWN,
-                slot -> slot == OUTPUT,
+                this::outputSlot,
                 (slot, resource) ->
                         slot != INPUT
                                 || level instanceof ServerLevel server
@@ -57,6 +65,26 @@ public abstract class ProcessingBlockEntity extends UpgradeableBlockEntity {
     protected abstract boolean acceptsInput(ItemResource resource, ServerLevel level);
 
     protected abstract Job findJob(ServerLevel level);
+
+    protected boolean outputSlot(int slot) {
+        return slot == OUTPUT;
+    }
+
+    protected void afterProcessing(ServerLevel level) {}
+
+    protected boolean consumeInputs(Job job, ItemResource input, Transaction transaction) {
+        return inventory.extract(INPUT, input, job.inputCount(), transaction) == job.inputCount();
+    }
+
+    private boolean insertOutputs(Job job, Transaction transaction) {
+        var port = new ResourcePort<>(inventory, this::outputSlot, slot -> false);
+        for (var output : job.outputs()) {
+            if (ResourceHandlerUtil.insertStacking(
+                            port, ItemResource.of(output), output.count(), transaction)
+                    != output.count()) return false;
+        }
+        return true;
+    }
 
     protected void completed() {}
 
@@ -75,13 +103,7 @@ public abstract class ProcessingBlockEntity extends UpgradeableBlockEntity {
         boolean fits = false;
         if (job != null) {
             try (var simulation = Transaction.openRoot()) {
-                fits =
-                        inventory.insert(
-                                        OUTPUT,
-                                        ItemResource.of(job.output()),
-                                        job.output().count(),
-                                        simulation)
-                                == job.output().count();
+                fits = insertOutputs(job, simulation);
             }
         }
         MachineProcess.Outcome outcome;
@@ -89,18 +111,8 @@ public abstract class ProcessingBlockEntity extends UpgradeableBlockEntity {
             journal.updateSnapshots(transaction);
             outcome = process.tick(order, fits, energy);
             if (outcome == MachineProcess.Outcome.COMPLETED) {
-                if (inventory.extract(
-                                        INPUT,
-                                        ItemResource.of(inputStack),
-                                        job.inputCount(),
-                                        transaction)
-                                != job.inputCount()
-                        || inventory.insert(
-                                        OUTPUT,
-                                        ItemResource.of(job.output()),
-                                        job.output().count(),
-                                        transaction)
-                                != job.output().count()) return;
+                if (!consumeInputs(job, ItemResource.of(inputStack), transaction)
+                        || !insertOutputs(job, transaction)) return;
             }
             transaction.commit();
         }
@@ -108,8 +120,6 @@ public abstract class ProcessingBlockEntity extends UpgradeableBlockEntity {
             experience += job.experience();
             completed();
             setChanged();
-        }
-        if (outcome == MachineProcess.Outcome.COMPLETED) {
             for (int operation = 1;
                     operation < Math.min(64, upgradeProfile().operations());
                     operation++) {
@@ -117,24 +127,15 @@ public abstract class ProcessingBlockEntity extends UpgradeableBlockEntity {
                 if (extra == null) break;
                 var ingredient = inventory.stack(INPUT);
                 try (var transaction = Transaction.openRoot()) {
-                    if (inventory.extract(
-                                            INPUT,
-                                            ItemResource.of(ingredient),
-                                            extra.inputCount(),
-                                            transaction)
-                                    != extra.inputCount()
-                            || inventory.insert(
-                                            OUTPUT,
-                                            ItemResource.of(extra.output()),
-                                            extra.output().count(),
-                                            transaction)
-                                    != extra.output().count()) break;
+                    if (!consumeInputs(extra, ItemResource.of(ingredient), transaction)
+                            || !insertOutputs(extra, transaction)) break;
                     transaction.commit();
                 }
                 experience += extra.experience();
                 completed();
             }
         }
+        afterProcessing(level);
         finishProcessingTick(level);
         setActive(
                 outcome == MachineProcess.Outcome.RUNNING

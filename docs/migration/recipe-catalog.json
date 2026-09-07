@@ -1965,50 +1965,50 @@
     {
       "source": "ore_washer/crushed_copper_to_purified_copper.json",
       "type": "ic2:ore_washer",
-      "status": "pending",
-      "reason": "recipe family not ported"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/ore_washer/crushed_copper_to_purified_copper.json"
     },
     {
       "source": "ore_washer/crushed_gold_to_purified_gold.json",
       "type": "ic2:ore_washer",
-      "status": "pending",
-      "reason": "recipe family not ported"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/ore_washer/crushed_gold_to_purified_gold.json"
     },
     {
       "source": "ore_washer/crushed_iron_to_purified_iron.json",
       "type": "ic2:ore_washer",
-      "status": "pending",
-      "reason": "recipe family not ported"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/ore_washer/crushed_iron_to_purified_iron.json"
     },
     {
       "source": "ore_washer/crushed_lead_to_purified_lead.json",
       "type": "ic2:ore_washer",
-      "status": "pending",
-      "reason": "recipe family not ported"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/ore_washer/crushed_lead_to_purified_lead.json"
     },
     {
       "source": "ore_washer/crushed_silver_to_purified_silver.json",
       "type": "ic2:ore_washer",
-      "status": "pending",
-      "reason": "recipe family not ported"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/ore_washer/crushed_silver_to_purified_silver.json"
     },
     {
       "source": "ore_washer/crushed_tin_to_purified_tin.json",
       "type": "ic2:ore_washer",
-      "status": "pending",
-      "reason": "recipe family not ported"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/ore_washer/crushed_tin_to_purified_tin.json"
     },
     {
       "source": "ore_washer/crushed_uranium_to_purified_uranium.json",
       "type": "ic2:ore_washer",
-      "status": "pending",
-      "reason": "recipe family not ported"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/ore_washer/crushed_uranium_to_purified_uranium.json"
     },
     {
       "source": "ore_washer/gravel_to_stone_dust.json",
       "type": "ic2:ore_washer",
-      "status": "pending",
-      "reason": "recipe family not ported"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/ore_washer/gravel_to_stone_dust.json"
     },
     {
       "source": "shaped/advanced_batpack.json",
@@ -3183,8 +3183,8 @@
     {
       "source": "shaped/ore_washing_plant.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:ore_washing_plant"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/ore_washing_plant.json"
     },
     {
       "source": "shaped/overclocked_heat_vent.json",

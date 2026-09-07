@@ -59,6 +59,8 @@ public final class IndustrialCraftClient {
                         event.register(registration.menu().get(), EnergyDeviceScreen::new);
                     else if (kind.fluidGenerator() || kind == MachineKind.SOLAR_GENERATOR)
                         event.register(registration.menu().get(), GeneratorScreen::new);
+                    else if (kind == MachineKind.ORE_WASHING_PLANT)
+                        event.register(registration.menu().get(), OreWashingScreen::new);
                     else if (kind == MachineKind.METAL_FORMER)
                         event.register(registration.menu().get(), MetalFormerScreen::new);
                     else if (kind == MachineKind.CANNER)

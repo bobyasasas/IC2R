@@ -89,7 +89,12 @@ public final class MachineMenu extends AbstractContainerMenu {
         } else {
             addSlot(new ResourceHandlerSlot(inventory, inventory::set, 0, 56, 17));
             addSlot(
-                    new ResourceHandlerSlot(inventory, inventory::set, 1, 116, 35) {
+                    new ResourceHandlerSlot(
+                            inventory,
+                            inventory::set,
+                            1,
+                            kind == MachineKind.ORE_WASHING_PLANT ? 110 : 116,
+                            35) {
                         @Override
                         public boolean mayPlace(ItemStack stack) {
                             return false;
@@ -114,6 +119,20 @@ public final class MachineMenu extends AbstractContainerMenu {
                         });
             } else addBatterySlot(inventory, 2, 56, 53);
         }
+        if (kind == MachineKind.ORE_WASHING_PLANT) {
+            addOutputSlot(inventory, 3, 128, 35);
+            addOutputSlot(inventory, 4, 146, 35);
+            addSlot(
+                    new ResourceHandlerSlot(inventory, inventory::set, 5, 110, 53) {
+                        @Override
+                        public boolean mayPlace(ItemStack stack) {
+                            return ItemAccess.forStack(stack.copy())
+                                            .getCapability(Capabilities.Fluid.ITEM)
+                                    != null;
+                        }
+                    });
+            addOutputSlot(inventory, 6, 146, 53);
+        }
         if (kind == MachineKind.CANNER)
             addSlot(new ResourceHandlerSlot(inventory, inventory::set, 3, 92, 17));
         if (kind.upgradable()) {
@@ -135,6 +154,16 @@ public final class MachineMenu extends AbstractContainerMenu {
         }
         addStandardInventorySlots(playerInventory, 8, 84);
         addDataSlots(data);
+    }
+
+    private void addOutputSlot(MachineInventory inventory, int slot, int x, int y) {
+        addSlot(
+                new ResourceHandlerSlot(inventory, inventory::set, slot, x, y) {
+                    @Override
+                    public boolean mayPlace(ItemStack stack) {
+                        return false;
+                    }
+                });
     }
 
     private void addBatterySlot(MachineInventory inventory, int slot, int x, int y) {
@@ -227,6 +256,9 @@ public final class MachineMenu extends AbstractContainerMenu {
                 && (stack.is(ModItems.MATERIALS.get(MaterialDefinition.TIN_CAN).get())
                         || ItemAccess.forStack(stack.copy()).getCapability(Capabilities.Fluid.ITEM)
                                 != null)) return 3;
+        if (kind == MachineKind.ORE_WASHING_PLANT
+                && ItemAccess.forStack(stack.copy()).getCapability(Capabilities.Fluid.ITEM) != null)
+            return OreWashingBlockEntity.WATER_INPUT;
         return 0;
     }
 
