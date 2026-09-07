@@ -1,0 +1,15 @@
+{
+  "type": "ic2:shaped",
+  "pattern": [
+    "P  ",
+    "PP ",
+    "PPP"
+  ],
+  "result": {
+    "id": "ic2:rubber_stairs",
+    "count": 4
+  },
+  "key": {
+    "P": "ic2:rubber_planks"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "type": "ic2:shaped",
+  "pattern": [
+    "PPP",
+    "PPP",
+    " I "
+  ],
+  "result": {
+    "id": "ic2:rubber_sign",
+    "count": 3
+  },
+  "key": {
+    "P": "ic2:rubber_planks",
+    "I": "minecraft:stick"
+  }
+}

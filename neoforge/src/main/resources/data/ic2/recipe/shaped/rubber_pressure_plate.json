@@ -1,0 +1,13 @@
+{
+  "type": "ic2:shaped",
+  "pattern": [
+    "PP"
+  ],
+  "result": {
+    "id": "ic2:rubber_pressure_plate",
+    "count": 1
+  },
+  "key": {
+    "P": "ic2:rubber_planks"
+  }
+}

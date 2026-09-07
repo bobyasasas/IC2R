@@ -37,4 +37,4 @@
 
 ![自然生成树保存重载](images/natural-tree-reload.png)
 
-其余橡胶木建筑部件、船只和作物仍待迁移。
+[橡胶木建筑部件](rubber-building.md) 已补齐；船只和作物继续由其他工作包迁移。

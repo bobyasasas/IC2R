@@ -3585,26 +3585,26 @@
     {
       "source": "shaped/rubber_door.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:rubber_door"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/rubber_door.json"
     },
     {
       "source": "shaped/rubber_fence.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:rubber_fence"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/rubber_fence.json"
     },
     {
       "source": "shaped/rubber_fence_gate.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:rubber_fence_gate"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/rubber_fence_gate.json"
     },
     {
       "source": "shaped/rubber_pressure_plate.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:rubber_pressure_plate"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/rubber_pressure_plate.json"
     },
     {
       "source": "shaped/rubber_sheet.json",
@@ -3615,26 +3615,26 @@
     {
       "source": "shaped/rubber_sign.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:rubber_sign"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/rubber_sign.json"
     },
     {
       "source": "shaped/rubber_slab.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:rubber_slab"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/rubber_slab.json"
     },
     {
       "source": "shaped/rubber_stairs.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:rubber_stairs"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/rubber_stairs.json"
     },
     {
       "source": "shaped/rubber_trapdoor.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:rubber_trapdoor"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/rubber_trapdoor.json"
     },
     {
       "source": "shaped/rubber_wood.json",
@@ -4467,8 +4467,8 @@
     {
       "source": "shapeless/rubber_button.json",
       "type": "ic2:shapeless",
-      "status": "pending",
-      "reason": "unported result ic2:rubber_button"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shapeless/rubber_button.json"
     },
     {
       "source": "shapeless/rubber_planks.json",

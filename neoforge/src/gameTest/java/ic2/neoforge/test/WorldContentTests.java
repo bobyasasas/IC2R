@@ -114,7 +114,12 @@ final class WorldContentTests {
         for (int y = 0; y < 14; y++)
             if (level.getBlockState(pos.above(y)).is(ModWorldContent.RUBBER_LOG.get())) trunk++;
         for (var p : BlockPos.betweenClosed(pos.offset(-3, 0, -3), pos.offset(3, 15, 3)))
-            if (level.getBlockState(p).is(ModWorldContent.RUBBER_LEAVES.get())) leaves++;
+            if (level.getBlockState(p).is(ModWorldContent.RUBBER_LEAVES.get())) {
+                helper.assertTrue(
+                        level.getBlockState(p).getValue(LeavesBlock.DISTANCE) < 7,
+                        "Every generated leaf must be connected to the trunk");
+                leaves++;
+            }
         helper.assertTrue(
                 trunk >= 4 && trunk <= 8 && leaves >= 20,
                 "Rubber tree must retain its height range and crown");

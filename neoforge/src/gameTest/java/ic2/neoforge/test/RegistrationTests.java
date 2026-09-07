@@ -28,6 +28,8 @@ public final class RegistrationTests {
             DeferredRegister.create(BuiltInRegistries.TEST_FUNCTION, "ic2_tests");
 
     static {
+        FUNCTIONS.register("building_redstone", () -> BuildingTests::redstoneAndShapes);
+        FUNCTIONS.register("building_signs", () -> BuildingTests::signs);
         FUNCTIONS.register("rubber_leaf_support", () -> WorldContentTests::leafSupport);
         FUNCTIONS.register("ore_placement", () -> WorldContentTests::orePlacement);
         FUNCTIONS.register("world_loot", () -> WorldContentTests::lootAndStripping);

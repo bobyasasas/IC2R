@@ -8,15 +8,18 @@ import ic2.neoforge.item.ElectricItemEnergy;
 import ic2.neoforge.item.WrenchTool;
 import ic2.neoforge.machine.MachineKind;
 import ic2.neoforge.registration.ModMachines;
+import ic2.neoforge.registration.ModRubberBuilding;
 import ic2.neoforge.registration.ModWorldContent;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.color.block.BlockTintSources;
+import net.minecraft.client.renderer.blockentity.StandingSignRenderer;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.common.Mod;
+import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 import net.neoforged.neoforge.client.event.RegisterColorHandlersEvent;
 import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
 import net.neoforged.neoforge.client.event.RegisterRangeSelectItemModelPropertyEvent;
@@ -29,6 +32,10 @@ import java.util.List;
 public final class IndustrialCraftClient {
     public IndustrialCraftClient(IEventBus modBus) {
         modBus.addListener(IndustrialCraftClient::registerProperties);
+        modBus.addListener(
+                (EntityRenderersEvent.RegisterRenderers event) ->
+                        event.registerBlockEntityRenderer(
+                                ModRubberBuilding.SIGN_ENTITY.get(), StandingSignRenderer::new));
         modBus.addListener(FluidModels::register);
         modBus.addListener(
                 (RegisterColorHandlersEvent.BlockTintSources event) ->

@@ -9,7 +9,7 @@
       "factory": "register",
       "expression": "new ItemBlockIc2(Ic2Blocks.LEAD_ORE, new Properties())",
       "decision": "preserve",
-      "status": "partial",
+      "status": "implemented",
       "evidence": [
         "neoforge/src/gameTest/java/ic2/neoforge/test/WorldContentTests.java",
         "docs/migration/world-content.md"
@@ -24,7 +24,7 @@
       "factory": "register",
       "expression": "new ItemBlockIc2(Ic2Blocks.TIN_ORE, new Properties())",
       "decision": "preserve",
-      "status": "partial",
+      "status": "implemented",
       "evidence": [
         "neoforge/src/gameTest/java/ic2/neoforge/test/WorldContentTests.java",
         "docs/migration/world-content.md"
@@ -39,7 +39,7 @@
       "factory": "register",
       "expression": "new ItemBlockIc2(Ic2Blocks.URANIUM_ORE, new Properties())",
       "decision": "preserve",
-      "status": "partial",
+      "status": "implemented",
       "evidence": [
         "neoforge/src/gameTest/java/ic2/neoforge/test/WorldContentTests.java",
         "docs/migration/world-content.md"
@@ -54,7 +54,7 @@
       "factory": "register",
       "expression": "new ItemBlockIc2(Ic2Blocks.DEEPSLATE_URANIUM_ORE, new Properties())",
       "decision": "preserve",
-      "status": "partial",
+      "status": "implemented",
       "evidence": [
         "neoforge/src/gameTest/java/ic2/neoforge/test/WorldContentTests.java",
         "docs/migration/world-content.md"
@@ -69,7 +69,7 @@
       "factory": "register",
       "expression": "new ItemBlockIc2(Ic2Blocks.DEEPSLATE_TIN_ORE, new Properties())",
       "decision": "preserve",
-      "status": "partial",
+      "status": "implemented",
       "evidence": [
         "neoforge/src/gameTest/java/ic2/neoforge/test/WorldContentTests.java",
         "docs/migration/world-content.md"
@@ -84,7 +84,7 @@
       "factory": "register",
       "expression": "new ItemBlockIc2(Ic2Blocks.DEEPSLATE_LEAD_ORE, new Properties())",
       "decision": "preserve",
-      "status": "partial",
+      "status": "implemented",
       "evidence": [
         "neoforge/src/gameTest/java/ic2/neoforge/test/WorldContentTests.java",
         "docs/migration/world-content.md"
@@ -277,7 +277,7 @@
       "factory": "register",
       "expression": "new ItemBlockIc2(Ic2Blocks.RUBBER_LEAVES, new Properties())",
       "decision": "preserve",
-      "status": "partial",
+      "status": "implemented",
       "evidence": [
         "neoforge/src/gameTest/java/ic2/neoforge/test/WorldContentTests.java",
         "docs/migration/world-content.md"
@@ -292,7 +292,7 @@
       "factory": "register",
       "expression": "new ItemBlockIc2(Ic2Blocks.RUBBER_LOG, new Properties())",
       "decision": "preserve",
-      "status": "partial",
+      "status": "implemented",
       "evidence": [
         "neoforge/src/gameTest/java/ic2/neoforge/test/WorldContentTests.java",
         "docs/migration/world-content.md"
@@ -307,7 +307,7 @@
       "factory": "register",
       "expression": "new ItemBlockIc2(Ic2Blocks.STRIPPED_RUBBER_LOG, new Properties())",
       "decision": "preserve",
-      "status": "partial",
+      "status": "implemented",
       "evidence": [
         "neoforge/src/gameTest/java/ic2/neoforge/test/WorldContentTests.java",
         "docs/migration/world-content.md"
@@ -322,7 +322,7 @@
       "factory": "register",
       "expression": "new ItemBlockIc2(Ic2Blocks.RUBBER_WOOD, new Properties())",
       "decision": "preserve",
-      "status": "partial",
+      "status": "implemented",
       "evidence": [
         "neoforge/src/gameTest/java/ic2/neoforge/test/WorldContentTests.java",
         "docs/migration/world-content.md"
@@ -337,7 +337,7 @@
       "factory": "register",
       "expression": "new ItemBlockIc2(Ic2Blocks.STRIPPED_RUBBER_WOOD, new Properties())",
       "decision": "preserve",
-      "status": "partial",
+      "status": "implemented",
       "evidence": [
         "neoforge/src/gameTest/java/ic2/neoforge/test/WorldContentTests.java",
         "docs/migration/world-content.md"
@@ -352,7 +352,7 @@
       "factory": "register",
       "expression": "new ItemBlockIc2(Ic2Blocks.RUBBER_PLANKS, new Properties())",
       "decision": "preserve",
-      "status": "partial",
+      "status": "implemented",
       "evidence": [
         "neoforge/src/gameTest/java/ic2/neoforge/test/WorldContentTests.java",
         "docs/migration/world-content.md"
@@ -367,7 +367,7 @@
       "factory": "register",
       "expression": "new ItemBlockIc2(Ic2Blocks.RUBBER_SAPLING, new Properties())",
       "decision": "preserve",
-      "status": "partial",
+      "status": "implemented",
       "evidence": [
         "neoforge/src/gameTest/java/ic2/neoforge/test/WorldContentTests.java",
         "docs/migration/world-content.md"
@@ -382,7 +382,12 @@
       "factory": "register",
       "expression": "new ItemBlockIc2(Ic2Blocks.RUBBER_BUTTON, new Properties())",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "docs/migration/rubber-building.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/BuildingTests.java"
+      ],
+      "note": "原生木质行为、30 刻非箭触发按钮、双层台阶和门掉落、告示牌双面文字与客户端渲染。"
     },
     {
       "registry": "item",
@@ -392,7 +397,12 @@
       "factory": "register",
       "expression": "new ItemBlockIc2(Ic2Blocks.RUBBER_DOOR, new Properties())",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "docs/migration/rubber-building.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/BuildingTests.java"
+      ],
+      "note": "原生木质行为、30 刻非箭触发按钮、双层台阶和门掉落、告示牌双面文字与客户端渲染。"
     },
     {
       "registry": "item",
@@ -402,7 +412,12 @@
       "factory": "register",
       "expression": "new ItemBlockIc2(Ic2Blocks.RUBBER_FENCE, new Properties())",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "docs/migration/rubber-building.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/BuildingTests.java"
+      ],
+      "note": "原生木质行为、30 刻非箭触发按钮、双层台阶和门掉落、告示牌双面文字与客户端渲染。"
     },
     {
       "registry": "item",
@@ -412,7 +427,12 @@
       "factory": "register",
       "expression": "new ItemBlockIc2(Ic2Blocks.RUBBER_FENCE_GATE, new Properties())",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "docs/migration/rubber-building.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/BuildingTests.java"
+      ],
+      "note": "原生木质行为、30 刻非箭触发按钮、双层台阶和门掉落、告示牌双面文字与客户端渲染。"
     },
     {
       "registry": "item",
@@ -422,7 +442,12 @@
       "factory": "register",
       "expression": "new ItemBlockIc2(Ic2Blocks.RUBBER_PRESSURE_PLATE, new Properties())",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "docs/migration/rubber-building.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/BuildingTests.java"
+      ],
+      "note": "原生木质行为、30 刻非箭触发按钮、双层台阶和门掉落、告示牌双面文字与客户端渲染。"
     },
     {
       "registry": "item",
@@ -432,7 +457,12 @@
       "factory": "register",
       "expression": "new SignItem(new Properties(), Ic2Blocks.RUBBER_SIGN, Ic2Blocks.RUBBER_WALL_SIGN)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "docs/migration/rubber-building.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/BuildingTests.java"
+      ],
+      "note": "原生木质行为、30 刻非箭触发按钮、双层台阶和门掉落、告示牌双面文字与客户端渲染。"
     },
     {
       "registry": "item",
@@ -442,7 +472,12 @@
       "factory": "register",
       "expression": "new ItemBlockIc2(Ic2Blocks.RUBBER_SLAB, new Properties())",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "docs/migration/rubber-building.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/BuildingTests.java"
+      ],
+      "note": "原生木质行为、30 刻非箭触发按钮、双层台阶和门掉落、告示牌双面文字与客户端渲染。"
     },
     {
       "registry": "item",
@@ -452,7 +487,12 @@
       "factory": "register",
       "expression": "new ItemBlockIc2(Ic2Blocks.RUBBER_STAIRS, new Properties())",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "docs/migration/rubber-building.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/BuildingTests.java"
+      ],
+      "note": "原生木质行为、30 刻非箭触发按钮、双层台阶和门掉落、告示牌双面文字与客户端渲染。"
     },
     {
       "registry": "item",
@@ -462,7 +502,12 @@
       "factory": "register",
       "expression": "new ItemBlockIc2(Ic2Blocks.RUBBER_TRAPDOOR, new Properties())",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "docs/migration/rubber-building.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/BuildingTests.java"
+      ],
+      "note": "原生木质行为、30 刻非箭触发按钮、双层台阶和门掉落、告示牌双面文字与客户端渲染。"
     },
     {
       "registry": "item",
@@ -6072,7 +6117,7 @@
       "factory": "register",
       "expression": "new Block(Properties.of().strength(2.0F, 4.0F).requiresCorrectToolForDrops())",
       "decision": "preserve",
-      "status": "partial",
+      "status": "implemented",
       "evidence": [
         "neoforge/src/gameTest/java/ic2/neoforge/test/WorldContentTests.java",
         "docs/migration/world-content.md"
@@ -6087,7 +6132,7 @@
       "factory": "register",
       "expression": "new Block(Properties.of().strength(3.0F, 5.0F).requiresCorrectToolForDrops())",
       "decision": "preserve",
-      "status": "partial",
+      "status": "implemented",
       "evidence": [
         "neoforge/src/gameTest/java/ic2/neoforge/test/WorldContentTests.java",
         "docs/migration/world-content.md"
@@ -6102,7 +6147,7 @@
       "factory": "register",
       "expression": "new Block(Properties.of().strength(4.0F, 6.0F).requiresCorrectToolForDrops())",
       "decision": "preserve",
-      "status": "partial",
+      "status": "implemented",
       "evidence": [
         "neoforge/src/gameTest/java/ic2/neoforge/test/WorldContentTests.java",
         "docs/migration/world-content.md"
@@ -6117,7 +6162,7 @@
       "factory": "register",
       "expression": "new Block(Properties.of().mapColor(MapColor.DEEPSLATE).strength(3.0F, 6.0F).requiresCorrectToolForDrops().sound(SoundType.DEEPSLATE))",
       "decision": "preserve",
-      "status": "partial",
+      "status": "implemented",
       "evidence": [
         "neoforge/src/gameTest/java/ic2/neoforge/test/WorldContentTests.java",
         "docs/migration/world-content.md"
@@ -6132,7 +6177,7 @@
       "factory": "register",
       "expression": "new Block(Properties.of().mapColor(MapColor.DEEPSLATE).strength(4.0F, 7.0F).requiresCorrectToolForDrops().sound(SoundType.DEEPSLATE))",
       "decision": "preserve",
-      "status": "partial",
+      "status": "implemented",
       "evidence": [
         "neoforge/src/gameTest/java/ic2/neoforge/test/WorldContentTests.java",
         "docs/migration/world-content.md"
@@ -6147,7 +6192,7 @@
       "factory": "register",
       "expression": "new Block(Properties.of().mapColor(MapColor.DEEPSLATE).strength(5.0F, 8.0F).requiresCorrectToolForDrops().sound(SoundType.DEEPSLATE))",
       "decision": "preserve",
-      "status": "partial",
+      "status": "implemented",
       "evidence": [
         "neoforge/src/gameTest/java/ic2/neoforge/test/WorldContentTests.java",
         "docs/migration/world-content.md"
@@ -6354,7 +6399,7 @@
       "factory": "register",
       "expression": "new LeavesBlock(Properties.of().strength(0.2F).randomTicks().sound(SoundType.GRASS).noOcclusion().isValidSpawn(Ic2Blocks::canSpawnOnLeaves).isSuffocating(Ic2Blocks::never).isViewBlocking(Ic2Blocks::never))",
       "decision": "preserve",
-      "status": "partial",
+      "status": "implemented",
       "evidence": [
         "neoforge/src/gameTest/java/ic2/neoforge/test/WorldContentTests.java",
         "docs/migration/world-content.md"
@@ -6369,7 +6414,7 @@
       "factory": "register",
       "expression": "new RubberLogBlock(Properties.of().mapColor((state)->state.getValue(RotatedPillarBlock.AXIS) == Axis.Y ? MapColor.PODZOL : MapColor.COLOR_BROWN).randomTicks().strength(2.0F, 3.0F).sound(SoundType.WOOD))",
       "decision": "preserve",
-      "status": "partial",
+      "status": "implemented",
       "evidence": [
         "neoforge/src/gameTest/java/ic2/neoforge/test/WorldContentTests.java",
         "docs/migration/world-content.md"
@@ -6384,7 +6429,7 @@
       "factory": "register",
       "expression": "new RotatedPillarBlock(Properties.of().mapColor((state)->state.getValue(RotatedPillarBlock.AXIS) == Axis.Y ? MapColor.PODZOL : MapColor.COLOR_BROWN).strength(2.0F, 3.0F).sound(SoundType.WOOD))",
       "decision": "preserve",
-      "status": "partial",
+      "status": "implemented",
       "evidence": [
         "neoforge/src/gameTest/java/ic2/neoforge/test/WorldContentTests.java",
         "docs/migration/world-content.md"
@@ -6399,7 +6444,7 @@
       "factory": "register",
       "expression": "new RubberWoodBlock(Properties.of().mapColor(MapColor.COLOR_BROWN).strength(2.0F, 3.0F).sound(SoundType.WOOD))",
       "decision": "preserve",
-      "status": "partial",
+      "status": "implemented",
       "evidence": [
         "neoforge/src/gameTest/java/ic2/neoforge/test/WorldContentTests.java",
         "docs/migration/world-content.md"
@@ -6414,7 +6459,7 @@
       "factory": "register",
       "expression": "new Block(Properties.of().mapColor(MapColor.PODZOL).strength(2.0F, 3.0F).sound(SoundType.WOOD))",
       "decision": "preserve",
-      "status": "partial",
+      "status": "implemented",
       "evidence": [
         "neoforge/src/gameTest/java/ic2/neoforge/test/WorldContentTests.java",
         "docs/migration/world-content.md"
@@ -6429,7 +6474,7 @@
       "factory": "register",
       "expression": "new SaplingBlock(new AbstractTreeGrower(){\n    \n    @Override\n    protected ResourceKey<ConfiguredFeature<?, ?>> getConfiguredFeature(@NotNull\n    RandomSource random, boolean bees) {\n        return ResourceKey.create(Registries.CONFIGURED_FEATURE, IC2.getIdentifier(\"rubber_tree\"));\n    }\n}, Properties.of().noCollission().randomTicks().instabreak().sound(SoundType.GRASS)){\n}",
       "decision": "preserve",
-      "status": "partial",
+      "status": "implemented",
       "evidence": [
         "neoforge/src/gameTest/java/ic2/neoforge/test/WorldContentTests.java",
         "docs/migration/world-content.md"
@@ -6444,7 +6489,7 @@
       "factory": "register",
       "expression": "new Block(Properties.of().mapColor(MapColor.PODZOL).strength(2.0F, 3.0F).sound(SoundType.WOOD))",
       "decision": "preserve",
-      "status": "partial",
+      "status": "implemented",
       "evidence": [
         "neoforge/src/gameTest/java/ic2/neoforge/test/WorldContentTests.java",
         "docs/migration/world-content.md"
@@ -6459,7 +6504,12 @@
       "factory": "register",
       "expression": "new ButtonBlock(Properties.of().noCollission().strength(0.5F).sound(SoundType.WOOD), BlockSetType.OAK, 30, false){\n}",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "docs/migration/rubber-building.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/BuildingTests.java"
+      ],
+      "note": "原生木质行为、30 刻非箭触发按钮、双层台阶和门掉落、告示牌双面文字与客户端渲染。"
     },
     {
       "registry": "block",
@@ -6469,7 +6519,12 @@
       "factory": "register",
       "expression": "new DoorBlock(Properties.of().mapColor(RUBBER_PLANKS.defaultMapColor()).strength(3.0F).sound(SoundType.WOOD).noOcclusion(), BlockSetType.OAK){\n}",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "docs/migration/rubber-building.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/BuildingTests.java"
+      ],
+      "note": "原生木质行为、30 刻非箭触发按钮、双层台阶和门掉落、告示牌双面文字与客户端渲染。"
     },
     {
       "registry": "block",
@@ -6479,7 +6534,12 @@
       "factory": "register",
       "expression": "new FenceBlock(Properties.of().mapColor(RUBBER_PLANKS.defaultMapColor()).strength(2.0F, 3.0F).sound(SoundType.WOOD))",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "docs/migration/rubber-building.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/BuildingTests.java"
+      ],
+      "note": "原生木质行为、30 刻非箭触发按钮、双层台阶和门掉落、告示牌双面文字与客户端渲染。"
     },
     {
       "registry": "block",
@@ -6489,7 +6549,12 @@
       "factory": "register",
       "expression": "new FenceGateBlock(Properties.of().mapColor(RUBBER_PLANKS.defaultMapColor()).strength(2.0F, 3.0F).sound(SoundType.WOOD), WoodType.OAK)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "docs/migration/rubber-building.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/BuildingTests.java"
+      ],
+      "note": "原生木质行为、30 刻非箭触发按钮、双层台阶和门掉落、告示牌双面文字与客户端渲染。"
     },
     {
       "registry": "block",
@@ -6499,7 +6564,12 @@
       "factory": "register",
       "expression": "new PressurePlateBlock(Sensitivity.EVERYTHING, Properties.of().mapColor(RUBBER_PLANKS.defaultMapColor()).noCollission().strength(0.5F).sound(SoundType.WOOD), BlockSetType.OAK){\n}",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "docs/migration/rubber-building.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/BuildingTests.java"
+      ],
+      "note": "原生木质行为、30 刻非箭触发按钮、双层台阶和门掉落、告示牌双面文字与客户端渲染。"
     },
     {
       "registry": "block",
@@ -6509,7 +6579,12 @@
       "factory": "register",
       "expression": "new Ic2SignBlock(Properties.of().mapColor(RUBBER_LOG.defaultMapColor()).noCollission().strength(1.0F).sound(SoundType.WOOD), Ic2SignType.RUBBER)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "docs/migration/rubber-building.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/BuildingTests.java"
+      ],
+      "note": "原生木质行为、30 刻非箭触发按钮、双层台阶和门掉落、告示牌双面文字与客户端渲染。"
     },
     {
       "registry": "block",
@@ -6519,7 +6594,12 @@
       "factory": "register",
       "expression": "new Ic2WallSignBlock(Properties.of().mapColor(RUBBER_LOG.defaultMapColor()).noCollission().strength(1.0F).sound(SoundType.WOOD).lootFrom(ForgeRegistries.BLOCKS.getDelegateOrThrow(RUBBER_SIGN)), Ic2SignType.RUBBER)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "docs/migration/rubber-building.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/BuildingTests.java"
+      ],
+      "note": "原生木质行为、30 刻非箭触发按钮、双层台阶和门掉落、告示牌双面文字与客户端渲染。"
     },
     {
       "registry": "block",
@@ -6529,7 +6609,12 @@
       "factory": "register",
       "expression": "new SlabBlock(Properties.of().mapColor(MapColor.WOOD).strength(2.0F, 3.0F).sound(SoundType.WOOD))",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "docs/migration/rubber-building.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/BuildingTests.java"
+      ],
+      "note": "原生木质行为、30 刻非箭触发按钮、双层台阶和门掉落、告示牌双面文字与客户端渲染。"
     },
     {
       "registry": "block",
@@ -6539,7 +6624,12 @@
       "factory": "register",
       "expression": "new StairBlock(RUBBER_PLANKS::defaultBlockState, Properties.of().mapColor(MapColor.PODZOL).strength(2.0F, 3.0F).sound(SoundType.WOOD)){\n}",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "docs/migration/rubber-building.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/BuildingTests.java"
+      ],
+      "note": "原生木质行为、30 刻非箭触发按钮、双层台阶和门掉落、告示牌双面文字与客户端渲染。"
     },
     {
       "registry": "block",
@@ -6549,7 +6639,12 @@
       "factory": "register",
       "expression": "new TrapDoorBlock(Properties.of().mapColor(MapColor.PODZOL).strength(3.0F).sound(SoundType.WOOD).noOcclusion().isValidSpawn(Ic2Blocks::never), BlockSetType.OAK){\n}",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "docs/migration/rubber-building.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/BuildingTests.java"
+      ],
+      "note": "原生木质行为、30 刻非箭触发按钮、双层台阶和门掉落、告示牌双面文字与客户端渲染。"
     },
     {
       "registry": "block",
@@ -8776,7 +8871,12 @@
       "factory": "register",
       "expression": "Ic2SignBlockEntity::new",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "docs/migration/rubber-building.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/BuildingTests.java"
+      ],
+      "note": "原生木质行为、30 刻非箭触发按钮、双层台阶和门掉落、告示牌双面文字与客户端渲染。"
     },
     {
       "registry": "block_entity",
@@ -13878,7 +13978,7 @@
       "factory": "data pack",
       "expression": "minecraft:ore",
       "decision": "preserve",
-      "status": "partial",
+      "status": "implemented",
       "evidence": [
         "neoforge/src/gameTest/java/ic2/neoforge/test/WorldContentTests.java",
         "docs/migration/world-content.md"
@@ -13893,7 +13993,7 @@
       "factory": "data pack",
       "expression": "minecraft:tree",
       "decision": "preserve",
-      "status": "partial",
+      "status": "implemented",
       "evidence": [
         "neoforge/src/gameTest/java/ic2/neoforge/test/WorldContentTests.java",
         "docs/migration/world-content.md"
@@ -13908,7 +14008,7 @@
       "factory": "data pack",
       "expression": "minecraft:ore",
       "decision": "preserve",
-      "status": "partial",
+      "status": "implemented",
       "evidence": [
         "neoforge/src/gameTest/java/ic2/neoforge/test/WorldContentTests.java",
         "docs/migration/world-content.md"
@@ -13923,7 +14023,7 @@
       "factory": "data pack",
       "expression": "minecraft:ore",
       "decision": "preserve",
-      "status": "partial",
+      "status": "implemented",
       "evidence": [
         "neoforge/src/gameTest/java/ic2/neoforge/test/WorldContentTests.java",
         "docs/migration/world-content.md"
@@ -13938,7 +14038,7 @@
       "factory": "data pack",
       "expression": "minecraft:ore",
       "decision": "preserve",
-      "status": "partial",
+      "status": "implemented",
       "evidence": [
         "neoforge/src/gameTest/java/ic2/neoforge/test/WorldContentTests.java",
         "docs/migration/world-content.md"
@@ -13953,7 +14053,7 @@
       "factory": "data pack",
       "expression": "minecraft:ore",
       "decision": "preserve",
-      "status": "partial",
+      "status": "implemented",
       "evidence": [
         "neoforge/src/gameTest/java/ic2/neoforge/test/WorldContentTests.java",
         "docs/migration/world-content.md"
@@ -13968,7 +14068,7 @@
       "factory": "data pack",
       "expression": "minecraft:ore",
       "decision": "preserve",
-      "status": "partial",
+      "status": "implemented",
       "evidence": [
         "neoforge/src/gameTest/java/ic2/neoforge/test/WorldContentTests.java",
         "docs/migration/world-content.md"
@@ -13983,7 +14083,7 @@
       "factory": "data pack",
       "expression": "worldgen/placed_feature",
       "decision": "preserve",
-      "status": "partial",
+      "status": "implemented",
       "evidence": [
         "neoforge/src/gameTest/java/ic2/neoforge/test/WorldContentTests.java",
         "docs/migration/world-content.md"
@@ -13998,7 +14098,7 @@
       "factory": "data pack",
       "expression": "worldgen/placed_feature",
       "decision": "preserve",
-      "status": "partial",
+      "status": "implemented",
       "evidence": [
         "neoforge/src/gameTest/java/ic2/neoforge/test/WorldContentTests.java",
         "docs/migration/world-content.md"
@@ -14013,7 +14113,7 @@
       "factory": "data pack",
       "expression": "worldgen/placed_feature",
       "decision": "preserve",
-      "status": "partial",
+      "status": "implemented",
       "evidence": [
         "neoforge/src/gameTest/java/ic2/neoforge/test/WorldContentTests.java",
         "docs/migration/world-content.md"
@@ -14028,7 +14128,7 @@
       "factory": "data pack",
       "expression": "worldgen/placed_feature",
       "decision": "preserve",
-      "status": "partial",
+      "status": "implemented",
       "evidence": [
         "neoforge/src/gameTest/java/ic2/neoforge/test/WorldContentTests.java",
         "docs/migration/world-content.md"
@@ -14043,7 +14143,7 @@
       "factory": "data pack",
       "expression": "worldgen/placed_feature",
       "decision": "preserve",
-      "status": "partial",
+      "status": "implemented",
       "evidence": [
         "neoforge/src/gameTest/java/ic2/neoforge/test/WorldContentTests.java",
         "docs/migration/world-content.md"
@@ -14058,7 +14158,7 @@
       "factory": "data pack",
       "expression": "worldgen/placed_feature",
       "decision": "preserve",
-      "status": "partial",
+      "status": "implemented",
       "evidence": [
         "neoforge/src/gameTest/java/ic2/neoforge/test/WorldContentTests.java",
         "docs/migration/world-content.md"
@@ -14073,7 +14173,7 @@
       "factory": "data pack",
       "expression": "worldgen/placed_feature",
       "decision": "preserve",
-      "status": "partial",
+      "status": "implemented",
       "evidence": [
         "neoforge/src/gameTest/java/ic2/neoforge/test/WorldContentTests.java",
         "docs/migration/world-content.md"
@@ -14088,7 +14188,7 @@
       "factory": "data pack",
       "expression": "worldgen/placed_feature",
       "decision": "preserve",
-      "status": "partial",
+      "status": "implemented",
       "evidence": [
         "neoforge/src/gameTest/java/ic2/neoforge/test/WorldContentTests.java",
         "docs/migration/world-content.md"
@@ -14103,7 +14203,7 @@
       "factory": "data pack",
       "expression": "worldgen/placed_feature",
       "decision": "preserve",
-      "status": "partial",
+      "status": "implemented",
       "evidence": [
         "neoforge/src/gameTest/java/ic2/neoforge/test/WorldContentTests.java",
         "docs/migration/world-content.md"
@@ -14118,7 +14218,7 @@
       "factory": "data pack",
       "expression": "worldgen/placed_feature",
       "decision": "preserve",
-      "status": "partial",
+      "status": "implemented",
       "evidence": [
         "neoforge/src/gameTest/java/ic2/neoforge/test/WorldContentTests.java",
         "docs/migration/world-content.md"
@@ -14133,7 +14233,7 @@
       "factory": "data pack",
       "expression": "forge:add_features",
       "decision": "preserve",
-      "status": "partial",
+      "status": "implemented",
       "evidence": [
         "neoforge/src/gameTest/java/ic2/neoforge/test/WorldContentTests.java",
         "docs/migration/world-content.md"
@@ -14148,7 +14248,7 @@
       "factory": "data pack",
       "expression": "forge:add_features",
       "decision": "preserve",
-      "status": "partial",
+      "status": "implemented",
       "evidence": [
         "neoforge/src/gameTest/java/ic2/neoforge/test/WorldContentTests.java",
         "docs/migration/world-content.md"
@@ -14163,7 +14263,7 @@
       "factory": "data pack",
       "expression": "forge:add_features",
       "decision": "preserve",
-      "status": "partial",
+      "status": "implemented",
       "evidence": [
         "neoforge/src/gameTest/java/ic2/neoforge/test/WorldContentTests.java",
         "docs/migration/world-content.md"
@@ -14178,7 +14278,7 @@
       "factory": "data pack",
       "expression": "forge:add_features",
       "decision": "preserve",
-      "status": "partial",
+      "status": "implemented",
       "evidence": [
         "neoforge/src/gameTest/java/ic2/neoforge/test/WorldContentTests.java",
         "docs/migration/world-content.md"
