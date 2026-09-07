@@ -4,7 +4,8 @@ import ic2.api.network.INetworkClientTileEntityEventListener;
 import ic2.api.recipe.IPatternStorage;
 import ic2.core.ContainerBase;
 import ic2.core.IHasGui;
-import ic2.core.block.invslot.InvSlot;
+import ic2.core.block.invslot.InvSlot.Access;
+import ic2.core.block.invslot.InvSlot.InvSide;
 import ic2.core.block.invslot.InvSlotConsumableId;
 import ic2.core.block.machine.container.ContainerPatternStorage;
 import ic2.core.block.tileentity.Ic2TileEntityBlock;
@@ -17,9 +18,6 @@ import ic2.core.ref.Ic2Items;
 import ic2.core.util.StackUtil;
 import ic2.core.uu.UuIndex;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
@@ -30,202 +28,179 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.state.BlockState;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @NotClassic
-public class TileEntityPatternStorage extends TileEntityInventory implements IHasGui, INetworkClientTileEntityEventListener, IPatternStorage
-{
-	public final InvSlotConsumableId diskSlot;
-	private final List<ItemStack> patterns = new ArrayList<>();
-	public int index = 0;
-	public int maxIndex;
-	public ItemStack pattern;
-	public double patternUu;
-	public double patternEu;
+public class TileEntityPatternStorage extends TileEntityInventory
+        implements IHasGui, INetworkClientTileEntityEventListener, IPatternStorage {
+    public final InvSlotConsumableId diskSlot;
+    private final List<ItemStack> patterns = new ArrayList<>();
+    public int index = 0;
+    public int maxIndex;
+    public ItemStack pattern;
+    public double patternUu;
+    public double patternEu;
 
-	public TileEntityPatternStorage(BlockPos pos, BlockState state)
-	{
-		super(Ic2BlockEntities.PATTERN_STORAGE, pos, state);
-		this.diskSlot = new InvSlotConsumableId(this, "SaveSlot", InvSlot.Access.IO, 1, InvSlot.InvSide.ANY, Ic2Items.CRYSTAL_MEMORY);
-	}
+    public TileEntityPatternStorage(BlockPos pos, BlockState state) {
+        super(Ic2BlockEntities.PATTERN_STORAGE, pos, state);
+        this.diskSlot =
+                new InvSlotConsumableId(
+                        this, "SaveSlot", Access.IO, 1, InvSide.ANY, Ic2Items.CRYSTAL_MEMORY);
+    }
 
-	@Override
-	public void load(CompoundTag nbt)
-	{
-		super.load(nbt);
-		this.readContents(nbt);
-	}
+    @Override
+    public void load(CompoundTag nbt) {
+        super.load(nbt);
+        this.readContents(nbt);
+    }
 
-	@Override
-	public void saveAdditional(CompoundTag nbt)
-	{
-		super.saveAdditional(nbt);
-		this.writeContentsAsNbtList(nbt);
-	}
+    @Override
+    public void saveAdditional(CompoundTag nbt) {
+        super.saveAdditional(nbt);
+        this.writeContentsAsNbtList(nbt);
+    }
 
-	@Override
-	public void onPlaced(ItemStack stack, LivingEntity placer, Direction facing)
-	{
-		super.onPlaced(stack, placer, facing);
-		if (!this.getLevel().isClientSide)
-		{
-			CompoundTag nbt = StackUtil.getOrCreateNbtData(stack);
-			this.readContents(nbt);
-		}
-	}
+    @Override
+    public void onPlaced(ItemStack stack, LivingEntity placer, Direction facing) {
+        super.onPlaced(stack, placer, facing);
+        if (!this.getLevel().isClientSide) {
+            CompoundTag nbt = StackUtil.getOrCreateNbtData(stack);
+            this.readContents(nbt);
+        }
+    }
 
-	@Override
-	public ItemStack adjustDrop(ItemStack drop, boolean wrench)
-	{
-		drop = super.adjustDrop(drop, wrench);
-		if (wrench || this.teBlock.getDefaultDrop() == Ic2TileEntityBlock.DefaultDrop.Self)
-		{
-			CompoundTag nbt = StackUtil.getOrCreateNbtData(drop);
-			this.writeContentsAsNbtList(nbt);
-		}
+    @Override
+    public ItemStack adjustDrop(ItemStack drop, boolean wrench) {
+        drop = super.adjustDrop(drop, wrench);
+        if (wrench || this.teBlock.getDefaultDrop() == Ic2TileEntityBlock.DefaultDrop.Self) {
+            CompoundTag nbt = StackUtil.getOrCreateNbtData(drop);
+            this.writeContentsAsNbtList(nbt);
+        }
 
-		return drop;
-	}
+        return drop;
+    }
 
-	public void readContents(CompoundTag nbt)
-	{
-		ListTag patternList = nbt.getList("patterns", 10);
+    public void readContents(CompoundTag nbt) {
+        ListTag patternList = nbt.getList("patterns", 10);
 
-		for (int i = 0; i < patternList.size(); i++)
-		{
-			CompoundTag contentTag = patternList.getCompound(i);
-			ItemStack Item = ItemStack.of(contentTag);
-			this.addPattern(Item);
-		}
+        for (int i = 0; i < patternList.size(); i++) {
+            CompoundTag contentTag = patternList.getCompound(i);
+            ItemStack Item = ItemStack.of(contentTag);
+            this.addPattern(Item);
+        }
 
-		this.refreshInfo();
-	}
+        this.refreshInfo();
+    }
 
-	private void writeContentsAsNbtList(CompoundTag nbt)
-	{
-		ListTag list = new ListTag();
+    private void writeContentsAsNbtList(CompoundTag nbt) {
+        ListTag list = new ListTag();
 
-		for (ItemStack stack : this.patterns)
-		{
-			CompoundTag contentTag = new CompoundTag();
-			stack.save(contentTag);
-			list.add(contentTag);
-		}
+        for (ItemStack stack : this.patterns) {
+            CompoundTag contentTag = new CompoundTag();
+            stack.save(contentTag);
+            list.add(contentTag);
+        }
 
-		nbt.put("patterns", list);
-	}
+        nbt.put("patterns", list);
+    }
 
-	@Override
-	public ContainerBase<?> createServerScreenHandler(int syncId, Player player)
-	{
-		return new ContainerPatternStorage(syncId, player.getInventory(), this);
-	}
+    @Override
+    public ContainerBase<?> createServerScreenHandler(int syncId, Player player) {
+        return new ContainerPatternStorage(syncId, player.getInventory(), this);
+    }
 
-	@Override
-	public ContainerBase<?> createClientScreenHandler(int syncId, Inventory inventory, GrowingBuffer data)
-	{
-		return new ContainerPatternStorage(syncId, inventory, this);
-	}
+    @Override
+    public ContainerBase<?> createClientScreenHandler(
+            int syncId, Inventory inventory, GrowingBuffer data) {
+        return new ContainerPatternStorage(syncId, inventory, this);
+    }
 
-	@Override
-	public void onNetworkEvent(Player player, int event)
-	{
-		switch (event)
-		{
-			case 0:
-				if (!this.patterns.isEmpty())
-				{
-					if (this.index <= 0)
-					{
-						this.index = this.patterns.size() - 1;
-					} else
-					{
-						this.index--;
-					}
+    @Override
+    public void onNetworkEvent(Player player, int event) {
+        switch (event) {
+            case 0:
+                if (!this.patterns.isEmpty()) {
+                    if (this.index <= 0) {
+                        this.index = this.patterns.size() - 1;
+                    } else {
+                        this.index--;
+                    }
 
-					this.refreshInfo();
-				}
-				break;
-			case 1:
-				if (!this.patterns.isEmpty())
-				{
-					if (this.index >= this.patterns.size() - 1)
-					{
-						this.index = 0;
-					} else
-					{
-						this.index++;
-					}
+                    this.refreshInfo();
+                }
+                break;
+            case 1:
+                if (!this.patterns.isEmpty()) {
+                    if (this.index >= this.patterns.size() - 1) {
+                        this.index = 0;
+                    } else {
+                        this.index++;
+                    }
 
-					this.refreshInfo();
-				}
-				break;
-			case 2:
-				if (this.index >= 0 && this.index < this.patterns.size() && !this.diskSlot.isEmpty())
-				{
-					ItemStack crystalMemory = this.diskSlot.get();
-					if (crystalMemory.getItem() instanceof ItemCrystalMemory)
-					{
-						((ItemCrystalMemory) crystalMemory.getItem()).writeContentsTag(crystalMemory, this.patterns.get(this.index));
-					}
-				}
-				break;
-			case 3:
-				if (!this.diskSlot.isEmpty())
-				{
-					ItemStack crystalMemory = this.diskSlot.get();
-					if (crystalMemory.getItem() instanceof ItemCrystalMemory)
-					{
-						ItemStack record = ((ItemCrystalMemory) crystalMemory.getItem()).readItemStack(crystalMemory);
-						if (record != null)
-						{
-							this.addPattern(record);
-						}
-					}
-				}
-		}
-	}
+                    this.refreshInfo();
+                }
+                break;
+            case 2:
+                if (this.index >= 0
+                        && this.index < this.patterns.size()
+                        && !this.diskSlot.isEmpty()) {
+                    ItemStack crystalMemory = this.diskSlot.get();
+                    if (crystalMemory.getItem() instanceof ItemCrystalMemory) {
+                        ((ItemCrystalMemory) crystalMemory.getItem())
+                                .writeContentsTag(crystalMemory, this.patterns.get(this.index));
+                    }
+                }
+                break;
+            case 3:
+                if (!this.diskSlot.isEmpty()) {
+                    ItemStack crystalMemory = this.diskSlot.get();
+                    if (crystalMemory.getItem() instanceof ItemCrystalMemory) {
+                        ItemStack record =
+                                ((ItemCrystalMemory) crystalMemory.getItem())
+                                        .readItemStack(crystalMemory);
+                        if (record != null) {
+                            this.addPattern(record);
+                        }
+                    }
+                }
+        }
+    }
 
-	public void refreshInfo()
-	{
-		if (this.index < 0 || this.index >= this.patterns.size())
-		{
-			this.index = 0;
-		}
+    public void refreshInfo() {
+        if (this.index < 0 || this.index >= this.patterns.size()) {
+            this.index = 0;
+        }
 
-		this.maxIndex = this.patterns.size();
-		if (this.patterns.isEmpty())
-		{
-			this.pattern = null;
-		} else
-		{
-			this.pattern = this.patterns.get(this.index);
-			this.patternUu = UuIndex.instance.getInBuckets(this.pattern);
-		}
-	}
+        this.maxIndex = this.patterns.size();
+        if (this.patterns.isEmpty()) {
+            this.pattern = null;
+        } else {
+            this.pattern = this.patterns.get(this.index);
+            this.patternUu = UuIndex.instance.getInBuckets(this.pattern);
+            this.patternEu = UuIndex.instance.getReplicationEu(this.pattern);
+        }
+    }
 
-	@Override
-	public boolean addPattern(ItemStack stack)
-	{
-		if (StackUtil.isEmpty(stack))
-		{
-			throw new IllegalArgumentException("empty stack: " + StackUtil.toStringSafe(stack));
-		}
+    @Override
+    public boolean addPattern(ItemStack stack) {
+        if (StackUtil.isEmpty(stack)) {
+            throw new IllegalArgumentException("empty stack: " + StackUtil.toStringSafe(stack));
+        }
 
-		for (ItemStack pattern : this.patterns)
-		{
-			if (StackUtil.checkItemEquality(pattern, stack))
-			{
-				return false;
-			}
-		}
+        for (ItemStack pattern : this.patterns) {
+            if (StackUtil.checkItemEquality(pattern, stack)) {
+                return false;
+            }
+        }
 
-		this.patterns.add(stack);
-		this.refreshInfo();
-		return true;
-	}
+        this.patterns.add(stack);
+        this.refreshInfo();
+        return true;
+    }
 
-	@Override
-	public List<ItemStack> getPatterns()
-	{
-		return this.patterns;
-	}
+    @Override
+    public List<ItemStack> getPatterns() {
+        return this.patterns;
+    }
 }

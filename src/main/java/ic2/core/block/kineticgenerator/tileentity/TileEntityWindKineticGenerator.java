@@ -1,11 +1,13 @@
 package ic2.core.block.kineticgenerator.tileentity;
 
 import ic2.api.item.IKineticRotor;
+import ic2.api.item.IKineticRotor.GearboxType;
 import ic2.api.tile.IRotorProvider;
 import ic2.core.ContainerBase;
 import ic2.core.IC2;
 import ic2.core.IHasGui;
-import ic2.core.block.invslot.InvSlot;
+import ic2.core.block.invslot.InvSlot.Access;
+import ic2.core.block.invslot.InvSlot.InvSide;
 import ic2.core.block.invslot.InvSlotConsumableClass;
 import ic2.core.block.invslot.InvSlotConsumableKineticRotor;
 import ic2.core.block.kineticgenerator.container.ContainerWindKineticGenerator;
@@ -17,12 +19,11 @@ import ic2.core.ref.Ic2BlockEntities;
 import ic2.core.util.StackUtil;
 import ic2.core.util.Util;
 
-import java.util.List;
-
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
 import net.minecraft.core.BlockPos.MutableBlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.core.Direction.Axis;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
@@ -30,296 +31,334 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.PathNavigationRegion;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
+
+import java.util.List;
 
 @NotClassic
-public class TileEntityWindKineticGenerator extends TileEntityAbstractKineticGenerator implements IRotorProvider, IHasGui
-{
-	public static final float outputModifier = 10.0F * IC2Config.balance.energy.kineticGenerator.wind.get().floatValue();
-	private static final ResourceLocation woodenRotorTexture = ResourceLocation.fromNamespaceAndPath("ic2", "textures/item/rotor/wood_rotor_model.png");
-	public final InvSlotConsumableClass rotorSlot;
-	private double windStrength;
-	private int obstructedCrossSection;
-	private int crossSection;
-	private float rotationSpeed;
-	private float angle = 0.0F;
-	private long lastCheck;
+public class TileEntityWindKineticGenerator extends TileEntityAbstractKineticGenerator
+        implements IRotorProvider, IHasGui {
+    public static final float outputModifier =
+            10.0F * IC2Config.balance.energy.kineticGenerator.wind.get().floatValue();
+    private static final ResourceLocation woodenRotorTexture =
+            ResourceLocation.fromNamespaceAndPath(
+                    "ic2", "textures/item/rotor/wood_rotor_model.png");
+    public final InvSlotConsumableClass rotorSlot;
+    private double windStrength;
+    private int obstructedCrossSection;
+    private int crossSection;
+    private float rotationSpeed;
+    private float angle = 0.0F;
 
-	public TileEntityWindKineticGenerator(BlockPos pos, BlockState state)
-	{
-		super(Ic2BlockEntities.WIND_KINETIC_GENERATOR, pos, state);
-		this.updateTicker = IC2.random.nextInt(this.getTickRate());
-		this.rotorSlot = new InvSlotConsumableKineticRotor(this, "rotorslot", InvSlot.Access.IO, 1, InvSlot.InvSide.ANY, IKineticRotor.GearboxType.WIND, "rotorSlot");
-	}
+    public TileEntityWindKineticGenerator(BlockPos pos, BlockState state) {
+        super(Ic2BlockEntities.WIND_KINETIC_GENERATOR, pos, state);
+        this.updateTicker = IC2.random.nextInt(this.getTickRate());
+        this.rotorSlot =
+                new InvSlotConsumableKineticRotor(
+                        this,
+                        "rotorslot",
+                        Access.IO,
+                        1,
+                        InvSide.ANY,
+                        GearboxType.WIND,
+                        "rotorSlot");
+    }
 
-	@Override
-	protected void updateEntityServer()
-	{
-		super.updateEntityServer();
-		if (this.updateTicker++ % this.getTickRate() == 0)
-		{
-			boolean needsInvUpdate = false;
-			boolean nextActive = this.hasRotor() && this.rotorHasSpace();
+    @Override
+    public void load(CompoundTag nbt) {
+        super.load(nbt);
+        this.rotationSpeed = nbt.getFloat("rotationSpeed");
+    }
 
-			if (nextActive != this.getActive())
-			{
-				needsInvUpdate = true;
-			}
+    @Override
+    public void saveAdditional(CompoundTag nbt) {
+        super.saveAdditional(nbt);
+        nbt.putFloat("rotationSpeed", this.rotationSpeed);
+    }
 
-			if (nextActive)
-			{
-				this.crossSection = Util.square(this.getRotorDiameter() / 2 * 2 * 2 + 1);
-				this.obstructedCrossSection = this.checkSpace(this.getRotorDiameter() * 3, false);
-				if (this.obstructedCrossSection > 0 && this.obstructedCrossSection <= (this.getRotorDiameter() + 1) / 2)
-				{
-					this.obstructedCrossSection = 0;
-				}
+    @Override
+    protected void onLoaded() {
+        super.onLoaded();
+        if (this.getLevel() != null && !this.getLevel().isClientSide) {
+            IC2.network.get(true).updateTileEntityField(this, "rotationSpeed");
+            IC2.network.get(true).updateTileEntityField(this, "rotorSlot");
+        }
+    }
 
-				if (this.obstructedCrossSection < 0)
-				{
-					this.windStrength = 0.0;
-					this.setRotationSpeed(0.0F);
-				} else
-				{
-					this.windStrength = this.calcWindStrength();
-					float speed = (float) Util.limit((this.windStrength - this.getMinWindStrength()) / this.getMaxWindStrength(), 0.0, 2.0);
-					this.setRotationSpeed(speed);
-					if (this.windStrength >= this.getMinWindStrength())
-					{
-						if (this.windStrength <= this.getMaxWindStrength())
-						{
-							this.rotorSlot.damage(1, false);
-						} else
-						{
-							this.rotorSlot.damage(4, false);
-						}
+    @Override
+    protected void updateEntityServer() {
+        super.updateEntityServer();
+        if (this.updateTicker++ % this.getTickRate() == 0) {
+            boolean needsInvUpdate = false;
+            boolean nextActive = this.hasRotor() && this.rotorHasSpace();
+            if (nextActive != this.getActive()) {
+                needsInvUpdate = true;
+            }
 
-						needsInvUpdate = true;
-					}
-				}
-			} else
-			{
-				this.windStrength = 0.0;
-				this.setRotationSpeed(0.0F);
-			}
+            if (nextActive) {
+                this.crossSection = Util.square(this.getRotorDiameter() / 2 * 2 * 2 + 1);
+                this.obstructedCrossSection = this.checkSpace(this.getRotorDiameter() * 3, false);
+                if (this.obstructedCrossSection > 0
+                        && this.obstructedCrossSection <= (this.getRotorDiameter() + 1) / 2) {
+                    this.obstructedCrossSection = 0;
+                }
 
-			this.setActive(nextActive);
+                if (this.obstructedCrossSection < 0) {
+                    this.windStrength = 0.0;
+                    this.setRotationSpeed(0.0F);
+                } else {
+                    this.windStrength = this.calcWindStrength();
+                    float speed =
+                            (float)
+                                    Util.limit(
+                                            (this.windStrength - this.getMinWindStrength())
+                                                    / this.getMaxWindStrength(),
+                                            0.0,
+                                            2.0);
+                    this.setRotationSpeed(speed);
+                    if (this.windStrength >= this.getMinWindStrength()) {
+                        if (this.windStrength <= this.getMaxWindStrength()) {
+                            this.rotorSlot.damage(1, false);
+                        } else {
+                            this.rotorSlot.damage(4, false);
+                        }
 
-			if (needsInvUpdate)
-			{
-				this.setChanged();
-			}
-		}
-	}
+                        needsInvUpdate = true;
+                    }
+                }
+            } else {
+                this.windStrength = 0.0;
+                this.setRotationSpeed(0.0F);
+            }
 
-	@Override
-	public List<String> getNetworkedFields()
-	{
-		List<String> ret = super.getNetworkedFields();
-		ret.add("rotationSpeed");
-		ret.add("rotorSlot");
-		return ret;
-	}
+            this.setActive(nextActive);
+            if (needsInvUpdate) {
+                this.setChanged();
+            }
+        }
+    }
 
-	@Override
-	public ContainerBase<TileEntityWindKineticGenerator> createServerScreenHandler(int syncId, Player player)
-	{
-		return new ContainerWindKineticGenerator(syncId, player.getInventory(), this);
-	}
+    @Override
+    public List<String> getNetworkedFields() {
+        List<String> ret = super.getNetworkedFields();
+        ret.add("rotationSpeed");
+        ret.add("rotorSlot");
+        return ret;
+    }
 
-	@Override
-	public ContainerBase<?> createClientScreenHandler(int syncId, Inventory inventory, GrowingBuffer data)
-	{
-		return new ContainerWindKineticGenerator(syncId, inventory, this);
-	}
+    @Override
+    public ContainerBase<TileEntityWindKineticGenerator> createServerScreenHandler(
+            int syncId, Player player) {
+        return new ContainerWindKineticGenerator(syncId, player.getInventory(), this);
+    }
 
-	public boolean facingMatchesDirection(Direction direction)
-	{
-		return direction == this.getFacing();
-	}
+    @Override
+    public ContainerBase<?> createClientScreenHandler(
+            int syncId, Inventory inventory, GrowingBuffer data) {
+        return new ContainerWindKineticGenerator(syncId, inventory, this);
+    }
 
-	public String getRotorHealth()
-	{
-		return !this.rotorSlot.isEmpty() ? Component.translatable("ic2.wind_kinetic_generator.gui.rotorhealth", (int) (100.0F - (float) this.rotorSlot.get().getDamageValue() / this.rotorSlot.get().getMaxDamage() * 100.0F), "%").getString() : "";
-	}
+    public boolean facingMatchesDirection(Direction direction) {
+        return direction == this.getFacing();
+    }
 
-	@Override
-	public int getConnectionBandwidth(Direction side)
-	{
-		return this.facingMatchesDirection(side.getOpposite()) ? this.getKuOutput() : 0;
-	}
+    public String getRotorHealth() {
+        return !this.rotorSlot.isEmpty()
+                ? Component.translatable(
+                                "ic2.wind_kinetic_generator.gui.rotorhealth",
+                                (int)
+                                        (100.0F
+                                                - (float) this.rotorSlot.get().getDamageValue()
+                                                        / this.rotorSlot.get().getMaxDamage()
+                                                        * 100.0F),
+                                "%")
+                        .getString()
+                : "";
+    }
 
-	@Override
-	public int drawKineticEnergy(Direction side, int request, boolean simulate)
-	{
-		return this.facingMatchesDirection(side.getOpposite()) ? Math.min(request, this.getKuOutput()) : 0;
-	}
+    @Override
+    public int getConnectionBandwidth(Direction side) {
+        return this.facingMatchesDirection(side.getOpposite()) ? this.getKuOutput() : 0;
+    }
 
-	public int checkSpace(int length, boolean onlyRotor)
-	{
-		int box = this.getRotorDiameter() / 2;
-		int lentemp = 0;
-		if (onlyRotor)
-		{
-			length = 1;
-			lentemp = length + 1;
-		}
+    @Override
+    public int drawKineticEnergy(Direction side, int request, boolean simulate) {
+        return this.facingMatchesDirection(side.getOpposite())
+                ? Math.min(request, this.getKuOutput())
+                : 0;
+    }
 
-		if (!onlyRotor)
-		{
-			box *= 2;
-		}
+    public int checkSpace(int length, boolean onlyRotor) {
+        int box = this.getRotorDiameter() / 2;
+        int lentemp = 0;
+        if (onlyRotor) {
+            length = 1;
+            lentemp = length + 1;
+        }
 
-		Direction fwdDir = this.getFacing();
-		Direction rightDir = fwdDir.getClockWise(Axis.Y);
-		int xMaxDist = Math.abs(length * fwdDir.getStepX() + box * rightDir.getStepX());
-		int zMaxDist = Math.abs(length * fwdDir.getStepZ() + box * rightDir.getStepZ());
-		PathNavigationRegion chunkCache = new PathNavigationRegion(this.getLevel(), this.worldPosition.offset(-xMaxDist, -box, -zMaxDist), this.worldPosition.offset(xMaxDist, box, zMaxDist));
-		int ret = 0;
-		int xCord = this.worldPosition.getX();
-		int yCord = this.worldPosition.getY();
-		int zCord = this.worldPosition.getZ();
-		MutableBlockPos pos = new MutableBlockPos();
+        if (!onlyRotor) {
+            box *= 2;
+        }
 
-		for (int up = -box; up <= box; up++)
-		{
-			int y = yCord + up;
+        Direction fwdDir = this.getFacing();
+        Direction rightDir = fwdDir.getClockWise(Axis.Y);
+        int xMaxDist = Math.abs(length * fwdDir.getStepX() + box * rightDir.getStepX());
+        int zMaxDist = Math.abs(length * fwdDir.getStepZ() + box * rightDir.getStepZ());
+        PathNavigationRegion chunkCache =
+                new PathNavigationRegion(
+                        this.getLevel(),
+                        this.worldPosition.offset(-xMaxDist, -box, -zMaxDist),
+                        this.worldPosition.offset(xMaxDist, box, zMaxDist));
+        int ret = 0;
+        int xCord = this.worldPosition.getX();
+        int yCord = this.worldPosition.getY();
+        int zCord = this.worldPosition.getZ();
+        MutableBlockPos pos = new MutableBlockPos();
 
-			for (int right = -box; right <= box; right++)
-			{
-				boolean occupied = false;
+        for (int up = -box; up <= box; up++) {
+            int y = yCord + up;
 
-				for (int fwd = lentemp - length; fwd <= length; fwd++)
-				{
-					int x = xCord + fwd * fwdDir.getStepX() + right * rightDir.getStepX();
-					int z = zCord + fwd * fwdDir.getStepZ() + right * rightDir.getStepZ();
-					pos.set(x, y, z);
-					assert Math.abs(x - xCord) <= xMaxDist;
-					assert Math.abs(z - zCord) <= zMaxDist;
-					BlockState state = chunkCache.getBlockState(pos);
-					if (!state.isAir())
-					{
-						occupied = true;
-						if ((up != 0 || right != 0 || fwd != 0) && chunkCache.getBlockEntity(pos) instanceof TileEntityWindKineticGenerator && !onlyRotor)
-						{
-							return -1;
-						}
-					}
-				}
+            for (int right = -box; right <= box; right++) {
+                boolean occupied = false;
 
-				if (occupied)
-				{
-					ret++;
-				}
-			}
-		}
+                for (int fwd = lentemp - length; fwd <= length; fwd++) {
+                    int x = xCord + fwd * fwdDir.getStepX() + right * rightDir.getStepX();
+                    int z = zCord + fwd * fwdDir.getStepZ() + right * rightDir.getStepZ();
+                    pos.set(x, y, z);
+                    assert Math.abs(x - xCord) <= xMaxDist;
+                    assert Math.abs(z - zCord) <= zMaxDist;
+                    BlockState state = chunkCache.getBlockState(pos);
+                    if (!state.isAir()) {
+                        occupied = true;
+                        if ((up != 0 || right != 0 || fwd != 0)
+                                && chunkCache.getBlockEntity(pos)
+                                        instanceof TileEntityWindKineticGenerator
+                                && !onlyRotor) {
+                            return -1;
+                        }
+                    }
+                }
 
-		return ret;
-	}
+                if (occupied) {
+                    ret++;
+                }
+            }
+        }
 
-	public boolean hasRotor()
-	{
-		return !this.rotorSlot.isEmpty();
-	}
+        return ret;
+    }
 
-	public boolean rotorHasSpace()
-	{
-		return this.checkSpace(1, true) == 0;
-	}
+    public boolean hasRotor() {
+        return !this.rotorSlot.isEmpty();
+    }
 
-	private void setRotationSpeed(float speed)
-	{
-		if (this.rotationSpeed != speed)
-		{
-			this.rotationSpeed = speed;
-			IC2.network.get(true).updateTileEntityField(this, "rotationSpeed");
-		}
-	}
+    public boolean rotorHasSpace() {
+        return this.checkSpace(1, true) == 0;
+    }
 
-	public int getTickRate()
-	{
-		return 32;
-	}
+    private void setRotationSpeed(float speed) {
+        if (this.rotationSpeed != speed) {
+            this.rotationSpeed = speed;
+            IC2.network.get(true).updateTileEntityField(this, "rotationSpeed");
+        }
+    }
 
-	public double calcWindStrength()
-	{
-		double windStr = WorldData.get(this.getLevel()).windSim.getWindAt(this.worldPosition.getY());
-		windStr *= 1.0 - Math.pow((double) this.obstructedCrossSection / this.crossSection, 2.0);
-		return Math.max(0.0, windStr);
-	}
+    @Override
+    public int getTickRate() {
+        return 32;
+    }
 
-	@Override
-	public float getAngle()
-	{
-		if (this.rotationSpeed != 0.0F)
-		{
-			this.angle = this.angle + (float) (System.currentTimeMillis() - this.lastCheck) * this.rotationSpeed;
-			this.angle %= 360.0F;
-		}
+    public double calcWindStrength() {
+        double windStr =
+                WorldData.get(this.getLevel()).windSim.getWindAt(this.worldPosition.getY());
+        windStr *= 1.0 - Math.pow((double) this.obstructedCrossSection / this.crossSection, 2.0);
+        return Math.max(0.0, windStr);
+    }
 
-		this.lastCheck = System.currentTimeMillis();
-		return this.angle;
-	}
+    @Override
+    public float getRotorAnimationSpeed() {
+        return this.rotationSpeed;
+    }
 
-	public float getEfficiency()
-	{
-		ItemStack stack = this.rotorSlot.get();
-		return !StackUtil.isEmpty(stack) && stack.getItem() instanceof IKineticRotor ? ((IKineticRotor) stack.getItem()).getEfficiency(stack) : 0.0F;
-	}
+    @Override
+    public float getAngle() {
+        return this.angle;
+    }
 
-	public int getMinWindStrength()
-	{
-		ItemStack stack = this.rotorSlot.get();
-		return !StackUtil.isEmpty(stack) && stack.getItem() instanceof IKineticRotor ? ((IKineticRotor) stack.getItem()).getMinWindStrength(stack) : 0;
-	}
+    @OnlyIn(Dist.CLIENT)
+    @Override
+    protected void updateEntityClient() {
+        super.updateEntityClient();
+        if (this.rotationSpeed != 0.0F) {
+            this.angle = (this.angle + this.rotationSpeed * 50.0F) % 360.0F;
+        }
+    }
 
-	public int getMaxWindStrength()
-	{
-		ItemStack stack = this.rotorSlot.get();
-		return !StackUtil.isEmpty(stack) && stack.getItem() instanceof IKineticRotor ? ((IKineticRotor) stack.getItem()).getMaxWindStrength(stack) : 0;
-	}
+    public float getEfficiency() {
+        ItemStack stack = this.rotorSlot.get();
+        return !StackUtil.isEmpty(stack) && stack.getItem() instanceof IKineticRotor
+                ? ((IKineticRotor) stack.getItem()).getEfficiency(stack)
+                : 0.0F;
+    }
 
-	@Override
-	public int getRotorDiameter()
-	{
-		ItemStack stack = this.rotorSlot.get();
-		return !StackUtil.isEmpty(stack) && stack.getItem() instanceof IKineticRotor ? ((IKineticRotor) stack.getItem()).getDiameter(stack) : 0;
-	}
+    public int getMinWindStrength() {
+        ItemStack stack = this.rotorSlot.get();
+        return !StackUtil.isEmpty(stack) && stack.getItem() instanceof IKineticRotor
+                ? ((IKineticRotor) stack.getItem()).getMinWindStrength(stack)
+                : 0;
+    }
 
-	@Override
-	public ResourceLocation getRotorRenderTexture()
-	{
-		ItemStack stack = this.rotorSlot.get();
-		return !StackUtil.isEmpty(stack) && stack.getItem() instanceof IKineticRotor ? ((IKineticRotor) stack.getItem()).getRotorRenderTexture(stack) : woodenRotorTexture;
-	}
+    public int getMaxWindStrength() {
+        ItemStack stack = this.rotorSlot.get();
+        return !StackUtil.isEmpty(stack) && stack.getItem() instanceof IKineticRotor
+                ? ((IKineticRotor) stack.getItem()).getMaxWindStrength(stack)
+                : 0;
+    }
 
-	public boolean isRotorOverloaded()
-	{
-		return this.hasRotor() && this.rotorHasSpace() && this.isWindStrongEnough() && this.windStrength > this.getMaxWindStrength();
-	}
+    @Override
+    public int getRotorDiameter() {
+        ItemStack stack = this.rotorSlot.get();
+        return !StackUtil.isEmpty(stack) && stack.getItem() instanceof IKineticRotor
+                ? ((IKineticRotor) stack.getItem()).getDiameter(stack)
+                : 0;
+    }
 
-	public boolean isWindStrongEnough()
-	{
-		return this.windStrength >= this.getMinWindStrength();
-	}
+    @Override
+    public ResourceLocation getRotorRenderTexture() {
+        ItemStack stack = this.rotorSlot.get();
+        return !StackUtil.isEmpty(stack) && stack.getItem() instanceof IKineticRotor
+                ? ((IKineticRotor) stack.getItem()).getRotorRenderTexture(stack)
+                : woodenRotorTexture;
+    }
 
-	public int getKuOutput()
-	{
-		return this.windStrength >= this.getMinWindStrength() ? (int) (this.windStrength * outputModifier * this.getEfficiency()) : 0;
-	}
+    public boolean isRotorOverloaded() {
+        return this.hasRotor()
+                && this.rotorHasSpace()
+                && this.isWindStrongEnough()
+                && this.windStrength > this.getMaxWindStrength();
+    }
 
-	public int getObstructions()
-	{
-		return this.obstructedCrossSection;
-	}
+    public boolean isWindStrongEnough() {
+        return this.windStrength >= this.getMinWindStrength();
+    }
 
-	@Override
-	public void setActive(boolean active)
-	{
-		if (active != this.getActive())
-		{
-			IC2.network.get(true).updateTileEntityField(this, "rotorSlot");
-		}
+    public int getKuOutput() {
+        return this.windStrength >= this.getMinWindStrength()
+                ? (int) (this.windStrength * outputModifier * this.getEfficiency())
+                : 0;
+    }
 
-		super.setActive(active);
-	}
+    public int getObstructions() {
+        return this.obstructedCrossSection;
+    }
+
+    @Override
+    public void setActive(boolean active) {
+        if (active != this.getActive()) {
+            IC2.network.get(true).updateTileEntityField(this, "rotorSlot");
+        }
+
+        super.setActive(active);
+    }
 }

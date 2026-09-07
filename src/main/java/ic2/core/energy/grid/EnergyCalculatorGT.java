@@ -6,17 +6,21 @@ import ic2.api.energy.profile.IElectricalNode;
 import ic2.api.energy.tile.IEnergyConductor;
 import ic2.api.energy.tile.IEnergySink;
 import ic2.api.energy.tile.IEnergySource;
-import ic2.api.energy.tile.IEnergyTile;
 import ic2.api.energy.tile.IMultiEnergySource;
 import ic2.core.IC2;
-import ic2.core.init.IC2Config;
 import ic2.core.energy.profile.CableSpec;
+import ic2.core.init.IC2Config;
 import ic2.core.util.LogCategory;
 import ic2.core.util.Util;
 
+import net.minecraft.core.Direction;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.level.Level;
+
+import org.apache.commons.lang3.mutable.MutableInt;
+
 import java.io.PrintStream;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.IdentityHashMap;
@@ -25,471 +29,430 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
-import net.minecraft.core.Direction;
-import net.minecraft.util.RandomSource;
-import net.minecraft.world.level.Level;
-import org.apache.commons.lang3.mutable.MutableInt;
+public class EnergyCalculatorGT implements IEnergyCalculator {
+    private static final Direction[] DIRECTION_PRIORITY =
+            new Direction[] {
+                Direction.DOWN,
+                Direction.UP,
+                Direction.NORTH,
+                Direction.SOUTH,
+                Direction.WEST,
+                Direction.EAST
+            };
+    private final EnergyCalculatorUnified pathCacheDelegate = new EnergyCalculatorUnified();
 
-public class EnergyCalculatorGT implements IEnergyCalculator
-{
-	private static final Direction[] DIRECTION_PRIORITY = {
-		Direction.DOWN,
-		Direction.UP,
-		Direction.NORTH,
-		Direction.SOUTH,
-		Direction.WEST,
-		Direction.EAST
-	};
+    @Override
+    public void handleGridChange(Grid grid) {
+        this.pathCacheDelegate.handleGridChange(grid);
+    }
 
-	private final EnergyCalculatorUnified pathCacheDelegate = new EnergyCalculatorUnified();
+    @Override
+    public boolean runSyncStep(EnergyNetLocal enet) {
+        boolean foundAny = false;
 
-	@Override
-	public void handleGridChange(Grid grid)
-	{
-		this.pathCacheDelegate.handleGridChange(grid);
-	}
+        for (Tile tile : enet.getSources()) {
+            if (tile.isDisabled()) {
+                tile.setSourceData(0.0, 0);
+            } else {
+                IEnergySource source = (IEnergySource) tile.getMainTile();
+                IElectricalNode node = ElectricalNodes.resolve(source);
+                int offerAmps = ElectricalNodes.getGtOfferAmps(source);
+                if (offerAmps <= 0) {
+                    tile.setSourceData(0.0, 0);
+                } else {
+                    int voltage;
+                    if (node != null) {
+                        voltage = node.getWorkingVoltage().getVoltage();
+                    } else {
+                        int tier = source.getSourceTier();
+                        if (tier < 0) {
+                            if (EnergyNetSettings.logGridCalculationIssues) {
+                                IC2.log.warn(
+                                        LogCategory.EnergyNet,
+                                        "Tile %s reported an invalid tier (%d).",
+                                        Util.toString(
+                                                source,
+                                                enet.getWorld(),
+                                                EnergyNet.instance.getPos(source)),
+                                        tier);
+                            }
 
-	@Override
-	public boolean runSyncStep(EnergyNetLocal enet)
-	{
-		boolean foundAny = false;
+                            tile.setSourceData(0.0, 0);
+                            continue;
+                        }
 
-		for (Tile tile : enet.getSources())
-		{
-			if (tile.isDisabled())
-			{
-				tile.setSourceData(0.0, 0);
-				continue;
-			}
+                        voltage = (int) EnergyNet.instance.getPowerFromTier(tier);
+                    }
 
-			IEnergySource source = (IEnergySource) tile.getMainTile();
-			IElectricalNode node = ElectricalNodes.resolve(source);
-			int offerAmps = ElectricalNodes.getGtOfferAmps(source);
-			if (offerAmps <= 0)
-			{
-				tile.setSourceData(0.0, 0);
-				continue;
-			}
+                    if (source instanceof IMultiEnergySource multi
+                            && multi.sendMultipleEnergyPackets()) {
+                        int packetAmount = multi.getMultipleEnergyPacketAmount();
+                        if (packetAmount <= 0) {
+                            tile.setSourceData(0.0, 0);
+                            continue;
+                        }
+                    }
 
-			int voltage;
-			if (node != null)
-			{
-				voltage = node.getWorkingVoltage().getVoltage();
-			} else
-			{
-				int tier = source.getSourceTier();
-				if (tier < 0)
-				{
-					if (EnergyNetSettings.logGridCalculationIssues)
-					{
-						IC2.log.warn(LogCategory.EnergyNet, "Tile %s reported an invalid tier (%d).", Util.toString(source, enet.getWorld(), EnergyNet.instance.getPos(source)), tier);
-					}
+                    foundAny = true;
+                    tile.setSourceData((double) offerAmps * voltage, offerAmps);
+                }
+            }
+        }
 
-					tile.setSourceData(0.0, 0);
-					continue;
-				}
+        if (!foundAny) {
+            GridData.advanceCalcIds(enet);
+        }
 
-				voltage = (int) EnergyNet.instance.getPowerFromTier(tier);
-			}
+        return foundAny;
+    }
 
-			if (source instanceof IMultiEnergySource multi && multi.sendMultipleEnergyPackets())
-			{
-				int packetAmount = multi.getMultipleEnergyPacketAmount();
-				if (packetAmount <= 0)
-				{
-					tile.setSourceData(0.0, 0);
-					continue;
-				}
-			}
+    @Override
+    public boolean runSyncStep(Grid grid) {
+        runCalculation(grid, GridData.get(grid));
+        return false;
+    }
 
-			foundAny = true;
-			tile.setSourceData((double) offerAmps * voltage, offerAmps);
-		}
+    @Override
+    public void runAsyncStep(Grid grid) {}
 
-		return foundAny;
-	}
+    @Override
+    public NodeStats getNodeStats(Tile tile) {
+        return this.pathCacheDelegate.getNodeStats(tile);
+    }
 
-	@Override
-	public boolean runSyncStep(Grid grid)
-	{
-		runCalculation(grid, GridData.get(grid));
-		// GT transfer runs entirely on the server thread; async would call inject/draw and
-		// CableSpec.fromConductor (world access) off-thread and deadlock when work remains.
-		return false;
-	}
+    @Override
+    public void dumpNodeInfo(Node node, String prefix, PrintStream console, PrintStream chat) {
+        this.pathCacheDelegate.dumpNodeInfo(node, prefix, console, chat);
+    }
 
-	@Override
-	public void runAsyncStep(Grid grid)
-	{
-	}
+    private static boolean runCalculation(Grid grid, GridData data) {
+        if (!data.active) {
+            return false;
+        }
 
-	@Override
-	public NodeStats getNodeStats(Tile tile)
-	{
-		return this.pathCacheDelegate.getNodeStats(tile);
-	}
+        List<Node> activeSources = data.activeSources;
+        Map<Node, MutableInt> activeSinks = new IdentityHashMap<>();
+        activeSources.clear();
+        data.activeSinks.clear();
+        int calcId = ++data.currentCalcId;
 
-	@Override
-	public void dumpNodeInfo(Node node, String prefix, PrintStream console, PrintStream chat)
-	{
-		this.pathCacheDelegate.dumpNodeInfo(node, prefix, console, chat);
-	}
+        for (Node node : grid.getNodes()) {
+            Tile tile = node.getTile();
+            if (!tile.isDisabled()) {
+                if (node.getType() == NodeType.Source
+                        && data.energySourceToEnergyPathMap.containsKey(node)
+                        && tile.getPacketCount() > 0
+                        && tile.getAmount() > 0.0) {
+                    activeSources.add(node);
+                } else if (node.getType() == NodeType.Sink) {
+                    IEnergySink sink = (IEnergySink) tile.getMainTile();
+                    int demandAmps = ElectricalNodes.getGtDemandAmps(sink);
+                    if (demandAmps > 0) {
+                        activeSinks.put(node, new MutableInt(demandAmps));
+                    }
+                }
+            }
+        }
 
-	private static boolean runCalculation(Grid grid, GridData data)
-	{
-		if (!data.active)
-		{
-			return false;
-		}
+        if (!activeSources.isEmpty() && !activeSinks.isEmpty()) {
+            Level world = grid.getEnergyNet().getWorld();
+            RandomSource rand = RandomSource.create();
+            boolean shufflePaths = (world.getGameTime() & 3L) != 0L;
+            int sourcesOffset = activeSources.size() > 1 ? rand.nextInt(activeSources.size()) : 0;
+            Map<Node, Integer> conductorAmpLoads = new IdentityHashMap<>();
+            Set<Tile> cablesToRemove = Collections.newSetFromMap(new IdentityHashMap<>());
+            Map<Tile, Double> sinksToExplode = new IdentityHashMap<>();
 
-		List<Node> activeSources = data.activeSources;
-		Map<Node, MutableInt> activeSinks = new IdentityHashMap<>();
-		activeSources.clear();
-		data.activeSinks.clear();
-		int calcId = ++data.currentCalcId;
+            for (int i = sourcesOffset; i < activeSources.size() && !activeSinks.isEmpty(); i++) {
+                distribute(
+                        activeSources.get(i),
+                        data,
+                        activeSinks,
+                        shufflePaths,
+                        calcId,
+                        rand,
+                        conductorAmpLoads,
+                        cablesToRemove,
+                        sinksToExplode);
+            }
 
-		for (Node node : grid.getNodes())
-		{
-			Tile tile = node.getTile();
-			if (tile.isDisabled())
-			{
-				continue;
-			}
+            for (int i = 0; i < sourcesOffset && !activeSinks.isEmpty(); i++) {
+                distribute(
+                        activeSources.get(i),
+                        data,
+                        activeSinks,
+                        shufflePaths,
+                        calcId,
+                        rand,
+                        conductorAmpLoads,
+                        cablesToRemove,
+                        sinksToExplode);
+            }
 
-			if (node.getType() == NodeType.Source && data.energySourceToEnergyPathMap.containsKey(node) && tile.getPacketCount() > 0 && tile.getAmount() > 0.0)
-			{
-				activeSources.add(node);
-			} else if (node.getType() == NodeType.Sink)
-			{
-				IEnergySink sink = (IEnergySink) tile.getMainTile();
-				int demandAmps = ElectricalNodes.getGtDemandAmps(sink);
-				if (demandAmps > 0)
-				{
-					activeSinks.put(node, new MutableInt(demandAmps));
-				}
-			}
-		}
+            queueDeferredEffects(data, cablesToRemove, sinksToExplode);
+            return true;
+        } else {
+            return false;
+        }
+    }
 
-		if (activeSources.isEmpty() || activeSinks.isEmpty())
-		{
-			return false;
-		}
+    private static void distribute(
+            Node srcNode,
+            GridData data,
+            Map<Node, MutableInt> activeSinks,
+            boolean shufflePaths,
+            int calcId,
+            RandomSource rand,
+            Map<Node, Integer> conductorAmpLoads,
+            Set<Tile> cablesToRemove,
+            Map<Tile, Double> sinksToExplode) {
+        Tile tile = srcNode.getTile();
+        int remainingAmps = tile.getPacketCount();
+        if (remainingAmps > 0) {
+            int voltage = getSourceVoltage(tile);
+            if (voltage > 0) {
+                List<EnergyPath> paths = data.energySourceToEnergyPathMap.get(srcNode);
+                if (paths != null && !paths.isEmpty()) {
+                    List<EnergyPath> orderedPaths = sortPathsByDirection(paths);
+                    int pathOffset =
+                            orderedPaths.size() > 1 && shufflePaths
+                                    ? rand.nextInt(orderedPaths.size())
+                                    : 0;
+                    int ampsUsed = 0;
 
-		Level world = grid.getEnergyNet().getWorld();
-		RandomSource rand = RandomSource.create();
-		boolean shufflePaths = (world.getGameTime() & 3L) != 0L;
-		int sourcesOffset = activeSources.size() > 1 ? rand.nextInt(activeSources.size()) : 0;
-		Map<Node, Integer> conductorAmpLoads = new IdentityHashMap<>();
-		Set<Tile> cablesToRemove = Collections.newSetFromMap(new IdentityHashMap<>());
-		Map<Tile, Double> sinksToExplode = new IdentityHashMap<>();
+                    while (remainingAmps > 0 && !activeSinks.isEmpty()) {
+                        boolean progress = false;
 
-		for (int i = sourcesOffset; i < activeSources.size() && !activeSinks.isEmpty(); i++)
-		{
-			distribute(activeSources.get(i), data, activeSinks, shufflePaths, calcId, rand, conductorAmpLoads, cablesToRemove, sinksToExplode);
-		}
+                        for (int pass = 0;
+                                pass < orderedPaths.size() && remainingAmps > 0;
+                                pass++) {
+                            EnergyPath path =
+                                    orderedPaths.get((pass + pathOffset) % orderedPaths.size());
+                            int sent =
+                                    emitAmps(
+                                            path,
+                                            1,
+                                            voltage,
+                                            data,
+                                            calcId,
+                                            activeSinks,
+                                            conductorAmpLoads,
+                                            cablesToRemove,
+                                            sinksToExplode);
+                            if (sent > 0) {
+                                remainingAmps -= sent;
+                                ampsUsed += sent;
+                                progress = true;
+                            }
+                        }
 
-		for (int i = 0; i < sourcesOffset && !activeSinks.isEmpty(); i++)
-		{
-			distribute(activeSources.get(i), data, activeSinks, shufflePaths, calcId, rand, conductorAmpLoads, cablesToRemove, sinksToExplode);
-		}
+                        if (!progress) {
+                            break;
+                        }
+                    }
 
-		queueDeferredEffects(data, cablesToRemove, sinksToExplode);
-		return true;
-	}
+                    if (ampsUsed > 0) {
+                        IEnergySource source = (IEnergySource) tile.getMainTile();
+                        double draw =
+                                Math.min((double) ampsUsed * voltage, source.getOfferedEnergy());
+                        if (draw > 0.0) {
+                            source.drawEnergy(draw);
+                        }
+                    }
 
-	private static void distribute(
-		Node srcNode,
-		GridData data,
-		Map<Node, MutableInt> activeSinks,
-		boolean shufflePaths,
-		int calcId,
-		RandomSource rand,
-		Map<Node, Integer> conductorAmpLoads,
-		Set<Tile> cablesToRemove,
-		Map<Tile, Double> sinksToExplode
-	)
-	{
-		Tile tile = srcNode.getTile();
-		int remainingAmps = tile.getPacketCount();
-		if (remainingAmps <= 0)
-		{
-			return;
-		}
+                    if (remainingAmps > 0) {
+                        tile.setSourceData((double) remainingAmps * voltage, remainingAmps);
+                    } else {
+                        tile.setSourceData(0.0, 0);
+                    }
+                }
+            }
+        }
+    }
 
-		int voltage = getSourceVoltage(tile);
-		if (voltage <= 0)
-		{
-			return;
-		}
+    private static int emitAmps(
+            EnergyPath path,
+            int ampsToSend,
+            int packetVoltage,
+            GridData data,
+            int calcId,
+            Map<Node, MutableInt> activeSinks,
+            Map<Node, Integer> conductorAmpLoads,
+            Set<Tile> cablesToRemove,
+            Map<Tile, Double> sinksToExplode) {
+        Tile targetTile = path.target.getTile();
+        if (targetTile.isDisabled()) {
+            return 0;
+        }
 
-		List<EnergyPath> paths = data.energySourceToEnergyPathMap.get(srcNode);
-		if (paths == null || paths.isEmpty())
-		{
-			return;
-		}
+        MutableInt sinkDemand = activeSinks.get(path.target);
+        if (sinkDemand == null) {
+            return 0;
+        }
 
-		List<EnergyPath> orderedPaths = sortPathsByDirection(paths);
-		int pathOffset = orderedPaths.size() > 1 && shufflePaths ? rand.nextInt(orderedPaths.size()) : 0;
-		int ampsUsed = 0;
+        ampsToSend = Math.min(ampsToSend, sinkDemand.intValue());
+        if (ampsToSend <= 0) {
+            return 0;
+        }
 
-		while (remainingAmps > 0 && !activeSinks.isEmpty())
-		{
-			boolean progress = false;
+        int packetEU = packetVoltage;
+        int traversedConductors = 0;
 
-			for (int pass = 0; pass < orderedPaths.size() && remainingAmps > 0; pass++)
-			{
-				EnergyPath path = orderedPaths.get((pass + pathOffset) % orderedPaths.size());
-				int sent = emitAmps(path, 1, voltage, data, calcId, activeSinks, conductorAmpLoads, cablesToRemove, sinksToExplode);
-				if (sent > 0)
-				{
-					remainingAmps -= sent;
-					ampsUsed += sent;
-					progress = true;
-				}
-			}
+        for (Node conductorNode : path.conductors) {
+            Tile cableTile = conductorNode.getTile();
+            IEnergyConductor conductor = (IEnergyConductor) cableTile.getMainTile();
+            CableSpec cable = CableSpec.fromConductor(conductor);
+            if (packetVoltage > cable.getMaxVoltage().getVoltage()) {
+                cablesToRemove.add(cableTile);
+                addConductorAmpLoad(
+                        path.conductors, traversedConductors + 1, ampsToSend, conductorAmpLoads);
+                return 0;
+            }
 
-			if (!progress)
-			{
-				break;
-			}
-		}
+            int currentLoad = conductorAmpLoads.getOrDefault(conductorNode, 0);
+            if (currentLoad + ampsToSend > cable.getMaxAmperage()) {
+                cablesToRemove.add(cableTile);
+                addConductorAmpLoad(
+                        path.conductors, traversedConductors + 1, ampsToSend, conductorAmpLoads);
+                return 0;
+            }
 
-		if (ampsUsed > 0)
-		{
-			IEnergySource source = (IEnergySource) tile.getMainTile();
-			double draw = Math.min((double) ampsUsed * voltage, source.getOfferedEnergy());
-			if (draw > 0.0)
-			{
-				source.drawEnergy(draw);
-			}
-		}
+            packetEU -= cable.getLossPerMeterPerAmp();
+            traversedConductors++;
+            if (packetEU <= 0) {
+                packetEU = 0;
+                break;
+            }
+        }
 
-		if (remainingAmps > 0)
-		{
-			tile.setSourceData((double) remainingAmps * voltage, remainingAmps);
-		} else
-		{
-			tile.setSourceData(0.0, 0);
-		}
-	}
+        addConductorAmpLoad(path.conductors, traversedConductors, ampsToSend, conductorAmpLoads);
+        if (packetEU <= 0) {
+            return 0;
+        }
 
-	private static int emitAmps(
-		EnergyPath path,
-		int ampsToSend,
-		int packetVoltage,
-		GridData data,
-		int calcId,
-		Map<Node, MutableInt> activeSinks,
-		Map<Node, Integer> conductorAmpLoads,
-		Set<Tile> cablesToRemove,
-		Map<Tile, Double> sinksToExplode
-	)
-	{
-		Tile targetTile = path.target.getTile();
-		if (targetTile.isDisabled())
-		{
-			return 0;
-		}
+        IEnergySink sink = (IEnergySink) targetTile.getMainTile();
+        double totalEU = (double) ampsToSend * packetEU;
+        double injectTier = ElectricalNodes.getInjectTierParameter(sink, totalEU);
+        double rejected = sink.injectEnergy(path.targetDirection, totalEU, injectTier);
+        if (rejected >= totalEU) {
+            return 0;
+        }
 
-		MutableInt sinkDemand = activeSinks.get(path.target);
-		if (sinkDemand == null)
-		{
-			return 0;
-		}
+        double deliveredEU = totalEU - rejected;
+        if (path.lastCalcId != calcId) {
+            path.lastCalcId = calcId;
+            path.energySupplied = 0.0;
+            path.maxPacketConducted = 0.0;
+        }
 
-		ampsToSend = Math.min(ampsToSend, sinkDemand.intValue());
-		if (ampsToSend <= 0)
-		{
-			return 0;
-		}
+        path.energySupplied += deliveredEU;
+        path.maxPacketConducted = Math.max(path.maxPacketConducted, packetVoltage);
+        queueSinkExplosion(targetTile, sink, packetVoltage, sinksToExplode);
+        sinkDemand.subtract(ampsToSend);
+        if (sinkDemand.intValue() <= 0 || rejected > 0.0) {
+            activeSinks.remove(path.target);
+        }
 
-		int packetEU = packetVoltage;
-		int traversedConductors = 0;
+        return ampsToSend;
+    }
 
-		for (Node conductorNode : path.conductors)
-		{
-			Tile cableTile = conductorNode.getTile();
-			IEnergyConductor conductor = (IEnergyConductor) cableTile.getMainTile();
-			CableSpec cable = CableSpec.fromConductor(conductor);
-			if (packetVoltage > cable.getMaxVoltage().getVoltage())
-			{
-				cablesToRemove.add(cableTile);
-				addConductorAmpLoad(path.conductors, traversedConductors + 1, ampsToSend, conductorAmpLoads);
-				return 0;
-			}
+    private static void addConductorAmpLoad(
+            List<Node> conductors, int count, int amps, Map<Node, Integer> conductorAmpLoads) {
+        for (int i = 0; i < count && i < conductors.size(); i++) {
+            conductorAmpLoads.merge(conductors.get(i), amps, Integer::sum);
+        }
+    }
 
-			int currentLoad = conductorAmpLoads.getOrDefault(conductorNode, 0);
-			if (currentLoad + ampsToSend > cable.getMaxAmperage())
-			{
-				cablesToRemove.add(cableTile);
-				addConductorAmpLoad(path.conductors, traversedConductors + 1, ampsToSend, conductorAmpLoads);
-				return 0;
-			}
+    private static void queueSinkExplosion(
+            Tile sinkTile, IEnergySink sink, int packetVoltage, Map<Tile, Double> sinksToExplode) {
+        if (EnergyNetExplosions.isOverVoltage(sink, packetVoltage)) {
+            Double prev = sinksToExplode.get(sinkTile);
+            double power = packetVoltage;
+            if (prev == null || prev < power) {
+                sinksToExplode.put(sinkTile, power);
+            }
+        }
+    }
 
-			packetEU -= cable.getLossPerMeterPerAmp();
-			traversedConductors++;
-			if (packetEU <= 0)
-			{
-				packetEU = 0;
-				break;
-			}
-		}
+    private static int getSourceVoltage(Tile tile) {
+        IEnergySource source = (IEnergySource) tile.getMainTile();
+        IElectricalNode node = ElectricalNodes.resolve(source);
+        if (node != null) {
+            return node.getWorkingVoltage().getVoltage();
+        }
 
-		addConductorAmpLoad(path.conductors, traversedConductors, ampsToSend, conductorAmpLoads);
-		if (packetEU <= 0)
-		{
-			return 0;
-		}
+        int tier = source.getSourceTier();
+        return tier < 0 ? 0 : (int) EnergyNet.instance.getPowerFromTier(tier);
+    }
 
-		IEnergySink sink = (IEnergySink) targetTile.getMainTile();
-		double totalEU = (double) ampsToSend * packetEU;
-		double injectTier = ElectricalNodes.getInjectTierParameter(sink, totalEU);
-		double rejected = sink.injectEnergy(path.targetDirection, totalEU, injectTier);
-		if (rejected >= totalEU)
-		{
-			return 0;
-		}
+    private static List<EnergyPath> sortPathsByDirection(List<EnergyPath> paths) {
+        List<EnergyPath> sorted = new ArrayList<>(paths);
+        sorted.sort(Comparator.comparingInt(EnergyCalculatorGT::getFirstHopPriority));
+        return sorted;
+    }
 
-		double deliveredEU = totalEU - rejected;
-		if (path.lastCalcId != calcId)
-		{
-			path.lastCalcId = calcId;
-			path.energySupplied = 0.0;
-			path.maxPacketConducted = 0.0;
-		}
+    private static int getFirstHopPriority(EnergyPath path) {
+        Direction direction = getFirstHopDirection(path);
+        if (direction == null) {
+            return DIRECTION_PRIORITY.length;
+        }
 
-		path.energySupplied += deliveredEU;
-		path.maxPacketConducted = Math.max(path.maxPacketConducted, packetVoltage);
-		queueSinkExplosion(targetTile, sink, packetVoltage, sinksToExplode);
-		sinkDemand.subtract(ampsToSend);
-		if (sinkDemand.intValue() <= 0 || rejected > 0.0)
-		{
-			activeSinks.remove(path.target);
-		}
+        for (int i = 0; i < DIRECTION_PRIORITY.length; i++) {
+            if (DIRECTION_PRIORITY[i] == direction) {
+                return i;
+            }
+        }
 
-		return ampsToSend;
-	}
+        return DIRECTION_PRIORITY.length;
+    }
 
-	private static void addConductorAmpLoad(List<Node> conductors, int count, int amps, Map<Node, Integer> conductorAmpLoads)
-	{
-		for (int i = 0; i < count && i < conductors.size(); i++)
-		{
-			conductorAmpLoads.merge(conductors.get(i), amps, Integer::sum);
-		}
-	}
+    private static Direction getFirstHopDirection(EnergyPath path) {
+        Node first = path.conductors.isEmpty() ? path.target : path.conductors.get(0);
+        NodeLink link = path.source.getLinkTo(first);
+        return link != null ? link.getDirFrom(path.source) : null;
+    }
 
-	private static void queueSinkExplosion(Tile sinkTile, IEnergySink sink, int packetVoltage, Map<Tile, Double> sinksToExplode)
-	{
-		if (EnergyNetExplosions.isOverVoltage(sink, packetVoltage))
-		{
-			Double prev = sinksToExplode.get(sinkTile);
-			double power = packetVoltage;
-			if (prev == null || prev < power)
-			{
-				sinksToExplode.put(sinkTile, power);
-			}
-		}
-	}
+    @Override
+    public void applyDeferredEffects(EnergyNetLocal enet) {
+        Level world = enet.getWorld();
 
-	private static int getSourceVoltage(Tile tile)
-	{
-		IEnergySource source = (IEnergySource) tile.getMainTile();
-		IElectricalNode node = ElectricalNodes.resolve(source);
-		if (node != null)
-		{
-			return node.getWorkingVoltage().getVoltage();
-		}
+        for (Grid grid : enet.getGrids()) {
+            GridData data = grid.getData();
+            if (data != null
+                    && (!data.deferredCablesToRemove.isEmpty()
+                            || !data.deferredSinksToExplode.isEmpty())) {
+                applyGtCableEffects(data.deferredCablesToRemove);
+                applyExplosions(world, data.deferredSinksToExplode);
+                data.deferredCablesToRemove.clear();
+                data.deferredSinksToExplode.clear();
+            }
+        }
+    }
 
-		int tier = source.getSourceTier();
-		return tier < 0 ? 0 : (int) EnergyNet.instance.getPowerFromTier(tier);
-	}
+    private static void queueDeferredEffects(
+            GridData data, Set<Tile> cablesToRemove, Map<Tile, Double> sinksToExplode) {
+        data.deferredCablesToRemove.addAll(cablesToRemove);
 
-	private static List<EnergyPath> sortPathsByDirection(List<EnergyPath> paths)
-	{
-		List<EnergyPath> sorted = new ArrayList<>(paths);
-		sorted.sort(Comparator.comparingInt(EnergyCalculatorGT::getFirstHopPriority));
-		return sorted;
-	}
+        for (Entry<Tile, Double> entry : sinksToExplode.entrySet()) {
+            Double prev = data.deferredSinksToExplode.get(entry.getKey());
+            double power = entry.getValue();
+            if (prev == null || prev < power) {
+                data.deferredSinksToExplode.put(entry.getKey(), power);
+            }
+        }
+    }
 
-	private static int getFirstHopPriority(EnergyPath path)
-	{
-		Direction direction = getFirstHopDirection(path);
-		if (direction == null)
-		{
-			return DIRECTION_PRIORITY.length;
-		}
+    private static void applyGtCableEffects(Set<Tile> cablesToRemove) {
+        if (IC2Config.misc.enableEnetCableMeltdown.get()) {
+            for (Tile tile : cablesToRemove) {
+                ((IEnergyConductor) tile.getMainTile()).removeConductor();
+            }
+        }
+    }
 
-		for (int i = 0; i < DIRECTION_PRIORITY.length; i++)
-		{
-			if (DIRECTION_PRIORITY[i] == direction)
-			{
-				return i;
-			}
-		}
-
-		return DIRECTION_PRIORITY.length;
-	}
-
-	private static Direction getFirstHopDirection(EnergyPath path)
-	{
-		Node first = path.conductors.isEmpty() ? path.target : path.conductors.get(0);
-		NodeLink link = path.source.getLinkTo(first);
-		return link != null ? link.getDirFrom(path.source) : null;
-	}
-
-	@Override
-	public void applyDeferredEffects(EnergyNetLocal enet)
-	{
-		Level world = enet.getWorld();
-
-		for (Grid grid : enet.getGrids())
-		{
-			GridData data = grid.getData();
-			if (data == null || data.deferredCablesToRemove.isEmpty() && data.deferredSinksToExplode.isEmpty())
-			{
-				continue;
-			}
-
-			applyGtCableEffects(data.deferredCablesToRemove);
-			applyExplosions(world, data.deferredSinksToExplode);
-			data.deferredCablesToRemove.clear();
-			data.deferredSinksToExplode.clear();
-		}
-	}
-
-	private static void queueDeferredEffects(GridData data, Set<Tile> cablesToRemove, Map<Tile, Double> sinksToExplode)
-	{
-		data.deferredCablesToRemove.addAll(cablesToRemove);
-
-		for (Entry<Tile, Double> entry : sinksToExplode.entrySet())
-		{
-			Double prev = data.deferredSinksToExplode.get(entry.getKey());
-			double power = entry.getValue();
-			if (prev == null || prev < power)
-			{
-				data.deferredSinksToExplode.put(entry.getKey(), power);
-			}
-		}
-	}
-
-	private static void applyGtCableEffects(Set<Tile> cablesToRemove)
-	{
-		if (!IC2Config.misc.enableEnetCableMeltdown.get())
-		{
-			return;
-		}
-
-		for (Tile tile : cablesToRemove)
-		{
-			((IEnergyConductor) tile.getMainTile()).removeConductor();
-		}
-	}
-
-	private static void applyExplosions(Level world, Map<Tile, Double> sinksToExplode)
-	{
-		for (Entry<Tile, Double> entry : sinksToExplode.entrySet())
-		{
-			EnergyNetExplosions.explodeTile(world, entry.getKey(), entry.getValue());
-		}
-	}
+    private static void applyExplosions(Level world, Map<Tile, Double> sinksToExplode) {
+        for (Entry<Tile, Double> entry : sinksToExplode.entrySet()) {
+            EnergyNetExplosions.explodeTile(world, entry.getKey(), entry.getValue());
+        }
+    }
 }

@@ -2,323 +2,276 @@ package ic2.core.item.tool;
 
 import ic2.api.item.BlockBreakableItem;
 import ic2.api.item.IBoxable;
+import ic2.api.item.IEnhancedOverlayProvider;
 import ic2.api.tile.IWrenchAble;
 import ic2.core.IC2;
+import ic2.core.IHitSoundOverride;
 import ic2.core.init.IC2Config;
 import ic2.core.item.PriorityUsableItem;
+import ic2.core.ref.Ic2BlockTags;
 import ic2.core.ref.Ic2ItemTags;
 import ic2.core.ref.Ic2SoundEvents;
+import ic2.core.util.Ic2Tooltip;
 import ic2.core.util.LogCategory;
+import ic2.core.util.RotationUtil;
 import ic2.core.util.StackUtil;
 import ic2.core.util.Util;
 
-import java.util.List;
-
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.core.Direction.Axis;
-import net.minecraft.core.Direction.AxisDirection;
+import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Item.Properties;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Rotation;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.state.properties.Property;
+import net.minecraft.world.phys.Vec3;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.registries.ForgeRegistries;
+
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public class ItemToolWrench extends Item implements PriorityUsableItem, IBoxable, BlockBreakableItem
-{
-	public ItemToolWrench(Properties settings)
-	{
-		super(settings);
-	}
+import java.util.List;
 
-	public static int onWrenchUse(Player player, UseOnContext context, boolean removeBlock)
-	{
-		WrenchResult result = wrenchBlock(context.getLevel(), context.getClickedPos(), context.getClickedFace(), player, removeBlock);
-		if (result != WrenchResult.Nothing)
-		{
-			if (!context.getLevel().isClientSide)
-			{
-				return result == WrenchResult.Rotated ? 1 : 10;
-			}
+public class ItemToolWrench extends Item
+        implements PriorityUsableItem,
+                IBoxable,
+                BlockBreakableItem,
+                IEnhancedOverlayProvider,
+                IHitSoundOverride {
+    private static final int MINE_DAMAGE = 1;
+    public static final float WRENCH_DESTROY_SPEED = 6.0F;
 
-			player.playSound(Ic2SoundEvents.ITEM_WRENCH_USE, 1.0F, 1.0F);
-			return -2;
-		}
+    public ItemToolWrench(Properties settings) {
+        super(settings);
+    }
 
-		return -1;
-	}
+    public static boolean isWrenchTarget(BlockState state) {
+        return state.is(Ic2BlockTags.MINEABLE_WITH_WRENCH)
+                || state.getBlock() instanceof IWrenchAble;
+    }
 
-	public static WrenchResult wrenchBlock(Level world, BlockPos pos, Direction side, Player player, boolean remove)
-	{
-		BlockState state = world.getBlockState(pos);
-		if (state.isAir())
-		{
-			return WrenchResult.Nothing;
-		}
+    public static Direction facingFromHit(Direction side, BlockPos pos, Vec3 hitLocation) {
+        float hitX = (float) (hitLocation.x - pos.getX());
+        float hitY = (float) (hitLocation.y - pos.getY());
+        float hitZ = (float) (hitLocation.z - pos.getZ());
+        return RotationUtil.rotateByHit(side, hitX, hitY, hitZ);
+    }
 
-		Block block = state.getBlock();
-		if (block instanceof IWrenchAble wrenchAble)
-		{
-			return wrenchAbleBlock(world, pos, side, player, remove, state, wrenchAble);
-		}
+    public static InteractionResult trySetFacingFromHit(UseOnContext context, Player player) {
+        Level world = context.getLevel();
+        BlockPos pos = context.getClickedPos();
+        BlockState state = world.getBlockState(pos);
+        if (state.isAir()) {
+            return InteractionResult.FAIL;
+        }
 
-		return wrenchVanillaBlock(world, pos, side, player, state);
-	}
+        if (state.getBlock() instanceof IWrenchAble wrenchAble) {
+            Direction targetFacing =
+                    facingFromHit(context.getClickedFace(), pos, context.getClickLocation());
+            wrenchAble.setFacing(world, pos, targetFacing, player);
+            if (world.isClientSide) {
+                player.playSound(Ic2SoundEvents.ITEM_WRENCH_USE, 1.0F, 1.0F);
+                return InteractionResult.PASS;
+            } else {
+                return InteractionResult.SUCCESS;
+            }
+        } else {
+            return InteractionResult.FAIL;
+        }
+    }
 
-	private static WrenchResult wrenchAbleBlock(Level world, BlockPos pos, Direction side, Player player, boolean remove, BlockState state, IWrenchAble wrenchAble)
-	{
-		Direction currentFacing = wrenchAble.getFacing(world, pos);
-		Direction newFacing;
+    public static boolean tryRemoveWithWrench(
+            Level world, Player player, BlockPos pos, BlockState state) {
+        if (state.getBlock() instanceof IWrenchAble wrenchAble
+                && wrenchAble.wrenchCanRemove(world, pos, player)) {
+            removeBlockWithWrench(world, pos, state, player, wrenchAble);
+            return true;
+        } else {
+            return false;
+        }
+    }
 
-		if (IC2.keyboard.isAltKeyDown(player))
-		{
-			// Alt key: rotate facing around the clicked side's axis
-			Axis axis = side.getAxis();
-			newFacing = isAltRotationClockwise(side, player)
-				? currentFacing.getClockWise(axis)
-				: currentFacing.getCounterClockWise(axis);
-		} else
-		{
-			// Normal: face the clicked side; Shift: face the opposite (back toward player)
-			newFacing = player.isShiftKeyDown() ? side.getOpposite() : side;
-		}
+    static void removeBlockWithWrench(
+            Level world, BlockPos pos, BlockState state, Player player, IWrenchAble wrenchAble) {
+        if (!world.isClientSide) {
+            if (!player.blockActionRestricted(
+                    world, pos, ((ServerPlayer) player).gameMode.getGameModeForPlayer())) {
+                Block block = state.getBlock();
+                BlockEntity te = world.getBlockEntity(pos);
+                if (IC2Config.protection.wrenchLogging.get()) {
+                    String playerName =
+                            player.getGameProfile().getName()
+                                    + "/"
+                                    + player.getGameProfile().getId();
+                    IC2.log.info(
+                            LogCategory.PlayerActivity,
+                            "Player %s used a wrench to remove the block %s (te %s) at %s.",
+                            playerName,
+                            state,
+                            getTeName(te),
+                            Util.formatPosition(world, pos));
+                }
 
-		// If the facing would change, try to rotate
-		if (newFacing != currentFacing && wrenchAble.setFacing(world, pos, newFacing, player))
-		{
-			return WrenchResult.Rotated;
-		}
+                block.playerWillDestroy(world, pos, state, player);
+                if (world.removeBlock(pos, false)) {
+                    block.destroy(world, pos, state);
+                }
 
-		// Rotation didn't happen (same facing or rejected) — try to remove instead
-		if (remove && wrenchAble.wrenchCanRemove(world, pos, player))
-		{
-			return removeBlockWithWrench(world, pos, state, player, wrenchAble);
-		}
+                List<ItemStack> drops = wrenchAble.getWrenchDrops(world, pos, state, te, player, 0);
+                if (drops != null && !drops.isEmpty()) {
+                    for (ItemStack drop : drops) {
+                        StackUtil.dropAsEntity(world, pos, drop);
+                    }
+                } else if (IC2Config.debug.logEmptyWrenchDrops.get()) {
+                    IC2.log.warn(
+                            LogCategory.General,
+                            "The block %s (te %s) at %s didn't yield any wrench drops.",
+                            state,
+                            getTeName(te),
+                            Util.formatPosition(world, pos));
+                }
 
-		return WrenchResult.Nothing;
-	}
+                if (!player.getAbilities().instabuild) {
+                    state.spawnAfterBreak((ServerLevel) world, pos, player.getUseItem(), false);
+                }
+            }
+        }
+    }
 
-	private static WrenchResult wrenchVanillaBlock(Level world, BlockPos pos, Direction side, Player player, BlockState state)
-	{
-		// Alt key: rotate around the clicked side's axis
-		if (IC2.keyboard.isAltKeyDown(player))
-		{
-			Rotation rotation = isAltRotationClockwise(side, player) ? Rotation.CLOCKWISE_90 : Rotation.COUNTERCLOCKWISE_90;
-			BlockState newState = IC2.envProxy.rotate(state, world, pos, rotation);
-			if (newState != state)
-			{
-				world.setBlockAndUpdate(pos, newState);
-				return WrenchResult.Rotated;
-			}
+    private static String getTeName(BlockEntity te) {
+        return te != null
+                ? ForgeRegistries.BLOCK_ENTITY_TYPES.getKey(te.getType()).toString()
+                : "none";
+    }
 
-			return WrenchResult.Nothing;
-		}
+    @Override
+    public InteractionResult onBlockStartBreak(
+            Player player, Level world, InteractionHand hand, BlockPos pos, Direction direction) {
+        return InteractionResult.PASS;
+    }
 
-		// On horizontal faces: try to rotate the block's facing
-		if (side.getAxis().isHorizontal())
-		{
-			Property<?> property = state.getBlock().getStateDefinition().getProperty("facing");
-			if (property != null && property.getValueClass() == Direction.class)
-			{
-				Direction facing = (Direction) state.getValue(property);
-				Direction newFacing = player.isShiftKeyDown() ? side.getOpposite() : side;
-				if (facing.getAxis().isHorizontal() && facing != newFacing && property.getPossibleValues().contains(newFacing))
-				{
-					Rotation rotation = getHorizontalRotation(facing, newFacing);
-					BlockState newState = IC2.envProxy.rotate(state, world, pos, rotation);
-					if (newState != state)
-					{
-						world.setBlockAndUpdate(pos, newState);
-						return WrenchResult.Rotated;
-					}
-				}
-			}
-		}
+    @Override
+    public boolean beforeBlockBreak(
+            Level world,
+            Player player,
+            BlockPos pos,
+            BlockState state,
+            @Nullable BlockEntity blockEntity) {
+        if (tryRemoveWithWrench(world, player, pos, state)) {
+            player.getMainHandItem()
+                    .hurtAndBreak(1, player, p -> p.broadcastBreakEvent(p.getUsedItemHand()));
+            return false;
+        } else {
+            return true;
+        }
+    }
 
-		return WrenchResult.Nothing;
-	}
+    @Override
+    public void afterBlockBreak(
+            Level world,
+            Player player,
+            BlockPos pos,
+            BlockState state,
+            @Nullable BlockEntity blockEntity) {}
 
-	private static Rotation getHorizontalRotation(Direction from, Direction to)
-	{
-		if (from.getOpposite() == to) return Rotation.CLOCKWISE_180;
-		if (from.getClockWise(Axis.Y) == to) return Rotation.CLOCKWISE_90;
-		return Rotation.COUNTERCLOCKWISE_90;
-	}
+    @Override
+    public boolean isCorrectToolForDrops(BlockState state) {
+        return isWrenchTarget(state);
+    }
 
-	private static boolean isAltRotationClockwise(Direction sideHit, Player player)
-	{
-		return sideHit.getAxisDirection() == AxisDirection.POSITIVE != player.isShiftKeyDown();
-	}
+    @Override
+    public float getDestroySpeed(ItemStack stack, BlockState state) {
+        return this.isCorrectToolForDrops(state) ? 6.0F : super.getDestroySpeed(stack, state);
+    }
 
-	private static String getTeName(BlockEntity te)
-	{
-		return te != null ? ForgeRegistries.BLOCK_ENTITY_TYPES.getKey(te.getType()).toString() : "none";
-	}
+    public boolean canTakeDamage() {
+        return true;
+    }
 
-	private static WrenchResult removeBlockWithWrench(Level world, BlockPos pos, BlockState state, Player player, IWrenchAble wrenchAble)
-	{
-		if (world.isClientSide)
-		{
-			return WrenchResult.Removed;
-		}
+    public boolean canTakeDamage(ItemStack stack, int amount) {
+        return true;
+    }
 
-		if (player.blockActionRestricted(world, pos, ((ServerPlayer) player).gameMode.getGameModeForPlayer()))
-		{
-			return WrenchResult.Nothing;
-		}
+    @Override
+    public InteractionResult onItemUseFirst(ItemStack stack, UseOnContext context) {
+        if (!this.canTakeDamage(stack, 1)) {
+            return InteractionResult.FAIL;
+        }
 
-		Block block = state.getBlock();
-		BlockEntity te = world.getBlockEntity(pos);
+        Player player = context.getPlayer();
+        return player == null ? InteractionResult.PASS : trySetFacingFromHit(context, player);
+    }
 
-		if (IC2Config.protection.wrenchLogging.get())
-		{
-			String playerName = player.getGameProfile().getName() + "/" + player.getGameProfile().getId();
-			IC2.log.info(LogCategory.PlayerActivity,
-				"Player %s used a wrench to remove the block %s (te %s) at %s.",
-				playerName, state, getTeName(te), Util.formatPosition(world, pos));
-		}
+    public void damage(ItemStack is, int damage, Player player, InteractionHand hand) {
+        is.hurtAndBreak(damage, player, p -> p.broadcastBreakEvent(hand));
+    }
 
-		block.playerWillDestroy(world, pos, state, player);
-		if (world.removeBlock(pos, false))
-		{
-			block.destroy(world, pos, state);
-		}
+    @Override
+    public boolean canBeStoredInToolbox(ItemStack itemstack) {
+        return true;
+    }
 
-		List<ItemStack> drops = wrenchAble.getWrenchDrops(world, pos, state, te, player, 0);
-		if (drops != null && !drops.isEmpty())
-		{
-			for (ItemStack stack : drops)
-			{
-				StackUtil.dropAsEntity(world, pos, stack);
-			}
-		} else if (IC2Config.debug.logEmptyWrenchDrops.get())
-		{
-			IC2.log.warn(LogCategory.General,
-				"The block %s (te %s) at %s didn't yield any wrench drops.",
-				state, getTeName(te), Util.formatPosition(world, pos));
-		}
+    @Override
+    public boolean isValidRepairItem(@NotNull ItemStack toRepair, ItemStack repair) {
+        return repair.is(Ic2ItemTags.BRONZE_INGOTS);
+    }
 
-		if (!player.getAbilities().instabuild)
-		{
-			state.spawnAfterBreak((ServerLevel) world, pos, player.getUseItem(), false);
-		}
+    @Override
+    public boolean isEnchantable(@NotNull ItemStack stack) {
+        return false;
+    }
 
-		return WrenchResult.Removed;
-	}
+    @OnlyIn(Dist.CLIENT)
+    @Override
+    public void appendHoverText(
+            @NotNull ItemStack stack,
+            Level world,
+            List<Component> info,
+            @NotNull TooltipFlag flag) {
+        Component attackKey = Minecraft.getInstance().options.keyAttack.getTranslatedKeyMessage();
+        Component useKey = Minecraft.getInstance().options.keyUse.getTranslatedKeyMessage();
+        Ic2Tooltip.add(info, Component.translatable("item.ic2.wrench.tooltip.mine", attackKey));
+        Ic2Tooltip.add(info, Component.translatable("item.ic2.wrench.tooltip.rotate", useKey));
+    }
 
-	// === Left-click (mining) behavior ===
+    @Override
+    public boolean providesEnhancedOverlay(
+            Level world, BlockPos pos, Direction side, Player player, ItemStack stack) {
+        return world.getBlockState(pos).getBlock() instanceof IWrenchAble;
+    }
 
-	/**
-	 * Called when the player starts breaking a block. We let the normal mining
-	 * proceed (with the speed from {@link #getDestroySpeed}) and intercept at
-	 * {@link #beforeBlockBreak} to swap in wrench drops.
-	 */
-	@Override
-	public InteractionResult onBlockStartBreak(Player player, Level world, InteractionHand hand, BlockPos pos, Direction direction)
-	{
-		return InteractionResult.PASS;
-	}
+    @OnlyIn(Dist.CLIENT)
+    @Override
+    public SoundEvent getHitSoundForBlock(
+            LocalPlayer player, Level world, BlockPos pos, ItemStack stack) {
+        return null;
+    }
 
-	/**
-	 * Called right before the block is about to be removed by vanilla mining.
-	 * For IWrenchAble blocks: we cancel the vanilla break and do our own removal
-	 * so the block drops the machine itself (not the machine casing).
-	 */
-	@Override
-	public boolean beforeBlockBreak(Level world, Player player, BlockPos pos, BlockState state, @Nullable BlockEntity blockEntity)
-	{
-		if (state.getBlock() instanceof IWrenchAble wrenchAble && wrenchAble.wrenchCanRemove(world, pos, player))
-		{
-			removeBlockWithWrench(world, pos, state, player, wrenchAble);
-			player.getMainHandItem().hurtAndBreak(10, player, p -> p.broadcastBreakEvent(p.getUsedItemHand()));
-			return false;
-		}
-
-		return true;
-	}
-
-	@Override
-	public void afterBlockBreak(Level world, Player player, BlockPos pos, BlockState state, @Nullable BlockEntity blockEntity)
-	{
-	}
-
-	@Override
-	public float getDestroySpeed(ItemStack stack, BlockState state)
-	{
-		if (state.getBlock() instanceof IWrenchAble)
-		{
-			return 6.0F;
-		}
-
-		return super.getDestroySpeed(stack, state);
-	}
-
-	// === Item behavior ===
-
-	public boolean canTakeDamage()
-	{
-		return true;
-	}
-
-	@Override
-	public InteractionResult onItemUseFirst(ItemStack stack, UseOnContext context)
-	{
-		if (!this.canTakeDamage())
-		{
-			return InteractionResult.FAIL;
-		}
-
-		Player player = context.getPlayer();
-		if (player == null)
-		{
-			return InteractionResult.PASS;
-		}
-
-		int useResult = onWrenchUse(player, context, this.canTakeDamage());
-		return switch (useResult)
-		{
-			case -2 -> InteractionResult.PASS;
-			case -1 -> InteractionResult.FAIL;
-			default ->
-			{
-				this.damage(stack, useResult, player, context.getHand());
-				yield InteractionResult.SUCCESS;
-			}
-		};
-	}
-
-	public void damage(ItemStack is, int damage, Player player, InteractionHand hand)
-	{
-		is.hurtAndBreak(damage, player, p -> p.broadcastBreakEvent(hand));
-	}
-
-	@Override
-	public boolean canBeStoredInToolbox(ItemStack itemstack)
-	{
-		return true;
-	}
-
-	public boolean isValidRepairItem(@NotNull ItemStack toRepair, ItemStack repair)
-	{
-		return repair.is(Ic2ItemTags.BRONZE_INGOTS);
-	}
-
-	public enum WrenchResult
-	{
-		Rotated,
-		Removed,
-		Nothing
-	}
+    @OnlyIn(Dist.CLIENT)
+    @Override
+    public SoundEvent getBreakSoundForBlock(
+            LocalPlayer player, Level world, BlockPos pos, ItemStack stack) {
+        if (player.getAbilities().instabuild) {
+            return null;
+        } else {
+            return world.getBlockState(pos).getBlock() instanceof IWrenchAble
+                    ? Ic2SoundEvents.ITEM_WRENCH_USE
+                    : null;
+        }
+    }
 }

@@ -2,9 +2,9 @@ plugins {
     id 'eclipse'
     id 'idea'
     id 'maven-publish'
-    id 'net.minecraftforge.gradle' version '[6.0,6.2)'
-    id 'com.modrinth.minotaur' version '2.+'
-    id 'org.spongepowered.mixin' version '0.7.+'
+    id 'net.minecraftforge.gradle' version '6.0.54'
+    id 'com.modrinth.minotaur' version '2.9.0'
+    id 'org.spongepowered.mixin' version '0.7.38'
 }
 
 version = System.getenv("MOD_VERSION") ?: mod_version
@@ -66,6 +66,8 @@ dependencies {
     runtimeOnly fg.deobf("mezz.jei:jei-1.20.1-forge:${jei_version}")
 
     compileOnly fg.deobf("maven.modrinth:ae2:7KVs6HMQ")
+    // Jade 11.13.2 for Minecraft 1.20.1 / Forge; optional at runtime.
+    compileOnly fg.deobf("maven.modrinth:jade:LecuGude")
     // compileOnly "org.appliedenergistics:appliedenergistics2:${ae2_version}:api"
 }
 

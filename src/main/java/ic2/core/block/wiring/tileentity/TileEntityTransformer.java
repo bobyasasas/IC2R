@@ -3,18 +3,17 @@ package ic2.core.block.wiring.tileentity;
 import ic2.api.energy.EnergyNet;
 import ic2.api.energy.profile.VoltageTier;
 import ic2.api.network.INetworkClientTileEntityEventListener;
-import ic2.core.energy.profile.ElectricalDisplay;
+import ic2.api.network.NetworkHelper;
 import ic2.core.ContainerBase;
 import ic2.core.IHasGui;
 import ic2.core.block.comp.Energy;
 import ic2.core.block.tileentity.TileEntityInventory;
 import ic2.core.block.wiring.ContainerTransformer;
+import ic2.core.energy.EnergyNetMode;
+import ic2.core.energy.profile.ElectricalDisplay;
+import ic2.core.init.IC2Config;
 import ic2.core.network.GrowingBuffer;
 import ic2.core.util.Ic2Tooltip;
-
-import java.util.Collections;
-import java.util.EnumSet;
-import java.util.List;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -28,211 +27,230 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 
-public abstract class TileEntityTransformer extends TileEntityInventory implements IHasGui, INetworkClientTileEntityEventListener
-{
-	private static final TileEntityTransformer.Mode defaultMode = TileEntityTransformer.Mode.redstone;
-	protected final Energy energy;
-	private final int defaultTier;
-	private double inputFlow = 0.0;
-	private double outputFlow = 0.0;
-	private TileEntityTransformer.Mode configuredMode = defaultMode;
-	private TileEntityTransformer.Mode transformMode = null;
+import java.util.Collections;
+import java.util.EnumSet;
+import java.util.List;
 
-	public TileEntityTransformer(BlockEntityType<? extends TileEntityTransformer> type, BlockPos pos, BlockState state, int tier)
-	{
-		super(type, pos, state);
-		this.defaultTier = tier;
-		this.energy = this.addComponent(new Energy(this, EnergyNet.instance.getPowerFromTier(tier) * 8.0, Collections.emptySet(), Collections.emptySet(), tier, tier, true).setMultiSource(true));
-	}
+public abstract class TileEntityTransformer extends TileEntityInventory
+        implements IHasGui, INetworkClientTileEntityEventListener {
+    private static final Mode defaultMode = Mode.redstone;
+    protected final Energy energy;
+    private final int defaultTier;
+    private double inputFlow = 0.0;
+    private double outputFlow = 0.0;
+    private Mode configuredMode = defaultMode;
+    private Mode transformMode = null;
 
-	@Override
-	public void load(CompoundTag nbt)
-	{
-		super.load(nbt);
-		int mode = nbt.getInt("mode");
-		if (mode >= 0 && mode < TileEntityTransformer.Mode.VALUES.length)
-		{
-			this.configuredMode = TileEntityTransformer.Mode.VALUES[mode];
-		} else
-		{
-			this.configuredMode = defaultMode;
-		}
-	}
+    public TileEntityTransformer(
+            BlockEntityType<? extends TileEntityTransformer> type,
+            BlockPos pos,
+            BlockState state,
+            int tier) {
+        super(type, pos, state);
+        this.defaultTier = tier;
+        this.energy =
+                this.addComponent(
+                        new Energy(
+                                        this,
+                                        EnergyNet.instance.getPowerFromTier(tier) * 8.0,
+                                        Collections.emptySet(),
+                                        Collections.emptySet(),
+                                        tier,
+                                        tier,
+                                        true)
+                                .setMultiSource(true));
+    }
 
-	@Override
-	public void saveAdditional(CompoundTag nbt)
-	{
-		super.saveAdditional(nbt);
-		nbt.putInt("mode", this.configuredMode.ordinal());
-	}
+    @Override
+    public void load(CompoundTag nbt) {
+        super.load(nbt);
+        int mode = nbt.getInt("mode");
+        if (mode >= 0 && mode < Mode.VALUES.length) {
+            this.configuredMode = Mode.VALUES[mode];
+        } else {
+            this.configuredMode = defaultMode;
+        }
+    }
 
-	@Override
-	protected void onLoaded()
-	{
-		super.onLoaded();
-		if (!this.getLevel().isClientSide)
-		{
-			this.updateRedstone(true);
-		}
-	}
+    @Override
+    public void saveAdditional(CompoundTag nbt) {
+        super.saveAdditional(nbt);
+        nbt.putInt("mode", this.configuredMode.ordinal());
+    }
 
-	public TileEntityTransformer.Mode getMode()
-	{
-		return this.configuredMode;
-	}
+    @Override
+    protected void onLoaded() {
+        super.onLoaded();
+        if (!this.getLevel().isClientSide) {
+            this.updateRedstone(true);
+        }
+    }
 
-	@Override
-	public void onNetworkEvent(Player player, int event)
-	{
-		if (event >= 0 && event < TileEntityTransformer.Mode.VALUES.length)
-		{
-			this.configuredMode = TileEntityTransformer.Mode.VALUES[event];
-			this.updateRedstone(false);
-		}
-	}
+    public Mode getMode() {
+        return this.configuredMode;
+    }
 
-	@Override
-	protected void updateEntityServer()
-	{
-		super.updateEntityServer();
-		this.updateRedstone(false);
-	}
+    @Override
+    public void onNetworkEvent(Player player, int event) {
+        if (event >= 0 && event < Mode.VALUES.length) {
+            this.configuredMode = Mode.VALUES[event];
+            this.updateRedstone(false);
+        }
+    }
 
-	private void updateRedstone(boolean force)
-	{
-		assert !this.getLevel().isClientSide;
+    @Override
+    protected void updateEntityServer() {
+        super.updateEntityServer();
+        this.updateRedstone(false);
+    }
 
-		TileEntityTransformer.Mode newMode = switch (this.configuredMode)
-		{
-			case redstone ->
-				this.getLevel().hasNeighborSignal(this.worldPosition) ? TileEntityTransformer.Mode.stepUp : TileEntityTransformer.Mode.stepDown;
-			case stepDown, stepUp -> this.configuredMode;
-		};
+    private void updateRedstone(boolean force) {
+        assert !this.getLevel().isClientSide;
 
-		if (!force && this.transformMode != null && this.transformMode != newMode)
-		{
-			if (this.energy.applyTransformerModeSwitch(newMode, this.transformMode))
-			{
-				return;
-			}
-		}
+        Mode newMode =
+                switch (this.configuredMode) {
+                    case redstone ->
+                            this.getLevel().hasNeighborSignal(this.worldPosition)
+                                    ? Mode.stepUp
+                                    : Mode.stepDown;
+                    case stepDown, stepUp -> this.configuredMode;
+                };
+        if (force
+                || this.transformMode == null
+                || this.transformMode == newMode
+                || !this.energy.applyTransformerModeSwitch(newMode, this.transformMode)) {
+            this.energy.setEnabled(true);
+            if (force || this.transformMode != newMode) {
+                Mode previousMode = this.transformMode;
+                this.transformMode = newMode;
+                if (previousMode != newMode) {
+                    NetworkHelper.updateTileEntityField(this, "transformMode");
+                }
 
-		this.energy.setEnabled(true);
-		if (force || this.transformMode != newMode)
-		{
-			this.transformMode = newMode;
-			this.setActive(this.isStepUp());
-			if (this.isStepUp())
-			{
-				this.energy.setSourceTier(this.defaultTier + 1);
-				this.energy.setSinkTier(this.defaultTier);
-				this.energy.setPacketOutput(1);
-				this.energy.setDirections(EnumSet.complementOf(EnumSet.of(this.getFacing())), EnumSet.of(this.getFacing()));
-			} else
-			{
-				this.energy.setSourceTier(this.defaultTier);
-				this.energy.setSinkTier(this.defaultTier + 1);
-				this.energy.setPacketOutput(4);
-				this.energy.setDirections(EnumSet.of(this.getFacing()), EnumSet.complementOf(EnumSet.of(this.getFacing())));
-			}
+                this.setActive(this.isStepUp());
+                if (this.isStepUp()) {
+                    this.energy.setSourceTier(this.defaultTier + 1);
+                    this.energy.setSinkTier(this.defaultTier);
+                    this.energy.setPacketOutput(1);
+                    this.energy.setDirections(
+                            EnumSet.complementOf(EnumSet.of(this.getFacing())),
+                            EnumSet.of(this.getFacing()));
+                } else {
+                    this.energy.setSourceTier(this.defaultTier);
+                    this.energy.setSinkTier(this.defaultTier + 1);
+                    this.energy.setPacketOutput(4);
+                    this.energy.setDirections(
+                            EnumSet.of(this.getFacing()),
+                            EnumSet.complementOf(EnumSet.of(this.getFacing())));
+                }
 
-			this.outputFlow = EnergyNet.instance.getPowerFromTier(this.energy.getSourceTier());
-			this.inputFlow = EnergyNet.instance.getPowerFromTier(this.energy.getSinkTier());
-			this.energy.configureTransformerProfile(this.isStepUp());
-		}
-	}
+                this.outputFlow = EnergyNet.instance.getPowerFromTier(this.energy.getSourceTier());
+                this.inputFlow = EnergyNet.instance.getPowerFromTier(this.energy.getSinkTier());
+                this.energy.configureTransformerProfile(this.isStepUp());
+            }
+        }
+    }
 
-	@Override
-	public void setFacing(Level world, Direction facing)
-	{
-		super.setFacing(world, facing);
-		if (!this.getLevel().isClientSide)
-		{
-			this.updateRedstone(true);
-		}
-	}
+    @Override
+    public void setFacing(Level world, Direction facing) {
+        super.setFacing(world, facing);
+        if (!this.getLevel().isClientSide) {
+            this.updateRedstone(true);
+        }
+    }
 
-	@Override
-	public void appendItemTooltip(ItemStack stack, List<Component> tooltip, TooltipFlag advanced)
-	{
-		super.appendItemTooltip(stack, tooltip, advanced);
-		VoltageTier lowTier = VoltageTier.fromIcTier(this.defaultTier);
-		VoltageTier highTier = VoltageTier.fromIcTier(this.defaultTier + 1);
-		Ic2Tooltip.add(tooltip, Component.translatable("ic2.Transformer.tooltip.high", ElectricalDisplay.formatPowerCompact(highTier.getVoltage(), highTier, 1)));
-		Ic2Tooltip.add(tooltip, Component.translatable("ic2.Transformer.tooltip.low", ElectricalDisplay.formatPowerCompact(lowTier.getVoltage() * 4, lowTier, 4)));
-	}
+    @Override
+    public void appendItemTooltip(ItemStack stack, List<Component> tooltip, TooltipFlag advanced) {
+        if (EnergyNetMode.fromConfig(IC2Config.misc.energyNetMode.get()) != EnergyNetMode.GT) {
+            super.appendItemTooltip(stack, tooltip, advanced);
+        }
 
-	public Component getInputFlowDisplay()
-	{
-		return this.getFlowDisplay(true);
-	}
+        Ic2Tooltip.add(
+                tooltip,
+                Component.translatable(
+                        "ic2.Transformer.tooltip.high", this.formatRatedPower(true)));
+        Ic2Tooltip.add(
+                tooltip,
+                Component.translatable(
+                        "ic2.Transformer.tooltip.low", this.formatRatedPower(false)));
+    }
 
-	public Component getOutputFlowDisplay()
-	{
-		return this.getFlowDisplay(false);
-	}
+    public Component getInputFlowDisplay() {
+        return this.getFlowDisplay(true);
+    }
 
-	private Component getFlowDisplay(boolean input)
-	{
-		boolean stepUp = this.isStepUp();
-		VoltageTier lowTier = VoltageTier.fromIcTier(this.defaultTier);
-		VoltageTier highTier = VoltageTier.fromIcTier(this.defaultTier + 1);
-		int amps;
-		VoltageTier tier;
-		if (input)
-		{
-			amps = stepUp ? 4 : 1;
-			tier = stepUp ? lowTier : highTier;
-		} else
-		{
-			amps = stepUp ? 1 : 4;
-			tier = stepUp ? highTier : lowTier;
-		}
+    public Component getOutputFlowDisplay() {
+        return this.getFlowDisplay(false);
+    }
 
-		return ElectricalDisplay.formatPower(tier.getVoltage() * amps, tier, amps);
-	}
+    private Component getFlowDisplay(boolean input) {
+        boolean stepUp = this.isStepUp();
+        int amps;
+        VoltageTier tier;
+        if (input) {
+            amps = stepUp ? 4 : 1;
+            tier = stepUp ? this.getLowTier() : this.getHighTier();
+        } else {
+            amps = stepUp ? 1 : 4;
+            tier = stepUp ? this.getHighTier() : this.getLowTier();
+        }
 
-	@Override
-	public ContainerBase<TileEntityTransformer> createServerScreenHandler(int syncId, Player player)
-	{
-		return new ContainerTransformer(syncId, player.getInventory(), this);
-	}
+        return ElectricalDisplay.formatPower(tier.getVoltage() * amps, tier, amps);
+    }
 
-	@Override
-	public ContainerBase<?> createClientScreenHandler(int syncId, Inventory inventory, GrowingBuffer data)
-	{
-		return new ContainerTransformer(syncId, inventory, this);
-	}
+    private Component formatRatedPower(boolean high) {
+        VoltageTier tier = high ? this.getHighTier() : this.getLowTier();
+        int amps = high ? 1 : 4;
+        return ElectricalDisplay.formatPowerCompact(tier.getVoltage() * amps, tier, amps);
+    }
 
-	public double getInputFlow()
-	{
-		return !this.isStepUp() ? this.inputFlow : this.outputFlow;
-	}
+    private VoltageTier getLowTier() {
+        return VoltageTier.fromIcTier(this.defaultTier);
+    }
 
-	public double getOutputFlow()
-	{
-		return this.isStepUp() ? this.inputFlow : this.outputFlow;
-	}
+    private VoltageTier getHighTier() {
+        return VoltageTier.fromIcTier(this.defaultTier + 1);
+    }
 
-	private boolean isStepUp()
-	{
-		if (this.transformMode != null)
-		{
-			return this.transformMode == TileEntityTransformer.Mode.stepUp;
-		}
+    @Override
+    public ContainerBase<TileEntityTransformer> createServerScreenHandler(
+            int syncId, Player player) {
+        return new ContainerTransformer(syncId, player.getInventory(), this);
+    }
 
-		return switch (this.configuredMode)
-		{
-			case stepUp -> true;
-			case stepDown -> false;
-			case redstone -> this.getLevel() != null && this.getLevel().hasNeighborSignal(this.worldPosition);
-		};
-	}
+    @Override
+    public ContainerBase<?> createClientScreenHandler(
+            int syncId, Inventory inventory, GrowingBuffer data) {
+        return new ContainerTransformer(syncId, inventory, this);
+    }
 
-	public enum Mode
-	{
-		redstone, stepDown, stepUp;
+    public double getInputFlow() {
+        return !this.isStepUp() ? this.inputFlow : this.outputFlow;
+    }
 
-		static final TileEntityTransformer.Mode[] VALUES = values();
-	}
+    public double getOutputFlow() {
+        return this.isStepUp() ? this.inputFlow : this.outputFlow;
+    }
+
+    private boolean isStepUp() {
+        if (this.transformMode != null) {
+            return this.transformMode == Mode.stepUp;
+        }
+
+        return switch (this.configuredMode) {
+            case redstone ->
+                    this.getLevel() != null
+                            && this.getLevel().hasNeighborSignal(this.worldPosition);
+            case stepDown -> false;
+            case stepUp -> true;
+        };
+    }
+
+    public enum Mode {
+        redstone,
+        stepDown,
+        stepUp;
+
+        static final Mode[] VALUES = values();
+    }
 }

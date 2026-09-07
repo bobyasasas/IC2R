@@ -5,6 +5,7 @@ import ic2.core.item.armor.ItemArmorJetpack;
 import ic2.core.ref.Ic2SoundEvents;
 import ic2.core.sound.Sound;
 import ic2.core.util.StackUtil;
+
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundSource;
@@ -13,213 +14,185 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 
-public class JetpackLogic
-{
-	private static Sound jetpackSound;
-	private static SoundEvent jetpackSoundEvent;
+public class JetpackLogic {
+    private static Sound jetpackSound;
+    private static SoundEvent jetpackSoundEvent;
 
-	public static boolean useJetpack(Player player, boolean hoverMode, IJetpack jetpack, ItemStack stack)
-	{
+    public static boolean useJetpack(
+            Player player, boolean hoverMode, IJetpack jetpack, ItemStack stack) {
+        if (jetpack.getChargeLevel(stack) <= 0.0) {
+            return false;
+        }
 
-		if (jetpack.getChargeLevel(stack) <= 0.0)
-		{
-			return false;
-		}
+        IBoostingJetpack iBoostingJetpack =
+                jetpack instanceof IBoostingJetpack ? (IBoostingJetpack) jetpack : null;
+        float power = jetpack.getPower(stack);
+        float dropPercentage = jetpack.getDropPercentage(stack);
+        if (jetpack.getChargeLevel(stack) <= dropPercentage) {
+            power = (float) (power * (jetpack.getChargeLevel(stack) / dropPercentage));
+        }
 
-		IBoostingJetpack iBoostingJetpack = jetpack instanceof IBoostingJetpack ? (IBoostingJetpack) jetpack : null;
-		float power = jetpack.getPower(stack);
-		float dropPercentage = jetpack.getDropPercentage(stack);
-		if (jetpack.getChargeLevel(stack) <= dropPercentage)
-		{
-			power = (float) (power * (jetpack.getChargeLevel(stack) / dropPercentage));
-		}
+        Level world = player.level();
+        Vec3 motion = player.getDeltaMovement();
+        double motionX = motion.x;
+        double motionY = motion.y;
+        double motionZ = motion.z;
+        if (IC2.keyboard.isForwardKeyDown(player)) {
+            float thruster;
+            float boost;
+            if (iBoostingJetpack != null) {
+                thruster = iBoostingJetpack.getBaseThrust(stack, hoverMode);
+                boost = iBoostingJetpack.getBoostThrust(player, stack, hoverMode);
+            } else {
+                thruster = hoverMode ? 1.0F : 0.15F;
+                boost = 0.0F;
+            }
 
-		Level world = player.level();
-		Vec3 motion = player.getDeltaMovement();
-		double motionX = motion.x;
-		double motionY = motion.y;
-		double motionZ = motion.z;
+            float forwarder = power * thruster * 2.0F;
+            if (forwarder > 0.0F) {
+                float yaw = player.getYRot() * (float) Math.PI / 180.0F;
+                float forward = 0.4F * forwarder + boost;
+                float thrust = forward * (0.02F + boost);
+                motionX += -Math.sin(yaw) * thrust;
+                motionZ += Math.cos(yaw) * thrust;
+                if (boost != 0.0F && !player.onGround()) {
+                    iBoostingJetpack.useBoostPower(stack, boost);
+                }
+            }
+        }
 
-		if (IC2.keyboard.isForwardKeyDown(player))
-		{
-			float thruster, boost;
-			if (iBoostingJetpack != null)
-			{
-				thruster = iBoostingJetpack.getBaseThrust(stack, hoverMode);
-				boost = iBoostingJetpack.getBoostThrust(player, stack, hoverMode);
-			} else
-			{
-				thruster = hoverMode ? 1.0F : 0.15F;
-				boost = 0.0F;
-			}
+        int worldHeight = world.getMaxBuildHeight();
+        int maxFlightHeight = (int) (worldHeight / jetpack.getWorldHeightDivisor(stack));
+        double y = player.getY();
+        if (y > maxFlightHeight - 25) {
+            if (y > maxFlightHeight) {
+                y = maxFlightHeight;
+            }
 
-			float forwarder = power * thruster * 2.0F;
-			if (forwarder > 0.0F)
-			{
-				float yaw = player.getYRot() * (float) Math.PI / 180.0F;
-				float forward = 0.4F * forwarder + boost;
-				float thrust = forward * (0.02F + boost);
-				motionX += -Math.sin(yaw) * thrust;
-				motionZ += Math.cos(yaw) * thrust;
-				if (boost != 0.0F && !player.onGround())
-				{
-					iBoostingJetpack.useBoostPower(stack, boost);
-				}
-			}
-		}
+            power = (float) (power * ((maxFlightHeight - y) / 25.0));
+        }
 
-		int worldHeight = world.getMaxBuildHeight();
-		int maxFlightHeight = (int) (worldHeight / jetpack.getWorldHeightDivisor(stack));
-		double y = player.getY();
-		if (y > maxFlightHeight - 25)
-		{
-			if (y > maxFlightHeight)
-			{
-				y = maxFlightHeight;
-			}
+        double prevMotionY = motionY;
+        motionY = Math.min(motionY + power * 0.2F, 0.6F);
+        if (hoverMode) {
+            float maxHoverY = 0.0F;
+            if (IC2.keyboard.isJumpKeyDown(player)) {
+                maxHoverY += jetpack.getHoverMultiplier(stack, true);
+                if (iBoostingJetpack != null) {
+                    maxHoverY *= iBoostingJetpack.getHoverBoost(player, stack, true);
+                }
+            }
 
-			power = (float) (power * ((maxFlightHeight - y) / 25.0));
-		}
+            if (IC2.keyboard.isSneakKeyDown(player)) {
+                maxHoverY -= jetpack.getHoverMultiplier(stack, false);
+                if (iBoostingJetpack != null) {
+                    maxHoverY *= iBoostingJetpack.getHoverBoost(player, stack, false);
+                }
+            }
 
-		double prevMotionY = motionY;
-		motionY = Math.min(motionY + power * 0.2F, 0.6F);
-		if (hoverMode)
-		{
-			float maxHoverY = 0.0F;
-			if (IC2.keyboard.isJumpKeyDown(player))
-			{
-				maxHoverY += jetpack.getHoverMultiplier(stack, true);
-				if (iBoostingJetpack != null)
-				{
-					maxHoverY *= iBoostingJetpack.getHoverBoost(player, stack, true);
-				}
-			}
+            if (motionY > maxHoverY) {
+                motionY = maxHoverY;
+                if (prevMotionY > motionY) {
+                    motionY = prevMotionY;
+                }
+            }
+        }
 
-			if (IC2.keyboard.isSneakKeyDown(player))
-			{
-				maxHoverY -= jetpack.getHoverMultiplier(stack, false);
-				if (iBoostingJetpack != null)
-				{
-					maxHoverY *= iBoostingJetpack.getHoverBoost(player, stack, false);
-				}
-			}
+        player.setDeltaMovement(motionX, motionY, motionZ);
+        int consume = hoverMode ? 1 : 2;
+        if (!player.onGround()) {
+            jetpack.drainEnergy(stack, consume);
+        }
 
-			if (motionY > maxHoverY)
-			{
-				motionY = maxHoverY;
-				if (prevMotionY > motionY)
-				{
-					motionY = prevMotionY;
-				}
-			}
-		}
+        player.fallDistance = 0.0F;
+        player.resetFallDistance();
+        return true;
+    }
 
-		player.setDeltaMovement(motionX, motionY, motionZ);
+    public static void onArmorTick(Level world, Player player, ItemStack stack, IJetpack jetpack) {
+        if (stack != null && jetpack.isJetpackActive(stack)) {
+            CompoundTag nbtData = StackUtil.getOrCreateNbtData(stack);
+            boolean hoverMode = nbtData.getBoolean("hover_mode");
+            byte toggleTimer = nbtData.getByte("toggle_timer");
+            boolean jetpackUsed = false;
+            if (IC2.keyboard.isJumpKeyDown(player)
+                    && IC2.keyboard.isModeSwitchKeyDown(player)
+                    && toggleTimer == 0) {
+                toggleTimer = 10;
+                hoverMode = !hoverMode;
+                if (!world.isClientSide()) {
+                    nbtData.putBoolean("hover_mode", hoverMode);
+                    if (hoverMode) {
+                        IC2.sideProxy.messagePlayer(player, "ic2.hover_mode.enabled");
+                    } else {
+                        IC2.sideProxy.messagePlayer(player, "ic2.hover_mode.disabled");
+                    }
+                }
+            }
 
-		int consume = hoverMode ? 1 : 2;
-		if (!player.onGround())
-		{
-			jetpack.drainEnergy(stack, consume);
-		}
+            if (IC2.keyboard.isJumpKeyDown(player) || hoverMode) {
+                jetpackUsed = useJetpack(player, hoverMode, jetpack, stack);
+                if (player.onGround() && hoverMode && !world.isClientSide()) {
+                    nbtData.putBoolean("hover_mode", false);
+                    IC2.sideProxy.messagePlayer(player, "ic2.hover_mode.disabled");
+                }
+            }
 
-		player.fallDistance = 0.0F;
-		player.resetFallDistance();
-		return true;
-	}
+            if (!world.isClientSide() && toggleTimer > 0) {
+                nbtData.putByte("toggle_timer", --toggleTimer);
+            }
 
-	public static void onArmorTick(Level world, Player player, ItemStack stack, IJetpack jetpack)
-	{
-		if (stack != null && jetpack.isJetpackActive(stack))
-		{
-			CompoundTag nbtData = StackUtil.getOrCreateNbtData(stack);
-			boolean hoverMode = nbtData.getBoolean("hover_mode");
-			byte toggleTimer = nbtData.getByte("toggle_timer");
-			boolean jetpackUsed = false;
+            updateJetpackSound(player, jetpackUsed, jetpack);
+            if (jetpackUsed) {
+                player.inventoryMenu.broadcastChanges();
+            }
+        } else {
+            stopJetpackSound(player);
+        }
+    }
 
-			if (IC2.keyboard.isJumpKeyDown(player) && IC2.keyboard.isModeSwitchKeyDown(player) && toggleTimer == 0)
-			{
-				toggleTimer = 10;
-				hoverMode = !hoverMode;
-				if (!world.isClientSide())
-				{
-					nbtData.putBoolean("hover_mode", hoverMode);
-					if (hoverMode)
-					{
-						IC2.sideProxy.messagePlayer(player, "ic2.hover_mode.enabled");
-					} else
-					{
-						IC2.sideProxy.messagePlayer(player, "ic2.hover_mode.disabled");
-					}
-				}
-			}
+    private static void updateJetpackSound(Player player, boolean jetpackUsed, IJetpack jetpack) {
+        if (IC2.sideProxy.isRendering() && player == IC2.sideProxy.getPlayerInstance()) {
+            if (jetpackUsed) {
+                SoundEvent soundEvent =
+                        jetpack instanceof ItemArmorJetpack
+                                ? Ic2SoundEvents.ITEM_JETPACK_FIRE
+                                : Ic2SoundEvents.ITEM_JETPACK_LOOP;
+                if (jetpackSound == null || jetpackSoundEvent != soundEvent) {
+                    stopJetpackSound(player);
+                    jetpackSoundEvent = soundEvent;
+                    jetpackSound =
+                            IC2.soundManager.createSound(
+                                    player, soundEvent, SoundSource.PLAYERS, player, 1.0F, 1.0F);
+                    if (jetpackSound != null) {
+                        jetpackSound.play();
+                    }
+                } else if (jetpackSound != null && !jetpackSound.isPlaying()) {
+                    jetpackSound.play();
+                }
+            } else {
+                stopJetpackSound(player);
+            }
+        }
+    }
 
-			if (IC2.keyboard.isJumpKeyDown(player) || hoverMode)
-			{
-				jetpackUsed = useJetpack(player, hoverMode, jetpack, stack);
-				if (player.onGround() && hoverMode && !world.isClientSide())
-				{
-					nbtData.putBoolean("hover_mode", false);
-					IC2.sideProxy.messagePlayer(player, "ic2.hover_mode.disabled");
-				}
-			}
+    public static void stopJetpackSound(Player player) {
+        if (IC2.sideProxy.isRendering()) {
+            Player local = IC2.sideProxy.getPlayerInstance();
+            if (player == null || local == null || player == local) {
+                if (jetpackSound != null) {
+                    Object owner = local != null ? local : player;
+                    if (owner != null) {
+                        IC2.soundManager.removeSound(owner, jetpackSound);
+                    } else {
+                        jetpackSound.stop();
+                    }
 
-			if (!world.isClientSide() && toggleTimer > 0)
-			{
-				nbtData.putByte("toggle_timer", --toggleTimer);
-			}
+                    jetpackSound = null;
+                }
 
-			updateJetpackSound(player, jetpackUsed, jetpack);
-
-			if (jetpackUsed)
-			{
-				player.inventoryMenu.broadcastChanges();
-			}
-		} else
-		{
-			stopJetpackSound(player);
-		}
-	}
-
-	private static void updateJetpackSound(Player player, boolean jetpackUsed, IJetpack jetpack)
-	{
-		if (!IC2.sideProxy.isRendering() || player != IC2.sideProxy.getPlayerInstance())
-		{
-			return;
-		}
-
-		if (jetpackUsed)
-		{
-			SoundEvent soundEvent = jetpack instanceof ItemArmorJetpack ? Ic2SoundEvents.ITEM_JETPACK_FIRE : Ic2SoundEvents.ITEM_JETPACK_LOOP;
-			if (jetpackSound == null || jetpackSoundEvent != soundEvent)
-			{
-				stopJetpackSound(player);
-				jetpackSoundEvent = soundEvent;
-				jetpackSound = IC2.soundManager.createSound(player, soundEvent, SoundSource.PLAYERS, player, 1.0F, 1.0F);
-			}
-
-			if (jetpackSound != null)
-			{
-				jetpackSound.play();
-			}
-		} else
-		{
-			stopJetpackSound(player);
-		}
-	}
-
-	public static void stopJetpackSound(Player player)
-	{
-		if (!IC2.sideProxy.isRendering())
-		{
-			return;
-		}
-
-		if (jetpackSound != null)
-		{
-			IC2.soundManager.removeSound(player, jetpackSound);
-			jetpackSound = null;
-		}
-
-		jetpackSoundEvent = null;
-	}
+                jetpackSoundEvent = null;
+            }
+        }
+    }
 }

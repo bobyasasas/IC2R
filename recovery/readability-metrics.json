@@ -1,0 +1,10 @@
+{
+  "java_files_reviewed": 96,
+  "java_files_changed": 96,
+  "long_lines_before": 199,
+  "long_lines_after": 0,
+  "remaining_synthetic_variables": [],
+  "nested_qualifiers": 245,
+  "renamed_identifiers": 123,
+  "constant_uses": 48
+}

@@ -10,11 +10,6 @@ import ic2.core.util.Ic2Tooltip;
 import ic2.core.util.RotationUtil;
 import ic2.core.util.Util;
 
-import java.util.List;
-
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -23,6 +18,7 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item.Properties;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Tier;
 import net.minecraft.world.item.TieredItem;
@@ -32,85 +28,97 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
+
 import org.jetbrains.annotations.NotNull;
 
-public class ItemToolCrowbar extends TieredItem implements IEnhancedOverlayProvider, PriorityUsableItem
-{
-	public ItemToolCrowbar(Tier material, Properties settings)
-	{
-		super(material, settings);
-	}
+import java.util.List;
 
-	public boolean canTakeDamage()
-	{
-		return true;
-	}
+public class ItemToolCrowbar extends TieredItem
+        implements IEnhancedOverlayProvider, PriorityUsableItem {
+    public ItemToolCrowbar(Tier material, Properties settings) {
+        super(material, settings);
+    }
 
-	@Override
-	public InteractionResult onItemUseFirst(ItemStack stack, UseOnContext context)
-	{
-		Level world = context.getLevel();
-		Player player = context.getPlayer();
-		InteractionHand hand = context.getHand();
-		BlockPos pos = context.getClickedPos();
-		Direction side = context.getClickedFace();
-		Vec3 hitPos = context.getClickLocation();
-		if (!this.canTakeDamage())
-		{
-			return InteractionResult.FAIL;
-		}
+    public boolean canTakeDamage() {
+        return true;
+    }
 
-		BlockState state = world.getBlockState(pos);
-		if (state.isAir())
-		{
-			return InteractionResult.FAIL;
-		}
+    @Override
+    public InteractionResult onItemUseFirst(ItemStack stack, UseOnContext context) {
+        Level world = context.getLevel();
+        Player player = context.getPlayer();
+        InteractionHand hand = context.getHand();
+        BlockPos pos = context.getClickedPos();
+        Direction side = context.getClickedFace();
+        Vec3 hitPos = context.getClickLocation();
+        if (!this.canTakeDamage()) {
+            return InteractionResult.FAIL;
+        }
 
-		if (world.getBlockEntity(pos) instanceof ICoverHolder target)
-		{
-			Direction selectedFacing = RotationUtil.rotateByHit(side, (float) hitPos.x, (float) hitPos.y, (float) hitPos.z);
-			if (target.canRemoveCover(world, pos, selectedFacing))
-			{
-				if (!world.isClientSide)
-				{
-					target.removeCover(world, pos, selectedFacing);
-					if (player != null)
-					{
-						stack.hurtAndBreak(1, player, p -> p.broadcastBreakEvent(hand));
-					}
-				} else
-				{
-					IC2.soundManager.playOnce(Ic2SoundEvents.ITEM_CROWBAR_USE, SoundSource.BLOCKS, 1.0F, 1.0F, player);
-				}
-			}
+        BlockState state = world.getBlockState(pos);
+        if (state.isAir()) {
+            return InteractionResult.FAIL;
+        }
 
-			return world.isClientSide ? InteractionResult.PASS : InteractionResult.SUCCESS;
-		} else
-		{
-			return InteractionResult.FAIL;
-		}
-	}
+        if (world.getBlockEntity(pos) instanceof ICoverHolder target) {
+            Direction selectedFacing =
+                    RotationUtil.rotateByHit(
+                            side,
+                            (float) (hitPos.x - pos.getX()),
+                            (float) (hitPos.y - pos.getY()),
+                            (float) (hitPos.z - pos.getZ()));
+            if (target.canRemoveCover(world, pos, selectedFacing)) {
+                if (!world.isClientSide) {
+                    target.removeCover(world, pos, selectedFacing);
+                    if (player != null) {
+                        stack.hurtAndBreak(1, player, p -> p.broadcastBreakEvent(hand));
+                    }
+                } else {
+                    IC2.soundManager.playOnce(
+                            Ic2SoundEvents.ITEM_CROWBAR_USE,
+                            SoundSource.BLOCKS,
+                            1.0F,
+                            1.0F,
+                            player);
+                }
+            }
 
-	public boolean isValidRepairItem(@NotNull ItemStack toRepair, @NotNull ItemStack repair)
-	{
-		return Util.matchesOD(repair, Ic2ItemTags.BRONZE_INGOTS);
-	}
+            return world.isClientSide ? InteractionResult.PASS : InteractionResult.SUCCESS;
+        } else {
+            return InteractionResult.FAIL;
+        }
+    }
 
-	public boolean isEnchantable(@NotNull ItemStack stack)
-	{
-		return false;
-	}
+    @Override
+    public boolean isValidRepairItem(@NotNull ItemStack toRepair, @NotNull ItemStack repair) {
+        return Util.matchesOD(repair, Ic2ItemTags.BRONZE_INGOTS);
+    }
 
-	@OnlyIn(Dist.CLIENT)
-	public void appendHoverText(@NotNull ItemStack stack, Level worldIn, List<Component> info, @NotNull TooltipFlag flagIn)
-	{
-		Ic2Tooltip.add(info, Component.translatable("item.ic2.crowbar.tooltip.remove", Minecraft.getInstance().options.keyRight.getKey().getDisplayName()));
-	}
+    @Override
+    public boolean isEnchantable(@NotNull ItemStack stack) {
+        return false;
+    }
 
-	@Override
-	public boolean providesEnhancedOverlay(Level world, BlockPos pos, Direction side, Player player, ItemStack stack)
-	{
-		BlockEntity tileEntity = world.getBlockEntity(pos);
-		return tileEntity instanceof ICoverHolder;
-	}
+    @OnlyIn(Dist.CLIENT)
+    @Override
+    public void appendHoverText(
+            @NotNull ItemStack stack,
+            Level worldIn,
+            List<Component> info,
+            @NotNull TooltipFlag flagIn) {
+        Ic2Tooltip.add(
+                info,
+                Component.translatable(
+                        "item.ic2.crowbar.tooltip.remove",
+                        Minecraft.getInstance().options.keyRight.getKey().getDisplayName()));
+    }
+
+    @Override
+    public boolean providesEnhancedOverlay(
+            Level world, BlockPos pos, Direction side, Player player, ItemStack stack) {
+        BlockEntity tileEntity = world.getBlockEntity(pos);
+        return tileEntity instanceof ICoverHolder;
+    }
 }

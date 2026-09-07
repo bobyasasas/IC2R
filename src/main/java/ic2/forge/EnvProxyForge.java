@@ -2,9 +2,11 @@ package ic2.forge;
 
 import com.mojang.authlib.GameProfile;
 import com.mojang.serialization.Codec;
-import ic2.api.crops.Crops;
+
 import ic2.api.crops.CropCard;
-import ic2.api.energy.ProfileEvent;
+import ic2.api.crops.Crops;
+import ic2.api.energy.ProfileEvent.Load;
+import ic2.api.energy.ProfileEvent.Switch;
 import ic2.api.event.ExplosionEvent;
 import ic2.api.event.RetextureEvent;
 import ic2.api.item.IElectricItem;
@@ -13,31 +15,25 @@ import ic2.core.Ic2ItemGroupType;
 import ic2.core.fluid.EnvFluidHandler;
 import ic2.core.item.BlockItemEnergyStorage;
 import ic2.core.item.ElectricItemManager;
-import ic2.core.item.ItemCropSeed;
 import ic2.core.item.EnvItemHandler;
+import ic2.core.item.ItemClassicCell;
+import ic2.core.item.ItemCropSeed;
 import ic2.core.item.armor.ItemArmorFluidTank;
-import ic2.core.ref.Ic2Items;
 import ic2.core.network.GrowingBuffer;
-import ic2.core.util.StackUtil;
 import ic2.core.proxy.EnvProxy;
-
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Set;
-import java.util.concurrent.CompletableFuture;
-import java.util.function.BiFunction;
-import java.util.function.Supplier;
+import ic2.core.proxy.EnvProxy.BiomeSelector;
+import ic2.core.proxy.EnvProxy.BiomeType;
+import ic2.core.proxy.EnvProxy.ExtendedClientScreenHandlerFactory;
+import ic2.core.ref.Ic2Items;
+import ic2.core.util.LiquidUtil;
+import ic2.core.util.StackUtil;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Holder;
 import net.minecraft.core.Registry;
-import net.minecraft.core.registries.Registries;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.MinecraftServer;
@@ -46,11 +42,11 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.effect.MobEffect;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.MenuType;
@@ -84,6 +80,7 @@ import net.minecraft.world.level.levelgen.feature.foliageplacers.FoliagePlacerTy
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 import net.minecraft.world.level.levelgen.placement.PlacementModifier;
 import net.minecraft.world.level.levelgen.placement.PlacementModifierType;
+import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.common.MinecraftForge;
@@ -96,394 +93,411 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.server.ServerLifecycleHooks;
 
-public final class EnvProxyForge implements EnvProxy
-{
-	static final DeferredRegister<BlockEntityType<?>> blockEntityRegistry = DeferredRegister.create(ForgeRegistries.BLOCK_ENTITY_TYPES, "ic2");
-	static final DeferredRegister<MenuType<?>> screenHandlerRegistry = DeferredRegister.create(ForgeRegistries.MENU_TYPES, "ic2");
-	static final DeferredRegister<EntityType<?>> entityRegistry = DeferredRegister.create(ForgeRegistries.ENTITY_TYPES, "ic2");
-	static final DeferredRegister<MobEffect> statusEffectRegistry = DeferredRegister.create(ForgeRegistries.MOB_EFFECTS, "ic2");
-	static final DeferredRegister<CreativeModeTab> creativeTabRegistry = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, "ic2");
-	static final List<TabRegistration> pendingTabRegistrations = new ArrayList<>();
-	static final DeferredRegister<FoliagePlacerType<?>> foliagePlacerRegistry = DeferredRegister.create(ForgeRegistries.FOLIAGE_PLACER_TYPES, "ic2");
-	static final DeferredRegister<RecipeType<?>> recipeTypeRegistry = DeferredRegister.create(ForgeRegistries.RECIPE_TYPES, "ic2");
-	static final DeferredRegister<RecipeSerializer<?>> recipeSerializerRegistry = DeferredRegister.create(ForgeRegistries.RECIPE_SERIALIZERS, "ic2");
-	private static final boolean isClient = FMLEnvironment.dist.isClient();
-	static List<Runnable> pendingItemRegistrations = new ArrayList<>();
-	static List<ConfiguredFeatureRegistration<?, ?>> configuredFeatureRegistrations = new ArrayList<>();
-	static List<EnvProxyForge.PlacedFeatureRegistration<?>> placedFeatureRegistrations = new ArrayList<>();
-	static List<EnvProxyForge.PlacementModifierTypeRegistration> placementModifierTypeRegistrations = new ArrayList<>();
-	static HashMap<Item, Integer> burnTimeRecord = new HashMap<>();
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Set;
+import java.util.concurrent.CompletableFuture;
+import java.util.function.BiFunction;
+import java.util.function.Supplier;
 
-	static void registerPendingItems()
-	{
-		for (Runnable r : pendingItemRegistrations)
-		{
-			r.run();
-		}
+public final class EnvProxyForge implements EnvProxy {
+    static final DeferredRegister<BlockEntityType<?>> blockEntityRegistry =
+            DeferredRegister.create(ForgeRegistries.BLOCK_ENTITY_TYPES, "ic2");
+    static final DeferredRegister<MenuType<?>> screenHandlerRegistry =
+            DeferredRegister.create(ForgeRegistries.MENU_TYPES, "ic2");
+    static final DeferredRegister<EntityType<?>> entityRegistry =
+            DeferredRegister.create(ForgeRegistries.ENTITY_TYPES, "ic2");
+    static final DeferredRegister<MobEffect> statusEffectRegistry =
+            DeferredRegister.create(ForgeRegistries.MOB_EFFECTS, "ic2");
+    static final DeferredRegister<CreativeModeTab> creativeTabRegistry =
+            DeferredRegister.create(Registries.CREATIVE_MODE_TAB, "ic2");
+    static final List<TabRegistration> pendingTabRegistrations = new ArrayList<>();
+    static final DeferredRegister<FoliagePlacerType<?>> foliagePlacerRegistry =
+            DeferredRegister.create(ForgeRegistries.FOLIAGE_PLACER_TYPES, "ic2");
+    static final DeferredRegister<RecipeType<?>> recipeTypeRegistry =
+            DeferredRegister.create(ForgeRegistries.RECIPE_TYPES, "ic2");
+    static final DeferredRegister<RecipeSerializer<?>> recipeSerializerRegistry =
+            DeferredRegister.create(ForgeRegistries.RECIPE_SERIALIZERS, "ic2");
+    private static final boolean isClient = FMLEnvironment.dist.isClient();
+    static List<Runnable> pendingItemRegistrations = new ArrayList<>();
+    static List<ConfiguredFeatureRegistration<?, ?>> configuredFeatureRegistrations =
+            new ArrayList<>();
+    static List<PlacedFeatureRegistration<?>> placedFeatureRegistrations = new ArrayList<>();
+    static List<PlacementModifierTypeRegistration> placementModifierTypeRegistrations =
+            new ArrayList<>();
+    static HashMap<Item, Integer> burnTimeRecord = new HashMap<>();
 
-		pendingItemRegistrations.clear();
-	}
+    static void registerPendingItems() {
+        for (Runnable r : pendingItemRegistrations) {
+            r.run();
+        }
 
-	@Override
-	public boolean isClientEnv()
-	{
-		return isClient;
-	}
+        pendingItemRegistrations.clear();
+    }
 
-	@Override
-	public boolean isFabricEnv()
-	{
-		return false;
-	}
+    @Override
+    public boolean isClientEnv() {
+        return isClient;
+    }
 
-	@Override
-	public boolean isForgeEnv()
-	{
-		return true;
-	}
+    @Override
+    public boolean isFabricEnv() {
+        return false;
+    }
 
-	@Override
-	public MinecraftServer getServer()
-	{
-		return ServerLifecycleHooks.getCurrentServer();
-	}
+    @Override
+    public boolean isForgeEnv() {
+        return true;
+    }
 
-	@Override
-	public void registerBlock(ResourceLocation id, Block block)
-	{
-		ForgeRegistries.BLOCKS.register(id, block);
-	}
+    @Override
+    public MinecraftServer getServer() {
+        return ServerLifecycleHooks.getCurrentServer();
+    }
 
-	@Override
-	public <T extends BlockEntity> BlockEntityType<T> registerBlockEntity(ResourceLocation id, BiFunction<BlockPos, BlockState, T> factory, Block... blocks)
-	{
-		BlockEntityType<T> type = Builder.of(factory::apply, blocks).build(null);
-		blockEntityRegistry.register(id.getPath(), () -> type);
-		return type;
-	}
+    @Override
+    public void registerBlock(ResourceLocation id, Block block) {
+        ForgeRegistries.BLOCKS.register(id, block);
+    }
 
-	@Override
-	public <T extends AbstractContainerMenu> MenuType<T> registerScreenHandler(ResourceLocation id, BiFunction<Integer, Inventory, T> factory)
-	{
-		MenuType<T> type = new MenuType<>(factory::apply, FeatureFlags.DEFAULT_FLAGS);
-		screenHandlerRegistry.register(id.getPath(), () -> type);
-		return type;
-	}
+    @Override
+    public <T extends BlockEntity> BlockEntityType<T> registerBlockEntity(
+            ResourceLocation id, BiFunction<BlockPos, BlockState, T> factory, Block... blocks) {
+        BlockEntityType<T> type = Builder.of(factory::apply, blocks).build(null);
+        blockEntityRegistry.register(id.getPath(), () -> type);
+        return type;
+    }
 
-	@Override
-	public <T extends AbstractContainerMenu> MenuType<T> registerExtendedScreenHandler(
-		ResourceLocation id, EnvProxy.ExtendedClientScreenHandlerFactory<T> factory
-	)
-	{
-		MenuType<T> type = IForgeMenuType.create(factory::create);
-		screenHandlerRegistry.register(id.getPath(), () -> type);
-		return type;
-	}
+    @Override
+    public <T extends AbstractContainerMenu> MenuType<T> registerScreenHandler(
+            ResourceLocation id, BiFunction<Integer, Inventory, T> factory) {
+        MenuType<T> type = new MenuType<>(factory::apply, FeatureFlags.DEFAULT_FLAGS);
+        screenHandlerRegistry.register(id.getPath(), () -> type);
+        return type;
+    }
 
-	@Override
-	public void registerItem(ResourceLocation id, Item item)
-	{
-		ForgeRegistries.ITEMS.register(id, item);
-	}
+    @Override
+    public <T extends AbstractContainerMenu> MenuType<T> registerExtendedScreenHandler(
+            ResourceLocation id, ExtendedClientScreenHandlerFactory<T> factory) {
+        MenuType<T> type = IForgeMenuType.create(factory::create);
+        screenHandlerRegistry.register(id.getPath(), () -> type);
+        return type;
+    }
 
-	@Override
-	public void registerEntity(ResourceLocation id, EntityType<?> type)
-	{
-		entityRegistry.register(id.getPath(), () -> type);
-	}
+    @Override
+    public void registerItem(ResourceLocation id, Item item) {
+        ForgeRegistries.ITEMS.register(id, item);
+    }
 
-	@Override
-	public WoodType registerSignType(String name)
-	{
-		return WoodType.register(new WoodType("ic2:" + name, BlockSetType.OAK));
-	}
+    @Override
+    public void registerEntity(ResourceLocation id, EntityType<?> type) {
+        entityRegistry.register(id.getPath(), () -> type);
+    }
 
-	@Override
-	public void registerStatusEffect(ResourceLocation id, MobEffect effect)
-	{
-		statusEffectRegistry.register(id.getPath(), () -> effect);
-	}
+    @Override
+    public WoodType registerSignType(String name) {
+        return WoodType.register(new WoodType("ic2:" + name, BlockSetType.OAK));
+    }
 
-	@Override
-	public void registerFlammableBlock(Block block, int burn, int spread)
-	{
-	}
+    @Override
+    public void registerStatusEffect(ResourceLocation id, MobEffect effect) {
+        statusEffectRegistry.register(id.getPath(), () -> effect);
+    }
 
-	@Override
-	public SoundEvent registerSoundEvent(String id)
-	{
-		ResourceLocation identifier = IC2.getIdentifier(id);
-		SoundEvent soundEvent = SoundEvent.createVariableRangeEvent(identifier);
-		ForgeRegistries.SOUND_EVENTS.register(identifier, soundEvent);
-		return soundEvent;
-	}
+    @Override
+    public void registerFlammableBlock(Block block, int burn, int spread) {}
 
-	@Override
-	public GameEvent registerGameEvent(String id, int range)
-	{
-		ResourceLocation identifier = IC2.getIdentifier(id);
-		return Registry.register(BuiltInRegistries.GAME_EVENT, identifier, new GameEvent(identifier.toString(), range));
-	}
+    @Override
+    public SoundEvent registerSoundEvent(String id) {
+        ResourceLocation identifier = IC2.getIdentifier(id);
+        SoundEvent soundEvent = SoundEvent.createVariableRangeEvent(identifier);
+        ForgeRegistries.SOUND_EVENTS.register(identifier, soundEvent);
+        return soundEvent;
+    }
 
-	@Override
-	public <FC extends FeatureConfiguration, F extends Feature<FC>> CompletableFuture<Holder<ConfiguredFeature<FC, ?>>> registerConfiguredFeature(
-		ResourceLocation id, F feature, FC config
-	)
-	{
-		CompletableFuture<Holder<ConfiguredFeature<FC, ?>>> ret = new CompletableFuture<>();
-		configuredFeatureRegistrations.add(new ConfiguredFeatureRegistration<>(id, feature, config, ret));
-		return ret;
-	}
+    @Override
+    public GameEvent registerGameEvent(String id, int range) {
+        ResourceLocation identifier = IC2.getIdentifier(id);
+        return Registry.register(
+                BuiltInRegistries.GAME_EVENT,
+                identifier,
+                new GameEvent(identifier.toString(), range));
+    }
 
-	@Override
-	public <FC extends FeatureConfiguration> void registerPlacedFeature(
-		ResourceLocation id, CompletableFuture<Holder<ConfiguredFeature<FC, ?>>> feature, List<PlacementModifier> modifiers
-	)
-	{
-		placedFeatureRegistrations.add(new EnvProxyForge.PlacedFeatureRegistration<>(id, feature, modifiers, new CompletableFuture<>()));
-	}
+    @Override
+    public <FC extends FeatureConfiguration, F extends Feature<FC>>
+            CompletableFuture<Holder<ConfiguredFeature<FC, ?>>> registerConfiguredFeature(
+                    ResourceLocation id, F feature, FC config) {
+        CompletableFuture<Holder<ConfiguredFeature<FC, ?>>> ret = new CompletableFuture<>();
+        configuredFeatureRegistrations.add(
+                new ConfiguredFeatureRegistration<>(id, feature, config, ret));
+        return ret;
+    }
 
-	@Override
-	public void attachPlacedFeatureToBiome(ResourceLocation id, EnvProxy.BiomeSelector selector, Decoration step)
-	{
-	}
+    @Override
+    public <FC extends FeatureConfiguration> void registerPlacedFeature(
+            ResourceLocation id,
+            CompletableFuture<Holder<ConfiguredFeature<FC, ?>>> feature,
+            List<PlacementModifier> modifiers) {
+        placedFeatureRegistrations.add(
+                new PlacedFeatureRegistration<>(id, feature, modifiers, new CompletableFuture<>()));
+    }
 
-	@Override
-	public void registerPlacementModifierType(ResourceLocation id, PlacementModifierType<?> type)
-	{
-		placementModifierTypeRegistrations.add(new EnvProxyForge.PlacementModifierTypeRegistration(id, type));
-	}
+    @Override
+    public void attachPlacedFeatureToBiome(
+            ResourceLocation id, BiomeSelector selector, Decoration step) {}
 
-	@Override
-	public <T extends FoliagePlacer> FoliagePlacerType<T> registerFoliagePlacer(ResourceLocation id, Codec<T> codec)
-	{
-		FoliagePlacerType<T> type = new FoliagePlacerType<>(codec);
-		foliagePlacerRegistry.register(id.getPath(), () -> type);
-		return type;
-	}
+    @Override
+    public void registerPlacementModifierType(ResourceLocation id, PlacementModifierType<?> type) {
+        placementModifierTypeRegistrations.add(new PlacementModifierTypeRegistration(id, type));
+    }
 
-	@Override
-	public <T extends Recipe<?>> RecipeType<T> registerRecipeType(ResourceLocation id)
-	{
-		RecipeType<T> type = RecipeType.simple(id);
-		recipeTypeRegistry.register(id.getPath(), () -> type);
-		return type;
-	}
+    @Override
+    public <T extends FoliagePlacer> FoliagePlacerType<T> registerFoliagePlacer(
+            ResourceLocation id, Codec<T> codec) {
+        FoliagePlacerType<T> type = new FoliagePlacerType<>(codec);
+        foliagePlacerRegistry.register(id.getPath(), () -> type);
+        return type;
+    }
 
-	@Override
-	public void registerRecipeSerializer(ResourceLocation id, RecipeSerializer<?> serializer)
-	{
-		recipeSerializerRegistry.register(id.getPath(), () -> serializer);
-	}
+    @Override
+    public <T extends Recipe<?>> RecipeType<T> registerRecipeType(ResourceLocation id) {
+        RecipeType<T> type = RecipeType.simple(id);
+        recipeTypeRegistry.register(id.getPath(), () -> type);
+        return type;
+    }
 
-	@Override
-	public void runAfterRegistryInit(Runnable runnable)
-	{
-		FmlMod.instance.runAfterRegistryInit(runnable);
-	}
+    @Override
+    public void registerRecipeSerializer(ResourceLocation id, RecipeSerializer<?> serializer) {
+        recipeSerializerRegistry.register(id.getPath(), () -> serializer);
+    }
 
-	@Override
-	public CreativeModeTab createItemGroup(ResourceLocation id, Supplier<ItemStack> iconSupplier, Ic2ItemGroupType groupType)
-	{
-		pendingTabRegistrations.add(new TabRegistration(id, iconSupplier, groupType));
-		CreativeModeTab tab = CreativeModeTab.builder()
-			.title(Component.translatable("itemGroup." + id.getNamespace() + "." + id.getPath()))
-			.icon(iconSupplier)
-			.displayItems((params, output) ->
-			{
-				List<Supplier<Item>> items = Ic2Items.CREATIVE_TAB_ITEMS.get(groupType);
-				if (items != null)
-				{
-					items.sort(Comparator.comparing(s -> BuiltInRegistries.ITEM.getKey(s.get()).toString()));
-					for (Supplier<Item> itemSupplier : items)
-					{
-						Item item = itemSupplier.get();
-						output.accept(new ItemStack(item));
-						if (item instanceof IElectricItem)
-						{
-							output.accept(ElectricItemManager.getCharged(item, Double.POSITIVE_INFINITY));
-						}
-						if (item instanceof BlockItemEnergyStorage energyItem)
-						{
-							ItemStack chargedStack = new ItemStack(item);
-							StackUtil.getOrCreateNbtData(chargedStack).putDouble("energy", energyItem.maxEnergy);
-							output.accept(chargedStack);
-						}
-						if (item instanceof ItemArmorFluidTank tankItem)
-						{
-							ItemStack filledStack = new ItemStack(item);
-							tankItem.fillTank(filledStack);
-							output.accept(filledStack);
-						}
-					}
-				}
+    @Override
+    public void runAfterRegistryInit(Runnable runnable) {
+        FmlMod.instance.runAfterRegistryInit(runnable);
+    }
 
-				if (groupType == Ic2ItemGroupType.FARMING)
-				{
-					for (CropCard crop : Crops.instance.getCrops())
-					{
-						output.accept(ItemCropSeed.generateItemStackFromValues(crop, 1, 1, 1, 4));
-					}
-				}
-			})
-			.build();
-		creativeTabRegistry.register(id.getPath(), () -> tab);
-		return tab;
-	}
+    @Override
+    public CreativeModeTab createItemGroup(
+            ResourceLocation id, Supplier<ItemStack> iconSupplier, Ic2ItemGroupType groupType) {
+        pendingTabRegistrations.add(new TabRegistration(id, iconSupplier, groupType));
+        CreativeModeTab tab =
+                CreativeModeTab.builder()
+                        .title(
+                                Component.translatable(
+                                        "itemGroup." + id.getNamespace() + "." + id.getPath()))
+                        .icon(iconSupplier)
+                        .displayItems(
+                                (params, output) -> {
+                                    List<Supplier<Item>> items =
+                                            Ic2Items.CREATIVE_TAB_ITEMS.get(groupType);
+                                    if (items != null) {
+                                        items.sort(
+                                                Comparator.comparing(
+                                                        s ->
+                                                                BuiltInRegistries.ITEM
+                                                                        .getKey(s.get())
+                                                                        .toString()));
 
-	@Override
+                                        for (Supplier<Item> itemSupplier : items) {
+                                            Item item = itemSupplier.get();
+                                            output.accept(new ItemStack(item));
+                                            if (item instanceof IElectricItem) {
+                                                output.accept(
+                                                        ElectricItemManager.getCharged(
+                                                                item, Double.POSITIVE_INFINITY));
+                                            }
 
+                                            if (item instanceof BlockItemEnergyStorage energyItem) {
+                                                ItemStack chargedStack = new ItemStack(item);
+                                                StackUtil.getOrCreateNbtData(chargedStack)
+                                                        .putDouble("energy", energyItem.maxEnergy);
+                                                output.accept(chargedStack);
+                                            }
 
-	public EnvFluidHandler createFluidStackHandler()
-	{
-		if (this.isClientEnv())
-		{
-			try
-			{
-				return (EnvFluidHandler) Class.forName("ic2.forge.ClientEnvFluidHandlerForge").getConstructor().newInstance();
-			} catch (ReflectiveOperationException e)
-			{
-				throw new RuntimeException(e);
-			}
-		} else
-		{
-			return new EnvFluidHandlerForge();
-		}
-	}
+                                            if (item instanceof ItemArmorFluidTank tankItem) {
+                                                ItemStack filledStack = new ItemStack(item);
+                                                tankItem.fillTank(filledStack);
+                                                output.accept(filledStack);
+                                            }
+                                        }
+                                    }
 
-	@Override
-	public EnvItemHandler createItemHandler()
-	{
-		return new EnvItemHandlerForge();
-	}
+                                    if (groupType == Ic2ItemGroupType.FARMING) {
+                                        for (CropCard crop : Crops.instance.getCrops()) {
+                                            output.accept(
+                                                    ItemCropSeed.generateItemStackFromValues(
+                                                            crop, 1, 1, 1, 4));
+                                        }
+                                    }
 
-	@Override
-	public float getBlastResistance(BlockState state, BlockGetter world, BlockPos pos, Explosion explosion)
-	{
-		return state.getBlock().getExplosionResistance(state, world, pos, explosion);
-	}
+                                    if (groupType == Ic2ItemGroupType.FLUID_CELLS) {
+                                        output.accept(new ItemStack(Ic2Items.FACADE_CELL));
+                                        output.accept(
+                                                new ItemStack(Ic2Items.ELECTROLYZED_WATER_CELL));
+                                        output.accept(new ItemStack(Ic2Items.HYDRATION_CELL));
 
-	@Override
-	public BlockState rotate(BlockState state, LevelAccessor world, BlockPos pos, Rotation rotation)
-	{
-		return state.rotate(world, pos, rotation);
-	}
+                                        for (Fluid fluid : LiquidUtil.getAllFluidsSorted()) {
+                                            ItemStack filled =
+                                                    ItemClassicCell.createFilledStack(fluid);
+                                            if (!filled.isEmpty()) {
+                                                output.accept(filled);
+                                            }
+                                        }
+                                    }
+                                })
+                        .build();
+        creativeTabRegistry.register(id.getPath(), () -> tab);
+        return tab;
+    }
 
-	@Override
-	public boolean hasRecipeRemainder(ItemStack stack)
-	{
-		return stack.getItem().hasCraftingRemainingItem(stack);
-	}
+    @Override
+    public EnvFluidHandler createFluidStackHandler() {
+        if (this.isClientEnv()) {
+            try {
+                return (EnvFluidHandler)
+                        Class.forName("ic2.forge.ClientEnvFluidHandlerForge")
+                                .getConstructor()
+                                .newInstance();
+            } catch (ReflectiveOperationException e) {
+                throw new RuntimeException(e);
+            }
+        } else {
+            return new EnvFluidHandlerForge();
+        }
+    }
 
-	@Override
-	public ItemStack getRecipeRemainder(ItemStack stack)
-	{
-		return stack.getItem().getCraftingRemainingItem(stack);
-	}
+    @Override
+    public EnvItemHandler createItemHandler() {
+        return new EnvItemHandlerForge();
+    }
 
-	@Override
-	public void registerBurnTime(ItemLike stack, int value)
-	{
-		burnTimeRecord.put(stack.asItem(), value);
-	}
+    @Override
+    public float getBlastResistance(
+            BlockState state, BlockGetter world, BlockPos pos, Explosion explosion) {
+        return state.getBlock().getExplosionResistance(state, world, pos, explosion);
+    }
 
-	@Override
-	public int getBurnTime(ItemStack stack)
-	{
-		return ForgeHooks.getBurnTime(stack, null);
-	}
+    @Override
+    public BlockState rotate(
+            BlockState state, LevelAccessor world, BlockPos pos, Rotation rotation) {
+        return state.rotate(world, pos, rotation);
+    }
 
-	@Override
-	public boolean biomeHasType(Holder<Biome> biome, EnvProxy.BiomeType type)
-	{
-		return false;
-	}
+    @Override
+    public boolean hasRecipeRemainder(ItemStack stack) {
+        return stack.getItem().hasCraftingRemainingItem(stack);
+    }
 
-	@Override
-	public Collection<EnvProxy.BiomeType> getBiomeTypes(Holder<Biome> biome)
-	{
-		return Collections.emptySet();
-	}
+    @Override
+    public ItemStack getRecipeRemainder(ItemStack stack) {
+        return stack.getItem().getCraftingRemainingItem(stack);
+    }
 
-	@Override
-	public boolean openHandledScreen(Player player, MenuProvider factory, GrowingBuffer data)
-	{
-		NetworkHooks.openScreen((ServerPlayer) player, factory, data::writeTo);
-		return true;
-	}
+    @Override
+    public void registerBurnTime(ItemLike stack, int value) {
+        burnTimeRecord.put(stack.asItem(), value);
+    }
 
-	@Override
-	public boolean isFakePlayer(Player entity)
-	{
-		return entity instanceof FakePlayer;
-	}
+    @Override
+    public int getBurnTime(ItemStack stack) {
+        return ForgeHooks.getBurnTime(stack, null);
+    }
 
-	@Override
-	public Player createFakePlayer(ServerLevel world, GameProfile profile)
-	{
-		return FakePlayerFactory.get(world, profile);
-	}
+    @Override
+    public boolean biomeHasType(Holder<Biome> biome, BiomeType type) {
+        return false;
+    }
 
-	@Override
-	public void announceProfileLoad(Set<String> loaded, String active)
-	{
-		MinecraftForge.EVENT_BUS.post(new ProfileEvent.Load(loaded, active));
-	}
+    @Override
+    public Collection<BiomeType> getBiomeTypes(Holder<Biome> biome) {
+        return Collections.emptySet();
+    }
 
-	@Override
-	public void announceProfileSwitch(String from, String to)
-	{
-		MinecraftForge.EVENT_BUS.post(new ProfileEvent.Switch(from, to));
-	}
+    @Override
+    public boolean openHandledScreen(Player player, MenuProvider factory, GrowingBuffer data) {
+        NetworkHooks.openScreen((ServerPlayer) player, factory, data::writeTo);
+        return true;
+    }
 
-	@Override
-	public boolean announceRetexture(
-		Level world,
-		BlockPos pos,
-		BlockState state,
-		Direction side,
-		Player player,
-		BlockState refState,
-		String refVariant,
-		Direction refSide,
-		int[] refColorMultipliers
-	)
-	{
-		RetextureEvent event = new RetextureEvent(world, pos, state, side, player, refState, refVariant, refSide, refColorMultipliers);
-		MinecraftForge.EVENT_BUS.post(event);
-		return event.applied;
-	}
+    @Override
+    public boolean isFakePlayer(Player entity) {
+        return entity instanceof FakePlayer;
+    }
 
-	@Override
-	public boolean announceExplosion(Level world, Entity entity, Vec3 pos, double power, LivingEntity igniter, int radiationRange, double rangeLimit)
-	{
-		ExplosionEvent event = new ExplosionEvent(world, entity, pos, power, igniter, radiationRange, rangeLimit);
-		return !MinecraftForge.EVENT_BUS.post(event);
-	}
+    @Override
+    public Player createFakePlayer(ServerLevel world, GameProfile profile) {
+        return FakePlayerFactory.get(world, profile);
+    }
 
-	record TabRegistration(ResourceLocation id, Supplier<ItemStack> icon, Ic2ItemGroupType groupType)
-	{
-	}
+    @Override
+    public void announceProfileLoad(Set<String> loaded, String active) {
+        MinecraftForge.EVENT_BUS.post(new Load(loaded, active));
+    }
 
-	record ConfiguredFeatureRegistration<FC extends FeatureConfiguration, F extends Feature<FC>>(
-		ResourceLocation id,
-		F feature,
-		FC config,
-		CompletableFuture<Holder<ConfiguredFeature<FC, ?>>> future
-	)
-	{
-	}
+    @Override
+    public void announceProfileSwitch(String from, String to) {
+        MinecraftForge.EVENT_BUS.post(new Switch(from, to));
+    }
 
-	record PlacedFeatureRegistration<FC extends FeatureConfiguration>(
-		ResourceLocation id,
-		CompletableFuture<Holder<ConfiguredFeature<FC, ?>>> feature,
-		List<PlacementModifier> modifiers,
-		CompletableFuture<Holder<PlacedFeature>> placedFeature
-	)
-	{
-	}
+    @Override
+    public boolean announceRetexture(
+            Level world,
+            BlockPos pos,
+            BlockState state,
+            Direction side,
+            Player player,
+            BlockState refState,
+            String refVariant,
+            Direction refSide,
+            int[] refColorMultipliers) {
+        RetextureEvent event =
+                new RetextureEvent(
+                        world,
+                        pos,
+                        state,
+                        side,
+                        player,
+                        refState,
+                        refVariant,
+                        refSide,
+                        refColorMultipliers);
+        MinecraftForge.EVENT_BUS.post(event);
+        return event.applied;
+    }
 
-	record PlacementModifierTypeRegistration(ResourceLocation id, PlacementModifierType<?> type)
-	{
-	}
+    @Override
+    public boolean announceExplosion(
+            Level world,
+            Entity entity,
+            Vec3 pos,
+            double power,
+            LivingEntity igniter,
+            int radiationRange,
+            double rangeLimit) {
+        ExplosionEvent event =
+                new ExplosionEvent(world, entity, pos, power, igniter, radiationRange, rangeLimit);
+        return !MinecraftForge.EVENT_BUS.post(event);
+    }
+
+    record ConfiguredFeatureRegistration<FC extends FeatureConfiguration, F extends Feature<FC>>(
+            ResourceLocation id,
+            F feature,
+            FC config,
+            CompletableFuture<Holder<ConfiguredFeature<FC, ?>>> future) {}
+
+    record PlacedFeatureRegistration<FC extends FeatureConfiguration>(
+            ResourceLocation id,
+            CompletableFuture<Holder<ConfiguredFeature<FC, ?>>> feature,
+            List<PlacementModifier> modifiers,
+            CompletableFuture<Holder<PlacedFeature>> placedFeature) {}
+
+    record PlacementModifierTypeRegistration(ResourceLocation id, PlacementModifierType<?> type) {}
+
+    record TabRegistration(
+            ResourceLocation id, Supplier<ItemStack> icon, Ic2ItemGroupType groupType) {}
 }

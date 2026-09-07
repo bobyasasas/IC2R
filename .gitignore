@@ -4,6 +4,7 @@
 bin/
 .gradle/
 build/
+dist/
 run/
 out/
 terminals/

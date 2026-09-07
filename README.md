@@ -1,9 +1,13 @@
 
 # 工业时代 2：重构
 
+> 当前工作副本从 `ic2-forge-2.10.39-ex120-cannerfix1.jar` 恢复，包含罐装机修复。
+> 恢复来源、验证结果和限制见 [RECOVERY.md](RECOVERY.md)。`release.md` 保留的是恢复前的历史计划。
+> 恢复代码已做可读性整理，当前验证结果见 [READABILITY.md](READABILITY.md)。
+
 <img src="https://img.shields.io/badge/Minecraft-1.20.1-brightgreen" alt="Minecraft 1.20.1">
 <img src="https://img.shields.io/badge/Forge-47.4.20-orange" alt="Forge 47.4.20">
-<img src="https://img.shields.io/badge/Version-2.10.34--ex120-blue" alt="Version 2.10.34-ex120">
+<img src="https://img.shields.io/badge/Version-2.10.39--ex120-blue" alt="Version 2.10.39-ex120">
 <img src="https://img.shields.io/badge/License-ARR-red" alt="License ARR">
 
 本项目代码基于官方构建版本 `2.9.40-ex119` 反编译得到，并从 `2.8.222-ex112` 迁移了缺失与错误的功能。

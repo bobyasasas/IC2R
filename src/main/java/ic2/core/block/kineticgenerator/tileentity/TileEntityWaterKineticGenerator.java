@@ -1,11 +1,13 @@
 package ic2.core.block.kineticgenerator.tileentity;
 
 import ic2.api.item.IKineticRotor;
+import ic2.api.item.IKineticRotor.GearboxType;
 import ic2.api.tile.IRotorProvider;
 import ic2.core.ContainerBase;
 import ic2.core.IC2;
 import ic2.core.IHasGui;
-import ic2.core.block.invslot.InvSlot;
+import ic2.core.block.invslot.InvSlot.Access;
+import ic2.core.block.invslot.InvSlot.InvSide;
 import ic2.core.block.invslot.InvSlotConsumableClass;
 import ic2.core.block.invslot.InvSlotConsumableKineticRotor;
 import ic2.core.block.kineticgenerator.container.ContainerWaterKineticGenerator;
@@ -17,16 +19,16 @@ import ic2.core.util.BiomeUtil;
 import ic2.core.util.StackUtil;
 import ic2.core.util.Util;
 
-import java.util.List;
-
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
-import net.minecraft.core.Holder;
 import net.minecraft.core.BlockPos.MutableBlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.core.Direction.Axis;
+import net.minecraft.core.Holder;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BiomeTags;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -34,355 +36,379 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.util.RandomSource;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
+
+import java.util.List;
 
 @NotClassic
-public class TileEntityWaterKineticGenerator extends TileEntityAbstractKineticGenerator implements IRotorProvider, IHasGui
-{
-	private static final ResourceLocation woodenRotorTexture = ResourceLocation.fromNamespaceAndPath("ic2", "textures/item/rotor/wood_rotor_model.png");
-	public InvSlotConsumableClass rotorSlot;
-	public TileEntityWaterKineticGenerator.BiomeState type = TileEntityWaterKineticGenerator.BiomeState.UNKNOWN;
-	private boolean rightFacing;
-	private int distanceToNormalBiome;
-	private int waterFlow;
-	private long lastCheck;
-	private float angle = 0.0F;
-	private float rotationSpeed;
+public class TileEntityWaterKineticGenerator extends TileEntityAbstractKineticGenerator
+        implements IRotorProvider, IHasGui {
+    private static final ResourceLocation woodenRotorTexture =
+            ResourceLocation.fromNamespaceAndPath(
+                    "ic2", "textures/item/rotor/wood_rotor_model.png");
+    public InvSlotConsumableClass rotorSlot;
+    public BiomeState type = BiomeState.UNKNOWN;
+    private boolean rightFacing;
+    private int distanceToNormalBiome;
+    private int waterFlow;
+    private float angle = 0.0F;
+    private float rotationSpeed;
 
-	public TileEntityWaterKineticGenerator(BlockPos pos, BlockState state)
-	{
-		super(Ic2BlockEntities.WATER_KINETIC_GENERATOR, pos, state);
-		this.updateTicker = IC2.random.nextInt(this.getTickRate());
-		this.rotorSlot = new InvSlotConsumableKineticRotor(
-			this, "rotorslot", InvSlot.Access.IO, 1, InvSlot.InvSide.ANY, IKineticRotor.GearboxType.WATER, "rotorSlot"
-		);
-	}
+    public TileEntityWaterKineticGenerator(BlockPos pos, BlockState state) {
+        super(Ic2BlockEntities.WATER_KINETIC_GENERATOR, pos, state);
+        this.updateTicker = IC2.random.nextInt(this.getTickRate());
+        this.rotorSlot =
+                new InvSlotConsumableKineticRotor(
+                        this,
+                        "rotorslot",
+                        Access.IO,
+                        1,
+                        InvSide.ANY,
+                        GearboxType.WATER,
+                        "rotorSlot");
+    }
 
-	@Override
-	protected void onLoaded()
-	{
-		super.onLoaded();
-		this.updateSeaInfo();
-	}
+    @Override
+    public void load(CompoundTag nbt) {
+        super.load(nbt);
+        this.rotationSpeed = nbt.getFloat("rotationSpeed");
+    }
 
-	@Override
-	protected void updateEntityServer()
-	{
-     RandomSource rng = RandomSource.create();
-		super.updateEntityServer();
-		if (this.updateTicker++ % this.getTickRate() == 0)
-		{
-			Level world = this.getLevel();
-			if (this.type == TileEntityWaterKineticGenerator.BiomeState.UNKNOWN)
-			{
-				Holder<Biome> biome = BiomeUtil.getBiome(world, this.worldPosition);
-				if (biome.is(BiomeTags.IS_OCEAN))
-				{
-					this.type = TileEntityWaterKineticGenerator.BiomeState.OCEAN;
-				} else if (biome.is(BiomeTags.IS_DEEP_OCEAN))
-				{
-					this.type = TileEntityWaterKineticGenerator.BiomeState.DEAP_OCEAN;
-				} else
-				{
-					if (!biome.is(BiomeTags.IS_RIVER))
-					{
-						this.type = TileEntityWaterKineticGenerator.BiomeState.INVALID;
-						return;
-					}
+    @Override
+    public void saveAdditional(CompoundTag nbt) {
+        super.saveAdditional(nbt);
+        nbt.putFloat("rotationSpeed", this.rotationSpeed);
+    }
 
-					this.type = TileEntityWaterKineticGenerator.BiomeState.RIVER;
-				}
-			}
+    @Override
+    protected void onLoaded() {
+        super.onLoaded();
+        this.updateSeaInfo();
+        if (this.getLevel() != null && !this.getLevel().isClientSide) {
+            IC2.network.get(true).updateTileEntityField(this, "rotationSpeed");
+            IC2.network.get(true).updateTileEntityField(this, "rotorSlot");
+        }
+    }
 
-			boolean nextActive = this.getActive();
-			boolean needsInvUpdate = false;
-			if (!this.rotorSlot.isEmpty() && this.checkSpace(1, true) == 0)
-			{
-				if (!nextActive)
-				{
-					needsInvUpdate = true;
-					nextActive = true;
-				}
-			} else if (nextActive)
-			{
-				nextActive = false;
-				needsInvUpdate = true;
-			}
+    @Override
+    protected void updateEntityServer() {
+        RandomSource rng = RandomSource.create();
+        super.updateEntityServer();
+        if (this.updateTicker++ % this.getTickRate() == 0) {
+            Level world = this.getLevel();
+            if (this.type == BiomeState.UNKNOWN) {
+                Holder<Biome> biome = BiomeUtil.getBiome(world, this.worldPosition);
+                if (biome.is(BiomeTags.IS_OCEAN)) {
+                    this.type = BiomeState.OCEAN;
+                } else if (biome.is(BiomeTags.IS_DEEP_OCEAN)) {
+                    this.type = BiomeState.DEAP_OCEAN;
+                } else {
+                    if (!biome.is(BiomeTags.IS_RIVER)) {
+                        this.type = BiomeState.INVALID;
+                        return;
+                    }
 
-			if (nextActive)
-			{
-				int crossSection = Util.square(this.getRotorDiameter() / 2 * 2 * 2 + 1);
-				int obstructedCrossSection = this.checkSpace(this.getRotorDiameter() * 3, false);
-				if (obstructedCrossSection > 0 && obstructedCrossSection <= (this.getRotorDiameter() + 1) / 2)
-				{
-					obstructedCrossSection = 0;
-				}
+                    this.type = BiomeState.RIVER;
+                }
+            }
 
-				int rotorDamage = 0;
-				if (obstructedCrossSection < 0)
-				{
-					this.stopSpinning();
-				} else if (this.type == TileEntityWaterKineticGenerator.BiomeState.OCEAN)
-				{
-					this.rotationSpeed = getRotationSpeed(world, crossSection, obstructedCrossSection);
-					this.waterFlow = (int) (this.rotationSpeed * 3000.0F);
-					if (this.rightFacing)
-					{
-						this.rotationSpeed *= -1.0F;
-					}
+            boolean nextActive = this.getActive();
+            boolean needsInvUpdate = false;
+            if (!this.rotorSlot.isEmpty() && this.checkSpace(1, true) == 0) {
+                if (!nextActive) {
+                    needsInvUpdate = true;
+                    nextActive = true;
+                }
+            } else if (nextActive) {
+                nextActive = false;
+                needsInvUpdate = true;
+            }
 
-					IC2.network.get(true).updateTileEntityField(this, "rotationSpeed");
-					this.waterFlow = (int) (this.waterFlow * this.getEfficiency());
-					rotorDamage = 2;
-				} else if (this.type == TileEntityWaterKineticGenerator.BiomeState.DEAP_OCEAN)
-				{
-					this.rotationSpeed = getRotationSpeed(world, crossSection, obstructedCrossSection);
-					this.waterFlow = (int) (this.rotationSpeed * 4000.0F);
-					if (this.rightFacing)
-					{
-						this.rotationSpeed *= -1.0F;
-					}
+            if (nextActive) {
+                int crossSection = Util.square(this.getRotorDiameter() / 2 * 2 * 2 + 1);
+                int obstructedCrossSection = this.checkSpace(this.getRotorDiameter() * 3, false);
+                if (obstructedCrossSection > 0
+                        && obstructedCrossSection <= (this.getRotorDiameter() + 1) / 2) {
+                    obstructedCrossSection = 0;
+                }
 
-					IC2.network.get(true).updateTileEntityField(this, "rotationSpeed");
-					this.waterFlow = (int) (this.waterFlow * this.getEfficiency());
-					rotorDamage = 3;
-				} else if (this.type == TileEntityWaterKineticGenerator.BiomeState.RIVER)
-				{
-					this.rotationSpeed = Util.limit(this.distanceToNormalBiome, 20, 50) / 50.0F;
-					this.waterFlow = (int) (this.rotationSpeed * 1000.0F);
-					if (this.getFacing() == Direction.EAST || this.getFacing() == Direction.NORTH)
-					{
-						this.rotationSpeed *= -1.0F;
-					}
+                int rotorDamage = 0;
+                if (obstructedCrossSection < 0) {
+                    this.stopSpinning();
+                } else if (this.type == BiomeState.OCEAN) {
+                    this.rotationSpeed =
+                            this.getRotationSpeed(world, crossSection, obstructedCrossSection);
+                    this.waterFlow = (int) (this.rotationSpeed * 3000.0F);
+                    if (this.rightFacing) {
+                        this.rotationSpeed *= -1.0F;
+                    }
 
-					IC2.network.get(true).updateTileEntityField(this, "rotationSpeed");
-					this.waterFlow = (int) (
-						this.waterFlow
-							* (this.getEfficiency() * (1.0F - 0.3F * rng.nextFloat() - 0.1F * ((float) obstructedCrossSection / crossSection)))
-					);
-					rotorDamage = 1;
-				}
+                    IC2.network.get(true).updateTileEntityField(this, "rotationSpeed");
+                    this.waterFlow = (int) (this.waterFlow * this.getEfficiency());
+                    rotorDamage = 2;
+                } else if (this.type == BiomeState.DEAP_OCEAN) {
+                    this.rotationSpeed =
+                            this.getRotationSpeed(world, crossSection, obstructedCrossSection);
+                    this.waterFlow = (int) (this.rotationSpeed * 4000.0F);
+                    if (this.rightFacing) {
+                        this.rotationSpeed *= -1.0F;
+                    }
 
-				this.rotorSlot.damage(rotorDamage, false);
-			} else
-			{
-				this.stopSpinning();
-			}
+                    IC2.network.get(true).updateTileEntityField(this, "rotationSpeed");
+                    this.waterFlow = (int) (this.waterFlow * this.getEfficiency());
+                    rotorDamage = 3;
+                } else if (this.type == BiomeState.RIVER) {
+                    this.rotationSpeed = Util.limit(this.distanceToNormalBiome, 20, 50) / 50.0F;
+                    this.waterFlow = (int) (this.rotationSpeed * 1000.0F);
+                    if (this.getFacing() == Direction.EAST || this.getFacing() == Direction.NORTH) {
+                        this.rotationSpeed *= -1.0F;
+                    }
 
-			this.setActive(nextActive);
-			if (needsInvUpdate)
-			{
-				this.setChanged();
-			}
-		}
-	}
+                    IC2.network.get(true).updateTileEntityField(this, "rotationSpeed");
+                    this.waterFlow =
+                            (int)
+                                    (this.waterFlow
+                                            * (this.getEfficiency()
+                                                    * (1.0F
+                                                            - 0.3F * rng.nextFloat()
+                                                            - 0.1F
+                                                                    * ((float)
+                                                                                    obstructedCrossSection
+                                                                            / crossSection))));
+                    rotorDamage = 1;
+                }
 
-	float getRotationSpeed(Level world, int crossSection, double obstructedCrossSection)
-	{
-		float diff = (float) Math.sin(world.getDayTime() * Math.PI / 6000.0);
-		diff *= Math.abs(diff);
-		this.rotationSpeed = (float) (diff * this.distanceToNormalBiome / 100.0F * (1.0 - Math.pow(obstructedCrossSection / crossSection, 2.0)));
-		return diff;
-	}
+                this.rotorSlot.damage(rotorDamage, false);
+            } else {
+                this.stopSpinning();
+            }
 
-	protected void stopSpinning()
-	{
-		boolean update = this.rotationSpeed != 0.0F;
-		this.rotationSpeed = 0.0F;
-		this.waterFlow = 0;
-		if (update)
-		{
-			IC2.network.get(true).updateTileEntityField(this, "rotationSpeed");
-		}
-	}
+            this.setActive(nextActive);
+            if (needsInvUpdate) {
+                this.setChanged();
+            }
+        }
+    }
 
-	@Override
-	protected void setFacing(Level world, Direction facing)
-	{
-		super.setFacing(world, facing);
-		this.updateSeaInfo();
-	}
+    float getRotationSpeed(Level world, int crossSection, double obstructedCrossSection) {
+        float diff = (float) Math.sin(world.getDayTime() * Math.PI / 6000.0);
+        diff *= Math.abs(diff);
+        this.rotationSpeed =
+                (float)
+                        (diff
+                                * this.distanceToNormalBiome
+                                / 100.0F
+                                * (1.0 - Math.pow(obstructedCrossSection / crossSection, 2.0)));
+        return diff;
+    }
 
-	@Override
-	public List<String> getNetworkedFields()
-	{
-		List<String> ret = super.getNetworkedFields();
-		ret.add("rotationSpeed");
-		ret.add("rotorSlot");
-		return ret;
-	}
+    protected void stopSpinning() {
+        boolean update = this.rotationSpeed != 0.0F;
+        this.rotationSpeed = 0.0F;
+        this.waterFlow = 0;
+        if (update) {
+            IC2.network.get(true).updateTileEntityField(this, "rotationSpeed");
+        }
+    }
 
-	@Override
-	public int getRotorDiameter()
-	{
-		ItemStack stack = this.rotorSlot.get();
-		if (StackUtil.isEmpty(stack) || !(stack.getItem() instanceof IKineticRotor))
-		{
-			return 0;
-		} else
-		{
-			return this.type == TileEntityWaterKineticGenerator.BiomeState.OCEAN
-				? ((IKineticRotor) stack.getItem()).getDiameter(stack)
-				: (((IKineticRotor) stack.getItem()).getDiameter(stack) + 1) * 2 / 3;
-		}
-	}
+    @Override
+    protected void setFacing(Level world, Direction facing) {
+        super.setFacing(world, facing);
+        this.updateSeaInfo();
+    }
 
-	public int checkSpace(int length, boolean onlyRotor)
-	{
-		int box = this.getRotorDiameter() / 2;
-		int lentemp = 0;
-		if (onlyRotor)
-		{
-			length = 1;
-			lentemp = length + 1;
-		} else
-		{
-			box *= 2;
-		}
+    @Override
+    public List<String> getNetworkedFields() {
+        List<String> ret = super.getNetworkedFields();
+        ret.add("rotationSpeed");
+        ret.add("rotorSlot");
+        return ret;
+    }
 
-		Direction fwdDir = this.getFacing();
-		Direction rightDir = fwdDir.getClockWise(Axis.Y);
-		int ret = 0;
-		int xCord = this.worldPosition.getX();
-		int yCord = this.worldPosition.getY();
-		int zCord = this.worldPosition.getZ();
-		Level world = this.getLevel();
-		MutableBlockPos pos = new MutableBlockPos();
+    @Override
+    public int getRotorDiameter() {
+        ItemStack stack = this.rotorSlot.get();
+        if (!StackUtil.isEmpty(stack) && stack.getItem() instanceof IKineticRotor) {
+            return this.type == BiomeState.OCEAN
+                    ? ((IKineticRotor) stack.getItem()).getDiameter(stack)
+                    : (((IKineticRotor) stack.getItem()).getDiameter(stack) + 1) * 2 / 3;
+        } else {
+            return 0;
+        }
+    }
 
-		for (int up = -box; up <= box; up++)
-		{
-			int y = yCord + up;
+    public int checkSpace(int length, boolean onlyRotor) {
+        int box = this.getRotorDiameter() / 2;
+        int lentemp = 0;
+        if (onlyRotor) {
+            length = 1;
+            lentemp = length + 1;
+        } else {
+            box *= 2;
+        }
 
-			for (int right = -box; right <= box; right++)
-			{
-				boolean occupied = false;
+        Direction fwdDir = this.getFacing();
+        Direction rightDir = fwdDir.getClockWise(Axis.Y);
+        int ret = 0;
+        int xCord = this.worldPosition.getX();
+        int yCord = this.worldPosition.getY();
+        int zCord = this.worldPosition.getZ();
+        Level world = this.getLevel();
+        MutableBlockPos pos = new MutableBlockPos();
 
-				for (int fwd = lentemp - length; fwd <= length; fwd++)
-				{
-					int x = xCord + fwd * fwdDir.getStepX() + right * rightDir.getStepX();
-					int z = zCord + fwd * fwdDir.getStepZ() + right * rightDir.getStepZ();
-					pos.set(x, y, z);
-					if (world.getBlockState(pos).getBlock() != Blocks.WATER)
-					{
-						occupied = true;
-						if ((up != 0 || right != 0 || fwd != 0) && world.getBlockEntity(pos) instanceof TileEntityWaterKineticGenerator && !onlyRotor)
-						{
-							return -1;
-						}
-					}
-				}
+        for (int up = -box; up <= box; up++) {
+            int y = yCord + up;
 
-				if (occupied)
-				{
-					ret++;
-				}
-			}
-		}
+            for (int right = -box; right <= box; right++) {
+                boolean occupied = false;
 
-		return ret;
-	}
+                for (int fwd = lentemp - length; fwd <= length; fwd++) {
+                    int x = xCord + fwd * fwdDir.getStepX() + right * rightDir.getStepX();
+                    int z = zCord + fwd * fwdDir.getStepZ() + right * rightDir.getStepZ();
+                    pos.set(x, y, z);
+                    if (world.getBlockState(pos).getBlock() != Blocks.WATER) {
+                        occupied = true;
+                        if ((up != 0 || right != 0 || fwd != 0)
+                                && world.getBlockEntity(pos)
+                                        instanceof TileEntityWaterKineticGenerator
+                                && !onlyRotor) {
+                            return -1;
+                        }
+                    }
+                }
 
-	public void updateSeaInfo()
-	{
-		Level world = this.getLevel();
-		Direction facing = this.getFacing();
+                if (occupied) {
+                    ret++;
+                }
+            }
+        }
 
-		for (int distance = 1; distance < 200; distance++)
-		{
-			Holder<Biome> biomeTemp = BiomeUtil.getBiome(world, this.worldPosition.relative(facing, distance));
-			if (this.isInvalidBiome(biomeTemp))
-			{
-				this.distanceToNormalBiome = distance;
-				this.rightFacing = true;
-				return;
-			}
+        return ret;
+    }
 
-			biomeTemp = BiomeUtil.getBiome(world, this.worldPosition.relative(facing, -distance));
-			if (this.isInvalidBiome(biomeTemp))
-			{
-				this.distanceToNormalBiome = distance;
-				this.rightFacing = false;
-				return;
-			}
-		}
+    public void updateSeaInfo() {
+        Level world = this.getLevel();
+        Direction facing = this.getFacing();
 
-		this.distanceToNormalBiome = 200;
-		this.rightFacing = true;
-	}
+        for (int distance = 1; distance < 200; distance++) {
+            Holder<Biome> biomeTemp =
+                    BiomeUtil.getBiome(world, this.worldPosition.relative(facing, distance));
+            if (this.isInvalidBiome(biomeTemp)) {
+                this.distanceToNormalBiome = distance;
+                this.rightFacing = true;
+                return;
+            }
 
-	public boolean isInvalidBiome(Holder<Biome> biome)
-	{
-		return !biome.is(BiomeTags.IS_RIVER) && !biome.is(BiomeTags.IS_OCEAN) && !biome.is(BiomeTags.IS_DEEP_OCEAN);
-	}
+            biomeTemp = BiomeUtil.getBiome(world, this.worldPosition.relative(facing, -distance));
+            if (this.isInvalidBiome(biomeTemp)) {
+                this.distanceToNormalBiome = distance;
+                this.rightFacing = false;
+                return;
+            }
+        }
 
-	@Override
-	public int getConnectionBandwidth(Direction side)
-	{
-		return side.getOpposite() == this.getFacing() ? this.getKuOutput() : 0;
-	}
+        this.distanceToNormalBiome = 200;
+        this.rightFacing = true;
+    }
 
-	@Override
-	public int drawKineticEnergy(Direction side, int request, boolean simulate)
-	{
-		return side.getOpposite() == this.getFacing() ? Math.min(request, this.getKuOutput()) : 0;
-	}
+    public boolean isInvalidBiome(Holder<Biome> biome) {
+        return !biome.is(BiomeTags.IS_RIVER)
+                && !biome.is(BiomeTags.IS_OCEAN)
+                && !biome.is(BiomeTags.IS_DEEP_OCEAN);
+    }
 
-	public int getKuOutput()
-	{
-		return this.getActive() ? (int) Math.abs(this.waterFlow * 0.2F * IC2Config.balance.energy.kineticGenerator.water.get().floatValue()) : 0;
-	}
+    @Override
+    public int getConnectionBandwidth(Direction side) {
+        return side.getOpposite() == this.getFacing() ? this.getKuOutput() : 0;
+    }
 
-	public float getEfficiency()
-	{
-		ItemStack stack = this.rotorSlot.get();
-		return !StackUtil.isEmpty(stack) && stack.getItem() instanceof IKineticRotor ? ((IKineticRotor) stack.getItem()).getEfficiency(stack) : 0.0F;
-	}
+    @Override
+    public int drawKineticEnergy(Direction side, int request, boolean simulate) {
+        return side.getOpposite() == this.getFacing() ? Math.min(request, this.getKuOutput()) : 0;
+    }
 
-	@Override
-	public ContainerBase<TileEntityWaterKineticGenerator> createServerScreenHandler(int syncId, Player player)
-	{
-		return new ContainerWaterKineticGenerator(syncId, player.getInventory(), this);
-	}
+    public int getKuOutput() {
+        return this.getActive()
+                ? (int)
+                        Math.abs(
+                                this.waterFlow
+                                        * 0.2F
+                                        * IC2Config.balance
+                                                .energy
+                                                .kineticGenerator
+                                                .water
+                                                .get()
+                                                .floatValue())
+                : 0;
+    }
 
-	@Override
-	public ContainerBase<?> createClientScreenHandler(int syncId, Inventory inventory, GrowingBuffer data)
-	{
-		return new ContainerWaterKineticGenerator(syncId, inventory, this);
-	}
+    public float getEfficiency() {
+        ItemStack stack = this.rotorSlot.get();
+        return !StackUtil.isEmpty(stack) && stack.getItem() instanceof IKineticRotor
+                ? ((IKineticRotor) stack.getItem()).getEfficiency(stack)
+                : 0.0F;
+    }
 
-	public String getRotorHealth()
-	{
-		return !this.rotorSlot.isEmpty() ? Component.translatable("ic2.WaterKineticGenerator.gui.rotorhealth", (int) (100.0F - (float) this.rotorSlot.get().getDamageValue() / this.rotorSlot.get().getMaxDamage() * 100.0F), "%").getString() : "";
-	}
+    @Override
+    public ContainerBase<TileEntityWaterKineticGenerator> createServerScreenHandler(
+            int syncId, Player player) {
+        return new ContainerWaterKineticGenerator(syncId, player.getInventory(), this);
+    }
 
-	@Override
-	public ResourceLocation getRotorRenderTexture()
-	{
-		ItemStack stack = this.rotorSlot.get();
-		return !StackUtil.isEmpty(stack) && stack.getItem() instanceof IKineticRotor
-			? ((IKineticRotor) stack.getItem()).getRotorRenderTexture(stack)
-			: woodenRotorTexture;
-	}
+    @Override
+    public ContainerBase<?> createClientScreenHandler(
+            int syncId, Inventory inventory, GrowingBuffer data) {
+        return new ContainerWaterKineticGenerator(syncId, inventory, this);
+    }
 
-	@Override
-	public float getAngle()
-	{
-		if (this.rotationSpeed != 0.0F)
-		{
-			this.angle = this.angle + (float) (System.currentTimeMillis() - this.lastCheck) * this.rotationSpeed * 0.1F;
-			this.angle %= 360.0F;
-		}
+    public String getRotorHealth() {
+        return !this.rotorSlot.isEmpty()
+                ? Component.translatable(
+                                "ic2.WaterKineticGenerator.gui.rotorhealth",
+                                (int)
+                                        (100.0F
+                                                - (float) this.rotorSlot.get().getDamageValue()
+                                                        / this.rotorSlot.get().getMaxDamage()
+                                                        * 100.0F),
+                                "%")
+                        .getString()
+                : "";
+    }
 
-		this.lastCheck = System.currentTimeMillis();
-		return this.angle;
-	}
+    @Override
+    public ResourceLocation getRotorRenderTexture() {
+        ItemStack stack = this.rotorSlot.get();
+        return !StackUtil.isEmpty(stack) && stack.getItem() instanceof IKineticRotor
+                ? ((IKineticRotor) stack.getItem()).getRotorRenderTexture(stack)
+                : woodenRotorTexture;
+    }
 
-	public enum BiomeState
-	{
-		UNKNOWN,
-		OCEAN,
-		DEAP_OCEAN,
-		RIVER,
-		INVALID
-	}
+    @Override
+    public float getRotorAnimationSpeed() {
+        return this.rotationSpeed * 0.1F;
+    }
+
+    @Override
+    public float getAngle() {
+        return this.angle;
+    }
+
+    @OnlyIn(Dist.CLIENT)
+    @Override
+    protected void updateEntityClient() {
+        super.updateEntityClient();
+        float animationSpeed = this.getRotorAnimationSpeed();
+        if (animationSpeed != 0.0F) {
+            this.angle = (this.angle + animationSpeed * 50.0F) % 360.0F;
+        }
+    }
+
+    public enum BiomeState {
+        UNKNOWN,
+        OCEAN,
+        DEAP_OCEAN,
+        RIVER,
+        INVALID;
+    }
 }

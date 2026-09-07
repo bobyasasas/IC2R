@@ -5,42 +5,38 @@ import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.LivingEntity;
 
-public class Ic2Potion extends MobEffect
-{
-	public static Ic2Potion radiation;
+import org.jetbrains.annotations.NotNull;
 
-	public Ic2Potion(MobEffectCategory type, int liquidColor)
-	{
-		super(type, liquidColor);
-	}
+public class Ic2Potion extends MobEffect {
+    public static Ic2Potion radiation;
 
-	public void applyEffectTick(LivingEntity entity, int amplifier)
-	{
-		if (this == radiation)
-		{
-			if (Ic2DamageSource.radiation == null)
-			{
-				Ic2DamageSource.init(entity.level().registryAccess());
-			}
-			entity.hurt(Ic2DamageSource.radiation, (float) amplifier / 100 + 0.5F);
-		}
-	}
+    public Ic2Potion(MobEffectCategory type, int liquidColor) {
+        super(type, liquidColor);
+    }
 
-	public boolean isDurationEffectTick(int duration, int amplifier)
-	{
-		if (this == radiation)
-		{
-			int rate = 25 >> amplifier;
-			return rate > 0 ? duration % rate == 0 : true;
-		} else
-		{
-			return false;
-		}
-	}
+    @Override
+    public void applyEffectTick(@NotNull LivingEntity entity, int amplifier) {
+        if (this == radiation) {
+            if (Ic2DamageSource.radiation == null) {
+                Ic2DamageSource.init(entity.level().registryAccess());
+            }
 
-	public void applyTo(LivingEntity entity, int duration, int amplifier)
-	{
-		MobEffectInstance effect = new MobEffectInstance(radiation, duration, amplifier);
-		entity.addEffect(effect);
-	}
+            entity.hurt(Ic2DamageSource.radiation, amplifier / 100.0F + 0.5F);
+        }
+    }
+
+    @Override
+    public boolean isDurationEffectTick(int duration, int amplifier) {
+        if (this != radiation) {
+            return false;
+        }
+
+        int rate = 25 >> amplifier;
+        return rate == 0 || duration % rate == 0;
+    }
+
+    public void applyTo(LivingEntity entity, int duration, int amplifier) {
+        MobEffectInstance effect = new MobEffectInstance(radiation, duration, amplifier);
+        entity.addEffect(effect);
+    }
 }

@@ -1,325 +1,389 @@
 package ic2.core.item;
 
 import ic2.core.crop.TileEntityCrop;
+import ic2.core.fluid.FluidHandler;
 import ic2.core.fluid.Ic2FluidItem;
 import ic2.core.fluid.Ic2FluidStack;
+import ic2.core.fluid.StandardFluidItem;
 import ic2.core.ref.Ic2Items;
 import ic2.core.util.Ic2Tooltip;
-import ic2.core.util.StackUtil;
+import ic2.core.util.LiquidUtil;
+
+import net.minecraft.core.BlockPos;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Item.Properties;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.item.context.UseOnContext;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.LiquidBlock;
+import net.minecraft.world.level.block.SimpleWaterloggedBlock;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.material.Fluid;
+import net.minecraft.world.level.material.Fluids;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
+
+import org.apache.commons.lang3.mutable.Mutable;
+import org.apache.commons.lang3.mutable.MutableObject;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.IdentityHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
+public class ItemClassicCell extends Ic2BucketItem implements Ic2FluidItem {
+    private static final int CELL_CAPACITY_MB = 1000;
+    private static final Map<Fluid, ItemClassicCell> instances = new IdentityHashMap<>();
+    private final Fluid fluid;
 
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.chat.Component;
-import net.minecraft.util.Mth;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.TooltipFlag;
-import net.minecraft.core.BlockPos;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.context.UseOnContext;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.world.level.material.Fluid;
-import net.minecraft.world.level.material.Fluids;
-import net.minecraft.world.phys.BlockHitResult;
-import org.apache.commons.lang3.mutable.Mutable;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
+    public ItemClassicCell(Properties settings, Fluid fluid) {
+        super(
+                Objects.requireNonNull(
+                        fluid,
+                        "ItemClassicCell fluid must not be null; use Fluids.EMPTY or a plain Item"),
+                settings);
+        this.fluid = fluid;
+        if (fluid != Fluids.EMPTY) {
+            instances.put(fluid, this);
+        }
+    }
 
-public class ItemClassicCell extends Ic2BucketItem implements Ic2FluidItem
-{
-	private static final int CELL_CAPACITY_MB = 1000;
-	private static final Map<Fluid, ItemClassicCell> instances = new IdentityHashMap<>();
-	private final Fluid fluid;
-	private final int charges;
+    @Nullable
+    public static ItemClassicCell getInstance(Fluid fluid) {
+        return fluid != null && fluid != Fluids.EMPTY ? instances.get(fluid) : null;
+    }
 
-	public ItemClassicCell(Properties settings, Fluid fluid, int charges)
-	{
-		super(fluid, settings);
-		this.fluid = fluid;
-		this.charges = charges;
-		if (fluid != null && fluid != Fluids.EMPTY)
-		{
-			instances.put(fluid, this);
-		}
-	}
+    public static ItemStack createFilledStack(Fluid fluid) {
+        if (fluid != null && fluid != Fluids.EMPTY) {
+            ItemClassicCell dedicated = instances.get(fluid);
+            if (dedicated != null) {
+                return new ItemStack(dedicated);
+            }
 
-	@Override
-	public Item getEmptiedBucketItem()
-	{
-		return Ic2Items.EMPTY_CELL;
-	}
+            ItemStack stack = new ItemStack(Ic2Items.FACADE_CELL);
+            StandardFluidItem.setFs(stack, Ic2FluidStack.create(fluid, 1000));
+            return stack;
+        } else {
+            return ItemStack.EMPTY;
+        }
+    }
 
-	@Override
-	public List<Fluid> getDrainableFluidList()
-	{
-		return List.copyOf(instances.keySet());
-	}
+    @Override
+    public Component getName(@NotNull ItemStack stack) {
+        if (this.fluid == Fluids.EMPTY) {
+            Ic2FluidStack stored = StandardFluidItem.getFs(stack);
+            if (stored != null && !stored.isEmpty()) {
+                return Component.translatable(
+                        "ic2.item.fluid_cell.filled", stored.getFluidDisplayName());
+            }
+        }
 
-	@Override
-	public Item getBucketItem(Fluid fluid)
-	{
-		ItemClassicCell cell = instances.get(fluid);
-		if (cell != null)
-		{
-			return cell;
-		}
-		return Ic2Items.EMPTY_CELL;
-	}
+        return super.getName(stack);
+    }
 
-	@Override
-	public boolean bucketUseOnBlock(UseOnContext context)
-	{
-		BlockEntity be;
-		return (this == Ic2Items.WATER_CELL || this == Ic2Items.WEED_EX_CELL || this == Ic2Items.HYDRATION_CELL)
-			&& (be = context.getLevel().getBlockEntity(context.getClickedPos())) instanceof TileEntityCrop
-			&& this.useOnCrop(context.getItemInHand(), (TileEntityCrop) be, true);
-	}
+    @Override
+    public Item getEmptiedBucketItem() {
+        return Ic2Items.FACADE_CELL;
+    }
 
-	@Override
-	public boolean emptyContents(@Nullable Player player, Level world, BlockPos pos, @Nullable BlockHitResult hitResult)
-	{
-		return super.emptyContents(player, world, pos, hitResult);
-	}
+    @Override
+    protected Fluid getContainedFluid(ItemStack stack) {
+        if (this.fluid != Fluids.EMPTY) {
+            return this.fluid;
+        }
 
-	public boolean useOnCrop(ItemStack stack, TileEntityCrop crop, boolean manual)
-	{
-		if (this == Ic2Items.WATER_CELL)
-		{
-			if (crop.getStorageWater() < 10)
-			{
-				crop.setStorageWater(10);
-				return true;
-			}
-		} else if (this == Ic2Items.WEED_EX_CELL)
-		{
-			return crop.applyWeedEx(50, true, manual, false) > 0;
-		} else if (this == Ic2Items.HYDRATION_CELL)
-		{
-			int consumed = this.getUsage(stack) + 1;
-			int amount = Math.max(0, this.charges - consumed);
-			if (!manual && amount > 180)
-			{
-				amount = 180;
-			}
+        Ic2FluidStack stored = StandardFluidItem.getFs(stack);
+        return stored != null && !stored.isEmpty() ? stored.getFluid() : Fluids.EMPTY;
+    }
 
-			amount = crop.applyHydration(amount, false);
-			if (amount > 0)
-			{
-				consumed += amount;
-				if (consumed >= this.charges)
-				{
-					stack = StackUtil.decSize(stack);
-				} else
-				{
-					this.setUsage(stack, consumed);
-				}
+    @Override
+    public List<Fluid> getDrainableFluidList() {
+        return this.fluid == Fluids.EMPTY
+                ? LiquidUtil.getAllFluidsSorted()
+                : List.copyOf(instances.keySet());
+    }
 
-				return true;
-			}
-		}
+    @Override
+    public Item getBucketItem(Fluid fluid) {
+        ItemClassicCell cell = instances.get(fluid);
+        return cell != null ? cell : Ic2Items.FACADE_CELL;
+    }
 
-		return false;
-	}
+    @Override
+    public boolean bucketUseOnBlock(UseOnContext context) {
+        BlockEntity be;
+        return (this == Ic2Items.WATER_CELL || this == Ic2Items.WEED_EX_CELL)
+                && (be = context.getLevel().getBlockEntity(context.getClickedPos()))
+                        instanceof TileEntityCrop
+                && this.useOnCrop(context.getItemInHand(), (TileEntityCrop) be, true);
+    }
 
-	private int getUsage(ItemStack stack)
-	{
-		if (this.charges <= 1)
-		{
-			return 0;
-		}
+    @Override
+    public ItemStack tryDrainFluid(LevelAccessor world, BlockPos pos, BlockState state) {
+        if (this.fluid != Fluids.EMPTY) {
+            return super.tryDrainFluid(world, pos, state);
+        } else if (!(world instanceof Level level)) {
+            return ItemStack.EMPTY;
+        } else {
+            Ic2FluidStack drained = FluidHandler.drainWorldFluid(state, level, pos, true);
+            if (drained == null || drained.isEmpty()) {
+                if (state.getBlock() instanceof LiquidBlock
+                        && state.getValue(LiquidBlock.LEVEL) == 0) {
+                    drained = Ic2FluidStack.create(state.getFluidState().getType(), 1000);
+                } else {
+                    if (!(state.getBlock() instanceof SimpleWaterloggedBlock)
+                            || !state.getValue(BlockStateProperties.WATERLOGGED)) {
+                        return this.tryDrain(world, pos, state);
+                    }
 
-		CompoundTag nbt = stack.getTag();
-		return nbt != null ? nbt.getInt("uses") : 0;
-	}
+                    drained = Ic2FluidStack.create(Fluids.WATER, 1000);
+                }
+            }
 
-	private void setUsage(ItemStack stack, int uses)
-	{
-		if (uses <= 0)
-		{
-			stack.setTag(null);
-		} else
-		{
-			stack.getOrCreateTag().putInt("uses", uses);
-		}
-	}
+            if (drained.getAmountMb() < 1000) {
+                return ItemStack.EMPTY;
+            }
 
-	private double getChargeLevel(ItemStack stack)
-	{
-		return (double) (this.charges - this.getUsage(stack)) / this.charges;
-	}
+            ItemStack testStack = new ItemStack(this);
+            if (this.fillMb(testStack, drained.copyWithAmountMb(1000), true, null) < 1000) {
+                return ItemStack.EMPTY;
+            }
 
-	public boolean isBarVisible(@NotNull ItemStack stack)
-	{
-		return this.getUsage(stack) > 0;
-	}
+            Ic2FluidStack actualDrain = FluidHandler.drainWorldFluid(state, level, pos, false);
+            if (actualDrain == null || actualDrain.isEmpty()) {
+                if (state.getBlock() instanceof LiquidBlock
+                        && state.getValue(LiquidBlock.LEVEL) == 0) {
+                    if (!level.isClientSide()) {
+                        world.setBlock(pos, Blocks.AIR.defaultBlockState(), 11);
+                    }
 
-	public int getBarWidth(@NotNull ItemStack stack)
-	{
-		return (int) Math.round(this.getChargeLevel(stack) * 13.0);
-	}
+                    actualDrain = drained;
+                } else {
+                    if (!(state.getBlock() instanceof SimpleWaterloggedBlock)
+                            || !state.getValue(BlockStateProperties.WATERLOGGED)) {
+                        return ItemStack.EMPTY;
+                    }
 
-	public int getBarColor(@NotNull ItemStack stack)
-	{
-		return Mth.hsvToRgb((float) (this.getChargeLevel(stack) / 3.0), 1.0F, 1.0F);
-	}
+                    world.setBlock(pos, state.setValue(BlockStateProperties.WATERLOGGED, false), 3);
+                    if (!state.canSurvive(world, pos)) {
+                        world.destroyBlock(pos, true);
+                    }
 
-	@OnlyIn(Dist.CLIENT)
-	public void appendHoverText(@NotNull ItemStack stack, Level world, @NotNull List<Component> tooltip, @NotNull TooltipFlag advanced)
-	{
-		if (this.charges > 1 && stack.getCount() == 1 && advanced.isAdvanced())
-		{
-			Ic2Tooltip.add(tooltip, Component.translatable("item.durability", this.charges - this.getUsage(stack), this.charges));
-		}
-	}
+                    actualDrain = Ic2FluidStack.create(Fluids.WATER, 1000);
+                }
+            }
 
-	@Override
-	public Ic2FluidStack getFluidStack(ItemStack stack)
-	{
-		if (this.fluid == Fluids.EMPTY)
-		{
-			return Ic2FluidStack.EMPTY;
-		} else
-		{
-			return this.fluid != null ? Ic2FluidStack.create(this.fluid, CELL_CAPACITY_MB) : null;
-		}
-	}
+            if (actualDrain.getAmountMb() < 1000) {
+                return ItemStack.EMPTY;
+            }
 
-	@Override
-	public int getCapacityMb(ItemStack stack)
-	{
-		return this.fluid != null ? CELL_CAPACITY_MB : 0;
-	}
+            ItemStack result = new ItemStack(this);
+            MutableObject<ItemStack> newStack = new MutableObject();
+            this.fillMb(result, actualDrain.copyWithAmountMb(1000), false, newStack);
+            ItemStack filled =
+                    newStack.getValue() != null ? (ItemStack) newStack.getValue() : result;
+            return filled.isEmpty() ? ItemStack.EMPTY : filled;
+        }
+    }
 
-	@Override
-	public Ic2FluidStack drainMb(ItemStack stack, int amount, boolean simulate, Mutable<ItemStack> newStack)
-	{
-		if (newStack != null)
-		{
-			newStack.setValue(stack);
-		}
+    public boolean useOnCrop(ItemStack stack, TileEntityCrop crop, boolean manual) {
+        if (this == Ic2Items.WATER_CELL) {
+            if (crop.getStorageWater() < 10) {
+                crop.setStorageWater(10);
+                return true;
+            }
+        } else if (this == Ic2Items.WEED_EX_CELL) {
+            return crop.applyWeedEx(50, true, manual, false) > 0;
+        }
 
-		if (stack.getCount() != 1)
-		{
-			throw new IllegalArgumentException("invalid stack size");
-		}
+        return false;
+    }
 
-		if (this.fluid == Fluids.EMPTY)
-		{
-			return Ic2FluidStack.EMPTY;
-		}
+    @OnlyIn(Dist.CLIENT)
+    @Override
+    public void appendHoverText(
+            @NotNull ItemStack stack,
+            Level world,
+            @NotNull List<Component> tooltip,
+            @NotNull TooltipFlag advanced) {
+        if (this.fluid == Fluids.EMPTY) {
+            Ic2FluidStack stored = StandardFluidItem.getFs(stack);
+            if (stored != null && !stored.isEmpty()) {
+                Ic2Tooltip.add(
+                        tooltip,
+                        Component.translatable(
+                                "ic2.item.fluid_container.with_fluid",
+                                stored.getFluidDisplayName(),
+                                stored.getAmountMb()));
+            }
+        }
+    }
 
-		if (this.fluid == null)
-		{
-			return null;
-		}
+    @Override
+    public Ic2FluidStack getFluidStack(ItemStack stack) {
+        if (this.fluid != Fluids.EMPTY) {
+            return Ic2FluidStack.create(this.fluid, 1000);
+        }
 
-		if (amount <= 0)
-		{
-			return Ic2FluidStack.EMPTY;
-		}
+        Ic2FluidStack stored = StandardFluidItem.getFs(stack);
+        return stored != null && !stored.isEmpty() ? stored : Ic2FluidStack.EMPTY;
+    }
 
-		if (simulate)
-		{
-			return Ic2FluidStack.create(this.fluid, Math.min(amount, CELL_CAPACITY_MB));
-		}
+    @Override
+    public int getCapacityMb(ItemStack stack) {
+        return 1000;
+    }
 
-		stack.shrink(1);
+    @Override
+    public Ic2FluidStack drainMb(
+            ItemStack stack, int amount, boolean simulate, Mutable<ItemStack> newStack) {
+        if (newStack != null) {
+            newStack.setValue(stack);
+        }
 
-		if (newStack != null)
-		{
-			newStack.setValue(new ItemStack(Ic2Items.EMPTY_CELL));
-		}
+        if (stack.getCount() != 1) {
+            throw new IllegalArgumentException("invalid stack size");
+        }
 
-		return Ic2FluidStack.create(this.fluid, CELL_CAPACITY_MB);
-	}
+        if (this.fluid == Fluids.EMPTY) {
+            Ic2FluidStack stored = StandardFluidItem.getFs(stack);
+            if (stored == null || stored.isEmpty()) {
+                return Ic2FluidStack.EMPTY;
+            }
 
-	@Override
-	public int drainMb(ItemStack stack, Ic2FluidStack drainFs, boolean simulate, Mutable<ItemStack> newStack)
-	{
-		if (newStack != null)
-		{
-			newStack.setValue(stack);
-		}
+            if (amount <= 0) {
+                return Ic2FluidStack.EMPTY;
+            }
 
-		if (stack.getCount() != 1)
-		{
-			throw new IllegalArgumentException("invalid stack size");
-		}
+            if (simulate) {
+                return stored.copyWithAmountMb(Math.min(amount, 1000));
+            }
 
-		int amount = drainFs.getAmountMb();
-		if (amount <= 0)
-		{
-			return 0;
-		}
+            StandardFluidItem.setFs(stack, null);
+            if (newStack != null) {
+                newStack.setValue(stack);
+            }
 
-		if (this.fluid != null && this.fluid != Fluids.EMPTY && drainFs.hasExactFluid(this.fluid))
-		{
-			if (simulate)
-			{
-				return Math.min(amount, CELL_CAPACITY_MB);
-			}
+            return stored;
+        } else {
+            if (amount <= 0) {
+                return Ic2FluidStack.EMPTY;
+            }
 
-			stack.shrink(1);
+            if (simulate) {
+                return Ic2FluidStack.create(this.fluid, Math.min(amount, 1000));
+            }
 
-			if (newStack != null)
-			{
-				newStack.setValue(new ItemStack(Ic2Items.EMPTY_CELL));
-			}
+            stack.shrink(1);
+            if (newStack != null) {
+                newStack.setValue(new ItemStack(Ic2Items.FACADE_CELL));
+            }
 
-			return CELL_CAPACITY_MB;
-		} else
-		{
-			return 0;
-		}
-	}
+            return Ic2FluidStack.create(this.fluid, 1000);
+        }
+    }
 
-	@Override
-	public int fillMb(ItemStack stack, Ic2FluidStack fillFs, boolean simulate, Mutable<ItemStack> newStack)
-	{
-		if (newStack != null)
-		{
-			newStack.setValue(stack);
-		}
+    @Override
+    public int drainMb(
+            ItemStack stack, Ic2FluidStack drainFs, boolean simulate, Mutable<ItemStack> newStack) {
+        if (newStack != null) {
+            newStack.setValue(stack);
+        }
 
-		if (stack.getCount() != 1)
-		{
-			throw new IllegalArgumentException("invalid stack size");
-		}
+        if (stack.getCount() != 1) {
+            throw new IllegalArgumentException("invalid stack size");
+        }
 
-		if (fillFs.getAmountMb() < CELL_CAPACITY_MB)
-		{
-			return 0;
-		}
+        int amount = drainFs.getAmountMb();
+        if (amount <= 0) {
+            return 0;
+        }
 
-		if (this.fluid != Fluids.EMPTY)
-		{
-			return 0;
-		}
+        if (this.fluid == Fluids.EMPTY) {
+            Ic2FluidStack stored = StandardFluidItem.getFs(stack);
+            if (stored == null || stored.isEmpty() || !stored.hasExactFluid(drainFs)) {
+                return 0;
+            }
 
-		ItemClassicCell newItem = instances.get(fillFs.getFluid());
-		if (newItem != null && fillFs.hasExactFluid(newItem.fluid))
-		{
-			if (!simulate)
-			{
-				stack.shrink(1);
-			}
+            if (simulate) {
+                return Math.min(amount, 1000);
+            }
 
-			if (newStack != null)
-			{
-				newStack.setValue(new ItemStack(newItem));
-			}
+            StandardFluidItem.setFs(stack, null);
+            if (newStack != null) {
+                newStack.setValue(stack);
+            }
 
-			return CELL_CAPACITY_MB;
-		} else
-		{
-			return 0;
-		}
-	}
+            return 1000;
+        } else if (drainFs.hasExactFluid(this.fluid)) {
+            if (simulate) {
+                return Math.min(amount, 1000);
+            }
+
+            stack.shrink(1);
+            if (newStack != null) {
+                newStack.setValue(new ItemStack(Ic2Items.FACADE_CELL));
+            }
+
+            return 1000;
+        } else {
+            return 0;
+        }
+    }
+
+    @Override
+    public int fillMb(
+            ItemStack stack, Ic2FluidStack fillFs, boolean simulate, Mutable<ItemStack> newStack) {
+        if (newStack != null) {
+            newStack.setValue(stack);
+        }
+
+        if (stack.getCount() != 1) {
+            throw new IllegalArgumentException("invalid stack size");
+        }
+
+        if (fillFs.getAmountMb() < 1000) {
+            return 0;
+        }
+
+        if (this.fluid != Fluids.EMPTY) {
+            return 0;
+        }
+
+        ItemClassicCell newItem = instances.get(fillFs.getFluid());
+        if (newItem != null && fillFs.hasExactFluid(newItem.fluid)) {
+            if (!simulate) {
+                stack.shrink(1);
+            }
+
+            if (newStack != null) {
+                newStack.setValue(new ItemStack(newItem));
+            }
+
+            return 1000;
+        } else {
+            Ic2FluidStack stored = StandardFluidItem.getFs(stack);
+            if (stored != null && !stored.isEmpty()) {
+                return 0;
+            }
+
+            if (!simulate) {
+                StandardFluidItem.setFs(stack, fillFs.copyWithAmountMb(1000));
+            }
+
+            if (newStack != null) {
+                newStack.setValue(stack);
+            }
+
+            return 1000;
+        }
+    }
 }
