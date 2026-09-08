@@ -116,6 +116,12 @@ public final class RegistrationTests {
         FUNCTIONS.register("manual_interaction", () -> ManualKineticTests::interaction);
         FUNCTIONS.register("manual_hunger_outputs", () -> ManualKineticTests::hungerAndOutputs);
         FUNCTIONS.register("manual_network_supply", () -> ManualKineticTests::networkSupply);
+        FUNCTIONS.register("fermenter_biofuel_chain", () -> FermenterTests::biofuelChain);
+        FUNCTIONS.register("fermenter_heat_reload", () -> FermenterTests::heatChainAndReload);
+        FUNCTIONS.register("fermenter_blocked_gas", () -> FermenterTests::blockedGas);
+        FUNCTIONS.register("fermenter_blocked_fertilizer", () -> FermenterTests::blockedFertilizer);
+        FUNCTIONS.register("fermenter_containers", () -> FermenterTests::containersAndPorts);
+        FUNCTIONS.register("fermenter_datapack", () -> FermenterTests::dataPackRecipe);
         FUNCTIONS.register("water_turbine_operation", () -> WaterTurbineTests::operationAndWear);
         FUNCTIONS.register("water_turbine_obstructions", () -> WaterTurbineTests::obstructions);
         FUNCTIONS.register("water_turbine_tides", () -> WaterTurbineTests::tidesAndDeepOcean);

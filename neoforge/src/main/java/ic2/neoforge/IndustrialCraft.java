@@ -44,6 +44,7 @@ public final class IndustrialCraft {
         ModUpgrades.register(modBus);
         ModSounds.register(modBus);
         ModCannerRecipes.register(modBus);
+        ic2.neoforge.registration.ModThermalRecipes.register(modBus);
         ModCells.register(modBus);
         ModFluids.register(modBus);
         ModMaterialBlocks.register(modBus);

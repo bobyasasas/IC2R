@@ -1985,7 +1985,12 @@
       "factory": "register",
       "expression": "new ItemBlockIc2(Ic2Blocks.FERMENTER, new Properties())",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/fermenter.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/FermenterTests.java"
+      ],
+      "note": "数据包发酵配方、热量与物料事务、重载、容器及传输升级已接入；完整沼气转电链及多人性能验收持续验证。"
     },
     {
       "registry": "item",
@@ -7550,7 +7555,12 @@
       "factory": "register",
       "expression": "Ic2TileEntityBlock.create(Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).strength(2.0F, 10.0F).requiresCorrectToolForDrops().sound(SoundType.METAL), TileEntityFermenter.class, true, Ic2TileEntityBlock.DefaultDrop.Machine, Util.allFacings, true)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/fermenter.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/FermenterTests.java"
+      ],
+      "note": "数据包发酵配方、热量与物料事务、重载、容器及传输升级已接入；完整沼气转电链及多人性能验收持续验证。"
     },
     {
       "registry": "block",
@@ -10318,7 +10328,12 @@
       "factory": "register",
       "expression": "TileEntityFermenter::new",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/fermenter.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/FermenterTests.java"
+      ],
+      "note": "数据包发酵配方、热量与物料事务、重载、容器及传输升级已接入；完整沼气转电链及多人性能验收持续验证。"
     },
     {
       "registry": "block_entity",
@@ -11204,7 +11219,12 @@
       "factory": "registerManagedBe",
       "expression": "",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/fermenter.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/FermenterTests.java"
+      ],
+      "note": "数据包发酵配方、热量与物料事务、重载、容器及传输升级已接入；完整沼气转电链及多人性能验收持续验证。"
     },
     {
       "registry": "menu",

@@ -333,6 +333,7 @@
   "ic2:shaped/ev_transformer",
   "ic2:shaped/extractor",
   "ic2:shaped/facade_cell",
+  "ic2:shaped/fermenter",
   "ic2:shaped/fluid_ejector_upgrade",
   "ic2:shaped/fluid_ejector_upgrade_9",
   "ic2:shaped/fluid_heat_generator",

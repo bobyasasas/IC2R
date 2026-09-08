@@ -19,6 +19,7 @@
     "ic2:electric_kinetic_generator",
     "ic2:ev_transformer",
     "ic2:extractor",
+    "ic2:fermenter",
     "ic2:fluid_heat_generator",
     "ic2:generator",
     "ic2:geo_generator",

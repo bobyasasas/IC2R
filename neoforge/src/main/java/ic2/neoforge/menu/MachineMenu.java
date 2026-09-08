@@ -67,7 +67,13 @@ public final class MachineMenu extends AbstractContainerMenu {
                 machine == null
                         ? new SimpleContainerData(MachineMenuData.SIZE)
                         : new MachineMenuData(machine);
-        if (kind.turbine()) {
+        if (kind == MachineKind.FERMENTER) {
+            addFluidContainerSlot(inventory, 0, 28, 17);
+            addOutputSlot(inventory, 1, 28, 53);
+            addFluidContainerSlot(inventory, 2, 130, 17);
+            addOutputSlot(inventory, 3, 130, 53);
+            addOutputSlot(inventory, 4, 80, 53);
+        } else if (kind.turbine()) {
             addSlot(
                     new ResourceHandlerSlot(inventory, inventory::set, 0, 133, 24) {
                         @Override
@@ -222,6 +228,17 @@ public final class MachineMenu extends AbstractContainerMenu {
         addDataSlots(data);
     }
 
+    private void addFluidContainerSlot(MachineInventory inventory, int slot, int x, int y) {
+        addSlot(
+                new ResourceHandlerSlot(inventory, inventory::set, slot, x, y) {
+                    @Override
+                    public boolean mayPlace(ItemStack stack) {
+                        return ic2.neoforge.machine.FermenterBlockEntity.fluidContainer(
+                                net.neoforged.neoforge.transfer.item.ItemResource.of(stack));
+                    }
+                });
+    }
+
     private void addOutputSlot(MachineInventory inventory, int slot, int x, int y) {
         addSlot(
                 new ResourceHandlerSlot(inventory, inventory::set, slot, x, y) {
@@ -330,6 +347,12 @@ public final class MachineMenu extends AbstractContainerMenu {
                             : -1;
         if (stack.getItem() instanceof UpgradeItem item)
             return item.kind().suitable(kind) ? kind.upgradeStart() : -1;
+        if (kind == MachineKind.FERMENTER) {
+            var fluid = ItemAccess.forStack(stack.copy()).getCapability(Capabilities.Fluid.ITEM);
+            if (fluid == null) return -1;
+            for (int i = 0; i < fluid.size(); i++) if (fluid.getAmountAsLong(i) > 0) return 0;
+            return 2;
+        }
         if ((kind == MachineKind.SOLAR_GENERATOR || kind == MachineKind.WIND_GENERATOR))
             return stack.getItem() instanceof ElectricItem ? 0 : -1;
         if (kind.transformer()) return -1;

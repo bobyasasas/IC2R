@@ -1,0 +1,13 @@
+{
+  "type": "ic2:fermenting",
+  "input": {
+    "id": "ic2:distilled_water",
+    "amount": 1
+  },
+  "result": {
+    "id": "ic2:steam",
+    "amount": 2
+  },
+  "heat": 40,
+  "fertilizer_interval": 3
+}
