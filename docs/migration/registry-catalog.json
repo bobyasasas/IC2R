@@ -1830,7 +1830,12 @@
       "factory": "register",
       "expression": "new ItemBlockIc2(Ic2Blocks.ELECTROLYZER, new Properties())",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/electrolyzer.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/ElectrolyzerTests.java"
+      ],
+      "note": "多方向数据包配方、MV原生电网、全部输出事务、输入持久化与配方签名已接入；客户端及多人性能验收持续验证。"
     },
     {
       "registry": "item",
@@ -7864,7 +7869,12 @@
       "factory": "register",
       "expression": "Ic2TileEntityBlock.create(Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).strength(2.0F, 10.0F).requiresCorrectToolForDrops().sound(SoundType.METAL), TileEntityElectrolyzer.class, true, Ic2TileEntityBlock.DefaultDrop.Machine, Util.horizontalFacings, true)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/electrolyzer.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/ElectrolyzerTests.java"
+      ],
+      "note": "多方向数据包配方、MV原生电网、全部输出事务、输入持久化与配方签名已接入；客户端及多人性能验收持续验证。"
     },
     {
       "registry": "block",
@@ -10623,7 +10633,12 @@
       "factory": "register",
       "expression": "TileEntityElectrolyzer::new",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/electrolyzer.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/ElectrolyzerTests.java"
+      ],
+      "note": "多方向数据包配方、MV原生电网、全部输出事务、输入持久化与配方签名已接入；客户端及多人性能验收持续验证。"
     },
     {
       "registry": "block_entity",
@@ -11424,7 +11439,12 @@
       "factory": "registerManagedBe",
       "expression": "",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/electrolyzer.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/ElectrolyzerTests.java"
+      ],
+      "note": "多方向数据包配方、MV原生电网、全部输出事务、输入持久化与配方签名已接入；客户端及多人性能验收持续验证。"
     },
     {
       "registry": "menu",

@@ -1420,5 +1420,6 @@
   "ic2.rotor.status.no_flow": "No water movement",
   "ic2.rotor.shore": "Shore: %s m",
   "ic2.fermenter.heat": "Heat (HU)",
-  "ic2.tank.cursor": "Click fluid with a container"
+  "ic2.tank.cursor": "Click fluid with a container",
+  "ic2.electrolyzer.tanks": "Adjacent tanks"
 }

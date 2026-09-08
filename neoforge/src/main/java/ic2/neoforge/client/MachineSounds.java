@@ -103,6 +103,7 @@ final class MachineSounds {
                     METAL_FORMER,
                     SOLAR_GENERATOR ->
                     null;
+            case ELECTROLYZER -> ModSounds.MACHINE_ELECTROLYZER_LOOP.get();
             case GEO_GENERATOR, SEMIFLUID_GENERATOR -> ModSounds.GENERATOR_GEOTHERMAL_LOOP.get();
             case WIND_GENERATOR -> ModSounds.GENERATOR_WIND_LOOP.get();
             case WATER_GENERATOR -> ModSounds.GENERATOR_WATER_LOOP.get();

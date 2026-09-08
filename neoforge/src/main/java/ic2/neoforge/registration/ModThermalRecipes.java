@@ -2,6 +2,7 @@ package ic2.neoforge.registration;
 
 import ic2.neoforge.IndustrialCraft;
 import ic2.neoforge.recipe.CoolingRecipe;
+import ic2.neoforge.recipe.ElectrolyzingRecipe;
 import ic2.neoforge.recipe.FermentingRecipe;
 
 import net.minecraft.core.registries.Registries;
@@ -51,6 +52,26 @@ public final class ModThermalRecipes {
                             () ->
                                     new RecipeSerializer<>(
                                             CoolingRecipe.CODEC, CoolingRecipe.STREAM_CODEC));
+
+    public static final DeferredHolder<RecipeType<?>, RecipeType<ElectrolyzingRecipe>>
+            ELECTROLYZING =
+                    TYPES.register(
+                            "electrolyzing",
+                            () ->
+                                    new RecipeType<>() {
+                                        @Override
+                                        public String toString() {
+                                            return "ic2:electrolyzing";
+                                        }
+                                    });
+    public static final DeferredHolder<RecipeSerializer<?>, RecipeSerializer<ElectrolyzingRecipe>>
+            ELECTROLYZING_SERIALIZER =
+                    SERIALIZERS.register(
+                            "electrolyzing",
+                            () ->
+                                    new RecipeSerializer<>(
+                                            ElectrolyzingRecipe.CODEC,
+                                            ElectrolyzingRecipe.STREAM_CODEC));
 
     public static void register(IEventBus bus) {
         TYPES.register(bus);

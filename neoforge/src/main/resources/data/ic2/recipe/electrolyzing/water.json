@@ -1,0 +1,25 @@
+{
+  "type": "ic2:electrolyzing",
+  "input": {
+    "id": "minecraft:water",
+    "amount": 40
+  },
+  "eu_per_tick": 32,
+  "ticks": 200,
+  "outputs": [
+    {
+      "direction": "down",
+      "fluid": {
+        "id": "ic2:hydrogen",
+        "amount": 26
+      }
+    },
+    {
+      "direction": "up",
+      "fluid": {
+        "id": "ic2:oxygen",
+        "amount": 13
+      }
+    }
+  ]
+}

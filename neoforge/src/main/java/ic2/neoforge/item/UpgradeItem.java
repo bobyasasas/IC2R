@@ -35,6 +35,7 @@ public final class UpgradeItem extends Item {
         }
 
         public boolean suitable(MachineKind machine) {
+            if (machine == MachineKind.ELECTROLYZER) return this == FLUID_PULLING;
             if (machine == MachineKind.TANK) return fluid();
             if (machine == MachineKind.FERMENTER || machine == MachineKind.LIQUID_HEAT_EXCHANGER)
                 return directional();

@@ -116,6 +116,13 @@ public final class RegistrationTests {
         FUNCTIONS.register("manual_interaction", () -> ManualKineticTests::interaction);
         FUNCTIONS.register("manual_hunger_outputs", () -> ManualKineticTests::hungerAndOutputs);
         FUNCTIONS.register("manual_network_supply", () -> ManualKineticTests::networkSupply);
+        FUNCTIONS.register(
+                "electrolysis_network_reload", () -> ElectrolyzerTests::networkAndReload);
+        FUNCTIONS.register("electrolysis_output_rollback", () -> ElectrolyzerTests::blockedOutput);
+        FUNCTIONS.register(
+                "electrolysis_interruption",
+                () -> ElectrolyzerTests::interruptionAndRecipeIdentity);
+        FUNCTIONS.register("electrolysis_datapack", () -> ElectrolyzerTests::dataPackAndPorts);
         FUNCTIONS.register("tank_storage", () -> TankTests::storageAndComparator);
         FUNCTIONS.register("tank_cursor", () -> TankTests::cursorAndPermissions);
         FUNCTIONS.register("tank_upgrade", () -> TankTests::partialBucketAndUpgrade);

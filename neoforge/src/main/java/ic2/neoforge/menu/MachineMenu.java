@@ -67,7 +67,9 @@ public final class MachineMenu extends AbstractContainerMenu {
                 machine == null
                         ? new SimpleContainerData(MachineMenuData.SIZE)
                         : new MachineMenuData(machine);
-        if (kind == MachineKind.TANK) {
+        if (kind == MachineKind.ELECTROLYZER) {
+            addBatterySlot(inventory, 0, 50, 53);
+        } else if (kind == MachineKind.TANK) {
             // Tanks contain only the four upgrade slots added below.
         } else if (kind == MachineKind.LIQUID_HEAT_EXCHANGER) {
             addFluidContainerSlot(inventory, 0, 8, 65);
@@ -370,6 +372,8 @@ public final class MachineMenu extends AbstractContainerMenu {
                             : -1;
         if (stack.getItem() instanceof UpgradeItem item)
             return item.kind().suitable(kind) ? kind.upgradeStart() : -1;
+        if (kind == MachineKind.ELECTROLYZER)
+            return stack.getItem() instanceof ElectricItem ? 0 : -1;
         if (kind == MachineKind.TANK) return -1;
         if (kind == MachineKind.LIQUID_HEAT_EXCHANGER
                 && stack.is(ModItems.MATERIALS.get(MaterialDefinition.HEAT_CONDUCTOR).get()))

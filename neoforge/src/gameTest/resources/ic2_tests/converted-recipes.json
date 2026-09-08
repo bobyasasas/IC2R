@@ -328,6 +328,7 @@
   "ic2:shaped/electric_kinetic_generator",
   "ic2:shaped/electric_motor",
   "ic2:shaped/electric_motor_vertical",
+  "ic2:shaped/electrolyzer",
   "ic2:shaped/energium_dust",
   "ic2:shaped/energy_storage_upgrade",
   "ic2:shaped/ev_transformer",

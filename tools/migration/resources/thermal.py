@@ -20,3 +20,11 @@ for hot, cold in [('minecraft:lava', 'ic2:pahoehoe_lava'), ('ic2:hot_coolant', '
 for locale, label in [('en_us', 'Click fluid with a container'), ('zh_cn', '用光标上的容器点击流体')]:
     path = ASSETS + 'lang/' + locale + '.json'
     data = json.loads((NEW / path).read_text()); data['ic2.tank.cursor'] = label; write(path, data)
+
+write('data/ic2/recipe/electrolyzing/water.json', {
+    'type': 'ic2:electrolyzing', 'input': {'id': 'minecraft:water', 'amount': 40}, 'eu_per_tick': 32, 'ticks': 200,
+    'outputs': [{'direction': 'down', 'fluid': {'id': 'ic2:hydrogen', 'amount': 26}}, {'direction': 'up', 'fluid': {'id': 'ic2:oxygen', 'amount': 13}}],
+})
+for locale, label in [('en_us', 'Adjacent tanks'), ('zh_cn', '相邻输出储罐')]:
+    path = ASSETS + 'lang/' + locale + '.json'
+    data = json.loads((NEW / path).read_text()); data['ic2.electrolyzer.tanks'] = label; write(path, data)

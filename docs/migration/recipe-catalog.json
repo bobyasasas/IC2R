@@ -2547,8 +2547,8 @@
     {
       "source": "shaped/electrolyzer.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:electrolyzer"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/electrolyzer.json"
     },
     {
       "source": "shaped/empty_mug.json",
