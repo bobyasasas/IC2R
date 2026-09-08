@@ -90,6 +90,8 @@ public final class IndustrialCraftClient {
                         event.register(registration.menu().get(), HeatedMachineScreen::new);
                     else if (kind == MachineKind.METAL_FORMER)
                         event.register(registration.menu().get(), MetalFormerScreen::new);
+                    else if (kind == MachineKind.CONDENSER)
+                        event.register(registration.menu().get(), CondenserScreen::new);
                     else if (kind == MachineKind.FLUID_REGULATOR)
                         event.register(registration.menu().get(), FluidRegulatorScreen::new);
                     else if (kind == MachineKind.ELECTROLYZER)

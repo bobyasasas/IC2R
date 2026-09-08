@@ -2391,8 +2391,8 @@
     {
       "source": "shaped/condenser.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:condenser"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/condenser.json"
     },
     {
       "source": "shaped/containment_box.json",
@@ -2757,8 +2757,8 @@
     {
       "source": "shaped/heat_vent.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:heat_vent"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/heat_vent.json"
     },
     {
       "source": "shaped/heatpack.json",

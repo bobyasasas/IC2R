@@ -110,6 +110,21 @@ public final class ModDataComponents {
                                                     ModDataComponents::validHydration,
                                                     ModDataComponents::validHydration)));
 
+    public static final Supplier<DataComponentType<Integer>> REACTOR_HEAT =
+            TYPES.<Integer>registerComponentType(
+                    "reactor_heat",
+                    builder ->
+                            builder.persistent(Codec.intRange(0, Integer.MAX_VALUE))
+                                    .networkSynchronized(
+                                            ByteBufCodecs.VAR_INT.map(
+                                                    ModDataComponents::validReactorHeat,
+                                                    ModDataComponents::validReactorHeat)));
+
+    private static int validReactorHeat(int heat) {
+        if (heat < 0) throw new IllegalArgumentException("Negative reactor heat");
+        return heat;
+    }
+
     private ModDataComponents() {}
 
     private static double validCharge(double value) {

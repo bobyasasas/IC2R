@@ -130,6 +130,12 @@ public final class RegistrationTests {
         FUNCTIONS.register("tank_storage", () -> TankTests::storageAndComparator);
         FUNCTIONS.register("tank_cursor", () -> TankTests::cursorAndPermissions);
         FUNCTIONS.register("tank_upgrade", () -> TankTests::partialBucketAndUpgrade);
+        FUNCTIONS.register("reactor_heat_component", () -> CondenserTests::heatComponent);
+        FUNCTIONS.register("condenser_ports", () -> CondenserTests::portsAndContainers);
+        FUNCTIONS.register("condenser_blocked_output", () -> CondenserTests::blockedOutput);
+        FUNCTIONS.register("condenser_vents_power", () -> CondenserTests::ventsAndPower);
+        FUNCTIONS.register("condenser_power_chain", () -> CondenserTests::nativePowerChain);
+        FUNCTIONS.register("condenser_passive_reload", () -> CondenserTests::passiveReload);
         FUNCTIONS.register("cooling_capacity", () -> HeatExchangerTests::nearlyFullOutput);
         FUNCTIONS.register("cooling_parts_budget", () -> HeatExchangerTests::partsAndBudget);
         FUNCTIONS.register("cooling_stirling_chain", () -> HeatExchangerTests::stirlingChain);

@@ -21,7 +21,7 @@
 | M09 首台可用电力机器 | 已完成 | M06, M07, M08 | 发电机—导线—电炉的最小链路；耗能、配方、存取、区块重载与专服 GameTest 通过。 |
 | M10 菜单与网络同步 | 进行中 | M05, M09 | 类型化 payload、服务端校验；双人交互与断线重连；客户端渲染 API 更新。 |
 | M11 罐装机及其余加工机器 | 进行中 | M09, M10 | 按机器族拆分后续提交；优先覆盖 cannerfix1 路径，再覆盖升级、泵、存储和高阶机器。 |
-| M12 反应堆与爆炸系统 | 待开始 | M06, M09 | 热量规则独立测试；反应堆、核弹、炸药与遥控的游戏回归；权限与持久化验证。 |
+| M12 反应堆与爆炸系统 | 进行中 | M06, M09 | 热量规则独立测试；反应堆、核弹、炸药与遥控的游戏回归；权限与持久化验证。 |
 | M13 作物、世界生成及装备 | 进行中 | M04, M05, M08 | 进入阶段前按作物／树木矿物／工具装备拆子任务；资源生成和存档重载测试。 |
 | M14 JEI、Jade 与 AE2 集成 | 待开始 | M10, M11 | 按实际支持 26.1.2 的版本接入；每个集成独立边界；缺少可选模组仍能启动。 |
 | M15 旧存档兼容策略 | 待开始 | M04, M05, M11, M12, M13 | 在副本上验证 ID、NBT 和版本跨度；给出可复现转换流程，或明确不支持的项目。 |
@@ -32,11 +32,11 @@
 
 | 注册类别 | 已实现 | 部分实现 | 基线总数 |
 |---|---:|---:|---:|
-| item | 201 | 89 | 528 |
-| block | 36 | 68 | 264 |
-| block_entity | 1 | 39 | 157 |
+| item | 201 | 91 | 528 |
+| block | 36 | 69 | 264 |
+| block_entity | 1 | 40 | 157 |
 | entity | 0 | 0 | 8 |
-| menu | 1 | 11 | 55 |
+| menu | 1 | 12 | 55 |
 | sound | 62 | 0 | 62 |
 | recipe_serializer | 0 | 12 | 17 |
 | recipe_type | 0 | 9 | 13 |
@@ -53,7 +53,7 @@
 
 ## 配方迁移覆盖
 
-已转换并纳入加载测试：**523 / 796**。
+已转换并纳入加载测试：**525 / 796**。
 
 转换计数不等于生存模式可达率；原料、工具与前置机器仍需逐步验收。
 
@@ -74,9 +74,9 @@
 | P07 泵与采矿 | M11 | 待开始 | 泵、矿机、高级矿机；区块边界、液体源、钻头、管道和过滤。 |
 | P08 存储与辅助机器 | M11 | 进行中 | 储液罐已接入事务存储、比较器、容器交互与升级；箱子、充电站、分拣机、交易机、个人保护、传送与磁化待迁移。 |
 | P09 金属及高阶加工 | M11 | 进行中 | 金属成型、洗矿、离心、回收与感应炉主体已验证；离心机合成、核材料、铁栅栏、完整升级与多人验收待完成。 |
-| P10 热力与动能机器 | M11 | 进行中 | 风力／水力动能与五种转子、手动动能、电热、电动动能、固体／流体热源、电解双气体输出、流体冷却换热、发酵与沼气链、原生事务能力与转电链已接入；同位素热源、升温换热、蒸汽、锅炉、冷凝待验收。 |
+| P10 热力与动能机器 | M11 | 进行中 | 风力／水力动能与五种转子、手动动能、电热、电动动能、固体／流体热源、冷凝与散热片、电解双气体输出、流体冷却换热、发酵与沼气链、原生事务能力与转电链已接入；同位素热源、升温换热、蒸汽、锅炉待验收。 |
 | P11 UU 及复制系统 | M11 | 待开始 | 复制、扫描、模式存储和流体 UU；数据与网络同步。 |
-| P12 反应堆热量与组件 | M12 | 待开始 | 先抽离热量和组件规则，再验证液冷、红石、组件耐久和存档。 |
+| P12 反应堆热量与组件 | M12 | 进行中 | 热量记账与散热片数据已接入；按冷却／交换／反射／燃料组件、网格脉冲、EU／流体模式、热效应和爆炸分步验收。 |
 | P13 爆炸与电缆附加行为 | M12 | 待开始 | IC2 爆炸、核弹、炸药、遥控；电击、涂色、建筑泡沫。 |
 | P14 树木、矿石与世界生成 | M13 | 已完成 | 矿脉、树苗、橡胶采集、标签及树叶衰减通过；普通新区块与客户端保存重载已验收。 |
 | P21 橡胶木建筑部件 | M13 | 已完成 | 按钮、门、栅栏、台阶、告示牌；原生交互、掉落、文字保存和客户端渲染。 |
@@ -100,6 +100,7 @@
 - M09：[WorldEnergyNetworks.java](../../neoforge/src/main/java/ic2/neoforge/energy/WorldEnergyNetworks.java), [MachineTests.java](../../neoforge/src/gameTest/java/ic2/neoforge/test/MachineTests.java), [first-machines.md](../../docs/migration/first-machines.md)
 - M10：[MachineMenu.java](../../neoforge/src/main/java/ic2/neoforge/menu/MachineMenu.java), [MachineScreen.java](../../neoforge/src/main/java/ic2/neoforge/client/MachineScreen.java)
 - M11：[ProcessingBlockEntity.java](../../neoforge/src/main/java/ic2/neoforge/machine/ProcessingBlockEntity.java), [ProcessingRecipe.java](../../neoforge/src/main/java/ic2/neoforge/recipe/ProcessingRecipe.java), [work-packages.json](../../docs/migration/work-packages.json), [canner-fluids.md](../../docs/migration/canner-fluids.md)
+- M12：[condenser.md](../../docs/migration/condenser.md), [ReactorHeatTest.java](../../core/src/test/java/ic2/core/reactor/ReactorHeatTest.java), [CondenserTests.java](../../neoforge/src/gameTest/java/ic2/neoforge/test/CondenserTests.java)
 - M13：[work-packages.json](../../docs/migration/work-packages.json), [tools.md](../../docs/migration/tools.md)
 
 ## 依赖关系
@@ -132,7 +133,7 @@ flowchart TD
   M11["M11 罐装机及其余加工机器 · 进行中"]
   M09 --> M11
   M10 --> M11
-  M12["M12 反应堆与爆炸系统 · 待开始"]
+  M12["M12 反应堆与爆炸系统 · 进行中"]
   M06 --> M12
   M09 --> M12
   M13["M13 作物、世界生成及装备 · 进行中"]

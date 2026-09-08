@@ -169,13 +169,17 @@
     {
       "id": "M12",
       "title": "反应堆与爆炸系统",
-      "status": "todo",
+      "status": "in_progress",
       "depends_on": [
         "M06",
         "M09"
       ],
       "acceptance": "热量规则独立测试；反应堆、核弹、炸药与遥控的游戏回归；权限与持久化验证。",
-      "evidence": []
+      "evidence": [
+        "docs/migration/condenser.md",
+        "core/src/test/java/ic2/core/reactor/ReactorHeatTest.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/CondenserTests.java"
+      ]
     },
     {
       "id": "M13",

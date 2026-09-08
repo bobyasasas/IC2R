@@ -7,6 +7,7 @@ import ic2.neoforge.machine.*;
 import ic2.neoforge.registration.MaterialDefinition;
 import ic2.neoforge.registration.ModItems;
 import ic2.neoforge.registration.ModMachines;
+import ic2.neoforge.transfer.FluidContainerPort;
 import ic2.neoforge.transfer.MachineInventory;
 
 import net.minecraft.core.BlockPos;
@@ -19,6 +20,7 @@ import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.material.Fluid;
 import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.transfer.access.ItemAccess;
+import net.neoforged.neoforge.transfer.item.ItemResource;
 import net.neoforged.neoforge.transfer.item.ResourceHandlerSlot;
 
 import java.util.Objects;
@@ -71,6 +73,16 @@ public final class MachineMenu extends AbstractContainerMenu {
             addFluidContainerSlot(inventory, 0, 48, 72);
             addOutputSlot(inventory, 1, 66, 72);
             addBatterySlot(inventory, 2, 8, 72);
+        } else if (kind == MachineKind.CONDENSER) {
+            addFluidContainerSlot(inventory, 0, 130, 72);
+            addOutputSlot(inventory, 1, 152, 72);
+            addBatterySlot(inventory, 2, 8, 72);
+            addInstalledParts(
+                    inventory,
+                    3,
+                    ic2.neoforge.registration.ModReactorItems.HEAT_VENT.get(),
+                    54,
+                    17);
         } else if (kind == MachineKind.ELECTROLYZER) {
             addBatterySlot(inventory, 0, 50, 53);
         } else if (kind == MachineKind.TANK) {
@@ -237,7 +249,7 @@ public final class MachineMenu extends AbstractContainerMenu {
             net.minecraft.world.item.Item item,
             int x,
             int y) {
-        for (int part = 0; part < 10; part++)
+        for (int part = 0; part < kind.installedPartsCount(); part++)
             addSlot(
                     new ResourceHandlerSlot(
                             inventory,
@@ -376,6 +388,11 @@ public final class MachineMenu extends AbstractContainerMenu {
                             : -1;
         if (stack.getItem() instanceof UpgradeItem item)
             return item.kind().suitable(kind) ? kind.upgradeStart() : -1;
+        if (kind == MachineKind.CONDENSER) {
+            if (stack.is(ic2.neoforge.registration.ModReactorItems.HEAT_VENT.get())) return 3;
+            if (stack.getItem() instanceof ElectricItem) return 2;
+            return FluidContainerPort.accepts(ItemResource.of(stack)) ? 0 : -1;
+        }
         if (kind == MachineKind.ELECTROLYZER)
             return stack.getItem() instanceof ElectricItem ? 0 : -1;
         if (kind == MachineKind.TANK) return -1;
@@ -428,8 +445,9 @@ public final class MachineMenu extends AbstractContainerMenu {
         if (preferred < 0) return false;
         if (kind.installedPartsStart() >= 0 && preferred == kind.installedPartsStart()) {
             boolean installed = false;
-            for (int slot = preferred; slot < preferred + 10 && !stack.isEmpty(); slot++)
-                installed |= moveItemStackTo(stack, slot, slot + 1, false);
+            for (int slot = preferred;
+                    slot < preferred + kind.installedPartsCount() && !stack.isEmpty();
+                    slot++) installed |= moveItemStackTo(stack, slot, slot + 1, false);
             return installed;
         }
         boolean moved =

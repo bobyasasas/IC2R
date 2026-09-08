@@ -1,0 +1,17 @@
+{
+  "type": "ic2:shaped",
+  "pattern": [
+    "#I#",
+    "IMI",
+    "#I#"
+  ],
+  "result": {
+    "id": "ic2:heat_vent",
+    "count": 1
+  },
+  "key": {
+    "M": "ic2:electric_motor",
+    "I": "#c:plates/iron",
+    "#": "minecraft:iron_bars"
+  }
+}

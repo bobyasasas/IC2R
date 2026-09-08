@@ -15,6 +15,7 @@ public enum MachineKind implements StringRepresentable {
     HV_TRANSFORMER("hv_transformer", 4096, 0, 0, 0),
     EV_TRANSFORMER("ev_transformer", 16384, 0, 0, 0),
     IRON_FURNACE("iron_furnace", 0, 3, 160, 0),
+    CONDENSER("condenser", 100000, 7, 0, 0),
     FLUID_REGULATOR("fluid_regulator", 10000, 3, 0, 0),
     ELECTROLYZER("electrolyzer", 32000, 1, 200, 32),
     TANK("tank", 0, 0, 0, 0),
@@ -126,7 +127,7 @@ public enum MachineKind implements StringRepresentable {
         return switch (this) {
             case BATBOX, LV_TRANSFORMER -> 1;
             case CESU, MV_TRANSFORMER, CENTRIFUGE, INDUCTION_FURNACE, ELECTROLYZER -> 2;
-            case MFE, HV_TRANSFORMER -> 3;
+            case MFE, HV_TRANSFORMER, CONDENSER -> 3;
             case MFSU,
                     EV_TRANSFORMER,
                     ELECTRIC_HEAT_GENERATOR,
@@ -154,7 +155,9 @@ public enum MachineKind implements StringRepresentable {
     }
 
     public int menuHeight() {
-        return this == LIQUID_HEAT_EXCHANGER || this == FLUID_REGULATOR ? 184 : 166;
+        return this == LIQUID_HEAT_EXCHANGER || this == FLUID_REGULATOR || this == CONDENSER
+                ? 184
+                : 166;
     }
 
     public int inventoryY() {
@@ -162,10 +165,15 @@ public enum MachineKind implements StringRepresentable {
     }
 
     public int installedPartsStart() {
-        return electricWork() ? 0 : this == LIQUID_HEAT_EXCHANGER ? 4 : -1;
+        return electricWork() ? 0 : this == LIQUID_HEAT_EXCHANGER ? 4 : this == CONDENSER ? 3 : -1;
+    }
+
+    public int installedPartsCount() {
+        return this == CONDENSER ? 4 : installedPartsStart() >= 0 ? 10 : 0;
     }
 
     public int upgradeSlots() {
+        if (this == CONDENSER) return 1;
         if (this == TANK) return 4;
         if (this == LIQUID_HEAT_EXCHANGER) return 3;
         return (this == INDUCTION_FURNACE || this == FERMENTER) ? 2 : euPerTick > 0 ? 4 : 0;

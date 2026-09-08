@@ -107,7 +107,7 @@
       "parent": "M11",
       "title": "热力与动能机器",
       "status": "in_progress",
-      "acceptance": "风力／水力动能与五种转子、手动动能、电热、电动动能、固体／流体热源、电解双气体输出、流体冷却换热、发酵与沼气链、原生事务能力与转电链已接入；同位素热源、升温换热、蒸汽、锅炉、冷凝待验收。",
+      "acceptance": "风力／水力动能与五种转子、手动动能、电热、电动动能、固体／流体热源、冷凝与散热片、电解双气体输出、流体冷却换热、发酵与沼气链、原生事务能力与转电链已接入；同位素热源、升温换热、蒸汽、锅炉待验收。",
       "evidence": [
         "docs/migration/work-energy.md",
         "neoforge/src/gameTest/java/ic2/neoforge/test/WorkEnergyTests.java",
@@ -117,7 +117,8 @@
         "docs/migration/water-turbine.md",
         "docs/migration/fermenter.md",
         "docs/migration/heat-exchanger.md",
-        "docs/migration/electrolyzer.md"
+        "docs/migration/electrolyzer.md",
+        "docs/migration/condenser.md"
       ]
     },
     {
@@ -132,9 +133,13 @@
       "id": "P12",
       "parent": "M12",
       "title": "反应堆热量与组件",
-      "status": "todo",
-      "acceptance": "先抽离热量和组件规则，再验证液冷、红石、组件耐久和存档。",
-      "evidence": []
+      "status": "in_progress",
+      "acceptance": "热量记账与散热片数据已接入；按冷却／交换／反射／燃料组件、网格脉冲、EU／流体模式、热效应和爆炸分步验收。",
+      "evidence": [
+        "docs/migration/condenser.md",
+        "core/src/test/java/ic2/core/reactor/ReactorHeatTest.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/CondenserTests.java"
+      ]
     },
     {
       "id": "P13",

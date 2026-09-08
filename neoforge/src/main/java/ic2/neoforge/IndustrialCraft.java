@@ -40,6 +40,7 @@ public final class IndustrialCraft {
         ModRubberBuilding.register(modBus);
         ModTools.register(modBus);
         ic2.neoforge.registration.ModRotors.register(modBus);
+        ic2.neoforge.registration.ModReactorItems.register(modBus);
         ModToolbox.register(modBus);
         ModUpgrades.register(modBus);
         ModSounds.register(modBus);

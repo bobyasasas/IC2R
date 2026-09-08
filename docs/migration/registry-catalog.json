@@ -1675,7 +1675,12 @@
       "factory": "register",
       "expression": "new ItemBlockIc2(Ic2Blocks.CONDENSER, new Properties())",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/condenser.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/CondenserTests.java"
+      ],
+      "note": "冷凝事务、批次余额、缺电、变压器、容器与端口已接入；蒸汽生产链、多人验收和散热片在完整反应堆中的热效应待迁移。"
     },
     {
       "registry": "item",
@@ -4287,7 +4292,12 @@
       "factory": "register",
       "expression": "new ItemReactorVent(new Properties(), 1000, 6, 0)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/condenser.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/CondenserTests.java"
+      ],
+      "note": "冷凝事务、批次余额、缺电、变压器、容器与端口已接入；蒸汽生产链、多人验收和散热片在完整反应堆中的热效应待迁移。"
     },
     {
       "registry": "item",
@@ -7280,7 +7290,12 @@
       "factory": "register",
       "expression": "Ic2TileEntityBlock.create(Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).strength(2.0F, 10.0F).requiresCorrectToolForDrops().sound(SoundType.METAL), TileEntityCondenser.class, true, Ic2TileEntityBlock.DefaultDrop.Machine, Util.horizontalFacings, true)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/condenser.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/CondenserTests.java"
+      ],
+      "note": "冷凝事务、批次余额、缺电、变压器、容器与端口已接入；蒸汽生产链、多人验收和散热片在完整反应堆中的热效应待迁移。"
     },
     {
       "registry": "block",
@@ -9813,7 +9828,12 @@
       "factory": "register",
       "expression": "TileEntityCondenser::new",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/condenser.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/CondenserTests.java"
+      ],
+      "note": "冷凝事务、批次余额、缺电、变压器、容器与端口已接入；蒸汽生产链、多人验收和散热片在完整反应堆中的热效应待迁移。"
     },
     {
       "registry": "block_entity",
@@ -11164,7 +11184,12 @@
       "factory": "registerManagedBe",
       "expression": "",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/condenser.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/CondenserTests.java"
+      ],
+      "note": "冷凝事务、批次余额、缺电、变压器、容器与端口已接入；蒸汽生产链、多人验收和散热片在完整反应堆中的热效应待迁移。"
     },
     {
       "registry": "menu",
