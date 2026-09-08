@@ -80,9 +80,11 @@
       "id": "P08",
       "parent": "M11",
       "title": "存储与辅助机器",
-      "status": "todo",
-      "acceptance": "储罐、箱子、充电站、分拣机、交易机、个人保护、传送与磁化。",
-      "evidence": []
+      "status": "in_progress",
+      "acceptance": "储液罐已接入事务存储、比较器、容器交互与升级；箱子、充电站、分拣机、交易机、个人保护、传送与磁化待迁移。",
+      "evidence": [
+        "docs/migration/tank.md"
+      ]
     },
     {
       "id": "P09",

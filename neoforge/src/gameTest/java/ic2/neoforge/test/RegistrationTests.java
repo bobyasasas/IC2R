@@ -116,6 +116,9 @@ public final class RegistrationTests {
         FUNCTIONS.register("manual_interaction", () -> ManualKineticTests::interaction);
         FUNCTIONS.register("manual_hunger_outputs", () -> ManualKineticTests::hungerAndOutputs);
         FUNCTIONS.register("manual_network_supply", () -> ManualKineticTests::networkSupply);
+        FUNCTIONS.register("tank_storage", () -> TankTests::storageAndComparator);
+        FUNCTIONS.register("tank_cursor", () -> TankTests::cursorAndPermissions);
+        FUNCTIONS.register("tank_upgrade", () -> TankTests::partialBucketAndUpgrade);
         FUNCTIONS.register("cooling_capacity", () -> HeatExchangerTests::nearlyFullOutput);
         FUNCTIONS.register("cooling_parts_budget", () -> HeatExchangerTests::partsAndBudget);
         FUNCTIONS.register("cooling_stirling_chain", () -> HeatExchangerTests::stirlingChain);

@@ -90,6 +90,8 @@ public final class IndustrialCraftClient {
                         event.register(registration.menu().get(), HeatedMachineScreen::new);
                     else if (kind == MachineKind.METAL_FORMER)
                         event.register(registration.menu().get(), MetalFormerScreen::new);
+                    else if (kind == MachineKind.TANK)
+                        event.register(registration.menu().get(), TankScreen::new);
                     else if (kind == MachineKind.LIQUID_HEAT_EXCHANGER)
                         event.register(registration.menu().get(), LiquidHeatExchangerScreen::new);
                     else if (kind == MachineKind.FERMENTER)

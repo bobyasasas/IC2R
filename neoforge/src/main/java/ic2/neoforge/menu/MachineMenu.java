@@ -67,7 +67,9 @@ public final class MachineMenu extends AbstractContainerMenu {
                 machine == null
                         ? new SimpleContainerData(MachineMenuData.SIZE)
                         : new MachineMenuData(machine);
-        if (kind == MachineKind.LIQUID_HEAT_EXCHANGER) {
+        if (kind == MachineKind.TANK) {
+            // Tanks contain only the four upgrade slots added below.
+        } else if (kind == MachineKind.LIQUID_HEAT_EXCHANGER) {
             addFluidContainerSlot(inventory, 0, 8, 65);
             addOutputSlot(inventory, 1, 26, 65);
             addFluidContainerSlot(inventory, 2, 134, 65);
@@ -338,10 +340,10 @@ public final class MachineMenu extends AbstractContainerMenu {
 
     @Override
     public boolean clickMenuButton(Player player, int id) {
-        return player.containerMenu == this
-                && stillValid(player)
-                && machine != null
-                && machine.menuAction(id);
+        if (player.containerMenu != this || !stillValid(player) || machine == null) return false;
+        if (machine instanceof ic2.neoforge.machine.TankBlockEntity tank)
+            return (id == 0 || id == 1) && tank.transferCursor(player, this, id == 1);
+        return machine.menuAction(id);
     }
 
     public float familyFloat(int index) {
@@ -368,6 +370,7 @@ public final class MachineMenu extends AbstractContainerMenu {
                             : -1;
         if (stack.getItem() instanceof UpgradeItem item)
             return item.kind().suitable(kind) ? kind.upgradeStart() : -1;
+        if (kind == MachineKind.TANK) return -1;
         if (kind == MachineKind.LIQUID_HEAT_EXCHANGER
                 && stack.is(ModItems.MATERIALS.get(MaterialDefinition.HEAT_CONDUCTOR).get()))
             return 4;

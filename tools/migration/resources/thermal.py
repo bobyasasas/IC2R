@@ -16,3 +16,7 @@ for hot, cold in [('minecraft:lava', 'ic2:pahoehoe_lava'), ('ic2:hot_coolant', '
         'type': 'ic2:cooling', 'input': {'id': hot, 'amount': 1},
         'result': {'id': cold, 'amount': 1}, 'heat': 20,
     })
+
+for locale, label in [('en_us', 'Click fluid with a container'), ('zh_cn', '用光标上的容器点击流体')]:
+    path = ASSETS + 'lang/' + locale + '.json'
+    data = json.loads((NEW / path).read_text()); data['ic2.tank.cursor'] = label; write(path, data)

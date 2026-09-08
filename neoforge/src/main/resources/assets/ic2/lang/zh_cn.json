@@ -1419,5 +1419,6 @@
   "ic2.rotor.status.invalid_biome": "需要海洋或河流",
   "ic2.rotor.status.no_flow": "水流静止",
   "ic2.rotor.shore": "岸距：%s 米",
-  "ic2.fermenter.heat": "热量（HU）"
+  "ic2.fermenter.heat": "热量（HU）",
+  "ic2.tank.cursor": "用光标上的容器点击流体"
 }

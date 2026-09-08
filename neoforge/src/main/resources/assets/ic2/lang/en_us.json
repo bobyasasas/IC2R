@@ -1419,5 +1419,6 @@
   "ic2.rotor.status.invalid_biome": "Needs ocean or river",
   "ic2.rotor.status.no_flow": "No water movement",
   "ic2.rotor.shore": "Shore: %s m",
-  "ic2.fermenter.heat": "Heat (HU)"
+  "ic2.fermenter.heat": "Heat (HU)",
+  "ic2.tank.cursor": "Click fluid with a container"
 }

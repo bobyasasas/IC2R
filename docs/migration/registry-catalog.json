@@ -1145,7 +1145,12 @@
       "factory": "register",
       "expression": "new ItemBlockIc2(Ic2Blocks.TANK, new Properties())",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/tank.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/TankTests.java"
+      ],
+      "note": "24桶原生事务存储、比较器、双向能力、升级、光标容器与菜单权限已接入；客户端与多人性能验收持续验证。"
     },
     {
       "registry": "item",
@@ -7929,7 +7934,12 @@
       "factory": "register",
       "expression": "Ic2TileEntityBlock.create(Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).strength(2.0F, 10.0F).requiresCorrectToolForDrops().sound(SoundType.METAL), TileEntityTank.class, false, Ic2TileEntityBlock.DefaultDrop.Self, Util.horizontalFacings, true)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/tank.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/TankTests.java"
+      ],
+      "note": "24桶原生事务存储、比较器、双向能力、升级、光标容器与菜单权限已接入；客户端与多人性能验收持续验证。"
     },
     {
       "registry": "block",
@@ -10683,7 +10693,12 @@
       "factory": "register",
       "expression": "TileEntityTank::new",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/tank.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/TankTests.java"
+      ],
+      "note": "24桶原生事务存储、比较器、双向能力、升级、光标容器与菜单权限已接入；客户端与多人性能验收持续验证。"
     },
     {
       "registry": "block_entity",

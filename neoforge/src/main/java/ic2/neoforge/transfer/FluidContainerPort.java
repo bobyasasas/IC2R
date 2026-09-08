@@ -11,8 +11,9 @@ import org.jspecify.annotations.Nullable;
 /** Native container access that returns the changed item to a separate slot atomically. */
 public final class FluidContainerPort {
     public static boolean accepts(ItemResource resource) {
-        return ItemAccess.forStack(resource.toStack()).getCapability(Capabilities.Fluid.ITEM)
-                != null;
+        return !resource.isEmpty()
+                && ItemAccess.forStack(resource.toStack()).getCapability(Capabilities.Fluid.ITEM)
+                        != null;
     }
 
     public static @Nullable ResourceHandler<FluidResource> of(
