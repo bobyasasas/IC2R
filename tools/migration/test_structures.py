@@ -38,3 +38,10 @@ blocks = [int_list('pos', [x, y, z]) + integer('state', int(x in [19, 35] or y i
 root = integer('DataVersion', 4790) + int_list('size', [55, 24, 55]) + compound_list('palette', palette) + compound_list('blocks', blocks) + compound_list('entities', [])
 target = ROOT / 'neoforge/src/gameTest/resources/data/ic2_tests/structure/water_turbine_room.nbt'
 target.write_bytes(gzip.compress(tag(10, '', root + b'\x00'), mtime=0))
+
+# Thermal blast tests need empty space separating their entity sampling from adjacent fixtures.
+palette = [tag(8, 'Name', string('minecraft:bedrock'))]
+blocks = [int_list('pos', [x, 0, z]) + integer('state', 0) for x in range(35) for z in range(35)]
+root = integer('DataVersion', 4790) + int_list('size', [35, 35, 35]) + compound_list('palette', palette) + compound_list('blocks', blocks) + compound_list('entities', [])
+target = ROOT / 'neoforge/src/gameTest/resources/data/ic2_tests/structure/heat_room.nbt'
+target.write_bytes(gzip.compress(tag(10, '', root + b'\x00'), mtime=0))

@@ -134,6 +134,10 @@ public final class RegistrationTests {
         FUNCTIONS.register("condenser_ports", () -> CondenserTests::portsAndContainers);
         FUNCTIONS.register("condenser_blocked_output", () -> CondenserTests::blockedOutput);
         FUNCTIONS.register("condenser_vents_power", () -> CondenserTests::ventsAndPower);
+        FUNCTIONS.register("heat_blast_damage", () -> HeatExplosionTests::thermalDamageAndBarriers);
+        FUNCTIONS.register("heat_blast_filter", () -> HeatExplosionTests::detonateFiltering);
+        FUNCTIONS.register("heat_blast_unloaded", () -> HeatExplosionTests::unloadedTerrain);
+        FUNCTIONS.register("heat_blast_cancel", () -> HeatExplosionTests::cancellation);
         FUNCTIONS.register("condenser_power_chain", () -> CondenserTests::nativePowerChain);
         FUNCTIONS.register("condenser_passive_reload", () -> CondenserTests::passiveReload);
         FUNCTIONS.register("cooling_capacity", () -> HeatExchangerTests::nearlyFullOutput);

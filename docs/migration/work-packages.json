@@ -134,11 +134,12 @@
       "parent": "M12",
       "title": "反应堆热量与组件",
       "status": "in_progress",
-      "acceptance": "热量记账与散热片数据已接入；按冷却／交换／反射／燃料组件、网格脉冲、EU／流体模式、热效应和爆炸分步验收。",
+      "acceptance": "热量记账、散热片数据与锅炉热爆炸基础已接入；按冷却／交换／反射／燃料组件、网格脉冲、EU／流体模式、热效应和爆炸分步验收。",
       "evidence": [
         "docs/migration/condenser.md",
         "core/src/test/java/ic2/core/reactor/ReactorHeatTest.java",
-        "neoforge/src/gameTest/java/ic2/neoforge/test/CondenserTests.java"
+        "neoforge/src/gameTest/java/ic2/neoforge/test/CondenserTests.java",
+        "docs/migration/heat-explosions.md"
       ]
     },
     {

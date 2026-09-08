@@ -76,7 +76,7 @@
 | P09 金属及高阶加工 | M11 | 进行中 | 金属成型、洗矿、离心、回收与感应炉主体已验证；离心机合成、核材料、铁栅栏、完整升级与多人验收待完成。 |
 | P10 热力与动能机器 | M11 | 进行中 | 风力／水力动能与五种转子、手动动能、电热、电动动能、固体／流体热源、冷凝与散热片、电解双气体输出、流体冷却换热、发酵与沼气链、原生事务能力与转电链已接入；同位素热源、升温换热、蒸汽、锅炉待验收。 |
 | P11 UU 及复制系统 | M11 | 待开始 | 复制、扫描、模式存储和流体 UU；数据与网络同步。 |
-| P12 反应堆热量与组件 | M12 | 进行中 | 热量记账与散热片数据已接入；按冷却／交换／反射／燃料组件、网格脉冲、EU／流体模式、热效应和爆炸分步验收。 |
+| P12 反应堆热量与组件 | M12 | 进行中 | 热量记账、散热片数据与锅炉热爆炸基础已接入；按冷却／交换／反射／燃料组件、网格脉冲、EU／流体模式、热效应和爆炸分步验收。 |
 | P13 爆炸与电缆附加行为 | M12 | 待开始 | IC2 爆炸、核弹、炸药、遥控；电击、涂色、建筑泡沫。 |
 | P14 树木、矿石与世界生成 | M13 | 已完成 | 矿脉、树苗、橡胶采集、标签及树叶衰减通过；普通新区块与客户端保存重载已验收。 |
 | P21 橡胶木建筑部件 | M13 | 已完成 | 按钮、门、栅栏、台阶、告示牌；原生交互、掉落、文字保存和客户端渲染。 |
@@ -100,7 +100,7 @@
 - M09：[WorldEnergyNetworks.java](../../neoforge/src/main/java/ic2/neoforge/energy/WorldEnergyNetworks.java), [MachineTests.java](../../neoforge/src/gameTest/java/ic2/neoforge/test/MachineTests.java), [first-machines.md](../../docs/migration/first-machines.md)
 - M10：[MachineMenu.java](../../neoforge/src/main/java/ic2/neoforge/menu/MachineMenu.java), [MachineScreen.java](../../neoforge/src/main/java/ic2/neoforge/client/MachineScreen.java)
 - M11：[ProcessingBlockEntity.java](../../neoforge/src/main/java/ic2/neoforge/machine/ProcessingBlockEntity.java), [ProcessingRecipe.java](../../neoforge/src/main/java/ic2/neoforge/recipe/ProcessingRecipe.java), [work-packages.json](../../docs/migration/work-packages.json), [canner-fluids.md](../../docs/migration/canner-fluids.md)
-- M12：[condenser.md](../../docs/migration/condenser.md), [ReactorHeatTest.java](../../core/src/test/java/ic2/core/reactor/ReactorHeatTest.java), [CondenserTests.java](../../neoforge/src/gameTest/java/ic2/neoforge/test/CondenserTests.java)
+- M12：[condenser.md](../../docs/migration/condenser.md), [ReactorHeatTest.java](../../core/src/test/java/ic2/core/reactor/ReactorHeatTest.java), [CondenserTests.java](../../neoforge/src/gameTest/java/ic2/neoforge/test/CondenserTests.java), [heat-explosions.md](../../docs/migration/heat-explosions.md)
 - M13：[work-packages.json](../../docs/migration/work-packages.json), [tools.md](../../docs/migration/tools.md)
 
 ## 依赖关系

@@ -178,7 +178,8 @@
       "evidence": [
         "docs/migration/condenser.md",
         "core/src/test/java/ic2/core/reactor/ReactorHeatTest.java",
-        "neoforge/src/gameTest/java/ic2/neoforge/test/CondenserTests.java"
+        "neoforge/src/gameTest/java/ic2/neoforge/test/CondenserTests.java",
+        "docs/migration/heat-explosions.md"
       ]
     },
     {
