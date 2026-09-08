@@ -1,0 +1,12 @@
+{
+  "type": "ic2:cooling",
+  "input": {
+    "id": "ic2:hot_coolant",
+    "amount": 1
+  },
+  "result": {
+    "id": "ic2:coolant",
+    "amount": 1
+  },
+  "heat": 20
+}

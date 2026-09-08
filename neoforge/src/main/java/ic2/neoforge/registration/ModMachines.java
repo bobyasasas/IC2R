@@ -97,6 +97,8 @@ public final class ModMachines {
                     new TransformerBlockEntity(pos, state);
             case IRON_FURNACE -> new IronFurnaceBlockEntity(pos, state);
             case CANNER -> new CannerBlockEntity(pos, state);
+            case LIQUID_HEAT_EXCHANGER ->
+                    new ic2.neoforge.machine.LiquidHeatExchangerBlockEntity(pos, state);
             case FERMENTER -> new ic2.neoforge.machine.FermenterBlockEntity(pos, state);
             case WATER_KINETIC_GENERATOR -> new WaterTurbineBlockEntity(pos, state);
             case WIND_KINETIC_GENERATOR -> new WindTurbineBlockEntity(pos, state);
@@ -194,6 +196,12 @@ public final class ModMachines {
     }
 
     private static void capabilities(RegisterCapabilitiesEvent event) {
+        event.registerBlockEntity(
+                ic2.neoforge.api.WorkCapabilities.HEAT,
+                entityType(MachineKind.LIQUID_HEAT_EXCHANGER),
+                (machine, side) ->
+                        ((ic2.neoforge.machine.LiquidHeatExchangerBlockEntity) machine)
+                                .output(side));
         for (var kind : MachineKind.values())
             if (kind.turbine())
                 event.registerBlockEntity(
@@ -228,7 +236,8 @@ public final class ModMachines {
             if (kind.fluidGenerator()
                     || kind == MachineKind.ORE_WASHING_PLANT
                     || kind == MachineKind.FLUID_HEAT_GENERATOR
-                    || kind == MachineKind.FERMENTER)
+                    || kind == MachineKind.FERMENTER
+                    || kind == MachineKind.LIQUID_HEAT_EXCHANGER)
                 event.registerBlockEntity(
                         Capabilities.Fluid.BLOCK,
                         entityType(kind),

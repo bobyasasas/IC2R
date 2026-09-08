@@ -8,6 +8,7 @@ import ic2.neoforge.registration.MaterialDefinition;
 import ic2.neoforge.registration.ModItems;
 import ic2.neoforge.registration.ModMachines;
 import ic2.neoforge.registration.ModThermalRecipes;
+import ic2.neoforge.transfer.FluidContainerPort;
 import ic2.neoforge.transfer.MachineFluidTank;
 import ic2.neoforge.transfer.ResourcePort;
 import ic2.neoforge.transfer.UpgradeTransfers;
@@ -20,11 +21,9 @@ import net.minecraft.world.item.crafting.RecipeManager;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.storage.ValueInput;
 import net.minecraft.world.level.storage.ValueOutput;
-import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.transfer.CombinedResourceHandler;
 import net.neoforged.neoforge.transfer.ResourceHandler;
 import net.neoforged.neoforge.transfer.ResourceHandlerUtil;
-import net.neoforged.neoforge.transfer.access.ItemAccess;
 import net.neoforged.neoforge.transfer.fluid.FluidResource;
 import net.neoforged.neoforge.transfer.item.ItemResource;
 import net.neoforged.neoforge.transfer.transaction.Transaction;
@@ -79,11 +78,6 @@ public final class FermenterBlockEntity extends MachineBlockEntity implements Fl
                         .anyMatch(holder -> resource.matches(holder.value().input()));
     }
 
-    public static boolean fluidContainer(ItemResource resource) {
-        return ItemAccess.forStack(resource.toStack()).getCapability(Capabilities.Fluid.ITEM)
-                != null;
-    }
-
     @Override
     public ResourceHandler<ItemResource> automation(Direction side) {
         return new ResourcePort<>(
@@ -92,7 +86,7 @@ public final class FermenterBlockEntity extends MachineBlockEntity implements Fl
                         slot == INPUT_CONTAINER && side == Direction.UP
                                 || slot == OUTPUT_CONTAINER && side == Direction.DOWN,
                 slot -> slot == INPUT_RETURN || slot == OUTPUT_RETURN || slot == FERTILIZER,
-                (slot, resource) -> fluidContainer(resource));
+                (slot, resource) -> FluidContainerPort.accepts(resource));
     }
 
     @Override
@@ -100,18 +94,11 @@ public final class FermenterBlockEntity extends MachineBlockEntity implements Fl
         return fluids;
     }
 
-    private ResourceHandler<FluidResource> container(int input, int output) {
-        var port = new ResourcePort<>(inventory, slot -> slot == output, slot -> slot == input);
-        return ItemAccess.forHandlerIndex(port, input)
-                .oneByOne()
-                .getCapability(Capabilities.Fluid.ITEM);
-    }
-
     @Override
     public void serverTick(ServerLevel level) {
         if (!inventory.stack(INPUT_CONTAINER).isEmpty())
             ResourceHandlerUtil.move(
-                    container(INPUT_CONTAINER, INPUT_RETURN),
+                    FluidContainerPort.of(inventory, INPUT_CONTAINER, INPUT_RETURN),
                     inputTank,
                     this::acceptsFluid,
                     10000,
@@ -119,7 +106,7 @@ public final class FermenterBlockEntity extends MachineBlockEntity implements Fl
         if (!inventory.stack(OUTPUT_CONTAINER).isEmpty())
             ResourceHandlerUtil.move(
                     outputTank,
-                    container(OUTPUT_CONTAINER, OUTPUT_RETURN),
+                    FluidContainerPort.of(inventory, OUTPUT_CONTAINER, OUTPUT_RETURN),
                     fluid -> true,
                     2000,
                     null);

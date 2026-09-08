@@ -67,7 +67,18 @@ public final class MachineMenu extends AbstractContainerMenu {
                 machine == null
                         ? new SimpleContainerData(MachineMenuData.SIZE)
                         : new MachineMenuData(machine);
-        if (kind == MachineKind.FERMENTER) {
+        if (kind == MachineKind.LIQUID_HEAT_EXCHANGER) {
+            addFluidContainerSlot(inventory, 0, 8, 65);
+            addOutputSlot(inventory, 1, 26, 65);
+            addFluidContainerSlot(inventory, 2, 134, 65);
+            addOutputSlot(inventory, 3, 152, 65);
+            addInstalledParts(
+                    inventory,
+                    4,
+                    ModItems.MATERIALS.get(MaterialDefinition.HEAT_CONDUCTOR).get(),
+                    45,
+                    17);
+        } else if (kind == MachineKind.FERMENTER) {
             addFluidContainerSlot(inventory, 0, 28, 17);
             addOutputSlot(inventory, 1, 28, 53);
             addFluidContainerSlot(inventory, 2, 130, 17);
@@ -101,30 +112,14 @@ public final class MachineMenu extends AbstractContainerMenu {
         } else if (kind.workConversion() || kind == MachineKind.MANUAL_KINETIC_GENERATOR) {
             // Conversion generators have no inventory.
         } else if (kind.electricWork()) {
-            for (int part = 0; part < 10; part++) {
-                addSlot(
-                        new ResourceHandlerSlot(
-                                inventory,
-                                inventory::set,
-                                part,
-                                56 + part % 5 * 18,
-                                17 + part / 5 * 18) {
-                            @Override
-                            public boolean mayPlace(ItemStack stack) {
-                                return stack.is(
-                                        ModItems.MATERIALS
-                                                .get(
-                                                        ic2.neoforge.machine.ElectricWorkBlockEntity
-                                                                .part(kind))
-                                                .get());
-                            }
-
-                            @Override
-                            public int getMaxStackSize() {
-                                return 1;
-                            }
-                        });
-            }
+            addInstalledParts(
+                    inventory,
+                    0,
+                    ModItems.MATERIALS
+                            .get(ic2.neoforge.machine.ElectricWorkBlockEntity.part(kind))
+                            .get(),
+                    56,
+                    17);
             addBatterySlot(inventory, 10, 56, 53);
         } else if (kind == MachineKind.SOLAR_GENERATOR || kind == MachineKind.WIND_GENERATOR) {
             addBatterySlot(inventory, 0, 56, 53);
@@ -224,8 +219,34 @@ public final class MachineMenu extends AbstractContainerMenu {
                         });
             }
         }
-        addStandardInventorySlots(playerInventory, 8, 84);
+        addStandardInventorySlots(playerInventory, 8, kind.inventoryY());
         addDataSlots(data);
+    }
+
+    private void addInstalledParts(
+            MachineInventory inventory,
+            int start,
+            net.minecraft.world.item.Item item,
+            int x,
+            int y) {
+        for (int part = 0; part < 10; part++)
+            addSlot(
+                    new ResourceHandlerSlot(
+                            inventory,
+                            inventory::set,
+                            start + part,
+                            x + part % 5 * 18,
+                            y + part / 5 * 18) {
+                        @Override
+                        public boolean mayPlace(ItemStack stack) {
+                            return stack.is(item);
+                        }
+
+                        @Override
+                        public int getMaxStackSize() {
+                            return 1;
+                        }
+                    });
     }
 
     private void addFluidContainerSlot(MachineInventory inventory, int slot, int x, int y) {
@@ -233,7 +254,7 @@ public final class MachineMenu extends AbstractContainerMenu {
                 new ResourceHandlerSlot(inventory, inventory::set, slot, x, y) {
                     @Override
                     public boolean mayPlace(ItemStack stack) {
-                        return ic2.neoforge.machine.FermenterBlockEntity.fluidContainer(
+                        return ic2.neoforge.transfer.FluidContainerPort.accepts(
                                 net.neoforged.neoforge.transfer.item.ItemResource.of(stack));
                     }
                 });
@@ -347,7 +368,10 @@ public final class MachineMenu extends AbstractContainerMenu {
                             : -1;
         if (stack.getItem() instanceof UpgradeItem item)
             return item.kind().suitable(kind) ? kind.upgradeStart() : -1;
-        if (kind == MachineKind.FERMENTER) {
+        if (kind == MachineKind.LIQUID_HEAT_EXCHANGER
+                && stack.is(ModItems.MATERIALS.get(MaterialDefinition.HEAT_CONDUCTOR).get()))
+            return 4;
+        if (kind == MachineKind.FERMENTER || kind == MachineKind.LIQUID_HEAT_EXCHANGER) {
             var fluid = ItemAccess.forStack(stack.copy()).getCapability(Capabilities.Fluid.ITEM);
             if (fluid == null) return -1;
             for (int i = 0; i < fluid.size(); i++) if (fluid.getAmountAsLong(i) > 0) return 0;
@@ -391,9 +415,9 @@ public final class MachineMenu extends AbstractContainerMenu {
     private boolean moveIntoMachine(ItemStack stack, Player player) {
         int preferred = preferredSlot(stack, player);
         if (preferred < 0) return false;
-        if (kind.electricWork() && preferred == 0) {
+        if (kind.installedPartsStart() >= 0 && preferred == kind.installedPartsStart()) {
             boolean installed = false;
-            for (int slot = 0; slot < 10 && !stack.isEmpty(); slot++)
+            for (int slot = preferred; slot < preferred + 10 && !stack.isEmpty(); slot++)
                 installed |= moveItemStackTo(stack, slot, slot + 1, false);
             return installed;
         }

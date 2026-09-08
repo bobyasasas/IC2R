@@ -104,7 +104,7 @@
       "parent": "M11",
       "title": "热力与动能机器",
       "status": "in_progress",
-      "acceptance": "风力／水力动能与五种转子、手动动能、电热、电动动能、固体／流体热源、发酵与沼气链、原生事务能力与转电链已接入；同位素热源、热交换、蒸汽、锅炉、冷凝及电解待验收。",
+      "acceptance": "风力／水力动能与五种转子、手动动能、电热、电动动能、固体／流体热源、流体冷却换热、发酵与沼气链、原生事务能力与转电链已接入；同位素热源、升温换热、蒸汽、锅炉、冷凝及电解待验收。",
       "evidence": [
         "docs/migration/work-energy.md",
         "neoforge/src/gameTest/java/ic2/neoforge/test/WorkEnergyTests.java",
@@ -112,7 +112,8 @@
         "docs/migration/manual-kinetic.md",
         "docs/migration/wind-turbine.md",
         "docs/migration/water-turbine.md",
-        "docs/migration/fermenter.md"
+        "docs/migration/fermenter.md",
+        "docs/migration/heat-exchanger.md"
       ]
     },
     {

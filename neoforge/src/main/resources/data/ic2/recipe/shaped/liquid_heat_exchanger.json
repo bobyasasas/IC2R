@@ -1,0 +1,19 @@
+{
+  "type": "ic2:shaped",
+  "pattern": [
+    "gCg",
+    "gCg",
+    "IGI"
+  ],
+  "consuming": true,
+  "result": {
+    "id": "ic2:liquid_heat_exchanger",
+    "count": 1
+  },
+  "key": {
+    "G": "ic2:heat_conductor",
+    "C": "ic2:facade_cell",
+    "g": "minecraft:glass",
+    "I": "ic2:iron_casing"
+  }
+}

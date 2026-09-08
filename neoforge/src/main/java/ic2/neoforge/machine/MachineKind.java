@@ -15,6 +15,7 @@ public enum MachineKind implements StringRepresentable {
     HV_TRANSFORMER("hv_transformer", 4096, 0, 0, 0),
     EV_TRANSFORMER("ev_transformer", 16384, 0, 0, 0),
     IRON_FURNACE("iron_furnace", 0, 3, 160, 0),
+    LIQUID_HEAT_EXCHANGER("liquid_heat_exchanger", 0, 14, 0, 0),
     FERMENTER("fermenter", 0, 5, 0, 0),
     CANNER("canner", 800, 4, 200, 4),
     WATER_KINETIC_GENERATOR("water_kinetic_generator", 0, 1, 0, 0),
@@ -66,7 +67,8 @@ public enum MachineKind implements StringRepresentable {
                 || workConversion()
                 || fuelHeat()
                 || this == MANUAL_KINETIC_GENERATOR
-                || this == FERMENTER;
+                || this == FERMENTER
+                || this == LIQUID_HEAT_EXCHANGER;
     }
 
     public boolean turbine() {
@@ -138,7 +140,20 @@ public enum MachineKind implements StringRepresentable {
         return upgradeSlots() > 0;
     }
 
+    public int menuHeight() {
+        return this == LIQUID_HEAT_EXCHANGER ? 184 : 166;
+    }
+
+    public int inventoryY() {
+        return menuHeight() - 82;
+    }
+
+    public int installedPartsStart() {
+        return electricWork() ? 0 : this == LIQUID_HEAT_EXCHANGER ? 4 : -1;
+    }
+
     public int upgradeSlots() {
+        if (this == LIQUID_HEAT_EXCHANGER) return 3;
         return (this == INDUCTION_FURNACE || this == FERMENTER) ? 2 : euPerTick > 0 ? 4 : 0;
     }
 

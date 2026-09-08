@@ -1710,7 +1710,12 @@
       "factory": "register",
       "expression": "new ItemBlockIc2(Ic2Blocks.LIQUID_HEAT_EXCHANGER, new Properties())",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/heat-exchanger.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/HeatExchangerTests.java"
+      ],
+      "note": "数据包冷却、单件元件槽、三重容量限制、原生事务热量、重载、容器与转电链已接入；完整热循环与多人性能验收继续跟踪。"
     },
     {
       "registry": "item",
@@ -7300,7 +7305,12 @@
       "factory": "register",
       "expression": "Ic2TileEntityBlock.create(Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).strength(2.0F, 10.0F).requiresCorrectToolForDrops().sound(SoundType.METAL), TileEntityLiquidHeatExchanger.class, true, Ic2TileEntityBlock.DefaultDrop.Machine, Util.allFacings, true)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/heat-exchanger.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/HeatExchangerTests.java"
+      ],
+      "note": "数据包冷却、单件元件槽、三重容量限制、原生事务热量、重载、容器与转电链已接入；完整热循环与多人性能验收继续跟踪。"
     },
     {
       "registry": "block",
@@ -9853,7 +9863,12 @@
       "factory": "register",
       "expression": "TileEntityLiquidHeatExchanger::new",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/heat-exchanger.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/HeatExchangerTests.java"
+      ],
+      "note": "数据包冷却、单件元件槽、三重容量限制、原生事务热量、重载、容器与转电链已接入；完整热循环与多人性能验收继续跟踪。"
     },
     {
       "registry": "block_entity",
@@ -11144,7 +11159,12 @@
       "factory": "registerManagedBe",
       "expression": "",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/heat-exchanger.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/HeatExchangerTests.java"
+      ],
+      "note": "数据包冷却、单件元件槽、三重容量限制、原生事务热量、重载、容器与转电链已接入；完整热循环与多人性能验收继续跟踪。"
     },
     {
       "registry": "menu",

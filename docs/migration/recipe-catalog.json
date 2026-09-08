@@ -2967,8 +2967,8 @@
     {
       "source": "shaped/liquid_heat_exchanger.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:liquid_heat_exchanger"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/liquid_heat_exchanger.json"
     },
     {
       "source": "shaped/lithium_dust.json",
