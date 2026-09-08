@@ -1423,5 +1423,15 @@
   "ic2.tank.cursor": "用光标上的容器点击流体",
   "ic2.electrolyzer.tanks": "相邻输出储罐",
   "ic2.regulator.second": "每秒",
-  "ic2.regulator.tick": "每刻"
+  "ic2.regulator.tick": "每刻",
+  "ic2.boiler.temperature": "温度：%s°C",
+  "ic2.boiler.heat": "热量输入：%s HU/t",
+  "ic2.boiler.scale": "结垢：%s / %s",
+  "ic2.boiler.flow": "每刻进水上限",
+  "ic2.boiler.pressure": "压力阀",
+  "ic2.boiler.output.none": "无输出",
+  "ic2.boiler.output.water": "水",
+  "ic2.boiler.output.distilled_water": "蒸馏水",
+  "ic2.boiler.output.steam": "蒸汽",
+  "ic2.boiler.output.superheated_steam": "过热蒸汽"
 }

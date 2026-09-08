@@ -1,0 +1,17 @@
+{
+  "type": "ic2:shaped",
+  "pattern": [
+    "III",
+    "IBI",
+    "IGI"
+  ],
+  "result": {
+    "id": "ic2:steam_generator",
+    "count": 1
+  },
+  "key": {
+    "G": "ic2:heat_conductor",
+    "B": "ic2:copper_boiler",
+    "I": "ic2:iron_casing"
+  }
+}

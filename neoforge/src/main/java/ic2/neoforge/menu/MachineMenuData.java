@@ -8,7 +8,9 @@ import java.util.Objects;
 
 /** Every value uses two native 16-bit words, including machine-specific counters and fluid IDs. */
 final class MachineMenuData implements ContainerData {
-    static final int SIZE = 22;
+    static final int FAMILY_VALUES = 7;
+    static final int CAPACITY_FIELD = 5 + FAMILY_VALUES;
+    static final int SIZE = (CAPACITY_FIELD + 1) * 2;
     private final MachineBlockEntity machine;
 
     MachineMenuData(MachineBlockEntity machine) {
@@ -20,16 +22,16 @@ final class MachineMenuData implements ContainerData {
         Objects.checkIndex(index, SIZE);
         int field = index / 2;
         int value =
-                switch (field) {
-                    case 0 -> (int) machine.storedEnergy();
-                    case 1 -> machine.progress();
-                    case 2 -> machine.progressMaximum();
-                    case 3 -> machine.fuelRemaining();
-                    case 4 -> machine.fuelMaximum();
-                    case 5, 6, 7, 8, 9 -> machine.menuValue(field - 5);
-                    case 10 -> (int) machine.energyCapacity();
-                    default -> throw new IndexOutOfBoundsException(index);
-                };
+                field >= 5 && field < CAPACITY_FIELD
+                        ? machine.menuValue(field - 5)
+                        : switch (field) {
+                            case 0 -> (int) machine.storedEnergy();
+                            case 1 -> machine.progress();
+                            case 2 -> machine.progressMaximum();
+                            case 3 -> machine.fuelRemaining();
+                            case 4 -> machine.fuelMaximum();
+                            default -> (int) machine.energyCapacity();
+                        };
         return index % 2 == 0 ? value & 0xffff : value >>> 16;
     }
 

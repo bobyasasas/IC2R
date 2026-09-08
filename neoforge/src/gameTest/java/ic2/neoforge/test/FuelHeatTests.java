@@ -144,43 +144,13 @@ final class FuelHeatTests {
         var client =
                 new ic2.neoforge.menu.MachineMenu(
                         1, player.getInventory(), restored.getBlockPos(), restored.kind());
-        server.addSlotListener(
-                new net.minecraft.world.inventory.ContainerListener() {
-                    @Override
-                    public void slotChanged(
-                            net.minecraft.world.inventory.AbstractContainerMenu menu,
-                            int slot,
-                            net.minecraft.world.item.ItemStack stack) {}
-
-                    @Override
-                    public void dataChanged(
-                            net.minecraft.world.inventory.AbstractContainerMenu menu,
-                            int id,
-                            int value) {
-                        var buffer =
-                                new net.minecraft.network.FriendlyByteBuf(
-                                        io.netty.buffer.Unpooled.buffer());
-                        try {
-                            var codec =
-                                    net.minecraft.network.protocol.game
-                                            .ClientboundContainerSetDataPacket.STREAM_CODEC;
-                            codec.encode(
-                                    buffer,
-                                    new net.minecraft.network.protocol.game
-                                            .ClientboundContainerSetDataPacket(1, id, value));
-                            var decoded = codec.decode(buffer);
-                            client.setData(decoded.getId(), decoded.getValue());
-                        } finally {
-                            buffer.release();
-                        }
-                    }
-                });
+        MenuTestLink.connect(server, client);
         helper.assertTrue(
                 client.familyValue(1) == 19980000
                         && client.familyFloat(0) == (float) 79920000000L
                         && client.fuelMaximum() == 4000,
                 "Real signed-short menu packets must preserve large family values and compact heat"
-                    + " quantities");
+                        + " quantities");
         helper.succeed();
     }
 

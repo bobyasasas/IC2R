@@ -136,6 +136,13 @@ public final class RegistrationTests {
         FUNCTIONS.register("condenser_vents_power", () -> CondenserTests::ventsAndPower);
         FUNCTIONS.register("heat_blast_damage", () -> HeatExplosionTests::thermalDamageAndBarriers);
         FUNCTIONS.register("heat_blast_filter", () -> HeatExplosionTests::detonateFiltering);
+        FUNCTIONS.register("boiler_partial_menu", () -> SteamGeneratorTests::partialSteamAndMenu);
+        FUNCTIONS.register(
+                "boiler_overheat_reload", () -> SteamGeneratorTests::overheatingAndReload);
+        FUNCTIONS.register("boiler_calcification", () -> SteamGeneratorTests::scaleStopsHeat);
+        FUNCTIONS.register("boiler_superheated", () -> SteamGeneratorTests::superheatedSteam);
+        FUNCTIONS.register("boiler_condenser_chain", () -> SteamGeneratorTests::condenserChain);
+        FUNCTIONS.register("boiler_warmup_ports", () -> SteamGeneratorTests::warmupAndPorts);
         FUNCTIONS.register("heat_blast_unloaded", () -> HeatExplosionTests::unloadedTerrain);
         FUNCTIONS.register("heat_blast_cancel", () -> HeatExplosionTests::cancellation);
         FUNCTIONS.register("condenser_power_chain", () -> CondenserTests::nativePowerChain);

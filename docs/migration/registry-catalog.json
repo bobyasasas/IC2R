@@ -1760,7 +1760,12 @@
       "factory": "register",
       "expression": "new ItemBlockIc2(Ic2Blocks.STEAM_GENERATOR, new Properties())",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/steam-generator.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/SteamGeneratorTests.java"
+      ],
+      "note": "压力与温度、结垢、HU事务、直接流体分配、热爆炸、重载额度与阀门同步已接入；蒸汽动能完整循环及多人验收待迁移。"
     },
     {
       "registry": "item",
@@ -7375,7 +7380,12 @@
       "factory": "register",
       "expression": "Ic2TileEntityBlock.create(Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).strength(2.0F, 10.0F).requiresCorrectToolForDrops().sound(SoundType.METAL), TileEntitySteamGenerator.class, true, Ic2TileEntityBlock.DefaultDrop.Self, Util.horizontalFacings, true)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/steam-generator.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/SteamGeneratorTests.java"
+      ],
+      "note": "压力与温度、结垢、HU事务、直接流体分配、热爆炸、重载额度与阀门同步已接入；蒸汽动能完整循环及多人验收待迁移。"
     },
     {
       "registry": "block",
@@ -9983,7 +9993,12 @@
       "factory": "register",
       "expression": "TileEntitySteamGenerator::new",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/steam-generator.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/SteamGeneratorTests.java"
+      ],
+      "note": "压力与温度、结垢、HU事务、直接流体分配、热爆炸、重载额度与阀门同步已接入；蒸汽动能完整循环及多人验收待迁移。"
     },
     {
       "registry": "block_entity",
@@ -11259,7 +11274,12 @@
       "factory": "registerManagedBe",
       "expression": "",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/steam-generator.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/SteamGeneratorTests.java"
+      ],
+      "note": "压力与温度、结垢、HU事务、直接流体分配、热爆炸、重载额度与阀门同步已接入；蒸汽动能完整循环及多人验收待迁移。"
     },
     {
       "registry": "menu",

@@ -1423,5 +1423,15 @@
   "ic2.tank.cursor": "Click fluid with a container",
   "ic2.electrolyzer.tanks": "Adjacent tanks",
   "ic2.regulator.second": "Per second",
-  "ic2.regulator.tick": "Per tick"
+  "ic2.regulator.tick": "Per tick",
+  "ic2.boiler.temperature": "Temperature: %s°C",
+  "ic2.boiler.heat": "Heat input: %s HU/t",
+  "ic2.boiler.scale": "Calcification: %s / %s",
+  "ic2.boiler.flow": "Water input limit per tick",
+  "ic2.boiler.pressure": "Pressure valve",
+  "ic2.boiler.output.none": "No output",
+  "ic2.boiler.output.water": "Water",
+  "ic2.boiler.output.distilled_water": "Distilled water",
+  "ic2.boiler.output.steam": "Steam",
+  "ic2.boiler.output.superheated_steam": "Superheated steam"
 }

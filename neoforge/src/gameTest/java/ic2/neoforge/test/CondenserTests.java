@@ -50,7 +50,7 @@ final class CondenserTests {
         helper.assertTrue(
                 restored.progress() == 0 && restored.outputTank().getAmountAsInt(0) == 100,
                 "Paid credit survives real block entity replacement and needs neither steam nor"
-                    + " power to finish");
+                        + " power to finish");
         fill(restored.inputTank(), fluid(FluidDefinition.SUPERHEATED_STEAM), 10000);
         for (int tick = 0; tick < 101; tick++) restored.serverTick(helper.getLevel());
         helper.assertTrue(
@@ -82,7 +82,7 @@ final class CondenserTests {
                             source.storedEnergy() + machine.storedEnergy(),
                             864.0,
                             "Native HV packets conserve energy after twenty eight-EU cooling"
-                                + " operations");
+                                    + " operations");
                     helper.succeed();
                 });
     }
@@ -91,6 +91,13 @@ final class CondenserTests {
         var machine = machine(helper);
         var player = helper.makeMockPlayer(GameType.SURVIVAL);
         var menu = new MachineMenu(1, player.getInventory(), machine);
+        var client =
+                new MachineMenu(1, player.getInventory(), machine.getBlockPos(), machine.kind());
+        MenuTestLink.connect(menu, client);
+        helper.assertValueEqual(
+                client.capacity(),
+                100000,
+                "Extended menu layout preserves full-width energy capacity");
         for (int i = 0; i < 4; i++) {
             player.getInventory().setItem(9, new ItemStack(ModReactorItems.HEAT_VENT.get()));
             menu.quickMoveStack(player, 8);

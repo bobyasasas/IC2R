@@ -73,6 +73,8 @@ public final class MachineMenu extends AbstractContainerMenu {
             addFluidContainerSlot(inventory, 0, 48, 72);
             addOutputSlot(inventory, 1, 66, 72);
             addBatterySlot(inventory, 2, 8, 72);
+        } else if (kind == MachineKind.STEAM_GENERATOR) {
+            // The boiler has valves and fluid ports, but no internal item slots.
         } else if (kind == MachineKind.CONDENSER) {
             addFluidContainerSlot(inventory, 0, 130, 72);
             addOutputSlot(inventory, 1, 152, 72);
@@ -333,7 +335,7 @@ public final class MachineMenu extends AbstractContainerMenu {
     }
 
     public int capacity() {
-        return integer(20);
+        return integer(MachineMenuData.CAPACITY_FIELD * 2);
     }
 
     public int progress() {
@@ -369,11 +371,13 @@ public final class MachineMenu extends AbstractContainerMenu {
     }
 
     public int familyValue(int index) {
-        return integer(10 + Objects.checkIndex(index, 5) * 2);
+        return integer(10 + Objects.checkIndex(index, MachineMenuData.FAMILY_VALUES) * 2);
     }
 
     private int preferredSlot(ItemStack stack, Player player) {
-        if (kind.workConversion() || kind == MachineKind.MANUAL_KINETIC_GENERATOR) return -1;
+        if (kind == MachineKind.STEAM_GENERATOR
+                || kind.workConversion()
+                || kind == MachineKind.MANUAL_KINETIC_GENERATOR) return -1;
         if (kind.fuelHeat() || kind.turbine()) return 0;
         if (kind.electricWork())
             return stack.getItem() instanceof ElectricItem

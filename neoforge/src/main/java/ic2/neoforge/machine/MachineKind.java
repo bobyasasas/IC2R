@@ -15,6 +15,7 @@ public enum MachineKind implements StringRepresentable {
     HV_TRANSFORMER("hv_transformer", 4096, 0, 0, 0),
     EV_TRANSFORMER("ev_transformer", 16384, 0, 0, 0),
     IRON_FURNACE("iron_furnace", 0, 3, 160, 0),
+    STEAM_GENERATOR("steam_generator", 0, 0, 0, 0),
     CONDENSER("condenser", 100000, 7, 0, 0),
     FLUID_REGULATOR("fluid_regulator", 10000, 3, 0, 0),
     ELECTROLYZER("electrolyzer", 32000, 1, 200, 32),
@@ -151,10 +152,11 @@ public enum MachineKind implements StringRepresentable {
     }
 
     public int menuWidth() {
-        return upgradable() || this == FLUID_REGULATOR ? 202 : 176;
+        return upgradable() || this == FLUID_REGULATOR || this == STEAM_GENERATOR ? 202 : 176;
     }
 
     public int menuHeight() {
+        if (this == STEAM_GENERATOR) return 238;
         return this == LIQUID_HEAT_EXCHANGER || this == FLUID_REGULATOR || this == CONDENSER
                 ? 184
                 : 166;

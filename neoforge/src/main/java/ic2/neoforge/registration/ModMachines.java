@@ -97,6 +97,7 @@ public final class ModMachines {
                     new TransformerBlockEntity(pos, state);
             case IRON_FURNACE -> new IronFurnaceBlockEntity(pos, state);
             case CANNER -> new CannerBlockEntity(pos, state);
+            case STEAM_GENERATOR -> new SteamGeneratorBlockEntity(pos, state);
             case CONDENSER -> new CondenserBlockEntity(pos, state);
             case FLUID_REGULATOR -> new ic2.neoforge.machine.FluidRegulatorBlockEntity(pos, state);
             case ELECTROLYZER -> new ic2.neoforge.machine.ElectrolyzerBlockEntity(pos, state);
@@ -244,6 +245,7 @@ public final class ModMachines {
                     || kind == MachineKind.LIQUID_HEAT_EXCHANGER
                     || kind == MachineKind.TANK
                     || kind == MachineKind.ELECTROLYZER
+                    || kind == MachineKind.STEAM_GENERATOR
                     || kind == MachineKind.CONDENSER
                     || kind == MachineKind.FLUID_REGULATOR)
                 event.registerBlockEntity(
