@@ -1433,5 +1433,13 @@
   "ic2.boiler.output.water": "Water",
   "ic2.boiler.output.distilled_water": "Distilled water",
   "ic2.boiler.output.steam": "Steam",
-  "ic2.boiler.output.superheated_steam": "Superheated steam"
+  "ic2.boiler.output.superheated_steam": "Superheated steam",
+  "ic2.steam_turbine.pending": "Pending water: %s mB",
+  "ic2.steam_turbine.no_turbine": "Insert a steam turbine",
+  "ic2.steam_turbine.disabled": "Disabled",
+  "ic2.steam_turbine.water_blocked": "Drain the condensate tank",
+  "ic2.steam_turbine.venting": "Venting excess steam",
+  "ic2.steam_turbine.throttled": "Water slows the turbine",
+  "ic2.steam_turbine.running": "Running",
+  "ic2.steam_turbine.idle": "Waiting for steam"
 }

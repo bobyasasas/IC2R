@@ -142,6 +142,16 @@ public final class RegistrationTests {
         FUNCTIONS.register("boiler_calcification", () -> SteamGeneratorTests::scaleStopsHeat);
         FUNCTIONS.register("boiler_superheated", () -> SteamGeneratorTests::superheatedSteam);
         FUNCTIONS.register("boiler_condenser_chain", () -> SteamGeneratorTests::condenserChain);
+        FUNCTIONS.register(
+                "steam_turbine_two_stage_loop", () -> SteamTurbineTests::twoStageWaterLoop);
+        FUNCTIONS.register(
+                "steam_turbine_rotor_disabled", () -> SteamTurbineTests::rotorAndDisabledMode);
+        FUNCTIONS.register("steam_turbine_throttle", () -> SteamTurbineTests::throttleAndPorts);
+        FUNCTIONS.register("steam_turbine_condensate", () -> SteamTurbineTests::condensateBacklog);
+        FUNCTIONS.register(
+                "steam_turbine_budget_reload", () -> SteamTurbineTests::drawBudgetAndReload);
+        FUNCTIONS.register(
+                "steam_turbine_consumer_first", () -> SteamTurbineTests::consumerTicksFirst);
         FUNCTIONS.register("boiler_warmup_ports", () -> SteamGeneratorTests::warmupAndPorts);
         FUNCTIONS.register("heat_blast_unloaded", () -> HeatExplosionTests::unloadedTerrain);
         FUNCTIONS.register("heat_blast_cancel", () -> HeatExplosionTests::cancellation);

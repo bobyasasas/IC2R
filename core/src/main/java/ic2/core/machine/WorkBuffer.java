@@ -28,6 +28,15 @@ public final class WorkBuffer implements WorkSupply {
         this.state = state;
     }
 
+    /**
+     * Replace expired flow with a newly paid production batch, retaining this tick's draw count.
+     */
+    public void publish(int amount) {
+        if (amount < 0 || amount > capacity)
+            throw new IllegalArgumentException("Invalid work batch");
+        state = new State(amount, state.tick(), state.extracted());
+    }
+
     /** Add already paid units, retaining any excess in the caller's reserve. */
     public int insert(int maximum, int target) {
         if (maximum < 0 || target < 0 || target > capacity)

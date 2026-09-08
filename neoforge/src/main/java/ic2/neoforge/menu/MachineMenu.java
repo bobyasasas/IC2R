@@ -73,6 +73,20 @@ public final class MachineMenu extends AbstractContainerMenu {
             addFluidContainerSlot(inventory, 0, 48, 72);
             addOutputSlot(inventory, 1, 66, 72);
             addBatterySlot(inventory, 2, 8, 72);
+        } else if (kind == MachineKind.STEAM_KINETIC_GENERATOR) {
+            addSlot(
+                    new ResourceHandlerSlot(inventory, inventory::set, 0, 80, 18) {
+                        @Override
+                        public boolean mayPlace(ItemStack stack) {
+                            return ic2.neoforge.machine.SteamTurbineBlockEntity.rotor(
+                                    ItemResource.of(stack));
+                        }
+
+                        @Override
+                        public int getMaxStackSize() {
+                            return 1;
+                        }
+                    });
         } else if (kind == MachineKind.STEAM_GENERATOR) {
             // The boiler has valves and fluid ports, but no internal item slots.
         } else if (kind == MachineKind.CONDENSER) {
@@ -392,6 +406,10 @@ public final class MachineMenu extends AbstractContainerMenu {
                             : -1;
         if (stack.getItem() instanceof UpgradeItem item)
             return item.kind().suitable(kind) ? kind.upgradeStart() : -1;
+        if (kind == MachineKind.STEAM_KINETIC_GENERATOR)
+            return ic2.neoforge.machine.SteamTurbineBlockEntity.rotor(ItemResource.of(stack))
+                    ? 0
+                    : -1;
         if (kind == MachineKind.CONDENSER) {
             if (stack.is(ic2.neoforge.registration.ModReactorItems.HEAT_VENT.get())) return 3;
             if (stack.getItem() instanceof ElectricItem) return 2;

@@ -97,6 +97,7 @@ public final class ModMachines {
                     new TransformerBlockEntity(pos, state);
             case IRON_FURNACE -> new IronFurnaceBlockEntity(pos, state);
             case CANNER -> new CannerBlockEntity(pos, state);
+            case STEAM_KINETIC_GENERATOR -> new SteamTurbineBlockEntity(pos, state);
             case STEAM_GENERATOR -> new SteamGeneratorBlockEntity(pos, state);
             case CONDENSER -> new CondenserBlockEntity(pos, state);
             case FLUID_REGULATOR -> new ic2.neoforge.machine.FluidRegulatorBlockEntity(pos, state);
@@ -202,6 +203,10 @@ public final class ModMachines {
 
     private static void capabilities(RegisterCapabilitiesEvent event) {
         event.registerBlockEntity(
+                ic2.neoforge.api.WorkCapabilities.KINETIC,
+                entityType(MachineKind.STEAM_KINETIC_GENERATOR),
+                (machine, side) -> ((SteamTurbineBlockEntity) machine).output(side));
+        event.registerBlockEntity(
                 ic2.neoforge.api.WorkCapabilities.HEAT,
                 entityType(MachineKind.LIQUID_HEAT_EXCHANGER),
                 (machine, side) ->
@@ -245,6 +250,7 @@ public final class ModMachines {
                     || kind == MachineKind.LIQUID_HEAT_EXCHANGER
                     || kind == MachineKind.TANK
                     || kind == MachineKind.ELECTROLYZER
+                    || kind == MachineKind.STEAM_KINETIC_GENERATOR
                     || kind == MachineKind.STEAM_GENERATOR
                     || kind == MachineKind.CONDENSER
                     || kind == MachineKind.FLUID_REGULATOR)

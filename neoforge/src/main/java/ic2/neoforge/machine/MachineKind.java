@@ -15,6 +15,7 @@ public enum MachineKind implements StringRepresentable {
     HV_TRANSFORMER("hv_transformer", 4096, 0, 0, 0),
     EV_TRANSFORMER("ev_transformer", 16384, 0, 0, 0),
     IRON_FURNACE("iron_furnace", 0, 3, 160, 0),
+    STEAM_KINETIC_GENERATOR("steam_kinetic_generator", 0, 1, 0, 0),
     STEAM_GENERATOR("steam_generator", 0, 0, 0, 0),
     CONDENSER("condenser", 100000, 7, 0, 0),
     FLUID_REGULATOR("fluid_regulator", 10000, 3, 0, 0),
@@ -157,7 +158,10 @@ public enum MachineKind implements StringRepresentable {
 
     public int menuHeight() {
         if (this == STEAM_GENERATOR) return 238;
-        return this == LIQUID_HEAT_EXCHANGER || this == FLUID_REGULATOR || this == CONDENSER
+        return this == LIQUID_HEAT_EXCHANGER
+                        || this == FLUID_REGULATOR
+                        || this == CONDENSER
+                        || this == STEAM_KINETIC_GENERATOR
                 ? 184
                 : 166;
     }
@@ -175,7 +179,7 @@ public enum MachineKind implements StringRepresentable {
     }
 
     public int upgradeSlots() {
-        if (this == CONDENSER) return 1;
+        if (this == CONDENSER || this == STEAM_KINETIC_GENERATOR) return 1;
         if (this == TANK) return 4;
         if (this == LIQUID_HEAT_EXCHANGER) return 3;
         return (this == INDUCTION_FURNACE || this == FERMENTER) ? 2 : euPerTick > 0 ? 4 : 0;

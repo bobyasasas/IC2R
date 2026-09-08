@@ -1433,5 +1433,13 @@
   "ic2.boiler.output.water": "水",
   "ic2.boiler.output.distilled_water": "蒸馏水",
   "ic2.boiler.output.steam": "蒸汽",
-  "ic2.boiler.output.superheated_steam": "过热蒸汽"
+  "ic2.boiler.output.superheated_steam": "过热蒸汽",
+  "ic2.steam_turbine.pending": "待排冷凝水：%s mB",
+  "ic2.steam_turbine.no_turbine": "请安装汽轮机",
+  "ic2.steam_turbine.disabled": "已禁用",
+  "ic2.steam_turbine.water_blocked": "请排空冷凝水槽",
+  "ic2.steam_turbine.venting": "正在排放余汽",
+  "ic2.steam_turbine.throttled": "积水降低动能输出",
+  "ic2.steam_turbine.running": "运行中",
+  "ic2.steam_turbine.idle": "等待蒸汽"
 }

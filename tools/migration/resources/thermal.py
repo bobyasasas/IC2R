@@ -42,3 +42,13 @@ for locale, values in labels.items():
     data = json.loads((NEW / path).read_text())
     data.update({'ic2.boiler.' + key: value for key, value in values.items()})
     write(path, data)
+
+labels = {
+    'en_us': {'pending': 'Pending water: %s mB', 'no_turbine': 'Insert a steam turbine', 'disabled': 'Disabled', 'water_blocked': 'Drain the condensate tank', 'venting': 'Venting excess steam', 'throttled': 'Water slows the turbine', 'running': 'Running', 'idle': 'Waiting for steam'},
+    'zh_cn': {'pending': '待排冷凝水：%s mB', 'no_turbine': '请安装汽轮机', 'disabled': '已禁用', 'water_blocked': '请排空冷凝水槽', 'venting': '正在排放余汽', 'throttled': '积水降低动能输出', 'running': '运行中', 'idle': '等待蒸汽'},
+}
+for locale, values in labels.items():
+    path = ASSETS + 'lang/' + locale + '.json'
+    data = json.loads((NEW / path).read_text())
+    data.update({'ic2.steam_turbine.' + key: value for key, value in values.items()})
+    write(path, data)

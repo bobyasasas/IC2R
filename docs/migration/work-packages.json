@@ -107,7 +107,7 @@
       "parent": "M11",
       "title": "热力与动能机器",
       "status": "in_progress",
-      "acceptance": "风力／水力动能与五种转子、手动动能、电热、电动动能、固体／流体热源、蒸汽发生器升温／压力／结垢、冷凝与散热片、电解双气体输出、流体冷却换热、发酵与沼气链、原生事务能力与转电链已接入；同位素热源、升温换热、蒸汽动能与再压缩待验收。",
+      "acceptance": "风力／水力动能与五种转子、手动动能、电热、电动动能、固体／流体热源、蒸汽发生器升温／压力／结垢、双级蒸汽动能与完整水循环、冷凝与散热片、电解双气体输出、流体冷却换热、发酵与沼气链、原生事务能力与转电链已接入；同位素热源、升温换热与再压缩待验收。",
       "evidence": [
         "docs/migration/work-energy.md",
         "neoforge/src/gameTest/java/ic2/neoforge/test/WorkEnergyTests.java",
@@ -119,7 +119,8 @@
         "docs/migration/heat-exchanger.md",
         "docs/migration/electrolyzer.md",
         "docs/migration/condenser.md",
-        "docs/migration/steam-generator.md"
+        "docs/migration/steam-generator.md",
+        "docs/migration/steam-turbine.md"
       ]
     },
     {
