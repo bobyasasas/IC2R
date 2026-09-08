@@ -86,7 +86,8 @@ final class MachineSounds {
 
     private static SoundEvent sound(MachineBlockEntity machine) {
         return switch (machine.kind()) {
-            case TANK,
+            case FLUID_REGULATOR,
+                    TANK,
                     LIQUID_HEAT_EXCHANGER,
                     FERMENTER,
                     WATER_KINETIC_GENERATOR,

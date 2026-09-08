@@ -1421,5 +1421,7 @@
   "ic2.rotor.shore": "Shore: %s m",
   "ic2.fermenter.heat": "Heat (HU)",
   "ic2.tank.cursor": "Click fluid with a container",
-  "ic2.electrolyzer.tanks": "Adjacent tanks"
+  "ic2.electrolyzer.tanks": "Adjacent tanks",
+  "ic2.regulator.second": "Per second",
+  "ic2.regulator.tick": "Per tick"
 }

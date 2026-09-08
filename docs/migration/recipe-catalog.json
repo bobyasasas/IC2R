@@ -2655,8 +2655,8 @@
     {
       "source": "shaped/fluid_regulator.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:fluid_regulator"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/fluid_regulator.json"
     },
     {
       "source": "shaped/foam_sprayer.json",

@@ -67,7 +67,11 @@ public final class MachineMenu extends AbstractContainerMenu {
                 machine == null
                         ? new SimpleContainerData(MachineMenuData.SIZE)
                         : new MachineMenuData(machine);
-        if (kind == MachineKind.ELECTROLYZER) {
+        if (kind == MachineKind.FLUID_REGULATOR) {
+            addFluidContainerSlot(inventory, 0, 48, 72);
+            addOutputSlot(inventory, 1, 66, 72);
+            addBatterySlot(inventory, 2, 8, 72);
+        } else if (kind == MachineKind.ELECTROLYZER) {
             addBatterySlot(inventory, 0, 50, 53);
         } else if (kind == MachineKind.TANK) {
             // Tanks contain only the four upgrade slots added below.

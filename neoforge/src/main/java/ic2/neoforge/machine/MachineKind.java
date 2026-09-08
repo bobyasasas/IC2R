@@ -15,6 +15,7 @@ public enum MachineKind implements StringRepresentable {
     HV_TRANSFORMER("hv_transformer", 4096, 0, 0, 0),
     EV_TRANSFORMER("ev_transformer", 16384, 0, 0, 0),
     IRON_FURNACE("iron_furnace", 0, 3, 160, 0),
+    FLUID_REGULATOR("fluid_regulator", 10000, 3, 0, 0),
     ELECTROLYZER("electrolyzer", 32000, 1, 200, 32),
     TANK("tank", 0, 0, 0, 0),
     LIQUID_HEAT_EXCHANGER("liquid_heat_exchanger", 0, 14, 0, 0),
@@ -70,7 +71,8 @@ public enum MachineKind implements StringRepresentable {
                 || fuelHeat()
                 || this == MANUAL_KINETIC_GENERATOR
                 || this == FERMENTER
-                || this == LIQUID_HEAT_EXCHANGER;
+                || this == LIQUID_HEAT_EXCHANGER
+                || this == FLUID_REGULATOR;
     }
 
     public boolean turbine() {
@@ -125,7 +127,12 @@ public enum MachineKind implements StringRepresentable {
             case BATBOX, LV_TRANSFORMER -> 1;
             case CESU, MV_TRANSFORMER, CENTRIFUGE, INDUCTION_FURNACE, ELECTROLYZER -> 2;
             case MFE, HV_TRANSFORMER -> 3;
-            case MFSU, EV_TRANSFORMER, ELECTRIC_HEAT_GENERATOR, ELECTRIC_KINETIC_GENERATOR -> 4;
+            case MFSU,
+                    EV_TRANSFORMER,
+                    ELECTRIC_HEAT_GENERATOR,
+                    ELECTRIC_KINETIC_GENERATOR,
+                    FLUID_REGULATOR ->
+                    4;
             default -> 1;
         };
     }
@@ -142,8 +149,12 @@ public enum MachineKind implements StringRepresentable {
         return upgradeSlots() > 0;
     }
 
+    public int menuWidth() {
+        return upgradable() || this == FLUID_REGULATOR ? 202 : 176;
+    }
+
     public int menuHeight() {
-        return this == LIQUID_HEAT_EXCHANGER ? 184 : 166;
+        return this == LIQUID_HEAT_EXCHANGER || this == FLUID_REGULATOR ? 184 : 166;
     }
 
     public int inventoryY() {

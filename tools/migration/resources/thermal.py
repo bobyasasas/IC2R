@@ -28,3 +28,7 @@ write('data/ic2/recipe/electrolyzing/water.json', {
 for locale, label in [('en_us', 'Adjacent tanks'), ('zh_cn', '相邻输出储罐')]:
     path = ASSETS + 'lang/' + locale + '.json'
     data = json.loads((NEW / path).read_text()); data['ic2.electrolyzer.tanks'] = label; write(path, data)
+
+for locale, second, tick in [('en_us', 'Per second', 'Per tick'), ('zh_cn', '每秒', '每刻')]:
+    path = ASSETS + 'lang/' + locale + '.json'
+    data = json.loads((NEW / path).read_text()); data.update({'ic2.regulator.second': second, 'ic2.regulator.tick': tick}); write(path, data)

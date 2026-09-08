@@ -12,12 +12,7 @@ import java.util.List;
 /** Small shared screen; slot geometry is taken from the menu, so visuals cannot drift. */
 public class MachineScreen extends ContainerScreenBase<MachineMenu> {
     public MachineScreen(MachineMenu menu, Inventory inventory, Component title) {
-        super(
-                menu,
-                inventory,
-                title,
-                menu.kind().upgradable() ? 202 : 176,
-                menu.kind().menuHeight());
+        super(menu, inventory, title, menu.kind().menuWidth(), menu.kind().menuHeight());
     }
 
     protected boolean showsEnergyBar() {

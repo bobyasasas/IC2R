@@ -1,0 +1,19 @@
+{
+  "type": "ic2:shaped",
+  "pattern": [
+    "III",
+    "CGC",
+    "IBI"
+  ],
+  "consuming": true,
+  "result": {
+    "id": "ic2:fluid_regulator",
+    "count": 1
+  },
+  "key": {
+    "I": "ic2:iron_casing",
+    "C": "ic2:facade_cell",
+    "G": "ic2:electric_motor",
+    "B": "ic2:circuit"
+  }
+}

@@ -1705,7 +1705,12 @@
       "factory": "register",
       "expression": "new ItemBlockIc2(Ic2Blocks.FLUID_REGULATOR, new Properties())",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/fluid-regulator.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/FluidRegulatorTests.java"
+      ],
+      "note": "有界流量、按秒或刻调度、部分目标接收守恒、原生流体与EU事务、重载额度及菜单权限已接入；客户端与多人性能验收持续验证。"
     },
     {
       "registry": "item",
@@ -7305,7 +7310,12 @@
       "factory": "register",
       "expression": "Ic2TileEntityBlock.create(Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).strength(2.0F, 10.0F).requiresCorrectToolForDrops().sound(SoundType.METAL), TileEntityFluidRegulator.class, true, Ic2TileEntityBlock.DefaultDrop.Machine, Util.allFacings, true)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/fluid-regulator.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/FluidRegulatorTests.java"
+      ],
+      "note": "有界流量、按秒或刻调度、部分目标接收守恒、原生流体与EU事务、重载额度及菜单权限已接入；客户端与多人性能验收持续验证。"
     },
     {
       "registry": "block",
@@ -9863,7 +9873,12 @@
       "factory": "register",
       "expression": "TileEntityFluidRegulator::new",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/fluid-regulator.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/FluidRegulatorTests.java"
+      ],
+      "note": "有界流量、按秒或刻调度、部分目标接收守恒、原生流体与EU事务、重载额度及菜单权限已接入；客户端与多人性能验收持续验证。"
     },
     {
       "registry": "block_entity",
@@ -11179,7 +11194,12 @@
       "factory": "registerManagedBe",
       "expression": "",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/fluid-regulator.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/FluidRegulatorTests.java"
+      ],
+      "note": "有界流量、按秒或刻调度、部分目标接收守恒、原生流体与EU事务、重载额度及菜单权限已接入；客户端与多人性能验收持续验证。"
     },
     {
       "registry": "menu",

@@ -26,9 +26,10 @@
       "parent": "M11",
       "title": "流体与单元",
       "status": "in_progress",
-      "acceptance": "17 个流体族、20 个单元；特殊流体世界行为及所有容器交互。",
+      "acceptance": "流体调节器已接入按秒／刻输送及部分接收守恒；17 个流体族、20 个单元；特殊流体世界行为及所有容器交互。",
       "evidence": [
-        "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
+        "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java",
+        "docs/migration/fluid-regulator.md"
       ]
     },
     {

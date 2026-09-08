@@ -123,6 +123,10 @@ public final class RegistrationTests {
                 "electrolysis_interruption",
                 () -> ElectrolyzerTests::interruptionAndRecipeIdentity);
         FUNCTIONS.register("electrolysis_datapack", () -> ElectrolyzerTests::dataPackAndPorts);
+        FUNCTIONS.register("regulator_partial", () -> FluidRegulatorTests::partialTarget);
+        FUNCTIONS.register("regulator_cadence", () -> FluidRegulatorTests::cadence);
+        FUNCTIONS.register("regulator_ports", () -> FluidRegulatorTests::portsAndBlockedPower);
+        FUNCTIONS.register("regulator_menu", () -> FluidRegulatorTests::menuSettings);
         FUNCTIONS.register("tank_storage", () -> TankTests::storageAndComparator);
         FUNCTIONS.register("tank_cursor", () -> TankTests::cursorAndPermissions);
         FUNCTIONS.register("tank_upgrade", () -> TankTests::partialBucketAndUpgrade);

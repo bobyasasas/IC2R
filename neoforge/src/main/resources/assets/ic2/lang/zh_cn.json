@@ -1421,5 +1421,7 @@
   "ic2.rotor.shore": "岸距：%s 米",
   "ic2.fermenter.heat": "热量（HU）",
   "ic2.tank.cursor": "用光标上的容器点击流体",
-  "ic2.electrolyzer.tanks": "相邻输出储罐"
+  "ic2.electrolyzer.tanks": "相邻输出储罐",
+  "ic2.regulator.second": "每秒",
+  "ic2.regulator.tick": "每刻"
 }
