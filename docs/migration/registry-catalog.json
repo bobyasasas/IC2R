@@ -1599,7 +1599,12 @@
       "factory": "register",
       "expression": "new ItemBlockIc2(Ic2Blocks.WIND_KINETIC_GENERATOR, new Properties())",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/wind-turbine.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/WindTurbineTests.java"
+      ],
+      "note": "转子规格、耐久、原生风场、空间、产能预算、重载与转电链已接入；水力使用及多人性能验收继续由 P10/M16 跟踪。"
     },
     {
       "registry": "item",
@@ -5350,7 +5355,12 @@
       "factory": "register",
       "expression": "new ItemWindRotor(new Properties().durability(10800), 5, false, 0.25F, 10, 60, IC2.getIdentifier(\"textures/item/rotor/wood_rotor_model.png\"))",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/wind-turbine.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/WindTurbineTests.java"
+      ],
+      "note": "转子规格、耐久、原生风场、空间、产能预算、重载与转电链已接入；水力使用及多人性能验收继续由 P10/M16 跟踪。"
     },
     {
       "registry": "item",
@@ -5360,7 +5370,12 @@
       "factory": "register",
       "expression": "new ItemWindRotor(new Properties().durability(86400), 7, true, 0.5F, 14, 75, ResourceLocation.fromNamespaceAndPath(\"ic2\", \"textures/item/rotor/bronze_rotor_model.png\"))",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/wind-turbine.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/WindTurbineTests.java"
+      ],
+      "note": "转子规格、耐久、原生风场、空间、产能预算、重载与转电链已接入；水力使用及多人性能验收继续由 P10/M16 跟踪。"
     },
     {
       "registry": "item",
@@ -5370,7 +5385,12 @@
       "factory": "register",
       "expression": "new ItemWindRotor(new Properties().durability(86400), 7, true, 0.5F, 14, 75, ResourceLocation.fromNamespaceAndPath(\"ic2\", \"textures/item/rotor/iron_rotor_model.png\"))",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/wind-turbine.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/WindTurbineTests.java"
+      ],
+      "note": "转子规格、耐久、原生风场、空间、产能预算、重载与转电链已接入；水力使用及多人性能验收继续由 P10/M16 跟踪。"
     },
     {
       "registry": "item",
@@ -5380,7 +5400,12 @@
       "factory": "register",
       "expression": "new ItemWindRotor(new Properties().durability(172800), 9, true, 0.75F, 17, 90, ResourceLocation.fromNamespaceAndPath(\"ic2\", \"textures/item/rotor/steel_rotor_model.png\"))",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/wind-turbine.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/WindTurbineTests.java"
+      ],
+      "note": "转子规格、耐久、原生风场、空间、产能预算、重载与转电链已接入；水力使用及多人性能验收继续由 P10/M16 跟踪。"
     },
     {
       "registry": "item",
@@ -5390,7 +5415,12 @@
       "factory": "register",
       "expression": "new ItemWindRotor(new Properties().durability(604800), 11, true, 1.0F, 20, 110, ResourceLocation.fromNamespaceAndPath(\"ic2\", \"textures/item/rotor/carbon_rotor_model.png\"))",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/wind-turbine.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/WindTurbineTests.java"
+      ],
+      "note": "转子规格、耐久、原生风场、空间、产能预算、重载与转电链已接入；水力使用及多人性能验收继续由 P10/M16 跟踪。"
     },
     {
       "registry": "item",
@@ -7143,7 +7173,12 @@
       "factory": "register",
       "expression": "Ic2TileEntityBlock.create(Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).strength(2.0F, 10.0F).requiresCorrectToolForDrops().sound(SoundType.METAL), TileEntityWindKineticGenerator.class, true, Ic2TileEntityBlock.DefaultDrop.Self, Util.horizontalFacings, true)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/wind-turbine.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/WindTurbineTests.java"
+      ],
+      "note": "转子规格、耐久、原生风场、空间、产能预算、重载与转电链已接入；水力使用及多人性能验收继续由 P10/M16 跟踪。"
     },
     {
       "registry": "block",
@@ -9580,7 +9615,12 @@
       "factory": "register",
       "expression": "TileEntityWindKineticGenerator::new",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/wind-turbine.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/WindTurbineTests.java"
+      ],
+      "note": "转子规格、耐久、原生风场、空间、产能预算、重载与转电链已接入；水力使用及多人性能验收继续由 P10/M16 跟踪。"
     },
     {
       "registry": "block_entity",
@@ -10995,7 +11035,12 @@
       "factory": "registerManagedBe",
       "expression": "",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/wind-turbine.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/WindTurbineTests.java"
+      ],
+      "note": "转子规格、耐久、原生风场、空间、产能预算、重载与转电链已接入；水力使用及多人性能验收继续由 P10/M16 跟踪。"
     },
     {
       "registry": "menu",

@@ -27,6 +27,6 @@ target = ROOT / 'neoforge/src/gameTest/resources/data/ic2_tests/structure/world_
 target.write_bytes(gzip.compress(tag(10, '', root + b'\x00'), mtime=0))
 
 # Wind tests must reach positive world Y even when the test server starts structures at -60.
-root = integer('DataVersion', 4790) + int_list('size', [17, 192, 17]) + compound_list('palette', palette) + compound_list('blocks', blocks) + compound_list('entities', [])
+root = integer('DataVersion', 4790) + int_list('size', [35, 192, 35]) + compound_list('palette', palette) + compound_list('blocks', blocks) + compound_list('entities', [])
 target = ROOT / 'neoforge/src/gameTest/resources/data/ic2_tests/structure/wind_room.nbt'
 target.write_bytes(gzip.compress(tag(10, '', root + b'\x00'), mtime=0))

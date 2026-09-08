@@ -5,7 +5,7 @@ import com.mojang.math.Axis;
 
 import ic2.neoforge.machine.MachineBlock;
 import ic2.neoforge.machine.MachineBlockEntity;
-import ic2.neoforge.machine.RotorGeneratorBlockEntity;
+import ic2.neoforge.machine.RotorVisual;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.geom.ModelPart;
@@ -29,15 +29,14 @@ import net.minecraft.world.phys.Vec3;
 
 import org.jspecify.annotations.Nullable;
 
+import java.util.HashMap;
 import java.util.Map;
 import java.util.WeakHashMap;
 
 /** Extracts animation into render state; submission never reads or mutates the world. */
 public final class RotorRenderer
         implements BlockEntityRenderer<MachineBlockEntity, RotorRenderer.State> {
-    private static final Identifier TEXTURE =
-            Identifier.parse("ic2:textures/item/rotor/iron_rotor_model.png");
-    private final ModelPart model = createRotor();
+    private final Map<Integer, ModelPart> models = new HashMap<>();
     private final Map<MachineBlockEntity, Animation> animations = new WeakHashMap<>();
 
     public RotorRenderer(BlockEntityRendererProvider.Context context) {}
@@ -45,6 +44,8 @@ public final class RotorRenderer
     public static final class State extends BlockEntityRenderState {
         Direction facing = Direction.NORTH;
         float angle;
+        @Nullable ModelPart model;
+        Identifier texture;
     }
 
     private static final class Animation {
@@ -53,8 +54,8 @@ public final class RotorRenderer
 
         float sample(double time, float speed) {
             if (Double.isFinite(previousTime))
-                angle = (float) ((angle + Math.max(0, time - previousTime) * 20 * speed) % 360);
-            previousTime = time;
+                angle = (float) ((angle + Math.max(0, time - previousTime) * speed) % 360);
+            previousTime = Double.isFinite(previousTime) ? Math.max(previousTime, time) : time;
             return angle;
         }
     }
@@ -73,7 +74,12 @@ public final class RotorRenderer
             ModelFeatureRenderer.@Nullable CrumblingOverlay overlay) {
         BlockEntityRenderer.super.extractRenderState(
                 blockEntity, state, partialTick, camera, overlay);
-        var rotor = (RotorGeneratorBlockEntity) blockEntity;
+        var rotor = (RotorVisual) blockEntity;
+        state.model =
+                rotor.rotorDiameter() == 0
+                        ? null
+                        : models.computeIfAbsent(rotor.rotorDiameter(), RotorRenderer::createRotor);
+        state.texture = rotor.rotorTexture();
         state.facing = blockEntity.getBlockState().getValue(MachineBlock.FACING);
         var level = blockEntity.getLevel();
         if (level == null) return;
@@ -81,7 +87,7 @@ public final class RotorRenderer
         state.angle =
                 animations
                         .computeIfAbsent(blockEntity, ignored -> new Animation())
-                        .sample(time, rotor.rotorSpeed());
+                        .sample(time, rotor.rotorDegreesPerTick());
         state.lightCoords =
                 LevelRenderer.getLightCoords(
                         level, blockEntity.getBlockPos().relative(state.facing));
@@ -90,6 +96,7 @@ public final class RotorRenderer
     @Override
     public void submit(
             State state, PoseStack poses, SubmitNodeCollector collector, CameraRenderState camera) {
+        if (state.model == null) return;
         poses.pushPose();
         poses.translate(.5, .5, .5);
         switch (state.facing) {
@@ -103,9 +110,9 @@ public final class RotorRenderer
         poses.mulPose(Axis.XP.rotationDegrees(state.angle));
         poses.translate(-.2, 0, 0);
         collector.submitModelPart(
-                model,
+                state.model,
                 poses,
-                RenderTypes.entitySolid(TEXTURE),
+                RenderTypes.entitySolid(state.texture),
                 state.lightCoords,
                 OverlayTexture.NO_OVERLAY,
                 null,
@@ -116,10 +123,11 @@ public final class RotorRenderer
 
     @Override
     public AABB getRenderBoundingBox(MachineBlockEntity blockEntity) {
-        return new AABB(blockEntity.getBlockPos()).inflate(1);
+        return new AABB(blockEntity.getBlockPos())
+                .inflate(((RotorVisual) blockEntity).rotorDiameter() / 2.0);
     }
 
-    private static ModelPart createRotor() {
+    private static ModelPart createRotor(int diameter) {
         var mesh = new MeshDefinition();
         var root = mesh.getRoot();
         float[][] rotations = {{0, -.5f, 0}, {3.1f, .5f, 0}, {4.7f, 0, .5f}, {1.5f, 0, -.5f}};
@@ -127,7 +135,7 @@ public final class RotorRenderer
             var rotation = rotations[blade];
             root.addOrReplaceChild(
                     "blade_" + blade,
-                    CubeListBuilder.create().texOffs(0, 0).addBox(0, 0, -4, 1, 16, 8),
+                    CubeListBuilder.create().texOffs(0, 0).addBox(0, 0, -4, 1, diameter * 8, 8),
                     PartPose.offsetAndRotation(-8, 0, 0, rotation[0], rotation[1], rotation[2]));
         }
         return LayerDefinition.create(mesh, 32, 256).bakeRoot();

@@ -1,0 +1,16 @@
+{
+  "type": "ic2:shaped",
+  "pattern": [
+    " A ",
+    "ABA",
+    " A "
+  ],
+  "result": {
+    "id": "ic2:bronze_rotor",
+    "count": 1
+  },
+  "key": {
+    "A": "ic2:bronze_rotor_blade",
+    "B": "ic2:bronze_shaft"
+  }
+}

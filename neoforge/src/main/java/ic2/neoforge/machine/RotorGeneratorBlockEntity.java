@@ -9,7 +9,8 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.storage.ValueInput;
 
 /** Only rotor speed is sent to observers; detailed fuel data uses the opened menu. */
-public abstract class RotorGeneratorBlockEntity extends GeneratingBlockEntity {
+public abstract class RotorGeneratorBlockEntity extends GeneratingBlockEntity
+        implements RotorVisual {
     private float rotorSpeed;
 
     protected RotorGeneratorBlockEntity(BlockPos pos, BlockState state) {
@@ -43,9 +44,38 @@ public abstract class RotorGeneratorBlockEntity extends GeneratingBlockEntity {
     }
 
     @Override
-    protected void loadAdditional(ValueInput input) {
-        super.loadAdditional(input);
+    public int rotorDiameter() {
+        return 2;
+    }
+
+    @Override
+    public float rotorDegreesPerTick() {
+        return rotorSpeed * 20;
+    }
+
+    @Override
+    public net.minecraft.resources.Identifier rotorTexture() {
+        return ic2.neoforge.registration.ModRotors.texture(ic2.core.machine.RotorMaterial.IRON);
+    }
+
+    private void readVisual(ValueInput input) {
         float speed = input.getFloatOr("rotorSpeed", 0);
         rotorSpeed = Float.isFinite(speed) ? Math.clamp(speed, 0, 100) : 0;
+    }
+
+    @Override
+    public void handleUpdateTag(ValueInput input) {
+        readVisual(input);
+    }
+
+    @Override
+    public void onDataPacket(net.minecraft.network.Connection connection, ValueInput input) {
+        readVisual(input);
+    }
+
+    @Override
+    protected void loadAdditional(ValueInput input) {
+        super.loadAdditional(input);
+        readVisual(input);
     }
 }

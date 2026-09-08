@@ -1400,5 +1400,22 @@
   "ic2.work.heat_rate": "%s HU/t",
   "ic2.work.kinetic_rate": "%s KU/t",
   "ic2.manual.added": "+%s KU (%s / 1000)",
-  "ic2.manual.hungry": "Eat before turning the crank."
+  "ic2.manual.hungry": "Eat before turning the crank.",
+  "ic2.rotor.wind_range": "Wind range: %s–%s",
+  "ic2.rotor.wind_water": "Fits wind and water turbines",
+  "ic2.rotor.wind_only": "Fits wind turbines",
+  "ic2.rotor.wind": "Wind: %s",
+  "ic2.rotor.obstructions": "Obstructed: %s",
+  "ic2.rotor.output": "%s KU/t",
+  "ic2.rotor.health": "Rotor %s%%",
+  "ic2.rotor.status.no_rotor": "Insert a rotor",
+  "ic2.rotor.status.invalid_facing": "Place horizontally",
+  "ic2.rotor.status.no_space": "Rotor is blocked",
+  "ic2.rotor.status.interference": "Another turbine is too close",
+  "ic2.rotor.status.low_wind": "Not enough wind",
+  "ic2.rotor.status.running": "Running",
+  "ic2.rotor.status.overloaded": "Strong wind: faster wear",
+  "ic2.rotor.status.disabled": "Disabled",
+  "ic2.rotor.status.invalid_biome": "Needs ocean or river",
+  "ic2.rotor.status.no_flow": "No water movement"
 }

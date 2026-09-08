@@ -4,7 +4,7 @@ import json
 import re
 from base import ROOT, OLD, NEW, ASSETS, write, copy, model, item
 
-machines = ['manual_kinetic_generator', 'solid_heat_generator', 'fluid_heat_generator', 'electric_heat_generator', 'electric_kinetic_generator', 'stirling_generator', 'kinetic_generator', 'metal_former', 'ore_washing_plant', 'centrifuge', 'recycler', 'induction_furnace', 'water_generator', 'wind_generator', 'solar_generator', 'geo_generator', 'semifluid_generator', 'batbox', 'cesu', 'mfe', 'mfsu', 'lv_transformer', 'mv_transformer', 'hv_transformer', 'ev_transformer', 'canner', 'iron_furnace', 'generator', 'electric_furnace', 'macerator', 'extractor', 'compressor']
+machines = ['wind_kinetic_generator', 'manual_kinetic_generator', 'solid_heat_generator', 'fluid_heat_generator', 'electric_heat_generator', 'electric_kinetic_generator', 'stirling_generator', 'kinetic_generator', 'metal_former', 'ore_washing_plant', 'centrifuge', 'recycler', 'induction_furnace', 'water_generator', 'wind_generator', 'solar_generator', 'geo_generator', 'semifluid_generator', 'batbox', 'cesu', 'mfe', 'mfsu', 'lv_transformer', 'mv_transformer', 'hv_transformer', 'ev_transformer', 'canner', 'iron_furnace', 'generator', 'electric_furnace', 'macerator', 'extractor', 'compressor']
 for identifier in machines:
     item(identifier)
     path = ASSETS + 'blockstates/' + identifier + '.json'
@@ -15,11 +15,12 @@ for identifier in machines:
             if axis in variant: variant[axis] %= 360
         model(variant['model'])
     # Every MachineBlock now uses six directions; supply any old horizontal-only variants.
-    for active in ['false', 'true']:
-        key = 'facing=north,active=' + active
-        if key not in data['variants']: continue
+    for key, variant in list(data['variants'].items()):
+        properties = dict(pair.split('=') for pair in key.split(',') if pair)
+        if properties.get('facing') != 'north': continue
         for side, rotation in [('up', 270), ('down', 90)]:
-            data['variants'].setdefault('facing=' + side + ',active=' + active, {**data['variants'][key], 'x': rotation})
+            target = {**properties, 'facing': side}
+            data['variants'].setdefault(','.join(f'{k}={v}' for k, v in target.items()), {**variant, 'x': rotation})
     write(path, data)
 
 cables = [('glass_fibre_cable', 'glass', 0, .25)]

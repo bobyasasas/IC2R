@@ -5,6 +5,7 @@ import net.neoforged.neoforge.common.ModConfigSpec;
 /** World-specific generator settings, separate from electrical network rules. */
 public final class GenerationConfig {
     public static final ModConfigSpec SPEC;
+    public static final ModConfigSpec.DoubleValue WIND_KINETIC;
     public static final ModConfigSpec.DoubleValue MANUAL_KINETIC;
     public static final ModConfigSpec.DoubleValue SOLID_HEAT, FLUID_HEAT;
     public static final ModConfigSpec.DoubleValue ELECTRIC_HEAT,
@@ -19,6 +20,7 @@ public final class GenerationConfig {
     static {
         var builder = new ModConfigSpec.Builder();
         builder.push("generation");
+        WIND_KINETIC = builder.defineInRange("windKineticMultiplier", 1, 0, 1000000.0);
         MANUAL_KINETIC = builder.defineInRange("manualKineticMultiplier", 1, 0, 1000000.0);
         SOLID_HEAT = builder.defineInRange("solidHeatMultiplier", 1, 0, 1000000.0);
         FLUID_HEAT = builder.defineInRange("fluidHeatMultiplier", 1, 0, 1000000.0);

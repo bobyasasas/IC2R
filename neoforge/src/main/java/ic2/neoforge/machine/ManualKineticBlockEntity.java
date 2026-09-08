@@ -40,7 +40,8 @@ public final class ManualKineticBlockEntity extends MachineBlockEntity {
     }
 
     public WorkSource output(@Nullable Direction side) {
-        return new WorkOutput(this, side, work, () -> 1000, journal::updateSnapshots, false);
+        return new WorkOutput(
+                this, side, work, () -> 1000, journal::updateSnapshots, WorkOutput.Face.ANY);
     }
 
     public boolean turn(ServerPlayer player) {

@@ -3,7 +3,7 @@ package ic2.core.machine;
 import ic2.core.energy.EnergyStore;
 
 /** Heat/kinetic reservoir with an aggregate per-world-tick extraction budget. */
-public final class WorkBuffer {
+public final class WorkBuffer implements WorkSupply {
     public record State(double stored, long tick, int extracted) {
         public State {
             if (!Double.isFinite(stored) || stored < 0 || extracted < 0)

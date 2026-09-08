@@ -86,7 +86,8 @@ final class MachineSounds {
 
     private static SoundEvent sound(MachineBlockEntity machine) {
         return switch (machine.kind()) {
-            case MANUAL_KINETIC_GENERATOR,
+            case WIND_KINETIC_GENERATOR,
+                    MANUAL_KINETIC_GENERATOR,
                     SOLID_HEAT_GENERATOR,
                     FLUID_HEAT_GENERATOR,
                     ELECTRIC_HEAT_GENERATOR,

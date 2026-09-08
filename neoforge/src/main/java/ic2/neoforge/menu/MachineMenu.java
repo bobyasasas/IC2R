@@ -67,7 +67,15 @@ public final class MachineMenu extends AbstractContainerMenu {
                 machine == null
                         ? new SimpleContainerData(MachineMenuData.SIZE)
                         : new MachineMenuData(machine);
-        if (kind.fuelHeat()) {
+        if (kind.turbine()) {
+            addSlot(
+                    new ResourceHandlerSlot(inventory, inventory::set, 0, 133, 24) {
+                        @Override
+                        public boolean mayPlace(ItemStack stack) {
+                            return stack.getItem() instanceof ic2.neoforge.item.RotorItem;
+                        }
+                    });
+        } else if (kind.fuelHeat()) {
             addSlot(
                     new ResourceHandlerSlot(inventory, inventory::set, 0, 56, 17) {
                         @Override
@@ -306,7 +314,7 @@ public final class MachineMenu extends AbstractContainerMenu {
 
     private int preferredSlot(ItemStack stack, Player player) {
         if (kind.workConversion() || kind == MachineKind.MANUAL_KINETIC_GENERATOR) return -1;
-        if (kind.fuelHeat()) return 0;
+        if (kind.fuelHeat() || kind.turbine()) return 0;
         if (kind.electricWork())
             return stack.getItem() instanceof ElectricItem
                     ? 10

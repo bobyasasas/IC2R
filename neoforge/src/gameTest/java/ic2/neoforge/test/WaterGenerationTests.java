@@ -41,7 +41,7 @@ final class WaterGenerationTests {
         helper.assertTrue(
                 produced == 500 && restored.progress() == 0,
                 "Reloading a bucket batch must preserve one-EU production rather than the two-EU"
-                    + " consumable rate");
+                        + " consumable rate");
         helper.succeed();
     }
 
@@ -88,6 +88,16 @@ final class WaterGenerationTests {
                         && !update.contains("energy")
                         && !update.contains("inventory"),
                 "Observer updates must contain only rotor state");
+        machine.inventory().set(0, ItemResource.of(Items.BUCKET), 1);
+        machine.handleUpdateTag(
+                net.minecraft.world.level.storage.TagValueInput.create(
+                        net.minecraft.util.ProblemReporter.DISCARDING,
+                        helper.getLevel().registryAccess(),
+                        update));
+        helper.assertTrue(
+                machine.inventory().stack(0).is(Items.BUCKET)
+                        && Math.abs(machine.energy().stored() - .03) < .000001,
+                "Applying a visual observer update must not clear inventory or energy state");
         helper.succeed();
     }
 
@@ -104,7 +114,7 @@ final class WaterGenerationTests {
                     helper.assertTrue(
                             battery.energy().stored() >= 32,
                             "A water mill must supply a real adjacent BatBox in both IC2 and"
-                                + " whole-packet GT modes");
+                                    + " whole-packet GT modes");
                     helper.succeed();
                 });
     }

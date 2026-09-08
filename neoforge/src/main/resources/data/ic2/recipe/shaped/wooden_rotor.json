@@ -1,0 +1,16 @@
+{
+  "type": "ic2:shaped",
+  "pattern": [
+    " A ",
+    "ABA",
+    " A "
+  ],
+  "result": {
+    "id": "ic2:wooden_rotor",
+    "count": 1
+  },
+  "key": {
+    "A": "ic2:wooden_rotor_blade",
+    "B": "minecraft:iron_ingot"
+  }
+}

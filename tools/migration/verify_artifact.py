@@ -83,6 +83,15 @@ with zipfile.ZipFile(jars[0]) as jar:
         if name.startswith('assets/ic2/blockstates/') and name.endswith('.json'):
             check_blockstate(json.loads(jar.read(name)))
 
+    machine_source = (ROOT / 'neoforge/src/main/java/ic2/neoforge/machine/MachineKind.java').read_text()
+    for machine in re.findall(r'^    [A-Z_]+\("([a-z_]+)",', machine_source, re.M):
+        variants = json.loads(jar.read(f'assets/ic2/blockstates/{machine}.json'))['variants']
+        conditions = [dict(pair.split('=') for pair in key.split(',') if pair) for key in variants]
+        for active in ['false', 'true']:
+            for facing in ['north', 'south', 'east', 'west', 'up', 'down']:
+                state = {'active': active, 'facing': facing}
+                assert sum(all(state.get(k) == v for k, v in condition.items()) for condition in conditions) == 1, f'{machine}: missing or ambiguous model for {state}'
+
     item_names = []
     for name in sorted(names):
         if name.startswith('assets/ic2/items/') and name.endswith('.json'):

@@ -48,6 +48,13 @@ public final class IndustrialCraftClient {
                         event.registerBlockEntityRenderer(
                                 ModMachines.entityType(MachineKind.WIND_GENERATOR),
                                 RotorRenderer::new));
+        modBus.addListener(
+                (EntityRenderersEvent.RegisterRenderers event) -> {
+                    for (var kind : MachineKind.values())
+                        if (kind.turbine())
+                            event.registerBlockEntityRenderer(
+                                    ModMachines.entityType(kind), RotorRenderer::new);
+                });
         modBus.addListener(FluidModels::register);
         modBus.addListener(
                 (RegisterColorHandlersEvent.BlockTintSources event) ->
@@ -67,6 +74,8 @@ public final class IndustrialCraftClient {
                 (kind, registration) -> {
                     if (kind.energyDevice())
                         event.register(registration.menu().get(), EnergyDeviceScreen::new);
+                    else if (kind.turbine())
+                        event.register(ModMachines.menuType(kind), TurbineScreen::new);
                     else if (kind.electricWork() || kind.workConversion() || kind.fuelHeat())
                         event.register(ModMachines.menuType(kind), WorkMachineScreen::new);
                     else if (kind.fluidGenerator() || kind == MachineKind.SOLAR_GENERATOR)

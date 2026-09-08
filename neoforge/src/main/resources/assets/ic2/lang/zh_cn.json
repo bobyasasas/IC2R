@@ -1400,5 +1400,22 @@
   "ic2.work.heat_rate": "%s HU/t",
   "ic2.work.kinetic_rate": "%s KU/t",
   "ic2.manual.added": "+%s KU（%s / 1000）",
-  "ic2.manual.hungry": "需要先补充食物才能转动手柄。"
+  "ic2.manual.hungry": "需要先补充食物才能转动手柄。",
+  "ic2.rotor.wind_range": "风力范围：%s–%s",
+  "ic2.rotor.wind_water": "适用于风力和水力动能机",
+  "ic2.rotor.wind_only": "适用于风力动能机",
+  "ic2.rotor.wind": "风力：%s",
+  "ic2.rotor.obstructions": "遮挡：%s",
+  "ic2.rotor.output": "%s KU/t",
+  "ic2.rotor.health": "寿命 %s%%",
+  "ic2.rotor.status.no_rotor": "请安装转子",
+  "ic2.rotor.status.invalid_facing": "需要水平放置",
+  "ic2.rotor.status.no_space": "转子被阻挡",
+  "ic2.rotor.status.interference": "另一台动能机过近",
+  "ic2.rotor.status.low_wind": "风力不足",
+  "ic2.rotor.status.running": "运行中",
+  "ic2.rotor.status.overloaded": "强风：加快磨损",
+  "ic2.rotor.status.disabled": "已禁用",
+  "ic2.rotor.status.invalid_biome": "需要海洋或河流",
+  "ic2.rotor.status.no_flow": "水流静止"
 }

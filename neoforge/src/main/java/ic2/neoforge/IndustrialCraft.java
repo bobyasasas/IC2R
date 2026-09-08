@@ -39,6 +39,7 @@ public final class IndustrialCraft {
         ModWorldContent.register(modBus);
         ModRubberBuilding.register(modBus);
         ModTools.register(modBus);
+        ic2.neoforge.registration.ModRotors.register(modBus);
         ModToolbox.register(modBus);
         ModUpgrades.register(modBus);
         ModSounds.register(modBus);

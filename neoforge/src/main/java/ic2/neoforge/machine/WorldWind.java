@@ -45,7 +45,7 @@ public final class WorldWind extends SavedData {
                                                     .fieldOf("random")
                                                     .forGetter(value -> value.random))
                                     .apply(instance, WorldWind::new));
-    private static final SavedDataType<WorldWind> TYPE =
+    public static final SavedDataType<WorldWind> TYPE =
             new SavedDataType<>(
                     Identifier.fromNamespaceAndPath("ic2", "wind"),
                     level -> create(Objects.requireNonNull(level)),

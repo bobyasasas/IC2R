@@ -27,7 +27,16 @@ public final class RegistrationTests {
     private static final DeferredRegister<Consumer<GameTestHelper>> FUNCTIONS =
             DeferredRegister.create(BuiltInRegistries.TEST_FUNCTION, "ic2_tests");
 
+    private static final DeferredRegister<
+                    com.mojang.serialization.MapCodec<
+                            ? extends
+                                    net.minecraft.gametest.framework.TestEnvironmentDefinition<?>>>
+            ENVIRONMENTS =
+                    DeferredRegister.create(
+                            BuiltInRegistries.TEST_ENVIRONMENT_DEFINITION_TYPE, "ic2_tests");
+
     static {
+        ENVIRONMENTS.register("strong_wind", () -> StrongWindEnvironment.CODEC);
         FUNCTIONS.register("generation_geothermal", () -> GenerationTests::geothermal);
         FUNCTIONS.register("generation_semifluid", () -> GenerationTests::semifluidPersistence);
         FUNCTIONS.register("generation_solar", () -> GenerationTests::solar);
@@ -107,6 +116,9 @@ public final class RegistrationTests {
         FUNCTIONS.register("manual_interaction", () -> ManualKineticTests::interaction);
         FUNCTIONS.register("manual_hunger_outputs", () -> ManualKineticTests::hungerAndOutputs);
         FUNCTIONS.register("manual_network_supply", () -> ManualKineticTests::networkSupply);
+        FUNCTIONS.register("turbine_operation", () -> WindTurbineTests::operationAndWear);
+        FUNCTIONS.register("turbine_obstructions", () -> WindTurbineTests::obstructions);
+        FUNCTIONS.register("turbine_network_supply", () -> WindTurbineTests::networkSupply);
         FUNCTIONS.register("loaded_recipes", () -> ProcessingTests::loadedRecipes);
         FUNCTIONS.register("processing_machines", () -> ProcessingTests::processing);
         FUNCTIONS.register("weighted_persistence", () -> ProcessingTests::weightedPersistence);
@@ -130,6 +142,7 @@ public final class RegistrationTests {
 
     public RegistrationTests(IEventBus modBus) {
         FUNCTIONS.register(modBus);
+        ENVIRONMENTS.register(modBus);
         NeoForge.EVENT_BUS.addListener(
                 (ServerAboutToStartEvent event) -> {
                     var mode =

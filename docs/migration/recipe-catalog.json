@@ -2193,8 +2193,8 @@
     {
       "source": "shaped/bronze_rotor.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:bronze_rotor"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/bronze_rotor.json"
     },
     {
       "source": "shaped/bronze_rotor_blade.json",
@@ -2253,8 +2253,8 @@
     {
       "source": "shaped/carbon_rotor.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:carbon_rotor"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/carbon_rotor.json"
     },
     {
       "source": "shaped/carbon_rotor_blade.json",
@@ -2853,8 +2853,8 @@
     {
       "source": "shaped/iron_rotor.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:iron_rotor"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/iron_rotor.json"
     },
     {
       "source": "shaped/iron_rotor_blade.json",
@@ -3843,8 +3843,8 @@
     {
       "source": "shaped/steel_rotor.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:steel_rotor"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/steel_rotor.json"
     },
     {
       "source": "shaped/steel_rotor_blade.json",
@@ -4047,8 +4047,8 @@
     {
       "source": "shaped/wind_kinetic_generator.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:wind_kinetic_generator"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/wind_kinetic_generator.json"
     },
     {
       "source": "shaped/wind_meter.json",
@@ -4059,8 +4059,8 @@
     {
       "source": "shaped/wooden_rotor.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:wooden_rotor"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/wooden_rotor.json"
     },
     {
       "source": "shaped/wooden_rotor_blade.json",
