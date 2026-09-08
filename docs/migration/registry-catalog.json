@@ -1589,7 +1589,12 @@
       "factory": "register",
       "expression": "new ItemBlockIc2(Ic2Blocks.WATER_KINETIC_GENERATOR, new Properties())",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/water-turbine.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/WaterTurbineTests.java"
+      ],
+      "note": "河流、海洋、深海流量，兼容转子、空间、磨损、重载和转电链已接入；多人及性能验收由 M16 跟踪。"
     },
     {
       "registry": "item",
@@ -1602,9 +1607,10 @@
       "status": "partial",
       "evidence": [
         "docs/migration/wind-turbine.md",
-        "neoforge/src/gameTest/java/ic2/neoforge/test/WindTurbineTests.java"
+        "neoforge/src/gameTest/java/ic2/neoforge/test/WindTurbineTests.java",
+        "docs/migration/water-turbine.md"
       ],
-      "note": "转子规格、耐久、原生风场、空间、产能预算、重载与转电链已接入；水力使用及多人性能验收继续由 P10/M16 跟踪。"
+      "note": "转子规格、耐久、风场与水域、空间、产能预算、重载及转电链已接入；多人和性能验收由 M16 跟踪。"
     },
     {
       "registry": "item",
@@ -5358,9 +5364,10 @@
       "status": "partial",
       "evidence": [
         "docs/migration/wind-turbine.md",
-        "neoforge/src/gameTest/java/ic2/neoforge/test/WindTurbineTests.java"
+        "neoforge/src/gameTest/java/ic2/neoforge/test/WindTurbineTests.java",
+        "docs/migration/water-turbine.md"
       ],
-      "note": "转子规格、耐久、原生风场、空间、产能预算、重载与转电链已接入；水力使用及多人性能验收继续由 P10/M16 跟踪。"
+      "note": "转子规格、耐久、风场与水域、空间、产能预算、重载及转电链已接入；多人和性能验收由 M16 跟踪。"
     },
     {
       "registry": "item",
@@ -5373,9 +5380,10 @@
       "status": "partial",
       "evidence": [
         "docs/migration/wind-turbine.md",
-        "neoforge/src/gameTest/java/ic2/neoforge/test/WindTurbineTests.java"
+        "neoforge/src/gameTest/java/ic2/neoforge/test/WindTurbineTests.java",
+        "docs/migration/water-turbine.md"
       ],
-      "note": "转子规格、耐久、原生风场、空间、产能预算、重载与转电链已接入；水力使用及多人性能验收继续由 P10/M16 跟踪。"
+      "note": "转子规格、耐久、风场与水域、空间、产能预算、重载及转电链已接入；多人和性能验收由 M16 跟踪。"
     },
     {
       "registry": "item",
@@ -5388,9 +5396,10 @@
       "status": "partial",
       "evidence": [
         "docs/migration/wind-turbine.md",
-        "neoforge/src/gameTest/java/ic2/neoforge/test/WindTurbineTests.java"
+        "neoforge/src/gameTest/java/ic2/neoforge/test/WindTurbineTests.java",
+        "docs/migration/water-turbine.md"
       ],
-      "note": "转子规格、耐久、原生风场、空间、产能预算、重载与转电链已接入；水力使用及多人性能验收继续由 P10/M16 跟踪。"
+      "note": "转子规格、耐久、风场与水域、空间、产能预算、重载及转电链已接入；多人和性能验收由 M16 跟踪。"
     },
     {
       "registry": "item",
@@ -5403,9 +5412,10 @@
       "status": "partial",
       "evidence": [
         "docs/migration/wind-turbine.md",
-        "neoforge/src/gameTest/java/ic2/neoforge/test/WindTurbineTests.java"
+        "neoforge/src/gameTest/java/ic2/neoforge/test/WindTurbineTests.java",
+        "docs/migration/water-turbine.md"
       ],
-      "note": "转子规格、耐久、原生风场、空间、产能预算、重载与转电链已接入；水力使用及多人性能验收继续由 P10/M16 跟踪。"
+      "note": "转子规格、耐久、风场与水域、空间、产能预算、重载及转电链已接入；多人和性能验收由 M16 跟踪。"
     },
     {
       "registry": "item",
@@ -5418,9 +5428,10 @@
       "status": "partial",
       "evidence": [
         "docs/migration/wind-turbine.md",
-        "neoforge/src/gameTest/java/ic2/neoforge/test/WindTurbineTests.java"
+        "neoforge/src/gameTest/java/ic2/neoforge/test/WindTurbineTests.java",
+        "docs/migration/water-turbine.md"
       ],
-      "note": "转子规格、耐久、原生风场、空间、产能预算、重载与转电链已接入；水力使用及多人性能验收继续由 P10/M16 跟踪。"
+      "note": "转子规格、耐久、风场与水域、空间、产能预算、重载及转电链已接入；多人和性能验收由 M16 跟踪。"
     },
     {
       "registry": "item",
@@ -7163,7 +7174,12 @@
       "factory": "register",
       "expression": "Ic2TileEntityBlock.create(Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).strength(2.0F, 10.0F).requiresCorrectToolForDrops().sound(SoundType.METAL), TileEntityWaterKineticGenerator.class, true, Ic2TileEntityBlock.DefaultDrop.Self, Util.horizontalFacings, true)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/water-turbine.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/WaterTurbineTests.java"
+      ],
+      "note": "河流、海洋、深海流量，兼容转子、空间、磨损、重载和转电链已接入；多人及性能验收由 M16 跟踪。"
     },
     {
       "registry": "block",
@@ -7176,9 +7192,10 @@
       "status": "partial",
       "evidence": [
         "docs/migration/wind-turbine.md",
-        "neoforge/src/gameTest/java/ic2/neoforge/test/WindTurbineTests.java"
+        "neoforge/src/gameTest/java/ic2/neoforge/test/WindTurbineTests.java",
+        "docs/migration/water-turbine.md"
       ],
-      "note": "转子规格、耐久、原生风场、空间、产能预算、重载与转电链已接入；水力使用及多人性能验收继续由 P10/M16 跟踪。"
+      "note": "转子规格、耐久、风场与水域、空间、产能预算、重载及转电链已接入；多人和性能验收由 M16 跟踪。"
     },
     {
       "registry": "block",
@@ -9595,7 +9612,12 @@
       "factory": "register",
       "expression": "TileEntityWaterKineticGenerator::new",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/water-turbine.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/WaterTurbineTests.java"
+      ],
+      "note": "河流、海洋、深海流量，兼容转子、空间、磨损、重载和转电链已接入；多人及性能验收由 M16 跟踪。"
     },
     {
       "registry": "block_entity",
@@ -9618,9 +9640,10 @@
       "status": "partial",
       "evidence": [
         "docs/migration/wind-turbine.md",
-        "neoforge/src/gameTest/java/ic2/neoforge/test/WindTurbineTests.java"
+        "neoforge/src/gameTest/java/ic2/neoforge/test/WindTurbineTests.java",
+        "docs/migration/water-turbine.md"
       ],
-      "note": "转子规格、耐久、原生风场、空间、产能预算、重载与转电链已接入；水力使用及多人性能验收继续由 P10/M16 跟踪。"
+      "note": "转子规格、耐久、风场与水域、空间、产能预算、重载及转电链已接入；多人和性能验收由 M16 跟踪。"
     },
     {
       "registry": "block_entity",
@@ -11025,7 +11048,12 @@
       "factory": "registerManagedBe",
       "expression": "",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/water-turbine.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/WaterTurbineTests.java"
+      ],
+      "note": "河流、海洋、深海流量，兼容转子、空间、磨损、重载和转电链已接入；多人及性能验收由 M16 跟踪。"
     },
     {
       "registry": "menu",
@@ -11038,9 +11066,10 @@
       "status": "partial",
       "evidence": [
         "docs/migration/wind-turbine.md",
-        "neoforge/src/gameTest/java/ic2/neoforge/test/WindTurbineTests.java"
+        "neoforge/src/gameTest/java/ic2/neoforge/test/WindTurbineTests.java",
+        "docs/migration/water-turbine.md"
       ],
-      "note": "转子规格、耐久、原生风场、空间、产能预算、重载与转电链已接入；水力使用及多人性能验收继续由 P10/M16 跟踪。"
+      "note": "转子规格、耐久、风场与水域、空间、产能预算、重载及转电链已接入；多人和性能验收由 M16 跟踪。"
     },
     {
       "registry": "menu",

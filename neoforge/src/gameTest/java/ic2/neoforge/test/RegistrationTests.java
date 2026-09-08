@@ -116,6 +116,10 @@ public final class RegistrationTests {
         FUNCTIONS.register("manual_interaction", () -> ManualKineticTests::interaction);
         FUNCTIONS.register("manual_hunger_outputs", () -> ManualKineticTests::hungerAndOutputs);
         FUNCTIONS.register("manual_network_supply", () -> ManualKineticTests::networkSupply);
+        FUNCTIONS.register("water_turbine_operation", () -> WaterTurbineTests::operationAndWear);
+        FUNCTIONS.register("water_turbine_obstructions", () -> WaterTurbineTests::obstructions);
+        FUNCTIONS.register("water_turbine_tides", () -> WaterTurbineTests::tidesAndDeepOcean);
+        FUNCTIONS.register("water_turbine_network", () -> WaterTurbineTests::networkSupply);
         FUNCTIONS.register("turbine_operation", () -> WindTurbineTests::operationAndWear);
         FUNCTIONS.register("turbine_obstructions", () -> WindTurbineTests::obstructions);
         FUNCTIONS.register("turbine_network_supply", () -> WindTurbineTests::networkSupply);

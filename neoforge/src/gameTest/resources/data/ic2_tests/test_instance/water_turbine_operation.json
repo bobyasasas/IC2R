@@ -1,0 +1,7 @@
+{
+  "type": "minecraft:function",
+  "function": "ic2_tests:water_turbine_operation",
+  "environment": "ic2_tests:water_tides",
+  "structure": "ic2_tests:water_turbine_room",
+  "max_ticks": 200
+}

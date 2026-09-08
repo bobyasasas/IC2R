@@ -72,7 +72,9 @@ public final class MachineMenu extends AbstractContainerMenu {
                     new ResourceHandlerSlot(inventory, inventory::set, 0, 133, 24) {
                         @Override
                         public boolean mayPlace(ItemStack stack) {
-                            return stack.getItem() instanceof ic2.neoforge.item.RotorItem;
+                            return stack.getItem() instanceof ic2.neoforge.item.RotorItem rotor
+                                    && (kind != MachineKind.WATER_KINETIC_GENERATOR
+                                            || rotor.material().supportsWater());
                         }
                     });
         } else if (kind.fuelHeat()) {

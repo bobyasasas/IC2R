@@ -1,6 +1,7 @@
 package ic2.neoforge.client;
 
 import ic2.core.machine.RotorOperation;
+import ic2.neoforge.machine.MachineKind;
 import ic2.neoforge.menu.MachineMenu;
 
 import net.minecraft.client.gui.GuiGraphicsExtractor;
@@ -35,7 +36,11 @@ public final class TurbineScreen extends MachineScreen {
         var status = statuses[Math.clamp(menu.familyValue(1), 0, statuses.length - 1)];
         graphics.text(
                 font,
-                Component.translatable("ic2.rotor.wind", number.format(menu.familyFloat(3))),
+                Component.translatable(
+                        menu.kind() == MachineKind.WATER_KINETIC_GENERATOR
+                                ? "ic2.rotor.shore"
+                                : "ic2.rotor.wind",
+                        number.format(menu.familyFloat(3))),
                 leftPos + 8,
                 topPos + 24,
                 0xff404040,

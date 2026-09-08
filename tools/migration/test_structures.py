@@ -30,3 +30,11 @@ target.write_bytes(gzip.compress(tag(10, '', root + b'\x00'), mtime=0))
 root = integer('DataVersion', 4790) + int_list('size', [35, 192, 35]) + compound_list('palette', palette) + compound_list('blocks', blocks) + compound_list('entities', [])
 target = ROOT / 'neoforge/src/gameTest/resources/data/ic2_tests/structure/wind_room.nbt'
 target.write_bytes(gzip.compress(tag(10, '', root + b'\x00'), mtime=0))
+
+# A sealed, test-only water channel contains the complete iron ocean rotor scan (13×13×43).
+palette = [tag(8, 'Name', string(name)) for name in ['minecraft:water', 'minecraft:glass']]
+blocks = [int_list('pos', [x, y, z]) + integer('state', int(x in [19, 35] or y in [2, 18] or z in [4, 50]))
+          for x in range(19, 36) for y in range(2, 19) for z in range(4, 51)]
+root = integer('DataVersion', 4790) + int_list('size', [55, 24, 55]) + compound_list('palette', palette) + compound_list('blocks', blocks) + compound_list('entities', [])
+target = ROOT / 'neoforge/src/gameTest/resources/data/ic2_tests/structure/water_turbine_room.nbt'
+target.write_bytes(gzip.compress(tag(10, '', root + b'\x00'), mtime=0))

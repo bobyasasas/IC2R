@@ -1417,5 +1417,6 @@
   "ic2.rotor.status.overloaded": "强风：加快磨损",
   "ic2.rotor.status.disabled": "已禁用",
   "ic2.rotor.status.invalid_biome": "需要海洋或河流",
-  "ic2.rotor.status.no_flow": "水流静止"
+  "ic2.rotor.status.no_flow": "水流静止",
+  "ic2.rotor.shore": "岸距：%s 米"
 }
