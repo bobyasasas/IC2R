@@ -264,8 +264,7 @@ public final class RegistrationTests {
                 "pattern_storage_disk", () -> PatternStorageTests::writesPatternBackToDisk);
         FUNCTIONS.register(
                 "replicator_single", () -> ReplicatorTests::replicatesPatternFromStorage);
-        FUNCTIONS.register(
-                "replicator_no_uu", () -> ReplicatorTests::modeStopsWithoutUu);
+        FUNCTIONS.register("replicator_no_uu", () -> ReplicatorTests::modeStopsWithoutUu);
         FUNCTIONS.register(
                 "reactor_fluid_mode",
                 () -> ReactorFluidModeTests::fluidModeConvertsHeatToHotCoolant);
@@ -274,6 +273,7 @@ public final class RegistrationTests {
                 () -> ReactorFluidModeTests::hotCoolantExtractsThroughPort);
         FUNCTIONS.register(
                 "reactor_heatpack_warm", () -> ReactorHeatEffectTests::heatpackWarmsVentStorage);
+        FUNCTIONS.register("reactor_vessel_place", () -> ReactorVesselTests::vesselPlaces);
         FUNCTIONS.register(
                 "crystal_memory_roundtrip", () -> CrystalMemoryTests::recordsAndReadsPattern);
         FUNCTIONS.register("uu_scanner_scan", () -> UuScannerTests::scansSeededItemOntoMemory);

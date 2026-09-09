@@ -3220,7 +3220,7 @@
       "source": "shaped/pattern_storage.json",
       "type": "ic2:shaped",
       "status": "pending",
-      "reason": "unported result ic2:pattern_storage"
+      "reason": "unported item ic2:mining_laser"
     },
     {
       "source": "shaped/personal_chest.json",
@@ -3520,7 +3520,7 @@
       "source": "shaped/replicator.json",
       "type": "ic2:shaped",
       "status": "pending",
-      "reason": "unported result ic2:replicator"
+      "reason": "unported item ic2:reinforced_glass"
     },
     {
       "source": "shaped/resin_sheet.json",
@@ -4006,7 +4006,7 @@
       "source": "shaped/uu_scanner.json",
       "type": "ic2:shaped",
       "status": "pending",
-      "reason": "unported result ic2:uu_scanner"
+      "reason": "unported item ic2:reinforced_glass"
     },
     {
       "source": "shaped/water_generator.json",
