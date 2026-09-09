@@ -114,6 +114,18 @@ public final class ModTools {
                                     250));
     public static final DeferredItem<MiningFilterCardItem> MINING_FILTER_CARD =
             ITEMS.registerItem("mining_filter_card", p -> new MiningFilterCardItem(p.stacksTo(1)));
+    public static final DeferredItem<CuttingBladeItem> IRON_CUTTING_BLADE =
+            ITEMS.registerItem(
+                    "iron_cutting_blade",
+                    p -> new CuttingBladeItem(p.stacksTo(1), 3, "ic2.iron_cutting_blade.info"));
+    public static final DeferredItem<CuttingBladeItem> STEEL_CUTTING_BLADE =
+            ITEMS.registerItem(
+                    "steel_cutting_blade",
+                    p -> new CuttingBladeItem(p.stacksTo(1), 6, "ic2.steel_cutting_blade.info"));
+    public static final DeferredItem<CuttingBladeItem> DIAMOND_CUTTING_BLADE =
+            ITEMS.registerItem(
+                    "diamond_cutting_blade",
+                    p -> new CuttingBladeItem(p.stacksTo(1), 9, "ic2.diamond_cutting_blade.info"));
 
     private static final DeferredRegister<MenuType<?>> MENUS =
             DeferredRegister.create(Registries.MENU, IndustrialCraft.MOD_ID);
@@ -156,6 +168,9 @@ public final class ModTools {
             event.accept(ADVANCED_SCANNER);
             event.accept(FREQUENCY_TRANSMITTER);
             event.accept(MINING_FILTER_CARD);
+            event.accept(IRON_CUTTING_BLADE);
+            event.accept(STEEL_CUTTING_BLADE);
+            event.accept(DIAMOND_CUTTING_BLADE);
         }
     }
 

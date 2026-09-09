@@ -1,0 +1,15 @@
+{
+  "type": "ic2:block_cutter",
+  "ingredient": "#c:blocks/tin",
+  "input_count": 1,
+  "results": [
+    {
+      "stack": {
+        "id": "ic2:tin_plate",
+        "count": 9
+      },
+      "weight": 1
+    }
+  ],
+  "hardness": 2
+}

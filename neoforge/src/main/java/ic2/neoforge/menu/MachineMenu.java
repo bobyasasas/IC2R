@@ -435,6 +435,19 @@ public final class MachineMenu extends AbstractContainerMenu {
         }
         if (kind == MachineKind.CANNER)
             addSlot(new ResourceHandlerSlot(inventory, inventory::set, 3, 92, 17));
+        if (kind == MachineKind.BLOCK_CUTTER)
+            addSlot(
+                    new ResourceHandlerSlot(inventory, inventory::set, 3, 38, 17) {
+                        @Override
+                        public boolean mayPlace(ItemStack stack) {
+                            return stack.getItem() instanceof ic2.neoforge.item.CuttingBladeItem;
+                        }
+
+                        @Override
+                        public int getMaxStackSize() {
+                            return 1;
+                        }
+                    });
         if (kind.upgradable()) {
             for (int index = 0; index < kind.upgradeSlots(); index++) {
                 addSlot(
@@ -604,6 +617,8 @@ public final class MachineMenu extends AbstractContainerMenu {
         if (kind == MachineKind.ADV_MINER
                 && stack.getItem() instanceof ic2.neoforge.item.MiningFilterCardItem)
             return ic2.neoforge.machine.AdvMinerBlockEntity.CARD_SLOT;
+        if (kind == MachineKind.BLOCK_CUTTER
+                && stack.getItem() instanceof ic2.neoforge.item.CuttingBladeItem) return 3;
         if (stack.getItem() instanceof UpgradeItem item)
             return item.kind().suitable(kind) ? kind.upgradeStart() : -1;
         if (kind == MachineKind.STEAM_KINETIC_GENERATOR)

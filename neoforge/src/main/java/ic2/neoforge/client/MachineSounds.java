@@ -94,6 +94,7 @@ final class MachineSounds {
                     MAGNETIZER,
                     TRADE_O_MAT,
                     ITEM_BUFFER,
+                    BLOCK_CUTTER,
                     PUMP,
                     MINER,
                     ADV_MINER,

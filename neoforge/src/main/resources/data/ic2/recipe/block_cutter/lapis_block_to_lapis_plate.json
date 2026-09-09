@@ -1,0 +1,15 @@
+{
+  "type": "ic2:block_cutter",
+  "ingredient": "minecraft:lapis_block",
+  "input_count": 1,
+  "results": [
+    {
+      "stack": {
+        "id": "ic2:lapis_plate",
+        "count": 9
+      },
+      "weight": 1
+    }
+  ],
+  "hardness": 5
+}

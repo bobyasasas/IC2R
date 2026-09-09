@@ -223,6 +223,11 @@ public final class RegistrationTests {
         FUNCTIONS.register("item_buffer_eject", () -> ItemBufferTests::ejectorSendsSidesOut);
         FUNCTIONS.register("item_buffer_pull", () -> ItemBufferTests::pullingTakesFromAbove);
         FUNCTIONS.register("item_buffer_ports", () -> ItemBufferTests::portsAndUpgradeSlots);
+        FUNCTIONS.register("block_cutter_plates", () -> BlockCutterTests::cutsBlockIntoPlates);
+        FUNCTIONS.register(
+                "block_cutter_weak_blade",
+                () -> BlockCutterTests::weakBladeStallsAndDiamondResumes);
+        FUNCTIONS.register("block_cutter_no_blade", () -> BlockCutterTests::missingBladeStalls);
         FUNCTIONS.register("cooling_capacity", () -> HeatExchangerTests::nearlyFullOutput);
         FUNCTIONS.register("cooling_parts_budget", () -> HeatExchangerTests::partsAndBudget);
         FUNCTIONS.register("cooling_stirling_chain", () -> HeatExchangerTests::stirlingChain);

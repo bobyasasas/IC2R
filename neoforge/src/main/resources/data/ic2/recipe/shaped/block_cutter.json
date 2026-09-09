@@ -1,0 +1,17 @@
+{
+  "type": "ic2:shaped",
+  "pattern": [
+    "C",
+    "B",
+    "M"
+  ],
+  "result": {
+    "id": "ic2:block_cutter",
+    "count": 1
+  },
+  "key": {
+    "B": "ic2:machine",
+    "M": "ic2:electric_motor",
+    "C": "ic2:circuit"
+  }
+}

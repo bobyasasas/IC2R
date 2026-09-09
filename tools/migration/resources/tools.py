@@ -4,7 +4,8 @@ from base import item, model, write
 for identifier in ['wrench', 'electric_wrench', 'forge_hammer', 'cutter',
                    'drill', 'diamond_drill', 'iridium_drill',
                    'scanner', 'advanced_scanner', 'frequency_transmitter',
-                   'mining_filter_card']:
+                   'mining_filter_card', 'iron_cutting_blade', 'steel_cutting_blade',
+                   'diamond_cutting_blade']:
     item(identifier)
 
 write("data/ic2/tags/item/toolbox_tools.json", {"values": ["ic2:" + tool for tool in ["wrench", "electric_wrench", "forge_hammer", "cutter", "treetap", "electric_treetap", "scanner", "advanced_scanner"]]})

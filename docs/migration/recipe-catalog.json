@@ -33,104 +33,104 @@
     {
       "source": "block_cutter/acacia_logs_to_acacia_planks.json",
       "type": "ic2:block_cutter",
-      "status": "pending",
-      "reason": "recipe family not ported"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/block_cutter/acacia_logs_to_acacia_planks.json"
     },
     {
       "source": "block_cutter/birch_logs_to_birch_planks.json",
       "type": "ic2:block_cutter",
-      "status": "pending",
-      "reason": "recipe family not ported"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/block_cutter/birch_logs_to_birch_planks.json"
     },
     {
       "source": "block_cutter/blocks_bronze_to_bronze_plate.json",
       "type": "ic2:block_cutter",
-      "status": "pending",
-      "reason": "recipe family not ported"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/block_cutter/blocks_bronze_to_bronze_plate.json"
     },
     {
       "source": "block_cutter/blocks_lead_to_lead_plate.json",
       "type": "ic2:block_cutter",
-      "status": "pending",
-      "reason": "recipe family not ported"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/block_cutter/blocks_lead_to_lead_plate.json"
     },
     {
       "source": "block_cutter/blocks_steel_to_steel_plate.json",
       "type": "ic2:block_cutter",
-      "status": "pending",
-      "reason": "recipe family not ported"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/block_cutter/blocks_steel_to_steel_plate.json"
     },
     {
       "source": "block_cutter/blocks_tin_to_tin_plate.json",
       "type": "ic2:block_cutter",
-      "status": "pending",
-      "reason": "recipe family not ported"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/block_cutter/blocks_tin_to_tin_plate.json"
     },
     {
       "source": "block_cutter/copper_block_to_copper_plate.json",
       "type": "ic2:block_cutter",
-      "status": "pending",
-      "reason": "recipe family not ported"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/block_cutter/copper_block_to_copper_plate.json"
     },
     {
       "source": "block_cutter/dark_oak_logs_to_dark_oak_planks.json",
       "type": "ic2:block_cutter",
-      "status": "pending",
-      "reason": "recipe family not ported"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/block_cutter/dark_oak_logs_to_dark_oak_planks.json"
     },
     {
       "source": "block_cutter/gold_block_to_gold_plate.json",
       "type": "ic2:block_cutter",
-      "status": "pending",
-      "reason": "recipe family not ported"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/block_cutter/gold_block_to_gold_plate.json"
     },
     {
       "source": "block_cutter/iron_block_to_iron_plate.json",
       "type": "ic2:block_cutter",
-      "status": "pending",
-      "reason": "recipe family not ported"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/block_cutter/iron_block_to_iron_plate.json"
     },
     {
       "source": "block_cutter/jungle_logs_to_jungle_planks.json",
       "type": "ic2:block_cutter",
-      "status": "pending",
-      "reason": "recipe family not ported"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/block_cutter/jungle_logs_to_jungle_planks.json"
     },
     {
       "source": "block_cutter/lapis_block_to_lapis_plate.json",
       "type": "ic2:block_cutter",
-      "status": "pending",
-      "reason": "recipe family not ported"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/block_cutter/lapis_block_to_lapis_plate.json"
     },
     {
       "source": "block_cutter/mangrove_logs_to_mangrove_planks.json",
       "type": "ic2:block_cutter",
-      "status": "pending",
-      "reason": "recipe family not ported"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/block_cutter/mangrove_logs_to_mangrove_planks.json"
     },
     {
       "source": "block_cutter/oak_logs_to_oak_planks.json",
       "type": "ic2:block_cutter",
-      "status": "pending",
-      "reason": "recipe family not ported"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/block_cutter/oak_logs_to_oak_planks.json"
     },
     {
       "source": "block_cutter/obsidian_to_obsidian_plate.json",
       "type": "ic2:block_cutter",
-      "status": "pending",
-      "reason": "recipe family not ported"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/block_cutter/obsidian_to_obsidian_plate.json"
     },
     {
       "source": "block_cutter/planks_to_stick.json",
       "type": "ic2:block_cutter",
-      "status": "pending",
-      "reason": "recipe family not ported"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/block_cutter/planks_to_stick.json"
     },
     {
       "source": "block_cutter/spruce_logs_to_spruce_planks.json",
       "type": "ic2:block_cutter",
-      "status": "pending",
-      "reason": "recipe family not ported"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/block_cutter/spruce_logs_to_spruce_planks.json"
     },
     {
       "source": "canner_bottle/apple_filled_tin_can.json",
@@ -2127,8 +2127,8 @@
     {
       "source": "shaped/block_cutter.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:block_cutter"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/block_cutter.json"
     },
     {
       "source": "shaped/bronze_axe.json",
@@ -2463,8 +2463,8 @@
     {
       "source": "shaped/diamond_cutting_blade.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:diamond_cutting_blade"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/diamond_cutting_blade.json"
     },
     {
       "source": "shaped/diamond_drill.json",
@@ -2823,8 +2823,8 @@
     {
       "source": "shaped/iron_cutting_blade.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:iron_cutting_blade"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/iron_cutting_blade.json"
     },
     {
       "source": "shaped/iron_dust.json",
@@ -3831,8 +3831,8 @@
     {
       "source": "shaped/steel_cutting_blade.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:steel_cutting_blade"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/steel_cutting_blade.json"
     },
     {
       "source": "shaped/steel_ingot.json",

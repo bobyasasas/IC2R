@@ -1,0 +1,16 @@
+{
+  "type": "ic2:shaped",
+  "pattern": [
+    "AAA",
+    "ABA",
+    "AAA"
+  ],
+  "result": {
+    "id": "ic2:diamond_cutting_blade",
+    "count": 1
+  },
+  "key": {
+    "A": "#c:gems/diamond",
+    "B": "ic2:steel_cutting_blade"
+  }
+}

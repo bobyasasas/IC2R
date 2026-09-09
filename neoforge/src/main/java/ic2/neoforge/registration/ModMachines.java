@@ -145,6 +145,7 @@ public final class ModMachines {
             case CENTRIFUGE -> new CentrifugeBlockEntity(pos, state);
             case METAL_FORMER -> new MetalFormerBlockEntity(pos, state);
             case MACERATOR, EXTRACTOR, COMPRESSOR -> new SingleInputBlockEntity(pos, state);
+            case BLOCK_CUTTER -> new ic2.neoforge.machine.BlockCutterBlockEntity(pos, state);
         };
     }
 

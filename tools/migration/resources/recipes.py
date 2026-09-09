@@ -9,7 +9,7 @@ recipe_root = OLD / 'data/ic2/recipes'
 ledger = []
 ledger_path = ROOT / 'docs/migration/recipe-catalog.json'
 previous = json.loads(ledger_path.read_text())['entries'] if ledger_path.exists() else []
-processing_types = {'ic2:macerator', 'ic2:extractor', 'ic2:compressor', 'ic2:metal_former_extruding', 'ic2:metal_former_rolling', 'ic2:metal_former_cutting'}
+processing_types = {'ic2:macerator', 'ic2:extractor', 'ic2:compressor', 'ic2:metal_former_extruding', 'ic2:metal_former_rolling', 'ic2:metal_former_cutting', 'ic2:block_cutter'}
 supported = processing_types | {'ic2:centrifuge', 'ic2:ore_washer', 'ic2:canner_bottle', 'ic2:canner_enrich', 'ic2:shaped', 'ic2:shapeless', 'minecraft:crafting_shaped', 'minecraft:crafting_shapeless', 'minecraft:smelting', 'minecraft:blasting', 'ic2:macerator', 'ic2:extractor', 'ic2:compressor'}
 
 
@@ -92,6 +92,8 @@ for file in sorted(recipe_root.rglob('*.json')):
             assert len(results) == 1 or old.get('weighted'), relative
             new = {'type': old['type'], 'ingredient': ingredient(inputs), 'input_count': inputs.get('count', 1),
                    'results': [{'stack': stack(result), 'weight': result.get('weight', 1)} for result in results]}
+            if 'hardness' in old:
+                new['hardness'] = old['hardness']
         else:
             new = {key: value for key, value in old.items() if key not in {'result', 'ingredient', 'ingredients', 'key'}}
             new['result'] = stack(old['result'])

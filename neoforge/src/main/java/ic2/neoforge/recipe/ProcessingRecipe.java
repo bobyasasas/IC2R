@@ -21,7 +21,11 @@ import java.util.Objects;
 
 /** Immutable counted-input recipe with explicit weighted outcomes. */
 public record ProcessingRecipe(
-        ProcessingMethod method, Ingredient ingredient, int inputCount, List<Output> outputs)
+        ProcessingMethod method,
+        Ingredient ingredient,
+        int inputCount,
+        List<Output> outputs,
+        int hardness)
         implements Recipe<SingleRecipeInput> {
     public record Output(ItemStackTemplate stack, int weight) {
         public static final Codec<Output> CODEC =
@@ -58,6 +62,12 @@ public record ProcessingRecipe(
             throw new IllegalArgumentException("Invalid processing recipe bounds");
     }
 
+    /** Most families have no blade gate; only the block cutter reads a positive hardness. */
+    public ProcessingRecipe(
+            ProcessingMethod method, Ingredient ingredient, int inputCount, List<Output> outputs) {
+        this(method, ingredient, inputCount, outputs, 0);
+    }
+
     public static MapCodec<ProcessingRecipe> codec(ProcessingMethod method) {
         return RecordCodecBuilder.mapCodec(
                 instance ->
@@ -71,12 +81,19 @@ public record ProcessingRecipe(
                                         Output.CODEC
                                                 .listOf(1, 64)
                                                 .fieldOf("results")
-                                                .forGetter(ProcessingRecipe::outputs))
+                                                .forGetter(ProcessingRecipe::outputs),
+                                        Codec.intRange(0, Integer.MAX_VALUE)
+                                                .optionalFieldOf("hardness", 0)
+                                                .forGetter(ProcessingRecipe::hardness))
                                 .apply(
                                         instance,
-                                        (ingredient, count, outputs) ->
+                                        (ingredient, count, outputs, hardness) ->
                                                 new ProcessingRecipe(
-                                                        method, ingredient, count, outputs)));
+                                                        method,
+                                                        ingredient,
+                                                        count,
+                                                        outputs,
+                                                        hardness)));
     }
 
     public static StreamCodec<RegistryFriendlyByteBuf, ProcessingRecipe> streamCodec(
@@ -88,8 +105,10 @@ public record ProcessingRecipe(
                 ProcessingRecipe::inputCount,
                 Output.STREAM_CODEC.apply(ByteBufCodecs.list(64)),
                 ProcessingRecipe::outputs,
-                (ingredient, count, outputs) ->
-                        new ProcessingRecipe(method, ingredient, count, outputs));
+                ByteBufCodecs.VAR_INT,
+                ProcessingRecipe::hardness,
+                (ingredient, count, outputs, hardness) ->
+                        new ProcessingRecipe(method, ingredient, count, outputs, hardness));
     }
 
     public ItemStackTemplate chooseOutput(RandomSource random) {

@@ -40,7 +40,7 @@ public class SingleInputBlockEntity extends ProcessingBlockEntity {
         };
     }
 
-    private RecipeManager.CachedCheck<SingleRecipeInput, ProcessingRecipe> recipes() {
+    protected RecipeManager.CachedCheck<SingleRecipeInput, ProcessingRecipe> recipes() {
         return checks.computeIfAbsent(
                 method(), family -> RecipeManager.createCheck(ModProcessingRecipes.type(family)));
     }

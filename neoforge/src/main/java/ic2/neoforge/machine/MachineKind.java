@@ -68,7 +68,8 @@ public enum MachineKind implements StringRepresentable {
     METAL_FORMER("metal_former", 2000, 3, 200, 10),
     MACERATOR("macerator", 600, 3, 300, 2),
     EXTRACTOR("extractor", 600, 3, 300, 2),
-    COMPRESSOR("compressor", 600, 3, 300, 2);
+    COMPRESSOR("compressor", 600, 3, 300, 2),
+    BLOCK_CUTTER("block_cutter", 1800, 4, 450, 4);
 
     public static final Codec<MachineKind> CODEC =
             StringRepresentable.fromEnum(MachineKind::values);
