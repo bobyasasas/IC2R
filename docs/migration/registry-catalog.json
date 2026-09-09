@@ -786,7 +786,12 @@
       "factory": "register",
       "expression": "new ItemDynamite(new Properties(), false)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/dynamite.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/DynamiteTests.java"
+      ],
+      "note": "方块状态机、贴面生存、LINKED 切换与放置测试通过;遥控器配对与群爆随后续切片。"
     },
     {
       "registry": "item",
@@ -7388,7 +7393,12 @@
       "factory": "register",
       "expression": "new BlockDynamite()",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/dynamite.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/DynamiteTests.java"
+      ],
+      "note": "方块状态机、贴面生存、LINKED 切换与放置测试通过;遥控器配对与群爆随后续切片。"
     },
     {
       "registry": "block",
@@ -11801,7 +11811,12 @@
       "factory": "register",
       "expression": "Builder.<DynamiteEntity>of(DynamiteEntity::new, MobCategory.MISC).sized(0.5F, 0.5F).clientTrackingRange(8).updateInterval(5)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/dynamite.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/DynamiteTests.java"
+      ],
+      "note": "方块状态机、贴面生存、LINKED 切换与放置测试通过;遥控器配对与群爆随后续切片。"
     },
     {
       "registry": "entity",

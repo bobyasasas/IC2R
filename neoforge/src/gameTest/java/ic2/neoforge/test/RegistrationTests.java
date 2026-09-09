@@ -279,6 +279,8 @@ public final class RegistrationTests {
                 () -> ReactorFluidModeTests::hotCoolantExtractsThroughPort);
         FUNCTIONS.register(
                 "reactor_heatpack_warm", () -> ReactorHeatEffectTests::heatpackWarmsVentStorage);
+        FUNCTIONS.register("dynamite_placement", () -> DynamiteTests::placesWithFacingAndSupport);
+        FUNCTIONS.register("dynamite_linked_toggle", () -> DynamiteTests::linkedStateToggles);
         FUNCTIONS.register("reactor_vessel_place", () -> ReactorVesselTests::vesselPlaces);
         FUNCTIONS.register(
                 "crystal_memory_roundtrip", () -> CrystalMemoryTests::recordsAndReadsPattern);
