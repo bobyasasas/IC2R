@@ -584,6 +584,9 @@ public final class MachineMenu extends AbstractContainerMenu {
                                             .get())
                             ? 0
                             : -1;
+        if (kind == MachineKind.ADV_MINER
+                && stack.getItem() instanceof ic2.neoforge.item.MiningFilterCardItem)
+            return ic2.neoforge.machine.AdvMinerBlockEntity.CARD_SLOT;
         if (stack.getItem() instanceof UpgradeItem item)
             return item.kind().suitable(kind) ? kind.upgradeStart() : -1;
         if (kind == MachineKind.STEAM_KINETIC_GENERATOR)
