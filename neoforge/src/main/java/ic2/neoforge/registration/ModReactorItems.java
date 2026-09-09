@@ -3,6 +3,7 @@ package ic2.neoforge.registration;
 import ic2.neoforge.component.ModDataComponents;
 import ic2.neoforge.item.CondensatorItem;
 import ic2.neoforge.item.FuelRodItem;
+import ic2.neoforge.item.MoxFuelRodItem;
 import ic2.neoforge.item.ReactorHeatItem;
 
 import net.minecraft.network.chat.Component;
@@ -38,11 +39,13 @@ public final class ModReactorItems {
             fuelRod("dual_uranium_fuel_rod", 2, 20000);
     public static final DeferredItem<FuelRodItem> QUAD_URANIUM_FUEL_ROD =
             fuelRod("quad_uranium_fuel_rod", 4, 20000);
-    public static final DeferredItem<FuelRodItem> MOX_FUEL_ROD = fuelRod("mox_fuel_rod", 1, 10000);
+    public static final DeferredItem<FuelRodItem> MOX_FUEL_ROD = ITEMS.registerItem("mox_fuel_rod", properties -> new MoxFuelRodItem(properties, 1, 10000));
     public static final DeferredItem<FuelRodItem> DUAL_MOX_FUEL_ROD =
-            fuelRod("dual_mox_fuel_rod", 2, 10000);
+            ITEMS.registerItem(
+                "dual_mox_fuel_rod", properties -> new MoxFuelRodItem(properties, 2, 10000));
     public static final DeferredItem<FuelRodItem> QUAD_MOX_FUEL_ROD =
-            fuelRod("quad_mox_fuel_rod", 4, 10000);
+            ITEMS.registerItem(
+                "quad_mox_fuel_rod", properties -> new MoxFuelRodItem(properties, 4, 10000));
     public static final DeferredItem<Item> DEPLETED_URANIUM_FUEL_ROD =
             nuclear("depleted_uranium_fuel_rod");
     public static final DeferredItem<Item> DEPLETED_DUAL_URANIUM_FUEL_ROD =

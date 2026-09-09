@@ -1,0 +1,212 @@
+package ic2.neoforge.machine;
+
+import ic2.core.energy.grid.EnergyNode;
+import ic2.neoforge.item.ReactorComponent;
+import ic2.neoforge.item.ReactorHost;
+import ic2.neoforge.registration.ModMachines;
+import ic2.neoforge.transfer.ResourcePort;
+
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.storage.ValueInput;
+import net.minecraft.world.level.storage.ValueOutput;
+import net.neoforged.neoforge.transfer.ResourceHandler;
+import net.neoforged.neoforge.transfer.item.ItemResource;
+
+/**
+ * EU-mode nuclear reactor core, first migration slice: a 3-column by 6-row component grid running
+ * the legacy two-pass cycle every 20 ticks. Fuel rods pulse and deplete, vent components absorb
+ * their heat, heat above the limit melts the core down. Chamber columns, reflector/switch component
+ * interactions, fluid cooling mode and the access ports land in later slices.
+ */
+public final class NuclearReactorBlockEntity extends PoweredBlockEntity implements ReactorHost {
+    public static final int GRID_COLUMNS = 3;
+    public static final int GRID_ROWS = 6;
+    public static final int CYCLE_TICKS = 20;
+    private static final int BASE_MAX_HEAT = 10000;
+
+    private int heat;
+    private int maxHeat = BASE_MAX_HEAT;
+    private float hem = 1.0F;
+    private float output;
+    private int cycleTicker;
+    private boolean producing;
+
+    public NuclearReactorBlockEntity(BlockPos pos, BlockState state) {
+        super(
+                ModMachines.entityType(((MachineBlock) state.getBlock()).kind()),
+                pos,
+                state,
+                100000,
+                18);
+    }
+
+    @Override
+    public EnergyNode.Terminal energyNode() {
+        // LV source: the legacy reactor emits its output as LV packets.
+        return EnergyNode.Terminal.source(energy, 32, 30);
+    }
+
+    @Override
+    protected boolean acceptsInventorySlot(int slot, ItemResource resource) {
+        return resource.getItem() instanceof ic2.neoforge.item.ReactorComponent;
+    }
+
+    @Override
+    public ResourceHandler<ItemResource> automation(Direction side) {
+        return new ResourcePort<>(inventory, slot -> true, slot -> true);
+    }
+
+    @Override
+    public void serverTick(ServerLevel level) {
+        if (++cycleTicker % CYCLE_TICKS != 0) return;
+        // The legacy loop always runs the two passes; the rods themselves only pulse while the
+        // reactor receives a redstone signal.
+        processChambers();
+        if (meltDown(level)) return;
+        producing = heat >= 1000 || output > 0.0F;
+        if (output > 0) energy.insert(output * CYCLE_TICKS);
+        setActive(producing);
+    }
+
+    private void processChambers() {
+        output = 0.0F;
+        maxHeat = BASE_MAX_HEAT;
+        hem = 1.0F;
+        for (int pass = 0; pass < 2; pass++) {
+            boolean heatRun = pass == 0;
+            for (int y = 0; y < GRID_ROWS; y++) {
+                for (int x = 0; x < GRID_COLUMNS; x++) {
+                    var stack = getItemAt(x, y);
+                    if (stack == null || !(stack.getItem() instanceof ReactorComponent component))
+                        continue;
+                    component.processChamber(stack, this, x, y, heatRun);
+                    var current = getItemAt(x, y);
+                    // setItemAt replaced the slot (depleted swap): keep it. Otherwise persist the
+                    // component's mutation (depletion ticks) on the stored stack.
+                    if (current.getItem() == stack.getItem()
+                            && !net.minecraft.world.item.ItemStack.matches(current, stack))
+                        setItemAt(x, y, stack);
+                }
+            }
+        }
+    }
+
+    /** Legacy heat effects: melt-down at 100%, fire and lava at 85%, radiation at 70%. */
+    private boolean meltDown(ServerLevel level) {
+        if (heat < 4000) return false;
+        float power = (float) heat / maxHeat;
+        if (power >= 1.0F) {
+            clearGrid();
+            setActive(false);
+            getLevel().removeBlock(worldPosition, false);
+            ic2.neoforge.explosion.HeatExplosion.trigger(level, worldPosition, 10, 0.01F, true);
+            heat = 0;
+            return true;
+        }
+        producing = heat >= 1000 || output > 0.0F;
+        return false;
+    }
+
+    /** A melt-down vaporises the whole charge; nothing drops, exactly like the legacy core. */
+    private void clearGrid() {
+        for (int slot = 0; slot < inventory.size(); slot++)
+            inventory.set(slot, ItemResource.EMPTY, 0);
+    }
+
+    @Override
+    public boolean produceEnergy() {
+        return getLevel() != null && getLevel().hasNeighborSignal(worldPosition);
+    }
+
+    @Override
+    public int getHeat() {
+        return heat;
+    }
+
+    @Override
+    public void setHeat(int heat) {
+        this.heat = heat;
+    }
+
+    @Override
+    public int addHeat(int amount) {
+        heat += amount;
+        return heat;
+    }
+
+    @Override
+    public int getMaxHeat() {
+        return maxHeat;
+    }
+
+    @Override
+    public void setMaxHeat(int maxHeat) {
+        this.maxHeat = maxHeat;
+    }
+
+    @Override
+    public float getHeatEffectModifier() {
+        return hem;
+    }
+
+    @Override
+    public void setHeatEffectModifier(float hem) {
+        this.hem = hem;
+    }
+
+    @Override
+    public ItemStack getItemAt(int x, int y) {
+        return x >= 0 && x < GRID_COLUMNS && y >= 0 && y < GRID_ROWS
+                ? inventory.stack(x + y * GRID_COLUMNS)
+                : null;
+    }
+
+    @Override
+    public void setItemAt(int x, int y, ItemStack stack) {
+        if (x >= 0 && x < GRID_COLUMNS && y >= 0 && y < GRID_ROWS) {
+            if (stack.isEmpty()) inventory.set(x + y * GRID_COLUMNS, ItemResource.EMPTY, 0);
+            else inventory.set(x + y * GRID_COLUMNS, ItemResource.of(stack), stack.getCount());
+        }
+    }
+
+    @Override
+    public float getReactorEnergyOutput() {
+        return output;
+    }
+
+    @Override
+    public void addOutput(float energy) {
+        output += energy;
+    }
+
+    @Override
+    public int menuValue(int index) {
+        return index == 0 ? Float.floatToIntBits((float) heat / maxHeat) : 0;
+    }
+
+    @Override
+    public int progress() {
+        return heat;
+    }
+
+    @Override
+    public int progressMaximum() {
+        return maxHeat;
+    }
+
+    @Override
+    protected void loadAdditional(ValueInput input) {
+        super.loadAdditional(input);
+        heat = Math.clamp(input.getIntOr("heat", 0), 0, Integer.MAX_VALUE);
+    }
+
+    @Override
+    protected void saveAdditional(ValueOutput output) {
+        super.saveAdditional(output);
+        output.putInt("heat", heat);
+    }
+}

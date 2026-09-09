@@ -145,6 +145,16 @@ public final class MachineMenu extends AbstractContainerMenu {
                             return false;
                         }
                     });
+        } else if (kind == MachineKind.NUCLEAR_REACTOR) {
+            for (int y = 0; y < NuclearReactorBlockEntity.GRID_ROWS; y++)
+                for (int x = 0; x < NuclearReactorBlockEntity.GRID_COLUMNS; x++)
+                    addSlot(
+                            new ResourceHandlerSlot(
+                                    inventory,
+                                    inventory::set,
+                                    x + y * NuclearReactorBlockEntity.GRID_COLUMNS,
+                                    62 + x * 18,
+                                    17 + y * 18));
         } else if (kind == MachineKind.MATTER_GENERATOR) {
             addSlot(new ResourceHandlerSlot(inventory, inventory::set, 0, 72, 40));
             addFluidContainerSlot(inventory, 2, 125, 23);

@@ -1446,5 +1446,6 @@
   "ic2.steam_turbine.venting": "Venting excess steam",
   "ic2.steam_turbine.throttled": "Water slows the turbine",
   "ic2.steam_turbine.running": "Running",
-  "ic2.steam_turbine.idle": "Waiting for steam"
+  "ic2.steam_turbine.idle": "Waiting for steam",
+  "ic2.tooltip.reactor_heat": "Heat: %s%%"
 }

@@ -1446,5 +1446,6 @@
   "ic2.steam_turbine.venting": "正在排放余汽",
   "ic2.steam_turbine.throttled": "积水降低动能输出",
   "ic2.steam_turbine.running": "运行中",
-  "ic2.steam_turbine.idle": "等待蒸汽"
+  "ic2.steam_turbine.idle": "等待蒸汽",
+  "ic2.tooltip.reactor_heat": "热量：%s%%"
 }

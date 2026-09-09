@@ -46,6 +46,7 @@ public enum MachineKind implements StringRepresentable {
     ITEM_BUFFER("item_buffer", 0, 48, 0, 0),
     BLAST_FURNACE("blast_furnace", 0, 5, 0, 0),
     MATTER_GENERATOR("matter_generator", 1000000, 3, 0, 0),
+    NUCLEAR_REACTOR("nuclear_reactor", 100000, 18, 0, 0),
     TELEPORTER("teleporter", 0, 0, 0, 0),
     PERSONAL_CHEST("personal_chest", 0, 54, 0, 0),
     RT_HEAT_GENERATOR("rt_heat_generator", 0, 6, 0, 0),

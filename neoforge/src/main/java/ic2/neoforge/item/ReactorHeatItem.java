@@ -6,8 +6,11 @@ import ic2.neoforge.component.ModDataComponents;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 
-/** Component heat is distinct from tool damage; vanilla repairs cannot erase reactor heat. */
-public final class ReactorHeatItem extends Item {
+/**
+ * Component heat is distinct from tool damage; vanilla repairs cannot erase reactor heat. In the
+ * reactor grid the item acts as a heat acceptor, storing vented heat up to its capacity.
+ */
+public final class ReactorHeatItem extends Item implements ReactorComponent {
     private final int capacity, cooling;
 
     public ReactorHeatItem(Properties properties, int capacity, int cooling) {
@@ -53,5 +56,15 @@ public final class ReactorHeatItem extends Item {
     public int getBarColor(ItemStack stack) {
         return net.minecraft.util.Mth.hsvToRgb(
                 (1f - (float) heat(stack).stored() / capacity) / 3f, 1, 1);
+    }
+
+    @Override
+    public boolean canStoreHeat(ItemStack stack, ReactorHost reactor, int x, int y) {
+        return heat(stack).stored() < capacity;
+    }
+
+    @Override
+    public int alterHeat(ItemStack stack, ReactorHost reactor, int x, int y, int heat) {
+        return exchangeHeat(stack, heat);
     }
 }

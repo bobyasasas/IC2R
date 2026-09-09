@@ -1687,7 +1687,12 @@
       "factory": "register",
       "expression": "new ItemBlockIc2(Ic2Blocks.NUCLEAR_REACTOR, new Properties().rarity(Rarity.UNCOMMON))",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/nuclear-reactor.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/NuclearReactorTests.java"
+      ],
+      "note": "EU 模式 3×6 网格、铀棒脉冲/耗损/热分配、熔毁爆炸经 GameTest 验证;chamber 扩列/流体模式/接口件/反射与开关件交互随后续切片。"
     },
     {
       "registry": "item",
@@ -7548,7 +7553,12 @@
       "factory": "register",
       "expression": "Ic2TileEntityBlock.create(Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).strength(2.0F, 10.0F).requiresCorrectToolForDrops().sound(SoundType.METAL), TileEntityNuclearReactorElectric.class, true, Ic2TileEntityBlock.DefaultDrop.Generator, Util.horizontalFacings, true)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/nuclear-reactor.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/NuclearReactorTests.java"
+      ],
+      "note": "EU 模式 3×6 网格、铀棒脉冲/耗损/热分配、熔毁爆炸经 GameTest 验证;chamber 扩列/流体模式/接口件/反射与开关件交互随后续切片。"
     },
     {
       "registry": "block",
@@ -10166,7 +10176,12 @@
       "factory": "register",
       "expression": "TileEntityNuclearReactorElectric::new",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/nuclear-reactor.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/NuclearReactorTests.java"
+      ],
+      "note": "EU 模式 3×6 网格、铀棒脉冲/耗损/热分配、熔毁爆炸经 GameTest 验证;chamber 扩列/流体模式/接口件/反射与开关件交互随后续切片。"
     },
     {
       "registry": "block_entity",
@@ -11732,7 +11747,12 @@
       "factory": "registerManagedBe",
       "expression": "",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/nuclear-reactor.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/NuclearReactorTests.java"
+      ],
+      "note": "EU 模式 3×6 网格、铀棒脉冲/耗损/热分配、熔毁爆炸经 GameTest 验证;chamber 扩列/流体模式/接口件/反射与开关件交互随后续切片。"
     },
     {
       "registry": "menu",
