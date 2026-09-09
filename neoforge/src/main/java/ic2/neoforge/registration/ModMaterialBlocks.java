@@ -21,9 +21,16 @@ public final class ModMaterialBlocks {
             DeferredRegister.createBlocks(IndustrialCraft.MOD_ID);
     private static final DeferredRegister.Items ITEMS =
             DeferredRegister.createItems(IndustrialCraft.MOD_ID);
+    public static final DeferredBlock<Block> IRON_FENCE =
+            BLOCKS.registerBlock(
+                    "iron_fence",
+                    properties ->
+                            new ic2.neoforge.world.IronFenceBlock(
+                                    properties.strength(5.0F, 10.0F).sound(SoundType.METAL)));
     public static final Map<String, DeferredBlock<Block>> MATERIALS = blocks();
 
     private static Map<String, DeferredBlock<Block>> blocks() {
+        ITEMS.registerSimpleBlockItem(IRON_FENCE);
         var result = new LinkedHashMap<String, DeferredBlock<Block>>();
         add(result, "bronze_block", 5, 10, SoundType.METAL, MapColor.NONE);
         add(result, "lead_block", 4, 10, SoundType.METAL, MapColor.NONE);
@@ -68,8 +75,10 @@ public final class ModMaterialBlocks {
     }
 
     private static void creativeContents(BuildCreativeModeTabContentsEvent event) {
-        if (event.getTabKey().equals(CreativeModeTabs.BUILDING_BLOCKS))
+        if (event.getTabKey().equals(CreativeModeTabs.BUILDING_BLOCKS)) {
             MATERIALS.values().forEach(event::accept);
+            event.accept(IRON_FENCE);
+        }
     }
 
     private ModMaterialBlocks() {}

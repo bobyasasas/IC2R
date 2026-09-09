@@ -37,6 +37,7 @@ public enum MachineKind implements StringRepresentable {
     IRON_STORAGE_BOX("iron_storage_box", 0, 45, 0, 0),
     STEEL_STORAGE_BOX("steel_storage_box", 0, 63, 0, 0),
     IRIDIUM_STORAGE_BOX("iridium_storage_box", 0, 126, 0, 0),
+    MAGNETIZER("magnetizer", 100, 4, 0, 0),
     SORTING_MACHINE("sorting_machine", 15000, 14, 0, 0),
     PERSONAL_CHEST("personal_chest", 0, 54, 0, 0),
     RT_HEAT_GENERATOR("rt_heat_generator", 0, 6, 0, 0),
@@ -165,7 +166,7 @@ public enum MachineKind implements StringRepresentable {
     public int electricalTier() {
         return switch (this) {
             case BATBOX, LV_TRANSFORMER -> 1;
-            case BATBOX_CHARGEPAD -> 1;
+            case BATBOX_CHARGEPAD, MAGNETIZER -> 1;
             case CESU,
                     CESU_CHARGEPAD,
                     MV_TRANSFORMER,

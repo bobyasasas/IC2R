@@ -91,6 +91,7 @@ final class MachineSounds {
                     STEAM_REPRESSURIZER,
                     RT_HEAT_GENERATOR,
                     RT_GENERATOR,
+                    MAGNETIZER,
                     PERSONAL_CHEST,
                     SORTING_MACHINE,
                     WOODEN_STORAGE_BOX,

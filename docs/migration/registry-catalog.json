@@ -527,7 +527,11 @@
       "factory": "register",
       "expression": "new ItemBlockIc2(Ic2Blocks.IRON_FENCE, new Properties())",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/magnetizer.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/MagnetizerTests.java"
+      ]
     },
     {
       "registry": "item",
@@ -1838,7 +1842,11 @@
       "factory": "register",
       "expression": "new ItemBlockIc2(Ic2Blocks.MAGNETIZER, new Properties())",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/magnetizer.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/MagnetizerTests.java"
+      ]
     },
     {
       "registry": "item",
@@ -6957,7 +6965,12 @@
       "factory": "register",
       "expression": "new Ic2FenceBlock(Properties.of().strength(5.0F, 10.0F), true)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/magnetizer.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/MagnetizerTests.java"
+      ],
+      "note": "磁化 boost、柱搜索与攀爬速度规则已接入;真实攀爬输入与升级槽待验收。"
     },
     {
       "registry": "block",
@@ -7517,7 +7530,12 @@
       "factory": "register",
       "expression": "Ic2TileEntityBlock.create(Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).strength(2.0F, 10.0F).requiresCorrectToolForDrops().sound(SoundType.METAL), TileEntityMagnetizer.class, false, Ic2TileEntityBlock.DefaultDrop.Self, Util.horizontalFacings, true)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/magnetizer.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/MagnetizerTests.java"
+      ],
+      "note": "磁化 boost、柱搜索与攀爬速度规则已接入;真实攀爬输入与升级槽待验收。"
     },
     {
       "registry": "block",
@@ -10225,7 +10243,12 @@
       "factory": "register",
       "expression": "TileEntityMagnetizer::new",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/magnetizer.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/MagnetizerTests.java"
+      ],
+      "note": "磁化 boost、柱搜索与攀爬速度规则已接入;真实攀爬输入与升级槽待验收。"
     },
     {
       "registry": "block_entity",
@@ -11551,7 +11574,12 @@
       "factory": "registerManagedBe",
       "expression": "",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/magnetizer.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/MagnetizerTests.java"
+      ],
+      "note": "磁化 boost、柱搜索与攀爬速度规则已接入;真实攀爬输入与升级槽待验收。"
     },
     {
       "registry": "menu",

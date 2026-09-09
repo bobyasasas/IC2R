@@ -97,6 +97,7 @@ public final class ModMachines {
                     new ChargepadBlockEntity(pos, state);
             case PERSONAL_CHEST -> new PersonalChestBlockEntity(pos, state);
             case SORTING_MACHINE -> new SortingMachineBlockEntity(pos, state);
+            case MAGNETIZER -> new MagnetizerBlockEntity(pos, state);
             case WOODEN_STORAGE_BOX,
                     BRONZE_STORAGE_BOX,
                     IRON_STORAGE_BOX,

@@ -1,0 +1,17 @@
+{
+  "type": "ic2:shaped",
+  "pattern": [
+    "c",
+    "M",
+    "C"
+  ],
+  "result": {
+    "id": "ic2:personal_chest",
+    "count": 1
+  },
+  "key": {
+    "c": "ic2:circuit",
+    "C": "#c:chests/wooden",
+    "M": "ic2:machine"
+  }
+}

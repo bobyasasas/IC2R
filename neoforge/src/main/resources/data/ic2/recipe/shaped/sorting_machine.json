@@ -1,0 +1,18 @@
+{
+  "type": "ic2:shaped",
+  "pattern": [
+    "UBU",
+    "UMU",
+    "UCU"
+  ],
+  "result": {
+    "id": "ic2:sorting_machine",
+    "count": 1
+  },
+  "key": {
+    "M": "ic2:machine",
+    "U": "ic2:ejector_upgrade",
+    "B": "ic2:circuit",
+    "C": "#c:chests/wooden"
+  }
+}

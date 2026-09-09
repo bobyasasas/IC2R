@@ -1857,8 +1857,8 @@
     {
       "source": "metal_former_extruding/iron_casing_to_iron_fence.json",
       "type": "ic2:metal_former_extruding",
-      "status": "pending",
-      "reason": "unported result ic2:iron_fence"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/metal_former_extruding/iron_casing_to_iron_fence.json"
     },
     {
       "source": "metal_former_extruding/iron_ingot_to_iron_cable.json",
@@ -2211,8 +2211,8 @@
     {
       "source": "shaped/bronze_storage_box.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:bronze_storage_box"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/bronze_storage_box.json"
     },
     {
       "source": "shaped/bronze_sword.json",
@@ -2811,8 +2811,8 @@
     {
       "source": "shaped/iridium_storage_box.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:iridium_storage_box"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/iridium_storage_box.json"
     },
     {
       "source": "shaped/iridium_tank.json",
@@ -2865,8 +2865,8 @@
     {
       "source": "shaped/iron_storage_box.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:iron_storage_box"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/iron_storage_box.json"
     },
     {
       "source": "shaped/iron_tank.json",
@@ -3225,8 +3225,8 @@
     {
       "source": "shaped/personal_chest.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:personal_chest"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/personal_chest.json"
     },
     {
       "source": "shaped/piston.json",
@@ -3759,8 +3759,8 @@
     {
       "source": "shaped/sorting_machine.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:sorting_machine"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/sorting_machine.json"
     },
     {
       "source": "shaped/splitter_cable.json",
@@ -3855,8 +3855,8 @@
     {
       "source": "shaped/steel_storage_box.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:steel_storage_box"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/steel_storage_box.json"
     },
     {
       "source": "shaped/steel_tank.json",
@@ -4071,8 +4071,8 @@
     {
       "source": "shaped/wooden_storage_box.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:wooden_storage_box"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/wooden_storage_box.json"
     },
     {
       "source": "shaped/wool_sheet.json",
