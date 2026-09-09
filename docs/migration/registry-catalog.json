@@ -5096,7 +5096,12 @@
       "factory": "register",
       "expression": "new ItemDrill(new Properties().stacksTo(1), 80, Tiers.DIAMOND, 30000, 100, 1, 16.0F)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/drills.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/DrillItemTests.java"
+      ],
+      "note": "手持挖掘速度、电量门控、分级掉落与逐方块能耗验证通过；铱钻头键盘模式切换（时运/精准）待键盘 API，矿机联动常量待矿机切片验收，声音与攻击属性未迁移。"
     },
     {
       "registry": "item",
@@ -5106,7 +5111,12 @@
       "factory": "register",
       "expression": "new ItemDrill(new Properties().stacksTo(1), 50, Tiers.IRON, 30000, 100, 1, 8.0F)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/drills.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/DrillItemTests.java"
+      ],
+      "note": "手持挖掘速度、电量门控、分级掉落与逐方块能耗验证通过；铱钻头键盘模式切换（时运/精准）待键盘 API，矿机联动常量待矿机切片验收，声音与攻击属性未迁移。"
     },
     {
       "registry": "item",
@@ -5155,7 +5165,12 @@
       "factory": "register",
       "expression": "new ItemDrillIridium(new Properties().stacksTo(1))",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/drills.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/DrillItemTests.java"
+      ],
+      "note": "手持挖掘速度、电量门控、分级掉落与逐方块能耗验证通过；铱钻头键盘模式切换（时运/精准）待键盘 API，矿机联动常量待矿机切片验收，声音与攻击属性未迁移。"
     },
     {
       "registry": "item",

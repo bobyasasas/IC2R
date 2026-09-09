@@ -197,6 +197,9 @@ public final class RegistrationTests {
         FUNCTIONS.register("mining_pipe_shape", () -> MiningPipeTests::pipeShapeAndTools);
         FUNCTIONS.register("mining_pipe_tip", () -> MiningPipeTests::tipIsPlaceOnly);
         FUNCTIONS.register("mining_pipe_no_drops", () -> MiningPipeTests::breakingDropsNothing);
+        FUNCTIONS.register("drill_speed_and_drops", () -> DrillItemTests::speedAndDrops);
+        FUNCTIONS.register("drill_discharge", () -> DrillItemTests::dischargePerBlock);
+        FUNCTIONS.register("drill_miner_constants", () -> DrillItemTests::minerConstants);
         FUNCTIONS.register("cooling_capacity", () -> HeatExchangerTests::nearlyFullOutput);
         FUNCTIONS.register("cooling_parts_budget", () -> HeatExchangerTests::partsAndBudget);
         FUNCTIONS.register("cooling_stirling_chain", () -> HeatExchangerTests::stirlingChain);

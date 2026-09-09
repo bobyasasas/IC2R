@@ -2469,14 +2469,14 @@
     {
       "source": "shaped/diamond_drill.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:diamond_drill"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/diamond_drill.json"
     },
     {
       "source": "shaped/drill.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:drill"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/drill.json"
     },
     {
       "source": "shaped/dual_mox_fuel_rod.json",
@@ -2793,8 +2793,8 @@
     {
       "source": "shaped/iridium_drill.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:iridium_drill"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/iridium_drill.json"
     },
     {
       "source": "shaped/iridium_neutron_reflector.json",

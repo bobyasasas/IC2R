@@ -1,5 +1,6 @@
 package ic2.neoforge.registration;
 
+import ic2.core.energy.ElectricItemSpec;
 import ic2.neoforge.IndustrialCraft;
 import ic2.neoforge.item.*;
 import ic2.neoforge.item.ElectricTreetapItem;
@@ -9,6 +10,7 @@ import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.Identifier;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Item;
@@ -42,6 +44,51 @@ public final class ModTools {
     public static final DeferredItem<ElectricTreetapItem> ELECTRIC_TREETAP =
             ITEMS.registerItem("electric_treetap", p -> new ElectricTreetapItem(p.stacksTo(1)));
 
+    // Drill miner constants keep the legacy TileEntityMiner pacing: EU per tick, ticks per
+    // block, then the per-harvest drill wear energy.
+    public static final DeferredItem<DrillItem> DRILL =
+            ITEMS.registerItem(
+                    "drill",
+                    p ->
+                            new DrillItem(
+                                    p.stacksTo(1),
+                                    new ElectricItemSpec(30000, 100, 1, false),
+                                    BlockTags.INCORRECT_FOR_IRON_TOOL,
+                                    8.0F,
+                                    50,
+                                    50,
+                                    6,
+                                    200,
+                                    0));
+    public static final DeferredItem<DrillItem> DIAMOND_DRILL =
+            ITEMS.registerItem(
+                    "diamond_drill",
+                    p ->
+                            new DrillItem(
+                                    p.stacksTo(1),
+                                    new ElectricItemSpec(30000, 100, 1, false),
+                                    BlockTags.INCORRECT_FOR_DIAMOND_TOOL,
+                                    16.0F,
+                                    80,
+                                    80,
+                                    20,
+                                    50,
+                                    0));
+    public static final DeferredItem<DrillItem> IRIDIUM_DRILL =
+            ITEMS.registerItem(
+                    "iridium_drill",
+                    p ->
+                            new DrillItem(
+                                    p.stacksTo(1),
+                                    new ElectricItemSpec(300000, 1000, 3, false),
+                                    BlockTags.INCORRECT_FOR_NETHERITE_TOOL,
+                                    24.0F,
+                                    800,
+                                    800,
+                                    200,
+                                    20,
+                                    3));
+
     private static Item.Properties tool(Item.Properties properties, int damage) {
         var blocks =
                 BuiltInRegistries.acquireBootstrapRegistrationLookup(BuiltInRegistries.BLOCK)
@@ -64,6 +111,9 @@ public final class ModTools {
             event.accept(CUTTER);
             event.accept(TREETAP);
             event.accept(ELECTRIC_TREETAP);
+            event.accept(DRILL);
+            event.accept(DIAMOND_DRILL);
+            event.accept(IRIDIUM_DRILL);
         }
     }
 

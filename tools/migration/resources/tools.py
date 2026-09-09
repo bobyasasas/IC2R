@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """Migrate tool models using the shared vanilla resource converter."""
 from base import item, model, write
-for identifier in ['wrench', 'electric_wrench', 'forge_hammer', 'cutter']:
+for identifier in ['wrench', 'electric_wrench', 'forge_hammer', 'cutter',
+                   'drill', 'diamond_drill', 'iridium_drill']:
     item(identifier)
 
 write("data/ic2/tags/item/toolbox_tools.json", {"values": ["ic2:" + tool for tool in ["wrench", "electric_wrench", "forge_hammer", "cutter", "treetap", "electric_treetap"]]})

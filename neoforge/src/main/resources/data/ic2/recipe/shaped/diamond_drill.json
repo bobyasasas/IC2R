@@ -1,0 +1,15 @@
+{
+  "type": "ic2:shaped",
+  "pattern": [
+    " D ",
+    "DdD"
+  ],
+  "result": {
+    "id": "ic2:diamond_drill",
+    "count": 1
+  },
+  "key": {
+    "D": "#c:gems/diamond",
+    "d": "ic2:drill"
+  }
+}
