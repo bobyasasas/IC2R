@@ -2244,7 +2244,11 @@
       "factory": "register",
       "expression": "new ItemBlockIc2(Ic2Blocks.TRADE_O_MAT, new Properties())",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/trade-o-mat.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/TradeOMatTests.java"
+      ]
     },
     {
       "registry": "item",
@@ -7910,7 +7914,12 @@
       "factory": "register",
       "expression": "Ic2TileEntityBlock.create(Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).strength(-1.0F, 3600000.0F).requiresCorrectToolForDrops().sound(SoundType.METAL), TileEntityTradeOMat.class, true, Ic2TileEntityBlock.DefaultDrop.Self, Util.horizontalFacings, false)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/trade-o-mat.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/TradeOMatTests.java"
+      ],
+      "note": "模板交易、无限/邻接供应两种模式与计数已接入;所有者编辑界面待客户端验收。"
     },
     {
       "registry": "block",
@@ -10793,7 +10802,12 @@
       "factory": "register",
       "expression": "TileEntityTradeOMat::new",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/trade-o-mat.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/TradeOMatTests.java"
+      ],
+      "note": "模板交易、无限/邻接供应两种模式与计数已接入;所有者编辑界面待客户端验收。"
     },
     {
       "registry": "block_entity",

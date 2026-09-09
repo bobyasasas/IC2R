@@ -92,6 +92,7 @@ final class MachineSounds {
                     RT_HEAT_GENERATOR,
                     RT_GENERATOR,
                     MAGNETIZER,
+                    TRADE_O_MAT,
                     PERSONAL_CHEST,
                     SORTING_MACHINE,
                     WOODEN_STORAGE_BOX,

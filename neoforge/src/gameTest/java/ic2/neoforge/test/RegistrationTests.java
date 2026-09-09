@@ -187,6 +187,8 @@ public final class RegistrationTests {
                 "sorting_machine_default", () -> SortingMachineTests::defaultRouteFallback);
         FUNCTIONS.register("magnetizer_lift", () -> MagnetizerTests::poweredLift);
         FUNCTIONS.register("magnetizer_unpowered", () -> MagnetizerTests::unpoweredStays);
+        FUNCTIONS.register("trade_o_mat_infinite", () -> TradeOMatTests::infiniteTrade);
+        FUNCTIONS.register("trade_o_mat_supply", () -> TradeOMatTests::suppliedTrade);
         FUNCTIONS.register("personal_chest_claim", () -> PersonalChestTests::claimAndDeny);
         FUNCTIONS.register("personal_chest_automation", () -> PersonalChestTests::blocksAutomation);
         FUNCTIONS.register("cooling_capacity", () -> HeatExchangerTests::nearlyFullOutput);

@@ -113,6 +113,23 @@ public final class MachineMenu extends AbstractContainerMenu {
                                 return 64;
                             }
                         });
+        } else if (kind == MachineKind.TRADE_O_MAT) {
+            addSlot(
+                    new ResourceHandlerSlot(inventory, inventory::set, 0, 56, 17) {
+                        @Override
+                        public int getMaxStackSize() {
+                            return 1;
+                        }
+                    });
+            addSlot(
+                    new ResourceHandlerSlot(inventory, inventory::set, 1, 102, 17) {
+                        @Override
+                        public int getMaxStackSize() {
+                            return 1;
+                        }
+                    });
+            addSlot(new ResourceHandlerSlot(inventory, inventory::set, 2, 56, 53));
+            addSlot(new ResourceHandlerSlot(inventory, inventory::set, 3, 102, 53));
         } else if (kind.storageBox()) {
             for (int slot = 0; slot < kind.slots(); slot++)
                 addSlot(
