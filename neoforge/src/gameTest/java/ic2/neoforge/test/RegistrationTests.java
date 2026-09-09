@@ -257,6 +257,12 @@ public final class RegistrationTests {
         FUNCTIONS.register(
                 "reactor_vent_spread", () -> ReactorComponentTests::ventSpreadCoolsNeighbours);
         FUNCTIONS.register(
+                "pattern_storage_transfer", () -> PatternStorageTests::scannerTransfersToStorage);
+        FUNCTIONS.register(
+                "pattern_storage_dedupe", () -> PatternStorageTests::deduplicatesPatterns);
+        FUNCTIONS.register(
+                "pattern_storage_disk", () -> PatternStorageTests::writesPatternBackToDisk);
+        FUNCTIONS.register(
                 "reactor_fluid_mode",
                 () -> ReactorFluidModeTests::fluidModeConvertsHeatToHotCoolant);
         FUNCTIONS.register(

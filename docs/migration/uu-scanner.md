@@ -29,6 +29,16 @@ legacy `ItemCrystalMemory`(内嵌 ItemStack 的模式存储盘)及其空白晶�
   铁锭 → 读回铁锭 → 写空盘清空(组件写/清语义)。
 - IC2 与 GT 双模式 `runGameTestServer` 224 项全绿。
 
+## 切片三:pattern_storage(2026-09-09)
+
+- `PatternStorageBlockEntity`(无能量,1 盘槽):去重模式列表(按物品
+  相等)持久化(`patterns` ItemStack 列表);菜单事件 0/1 前后浏览、2 把
+  选中模式写回盘槽水晶记忆;`addPattern/getPatterns` 实现扫描器与复制机
+  的共享模式源。
+- scanner 完成扫描时的落点优先级:盘槽水晶记忆优先,否则写入相邻
+  pattern_storage(legacy `record()` 分支)。
+- 待补:浏览按钮的实机操作、replicator 的模式消费。
+
 ## 切片二:uu_scanner 本体(2026-09-09)
 
 - `ic2.core.uu.UuValueGraph`(core,纯 Java):节点按物品 id 键;初始值

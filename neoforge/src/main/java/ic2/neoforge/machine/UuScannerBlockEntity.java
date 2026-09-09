@@ -78,7 +78,9 @@ public final class UuScannerBlockEntity extends PoweredBlockEntity {
         }
         var input = inventory.stack(INPUT);
         var memory = inventory.stack(DISK);
-        if (input.isEmpty() || !(memory.getItem() instanceof CrystalMemoryItem)) {
+        var storage = patternStorageNear(level);
+        boolean hasDisk = memory.getItem() instanceof CrystalMemoryItem;
+        if (input.isEmpty() || (!hasDisk && storage == null)) {
             state = "NO_STORAGE";
             reset();
             setActive(false);
@@ -106,12 +108,19 @@ public final class UuScannerBlockEntity extends PoweredBlockEntity {
         setActive(true);
         if (progress >= SCANNER_TICKS) {
             var pattern = new ItemStack(input.getItem());
-            memory.set(
-                    ModDataComponents.CRYSTAL_MEMORY_PATTERN,
-                    net.minecraft.world.item.component.ItemContainerContents.fromItems(
-                            java.util.List.of(pattern)));
-            // stack() hands out a copy; the recorded memory must be written back.
-            inventory.set(DISK, ItemResource.of(memory), memory.getCount());
+            if (hasDisk) {
+                memory.set(
+                        ModDataComponents.CRYSTAL_MEMORY_PATTERN,
+                        net.minecraft.world.item.component.ItemContainerContents.fromItems(
+                                java.util.List.of(pattern)));
+                // stack() hands out a copy; the recorded memory must be written back.
+                inventory.set(DISK, ItemResource.of(memory), memory.getCount());
+            } else if (storage != null && storage.addPattern(pattern)) {
+                // legacy: without a disk the pattern lands in the adjacent pattern storage
+            } else {
+                setActive(false);
+                return;
+            }
             try (var transaction = Transaction.openRoot()) {
                 inventory.extract(INPUT, ItemResource.of(input), 1, transaction);
                 transaction.commit();
@@ -119,6 +128,16 @@ public final class UuScannerBlockEntity extends PoweredBlockEntity {
             state = "COMPLETED";
             setChanged();
         }
+    }
+
+    private ic2.neoforge.machine.PatternStorageBlockEntity patternStorageNear(
+            ServerLevel level) {
+        for (Direction direction : Direction.values()) {
+            if (level.getBlockEntity(worldPosition.relative(direction))
+                    instanceof ic2.neoforge.machine.PatternStorageBlockEntity storage)
+                return storage;
+        }
+        return null;
     }
 
     private void reset() {

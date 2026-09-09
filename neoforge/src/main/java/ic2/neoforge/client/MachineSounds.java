@@ -105,6 +105,7 @@ final class MachineSounds {
                     RCI_RSH,
                     RCI_LZH,
                     UU_SCANNER,
+                    PATTERN_STORAGE,
                     PUMP,
                     MINER,
                     ADV_MINER,
