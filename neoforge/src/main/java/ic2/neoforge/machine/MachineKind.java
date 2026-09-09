@@ -43,6 +43,7 @@ public enum MachineKind implements StringRepresentable {
     ADV_MINER("advanced_miner", 4000000, 17, 0, 0),
     SORTING_MACHINE("sorting_machine", 15000, 14, 0, 0),
     TRADE_O_MAT("trade_o_mat", 0, 4, 0, 0),
+    ITEM_BUFFER("item_buffer", 0, 48, 0, 0),
     TELEPORTER("teleporter", 0, 0, 0, 0),
     PERSONAL_CHEST("personal_chest", 0, 54, 0, 0),
     RT_HEAT_GENERATOR("rt_heat_generator", 0, 6, 0, 0),
@@ -212,6 +213,7 @@ public enum MachineKind implements StringRepresentable {
     public int menuHeight() {
         if (this == STEAM_GENERATOR) return 238;
         if (this == PERSONAL_CHEST) return 222;
+        if (this == ITEM_BUFFER) return 232;
         if (storageBox()) return 124 + slots() / 9 * 18;
         return this == LIQUID_HEAT_EXCHANGER
                         || this == FLUID_REGULATOR
@@ -238,6 +240,7 @@ public enum MachineKind implements StringRepresentable {
 
     public int upgradeSlots() {
         if (this == ADV_MINER) return 4;
+        if (this == ITEM_BUFFER) return 2;
         if (this == CONDENSER || this == STEAM_KINETIC_GENERATOR || this == MINER) return 1;
         if (this == TANK) return 4;
         if (this == LIQUID_HEAT_EXCHANGER) return 3;

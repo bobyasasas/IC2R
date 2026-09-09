@@ -2883,8 +2883,8 @@
     {
       "source": "shaped/item_buffer.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:item_buffer"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/item_buffer.json"
     },
     {
       "source": "shaped/itnt.json",
@@ -4395,8 +4395,8 @@
     {
       "source": "shapeless/mining_filter.json",
       "type": "ic2:shapeless",
-      "status": "pending",
-      "reason": "unported item ic2:item_buffer"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shapeless/mining_filter.json"
     },
     {
       "source": "shapeless/obsidian.json",

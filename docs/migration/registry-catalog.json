@@ -1841,7 +1841,12 @@
       "factory": "register",
       "expression": "new ItemBlockIc2(Ic2Blocks.ITEM_BUFFER, new Properties())",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/item-buffer.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/ItemBufferTests.java"
+      ],
+      "note": "方块、双 24 格分组端口、弹出/拉入升级与配方链已验证;比较器输出与真实客户端界面随实机测试。"
     },
     {
       "registry": "item",
@@ -7598,7 +7603,12 @@
       "factory": "register",
       "expression": "Ic2TileEntityBlock.create(Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).strength(2.0F, 10.0F).requiresCorrectToolForDrops().sound(SoundType.METAL), TileEntityItemBuffer.class, false, Ic2TileEntityBlock.DefaultDrop.Machine, Util.noFacings, false)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/item-buffer.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/ItemBufferTests.java"
+      ],
+      "note": "方块、双 24 格分组端口、弹出/拉入升级与配方链已验证;比较器输出与真实客户端界面随实机测试。"
     },
     {
       "registry": "block",
@@ -10326,7 +10336,12 @@
       "factory": "register",
       "expression": "TileEntityItemBuffer::new",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/item-buffer.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/ItemBufferTests.java"
+      ],
+      "note": "方块、双 24 格分组端口、弹出/拉入升级与配方链已验证;比较器输出与真实客户端界面随实机测试。"
     },
     {
       "registry": "block_entity",
@@ -11687,7 +11702,12 @@
       "factory": "registerManagedBe",
       "expression": "",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/item-buffer.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/ItemBufferTests.java"
+      ],
+      "note": "方块、双 24 格分组端口、弹出/拉入升级与配方链已验证;比较器输出与真实客户端界面随实机测试。"
     },
     {
       "registry": "menu",

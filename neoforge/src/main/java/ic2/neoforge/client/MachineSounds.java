@@ -93,6 +93,7 @@ final class MachineSounds {
                     RT_GENERATOR,
                     MAGNETIZER,
                     TRADE_O_MAT,
+                    ITEM_BUFFER,
                     PUMP,
                     MINER,
                     ADV_MINER,

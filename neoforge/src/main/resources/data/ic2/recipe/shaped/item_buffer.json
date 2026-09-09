@@ -1,0 +1,17 @@
+{
+  "type": "ic2:shaped",
+  "pattern": [
+    "III",
+    "CMC",
+    "III"
+  ],
+  "result": {
+    "id": "ic2:item_buffer",
+    "count": 1
+  },
+  "key": {
+    "M": "ic2:machine",
+    "C": "#c:chests/wooden",
+    "I": "ic2:iron_casing"
+  }
+}

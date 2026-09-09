@@ -94,6 +94,8 @@ public final class IndustrialCraftClient {
                         event.register(registration.menu().get(), MetalFormerScreen::new);
                     else if (kind == MachineKind.MINER)
                         event.register(registration.menu().get(), MinerScreen::new);
+                    else if (kind == MachineKind.ITEM_BUFFER)
+                        event.register(registration.menu().get(), ItemBufferScreen::new);
                     else if (kind == MachineKind.ADV_MINER)
                         event.register(registration.menu().get(), AdvMinerScreen::new);
                     else if (kind == MachineKind.STEAM_KINETIC_GENERATOR)

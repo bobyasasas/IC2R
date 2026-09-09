@@ -102,6 +102,7 @@ public final class ModMachines {
             case MINER -> new MinerBlockEntity(pos, state);
             case ADV_MINER -> new AdvMinerBlockEntity(pos, state);
             case TRADE_O_MAT -> new TradeOMatBlockEntity(pos, state);
+            case ITEM_BUFFER -> new ic2.neoforge.machine.ItemBufferBlockEntity(pos, state);
             case TELEPORTER -> new TeleporterBlockEntity(pos, state);
             case WOODEN_STORAGE_BOX,
                     BRONZE_STORAGE_BOX,

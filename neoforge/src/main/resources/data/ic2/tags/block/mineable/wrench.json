@@ -26,6 +26,7 @@
     "ic2:induction_furnace",
     "ic2:iridium_storage_box",
     "ic2:iron_storage_box",
+    "ic2:item_buffer",
     "ic2:kinetic_generator",
     "ic2:liquid_heat_exchanger",
     "ic2:lv_transformer",

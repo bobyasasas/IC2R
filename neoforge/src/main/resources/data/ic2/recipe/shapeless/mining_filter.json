@@ -1,0 +1,14 @@
+{
+  "type": "ic2:shapeless",
+  "consuming": true,
+  "result": {
+    "id": "ic2:mining_filter_card",
+    "count": 1
+  },
+  "ingredients": [
+    "ic2:advanced_circuit",
+    "ic2:advanced_circuit",
+    "ic2:frequency_transmitter",
+    "ic2:item_buffer"
+  ]
+}

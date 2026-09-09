@@ -220,6 +220,9 @@ public final class RegistrationTests {
                 () -> MiningFilterCardTests::editedCardOverridesMachineFilter);
         FUNCTIONS.register(
                 "mining_filter_card_menu", () -> MiningFilterCardTests::handheldMenuEditsCard);
+        FUNCTIONS.register("item_buffer_eject", () -> ItemBufferTests::ejectorSendsSidesOut);
+        FUNCTIONS.register("item_buffer_pull", () -> ItemBufferTests::pullingTakesFromAbove);
+        FUNCTIONS.register("item_buffer_ports", () -> ItemBufferTests::portsAndUpgradeSlots);
         FUNCTIONS.register("cooling_capacity", () -> HeatExchangerTests::nearlyFullOutput);
         FUNCTIONS.register("cooling_parts_budget", () -> HeatExchangerTests::partsAndBudget);
         FUNCTIONS.register("cooling_stirling_chain", () -> HeatExchangerTests::stirlingChain);
