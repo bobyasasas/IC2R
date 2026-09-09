@@ -1,13 +1,12 @@
 package ic2.neoforge.test;
 
-import ic2.neoforge.component.ModDataComponents;
 import ic2.neoforge.machine.MachineKind;
 import ic2.neoforge.machine.NuclearReactorBlockEntity;
 import ic2.neoforge.machine.ReactorAccessHatchBlockEntity;
 import ic2.neoforge.machine.ReactorRciBlockEntity;
 import ic2.neoforge.machine.ReactorRedstonePortBlockEntity;
-import ic2.neoforge.registration.ModReactorItems;
 import ic2.neoforge.registration.ModMachines;
+import ic2.neoforge.registration.ModReactorItems;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.gametest.framework.GameTestHelper;
@@ -34,8 +33,7 @@ final class ReactorAccessHatchTests {
         helper.setBlock(
                 POSITION.east(),
                 ModMachines.block(MachineKind.REACTOR_REDSTONE_PORT).defaultBlockState());
-        var port = helper.getBlockEntity(
-                POSITION.east(), ReactorRedstonePortBlockEntity.class);
+        var port = helper.getBlockEntity(POSITION.east(), ReactorRedstonePortBlockEntity.class);
         reactor.inventory().set(9, ItemResource.of(freshRod()), 1);
         helper.setBlock(POSITION.east().east(), Blocks.REDSTONE_BLOCK);
         for (int i = 0; i < NuclearReactorBlockEntity.CYCLE_TICKS; i++) {
@@ -46,8 +44,7 @@ final class ReactorAccessHatchTests {
                 ReactorRedstonePortBlockEntity.poweredPortNear(reactor, helper.getLevel()) != null,
                 "The redstone port is detected from the core");
         helper.assertTrue(
-                reactor.getHeat() >= 4,
-                "The port's redstone input drives the core's pulse cycle");
+                reactor.getHeat() >= 4, "The port's redstone input drives the core's pulse cycle");
         helper.succeed();
     }
 
@@ -74,22 +71,49 @@ final class ReactorAccessHatchTests {
     static void rciRechargesCondensator(GameTestHelper helper) {
         var reactor = reactor(helper);
         helper.setBlock(
-                POSITION.east(),
-                ModMachines.block(MachineKind.RCI_RSH).defaultBlockState());
+                POSITION.east(), ModMachines.block(MachineKind.RCI_RSH).defaultBlockState());
         var rci = helper.getBlockEntity(POSITION.east(), ReactorRciBlockEntity.class);
         var condensator = ModReactorItems.RSH_CONDENSATOR.get().getDefaultInstance();
         condensator.set(ic2.neoforge.component.ModDataComponents.REACTOR_HEAT, 18000);
         reactor.inventory().set(9, ItemResource.of(condensator), 1);
-        rci.inventory()
-                .set(0, ItemResource.of(new ItemStack(Blocks.REDSTONE_BLOCK)), 1);
+        rci.inventory().set(0, ItemResource.of(new ItemStack(Blocks.REDSTONE_BLOCK)), 1);
         rci.energy().insert(1000);
         for (int tick = 0; tick < 4; tick++) rci.serverTick(helper.getLevel());
-        var stored = reactor.inventory()
-                .stack(9)
-                .getOrDefault(ic2.neoforge.component.ModDataComponents.REACTOR_HEAT, -1);
+        var stored =
+                reactor.inventory()
+                        .stack(9)
+                        .getOrDefault(ic2.neoforge.component.ModDataComponents.REACTOR_HEAT, -1);
         helper.assertTrue(stored == 0, "The RCI fully recharged the condensator, saw " + stored);
         boolean coolantGone = rci.inventory().stack(0).isEmpty();
         helper.assertTrue(coolantGone, "The redstone block coolant was consumed");
+        helper.succeed();
+    }
+
+    static void rciBonusRaisesConversion(GameTestHelper helper) {
+        var reactor = reactor(helper);
+        helper.setBlock(
+                POSITION.north(), ModMachines.block(MachineKind.RCI_RSH).defaultBlockState());
+        helper.assertTrue(
+                reactor.rciOutputBonus() == 10,
+                "One adjacent RCI contributes a ten-point output bonus");
+        helper.assertTrue(!reactor.isFullSize(), "Three columns is not the full 6x9 form");
+        helper.succeed();
+    }
+
+    static void vesselRingDetection(GameTestHelper helper) {
+        var reactor = reactor(helper);
+        var vessel =
+                ic2.neoforge.registration.ModMaterialBlocks.MATERIALS.get("reactor_vessel").get();
+        // Build the Chebyshev-radius-2 shell around the core (98 blocks).
+        for (int dx = -2; dx <= 2; dx++)
+            for (int dy = -2; dy <= 2; dy++)
+                for (int dz = -2; dz <= 2; dz++) {
+                    if (Math.max(Math.abs(dx), Math.max(Math.abs(dy), Math.abs(dz))) != 2) continue;
+                    helper.setBlock(POSITION.offset(dx, dy, dz), vessel.defaultBlockState());
+                }
+        helper.assertTrue(
+                reactor.hasVesselRing(helper.getLevel()),
+                "The vessel ring is detected once the shell is built");
         helper.succeed();
     }
 

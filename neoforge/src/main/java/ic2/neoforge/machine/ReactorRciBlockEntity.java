@@ -1,14 +1,13 @@
 package ic2.neoforge.machine;
 
-import ic2.neoforge.item.CondensatorItem;
 import ic2.core.energy.grid.EnergyNode;
+import ic2.neoforge.item.CondensatorItem;
 import ic2.neoforge.registration.ModMachines;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.transfer.ResourceHandler;
 import net.neoforged.neoforge.transfer.item.ItemResource;
@@ -33,14 +32,17 @@ public final class ReactorRciBlockEntity extends PoweredBlockEntity {
     }
 
     private ItemStack coolantBlock() {
-        return new ItemStack(lzh ? net.minecraft.world.level.block.Blocks.LAPIS_BLOCK
-                : net.minecraft.world.level.block.Blocks.REDSTONE_BLOCK);
+        return new ItemStack(
+                lzh
+                        ? net.minecraft.world.level.block.Blocks.LAPIS_BLOCK
+                        : net.minecraft.world.level.block.Blocks.REDSTONE_BLOCK);
     }
 
     private ItemStack targetCondensator() {
-        var condensator = lzh
-                ? ic2.neoforge.registration.ModReactorItems.LZH_CONDENSATOR
-                : ic2.neoforge.registration.ModReactorItems.RSH_CONDENSATOR;
+        var condensator =
+                lzh
+                        ? ic2.neoforge.registration.ModReactorItems.LZH_CONDENSATOR
+                        : ic2.neoforge.registration.ModReactorItems.RSH_CONDENSATOR;
         return condensator.get().getDefaultInstance();
     }
 
@@ -51,10 +53,7 @@ public final class ReactorRciBlockEntity extends PoweredBlockEntity {
 
     @Override
     public ResourceHandler<ItemResource> automation(Direction side) {
-        return new ic2.neoforge.transfer.ResourcePort<>(
-                inventory,
-                slot -> slot < 9,
-                slot -> false);
+        return new ic2.neoforge.transfer.ResourcePort<>(inventory, slot -> slot < 9, slot -> false);
     }
 
     @Override
@@ -62,7 +61,7 @@ public final class ReactorRciBlockEntity extends PoweredBlockEntity {
         return EnergyNode.Terminal.sink(energy, 32, 1);
     }
 
-    private NuclearReactorBlockEntity findReactor(ServerLevel level) {
+    public NuclearReactorBlockEntity findReactor(ServerLevel level) {
         for (Direction direction : Direction.values()) {
             if (level.getBlockEntity(worldPosition.relative(direction))
                     instanceof NuclearReactorBlockEntity reactor) return reactor;

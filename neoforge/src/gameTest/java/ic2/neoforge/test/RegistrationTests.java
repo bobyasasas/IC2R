@@ -252,6 +252,10 @@ public final class RegistrationTests {
         FUNCTIONS.register("reactor_mox_pulse", () -> ReactorChamberTests::moxPulseScalesWithHeat);
         FUNCTIONS.register(
                 "reactor_chamber_chain", () -> ReactorChamberTests::chamberChainWidensToNine);
+        FUNCTIONS.register(
+                "rci_bonus_full_size", () -> ReactorAccessHatchTests::rciBonusRaisesConversion);
+        FUNCTIONS.register(
+                "reactor_vessel_ring", () -> ReactorAccessHatchTests::vesselRingDetection);
         FUNCTIONS.register("reactor_reflector", () -> ReactorComponentTests::reflectorBouncesPulse);
         FUNCTIONS.register("reactor_plating", () -> ReactorComponentTests::platingRaisesCoreLimits);
         FUNCTIONS.register(

@@ -120,7 +120,7 @@ public final class NuclearReactorBlockEntity extends PoweredBlockEntity implemen
      * whatever the tanks cannot absorb heats the core instead.
      */
     private void convertEmitHeatToHotCoolant() {
-        int huOutput = HU_OUTPUT_MODIFIER * emitHeatBuffer;
+        int huOutput = HU_OUTPUT_MODIFIER * emitHeatBuffer + rciOutputBonus() * 100;
         emitHeatBuffer = 0;
         if (huOutput <= 0) return;
         int hotRoom = hotCoolantTank.getAmountAsInt(0);
@@ -224,6 +224,38 @@ public final class NuclearReactorBlockEntity extends PoweredBlockEntity implemen
 
     public int hotCoolantAmount() {
         return hotCoolantTank.getAmountAsInt(0);
+    }
+
+    /** RCI (RSH/LZH condensator injector) output bonus stacks per adjacent injector. */
+    public int rciOutputBonus() {
+        int bonus = 0;
+        if (getLevel() instanceof ServerLevel level) {
+            for (Direction direction : Direction.values()) {
+                if (level.getBlockEntity(worldPosition.relative(direction))
+                                instanceof ReactorRciBlockEntity rci
+                        && rci.findReactor(level) == this) bonus += 10;
+            }
+        }
+        return bonus;
+    }
+
+    /** Full 6×9 form: chamber columns reach nine. */
+    public boolean isFullSize() {
+        return columns() >= GRID_COLUMNS;
+    }
+
+    /** The vessel ring at Chebyshev radius 2 must be reactor_vessel casing. */
+    public boolean hasVesselRing(ServerLevel level) {
+        var vessel =
+                ic2.neoforge.registration.ModMaterialBlocks.MATERIALS.get("reactor_vessel").get();
+        for (int dx = -2; dx <= 2; dx++)
+            for (int dy = -2; dy <= 2; dy++)
+                for (int dz = -2; dz <= 2; dz++) {
+                    if (Math.max(Math.abs(dx), Math.max(Math.abs(dy), Math.abs(dz))) != 2) continue;
+                    var pos = worldPosition.offset(dx, dy, dz);
+                    if (!level.getBlockState(pos).is(vessel)) return false;
+                }
+        return true;
     }
 
     /**

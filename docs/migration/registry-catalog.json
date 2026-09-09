@@ -1224,7 +1224,7 @@
         "docs/migration/nuclear-reactor.md",
         "neoforge/src/gameTest/java/ic2/neoforge/test/ReactorAccessHatchTests.java"
       ],
-      "note": "方块、代理行为(网格访问/红石口/RCI 回充)经 GameTest 验证;客户端外观随实机测试。"
+      "note": "方块、代理行为(网格访问/红石口/RCI 回充)经 GameTest 验证;客户端外观随实机测试。 切片五:RCI 输出加成(每台 10 点)与满尺寸校验已接入。"
     },
     {
       "registry": "item",
@@ -1239,7 +1239,7 @@
         "docs/migration/nuclear-reactor.md",
         "neoforge/src/gameTest/java/ic2/neoforge/test/ReactorAccessHatchTests.java"
       ],
-      "note": "方块、代理行为(网格访问/红石口/RCI 回充)经 GameTest 验证;客户端外观随实机测试。"
+      "note": "方块、代理行为(网格访问/红石口/RCI 回充)经 GameTest 验证;客户端外观随实机测试。 切片五:RCI 输出加成(每台 10 点)与满尺寸校验已接入。"
     },
     {
       "registry": "item",
@@ -1717,7 +1717,7 @@
         "docs/migration/nuclear-reactor.md",
         "neoforge/src/gameTest/java/ic2/neoforge/test/ReactorAccessHatchTests.java"
       ],
-      "note": "方块、代理行为(网格访问/红石口/RCI 回充)经 GameTest 验证;客户端外观随实机测试。"
+      "note": "方块、代理行为(网格访问/红石口/RCI 回充)经 GameTest 验证;客户端外观随实机测试。 切片五:RCI 输出加成(每台 10 点)与满尺寸校验已接入。"
     },
     {
       "registry": "item",
@@ -1757,7 +1757,7 @@
         "docs/migration/nuclear-reactor.md",
         "neoforge/src/gameTest/java/ic2/neoforge/test/ReactorAccessHatchTests.java"
       ],
-      "note": "方块、代理行为(网格访问/红石口/RCI 回充)经 GameTest 验证;客户端外观随实机测试。"
+      "note": "方块、代理行为(网格访问/红石口/RCI 回充)经 GameTest 验证;客户端外观随实机测试。 切片五:RCI 输出加成(每台 10 点)与满尺寸校验已接入。"
     },
     {
       "registry": "item",
@@ -7698,7 +7698,7 @@
         "docs/migration/nuclear-reactor.md",
         "neoforge/src/gameTest/java/ic2/neoforge/test/ReactorAccessHatchTests.java"
       ],
-      "note": "方块、代理行为(网格访问/红石口/RCI 回充)经 GameTest 验证;客户端外观随实机测试。"
+      "note": "方块、代理行为(网格访问/红石口/RCI 回充)经 GameTest 验证;客户端外观随实机测试。 切片五:RCI 输出加成(每台 10 点)与满尺寸校验已接入。"
     },
     {
       "registry": "block",
@@ -7738,7 +7738,7 @@
         "docs/migration/nuclear-reactor.md",
         "neoforge/src/gameTest/java/ic2/neoforge/test/ReactorAccessHatchTests.java"
       ],
-      "note": "方块、代理行为(网格访问/红石口/RCI 回充)经 GameTest 验证;客户端外观随实机测试。"
+      "note": "方块、代理行为(网格访问/红石口/RCI 回充)经 GameTest 验证;客户端外观随实机测试。 切片五:RCI 输出加成(每台 10 点)与满尺寸校验已接入。"
     },
     {
       "registry": "block",
@@ -8602,7 +8602,7 @@
         "docs/migration/nuclear-reactor.md",
         "neoforge/src/gameTest/java/ic2/neoforge/test/ReactorAccessHatchTests.java"
       ],
-      "note": "方块、代理行为(网格访问/红石口/RCI 回充)经 GameTest 验证;客户端外观随实机测试。"
+      "note": "方块、代理行为(网格访问/红石口/RCI 回充)经 GameTest 验证;客户端外观随实机测试。 切片五:RCI 输出加成(每台 10 点)与满尺寸校验已接入。"
     },
     {
       "registry": "block",
@@ -8617,7 +8617,7 @@
         "docs/migration/nuclear-reactor.md",
         "neoforge/src/gameTest/java/ic2/neoforge/test/ReactorAccessHatchTests.java"
       ],
-      "note": "方块、代理行为(网格访问/红石口/RCI 回充)经 GameTest 验证;客户端外观随实机测试。"
+      "note": "方块、代理行为(网格访问/红石口/RCI 回充)经 GameTest 验证;客户端外观随实机测试。 切片五:RCI 输出加成(每台 10 点)与满尺寸校验已接入。"
     },
     {
       "registry": "block",
@@ -10371,7 +10371,7 @@
         "docs/migration/nuclear-reactor.md",
         "neoforge/src/gameTest/java/ic2/neoforge/test/ReactorAccessHatchTests.java"
       ],
-      "note": "方块、代理行为(网格访问/红石口/RCI 回充)经 GameTest 验证;客户端外观随实机测试。"
+      "note": "方块、代理行为(网格访问/红石口/RCI 回充)经 GameTest 验证;客户端外观随实机测试。 切片五:RCI 输出加成(每台 10 点)与满尺寸校验已接入。"
     },
     {
       "registry": "block_entity",
@@ -10441,7 +10441,7 @@
         "docs/migration/nuclear-reactor.md",
         "neoforge/src/gameTest/java/ic2/neoforge/test/ReactorAccessHatchTests.java"
       ],
-      "note": "方块、代理行为(网格访问/红石口/RCI 回充)经 GameTest 验证;客户端外观随实机测试。"
+      "note": "方块、代理行为(网格访问/红石口/RCI 回充)经 GameTest 验证;客户端外观随实机测试。 切片五:RCI 输出加成(每台 10 点)与满尺寸校验已接入。"
     },
     {
       "registry": "block_entity",
@@ -11551,7 +11551,7 @@
         "docs/migration/nuclear-reactor.md",
         "neoforge/src/gameTest/java/ic2/neoforge/test/ReactorAccessHatchTests.java"
       ],
-      "note": "方块、代理行为(网格访问/红石口/RCI 回充)经 GameTest 验证;客户端外观随实机测试。"
+      "note": "方块、代理行为(网格访问/红石口/RCI 回充)经 GameTest 验证;客户端外观随实机测试。 切片五:RCI 输出加成(每台 10 点)与满尺寸校验已接入。"
     },
     {
       "registry": "block_entity",
@@ -11566,7 +11566,7 @@
         "docs/migration/nuclear-reactor.md",
         "neoforge/src/gameTest/java/ic2/neoforge/test/ReactorAccessHatchTests.java"
       ],
-      "note": "方块、代理行为(网格访问/红石口/RCI 回充)经 GameTest 验证;客户端外观随实机测试。"
+      "note": "方块、代理行为(网格访问/红石口/RCI 回充)经 GameTest 验证;客户端外观随实机测试。 切片五:RCI 输出加成(每台 10 点)与满尺寸校验已接入。"
     },
     {
       "registry": "block_entity",
