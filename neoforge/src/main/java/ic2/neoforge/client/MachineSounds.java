@@ -91,6 +91,7 @@ final class MachineSounds {
                     STEAM_REPRESSURIZER,
                     RT_HEAT_GENERATOR,
                     RT_GENERATOR,
+                    PERSONAL_CHEST,
                     BATBOX_CHARGEPAD,
                     CESU_CHARGEPAD,
                     MFE_CHARGEPAD,

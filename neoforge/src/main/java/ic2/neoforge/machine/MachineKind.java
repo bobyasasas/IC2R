@@ -32,6 +32,7 @@ public enum MachineKind implements StringRepresentable {
     CESU_CHARGEPAD("cesu_chargepad", 300000, 0, 0, 0),
     MFE_CHARGEPAD("mfe_chargepad", 4000000, 0, 0, 0),
     MFSU_CHARGEPAD("mfsu_chargepad", 40000000, 0, 0, 0),
+    PERSONAL_CHEST("personal_chest", 0, 54, 0, 0),
     RT_HEAT_GENERATOR("rt_heat_generator", 0, 6, 0, 0),
     RT_GENERATOR("rt_generator", 20000, 7, 0, 0),
     SOLID_HEAT_GENERATOR("solid_heat_generator", 0, 2, 0, 0),
@@ -185,6 +186,7 @@ public enum MachineKind implements StringRepresentable {
 
     public int menuHeight() {
         if (this == STEAM_GENERATOR) return 238;
+        if (this == PERSONAL_CHEST) return 222;
         return this == LIQUID_HEAT_EXCHANGER
                         || this == FLUID_REGULATOR
                         || this == CONDENSER

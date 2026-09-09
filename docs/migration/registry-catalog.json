@@ -2198,7 +2198,11 @@
       "factory": "register",
       "expression": "new ItemBlockIc2(Ic2Blocks.PERSONAL_CHEST, new Properties().rarity(Rarity.UNCOMMON))",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/personal-chest.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/PersonalChestTests.java"
+      ]
     },
     {
       "registry": "item",
@@ -7844,7 +7848,12 @@
       "factory": "register",
       "expression": "Ic2TileEntityBlock.create(Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).strength(-1.0F, 3600000.0F).requiresCorrectToolForDrops().sound(SoundType.METAL), TileEntityPersonalChest.class, false, Ic2TileEntityBlock.DefaultDrop.Self, Util.horizontalFacings, false)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/personal-chest.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/PersonalChestTests.java"
+      ],
+      "note": "54 格安全箱、首开认领、非所有者拒绝与拆除保护已接入；箱盖动画/音效待客户端验收。"
     },
     {
       "registry": "block",
@@ -10687,7 +10696,12 @@
       "factory": "register",
       "expression": "TileEntityPersonalChest::new",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/personal-chest.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/PersonalChestTests.java"
+      ],
+      "note": "54 格安全箱、首开认领、非所有者拒绝与拆除保护已接入；箱盖动画/音效待客户端验收。"
     },
     {
       "registry": "block_entity",

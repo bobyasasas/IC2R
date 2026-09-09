@@ -60,6 +60,7 @@ public final class IndustrialCraft {
                 ic2.neoforge.registration.BalanceConfig.SPEC,
                 "ic2-balance-server.toml");
         var gameBus = NeoForge.EVENT_BUS;
+        gameBus.addListener(ic2.neoforge.machine.PersonalChestGuard::guard);
         gameBus.addListener(WorldEnergyNetworks::onUnload);
         gameBus.addListener(WorldEnergyNetworks::onChunkLoad);
         gameBus.addListener(WorldEnergyNetworks::onChunkUnload);
