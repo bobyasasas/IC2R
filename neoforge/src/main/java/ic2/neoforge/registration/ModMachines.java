@@ -104,6 +104,8 @@ public final class ModMachines {
             case TRADE_O_MAT -> new TradeOMatBlockEntity(pos, state);
             case ITEM_BUFFER -> new ic2.neoforge.machine.ItemBufferBlockEntity(pos, state);
             case BLAST_FURNACE -> new ic2.neoforge.machine.BlastFurnaceBlockEntity(pos, state);
+            case MATTER_GENERATOR ->
+                    new ic2.neoforge.machine.MatterGeneratorBlockEntity(pos, state);
             case TELEPORTER -> new TeleporterBlockEntity(pos, state);
             case WOODEN_STORAGE_BOX,
                     BRONZE_STORAGE_BOX,

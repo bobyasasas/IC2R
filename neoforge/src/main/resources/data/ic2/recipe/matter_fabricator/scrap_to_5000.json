@@ -1,0 +1,5 @@
+{
+  "type": "ic2:matter_fabricator",
+  "ingredient": "ic2:scrap",
+  "result": 5000
+}

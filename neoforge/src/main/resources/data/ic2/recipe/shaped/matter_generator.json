@@ -1,0 +1,18 @@
+{
+  "type": "ic2:shaped",
+  "pattern": [
+    "GCG",
+    "ALA",
+    "GCG"
+  ],
+  "result": {
+    "id": "ic2:matter_generator",
+    "count": 1
+  },
+  "key": {
+    "A": "ic2:advanced_machine",
+    "L": "ic2:lapotron_crystal",
+    "G": "minecraft:glowstone_dust",
+    "C": "ic2:advanced_circuit"
+  }
+}

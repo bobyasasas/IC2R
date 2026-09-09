@@ -236,6 +236,13 @@ public final class RegistrationTests {
                 "gradual_partial_vent", () -> GradualRecipeTests::partialVentKeepsRemainder);
         FUNCTIONS.register(
                 "gradual_empty_rejected", () -> GradualRecipeTests::freshCondensatorIsRejected);
+        FUNCTIONS.register(
+                "matter_generator_scrap", () -> MatterGeneratorTests::scrapAmplifiesAndGenerates);
+        FUNCTIONS.register(
+                "matter_generator_cells", () -> MatterGeneratorTests::fillsUuMatterCells);
+        FUNCTIONS.register(
+                "matter_generator_redstone",
+                () -> MatterGeneratorTests::redstoneGateStopsGeneration);
         FUNCTIONS.register("cooling_capacity", () -> HeatExchangerTests::nearlyFullOutput);
         FUNCTIONS.register("cooling_parts_budget", () -> HeatExchangerTests::partsAndBudget);
         FUNCTIONS.register("cooling_stirling_chain", () -> HeatExchangerTests::stirlingChain);

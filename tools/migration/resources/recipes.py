@@ -10,7 +10,7 @@ ledger = []
 ledger_path = ROOT / 'docs/migration/recipe-catalog.json'
 previous = json.loads(ledger_path.read_text())['entries'] if ledger_path.exists() else []
 processing_types = {'ic2:macerator', 'ic2:extractor', 'ic2:compressor', 'ic2:metal_former_extruding', 'ic2:metal_former_rolling', 'ic2:metal_former_cutting', 'ic2:block_cutter'}
-supported = processing_types | {'ic2:centrifuge', 'ic2:ore_washer', 'ic2:canner_bottle', 'ic2:canner_enrich', 'ic2:blast_furnace', 'ic2:gradual', 'ic2:shaped', 'ic2:shapeless', 'minecraft:crafting_shaped', 'minecraft:crafting_shapeless', 'minecraft:smelting', 'minecraft:blasting', 'ic2:macerator', 'ic2:extractor', 'ic2:compressor'}
+supported = processing_types | {'ic2:centrifuge', 'ic2:ore_washer', 'ic2:canner_bottle', 'ic2:canner_enrich', 'ic2:blast_furnace', 'ic2:gradual', 'ic2:matter_fabricator', 'ic2:shaped', 'ic2:shapeless', 'minecraft:crafting_shaped', 'minecraft:crafting_shapeless', 'minecraft:smelting', 'minecraft:blasting', 'ic2:macerator', 'ic2:extractor', 'ic2:compressor'}
 
 
 def common_tag(tag):
@@ -84,6 +84,8 @@ for file in sorted(recipe_root.rglob('*.json')):
             new = {'type': old['type'], 'ingredient': ingredient(old['ingredient']),
                    'results': [stack(result) for result in results],
                    'fluid': old['fluid'], 'duration': old['duration']}
+        elif old['type'] == 'ic2:matter_fabricator':
+            new = {'type': old['type'], 'ingredient': ingredient(old['ingredient']), 'result': old['result']}
         elif old['type'] == 'ic2:gradual':
             new = {'type': old['type'], 'item': old['item'],
                    'charge_material': ingredient(old['charge_material']), 'amount': old['amount']}

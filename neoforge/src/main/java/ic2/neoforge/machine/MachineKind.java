@@ -45,6 +45,7 @@ public enum MachineKind implements StringRepresentable {
     TRADE_O_MAT("trade_o_mat", 0, 4, 0, 0),
     ITEM_BUFFER("item_buffer", 0, 48, 0, 0),
     BLAST_FURNACE("blast_furnace", 0, 5, 0, 0),
+    MATTER_GENERATOR("matter_generator", 1000000, 3, 0, 0),
     TELEPORTER("teleporter", 0, 0, 0, 0),
     PERSONAL_CHEST("personal_chest", 0, 54, 0, 0),
     RT_HEAT_GENERATOR("rt_heat_generator", 0, 6, 0, 0),
@@ -183,7 +184,7 @@ public enum MachineKind implements StringRepresentable {
                     ELECTROLYZER,
                     SORTING_MACHINE ->
                     2;
-            case MFE, HV_TRANSFORMER, CONDENSER -> 3;
+            case MFE, HV_TRANSFORMER, CONDENSER, MATTER_GENERATOR -> 3;
             case MFE_CHARGEPAD -> 3;
             case MFSU,
                     MFSU_CHARGEPAD,
@@ -243,6 +244,7 @@ public enum MachineKind implements StringRepresentable {
     public int upgradeSlots() {
         if (this == ADV_MINER) return 4;
         if (this == ITEM_BUFFER || this == BLAST_FURNACE) return 2;
+        if (this == MATTER_GENERATOR) return 4;
         if (this == CONDENSER || this == STEAM_KINETIC_GENERATOR || this == MINER) return 1;
         if (this == TANK) return 4;
         if (this == LIQUID_HEAT_EXCHANGER) return 3;

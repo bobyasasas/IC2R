@@ -98,6 +98,8 @@ public final class IndustrialCraftClient {
                         event.register(registration.menu().get(), BlockCutterScreen::new);
                     else if (kind == MachineKind.BLAST_FURNACE)
                         event.register(registration.menu().get(), BlastFurnaceScreen::new);
+                    else if (kind == MachineKind.MATTER_GENERATOR)
+                        event.register(registration.menu().get(), MatterGeneratorScreen::new);
                     else if (kind == MachineKind.ITEM_BUFFER)
                         event.register(registration.menu().get(), ItemBufferScreen::new);
                     else if (kind == MachineKind.ADV_MINER)

@@ -1779,14 +1779,14 @@
     {
       "source": "matter_fabricator/scrap_box_to_45000.json",
       "type": "ic2:matter_fabricator",
-      "status": "pending",
-      "reason": "recipe family not ported"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/matter_fabricator/scrap_box_to_45000.json"
     },
     {
       "source": "matter_fabricator/scrap_to_5000.json",
       "type": "ic2:matter_fabricator",
-      "status": "pending",
-      "reason": "recipe family not ported"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/matter_fabricator/scrap_to_5000.json"
     },
     {
       "source": "metal_former_cutting/iron_casing_to_coin.json",
@@ -3015,8 +3015,8 @@
     {
       "source": "shaped/matter_generator.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:matter_generator"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/matter_generator.json"
     },
     {
       "source": "shaped/metal_former.json",

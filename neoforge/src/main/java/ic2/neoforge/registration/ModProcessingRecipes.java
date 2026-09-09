@@ -5,6 +5,7 @@ import ic2.neoforge.IndustrialCraft;
 import ic2.neoforge.recipe.BlastFurnaceRecipe;
 import ic2.neoforge.recipe.CentrifugeRecipe;
 import ic2.neoforge.recipe.GradualRecipe;
+import ic2.neoforge.recipe.MatterFabricatorRecipe;
 import ic2.neoforge.recipe.ProcessingRecipe;
 import ic2.neoforge.recipe.WashingRecipe;
 
@@ -87,6 +88,26 @@ public final class ModProcessingRecipes {
                             () ->
                                     new RecipeSerializer<>(
                                             GradualRecipe.CODEC, GradualRecipe.STREAM_CODEC));
+    public static final DeferredHolder<RecipeType<?>, RecipeType<MatterFabricatorRecipe>>
+            MATTER_FABRICATOR_TYPE =
+                    TYPES.register(
+                            "matter_fabricator",
+                            () ->
+                                    new RecipeType<MatterFabricatorRecipe>() {
+                                        @Override
+                                        public String toString() {
+                                            return "ic2:matter_fabricator";
+                                        }
+                                    });
+    public static final DeferredHolder<
+                    RecipeSerializer<?>, RecipeSerializer<MatterFabricatorRecipe>>
+            MATTER_FABRICATOR_SERIALIZER =
+                    SERIALIZERS.register(
+                            "matter_fabricator",
+                            () ->
+                                    new RecipeSerializer<>(
+                                            MatterFabricatorRecipe.CODEC,
+                                            MatterFabricatorRecipe.STREAM_CODEC));
     private static final Map<
                     ProcessingMethod, DeferredHolder<RecipeType<?>, RecipeType<ProcessingRecipe>>>
             RECIPE_TYPES = new EnumMap<>(ProcessingMethod.class);

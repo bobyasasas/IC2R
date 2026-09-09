@@ -96,6 +96,7 @@ final class MachineSounds {
                     ITEM_BUFFER,
                     BLOCK_CUTTER,
                     BLAST_FURNACE,
+                    MATTER_GENERATOR,
                     PUMP,
                     MINER,
                     ADV_MINER,

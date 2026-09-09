@@ -145,6 +145,10 @@ public final class MachineMenu extends AbstractContainerMenu {
                             return false;
                         }
                     });
+        } else if (kind == MachineKind.MATTER_GENERATOR) {
+            addSlot(new ResourceHandlerSlot(inventory, inventory::set, 0, 72, 40));
+            addFluidContainerSlot(inventory, 2, 125, 23);
+            addOutputSlot(inventory, 1, 125, 59);
         } else if (kind == MachineKind.ITEM_BUFFER) {
             for (int slot = 0; slot < ItemBufferBlockEntity.GROUP_SIZE; slot++)
                 addSlot(
