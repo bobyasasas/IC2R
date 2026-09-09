@@ -231,6 +231,11 @@ public final class RegistrationTests {
         FUNCTIONS.register("blast_furnace_steel", () -> BlastFurnaceTests::smeltsIronIntoSteel);
         FUNCTIONS.register("blast_furnace_cold", () -> BlastFurnaceTests::staysColdWithoutHeat);
         FUNCTIONS.register("blast_furnace_air_cells", () -> BlastFurnaceTests::airCellsFillTank);
+        FUNCTIONS.register("gradual_vent", () -> GradualRecipeTests::ventsStoredHeat);
+        FUNCTIONS.register(
+                "gradual_partial_vent", () -> GradualRecipeTests::partialVentKeepsRemainder);
+        FUNCTIONS.register(
+                "gradual_empty_rejected", () -> GradualRecipeTests::freshCondensatorIsRejected);
         FUNCTIONS.register("cooling_capacity", () -> HeatExchangerTests::nearlyFullOutput);
         FUNCTIONS.register("cooling_parts_budget", () -> HeatExchangerTests::partsAndBudget);
         FUNCTIONS.register("cooling_stirling_chain", () -> HeatExchangerTests::stirlingChain);

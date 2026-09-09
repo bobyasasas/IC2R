@@ -4545,7 +4545,12 @@
       "factory": "register",
       "expression": "new ItemReactorCondensator(new Properties(), 20000)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/gradual-recipes.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/GradualRecipeTests.java"
+      ],
+      "note": "物品、存热组件、tooltip 与耐久条已验证;反应堆吸热行为随 P12。"
     },
     {
       "registry": "item",
@@ -4555,7 +4560,12 @@
       "factory": "register",
       "expression": "new ItemReactorCondensator(new Properties(), 100000)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/gradual-recipes.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/GradualRecipeTests.java"
+      ],
+      "note": "物品、存热组件、tooltip 与耐久条已验证;反应堆吸热行为随 P12。"
     },
     {
       "registry": "item",
@@ -13070,7 +13080,12 @@
       "factory": "register",
       "expression": "new GradualRecipe.Serializer()",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/gradual-recipes.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/GradualRecipeTests.java"
+      ],
+      "note": "逐步放热合成配方经 GameTest 验证;配方书展示随实机测试。"
     },
     {
       "registry": "recipe_serializer",

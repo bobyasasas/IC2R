@@ -4,6 +4,7 @@ import ic2.core.recipe.ProcessingMethod;
 import ic2.neoforge.IndustrialCraft;
 import ic2.neoforge.recipe.BlastFurnaceRecipe;
 import ic2.neoforge.recipe.CentrifugeRecipe;
+import ic2.neoforge.recipe.GradualRecipe;
 import ic2.neoforge.recipe.ProcessingRecipe;
 import ic2.neoforge.recipe.WashingRecipe;
 
@@ -79,6 +80,13 @@ public final class ModProcessingRecipes {
                                     new RecipeSerializer<>(
                                             BlastFurnaceRecipe.CODEC,
                                             BlastFurnaceRecipe.STREAM_CODEC));
+    public static final DeferredHolder<RecipeSerializer<?>, RecipeSerializer<GradualRecipe>>
+            GRADUAL_SERIALIZER =
+                    SERIALIZERS.register(
+                            "gradual",
+                            () ->
+                                    new RecipeSerializer<>(
+                                            GradualRecipe.CODEC, GradualRecipe.STREAM_CODEC));
     private static final Map<
                     ProcessingMethod, DeferredHolder<RecipeType<?>, RecipeType<ProcessingRecipe>>>
             RECIPE_TYPES = new EnumMap<>(ProcessingMethod.class);

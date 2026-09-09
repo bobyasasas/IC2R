@@ -1,5 +1,6 @@
 package ic2.neoforge.registration;
 
+import ic2.neoforge.item.CondensatorItem;
 import ic2.neoforge.item.ReactorHeatItem;
 
 import net.minecraft.network.chat.Component;
@@ -14,6 +15,18 @@ public final class ModReactorItems {
     private static final DeferredRegister.Items ITEMS = DeferredRegister.createItems("ic2");
     public static final DeferredItem<ReactorHeatItem> HEAT_VENT =
             ITEMS.registerItem("heat_vent", properties -> new ReactorHeatItem(properties, 1000, 6));
+
+    /**
+     * Reactor heat storage: absorbs heat once the reactor itself migrates (P12) and is recharged
+     * through gradual crafting recipes with redstone or lapis.
+     */
+    public static final DeferredItem<CondensatorItem> RSH_CONDENSATOR =
+            ITEMS.registerItem(
+                    "rsh_condensator", properties -> new CondensatorItem(properties, 20000));
+
+    public static final DeferredItem<CondensatorItem> LZH_CONDENSATOR =
+            ITEMS.registerItem(
+                    "lzh_condensator", properties -> new CondensatorItem(properties, 100000));
 
     /**
      * RTG fuel: one pellet per slot across six machine slots. The recovered item also irradiates an
@@ -58,6 +71,8 @@ public final class ModReactorItems {
             event.accept(SMALL_URANIUM_238);
             event.accept(MOX);
             event.accept(URANIUM_PELLET);
+            event.accept(RSH_CONDENSATOR);
+            event.accept(LZH_CONDENSATOR);
         }
     }
 

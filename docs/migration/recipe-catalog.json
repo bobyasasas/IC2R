@@ -2992,7 +2992,7 @@
       "source": "shaped/lzh_condensator.json",
       "type": "ic2:shaped",
       "status": "pending",
-      "reason": "unported result ic2:lzh_condensator"
+      "reason": "unported item ic2:reactor_heat_vent"
     },
     {
       "source": "shaped/macerator.json",
@@ -3532,7 +3532,7 @@
       "source": "shaped/rsh_condensator.json",
       "type": "ic2:shaped",
       "status": "pending",
-      "reason": "unported result ic2:rsh_condensator"
+      "reason": "unported item ic2:heat_exchanger"
     },
     {
       "source": "shaped/rt_generator.json",
@@ -4371,14 +4371,14 @@
     {
       "source": "shapeless/lzh_condensator_lapis.json",
       "type": "ic2:gradual",
-      "status": "pending",
-      "reason": "recipe family not ported"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shapeless/lzh_condensator_lapis.json"
     },
     {
       "source": "shapeless/lzh_condensator_redstone.json",
       "type": "ic2:gradual",
-      "status": "pending",
-      "reason": "recipe family not ported"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shapeless/lzh_condensator_redstone.json"
     },
     {
       "source": "shapeless/magenta_painter.json",
@@ -4455,8 +4455,8 @@
     {
       "source": "shapeless/rsh_condensator_redstone.json",
       "type": "ic2:gradual",
-      "status": "pending",
-      "reason": "recipe family not ported"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shapeless/rsh_condensator_redstone.json"
     },
     {
       "source": "shapeless/rubber_boat.json",

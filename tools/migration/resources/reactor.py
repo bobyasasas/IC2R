@@ -3,7 +3,7 @@
 import json
 from base import OLD, NEW, ASSETS, item, write
 
-components = ['heat_vent']
+components = ['heat_vent', 'rsh_condensator', 'lzh_condensator']
 for component in components:
     item(component)
 for locale in ['en_us', 'zh_cn']:
