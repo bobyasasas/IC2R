@@ -110,6 +110,56 @@ chamber 扩列(3→最高 9 列)、无效列弹出与 MOX 堆内脉冲。流体�
 - 地表火/岩浆/蒸水/点燃为随机命中,自动断言不稳定——实现经代码审查对齐
   legacy,实际效果列入 `待测试.md` §27 实机验收。
 
+## 切片四b:流体冷却模式与流体口
+
+- 反应堆内部新增冷却液罐(10,000 mB)与热冷却液罐(10,000 mB);冷却液
+  只认 `ic2:coolant`,热罐只认 `ic2:hot_coolant`。
+- 流体模式:相邻存在 `reactor_fluid_port` 时启用(legacy 以 9 列满尺寸 +
+  fluid chamber 为门控——`getReactorSize` 上限 3+4=7 使其不可达,判定为
+  legacy 缺陷;新实现以流体口邻接启用,达成可见意图)。流体模式下棒产出
+  不再进入 EU 缓冲。
+- `convertEmitHeatToHotCoolant`:散热片自散热排出的热(`addEmitHeat`)按
+  40 热/1 mB(legacy huOutputModifier 40 × config 1)换成热冷却液;罐满
+  无法吸收的部分转为堆芯热量。
+- `ReactorFluidPortBlockEntity`:六向寻址堆芯;`fluidAutomation` 暴露
+  冷却液进/热冷却液出双罐视图;注册 `Capabilities.Fluid.BLOCK`。
+- 配方:reactor_chamber/reactor_fluid_port 方块资源与合成已转换。
+
+## 测试证据
+
+- `ReactorFluidModeTests.fluidModeConvertsHeatToHotCoolant`:流体口邻接 +
+  6,000 mB 冷却液 + 三铀棒/三散热片 → 热冷却液产出、冷却液消耗、堆芯低温。
+- `hotCoolantExtractsThroughPort`:热冷却液经流体口能力抽出。
+- 双模式 223 项全绿(切片三反射/开关/plating 保持)。
+
+## 测试证据
+
+- `ReactorChamberTests.chamberWidensGrid`
+## 测试证据
+
+- `ReactorChamberTests.chamberWidensGrid`
+## 切片四b:流体冷却模式与流体口
+
+- 反应堆内部新增冷却液罐(10,000 mB)与热冷却液罐(10,000 mB);冷却液
+  只认 `ic2:coolant`,热罐只认 `ic2:hot_coolant`。
+- 流体模式:相邻存在 `reactor_fluid_port` 时启用(legacy 以 9 列满尺寸 +
+  fluid chamber 为门控——`getReactorSize` 上限 3+4=7 使其不可达,判定为
+  legacy 缺陷;新实现以流体口邻接启用,达成可见意图)。流体模式下棒产出
+  不再进入 EU 缓冲。
+- `convertEmitHeatToHotCoolant`:散热片自散热排出的热(`addEmitHeat`)按
+  40 热/1 mB(legacy huOutputModifier 40 × config 1)换成热冷却液;罐满
+  无法吸收的部分转为堆芯热量。
+- `ReactorFluidPortBlockEntity`:六向寻址堆芯;`fluidAutomation` 暴露
+  冷却液进/热冷却液出双罐视图;注册 `Capabilities.Fluid.BLOCK`。
+- 配方:reactor_chamber/reactor_fluid_port 方块资源与合成已转换。
+
+## 测试证据
+
+- `ReactorFluidModeTests.fluidModeConvertsHeatToHotCoolant`:流体口邻接 +
+  6,000 mB 冷却液 + 三铀棒/三散热片 → 热冷却液产出、冷却液消耗、堆芯低温。
+- `hotCoolantExtractsThroughPort`:热冷却液经流体口能力抽出。
+- 双模式 223 项全绿(切片三反射/开关/plating 保持)。
+
 ## 测试证据
 
 - `ReactorChamberTests.chamberWidensGrid`
