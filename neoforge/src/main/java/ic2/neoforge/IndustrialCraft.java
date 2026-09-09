@@ -55,6 +55,10 @@ public final class IndustrialCraft {
         container.registerConfig(ModConfig.Type.SERVER, EnergyConfig.SPEC);
         container.registerConfig(
                 ModConfig.Type.SERVER, GenerationConfig.SPEC, "ic2-generation-server.toml");
+        container.registerConfig(
+                ModConfig.Type.SERVER,
+                ic2.neoforge.registration.BalanceConfig.SPEC,
+                "ic2-balance-server.toml");
         var gameBus = NeoForge.EVENT_BUS;
         gameBus.addListener(WorldEnergyNetworks::onUnload);
         gameBus.addListener(WorldEnergyNetworks::onChunkLoad);

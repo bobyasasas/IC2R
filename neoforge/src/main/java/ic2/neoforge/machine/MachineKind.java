@@ -17,6 +17,7 @@ public enum MachineKind implements StringRepresentable {
     IRON_FURNACE("iron_furnace", 0, 3, 160, 0),
     STEAM_KINETIC_GENERATOR("steam_kinetic_generator", 0, 1, 0, 0),
     STEAM_GENERATOR("steam_generator", 0, 0, 0, 0),
+    STEAM_REPRESSURIZER("steam_repressurizer", 0, 2, 0, 0),
     CONDENSER("condenser", 100000, 7, 0, 0),
     FLUID_REGULATOR("fluid_regulator", 10000, 3, 0, 0),
     ELECTROLYZER("electrolyzer", 32000, 1, 200, 32),
@@ -161,6 +162,7 @@ public enum MachineKind implements StringRepresentable {
         return this == LIQUID_HEAT_EXCHANGER
                         || this == FLUID_REGULATOR
                         || this == CONDENSER
+                        || this == STEAM_REPRESSURIZER
                         || this == STEAM_KINETIC_GENERATOR
                 ? 184
                 : 166;

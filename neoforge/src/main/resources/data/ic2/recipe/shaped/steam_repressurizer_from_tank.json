@@ -1,0 +1,19 @@
+{
+  "type": "ic2:shaped",
+  "pattern": [
+    "III",
+    "TBT",
+    "ICI"
+  ],
+  "group": "steam_repressurizer",
+  "result": {
+    "id": "ic2:steam_repressurizer",
+    "count": 1
+  },
+  "key": {
+    "I": "ic2:iron_casing",
+    "T": "ic2:tank",
+    "B": "ic2:copper_boiler",
+    "C": "ic2:heat_conductor"
+  }
+}

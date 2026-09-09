@@ -3796,13 +3796,13 @@
       "source": "shaped/steam_repressurizer_from_iron_tank.json",
       "type": "ic2:shaped",
       "status": "pending",
-      "reason": "unported result ic2:steam_repressurizer"
+      "reason": "unported item ic2:iron_tank"
     },
     {
       "source": "shaped/steam_repressurizer_from_tank.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:steam_repressurizer"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/steam_repressurizer_from_tank.json"
     },
     {
       "source": "shaped/steam_turbine.json",

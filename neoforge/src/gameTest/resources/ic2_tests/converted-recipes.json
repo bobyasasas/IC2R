@@ -422,6 +422,7 @@
   "ic2:shaped/solid_heat_generator_from_iron_furnace",
   "ic2:shaped/steam_generator",
   "ic2:shaped/steam_kinetic_generator",
+  "ic2:shaped/steam_repressurizer_from_tank",
   "ic2:shaped/steam_turbine",
   "ic2:shaped/steam_turbine_blade",
   "ic2:shaped/steam_turbine_vertical",

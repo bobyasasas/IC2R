@@ -1160,7 +1160,11 @@
       "factory": "register",
       "expression": "new ItemBlockIc2(Ic2Blocks.STEAM_REPRESSURIZER, new Properties())",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/steam-repressurizer.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/SteamRepressurizerTests.java"
+      ]
     },
     {
       "registry": "item",
@@ -8024,7 +8028,12 @@
       "factory": "register",
       "expression": "Ic2TileEntityBlock.create(Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).strength(2.0F, 10.0F).requiresCorrectToolForDrops().sound(SoundType.METAL), TileEntitySteamRepressurizer.class, true, Ic2TileEntityBlock.DefaultDrop.Machine, Util.noFacings, true)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/steam-repressurizer.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/SteamRepressurizerTests.java"
+      ],
+      "note": "输入输出槽、c:steam 候选解析与保持、有界热储备事务、取热差额修复、零倍率停机与保存重载已接入；真实双人与界面细节验收持续。"
     },
     {
       "registry": "block",
@@ -10808,7 +10817,12 @@
       "factory": "register",
       "expression": "TileEntitySteamRepressurizer::new",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/steam-repressurizer.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/SteamRepressurizerTests.java"
+      ],
+      "note": "输入输出槽、c:steam 候选解析与保持、有界热储备事务、取热差额修复、零倍率停机与保存重载已接入；真实双人与界面细节验收持续。"
     },
     {
       "registry": "block_entity",

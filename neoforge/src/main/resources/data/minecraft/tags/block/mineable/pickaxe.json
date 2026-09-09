@@ -61,6 +61,7 @@
     "ic2:solid_heat_generator",
     "ic2:steam_generator",
     "ic2:steam_kinetic_generator",
+    "ic2:steam_repressurizer",
     "ic2:steel_block",
     "ic2:stirling_generator",
     "ic2:tank",

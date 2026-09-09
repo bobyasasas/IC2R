@@ -89,6 +89,9 @@ public final class MachineMenu extends AbstractContainerMenu {
                     });
         } else if (kind == MachineKind.STEAM_GENERATOR) {
             // The boiler has valves and fluid ports, but no internal item slots.
+        } else if (kind == MachineKind.STEAM_REPRESSURIZER) {
+            addFluidContainerSlot(inventory, 0, 130, 72);
+            addOutputSlot(inventory, 1, 152, 72);
         } else if (kind == MachineKind.CONDENSER) {
             addFluidContainerSlot(inventory, 0, 130, 72);
             addOutputSlot(inventory, 1, 152, 72);

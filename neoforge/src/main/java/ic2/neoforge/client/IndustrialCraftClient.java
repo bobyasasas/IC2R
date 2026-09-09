@@ -94,6 +94,8 @@ public final class IndustrialCraftClient {
                         event.register(registration.menu().get(), SteamTurbineScreen::new);
                     else if (kind == MachineKind.STEAM_GENERATOR)
                         event.register(registration.menu().get(), SteamGeneratorScreen::new);
+                    else if (kind == MachineKind.STEAM_REPRESSURIZER)
+                        event.register(registration.menu().get(), SteamRepressurizerScreen::new);
                     else if (kind == MachineKind.CONDENSER)
                         event.register(registration.menu().get(), CondenserScreen::new);
                     else if (kind == MachineKind.FLUID_REGULATOR)

@@ -88,6 +88,7 @@ final class MachineSounds {
         return switch (machine.kind()) {
             case STEAM_KINETIC_GENERATOR,
                     STEAM_GENERATOR,
+                    STEAM_REPRESSURIZER,
                     CONDENSER,
                     FLUID_REGULATOR,
                     TANK,

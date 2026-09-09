@@ -157,6 +157,17 @@ public final class RegistrationTests {
         FUNCTIONS.register("heat_blast_cancel", () -> HeatExplosionTests::cancellation);
         FUNCTIONS.register("condenser_power_chain", () -> CondenserTests::nativePowerChain);
         FUNCTIONS.register("condenser_passive_reload", () -> CondenserTests::passiveReload);
+        FUNCTIONS.register(
+                "repressurizer_idle", () -> SteamRepressurizerTests::idleWithoutCandidate);
+        FUNCTIONS.register(
+                "repressurizer_ratios", () -> SteamRepressurizerTests::ratiosAndConservation);
+        FUNCTIONS.register(
+                "repressurizer_prepaid", () -> SteamRepressurizerTests::blockedOutputPrepaysHeat);
+        FUNCTIONS.register(
+                "repressurizer_candidate", () -> SteamRepressurizerTests::candidateSelection);
+        FUNCTIONS.register("repressurizer_zero_rate", () -> SteamRepressurizerTests::zeroRateStops);
+        FUNCTIONS.register(
+                "repressurizer_reload", () -> SteamRepressurizerTests::reserveSurvivesReload);
         FUNCTIONS.register("cooling_capacity", () -> HeatExchangerTests::nearlyFullOutput);
         FUNCTIONS.register("cooling_parts_budget", () -> HeatExchangerTests::partsAndBudget);
         FUNCTIONS.register("cooling_stirling_chain", () -> HeatExchangerTests::stirlingChain);
