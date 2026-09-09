@@ -2,10 +2,11 @@
 """Migrate tool models using the shared vanilla resource converter."""
 from base import item, model, write
 for identifier in ['wrench', 'electric_wrench', 'forge_hammer', 'cutter',
-                   'drill', 'diamond_drill', 'iridium_drill']:
+                   'drill', 'diamond_drill', 'iridium_drill',
+                   'scanner', 'advanced_scanner']:
     item(identifier)
 
-write("data/ic2/tags/item/toolbox_tools.json", {"values": ["ic2:" + tool for tool in ["wrench", "electric_wrench", "forge_hammer", "cutter", "treetap", "electric_treetap"]]})
+write("data/ic2/tags/item/toolbox_tools.json", {"values": ["ic2:" + tool for tool in ["wrench", "electric_wrench", "forge_hammer", "cutter", "treetap", "electric_treetap", "scanner", "advanced_scanner"]]})
 
 for state in ['close', 'open']:
     model('ic2:item/tool/tool_box/' + state)

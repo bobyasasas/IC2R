@@ -5,6 +5,8 @@
     "ic2:forge_hammer",
     "ic2:cutter",
     "ic2:treetap",
-    "ic2:electric_treetap"
+    "ic2:electric_treetap",
+    "ic2:scanner",
+    "ic2:advanced_scanner"
   ]
 }

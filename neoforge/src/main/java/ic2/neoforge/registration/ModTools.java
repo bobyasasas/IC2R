@@ -88,6 +88,24 @@ public final class ModTools {
                                     200,
                                     20,
                                     3));
+    public static final DeferredItem<ScannerItem> SCANNER =
+            ITEMS.registerItem(
+                    "scanner",
+                    p ->
+                            new ScannerItem(
+                                    p.stacksTo(1),
+                                    new ElectricItemSpec(100000, 128, 1, false),
+                                    6,
+                                    50));
+    public static final DeferredItem<ScannerItem> ADVANCED_SCANNER =
+            ITEMS.registerItem(
+                    "advanced_scanner",
+                    p ->
+                            new ScannerItem(
+                                    p.stacksTo(1),
+                                    new ElectricItemSpec(1000000, 512, 2, false),
+                                    12,
+                                    250));
 
     private static Item.Properties tool(Item.Properties properties, int damage) {
         var blocks =
@@ -114,6 +132,8 @@ public final class ModTools {
             event.accept(DRILL);
             event.accept(DIAMOND_DRILL);
             event.accept(IRIDIUM_DRILL);
+            event.accept(SCANNER);
+            event.accept(ADVANCED_SCANNER);
         }
     }
 

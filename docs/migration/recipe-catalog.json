@@ -2073,8 +2073,8 @@
     {
       "source": "shaped/advanced_scanner.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:advanced_scanner"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/advanced_scanner.json"
     },
     {
       "source": "shaped/alloy_chestplate.json",
@@ -3645,8 +3645,8 @@
     {
       "source": "shaped/scanner.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:scanner"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/scanner.json"
     },
     {
       "source": "shaped/scrap_box.json",

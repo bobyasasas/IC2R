@@ -5076,7 +5076,12 @@
       "factory": "register",
       "expression": "new ItemScannerAdv(new Properties().stacksTo(1))",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/scanners.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/ScannerItemTests.java"
+      ],
+      "note": "层扫描脉冲（矿机联动）与能耗语义验证通过；手持扫描结果界面（HandHeldScanner）与扫描音效待后续切片。"
     },
     {
       "registry": "item",
@@ -5190,7 +5195,12 @@
       "factory": "register",
       "expression": "new ItemScanner(new Properties().stacksTo(1), 100000.0, 128.0, 1)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/scanners.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/ScannerItemTests.java"
+      ],
+      "note": "层扫描脉冲（矿机联动）与能耗语义验证通过；手持扫描结果界面（HandHeldScanner）与扫描音效待后续切片。"
     },
     {
       "registry": "item",
