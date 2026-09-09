@@ -1,0 +1,16 @@
+{
+  "type": "ic2:shaped",
+  "pattern": [
+    "RRR",
+    "CMC"
+  ],
+  "result": {
+    "id": "ic2:trade_o_mat",
+    "count": 1
+  },
+  "key": {
+    "R": "minecraft:redstone",
+    "C": "#c:chests/wooden",
+    "M": "ic2:machine"
+  }
+}

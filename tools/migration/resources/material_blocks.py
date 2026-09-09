@@ -6,19 +6,27 @@ from base import ROOT, OLD, NEW, ASSETS, write, copy, model, item
 
 source = (ROOT / 'neoforge/src/main/java/ic2/neoforge/registration/ModMaterialBlocks.java').read_text()
 identifiers = re.findall(r'add\(result, "([a-z_]+)"', source)
-for identifier in identifiers:
-    item(identifier)
+# Miner support blocks share this inert-block pipeline. The tip keeps no item form
+# and no legacy lang entry, and neither block has a legacy loot table, so breaking
+# them drops nothing and recovery goes through the miner's withdraw mode.
+miner_blocks = ['mining_pipe', 'mining_pipe_tip']
+for identifier in identifiers + miner_blocks:
+    if identifier not in miner_blocks or identifier == 'mining_pipe':
+        item(identifier)
     path = ASSETS + 'blockstates/' + identifier + '.json'
     data = json.loads((OLD / path).read_text())
     write(path, data)
     for variant in data['variants'].values():
         model(variant['model'])
-    write('data/ic2/loot_table/blocks/' + identifier + '.json', json.loads((OLD / ('data/ic2/loot_tables/blocks/' + identifier + '.json')).read_text()))
+    loot = OLD / ('data/ic2/loot_tables/blocks/' + identifier + '.json')
+    if loot.exists():
+        write('data/ic2/loot_table/blocks/' + identifier + '.json', json.loads(loot.read_text()))
 for locale in ['en_us', 'zh_cn']:
     path = ASSETS + 'lang/' + locale + '.json'
     data = json.loads((NEW / path).read_text())
     old = json.loads((OLD / path).read_text())
-    data.update({'block.ic2.' + identifier: old['block.ic2.' + identifier] for identifier in identifiers})
+    data.update({'block.ic2.' + identifier: old['block.ic2.' + identifier]
+                 for identifier in identifiers + ['mining_pipe']})
     write(path, data)
 registered = {'ic2:' + p.stem for p in (NEW / (ASSETS + 'blockstates')).glob('*.json')}
 # Follow tag references as well as direct block IDs. Dropping #forge:rubber_logs from

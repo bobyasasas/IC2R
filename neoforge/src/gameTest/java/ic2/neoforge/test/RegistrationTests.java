@@ -194,6 +194,9 @@ public final class RegistrationTests {
         FUNCTIONS.register("pump_progress_reload", () -> PumpTests::survivesReload);
         FUNCTIONS.register("personal_chest_claim", () -> PersonalChestTests::claimAndDeny);
         FUNCTIONS.register("personal_chest_automation", () -> PersonalChestTests::blocksAutomation);
+        FUNCTIONS.register("mining_pipe_shape", () -> MiningPipeTests::pipeShapeAndTools);
+        FUNCTIONS.register("mining_pipe_tip", () -> MiningPipeTests::tipIsPlaceOnly);
+        FUNCTIONS.register("mining_pipe_no_drops", () -> MiningPipeTests::breakingDropsNothing);
         FUNCTIONS.register("cooling_capacity", () -> HeatExchangerTests::nearlyFullOutput);
         FUNCTIONS.register("cooling_parts_budget", () -> HeatExchangerTests::partsAndBudget);
         FUNCTIONS.register("cooling_stirling_chain", () -> HeatExchangerTests::stirlingChain);

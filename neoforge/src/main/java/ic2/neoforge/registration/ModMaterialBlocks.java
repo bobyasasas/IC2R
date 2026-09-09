@@ -1,6 +1,7 @@
 package ic2.neoforge.registration;
 
 import ic2.neoforge.IndustrialCraft;
+import ic2.neoforge.world.MiningPipeBlock;
 
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.level.block.Block;
@@ -27,10 +28,30 @@ public final class ModMaterialBlocks {
                     properties ->
                             new ic2.neoforge.world.IronFenceBlock(
                                     properties.strength(5.0F, 10.0F).sound(SoundType.METAL)));
+    public static final DeferredBlock<MiningPipeBlock> MINING_PIPE =
+            BLOCKS.registerBlock(
+                    "mining_pipe",
+                    properties ->
+                            new MiningPipeBlock(
+                                    properties
+                                            .strength(6.0F, 10.0F)
+                                            .requiresCorrectToolForDrops()
+                                            .sound(SoundType.METAL)));
+    // The tip keeps no item form, matching legacy: only the miner places it.
+    public static final DeferredBlock<Block> MINING_PIPE_TIP =
+            BLOCKS.registerBlock(
+                    "mining_pipe_tip",
+                    properties ->
+                            new Block(
+                                    properties
+                                            .strength(6.0F, 10.0F)
+                                            .requiresCorrectToolForDrops()
+                                            .sound(SoundType.METAL)));
     public static final Map<String, DeferredBlock<Block>> MATERIALS = blocks();
 
     private static Map<String, DeferredBlock<Block>> blocks() {
         ITEMS.registerSimpleBlockItem(IRON_FENCE);
+        ITEMS.registerSimpleBlockItem(MINING_PIPE);
         var result = new LinkedHashMap<String, DeferredBlock<Block>>();
         add(result, "bronze_block", 5, 10, SoundType.METAL, MapColor.NONE);
         add(result, "lead_block", 4, 10, SoundType.METAL, MapColor.NONE);
@@ -78,6 +99,8 @@ public final class ModMaterialBlocks {
         if (event.getTabKey().equals(CreativeModeTabs.BUILDING_BLOCKS)) {
             MATERIALS.values().forEach(event::accept);
             event.accept(IRON_FENCE);
+        } else if (event.getTabKey().equals(CreativeModeTabs.INGREDIENTS)) {
+            event.accept(MINING_PIPE);
         }
     }
 

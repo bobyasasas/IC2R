@@ -3009,8 +3009,8 @@
     {
       "source": "shaped/magnetizer.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:magnetizer"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/magnetizer.json"
     },
     {
       "source": "shaped/matter_generator.json",
@@ -3069,8 +3069,8 @@
     {
       "source": "shaped/mining_pipe.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:mining_pipe"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/mining_pipe.json"
     },
     {
       "source": "shaped/mixed_metal_ingot.json",
@@ -3303,8 +3303,8 @@
     {
       "source": "shaped/pump.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:pump"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/pump.json"
     },
     {
       "source": "shaped/quad_mox_fuel_rod.json",
@@ -3951,8 +3951,8 @@
     {
       "source": "shaped/trade_o_mat.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:trade_o_mat"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/trade_o_mat.json"
     },
     {
       "source": "shaped/transformer_upgrade.json",

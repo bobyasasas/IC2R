@@ -517,7 +517,12 @@
       "factory": "register",
       "expression": "new ItemBlockIc2(Ic2Blocks.MINING_PIPE, new Properties())",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "docs/migration/mining-pipe.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/MiningPipeTests.java"
+      ],
+      "note": "窄柱形状、镐/石工具要求、无掉落表(回收走矿机收回模式)与无物品形式的尖端已验证;矿机放置逻辑随矿机切片迁移。"
     },
     {
       "registry": "item",
@@ -7038,7 +7043,12 @@
       "factory": "register",
       "expression": "new MiningPipeBlock(Properties.of().strength(6.0F, 10.0F).requiresCorrectToolForDrops().sound(SoundType.METAL))",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "docs/migration/mining-pipe.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/MiningPipeTests.java"
+      ],
+      "note": "窄柱形状、镐/石工具要求、无掉落表(回收走矿机收回模式)与无物品形式的尖端已验证;矿机放置逻辑随矿机切片迁移。"
     },
     {
       "registry": "block",
@@ -7048,7 +7058,12 @@
       "factory": "register",
       "expression": "new Block(Properties.of().strength(6.0F, 10.0F).requiresCorrectToolForDrops().sound(SoundType.METAL))",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "docs/migration/mining-pipe.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/MiningPipeTests.java"
+      ],
+      "note": "窄柱形状、镐/石工具要求、无掉落表(回收走矿机收回模式)与无物品形式的尖端已验证;矿机放置逻辑随矿机切片迁移。"
     },
     {
       "registry": "block",
