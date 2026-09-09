@@ -1,9 +1,10 @@
-# 核反应堆本体切片一(EU 模式 3×6 网格)
+# 核反应堆本体(EU 模式)
 
-2026-09-09 切片。开始迁移 legacy `TileEntityNuclearReactorElectric`(1114 行):
-本切片覆盖 EU 模式核心循环、铀棒脉冲/耗损、散热片热受体、热量持久化与熔毁
-爆炸。chamber 扩列、流体冷却模式、接口件(访问仓/流体口/红石口/RCI)、反射
-与开关件交互属后续切片。
+2026-09-09 切片一与切片二。迁移 legacy `TileEntityNuclearReactorElectric`
+(1114 行)与 `TileEntityReactorChamberElectric`。切片一覆盖 EU 模式核心
+循环、铀棒脉冲/耗损、散热片热受体、热量持久化与熔毁爆炸;切片二加入
+chamber 扩列(3→最高 9 列)、无效列弹出与 MOX 堆内脉冲。流体冷却模式、
+接口件(访问仓/流体口/红石口/RCI)、反射与开关件交互属后续切片。
 
 ## 旧行为依据(legacy 420–650 行)
 
@@ -42,8 +43,29 @@
 - 资源:`machines.py` 加入 `nuclear_reactor`(十二态/Generator 掉落/
   挖掘标签/双语名);语言键补 `ic2.tooltip.reactor_heat`。
 
+## 切片二:chamber 扩列与 MOX 堆内脉冲
+
+- `ReactorChamberBlockEntity`:无自身物品的多方块代理;`findReactor` 六向
+  寻址相邻堆芯;右键经 `createMenu` 转发打开反应堆 GUI;被移除后堆芯列数
+  收缩。
+- `NuclearReactorBlockEntity.columns()` = 3 + 相邻且指向本堆的 chamber 数
+  (上限 9);`getItemAt/setItemAt` 按 active 列门控;每轮开始把无效列的
+  物品弹出(legacy `dropAllUnfittingStuff`;弹出必须直写原始槽位——
+  `getItemAt` 对无效列恒返回 null,是本切片踩过的坑)。
+- 反应堆原始库存按 9 列布局存放 54 槽(legacy `InvSlotReactor` 同构),
+  GUI 固定展示 9×6,menu 高度 232。
+- `MoxFuelRodItem` 实现堆内脉冲:每脉冲 `4 × (heat/maxHeat) + 1` EU
+  (legacy `ReaktorOutput`);`getFinalHeat` 的流体模式 ×2 分支留待流体
+  冷却切片(当前恒为 EU 模式);耗尽棒对应 depleted MOX 物品。
+
 ## 测试证据
 
+- `ReactorChamberTests.chamberWidensGrid`:1/2 个 chamber 分别扩列到 4/5,
+  扩展列中的棒正常运行耗损。
+- `brokenChamberEjectsColumn`:拆 chamber 列收缩,无效列的双联棒被弹出为
+  掉落物。
+- `moxPulseScalesWithHeat`:热量 50% 时 MOX 单棒脉冲产出 3 EU
+  (4 × 0.5 + 1),热遍历按铀公式加 4 热。
 - `uraniumRodPulsesAndDepletes`:单铀棒三轮——每轮 1 脉冲、3 轮累计 12 热、
   use=3。
 - `adjacentRodMultipliesHeat`:相邻双棒互相脉冲,输出 > 2、热 > 8
