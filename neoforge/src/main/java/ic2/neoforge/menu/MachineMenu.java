@@ -133,6 +133,42 @@ public final class MachineMenu extends AbstractContainerMenu {
                     });
             addSlot(new ResourceHandlerSlot(inventory, inventory::set, 2, 56, 53));
             addSlot(new ResourceHandlerSlot(inventory, inventory::set, 3, 102, 53));
+        } else if (kind == MachineKind.MINER) {
+            addSlot(
+                    new ResourceHandlerSlot(inventory, inventory::set, 2, 8, 58) {
+                        @Override
+                        public boolean mayPlace(ItemStack stack) {
+                            return stack.getItem() instanceof ic2.neoforge.item.ScannerItem;
+                        }
+                    });
+            addSlot(
+                    new ResourceHandlerSlot(inventory, inventory::set, 1, 8, 40) {
+                        @Override
+                        public boolean mayPlace(ItemStack stack) {
+                            return stack.getItem()
+                                            == ic2.neoforge.registration.ModMaterialBlocks
+                                                    .MINING_PIPE
+                                                    .get()
+                                                    .asItem()
+                                    || stack.getItem()
+                                            instanceof net.minecraft.world.item.BlockItem;
+                        }
+                    });
+            addSlot(
+                    new ResourceHandlerSlot(inventory, inventory::set, 0, 8, 22) {
+                        @Override
+                        public boolean mayPlace(ItemStack stack) {
+                            return stack.getItem() instanceof ic2.neoforge.item.DrillItem;
+                        }
+                    });
+            for (int slot = 0; slot < MinerBlockEntity.BUFFER_SIZE; slot++)
+                addSlot(
+                        new ResourceHandlerSlot(
+                                inventory,
+                                inventory::set,
+                                MinerBlockEntity.BUFFER_START + slot,
+                                44 + slot % 5 * 18,
+                                22 + slot / 5 * 18));
         } else if (kind.storageBox()) {
             for (int slot = 0; slot < kind.slots(); slot++)
                 addSlot(

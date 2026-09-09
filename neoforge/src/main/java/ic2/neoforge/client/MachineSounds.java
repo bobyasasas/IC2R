@@ -94,6 +94,7 @@ final class MachineSounds {
                     MAGNETIZER,
                     TRADE_O_MAT,
                     PUMP,
+                    MINER,
                     PERSONAL_CHEST,
                     SORTING_MACHINE,
                     WOODEN_STORAGE_BOX,

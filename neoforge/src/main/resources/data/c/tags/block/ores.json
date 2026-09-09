@@ -1,0 +1,11 @@
+{
+  "replace": false,
+  "values": [
+    "ic2:lead_ore",
+    "ic2:deepslate_lead_ore",
+    "ic2:tin_ore",
+    "ic2:deepslate_tin_ore",
+    "ic2:uranium_ore",
+    "ic2:deepslate_uranium_ore"
+  ]
+}

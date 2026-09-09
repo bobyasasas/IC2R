@@ -90,6 +90,8 @@ public final class IndustrialCraftClient {
                         event.register(registration.menu().get(), HeatedMachineScreen::new);
                     else if (kind == MachineKind.METAL_FORMER)
                         event.register(registration.menu().get(), MetalFormerScreen::new);
+                    else if (kind == MachineKind.MINER)
+                        event.register(registration.menu().get(), MinerScreen::new);
                     else if (kind == MachineKind.STEAM_KINETIC_GENERATOR)
                         event.register(registration.menu().get(), SteamTurbineScreen::new);
                     else if (kind == MachineKind.STEAM_GENERATOR)

@@ -56,6 +56,7 @@
     "ic2:mfe_chargepad",
     "ic2:mfsu",
     "ic2:mfsu_chargepad",
+    "ic2:miner",
     "ic2:mining_pipe",
     "ic2:mining_pipe_tip",
     "ic2:mv_transformer",

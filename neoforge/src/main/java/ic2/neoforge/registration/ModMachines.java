@@ -99,6 +99,7 @@ public final class ModMachines {
             case SORTING_MACHINE -> new SortingMachineBlockEntity(pos, state);
             case MAGNETIZER -> new MagnetizerBlockEntity(pos, state);
             case PUMP -> new PumpBlockEntity(pos, state);
+            case MINER -> new MinerBlockEntity(pos, state);
             case TRADE_O_MAT -> new TradeOMatBlockEntity(pos, state);
             case WOODEN_STORAGE_BOX,
                     BRONZE_STORAGE_BOX,

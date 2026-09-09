@@ -39,6 +39,7 @@ public enum MachineKind implements StringRepresentable {
     IRIDIUM_STORAGE_BOX("iridium_storage_box", 0, 126, 0, 0),
     MAGNETIZER("magnetizer", 100, 4, 0, 0),
     PUMP("pump", 20, 2, 20, 1),
+    MINER("miner", 1000, 18, 0, 0),
     SORTING_MACHINE("sorting_machine", 15000, 14, 0, 0),
     TRADE_O_MAT("trade_o_mat", 0, 4, 0, 0),
     PERSONAL_CHEST("personal_chest", 0, 54, 0, 0),
@@ -168,7 +169,7 @@ public enum MachineKind implements StringRepresentable {
     public int electricalTier() {
         return switch (this) {
             case BATBOX, LV_TRANSFORMER -> 1;
-            case BATBOX_CHARGEPAD, MAGNETIZER, PUMP -> 1;
+            case BATBOX_CHARGEPAD, MAGNETIZER, PUMP, MINER -> 1;
             case CESU,
                     CESU_CHARGEPAD,
                     MV_TRANSFORMER,
@@ -234,7 +235,7 @@ public enum MachineKind implements StringRepresentable {
     }
 
     public int upgradeSlots() {
-        if (this == CONDENSER || this == STEAM_KINETIC_GENERATOR) return 1;
+        if (this == CONDENSER || this == STEAM_KINETIC_GENERATOR || this == MINER) return 1;
         if (this == TANK) return 4;
         if (this == LIQUID_HEAT_EXCHANGER) return 3;
         return (this == INDUCTION_FURNACE || this == FERMENTER) ? 2 : euPerTick > 0 ? 4 : 0;

@@ -201,6 +201,10 @@ public final class RegistrationTests {
         FUNCTIONS.register("drill_discharge", () -> DrillItemTests::dischargePerBlock);
         FUNCTIONS.register("drill_miner_constants", () -> DrillItemTests::minerConstants);
         FUNCTIONS.register("scanner_layer_scan", () -> ScannerItemTests::layerScan);
+        FUNCTIONS.register("miner_digs_down", () -> MinerTests::digsDownAndHarvests);
+        FUNCTIONS.register("miner_scanner_tunnel", () -> MinerTests::scannerDigsTowardsOre);
+        FUNCTIONS.register("miner_withdraw", () -> MinerTests::withdrawsColumnWithoutDrill);
+        FUNCTIONS.register("miner_pump_mode", () -> MinerTests::pumpModeDrainsMarkedLiquid);
         FUNCTIONS.register("cooling_capacity", () -> HeatExchangerTests::nearlyFullOutput);
         FUNCTIONS.register("cooling_parts_budget", () -> HeatExchangerTests::partsAndBudget);
         FUNCTIONS.register("cooling_stirling_chain", () -> HeatExchangerTests::stirlingChain);

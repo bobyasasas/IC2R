@@ -1,0 +1,18 @@
+{
+  "type": "ic2:shaped",
+  "pattern": [
+    " X ",
+    "CMC",
+    " P "
+  ],
+  "result": {
+    "id": "ic2:miner",
+    "count": 1
+  },
+  "key": {
+    "P": "ic2:mining_pipe",
+    "M": "ic2:machine",
+    "C": "ic2:circuit",
+    "X": "minecraft:chest"
+  }
+}

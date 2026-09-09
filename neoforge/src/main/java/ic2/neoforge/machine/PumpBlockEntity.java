@@ -34,6 +34,7 @@ public final class PumpBlockEntity extends PoweredBlockEntity implements FluidMa
     private final ResourceHandler<FluidResource> fluids =
             new ResourcePort<>(tank, slot -> false, slot -> true);
     private int progress;
+    private BlockPos requestedDrain;
 
     public PumpBlockEntity(BlockPos pos, BlockState state) {
         super(ModMachines.entityType(MachineKind.PUMP), pos, state, MachineKind.PUMP.ticks(), 6);
@@ -83,9 +84,30 @@ public final class PumpBlockEntity extends PoweredBlockEntity implements FluidMa
         setActive(pumped);
     }
 
+    /**
+     * Mining linkage: answers whether an attached miner may treat a liquid as pumpable, i.e. the
+     * tank can take another bucket and the faced search still finds a source.
+     */
+    public boolean canDrain(ServerLevel level) {
+        if (TANK - tank.getAmountAsInt(0) < 1000) return false;
+        var faced = worldPosition.relative(getBlockState().getValue(MachineBlock.FACING));
+        return searchSource(level, faced) != null;
+    }
+
+    /** The miner hands over one marked liquid position that the pump drains before searching. */
+    public void requestDrain(BlockPos pos) {
+        requestedDrain = pos.immutable();
+    }
+
     private boolean pump(ServerLevel level, BlockPos faced) {
         int space = TANK - tank.getAmountAsInt(0);
         if (space <= 0) return false;
+        if (requestedDrain != null) {
+            var target = requestedDrain;
+            requestedDrain = null;
+            var state = level.getFluidState(target);
+            if (!state.isEmpty()) return drainBlock(level, target, state, space);
+        }
         var facedState = level.getFluidState(faced);
         if (facedState.isSource()) {
             return drainBlock(level, faced, facedState, space);

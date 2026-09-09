@@ -2179,7 +2179,12 @@
       "factory": "register",
       "expression": "new ItemBlockIc2(Ic2Blocks.MINER, new Properties())",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/miner.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/MinerTests.java"
+      ],
+      "note": "合成、放置与创造页验证通过；真实客户端外观与 GUI 操作随实机测试。"
     },
     {
       "registry": "item",
@@ -7888,7 +7893,12 @@
       "factory": "register",
       "expression": "Ic2TileEntityBlock.create(Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).strength(2.0F, 10.0F).requiresCorrectToolForDrops().sound(SoundType.METAL), TileEntityMiner.class, true, Ic2TileEntityBlock.DefaultDrop.Self, Util.horizontalFacings, true)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/miner.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/MinerTests.java"
+      ],
+      "note": "直挖/收回/扫描器侧挖/泵联动与掉落入缓冲验证通过；多人与实机表现待验收。"
     },
     {
       "registry": "block",
@@ -10781,7 +10791,12 @@
       "factory": "register",
       "expression": "TileEntityMiner::new",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/miner.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/MinerTests.java"
+      ],
+      "note": "直挖/收回/扫描器侧挖/泵联动与掉落入缓冲验证通过；多人与实机表现待验收。"
     },
     {
       "registry": "block_entity",
@@ -11747,7 +11762,12 @@
       "factory": "registerManagedBe",
       "expression": "",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/miner.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/MinerTests.java"
+      ],
+      "note": "矿机菜单与泵模式按钮已接入；双人同步与真实客户端操作随 M16 验收。"
     },
     {
       "registry": "menu",
