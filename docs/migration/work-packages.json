@@ -73,9 +73,12 @@
       "id": "P07",
       "parent": "M11",
       "title": "泵与采矿",
-      "status": "todo",
-      "acceptance": "泵、矿机、高级矿机；区块边界、液体源、钻头、管道和过滤。",
-      "evidence": []
+      "status": "in_progress",
+      "acceptance": "泵（面向水源抽取、BFS 源搜索、8,000 mB 罐与自动装桶、进度持久化）已接入并双模式 GameTest 验收；矿机、高级矿机、管道、钻头与过滤待迁移；泵与矿机供液联动随矿机切片。",
+      "evidence": [
+        "docs/migration/pump.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/PumpTests.java"
+      ]
     },
     {
       "id": "P08",

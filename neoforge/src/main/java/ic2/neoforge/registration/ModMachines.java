@@ -98,6 +98,7 @@ public final class ModMachines {
             case PERSONAL_CHEST -> new PersonalChestBlockEntity(pos, state);
             case SORTING_MACHINE -> new SortingMachineBlockEntity(pos, state);
             case MAGNETIZER -> new MagnetizerBlockEntity(pos, state);
+            case PUMP -> new PumpBlockEntity(pos, state);
             case TRADE_O_MAT -> new TradeOMatBlockEntity(pos, state);
             case WOODEN_STORAGE_BOX,
                     BRONZE_STORAGE_BOX,
@@ -272,6 +273,7 @@ public final class ModMachines {
                     || kind == MachineKind.STEAM_KINETIC_GENERATOR
                     || kind == MachineKind.STEAM_GENERATOR
                     || kind == MachineKind.STEAM_REPRESSURIZER
+                    || kind == MachineKind.PUMP
                     || kind == MachineKind.CONDENSER
                     || kind == MachineKind.FLUID_REGULATOR)
                 event.registerBlockEntity(

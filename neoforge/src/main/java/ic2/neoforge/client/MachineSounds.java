@@ -93,6 +93,7 @@ final class MachineSounds {
                     RT_GENERATOR,
                     MAGNETIZER,
                     TRADE_O_MAT,
+                    PUMP,
                     PERSONAL_CHEST,
                     SORTING_MACHINE,
                     WOODEN_STORAGE_BOX,

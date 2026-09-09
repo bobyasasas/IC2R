@@ -1797,7 +1797,11 @@
       "factory": "register",
       "expression": "new ItemBlockIc2(Ic2Blocks.PUMP, new Properties())",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/pump.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/PumpTests.java"
+      ]
     },
     {
       "registry": "item",
@@ -7489,7 +7493,12 @@
       "factory": "register",
       "expression": "Ic2TileEntityBlock.create(Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).strength(2.0F, 10.0F).requiresCorrectToolForDrops().sound(SoundType.METAL), TileEntityPump.class, true, Ic2TileEntityBlock.DefaultDrop.Machine, Util.allFacings, true)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/pump.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/PumpTests.java"
+      ],
+      "note": "面向水源抽取、BFS 源搜索、罐与自动装桶、进度持久化已接入；矿机联动随矿机切片。"
     },
     {
       "registry": "block",
@@ -10167,7 +10176,12 @@
       "factory": "register",
       "expression": "TileEntityPump::new",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/pump.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/PumpTests.java"
+      ],
+      "note": "面向水源抽取、BFS 源搜索、罐与自动装桶、进度持久化已接入；矿机联动随矿机切片。"
     },
     {
       "registry": "block_entity",
