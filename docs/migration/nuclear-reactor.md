@@ -154,9 +154,43 @@ chamber 扩列(3→最高 9 列)、无效列弹出与 MOX 堆内脉冲。流体�
   RSH 冷凝器清零。
 - 双模式 223 项全绿(既有反射/plating/热开关/流体测试保持)。
 
+## 切片四c:chamber 链式扩列至 9 列
+
+- `columns()` 改为 BFS:直接邻接 chamber 各计 1 列,chamber 相邻 chamber
+  的链式延伸同样计数,上限 9 列(legacy 6×9 满尺寸)。
+- **发现 legacy 缺陷**:`isFluidReactor` 要求 `isFullSize()==9`,而
+  `getReactorSize()` 上限为 3+4=7——legacy 流体模式实际不可达。新实现以
+  BFS 计数 + 流体口邻接启用流体模式,使其真正可用(文档化偏差)。
+- 无效列弹出、`getItemAt/setItemAt` 门控均按动态列数工作。
+
+## 测试证据(切片四c)
+
+- `reactor_chamber_chain`:6 个 chamber(含两段链)扩列至 9;无效列物品
+  弹出逻辑保持。
+
+## 测试证据
+
+- `ReactorChamberTests.chamberWidensGrid
 ## 测试证据
 
 - `ReactorChamberTests.chamberWidensGrid`
+## 切片四c:chamber 链式扩列至 9 列
+
+- `columns()` 改为 BFS:直接邻接 chamber 各计 1 列,chamber 相邻 chamber
+  的链式延伸同样计数,上限 9 列(legacy 6×9 满尺寸)。
+- **发现 legacy 缺陷**:`isFluidReactor` 要求 `isFullSize()==9`,而
+  `getReactorSize()` 上限为 3+4=7——legacy 流体模式实际不可达。新实现以
+  BFS 计数 + 流体口邻接启用流体模式,使其真正可用(文档化偏差)。
+- 无效列弹出、`getItemAt/setItemAt` 门控均按动态列数工作。
+
+## 测试证据(切片四c)
+
+- `reactor_chamber_chain`:6 个 chamber(含两段链)扩列至 9;无效列物品
+  弹出逻辑保持。
+
+## 测试证据
+
+- `ReactorChamberTests.chamberWidensGrid
 ## 测试证据
 
 - `ReactorChamberTests.chamberWidensGrid`
@@ -182,9 +216,43 @@ chamber 扩列(3→最高 9 列)、无效列弹出与 MOX 堆内脉冲。流体�
   RSH 冷凝器清零。
 - 双模式 223 项全绿(既有反射/plating/热开关/流体测试保持)。
 
+## 切片四c:chamber 链式扩列至 9 列
+
+- `columns()` 改为 BFS:直接邻接 chamber 各计 1 列,chamber 相邻 chamber
+  的链式延伸同样计数,上限 9 列(legacy 6×9 满尺寸)。
+- **发现 legacy 缺陷**:`isFluidReactor` 要求 `isFullSize()==9`,而
+  `getReactorSize()` 上限为 3+4=7——legacy 流体模式实际不可达。新实现以
+  BFS 计数 + 流体口邻接启用流体模式,使其真正可用(文档化偏差)。
+- 无效列弹出、`getItemAt/setItemAt` 门控均按动态列数工作。
+
+## 测试证据(切片四c)
+
+- `reactor_chamber_chain`:6 个 chamber(含两段链)扩列至 9;无效列物品
+  弹出逻辑保持。
+
+## 测试证据
+
+- `ReactorChamberTests.chamberWidensGrid
 ## 测试证据
 
 - `ReactorChamberTests.chamberWidensGrid`
+## 切片四c:chamber 链式扩列至 9 列
+
+- `columns()` 改为 BFS:直接邻接 chamber 各计 1 列,chamber 相邻 chamber
+  的链式延伸同样计数,上限 9 列(legacy 6×9 满尺寸)。
+- **发现 legacy 缺陷**:`isFluidReactor` 要求 `isFullSize()==9`,而
+  `getReactorSize()` 上限为 3+4=7——legacy 流体模式实际不可达。新实现以
+  BFS 计数 + 流体口邻接启用流体模式,使其真正可用(文档化偏差)。
+- 无效列弹出、`getItemAt/setItemAt` 门控均按动态列数工作。
+
+## 测试证据(切片四c)
+
+- `reactor_chamber_chain`:6 个 chamber(含两段链)扩列至 9;无效列物品
+  弹出逻辑保持。
+
+## 测试证据
+
+- `ReactorChamberTests.chamberWidensGrid
 ## 测试证据
 
 - `ReactorChamberTests.chamberWidensGrid`
@@ -232,9 +300,43 @@ chamber 扩列(3→最高 9 列)、无效列弹出与 MOX 堆内脉冲。流体�
   RSH 冷凝器清零。
 - 双模式 223 项全绿(既有反射/plating/热开关/流体测试保持)。
 
+## 切片四c:chamber 链式扩列至 9 列
+
+- `columns()` 改为 BFS:直接邻接 chamber 各计 1 列,chamber 相邻 chamber
+  的链式延伸同样计数,上限 9 列(legacy 6×9 满尺寸)。
+- **发现 legacy 缺陷**:`isFluidReactor` 要求 `isFullSize()==9`,而
+  `getReactorSize()` 上限为 3+4=7——legacy 流体模式实际不可达。新实现以
+  BFS 计数 + 流体口邻接启用流体模式,使其真正可用(文档化偏差)。
+- 无效列弹出、`getItemAt/setItemAt` 门控均按动态列数工作。
+
+## 测试证据(切片四c)
+
+- `reactor_chamber_chain`:6 个 chamber(含两段链)扩列至 9;无效列物品
+  弹出逻辑保持。
+
+## 测试证据
+
+- `ReactorChamberTests.chamberWidensGrid
 ## 测试证据
 
 - `ReactorChamberTests.chamberWidensGrid`
+## 切片四c:chamber 链式扩列至 9 列
+
+- `columns()` 改为 BFS:直接邻接 chamber 各计 1 列,chamber 相邻 chamber
+  的链式延伸同样计数,上限 9 列(legacy 6×9 满尺寸)。
+- **发现 legacy 缺陷**:`isFluidReactor` 要求 `isFullSize()==9`,而
+  `getReactorSize()` 上限为 3+4=7——legacy 流体模式实际不可达。新实现以
+  BFS 计数 + 流体口邻接启用流体模式,使其真正可用(文档化偏差)。
+- 无效列弹出、`getItemAt/setItemAt` 门控均按动态列数工作。
+
+## 测试证据(切片四c)
+
+- `reactor_chamber_chain`:6 个 chamber(含两段链)扩列至 9;无效列物品
+  弹出逻辑保持。
+
+## 测试证据
+
+- `ReactorChamberTests.chamberWidensGrid
 ## 测试证据
 
 - `ReactorChamberTests.chamberWidensGrid`
@@ -260,9 +362,43 @@ chamber 扩列(3→最高 9 列)、无效列弹出与 MOX 堆内脉冲。流体�
   RSH 冷凝器清零。
 - 双模式 223 项全绿(既有反射/plating/热开关/流体测试保持)。
 
+## 切片四c:chamber 链式扩列至 9 列
+
+- `columns()` 改为 BFS:直接邻接 chamber 各计 1 列,chamber 相邻 chamber
+  的链式延伸同样计数,上限 9 列(legacy 6×9 满尺寸)。
+- **发现 legacy 缺陷**:`isFluidReactor` 要求 `isFullSize()==9`,而
+  `getReactorSize()` 上限为 3+4=7——legacy 流体模式实际不可达。新实现以
+  BFS 计数 + 流体口邻接启用流体模式,使其真正可用(文档化偏差)。
+- 无效列弹出、`getItemAt/setItemAt` 门控均按动态列数工作。
+
+## 测试证据(切片四c)
+
+- `reactor_chamber_chain`:6 个 chamber(含两段链)扩列至 9;无效列物品
+  弹出逻辑保持。
+
+## 测试证据
+
+- `ReactorChamberTests.chamberWidensGrid
 ## 测试证据
 
 - `ReactorChamberTests.chamberWidensGrid`
+## 切片四c:chamber 链式扩列至 9 列
+
+- `columns()` 改为 BFS:直接邻接 chamber 各计 1 列,chamber 相邻 chamber
+  的链式延伸同样计数,上限 9 列(legacy 6×9 满尺寸)。
+- **发现 legacy 缺陷**:`isFluidReactor` 要求 `isFullSize()==9`,而
+  `getReactorSize()` 上限为 3+4=7——legacy 流体模式实际不可达。新实现以
+  BFS 计数 + 流体口邻接启用流体模式,使其真正可用(文档化偏差)。
+- 无效列弹出、`getItemAt/setItemAt` 门控均按动态列数工作。
+
+## 测试证据(切片四c)
+
+- `reactor_chamber_chain`:6 个 chamber(含两段链)扩列至 9;无效列物品
+  弹出逻辑保持。
+
+## 测试证据
+
+- `ReactorChamberTests.chamberWidensGrid
 ## 测试证据
 
 - `ReactorChamberTests.chamberWidensGrid`:1/2 个 chamber 分别扩列到 4/5,

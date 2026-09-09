@@ -250,6 +250,8 @@ public final class RegistrationTests {
         FUNCTIONS.register(
                 "reactor_chamber_shrink", () -> ReactorChamberTests::brokenChamberEjectsColumn);
         FUNCTIONS.register("reactor_mox_pulse", () -> ReactorChamberTests::moxPulseScalesWithHeat);
+        FUNCTIONS.register(
+                "reactor_chamber_chain", () -> ReactorChamberTests::chamberChainWidensToNine);
         FUNCTIONS.register("reactor_reflector", () -> ReactorComponentTests::reflectorBouncesPulse);
         FUNCTIONS.register("reactor_plating", () -> ReactorComponentTests::platingRaisesCoreLimits);
         FUNCTIONS.register(

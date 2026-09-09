@@ -90,5 +90,19 @@ final class ReactorChamberTests {
         helper.succeed();
     }
 
+    static void chamberChainWidensToNine(GameTestHelper helper) {
+        var reactor = reactor(helper);
+        placeChamber(helper, POSITION.east());
+        placeChamber(helper, POSITION.east().east());
+        placeChamber(helper, POSITION.west());
+        placeChamber(helper, POSITION.west().west());
+        placeChamber(helper, POSITION.north());
+        placeChamber(helper, POSITION.south());
+        helper.assertTrue(
+                reactor.columns() == 9,
+                "Chamber chains widen the grid to nine, saw " + reactor.columns());
+        helper.succeed();
+    }
+
     private ReactorChamberTests() {}
 }

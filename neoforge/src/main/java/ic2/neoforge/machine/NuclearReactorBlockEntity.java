@@ -226,14 +226,38 @@ public final class NuclearReactorBlockEntity extends PoweredBlockEntity implemen
         return hotCoolantTank.getAmountAsInt(0);
     }
 
-    /** Each adjacent chamber widens the grid by one column, exactly like the legacy count. */
+    /**
+     * Chambers widen the grid: one column per connected chamber block, counting whole chains of
+     * chamber-adjacent-chambers (legacy multiblock walls), capped at 9 columns.
+     */
     public int columns() {
         int cols = BASE_COLUMNS;
+        var counted = new java.util.HashSet<BlockPos>();
+        var queue = new java.util.ArrayDeque<BlockPos>();
         if (getLevel() instanceof ServerLevel level) {
             for (Direction direction : Direction.values()) {
-                if (level.getBlockEntity(worldPosition.relative(direction))
-                                instanceof ReactorChamberBlockEntity chamber
-                        && chamber.findReactor() == this) cols++;
+                var pos = worldPosition.relative(direction);
+                if (level.getBlockEntity(pos) instanceof ReactorChamberBlockEntity chamber
+                        && chamber.findReactor() == this
+                        && counted.add(pos)) queue.add(pos);
+                while (!queue.isEmpty()) {
+                    var start = queue.poll();
+                    cols++;
+                    var visitedChains = new java.util.HashSet<BlockPos>();
+                    for (Direction chainDir : Direction.values()) {
+                        var chainPos = start.relative(chainDir);
+                        if (chainPos.equals(worldPosition)) continue;
+                        // Chained chambers count through adjacency; only direct-adjacent
+                        // chambers belong to this core (checked on the initial ring).
+                        if (level.getBlockEntity(chainPos)
+                                        instanceof ReactorChamberBlockEntity chained
+                                && counted.add(chainPos)) {
+                            cols++;
+                            queue.add(chainPos);
+                        }
+                        visitedChains.add(chainPos);
+                    }
+                }
             }
         }
         return Math.min(cols, GRID_COLUMNS);
@@ -393,8 +417,8 @@ public final class NuclearReactorBlockEntity extends PoweredBlockEntity implemen
         if (getLevel().hasNeighborSignal(worldPosition)) return true;
         // A redstone port mirrors its own redstone input onto the core.
         return getLevel() instanceof ServerLevel level
-                && ic2.neoforge.machine.ReactorRedstonePortBlockEntity.poweredPortNear(
-                        this, level) != null;
+                && ic2.neoforge.machine.ReactorRedstonePortBlockEntity.poweredPortNear(this, level)
+                        != null;
     }
 
     @Override
