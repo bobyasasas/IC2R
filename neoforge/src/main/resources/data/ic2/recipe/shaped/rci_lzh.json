@@ -1,0 +1,18 @@
+{
+  "type": "ic2:shaped",
+  "pattern": [
+    "ECE",
+    "CMC",
+    "EBE"
+  ],
+  "result": {
+    "id": "ic2:rci_lzh",
+    "count": 1
+  },
+  "key": {
+    "E": "ic2:ejector_upgrade",
+    "C": "ic2:lzh_condensator",
+    "M": "ic2:advanced_machine",
+    "B": "ic2:item_buffer"
+  }
+}

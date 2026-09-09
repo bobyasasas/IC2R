@@ -1,0 +1,17 @@
+{
+  "type": "ic2:shaped",
+  "pattern": [
+    "VVV",
+    "VCV",
+    "VVV"
+  ],
+  "consuming": true,
+  "result": {
+    "id": "ic2:reactor_fluid_port",
+    "count": 1
+  },
+  "key": {
+    "V": "ic2:reactor_vessel",
+    "C": "ic2:facade_cell"
+  }
+}

@@ -14,7 +14,8 @@ components = ['heat_vent', 'rsh_condensator', 'lzh_condensator',
               'sextuple_reactor_coolant_cell', 'reactor_plating', 'reactor_heat_plating',
               'containment_reactor_plating', 'heat_exchanger', 'reactor_heat_exchanger',
               'component_heat_exchanger', 'advanced_heat_exchanger', 'neutron_reflector',
-              'thick_neutron_reflector', 'iridium_neutron_reflector', 'heatpack']
+              'thick_neutron_reflector', 'iridium_neutron_reflector', 'heatpack',
+              'raw_crystal_memory', 'crystal_memory']
 for component in components:
     item(component)
 for locale in ['en_us', 'zh_cn']:

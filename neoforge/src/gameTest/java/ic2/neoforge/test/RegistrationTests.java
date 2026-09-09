@@ -265,9 +265,10 @@ public final class RegistrationTests {
         FUNCTIONS.register(
                 "reactor_heatpack_warm", () -> ReactorHeatEffectTests::heatpackWarmsVentStorage);
         FUNCTIONS.register(
-                "reactor_redstone_port", () -> ReactorAccessHatchTests::redstonePortPowersCore);
+                "crystal_memory_roundtrip", () -> CrystalMemoryTests::recordsAndReadsPattern);
         FUNCTIONS.register(
-                "reactor_hatch_grid", () -> ReactorAccessHatchTests::hatchExposesGrid);
+                "reactor_redstone_port", () -> ReactorAccessHatchTests::redstonePortPowersCore);
+        FUNCTIONS.register("reactor_hatch_grid", () -> ReactorAccessHatchTests::hatchExposesGrid);
         FUNCTIONS.register(
                 "reactor_rci_recharge", () -> ReactorAccessHatchTests::rciRechargesCondensator);
         FUNCTIONS.register(

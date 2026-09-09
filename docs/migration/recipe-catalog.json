@@ -3387,14 +3387,14 @@
     {
       "source": "shaped/rci_lzh.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:rci_lzh"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/rci_lzh.json"
     },
     {
       "source": "shaped/rci_rsh.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:rci_rsh"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/rci_rsh.json"
     },
     {
       "source": "shaped/re_battery.json",
@@ -3405,8 +3405,8 @@
     {
       "source": "shaped/reactor_access_hatch.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:reactor_access_hatch"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/reactor_access_hatch.json"
     },
     {
       "source": "shaped/reactor_chamber.json",
@@ -3423,8 +3423,8 @@
     {
       "source": "shaped/reactor_fluid_port.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:reactor_fluid_port"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/reactor_fluid_port.json"
     },
     {
       "source": "shaped/reactor_heat_exchanger.json",
@@ -3447,8 +3447,8 @@
     {
       "source": "shaped/reactor_redstone_port.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:reactor_redstone_port"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/reactor_redstone_port.json"
     },
     {
       "source": "shaped/reactor_vessel.json",
@@ -4599,8 +4599,8 @@
     {
       "source": "smelting/crystal_memory.json",
       "type": "minecraft:smelting",
-      "status": "pending",
-      "reason": "unported result ic2:crystal_memory"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/smelting/crystal_memory.json"
     },
     {
       "source": "smelting/dark_coffee_mug.json",

@@ -74,10 +74,19 @@ public final class ModReactorItems {
             ITEMS.registerItem(
                     "iridium_neutron_reflector",
                     properties -> new ReflectorItem(properties.stacksTo(1), 0, false));
+
+    // P11 replication chain: the pattern-recording crystal memory (the blank raw crystal is a
+    // material-block pipeline item).
+    public static final DeferredItem<ic2.neoforge.item.CrystalMemoryItem> CRYSTAL_MEMORY =
+            ITEMS.registerItem(
+                    "crystal_memory",
+                    properties -> new ic2.neoforge.item.CrystalMemoryItem(properties.stacksTo(1)));
+
     /** Tops up adjacent component heat storage straight from the core while it is below 1000. */
     public static final DeferredItem<ic2.neoforge.item.HeatpackItem> HEATPACK =
             ITEMS.registerItem(
-                    "heatpack", properties -> new ic2.neoforge.item.HeatpackItem(properties, 1000, 1));
+                    "heatpack",
+                    properties -> new ic2.neoforge.item.HeatpackItem(properties, 1000, 1));
 
     /**
      * Reactor heat storage: absorbs heat once the reactor itself migrates (P12) and is recharged
@@ -223,6 +232,7 @@ public final class ModReactorItems {
             event.accept(THICK_NEUTRON_REFLECTOR);
             event.accept(IRIDIUM_NEUTRON_REFLECTOR);
             event.accept(HEATPACK);
+            event.accept(CRYSTAL_MEMORY);
         }
     }
 

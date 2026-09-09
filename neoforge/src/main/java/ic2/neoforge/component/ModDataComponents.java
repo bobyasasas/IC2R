@@ -171,6 +171,13 @@ public final class ModDataComponents {
         return heat;
     }
 
+    public static final Supplier<DataComponentType<ItemContainerContents>> CRYSTAL_MEMORY_PATTERN =
+            TYPES.<ItemContainerContents>registerComponentType(
+                    "crystal_memory_pattern",
+                    builder ->
+                            builder.persistent(ItemContainerContents.CODEC)
+                                    .networkSynchronized(ItemContainerContents.STREAM_CODEC));
+
     // Damage-style depletion of reactor components; 0 means fresh (recipes require fresh rods).
     public static final Supplier<DataComponentType<Integer>> REACTOR_USE =
             TYPES.<Integer>registerComponentType(

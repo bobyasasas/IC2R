@@ -1,0 +1,16 @@
+{
+  "type": "ic2:shaped",
+  "pattern": [
+    "VVV",
+    "VRV",
+    "VVV"
+  ],
+  "result": {
+    "id": "ic2:reactor_redstone_port",
+    "count": 1
+  },
+  "key": {
+    "V": "ic2:reactor_vessel",
+    "R": "minecraft:redstone"
+  }
+}
