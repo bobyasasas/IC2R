@@ -1,0 +1,19 @@
+{
+  "type": "ic2:shaped",
+  "pattern": [
+    "CBC",
+    "MAT",
+    "CBC"
+  ],
+  "result": {
+    "id": "ic2:advanced_miner",
+    "count": 1
+  },
+  "key": {
+    "A": "ic2:advanced_machine",
+    "B": "ic2:miner",
+    "C": "ic2:alloy",
+    "T": "ic2:teleporter",
+    "M": "ic2:mfe"
+  }
+}

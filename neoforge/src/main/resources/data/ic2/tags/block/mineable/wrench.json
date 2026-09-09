@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
+    "ic2:advanced_miner",
     "ic2:batbox",
     "ic2:batbox_chargepad",
     "ic2:bronze_storage_box",

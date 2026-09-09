@@ -2154,7 +2154,12 @@
       "factory": "register",
       "expression": "new ItemBlockIc2(Ic2Blocks.ADVANCED_MINER, new Properties())",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/adv-miner.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/AdvMinerTests.java"
+      ],
+      "note": "创造页与配方外观待实机;卡片编辑 GUI 随后续切片。"
     },
     {
       "registry": "item",
@@ -7878,7 +7883,12 @@
       "factory": "register",
       "expression": "Ic2TileEntityBlock.create(Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).strength(2.0F, 10.0F).requiresCorrectToolForDrops().sound(SoundType.METAL), TileEntityAdvMiner.class, true, Ic2TileEntityBlock.DefaultDrop.Self, Util.horizontalFacings, true)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/adv-miner.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/AdvMinerTests.java"
+      ],
+      "note": "逐层扫描、过滤门控、精准采集与游标持久化验证通过;采矿过滤器卡片与比较器未迁移;多人随 M16。"
     },
     {
       "registry": "block",
@@ -10781,7 +10791,12 @@
       "factory": "register",
       "expression": "TileEntityAdvMiner::new",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/adv-miner.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/AdvMinerTests.java"
+      ],
+      "note": "逐层扫描、过滤门控、精准采集与游标持久化验证通过;采矿过滤器卡片与比较器未迁移;多人随 M16。"
     },
     {
       "registry": "block_entity",
@@ -11752,7 +11767,12 @@
       "factory": "registerManagedBe",
       "expression": "",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/adv-miner.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/AdvMinerTests.java"
+      ],
+      "note": "逐层扫描、过滤门控、精准采集与游标持久化验证通过;采矿过滤器卡片与比较器未迁移;多人随 M16。"
     },
     {
       "registry": "menu",

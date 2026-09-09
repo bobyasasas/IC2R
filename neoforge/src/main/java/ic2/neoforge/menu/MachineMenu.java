@@ -133,6 +133,22 @@ public final class MachineMenu extends AbstractContainerMenu {
                     });
             addSlot(new ResourceHandlerSlot(inventory, inventory::set, 2, 56, 53));
             addSlot(new ResourceHandlerSlot(inventory, inventory::set, 3, 102, 53));
+        } else if (kind == MachineKind.ADV_MINER) {
+            addSlot(
+                    new ResourceHandlerSlot(inventory, inventory::set, 0, 8, 26) {
+                        @Override
+                        public boolean mayPlace(ItemStack stack) {
+                            return stack.getItem() instanceof ic2.neoforge.item.ScannerItem;
+                        }
+                    });
+            for (int slot = 0; slot < ic2.neoforge.machine.AdvMinerBlockEntity.FILTER_SIZE; slot++)
+                addSlot(
+                        new ResourceHandlerSlot(
+                                inventory,
+                                inventory::set,
+                                ic2.neoforge.machine.AdvMinerBlockEntity.FILTER_START + slot,
+                                36 + slot % 5 * 18,
+                                44 + slot / 5 * 18));
         } else if (kind == MachineKind.MINER) {
             addSlot(
                     new ResourceHandlerSlot(inventory, inventory::set, 2, 8, 58) {

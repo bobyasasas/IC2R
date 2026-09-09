@@ -209,6 +209,9 @@ public final class RegistrationTests {
         FUNCTIONS.register(
                 "teleporter_cooldown_shortage", () -> TeleporterTests::cooldownAndShortage);
         FUNCTIONS.register("teleporter_unlink", () -> TeleporterTests::unlinksInAir);
+        FUNCTIONS.register("adv_miner_sweep", () -> AdvMinerTests::sweepsAndMines);
+        FUNCTIONS.register("adv_miner_whitelist", () -> AdvMinerTests::whitelistGates);
+        FUNCTIONS.register("adv_miner_silk_reset", () -> AdvMinerTests::silkAndReset);
         FUNCTIONS.register("cooling_capacity", () -> HeatExchangerTests::nearlyFullOutput);
         FUNCTIONS.register("cooling_parts_budget", () -> HeatExchangerTests::partsAndBudget);
         FUNCTIONS.register("cooling_stirling_chain", () -> HeatExchangerTests::stirlingChain);

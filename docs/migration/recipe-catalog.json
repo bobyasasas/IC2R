@@ -2061,8 +2061,8 @@
     {
       "source": "shaped/advanced_miner.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:advanced_miner"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/advanced_miner.json"
     },
     {
       "source": "shaped/advanced_re_battery.json",

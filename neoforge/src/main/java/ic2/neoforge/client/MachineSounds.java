@@ -95,6 +95,7 @@ final class MachineSounds {
                     TRADE_O_MAT,
                     PUMP,
                     MINER,
+                    ADV_MINER,
                     TELEPORTER,
                     PERSONAL_CHEST,
                     SORTING_MACHINE,
