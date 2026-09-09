@@ -92,6 +92,41 @@ public final class MachineMenu extends AbstractContainerMenu {
         } else if (kind == MachineKind.STEAM_REPRESSURIZER) {
             addFluidContainerSlot(inventory, 0, 130, 72);
             addOutputSlot(inventory, 1, 152, 72);
+        } else if (kind == MachineKind.RT_HEAT_GENERATOR) {
+            for (int slot = 0; slot < 6; slot++)
+                addSlot(
+                        new ResourceHandlerSlot(
+                                inventory, inventory::set, slot, 34 + slot * 18, 34) {
+                            @Override
+                            public boolean mayPlace(ItemStack stack) {
+                                return ItemResource.of(stack).getItem()
+                                        == ic2.neoforge.registration.ModReactorItems.RTG_PELLET
+                                                .get();
+                            }
+
+                            @Override
+                            public int getMaxStackSize() {
+                                return 1;
+                            }
+                        });
+        } else if (kind == MachineKind.RT_GENERATOR) {
+            for (int slot = 0; slot < 6; slot++)
+                addSlot(
+                        new ResourceHandlerSlot(
+                                inventory, inventory::set, slot, 34 + slot * 18, 34) {
+                            @Override
+                            public boolean mayPlace(ItemStack stack) {
+                                return ItemResource.of(stack).getItem()
+                                        == ic2.neoforge.registration.ModReactorItems.RTG_PELLET
+                                                .get();
+                            }
+
+                            @Override
+                            public int getMaxStackSize() {
+                                return 1;
+                            }
+                        });
+            addBatterySlot(inventory, 6, 8, 72);
         } else if (kind == MachineKind.CONDENSER) {
             addFluidContainerSlot(inventory, 0, 130, 72);
             addOutputSlot(inventory, 1, 152, 72);

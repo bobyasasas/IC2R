@@ -544,7 +544,7 @@
       "source": "centrifuge/rtg_pellet_to_plutonium.json",
       "type": "ic2:centrifuge",
       "status": "pending",
-      "reason": "unported item ic2:rtg_pellet"
+      "reason": "unported result ic2:plutonium"
     },
     {
       "source": "centrifuge/slag_to_small_gold_dust.json",
@@ -3538,37 +3538,37 @@
       "source": "shaped/rt_generator.json",
       "type": "ic2:shaped",
       "status": "pending",
-      "reason": "unported result ic2:rt_generator"
+      "reason": "unported item ic2:reactor_chamber"
     },
     {
       "source": "shaped/rt_heat_generator.json",
       "type": "ic2:shaped",
       "status": "pending",
-      "reason": "unported result ic2:rt_heat_generator"
+      "reason": "unported item ic2:reactor_chamber"
     },
     {
       "source": "shaped/rtg_pellet.json",
       "type": "ic2:shaped",
       "status": "pending",
-      "reason": "unported result ic2:rtg_pellet"
+      "reason": "unported item ic2:plutonium"
     },
     {
       "source": "shaped/rtg_pellet_2.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:rtg_pellet"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/rtg_pellet_2.json"
     },
     {
       "source": "shaped/rtg_pellet_vertical.json",
       "type": "ic2:shaped",
       "status": "pending",
-      "reason": "unported result ic2:rtg_pellet"
+      "reason": "unported item ic2:plutonium"
     },
     {
       "source": "shaped/rtg_pellet_vertical_2.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:rtg_pellet"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/rtg_pellet_vertical_2.json"
     },
     {
       "source": "shaped/rubber_boat.json",

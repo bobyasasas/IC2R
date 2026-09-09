@@ -1,0 +1,17 @@
+{
+  "type": "ic2:shaped",
+  "pattern": [
+    "RRR",
+    "AAA",
+    "RRR"
+  ],
+  "group": "rtg_pellet",
+  "result": {
+    "id": "ic2:rtg_pellet",
+    "count": 1
+  },
+  "key": {
+    "R": "ic2:dense_iron_plate",
+    "A": "#c:ingots/plutonium"
+  }
+}

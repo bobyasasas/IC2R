@@ -4,6 +4,7 @@ import ic2.neoforge.item.ReactorHeatItem;
 
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTabs;
+import net.minecraft.world.item.Item;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.registries.DeferredItem;
@@ -14,6 +15,13 @@ public final class ModReactorItems {
     public static final DeferredItem<ReactorHeatItem> HEAT_VENT =
             ITEMS.registerItem("heat_vent", properties -> new ReactorHeatItem(properties, 1000, 6));
 
+    /**
+     * RTG fuel: one pellet per slot across six machine slots. The recovered item also irradiates an
+     * unprotected carrier; that behavior needs the hazmat armor set and lands with P16.
+     */
+    public static final DeferredItem<Item> RTG_PELLET =
+            ITEMS.registerItem("rtg_pellet", properties -> new Item(properties.stacksTo(1)));
+
     public static void register(IEventBus bus) {
         ITEMS.register(bus);
         bus.addListener(ModReactorItems::creative);
@@ -22,6 +30,7 @@ public final class ModReactorItems {
 
     private static void creative(BuildCreativeModeTabContentsEvent event) {
         if (event.getTabKey().equals(CreativeModeTabs.FUNCTIONAL_BLOCKS)) event.accept(HEAT_VENT);
+        if (event.getTabKey().equals(CreativeModeTabs.INGREDIENTS)) event.accept(RTG_PELLET);
     }
 
     private static void tooltip(net.neoforged.neoforge.event.entity.player.ItemTooltipEvent event) {

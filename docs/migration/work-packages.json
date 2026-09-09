@@ -107,7 +107,7 @@
       "parent": "M11",
       "title": "热力与动能机器",
       "status": "in_progress",
-      "acceptance": "风力／水力动能与五种转子、手动动能、电热、电动动能、固体／流体热源、蒸汽发生器升温／压力／结垢、双级蒸汽动能与完整水循环、冷凝与散热片、电解双气体输出、流体冷却换热、发酵与沼气链、原生事务能力与转电链已接入；蒸汽再压缩（有界热储备、c:steam 候选选择、取热差额修复、零倍率停机）已接入并双模式 GameTest 验收；同位素热源与升温换热待验收。",
+      "acceptance": "风力／水力动能与五种转子、手动动能、电热、电动动能、固体／流体热源、蒸汽发生器升温／压力／结垢、双级蒸汽动能与完整水循环、冷凝与散热片、电解双气体输出、流体冷却换热、发酵与沼气链、原生事务能力与转电链已接入；蒸汽再压缩（有界热储备、c:steam 候选选择、取热差额修复、零倍率停机）已接入并双模式 GameTest 验收；同位素热源与 RT 发电机（指数输出曲线、单面热输出、燃料不消耗、电池槽充电）已接入并双模式 GameTest 验收；升温换热待验收。",
       "evidence": [
         "docs/migration/work-energy.md",
         "neoforge/src/gameTest/java/ic2/neoforge/test/WorkEnergyTests.java",
@@ -122,7 +122,9 @@
         "docs/migration/steam-generator.md",
         "docs/migration/steam-turbine.md",
         "docs/migration/steam-repressurizer.md",
-        "neoforge/src/gameTest/java/ic2/neoforge/test/SteamRepressurizerTests.java"
+        "neoforge/src/gameTest/java/ic2/neoforge/test/SteamRepressurizerTests.java",
+        "docs/migration/isotopic-heat.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/RtGeneratorTests.java"
       ]
     },
     {

@@ -1398,7 +1398,11 @@
       "factory": "register",
       "expression": "new ItemBlockIc2(Ic2Blocks.RT_GENERATOR, new Properties())",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/isotopic-heat.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/RtGeneratorTests.java"
+      ]
     },
     {
       "registry": "item",
@@ -1523,7 +1527,11 @@
       "factory": "register",
       "expression": "new ItemBlockIc2(Ic2Blocks.RT_HEAT_GENERATOR, new Properties())",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/isotopic-heat.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/RtGeneratorTests.java"
+      ]
     },
     {
       "registry": "item",
@@ -3408,7 +3416,11 @@
       "factory": "register",
       "expression": "new ItemNuclearResource(new Properties().stacksTo(1), 2, 90)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/isotopic-heat.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/RtGeneratorTests.java"
+      ]
     },
     {
       "registry": "item",
@@ -7033,7 +7045,12 @@
       "factory": "register",
       "expression": "Ic2TileEntityBlock.create(Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).strength(2.0F, 10.0F).requiresCorrectToolForDrops().sound(SoundType.METAL), TileEntityRTGenerator.class, true, Ic2TileEntityBlock.DefaultDrop.Generator, Util.noFacings, false)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/isotopic-heat.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/RtGeneratorTests.java"
+      ],
+      "note": "六槽同位素燃料、指数输出曲线、单面热输出、热缓冲持久化与 LV 供电/电池充电已接入；配方前置（钚、反应堆室）随 P09/P12 迁移，辐射行为随 P16。"
     },
     {
       "registry": "block",
@@ -7148,7 +7165,12 @@
       "factory": "register",
       "expression": "Ic2TileEntityBlock.create(Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).strength(2.0F, 10.0F).requiresCorrectToolForDrops().sound(SoundType.METAL), TileEntityRTHeatGenerator.class, true, Ic2TileEntityBlock.DefaultDrop.Self, Util.allFacings, true)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/isotopic-heat.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/RtGeneratorTests.java"
+      ],
+      "note": "六槽同位素燃料、指数输出曲线、单面热输出、热缓冲持久化与 LV 供电/电池充电已接入；配方前置（钚、反应堆室）随 P09/P12 迁移，辐射行为随 P16。"
     },
     {
       "registry": "block",
@@ -9376,7 +9398,12 @@
       "factory": "register",
       "expression": "TileEntityRTGenerator::new",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/isotopic-heat.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/RtGeneratorTests.java"
+      ],
+      "note": "六槽同位素燃料、指数输出曲线、单面热输出、热缓冲持久化与 LV 供电/电池充电已接入；配方前置（钚、反应堆室）随 P09/P12 迁移，辐射行为随 P16。"
     },
     {
       "registry": "block_entity",
@@ -9571,7 +9598,12 @@
       "factory": "register",
       "expression": "TileEntityRTHeatGenerator::new",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/isotopic-heat.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/RtGeneratorTests.java"
+      ],
+      "note": "六槽同位素燃料、指数输出曲线、单面热输出、热缓冲持久化与 LV 供电/电池充电已接入；配方前置（钚、反应堆室）随 P09/P12 迁移，辐射行为随 P16。"
     },
     {
       "registry": "block_entity",

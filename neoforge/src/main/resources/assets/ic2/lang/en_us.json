@@ -1424,6 +1424,8 @@
   "ic2.steam_repressurizer.rate": "Steam: 10 mB + 1 HU → %s mB",
   "ic2.steam_repressurizer.super": "Superheated: 10 mB + 1 HU → %s mB",
   "ic2.steam_repressurizer.no_steam": "No compatible external steam",
+  "ic2.radioisotope.installed": "Installed pellets: %s",
+  "ic2.radioisotope.rate": "Output: %s per tick",
   "ic2.electrolyzer.tanks": "Adjacent tanks",
   "ic2.regulator.second": "Per second",
   "ic2.regulator.tick": "Per tick",

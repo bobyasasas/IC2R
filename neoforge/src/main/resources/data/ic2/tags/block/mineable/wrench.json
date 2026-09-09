@@ -30,6 +30,8 @@
     "ic2:mv_transformer",
     "ic2:ore_washing_plant",
     "ic2:recycler",
+    "ic2:rt_generator",
+    "ic2:rt_heat_generator",
     "ic2:semifluid_generator",
     "ic2:solar_generator",
     "ic2:solid_heat_generator",

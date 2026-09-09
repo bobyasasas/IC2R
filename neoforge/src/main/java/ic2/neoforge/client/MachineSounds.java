@@ -89,6 +89,8 @@ final class MachineSounds {
             case STEAM_KINETIC_GENERATOR,
                     STEAM_GENERATOR,
                     STEAM_REPRESSURIZER,
+                    RT_HEAT_GENERATOR,
+                    RT_GENERATOR,
                     CONDENSER,
                     FLUID_REGULATOR,
                     TANK,

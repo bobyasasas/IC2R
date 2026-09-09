@@ -10,10 +10,12 @@ public final class GenerationConfig {
     public static final ModConfigSpec.DoubleValue STEAM_KINETIC;
     public static final ModConfigSpec.DoubleValue MANUAL_KINETIC;
     public static final ModConfigSpec.DoubleValue SOLID_HEAT, FLUID_HEAT;
+    public static final ModConfigSpec.DoubleValue RADIOISOTOPE_HEAT;
     public static final ModConfigSpec.DoubleValue ELECTRIC_HEAT,
             ELECTRIC_KINETIC,
             STIRLING_CONVERSION,
-            KINETIC_CONVERSION;
+            KINETIC_CONVERSION,
+            RADIOISOTOPE_GENERATION;
     public static final ModConfigSpec.DoubleValue WATER_MULTIPLIER;
     public static final ModConfigSpec.BooleanValue WATER_AUTOMATION;
     public static final ModConfigSpec.DoubleValue WIND_MULTIPLIER;
@@ -27,11 +29,13 @@ public final class GenerationConfig {
         WIND_KINETIC = builder.defineInRange("windKineticMultiplier", 1, 0, 1000000.0);
         MANUAL_KINETIC = builder.defineInRange("manualKineticMultiplier", 1, 0, 1000000.0);
         SOLID_HEAT = builder.defineInRange("solidHeatMultiplier", 1, 0, 1000000.0);
+        RADIOISOTOPE_HEAT = builder.defineInRange("radioisotopeHeatMultiplier", 1, 0, 1000000.0);
         FLUID_HEAT = builder.defineInRange("fluidHeatMultiplier", 1, 0, 1000000.0);
         ELECTRIC_HEAT = builder.defineInRange("electricHeatMultiplier", 1, 0, 1000000.0);
         ELECTRIC_KINETIC = builder.defineInRange("electricKineticMultiplier", 1, 0, 1000000.0);
         STIRLING_CONVERSION = builder.defineInRange("stirlingMultiplier", 1, 0, 1000000.0);
         KINETIC_CONVERSION = builder.defineInRange("kineticMultiplier", 1, 0, 1000000.0);
+        RADIOISOTOPE_GENERATION = builder.defineInRange("radioisotopeMultiplier", 1, 0, 1000000.0);
         WIND_MULTIPLIER = builder.defineInRange("windMultiplier", 1, 0, 1000000.0);
         WIND_BREAKAGE =
                 builder.comment(

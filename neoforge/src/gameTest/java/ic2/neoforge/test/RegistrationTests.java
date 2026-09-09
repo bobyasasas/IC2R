@@ -168,6 +168,11 @@ public final class RegistrationTests {
         FUNCTIONS.register("repressurizer_zero_rate", () -> SteamRepressurizerTests::zeroRateStops);
         FUNCTIONS.register(
                 "repressurizer_reload", () -> SteamRepressurizerTests::reserveSurvivesReload);
+        FUNCTIONS.register("radioisotope_heat_curve", () -> RtGeneratorTests::heatOutputCurve);
+        FUNCTIONS.register("radioisotope_heat_reload", () -> RtGeneratorTests::heatSurvivesReload);
+        FUNCTIONS.register("radioisotope_generator", () -> RtGeneratorTests::generatorProduces);
+        FUNCTIONS.register("radioisotope_charging", () -> RtGeneratorTests::generatorChargesTool);
+        FUNCTIONS.register("radioisotope_automation", () -> RtGeneratorTests::pelletsAutomate);
         FUNCTIONS.register("cooling_capacity", () -> HeatExchangerTests::nearlyFullOutput);
         FUNCTIONS.register("cooling_parts_budget", () -> HeatExchangerTests::partsAndBudget);
         FUNCTIONS.register("cooling_stirling_chain", () -> HeatExchangerTests::stirlingChain);

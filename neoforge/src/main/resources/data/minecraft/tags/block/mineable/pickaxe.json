@@ -55,6 +55,8 @@
     "ic2:reactor_vessel",
     "ic2:recycler",
     "ic2:reinforced_stone",
+    "ic2:rt_generator",
+    "ic2:rt_heat_generator",
     "ic2:semifluid_generator",
     "ic2:silver_block",
     "ic2:solar_generator",

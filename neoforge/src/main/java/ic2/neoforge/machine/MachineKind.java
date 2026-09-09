@@ -28,6 +28,8 @@ public enum MachineKind implements StringRepresentable {
     WATER_KINETIC_GENERATOR("water_kinetic_generator", 0, 1, 0, 0),
     WIND_KINETIC_GENERATOR("wind_kinetic_generator", 0, 1, 0, 0),
     MANUAL_KINETIC_GENERATOR("manual_kinetic_generator", 0, 0, 0, 0),
+    RT_HEAT_GENERATOR("rt_heat_generator", 0, 6, 0, 0),
+    RT_GENERATOR("rt_generator", 20000, 7, 0, 0),
     SOLID_HEAT_GENERATOR("solid_heat_generator", 0, 2, 0, 0),
     FLUID_HEAT_GENERATOR("fluid_heat_generator", 0, 2, 0, 0),
     ELECTRIC_HEAT_GENERATOR("electric_heat_generator", 10000, 11, 0, 0),
@@ -163,6 +165,8 @@ public enum MachineKind implements StringRepresentable {
                         || this == FLUID_REGULATOR
                         || this == CONDENSER
                         || this == STEAM_REPRESSURIZER
+                        || this == RT_HEAT_GENERATOR
+                        || this == RT_GENERATOR
                         || this == STEAM_KINETIC_GENERATOR
                 ? 184
                 : 166;
