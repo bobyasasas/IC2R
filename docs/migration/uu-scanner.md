@@ -23,7 +23,26 @@ legacy `ItemCrystalMemory`(内嵌 ItemStack 的模式存储盘)及其空白晶�
   (items 定义/模型/纹理/双语名);raw_crystal_memory 已由
   MaterialDefinition 管线注册,不重复注册。
 
+## 切片四:replicator(2026-09-09)
+
+- `ReplicatorBlockEntity`:16,000 mB UU 罐(fluidSlot 灌 `uu_matter_cell`
+  → 1,000 mB 入罐、空单元落 cell 槽);模式取自相邻 pattern_storage;
+  SINGLE/CONTINUOUS/STOPPED 三模式(menuAction 2/3/4);每 tick 消耗
+  1 mB UU + 512 EU,产出模式物品。**文档化单位简化**:模式堆叠数 =
+  所需 UU 毫升,legacy 1 mB=1000 UU 单位换算随 UuGraph 数据包化统一。
+- **付费门**:罐空时 `tank.extract` 返回 0 即停机——修复了"先计数后扣费"
+  导致的无中生有复制;产出事务在扣费成功后原子提交。
+- 另修复:事务 `Transaction.openRoot()` 未闭合导致同刻其他机器开启事务
+  报"already active"的泄漏。
+
 ## 测试证据
+
+- `ReplicatorTests.replicatesPatternFromStorage`:UU 单元灌罐 → SINGLE 模式
+  产出铁锭、空单元收集、单次后停机。
+- `modeStopsWithoutUu`:无 UU 供给时不产出。
+- IC2 与 GT 双模式 `runGameTestServer` 231 项全绿。
+
+## 测试证据(切片一)
 
 - `CrystalMemoryTests.recordsAndReadsPattern`:空白盘读出为空 → 写入
   铁锭 → 读回铁锭 → 写空盘清空(组件写/清语义)。
