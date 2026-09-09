@@ -285,8 +285,8 @@
     {
       "source": "canner_bottle/mox_fuel_rod.json",
       "type": "ic2:canner_bottle",
-      "status": "pending",
-      "reason": "unported result ic2:mox_fuel_rod"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/canner_bottle/mox_fuel_rod.json"
     },
     {
       "source": "canner_bottle/mushroom_stew_filled_tin_can.json",
@@ -375,8 +375,8 @@
     {
       "source": "canner_bottle/uranium_fuel_rod.json",
       "type": "ic2:canner_bottle",
-      "status": "pending",
-      "reason": "unported result ic2:uranium_fuel_rod"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/canner_bottle/uranium_fuel_rod.json"
     },
     {
       "source": "canner_enrich/biomass.json",
@@ -459,38 +459,38 @@
     {
       "source": "centrifuge/depleted_dual_mox_fuel_rod_to_small_plutonium.json",
       "type": "ic2:centrifuge",
-      "status": "pending",
-      "reason": "unported item ic2:depleted_dual_mox_fuel_rod"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/centrifuge/depleted_dual_mox_fuel_rod_to_small_plutonium.json"
     },
     {
       "source": "centrifuge/depleted_dual_uranium_fuel_rod_to_small_plutonium.json",
       "type": "ic2:centrifuge",
-      "status": "pending",
-      "reason": "unported item ic2:depleted_dual_uranium_fuel_rod"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/centrifuge/depleted_dual_uranium_fuel_rod_to_small_plutonium.json"
     },
     {
       "source": "centrifuge/depleted_mox_fuel_rod_to_small_plutonium.json",
       "type": "ic2:centrifuge",
-      "status": "pending",
-      "reason": "unported item ic2:depleted_mox_fuel_rod"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/centrifuge/depleted_mox_fuel_rod_to_small_plutonium.json"
     },
     {
       "source": "centrifuge/depleted_quad_mox_fuel_rod_to_small_plutonium.json",
       "type": "ic2:centrifuge",
-      "status": "pending",
-      "reason": "unported item ic2:depleted_quad_mox_fuel_rod"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/centrifuge/depleted_quad_mox_fuel_rod_to_small_plutonium.json"
     },
     {
       "source": "centrifuge/depleted_quad_uranium_fuel_rod_to_small_plutonium.json",
       "type": "ic2:centrifuge",
-      "status": "pending",
-      "reason": "unported item ic2:depleted_quad_uranium_fuel_rod"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/centrifuge/depleted_quad_uranium_fuel_rod_to_small_plutonium.json"
     },
     {
       "source": "centrifuge/depleted_uranium_fuel_rod_to_small_plutonium.json",
       "type": "ic2:centrifuge",
-      "status": "pending",
-      "reason": "unported item ic2:depleted_uranium_fuel_rod"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/centrifuge/depleted_uranium_fuel_rod_to_small_plutonium.json"
     },
     {
       "source": "centrifuge/purified_copper_to_copper_dust.json",
@@ -2481,14 +2481,14 @@
     {
       "source": "shaped/dual_mox_fuel_rod.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:dual_mox_fuel_rod"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/dual_mox_fuel_rod.json"
     },
     {
       "source": "shaped/dual_uranium_fuel_rod.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:dual_uranium_fuel_rod"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/dual_uranium_fuel_rod.json"
     },
     {
       "source": "shaped/dynamite_sticky.json",
@@ -3309,26 +3309,26 @@
     {
       "source": "shaped/quad_mox_fuel_rod.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:quad_mox_fuel_rod"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/quad_mox_fuel_rod.json"
     },
     {
       "source": "shaped/quad_mox_fuel_rod_from_dual.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:quad_mox_fuel_rod"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/quad_mox_fuel_rod_from_dual.json"
     },
     {
       "source": "shaped/quad_uranium_fuel_rod.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:quad_uranium_fuel_rod"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/quad_uranium_fuel_rod.json"
     },
     {
       "source": "shaped/quad_uranium_fuel_rod_from_dual.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:quad_uranium_fuel_rod"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/quad_uranium_fuel_rod_from_dual.json"
     },
     {
       "source": "shaped/quantum_boots.json",

@@ -3562,7 +3562,12 @@
       "factory": "register",
       "expression": "new ItemNuclearResource(new Properties(), 10, 100)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/fuel-rods.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/FuelRodTests.java"
+      ],
+      "note": "物品已注册、离心配方已加载;辐射行为随 P16。"
     },
     {
       "registry": "item",
@@ -3572,7 +3577,12 @@
       "factory": "register",
       "expression": "new ItemNuclearResource(new Properties(), 10, 100)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/fuel-rods.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/FuelRodTests.java"
+      ],
+      "note": "物品已注册、离心配方已加载;辐射行为随 P16。"
     },
     {
       "registry": "item",
@@ -3582,7 +3592,12 @@
       "factory": "register",
       "expression": "new ItemNuclearResource(new Properties(), 10, 100)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/fuel-rods.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/FuelRodTests.java"
+      ],
+      "note": "物品已注册、离心配方已加载;辐射行为随 P16。"
     },
     {
       "registry": "item",
@@ -3592,7 +3607,12 @@
       "factory": "register",
       "expression": "new ItemNuclearResource(new Properties(), 10, 100)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/fuel-rods.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/FuelRodTests.java"
+      ],
+      "note": "物品已注册、离心配方已加载;辐射行为随 P16。"
     },
     {
       "registry": "item",
@@ -3602,7 +3622,12 @@
       "factory": "register",
       "expression": "new ItemNuclearResource(new Properties(), 10, 100)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/fuel-rods.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/FuelRodTests.java"
+      ],
+      "note": "物品已注册、离心配方已加载;辐射行为随 P16。"
     },
     {
       "registry": "item",
@@ -3612,7 +3637,12 @@
       "factory": "register",
       "expression": "new ItemNuclearResource(new Properties(), 10, 100)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/fuel-rods.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/FuelRodTests.java"
+      ],
+      "note": "物品已注册、离心配方已加载;辐射行为随 P16。"
     },
     {
       "registry": "item",
@@ -4604,7 +4634,12 @@
       "factory": "register",
       "expression": "new ItemReactorUranium(new Properties(), 1)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/fuel-rods.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/FuelRodTests.java"
+      ],
+      "note": "物品、存耗组件、鲜棒组件配料与双联合成经 GameTest 验证;堆内脉冲随 P12 反应堆本体。"
     },
     {
       "registry": "item",
@@ -4614,7 +4649,12 @@
       "factory": "register",
       "expression": "new ItemReactorUranium(new Properties(), 2)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/fuel-rods.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/FuelRodTests.java"
+      ],
+      "note": "物品、存耗组件、鲜棒组件配料与双联合成经 GameTest 验证;堆内脉冲随 P12 反应堆本体。"
     },
     {
       "registry": "item",
@@ -4624,7 +4664,12 @@
       "factory": "register",
       "expression": "new ItemReactorUranium(new Properties(), 4)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/fuel-rods.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/FuelRodTests.java"
+      ],
+      "note": "物品、存耗组件、鲜棒组件配料与双联合成经 GameTest 验证;堆内脉冲随 P12 反应堆本体。"
     },
     {
       "registry": "item",
@@ -4634,7 +4679,12 @@
       "factory": "register",
       "expression": "new ItemReactorMOX(new Properties(), 1)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/fuel-rods.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/FuelRodTests.java"
+      ],
+      "note": "物品、存耗组件、鲜棒组件配料与双联合成经 GameTest 验证;堆内脉冲随 P12 反应堆本体。"
     },
     {
       "registry": "item",
@@ -4644,7 +4694,12 @@
       "factory": "register",
       "expression": "new ItemReactorMOX(new Properties(), 2)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/fuel-rods.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/FuelRodTests.java"
+      ],
+      "note": "物品、存耗组件、鲜棒组件配料与双联合成经 GameTest 验证;堆内脉冲随 P12 反应堆本体。"
     },
     {
       "registry": "item",
@@ -4654,7 +4709,12 @@
       "factory": "register",
       "expression": "new ItemReactorMOX(new Properties(), 4)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/fuel-rods.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/FuelRodTests.java"
+      ],
+      "note": "物品、存耗组件、鲜棒组件配料与双联合成经 GameTest 验证;堆内脉冲随 P12 反应堆本体。"
     },
     {
       "registry": "item",

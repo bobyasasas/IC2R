@@ -25,7 +25,16 @@ def common_tag(tag):
 def ingredient(value):
     if isinstance(value, list):
         return {'neoforge:ingredient_type': 'neoforge:compound', 'children': [ingredient(entry) for entry in value]}
-    if set(value) - {'item', 'tag', 'count'}:
+    if 'data' in value and 'item' in value:
+        # Legacy damageable components: {"use": 0} maps to the reactor_use data component, so a
+        # components ingredient only matches fresh rods.
+        data = value['data']
+        if set(data) != {'use'} or not all(v == 0 for v in data.values()):
+            raise ValueError('non-fresh data ingredient requires conversion: ' + repr(value))
+        component_key = 'ic2:reactor_use'
+        return {'neoforge:ingredient_type': 'neoforge:components', 'items': value['item'],
+                'components': {component_key: 0}}
+    if set(value) - {'item', 'tag', 'count', 'data'}:
         raise ValueError('ingredient requires component/fluid conversion: ' + repr(value))
     if 'item' in value:
         identifier = {'minecraft:chain': 'minecraft:iron_chain'}.get(value['item'], value['item'])

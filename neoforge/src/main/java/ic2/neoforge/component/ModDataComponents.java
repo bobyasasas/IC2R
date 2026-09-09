@@ -171,6 +171,17 @@ public final class ModDataComponents {
         return heat;
     }
 
+    // Damage-style depletion of reactor components; 0 means fresh (recipes require fresh rods).
+    public static final Supplier<DataComponentType<Integer>> REACTOR_USE =
+            TYPES.<Integer>registerComponentType(
+                    "reactor_use",
+                    builder ->
+                            builder.persistent(Codec.intRange(0, Integer.MAX_VALUE))
+                                    .networkSynchronized(
+                                            ByteBufCodecs.VAR_INT.map(
+                                                    ModDataComponents::validReactorHeat,
+                                                    ModDataComponents::validReactorHeat)));
+
     private ModDataComponents() {}
 
     private static double validCharge(double value) {

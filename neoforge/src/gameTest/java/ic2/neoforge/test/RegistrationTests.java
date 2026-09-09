@@ -236,6 +236,10 @@ public final class RegistrationTests {
                 "gradual_partial_vent", () -> GradualRecipeTests::partialVentKeepsRemainder);
         FUNCTIONS.register(
                 "gradual_empty_rejected", () -> GradualRecipeTests::freshCondensatorIsRejected);
+        FUNCTIONS.register("fuel_rod_dual_craft", () -> FuelRodTests::freshRodsCraftDualRod);
+        FUNCTIONS.register("fuel_rod_used_rejected", () -> FuelRodTests::usedRodsAreRejected);
+        FUNCTIONS.register(
+                "fuel_rod_depleted_chain", () -> FuelRodTests::depletedRodsChainToCentrifuge);
         FUNCTIONS.register(
                 "matter_generator_scrap", () -> MatterGeneratorTests::scrapAmplifiesAndGenerates);
         FUNCTIONS.register(

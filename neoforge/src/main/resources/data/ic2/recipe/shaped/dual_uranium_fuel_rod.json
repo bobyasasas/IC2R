@@ -1,0 +1,20 @@
+{
+  "type": "ic2:shaped",
+  "pattern": [
+    "UIU"
+  ],
+  "result": {
+    "id": "ic2:dual_uranium_fuel_rod",
+    "count": 1
+  },
+  "key": {
+    "U": {
+      "neoforge:ingredient_type": "neoforge:components",
+      "items": "ic2:uranium_fuel_rod",
+      "components": {
+        "ic2:reactor_use": 0
+      }
+    },
+    "I": "#c:plates/iron"
+  }
+}
