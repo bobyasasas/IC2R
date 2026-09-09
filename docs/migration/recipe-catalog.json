@@ -2679,8 +2679,8 @@
     {
       "source": "shaped/frequency_transmitter.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:frequency_transmitter"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/frequency_transmitter.json"
     },
     {
       "source": "shaped/generator_from_furnace.json",
@@ -3897,8 +3897,8 @@
     {
       "source": "shaped/teleporter.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:teleporter"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/teleporter.json"
     },
     {
       "source": "shaped/terraformer.json",

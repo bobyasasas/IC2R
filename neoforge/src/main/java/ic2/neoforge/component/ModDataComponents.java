@@ -5,6 +5,7 @@ import com.mojang.serialization.DataResult;
 
 import ic2.neoforge.IndustrialCraft;
 
+import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.UUIDUtil;
 import net.minecraft.core.component.DataComponentType;
@@ -55,6 +56,18 @@ public final class ModDataComponents {
                     builder ->
                             builder.persistent(Direction.CODEC)
                                     .networkSynchronized(Direction.STREAM_CODEC));
+    public static final Supplier<DataComponentType<BlockPos>> FREQUENCY_POS =
+            TYPES.<BlockPos>registerComponentType(
+                    "frequency_pos",
+                    builder ->
+                            builder.persistent(BlockPos.CODEC)
+                                    .networkSynchronized(BlockPos.STREAM_CODEC));
+    public static final Supplier<DataComponentType<Boolean>> FREQUENCY_JUST_SET =
+            TYPES.<Boolean>registerComponentType(
+                    "frequency_just_set",
+                    builder ->
+                            builder.persistent(Codec.BOOL).networkSynchronized(ByteBufCodecs.BOOL));
+
     public static final Supplier<DataComponentType<UUID>> TOOLBOX_ID =
             TYPES.<UUID>registerComponentType(
                     "toolbox_id",

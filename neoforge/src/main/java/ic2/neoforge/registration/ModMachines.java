@@ -101,6 +101,7 @@ public final class ModMachines {
             case PUMP -> new PumpBlockEntity(pos, state);
             case MINER -> new MinerBlockEntity(pos, state);
             case TRADE_O_MAT -> new TradeOMatBlockEntity(pos, state);
+            case TELEPORTER -> new TeleporterBlockEntity(pos, state);
             case WOODEN_STORAGE_BOX,
                     BRONZE_STORAGE_BOX,
                     IRON_STORAGE_BOX,

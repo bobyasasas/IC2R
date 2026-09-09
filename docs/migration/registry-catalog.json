@@ -1879,7 +1879,12 @@
       "factory": "register",
       "expression": "new ItemBlockIc2(Ic2Blocks.TELEPORTER, new Properties().rarity(Rarity.RARE))",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/teleporter.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/TeleporterTests.java"
+      ],
+      "note": "合成、双向链接与创造页验证通过;真实客户端外观随实机测试。"
     },
     {
       "registry": "item",
@@ -5041,7 +5046,12 @@
       "factory": "register",
       "expression": "new ItemFrequencyTransmitter(new Properties().stacksTo(1))",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/teleporter.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/TeleporterTests.java"
+      ],
+      "note": "合成、双向链接与创造页验证通过;真实客户端外观随实机测试。"
     },
     {
       "registry": "item",
@@ -7618,7 +7628,12 @@
       "factory": "register",
       "expression": "Ic2TileEntityBlock.create(Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).strength(2.0F, 10.0F).requiresCorrectToolForDrops().sound(SoundType.METAL), TileEntityTeleporter.class, true, Ic2TileEntityBlock.DefaultDrop.AdvMachine, Util.noFacings, false)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/teleporter.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/TeleporterTests.java"
+      ],
+      "note": "红石触发、最近实体传送、距离能耗、20t 冷却与相邻储能直取验证通过;比较器输出、粒子音效未迁移;多人随 M16。"
     },
     {
       "registry": "block",
@@ -10366,7 +10381,12 @@
       "factory": "register",
       "expression": "TileEntityTeleporter::new",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/teleporter.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/TeleporterTests.java"
+      ],
+      "note": "红石触发、最近实体传送、距离能耗、20t 冷却与相邻储能直取验证通过;比较器输出、粒子音效未迁移;多人随 M16。"
     },
     {
       "registry": "block_entity",

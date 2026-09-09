@@ -1,0 +1,19 @@
+{
+  "type": "ic2:shaped",
+  "pattern": [
+    "ABA",
+    "CDC",
+    "AEA"
+  ],
+  "result": {
+    "id": "ic2:teleporter",
+    "count": 1
+  },
+  "key": {
+    "A": "ic2:advanced_circuit",
+    "B": "ic2:frequency_transmitter",
+    "C": "ic2:glass_fibre_cable",
+    "D": "ic2:advanced_machine",
+    "E": "#c:gems/diamond"
+  }
+}

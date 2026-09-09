@@ -1,0 +1,15 @@
+{
+  "type": "ic2:shaped",
+  "pattern": [
+    "A",
+    "B"
+  ],
+  "result": {
+    "id": "ic2:frequency_transmitter",
+    "count": 1
+  },
+  "key": {
+    "A": "ic2:insulated_copper_cable",
+    "B": "ic2:circuit"
+  }
+}

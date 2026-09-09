@@ -42,6 +42,7 @@ public enum MachineKind implements StringRepresentable {
     MINER("miner", 1000, 18, 0, 0),
     SORTING_MACHINE("sorting_machine", 15000, 14, 0, 0),
     TRADE_O_MAT("trade_o_mat", 0, 4, 0, 0),
+    TELEPORTER("teleporter", 0, 0, 0, 0),
     PERSONAL_CHEST("personal_chest", 0, 54, 0, 0),
     RT_HEAT_GENERATOR("rt_heat_generator", 0, 6, 0, 0),
     RT_GENERATOR("rt_generator", 20000, 7, 0, 0),

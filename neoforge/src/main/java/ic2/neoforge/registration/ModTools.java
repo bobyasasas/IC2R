@@ -97,6 +97,8 @@ public final class ModTools {
                                     new ElectricItemSpec(100000, 128, 1, false),
                                     6,
                                     50));
+    public static final DeferredItem<FrequencyTransmitterItem> FREQUENCY_TRANSMITTER =
+            ITEMS.registerItem("frequency_transmitter", FrequencyTransmitterItem::new);
     public static final DeferredItem<ScannerItem> ADVANCED_SCANNER =
             ITEMS.registerItem(
                     "advanced_scanner",
@@ -134,6 +136,7 @@ public final class ModTools {
             event.accept(IRIDIUM_DRILL);
             event.accept(SCANNER);
             event.accept(ADVANCED_SCANNER);
+            event.accept(FREQUENCY_TRANSMITTER);
         }
     }
 
