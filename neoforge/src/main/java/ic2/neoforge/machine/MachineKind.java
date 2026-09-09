@@ -32,6 +32,11 @@ public enum MachineKind implements StringRepresentable {
     CESU_CHARGEPAD("cesu_chargepad", 300000, 0, 0, 0),
     MFE_CHARGEPAD("mfe_chargepad", 4000000, 0, 0, 0),
     MFSU_CHARGEPAD("mfsu_chargepad", 40000000, 0, 0, 0),
+    WOODEN_STORAGE_BOX("wooden_storage_box", 0, 27, 0, 0),
+    BRONZE_STORAGE_BOX("bronze_storage_box", 0, 45, 0, 0),
+    IRON_STORAGE_BOX("iron_storage_box", 0, 45, 0, 0),
+    STEEL_STORAGE_BOX("steel_storage_box", 0, 63, 0, 0),
+    IRIDIUM_STORAGE_BOX("iridium_storage_box", 0, 126, 0, 0),
     PERSONAL_CHEST("personal_chest", 0, 54, 0, 0),
     RT_HEAT_GENERATOR("rt_heat_generator", 0, 6, 0, 0),
     RT_GENERATOR("rt_generator", 20000, 7, 0, 0),
@@ -122,6 +127,18 @@ public enum MachineKind implements StringRepresentable {
         };
     }
 
+    public boolean storageBox() {
+        return switch (this) {
+            case WOODEN_STORAGE_BOX,
+                    BRONZE_STORAGE_BOX,
+                    IRON_STORAGE_BOX,
+                    STEEL_STORAGE_BOX,
+                    IRIDIUM_STORAGE_BOX ->
+                    true;
+            default -> false;
+        };
+    }
+
     /** Chargepads are storage-shaped pads that push energy into whatever a player carries. */
     public int padOutput() {
         return switch (this) {
@@ -187,6 +204,7 @@ public enum MachineKind implements StringRepresentable {
     public int menuHeight() {
         if (this == STEAM_GENERATOR) return 238;
         if (this == PERSONAL_CHEST) return 222;
+        if (storageBox()) return 124 + slots() / 9 * 18;
         return this == LIQUID_HEAT_EXCHANGER
                         || this == FLUID_REGULATOR
                         || this == CONDENSER

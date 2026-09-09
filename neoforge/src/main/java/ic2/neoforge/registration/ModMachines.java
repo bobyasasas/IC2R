@@ -96,6 +96,12 @@ public final class ModMachines {
             case BATBOX_CHARGEPAD, CESU_CHARGEPAD, MFE_CHARGEPAD, MFSU_CHARGEPAD ->
                     new ChargepadBlockEntity(pos, state);
             case PERSONAL_CHEST -> new PersonalChestBlockEntity(pos, state);
+            case WOODEN_STORAGE_BOX,
+                    BRONZE_STORAGE_BOX,
+                    IRON_STORAGE_BOX,
+                    STEEL_STORAGE_BOX,
+                    IRIDIUM_STORAGE_BOX ->
+                    new StorageBoxBlockEntity(pos, state);
             case LV_TRANSFORMER, MV_TRANSFORMER, HV_TRANSFORMER, EV_TRANSFORMER ->
                     new TransformerBlockEntity(pos, state);
             case IRON_FURNACE -> new IronFurnaceBlockEntity(pos, state);

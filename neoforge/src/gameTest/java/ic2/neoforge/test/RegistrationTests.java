@@ -179,6 +179,9 @@ public final class RegistrationTests {
         FUNCTIONS.register("chargepad_inventory", () -> ChargepadTests::chargesPlayerInventory);
         FUNCTIONS.register("chargepad_order_limits", () -> ChargepadTests::chargeOrderAndLimits);
         FUNCTIONS.register("chargepad_network", () -> ChargepadTests::networkFeeding);
+        FUNCTIONS.register(
+                "storage_box_wooden", () -> StorageBoxTests::woodenCapacityAndAutomation);
+        FUNCTIONS.register("storage_box_iridium", () -> StorageBoxTests::iridiumHolds126Slots);
         FUNCTIONS.register("personal_chest_claim", () -> PersonalChestTests::claimAndDeny);
         FUNCTIONS.register("personal_chest_automation", () -> PersonalChestTests::blocksAutomation);
         FUNCTIONS.register("cooling_capacity", () -> HeatExchangerTests::nearlyFullOutput);

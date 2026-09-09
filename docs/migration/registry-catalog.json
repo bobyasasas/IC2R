@@ -1250,7 +1250,11 @@
       "factory": "register",
       "expression": "new ItemBlockIc2(Ic2Blocks.WOODEN_STORAGE_BOX, new Properties())",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/storage-boxes.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/StorageBoxTests.java"
+      ]
     },
     {
       "registry": "item",
@@ -1260,7 +1264,11 @@
       "factory": "register",
       "expression": "new ItemBlockIc2(Ic2Blocks.IRON_STORAGE_BOX, new Properties())",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/storage-boxes.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/StorageBoxTests.java"
+      ]
     },
     {
       "registry": "item",
@@ -1270,7 +1278,11 @@
       "factory": "register",
       "expression": "new ItemBlockIc2(Ic2Blocks.BRONZE_STORAGE_BOX, new Properties())",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/storage-boxes.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/StorageBoxTests.java"
+      ]
     },
     {
       "registry": "item",
@@ -1280,7 +1292,11 @@
       "factory": "register",
       "expression": "new ItemBlockIc2(Ic2Blocks.STEEL_STORAGE_BOX, new Properties().rarity(Rarity.UNCOMMON))",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/storage-boxes.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/StorageBoxTests.java"
+      ]
     },
     {
       "registry": "item",
@@ -1290,7 +1306,11 @@
       "factory": "register",
       "expression": "new ItemBlockIc2(Ic2Blocks.IRIDIUM_STORAGE_BOX, new Properties().rarity(Rarity.RARE))",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/storage-boxes.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/StorageBoxTests.java"
+      ]
     },
     {
       "registry": "item",
@@ -8202,7 +8222,12 @@
       "factory": "register",
       "expression": "Ic2TileEntityBlock.create(Properties.of().strength(1.0F, 10.0F).sound(SoundType.WOOD), TileEntityWoodenStorageBox.class, false, Ic2TileEntityBlock.DefaultDrop.Self, Util.noFacings, false)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/storage-boxes.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/StorageBoxTests.java"
+      ],
+      "note": "按材质容量与任意面存取已接入；大容量界面客户端可用性待验收。"
     },
     {
       "registry": "block",
@@ -8212,7 +8237,12 @@
       "factory": "register",
       "expression": "Ic2TileEntityBlock.create(Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).strength(1.0F, 15.0F).requiresCorrectToolForDrops().sound(SoundType.METAL), TileEntityIronStorageBox.class, false, Ic2TileEntityBlock.DefaultDrop.Self, Util.noFacings, false)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/storage-boxes.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/StorageBoxTests.java"
+      ],
+      "note": "按材质容量与任意面存取已接入；大容量界面客户端可用性待验收。"
     },
     {
       "registry": "block",
@@ -8222,7 +8252,12 @@
       "factory": "register",
       "expression": "Ic2TileEntityBlock.create(Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).strength(1.0F, 15.0F).requiresCorrectToolForDrops().sound(SoundType.METAL), TileEntityBronzeStorageBox.class, false, Ic2TileEntityBlock.DefaultDrop.Self, Util.noFacings, false)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/storage-boxes.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/StorageBoxTests.java"
+      ],
+      "note": "按材质容量与任意面存取已接入；大容量界面客户端可用性待验收。"
     },
     {
       "registry": "block",
@@ -8232,7 +8267,12 @@
       "factory": "register",
       "expression": "Ic2TileEntityBlock.create(Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).strength(2.0F, 20.0F).requiresCorrectToolForDrops().sound(SoundType.METAL), TileEntitySteelStorageBox.class, false, Ic2TileEntityBlock.DefaultDrop.Self, Util.noFacings, false)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/storage-boxes.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/StorageBoxTests.java"
+      ],
+      "note": "按材质容量与任意面存取已接入；大容量界面客户端可用性待验收。"
     },
     {
       "registry": "block",
@@ -8242,7 +8282,12 @@
       "factory": "register",
       "expression": "Ic2TileEntityBlock.create(Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).strength(3.0F, 100.0F).requiresCorrectToolForDrops().sound(SoundType.METAL), TileEntityIridiumStorageBox.class, false, Ic2TileEntityBlock.DefaultDrop.Self, Util.noFacings, false)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/storage-boxes.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/StorageBoxTests.java"
+      ],
+      "note": "按材质容量与任意面存取已接入；大容量界面客户端可用性待验收。"
     },
     {
       "registry": "block",
@@ -11026,7 +11071,12 @@
       "factory": "register",
       "expression": "TileEntityWoodenStorageBox::new",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/storage-boxes.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/StorageBoxTests.java"
+      ],
+      "note": "按材质容量与任意面存取已接入；大容量界面客户端可用性待验收。"
     },
     {
       "registry": "block_entity",
@@ -11036,7 +11086,12 @@
       "factory": "register",
       "expression": "TileEntityIronStorageBox::new",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/storage-boxes.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/StorageBoxTests.java"
+      ],
+      "note": "按材质容量与任意面存取已接入；大容量界面客户端可用性待验收。"
     },
     {
       "registry": "block_entity",
@@ -11046,7 +11101,12 @@
       "factory": "register",
       "expression": "TileEntityBronzeStorageBox::new",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/storage-boxes.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/StorageBoxTests.java"
+      ],
+      "note": "按材质容量与任意面存取已接入；大容量界面客户端可用性待验收。"
     },
     {
       "registry": "block_entity",
@@ -11056,7 +11116,12 @@
       "factory": "register",
       "expression": "TileEntitySteelStorageBox::new",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/storage-boxes.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/StorageBoxTests.java"
+      ],
+      "note": "按材质容量与任意面存取已接入；大容量界面客户端可用性待验收。"
     },
     {
       "registry": "block_entity",
@@ -11066,7 +11131,12 @@
       "factory": "register",
       "expression": "TileEntityIridiumStorageBox::new",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/storage-boxes.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/StorageBoxTests.java"
+      ],
+      "note": "按材质容量与任意面存取已接入；大容量界面客户端可用性待验收。"
     },
     {
       "registry": "block_entity",

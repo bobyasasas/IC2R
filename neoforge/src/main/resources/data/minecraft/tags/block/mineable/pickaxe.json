@@ -3,6 +3,11 @@
   "values": [
     "ic2:steam_kinetic_generator",
     "ic2:personal_chest",
+    "ic2:wooden_storage_box",
+    "ic2:bronze_storage_box",
+    "ic2:iron_storage_box",
+    "ic2:steel_storage_box",
+    "ic2:iridium_storage_box",
     "ic2:steam_generator",
     "ic2:steam_repressurizer",
     "ic2:rt_heat_generator",

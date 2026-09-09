@@ -99,6 +99,8 @@ public final class IndustrialCraftClient {
                     else if (kind == MachineKind.RT_HEAT_GENERATOR
                             || kind == MachineKind.RT_GENERATOR)
                         event.register(registration.menu().get(), RadioisotopeScreen::new);
+                    else if (kind.storageBox())
+                        event.register(registration.menu().get(), MachineScreen::new);
                     else if (kind == MachineKind.BATBOX_CHARGEPAD
                             || kind == MachineKind.CESU_CHARGEPAD
                             || kind == MachineKind.MFE_CHARGEPAD
