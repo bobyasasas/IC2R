@@ -985,7 +985,11 @@
       "factory": "register",
       "expression": "new BlockItemEnergyStorage(Ic2Blocks.BATBOX_CHARGEPAD, new Properties(), 40000)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/chargepads.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/ChargepadTests.java"
+      ]
     },
     {
       "registry": "item",
@@ -995,7 +999,11 @@
       "factory": "register",
       "expression": "new BlockItemEnergyStorage(Ic2Blocks.CESU_CHARGEPAD, new Properties(), 300000)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/chargepads.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/ChargepadTests.java"
+      ]
     },
     {
       "registry": "item",
@@ -1005,7 +1013,11 @@
       "factory": "register",
       "expression": "new BlockItemEnergyStorage(Ic2Blocks.MFE_CHARGEPAD, new Properties(), 4000000)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/chargepads.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/ChargepadTests.java"
+      ]
     },
     {
       "registry": "item",
@@ -1015,7 +1027,11 @@
       "factory": "register",
       "expression": "new BlockItemEnergyStorage(Ic2Blocks.MFSU_CHARGEPAD, new Properties().rarity(Rarity.UNCOMMON), 40000000)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/chargepads.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/ChargepadTests.java"
+      ]
     },
     {
       "registry": "item",
@@ -7872,7 +7888,12 @@
       "factory": "register",
       "expression": "Ic2TileEntityBlock.create(Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).strength(2.0F, 10.0F).requiresCorrectToolForDrops().sound(SoundType.METAL).noOcclusion(), TileEntityChargePadBatBox.class, true, Ic2TileEntityBlock.DefaultDrop.Self, Util.downSideFacings, true)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/chargepads.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/ChargepadTests.java"
+      ],
+      "note": "站立充电（主手→副手→盔甲→背包顺序、绕过单次上限）、网络供电与朝向输出已接入；红石模式与粒子表现待客户端验收。"
     },
     {
       "registry": "block",
@@ -7882,7 +7903,12 @@
       "factory": "register",
       "expression": "Ic2TileEntityBlock.create(Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).strength(2.0F, 10.0F).requiresCorrectToolForDrops().sound(SoundType.METAL).noOcclusion(), TileEntityChargePadCESU.class, true, Ic2TileEntityBlock.DefaultDrop.Self, Util.downSideFacings, true)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/chargepads.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/ChargepadTests.java"
+      ],
+      "note": "站立充电（主手→副手→盔甲→背包顺序、绕过单次上限）、网络供电与朝向输出已接入；红石模式与粒子表现待客户端验收。"
     },
     {
       "registry": "block",
@@ -7892,7 +7918,12 @@
       "factory": "register",
       "expression": "Ic2TileEntityBlock.create(Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).strength(2.0F, 10.0F).requiresCorrectToolForDrops().sound(SoundType.METAL).noOcclusion(), TileEntityChargePadMFE.class, true, Ic2TileEntityBlock.DefaultDrop.Machine, Util.downSideFacings, true)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/chargepads.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/ChargepadTests.java"
+      ],
+      "note": "站立充电（主手→副手→盔甲→背包顺序、绕过单次上限）、网络供电与朝向输出已接入；红石模式与粒子表现待客户端验收。"
     },
     {
       "registry": "block",
@@ -7902,7 +7933,12 @@
       "factory": "register",
       "expression": "Ic2TileEntityBlock.create(Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).strength(2.0F, 10.0F).requiresCorrectToolForDrops().sound(SoundType.METAL).noOcclusion(), TileEntityChargePadMFSU.class, true, Ic2TileEntityBlock.DefaultDrop.AdvMachine, Util.downSideFacings, true)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/chargepads.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/ChargepadTests.java"
+      ],
+      "note": "站立充电（主手→副手→盔甲→背包顺序、绕过单次上限）、网络供电与朝向输出已接入；红石模式与粒子表现待客户端验收。"
     },
     {
       "registry": "block",
@@ -10671,7 +10707,12 @@
       "factory": "register",
       "expression": "TileEntityChargePadBatBox::new",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/chargepads.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/ChargepadTests.java"
+      ],
+      "note": "站立充电（主手→副手→盔甲→背包顺序、绕过单次上限）、网络供电与朝向输出已接入；红石模式与粒子表现待客户端验收。"
     },
     {
       "registry": "block_entity",
@@ -10681,7 +10722,12 @@
       "factory": "register",
       "expression": "TileEntityChargePadCESU::new",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/chargepads.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/ChargepadTests.java"
+      ],
+      "note": "站立充电（主手→副手→盔甲→背包顺序、绕过单次上限）、网络供电与朝向输出已接入；红石模式与粒子表现待客户端验收。"
     },
     {
       "registry": "block_entity",
@@ -10691,7 +10737,12 @@
       "factory": "register",
       "expression": "TileEntityChargePadMFE::new",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/chargepads.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/ChargepadTests.java"
+      ],
+      "note": "站立充电（主手→副手→盔甲→背包顺序、绕过单次上限）、网络供电与朝向输出已接入；红石模式与粒子表现待客户端验收。"
     },
     {
       "registry": "block_entity",
@@ -10701,7 +10752,12 @@
       "factory": "register",
       "expression": "TileEntityChargePadMFSU::new",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/chargepads.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/ChargepadTests.java"
+      ],
+      "note": "站立充电（主手→副手→盔甲→背包顺序、绕过单次上限）、网络供电与朝向输出已接入；红石模式与粒子表现待客户端验收。"
     },
     {
       "registry": "block_entity",

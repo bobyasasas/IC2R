@@ -176,6 +176,9 @@ public final class RegistrationTests {
         FUNCTIONS.register("nuclear_uranium_centrifuge", () -> NuclearTests::uraniumCentrifuge);
         FUNCTIONS.register(
                 "nuclear_rtg_pellet_centrifuge", () -> NuclearTests::rtgPelletCentrifuge);
+        FUNCTIONS.register("chargepad_inventory", () -> ChargepadTests::chargesPlayerInventory);
+        FUNCTIONS.register("chargepad_order_limits", () -> ChargepadTests::chargeOrderAndLimits);
+        FUNCTIONS.register("chargepad_network", () -> ChargepadTests::networkFeeding);
         FUNCTIONS.register("cooling_capacity", () -> HeatExchangerTests::nearlyFullOutput);
         FUNCTIONS.register("cooling_parts_budget", () -> HeatExchangerTests::partsAndBudget);
         FUNCTIONS.register("cooling_stirling_chain", () -> HeatExchangerTests::stirlingChain);

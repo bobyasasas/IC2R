@@ -2097,8 +2097,8 @@
     {
       "source": "shaped/batbox_chargepad.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:batbox_chargepad"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/batbox_chargepad.json"
     },
     {
       "source": "shaped/batch_crafter.json",
@@ -2277,8 +2277,8 @@
     {
       "source": "shaped/cesu_chargepad.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:cesu_chargepad"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/cesu_chargepad.json"
     },
     {
       "source": "shaped/cf_pack.json",
@@ -3039,8 +3039,8 @@
     {
       "source": "shaped/mfe_chargepad.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:mfe_chargepad"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/mfe_chargepad.json"
     },
     {
       "source": "shaped/mfsu.json",
@@ -3051,8 +3051,8 @@
     {
       "source": "shaped/mfsu_chargepad.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:mfsu_chargepad"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/mfsu_chargepad.json"
     },
     {
       "source": "shaped/miner.json",

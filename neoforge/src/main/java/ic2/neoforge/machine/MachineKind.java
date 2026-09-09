@@ -28,6 +28,10 @@ public enum MachineKind implements StringRepresentable {
     WATER_KINETIC_GENERATOR("water_kinetic_generator", 0, 1, 0, 0),
     WIND_KINETIC_GENERATOR("wind_kinetic_generator", 0, 1, 0, 0),
     MANUAL_KINETIC_GENERATOR("manual_kinetic_generator", 0, 0, 0, 0),
+    BATBOX_CHARGEPAD("batbox_chargepad", 40000, 0, 0, 0),
+    CESU_CHARGEPAD("cesu_chargepad", 300000, 0, 0, 0),
+    MFE_CHARGEPAD("mfe_chargepad", 4000000, 0, 0, 0),
+    MFSU_CHARGEPAD("mfsu_chargepad", 40000000, 0, 0, 0),
     RT_HEAT_GENERATOR("rt_heat_generator", 0, 6, 0, 0),
     RT_GENERATOR("rt_generator", 20000, 7, 0, 0),
     SOLID_HEAT_GENERATOR("solid_heat_generator", 0, 2, 0, 0),
@@ -117,6 +121,17 @@ public enum MachineKind implements StringRepresentable {
         };
     }
 
+    /** Chargepads are storage-shaped pads that push energy into whatever a player carries. */
+    public int padOutput() {
+        return switch (this) {
+            case BATBOX_CHARGEPAD -> 32;
+            case CESU_CHARGEPAD -> 128;
+            case MFE_CHARGEPAD -> 512;
+            case MFSU_CHARGEPAD -> 2048;
+            default -> 0;
+        };
+    }
+
     public boolean transformer() {
         return switch (this) {
             case LV_TRANSFORMER, MV_TRANSFORMER, HV_TRANSFORMER, EV_TRANSFORMER -> true;
@@ -131,9 +146,18 @@ public enum MachineKind implements StringRepresentable {
     public int electricalTier() {
         return switch (this) {
             case BATBOX, LV_TRANSFORMER -> 1;
-            case CESU, MV_TRANSFORMER, CENTRIFUGE, INDUCTION_FURNACE, ELECTROLYZER -> 2;
+            case BATBOX_CHARGEPAD -> 1;
+            case CESU,
+                    CESU_CHARGEPAD,
+                    MV_TRANSFORMER,
+                    CENTRIFUGE,
+                    INDUCTION_FURNACE,
+                    ELECTROLYZER ->
+                    2;
             case MFE, HV_TRANSFORMER, CONDENSER -> 3;
+            case MFE_CHARGEPAD -> 3;
             case MFSU,
+                    MFSU_CHARGEPAD,
                     EV_TRANSFORMER,
                     ELECTRIC_HEAT_GENERATOR,
                     ELECTRIC_KINETIC_GENERATOR,

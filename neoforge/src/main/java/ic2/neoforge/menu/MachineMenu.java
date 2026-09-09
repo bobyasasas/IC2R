@@ -89,6 +89,11 @@ public final class MachineMenu extends AbstractContainerMenu {
                     });
         } else if (kind == MachineKind.STEAM_GENERATOR) {
             // The boiler has valves and fluid ports, but no internal item slots.
+        } else if (kind == MachineKind.BATBOX_CHARGEPAD
+                || kind == MachineKind.CESU_CHARGEPAD
+                || kind == MachineKind.MFE_CHARGEPAD
+                || kind == MachineKind.MFSU_CHARGEPAD) {
+            // The pad charges the player standing on it; it has no slots of its own.
         } else if (kind == MachineKind.STEAM_REPRESSURIZER) {
             addFluidContainerSlot(inventory, 0, 130, 72);
             addOutputSlot(inventory, 1, 152, 72);

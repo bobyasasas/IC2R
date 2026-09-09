@@ -1,0 +1,17 @@
+{
+  "type": "ic2:shaped",
+  "pattern": [
+    "CPC",
+    "RBR"
+  ],
+  "result": {
+    "id": "ic2:batbox_chargepad",
+    "count": 1
+  },
+  "key": {
+    "B": "ic2:batbox",
+    "R": "ic2:rubber",
+    "C": "ic2:circuit",
+    "P": "minecraft:stone_pressure_plate"
+  }
+}
