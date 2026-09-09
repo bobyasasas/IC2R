@@ -265,6 +265,12 @@ public final class RegistrationTests {
         FUNCTIONS.register(
                 "reactor_heatpack_warm", () -> ReactorHeatEffectTests::heatpackWarmsVentStorage);
         FUNCTIONS.register(
+                "reactor_redstone_port", () -> ReactorAccessHatchTests::redstonePortPowersCore);
+        FUNCTIONS.register(
+                "reactor_hatch_grid", () -> ReactorAccessHatchTests::hatchExposesGrid);
+        FUNCTIONS.register(
+                "reactor_rci_recharge", () -> ReactorAccessHatchTests::rciRechargesCondensator);
+        FUNCTIONS.register(
                 "matter_generator_scrap", () -> MatterGeneratorTests::scrapAmplifiesAndGenerates);
         FUNCTIONS.register(
                 "matter_generator_cells", () -> MatterGeneratorTests::fillsUuMatterCells);

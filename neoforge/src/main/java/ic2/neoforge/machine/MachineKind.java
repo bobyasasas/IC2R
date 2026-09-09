@@ -49,6 +49,10 @@ public enum MachineKind implements StringRepresentable {
     NUCLEAR_REACTOR("nuclear_reactor", 100000, 54, 0, 0),
     REACTOR_CHAMBER("reactor_chamber", 0, 0, 0, 0),
     REACTOR_FLUID_PORT("reactor_fluid_port", 0, 0, 0, 0),
+    REACTOR_ACCESS_HATCH("reactor_access_hatch", 0, 0, 0, 0),
+    REACTOR_REDSTONE_PORT("reactor_redstone_port", 0, 0, 0, 0),
+    RCI_RSH("rci_rsh", 48000, 13, 0, 0),
+    RCI_LZH("rci_lzh", 48000, 13, 0, 0),
     TELEPORTER("teleporter", 0, 0, 0, 0),
     PERSONAL_CHEST("personal_chest", 0, 54, 0, 0),
     RT_HEAT_GENERATOR("rt_heat_generator", 0, 6, 0, 0),
@@ -249,6 +253,7 @@ public enum MachineKind implements StringRepresentable {
         if (this == ADV_MINER) return 4;
         if (this == ITEM_BUFFER || this == BLAST_FURNACE) return 2;
         if (this == MATTER_GENERATOR) return 4;
+        if (this == RCI_RSH || this == RCI_LZH) return 4;
         if (this == CONDENSER || this == STEAM_KINETIC_GENERATOR || this == MINER) return 1;
         if (this == TANK) return 4;
         if (this == LIQUID_HEAT_EXCHANGER) return 3;

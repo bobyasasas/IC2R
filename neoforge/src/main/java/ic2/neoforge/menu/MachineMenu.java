@@ -15,6 +15,7 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.*;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.material.Fluid;
@@ -159,6 +160,21 @@ public final class MachineMenu extends AbstractContainerMenu {
             addSlot(new ResourceHandlerSlot(inventory, inventory::set, 0, 72, 40));
             addFluidContainerSlot(inventory, 2, 125, 23);
             addOutputSlot(inventory, 1, 125, 59);
+        } else if (kind == MachineKind.RCI_RSH || kind == MachineKind.RCI_LZH) {
+            for (int slot = 0; slot < 9; slot++)
+                addSlot(
+                        new ResourceHandlerSlot(
+                                inventory,
+                                inventory::set,
+                                slot,
+                                62 + slot % 3 * 18,
+                                17 + slot / 3 * 18) {
+                            @Override
+                            public boolean mayPlace(ItemStack stack) {
+                                return stack.is(Items.REDSTONE_BLOCK)
+                                        || stack.is(Items.LAPIS_BLOCK);
+                            }
+                        });
         } else if (kind == MachineKind.ITEM_BUFFER) {
             for (int slot = 0; slot < ItemBufferBlockEntity.GROUP_SIZE; slot++)
                 addSlot(
@@ -461,6 +477,11 @@ public final class MachineMenu extends AbstractContainerMenu {
         }
         if (kind == MachineKind.CANNER)
             addSlot(new ResourceHandlerSlot(inventory, inventory::set, 3, 92, 17));
+        if (kind == MachineKind.REACTOR_FLUID_PORT
+                || kind == MachineKind.REACTOR_REDSTONE_PORT
+                || kind == MachineKind.REACTOR_CHAMBER) {
+            // Proxy blocks expose the reactor menu instead; keep the menu buildable.
+        }
         if (kind == MachineKind.BLOCK_CUTTER)
             addSlot(
                     new ResourceHandlerSlot(inventory, inventory::set, 3, 38, 17) {

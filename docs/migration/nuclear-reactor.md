@@ -132,6 +132,56 @@ chamber 扩列(3→最高 9 列)、无效列弹出与 MOX 堆内脉冲。流体�
 - `hotCoolantExtractsThroughPort`:热冷却液经流体口能力抽出。
 - 双模式 223 项全绿(切片三反射/开关/plating 保持)。
 
+## 切片五:接口件(access hatch / redstone port / RCI)与爆炸威力修正
+
+- `ReactorAccessHatchBlockEntity`:六向寻址堆芯;右键经 `createMenu` 转发
+  打开反应堆网格界面;`automation` 暴露堆芯 54 槽物品进出。
+- `ReactorRedstonePortBlockEntity`:红石口自身的红石输入视同堆芯输入
+  (`poweredPortNear`),堆芯 `produceEnergy` 直连信号或红石口信号皆可。
+- `ReactorRciBlockEntity`(rci_rsh/rci_lzh,48,000 EU、13 槽 = 9 冷却块格
+  + 4 升级):对相邻堆芯网格中存热 > 85% 的 RSH/LZH 冷凝器,消耗 1 个
+  红石/青金石块 + 1,000 EU 将其存热清零(legacy `TileEntityAbstractRCI`)。
+- 熔毁爆炸威力按 legacy 公式:基础 10,+组件加成,× hem × 组件乘数
+  (反射器 -1、plating 乘数),下限 1。
+- 4 个接口方块资源与合成配方转换(machines.py)。
+
+## 测试证据
+
+- `ReactorAccessHatchTests.redstonePortPowersCore`:红石口的输入驱动堆芯
+  脉冲周期。
+- `hatchExposesGrid`:访问仓把棒插入堆芯网格。
+- `rciRechargesCondensator`:RCI 消耗 1 红石块 + 1,000 EU,把 >85% 的
+  RSH 冷凝器清零。
+- 双模式 223 项全绿(既有反射/plating/热开关/流体测试保持)。
+
+## 测试证据
+
+- `ReactorChamberTests.chamberWidensGrid`
+## 测试证据
+
+- `ReactorChamberTests.chamberWidensGrid`
+## 切片五:接口件(access hatch / redstone port / RCI)与爆炸威力修正
+
+- `ReactorAccessHatchBlockEntity`:六向寻址堆芯;右键经 `createMenu` 转发
+  打开反应堆网格界面;`automation` 暴露堆芯 54 槽物品进出。
+- `ReactorRedstonePortBlockEntity`:红石口自身的红石输入视同堆芯输入
+  (`poweredPortNear`),堆芯 `produceEnergy` 直连信号或红石口信号皆可。
+- `ReactorRciBlockEntity`(rci_rsh/rci_lzh,48,000 EU、13 槽 = 9 冷却块格
+  + 4 升级):对相邻堆芯网格中存热 > 85% 的 RSH/LZH 冷凝器,消耗 1 个
+  红石/青金石块 + 1,000 EU 将其存热清零(legacy `TileEntityAbstractRCI`)。
+- 熔毁爆炸威力按 legacy 公式:基础 10,+组件加成,× hem × 组件乘数
+  (反射器 -1、plating 乘数),下限 1。
+- 4 个接口方块资源与合成配方转换(machines.py)。
+
+## 测试证据
+
+- `ReactorAccessHatchTests.redstonePortPowersCore`:红石口的输入驱动堆芯
+  脉冲周期。
+- `hatchExposesGrid`:访问仓把棒插入堆芯网格。
+- `rciRechargesCondensator`:RCI 消耗 1 红石块 + 1,000 EU,把 >85% 的
+  RSH 冷凝器清零。
+- 双模式 223 项全绿(既有反射/plating/热开关/流体测试保持)。
+
 ## 测试证据
 
 - `ReactorChamberTests.chamberWidensGrid`
@@ -159,6 +209,56 @@ chamber 扩列(3→最高 9 列)、无效列弹出与 MOX 堆内脉冲。流体�
   6,000 mB 冷却液 + 三铀棒/三散热片 → 热冷却液产出、冷却液消耗、堆芯低温。
 - `hotCoolantExtractsThroughPort`:热冷却液经流体口能力抽出。
 - 双模式 223 项全绿(切片三反射/开关/plating 保持)。
+
+## 切片五:接口件(access hatch / redstone port / RCI)与爆炸威力修正
+
+- `ReactorAccessHatchBlockEntity`:六向寻址堆芯;右键经 `createMenu` 转发
+  打开反应堆网格界面;`automation` 暴露堆芯 54 槽物品进出。
+- `ReactorRedstonePortBlockEntity`:红石口自身的红石输入视同堆芯输入
+  (`poweredPortNear`),堆芯 `produceEnergy` 直连信号或红石口信号皆可。
+- `ReactorRciBlockEntity`(rci_rsh/rci_lzh,48,000 EU、13 槽 = 9 冷却块格
+  + 4 升级):对相邻堆芯网格中存热 > 85% 的 RSH/LZH 冷凝器,消耗 1 个
+  红石/青金石块 + 1,000 EU 将其存热清零(legacy `TileEntityAbstractRCI`)。
+- 熔毁爆炸威力按 legacy 公式:基础 10,+组件加成,× hem × 组件乘数
+  (反射器 -1、plating 乘数),下限 1。
+- 4 个接口方块资源与合成配方转换(machines.py)。
+
+## 测试证据
+
+- `ReactorAccessHatchTests.redstonePortPowersCore`:红石口的输入驱动堆芯
+  脉冲周期。
+- `hatchExposesGrid`:访问仓把棒插入堆芯网格。
+- `rciRechargesCondensator`:RCI 消耗 1 红石块 + 1,000 EU,把 >85% 的
+  RSH 冷凝器清零。
+- 双模式 223 项全绿(既有反射/plating/热开关/流体测试保持)。
+
+## 测试证据
+
+- `ReactorChamberTests.chamberWidensGrid`
+## 测试证据
+
+- `ReactorChamberTests.chamberWidensGrid`
+## 切片五:接口件(access hatch / redstone port / RCI)与爆炸威力修正
+
+- `ReactorAccessHatchBlockEntity`:六向寻址堆芯;右键经 `createMenu` 转发
+  打开反应堆网格界面;`automation` 暴露堆芯 54 槽物品进出。
+- `ReactorRedstonePortBlockEntity`:红石口自身的红石输入视同堆芯输入
+  (`poweredPortNear`),堆芯 `produceEnergy` 直连信号或红石口信号皆可。
+- `ReactorRciBlockEntity`(rci_rsh/rci_lzh,48,000 EU、13 槽 = 9 冷却块格
+  + 4 升级):对相邻堆芯网格中存热 > 85% 的 RSH/LZH 冷凝器,消耗 1 个
+  红石/青金石块 + 1,000 EU 将其存热清零(legacy `TileEntityAbstractRCI`)。
+- 熔毁爆炸威力按 legacy 公式:基础 10,+组件加成,× hem × 组件乘数
+  (反射器 -1、plating 乘数),下限 1。
+- 4 个接口方块资源与合成配方转换(machines.py)。
+
+## 测试证据
+
+- `ReactorAccessHatchTests.redstonePortPowersCore`:红石口的输入驱动堆芯
+  脉冲周期。
+- `hatchExposesGrid`:访问仓把棒插入堆芯网格。
+- `rciRechargesCondensator`:RCI 消耗 1 红石块 + 1,000 EU,把 >85% 的
+  RSH 冷凝器清零。
+- 双模式 223 项全绿(既有反射/plating/热开关/流体测试保持)。
 
 ## 测试证据
 

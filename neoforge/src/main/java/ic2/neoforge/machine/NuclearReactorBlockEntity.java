@@ -289,10 +289,23 @@ public final class NuclearReactorBlockEntity extends PoweredBlockEntity implemen
         if (heat < 4000) return false;
         float power = (float) heat / maxHeat;
         if (power >= 1.0F) {
+            // Legacy explosion power: base 10, + component additions, x multipliers, x hem.
+            float boomPower = 10.0F;
+            float boomMod = 1.0F;
+            for (int slot = 0; slot < inventory.size(); slot++) {
+                var stack = inventory.stack(slot);
+                if (stack.getItem() instanceof ReactorComponent component) {
+                    float factor = component.influenceExplosion(stack, this);
+                    if (factor > 0.0F && factor < 1.0F) boomMod *= factor;
+                    else boomPower += factor;
+                }
+            }
+            boomPower *= hem * boomMod;
             clearGrid();
             setActive(false);
             getLevel().removeBlock(worldPosition, false);
-            ic2.neoforge.explosion.HeatExplosion.trigger(level, worldPosition, 10, 0.01F, true);
+            ic2.neoforge.explosion.HeatExplosion.trigger(
+                    level, worldPosition, (int) Math.max(1.0F, boomPower), 0.01F, true);
             heat = 0;
             return true;
         }
@@ -376,7 +389,12 @@ public final class NuclearReactorBlockEntity extends PoweredBlockEntity implemen
 
     @Override
     public boolean produceEnergy() {
-        return getLevel() != null && getLevel().hasNeighborSignal(worldPosition);
+        if (getLevel() == null) return false;
+        if (getLevel().hasNeighborSignal(worldPosition)) return true;
+        // A redstone port mirrors its own redstone input onto the core.
+        return getLevel() instanceof ServerLevel level
+                && ic2.neoforge.machine.ReactorRedstonePortBlockEntity.poweredPortNear(
+                        this, level) != null;
     }
 
     @Override

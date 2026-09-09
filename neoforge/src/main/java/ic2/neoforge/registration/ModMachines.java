@@ -110,6 +110,11 @@ public final class ModMachines {
             case REACTOR_CHAMBER -> new ic2.neoforge.machine.ReactorChamberBlockEntity(pos, state);
             case REACTOR_FLUID_PORT ->
                     new ic2.neoforge.machine.ReactorFluidPortBlockEntity(pos, state);
+            case REACTOR_ACCESS_HATCH ->
+                    new ic2.neoforge.machine.ReactorAccessHatchBlockEntity(pos, state);
+            case REACTOR_REDSTONE_PORT ->
+                    new ic2.neoforge.machine.ReactorRedstonePortBlockEntity(pos, state);
+            case RCI_RSH, RCI_LZH -> new ic2.neoforge.machine.ReactorRciBlockEntity(pos, state);
             case TELEPORTER -> new TeleporterBlockEntity(pos, state);
             case WOODEN_STORAGE_BOX,
                     BRONZE_STORAGE_BOX,
