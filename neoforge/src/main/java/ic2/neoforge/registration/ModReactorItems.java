@@ -74,6 +74,10 @@ public final class ModReactorItems {
             ITEMS.registerItem(
                     "iridium_neutron_reflector",
                     properties -> new ReflectorItem(properties.stacksTo(1), 0, false));
+    /** Tops up adjacent component heat storage straight from the core while it is below 1000. */
+    public static final DeferredItem<ic2.neoforge.item.HeatpackItem> HEATPACK =
+            ITEMS.registerItem(
+                    "heatpack", properties -> new ic2.neoforge.item.HeatpackItem(properties, 1000, 1));
 
     /**
      * Reactor heat storage: absorbs heat once the reactor itself migrates (P12) and is recharged
@@ -218,6 +222,7 @@ public final class ModReactorItems {
             event.accept(NEUTRON_REFLECTOR);
             event.accept(THICK_NEUTRON_REFLECTOR);
             event.accept(IRIDIUM_NEUTRON_REFLECTOR);
+            event.accept(HEATPACK);
         }
     }
 

@@ -2763,8 +2763,8 @@
     {
       "source": "shaped/heatpack.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:heatpack"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/heatpack.json"
     },
     {
       "source": "shaped/hv_transformer.json",

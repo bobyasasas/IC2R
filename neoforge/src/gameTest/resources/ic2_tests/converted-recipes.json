@@ -410,6 +410,7 @@
   "ic2:shaped/heat_conductor",
   "ic2:shaped/heat_exchanger_from_copper",
   "ic2:shaped/heat_vent",
+  "ic2:shaped/heatpack",
   "ic2:shaped/hv_transformer",
   "ic2:shaped/induction_furnace",
   "ic2:shaped/iridium",

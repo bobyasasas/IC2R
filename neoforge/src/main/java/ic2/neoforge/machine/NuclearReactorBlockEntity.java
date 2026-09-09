@@ -10,7 +10,9 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.level.storage.ValueInput;
 import net.minecraft.world.level.storage.ValueOutput;
 import net.neoforged.neoforge.transfer.ResourceHandler;
@@ -144,8 +146,76 @@ public final class NuclearReactorBlockEntity extends PoweredBlockEntity implemen
             heat = 0;
             return true;
         }
+        // Surface heat effects roll every cycle once the core passes each threshold.
+        if (power >= 0.85F
+                && hem > 0.0F
+                && net.minecraft.util.RandomSource.create().nextFloat() <= 0.2F * hem)
+            burnOrMelt(level, randomCoordination(level, 2));
+        if (power >= 0.5F
+                && hem > 0.0F
+                && net.minecraft.util.RandomSource.create().nextFloat() <= hem)
+            evaporateWater(level, randomCoordination(level, 2));
+        if (power >= 0.4F
+                && hem > 0.0F
+                && net.minecraft.util.RandomSource.create().nextFloat() <= hem)
+            igniteFlammable(level, randomCoordination(level, 2));
         producing = heat >= 1000 || output > 0.0F;
         return false;
+    }
+
+    private void burnOrMelt(ServerLevel level, BlockPos target) {
+        if (target == null) return;
+        var state = level.getBlockState(target);
+        if (state.isAir()) {
+            level.setBlockAndUpdate(target, Blocks.FIRE.defaultBlockState());
+        } else if (state.getDestroySpeed(level, target) >= 0.0F
+                && level.getBlockEntity(target) == null) {
+            if (!state.canOcclude() && !state.getFluidState().is(Fluids.LAVA))
+                level.setBlockAndUpdate(target, Blocks.FIRE.defaultBlockState());
+            else
+                level.setBlockAndUpdate(
+                        target, Fluids.LAVA.defaultFluidState().createLegacyBlock());
+        }
+    }
+
+    /** Test/diagnostic hook: rolls the surface effects once at the current heat. */
+    public void rollSurfaceEffectsOnce(ServerLevel level) {
+        float power = (float) heat / maxHeat;
+        if (power >= 0.85F && net.minecraft.util.RandomSource.create().nextFloat() <= 0.2F * hem)
+            burnOrMelt(level, randomCoordination(level, 2));
+        if (power >= 0.5F && net.minecraft.util.RandomSource.create().nextFloat() <= hem)
+            evaporateWater(level, randomCoordination(level, 2));
+        if (power >= 0.4F && net.minecraft.util.RandomSource.create().nextFloat() <= hem)
+            igniteFlammable(level, randomCoordination(level, 2));
+    }
+
+    private void evaporateWater(ServerLevel level, BlockPos target) {
+        if (target == null) return;
+        // Level.removeBlock would re-create the water legacy block; evaporation sets air.
+        if (level.getFluidState(target).is(Fluids.WATER))
+            level.setBlockAndUpdate(target, Blocks.AIR.defaultBlockState());
+    }
+
+    private void igniteFlammable(ServerLevel level, BlockPos target) {
+        if (target == null) return;
+        if (level.getBlockEntity(target) != null) return;
+        var state = level.getBlockState(target);
+        if (state.isFlammable(level, target, Direction.UP))
+            level.setBlockAndUpdate(target, Blocks.FIRE.defaultBlockState());
+    }
+
+    /** Random block near the core, never the core itself (legacy getRandCoordination). */
+    private BlockPos randomCoordination(ServerLevel level, int radius) {
+        var rng = net.minecraft.util.RandomSource.create();
+        BlockPos ret;
+        do {
+            ret =
+                    worldPosition.offset(
+                            rng.nextInt(2 * radius + 1) - radius,
+                            rng.nextInt(2 * radius + 1) - radius,
+                            rng.nextInt(2 * radius + 1) - radius);
+        } while (ret.equals(worldPosition));
+        return ret;
     }
 
     /** A melt-down vaporises the whole charge; nothing drops, exactly like the legacy core. */
