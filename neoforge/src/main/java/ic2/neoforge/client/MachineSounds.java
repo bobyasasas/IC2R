@@ -104,6 +104,7 @@ final class MachineSounds {
                     REACTOR_REDSTONE_PORT,
                     RCI_RSH,
                     RCI_LZH,
+                    UU_SCANNER,
                     PUMP,
                     MINER,
                     ADV_MINER,

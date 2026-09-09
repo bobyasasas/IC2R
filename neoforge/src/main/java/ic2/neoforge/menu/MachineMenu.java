@@ -15,8 +15,8 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.*;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.material.Fluid;
 import net.neoforged.neoforge.capabilities.Capabilities;
@@ -156,6 +156,26 @@ public final class MachineMenu extends AbstractContainerMenu {
                                     x + y * NuclearReactorBlockEntity.GRID_COLUMNS,
                                     8 + x * 18,
                                     17 + y * 18));
+        } else if (kind == MachineKind.UU_SCANNER) {
+            addSlot(
+                    new ResourceHandlerSlot(inventory, inventory::set, 0, 56, 35) {
+                        @Override
+                        public boolean mayPlace(ItemStack stack) {
+                            return true;
+                        }
+                    });
+            addSlot(
+                    new ResourceHandlerSlot(inventory, inventory::set, 1, 116, 35) {
+                        @Override
+                        public boolean mayPlace(ItemStack stack) {
+                            return stack.getItem() instanceof ic2.neoforge.item.CrystalMemoryItem;
+                        }
+
+                        @Override
+                        public int getMaxStackSize() {
+                            return 1;
+                        }
+                    });
         } else if (kind == MachineKind.MATTER_GENERATOR) {
             addSlot(new ResourceHandlerSlot(inventory, inventory::set, 0, 72, 40));
             addFluidContainerSlot(inventory, 2, 125, 23);

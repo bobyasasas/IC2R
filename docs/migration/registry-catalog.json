@@ -2284,7 +2284,12 @@
       "factory": "register",
       "expression": "new ItemBlockIc2(Ic2Blocks.UU_SCANNER, new Properties().rarity(Rarity.UNCOMMON))",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/uu-scanner.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/UuScannerTests.java"
+      ],
+      "note": "扫描机本体(256 EU/tick、3300 tick、水晶盘记录、未知物品失败)经 GameTest 验证;UuGraph 全量配方图与 pattern_storage/replicator 链接随后续切片。"
     },
     {
       "registry": "item",
@@ -8228,7 +8233,12 @@
       "factory": "register",
       "expression": "Ic2TileEntityBlock.create(Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).strength(2.0F, 10.0F).requiresCorrectToolForDrops().sound(SoundType.METAL), TileEntityScanner.class, true, Ic2TileEntityBlock.DefaultDrop.AdvMachine, Util.horizontalFacings, true)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/uu-scanner.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/UuScannerTests.java"
+      ],
+      "note": "扫描机本体(256 EU/tick、3300 tick、水晶盘记录、未知物品失败)经 GameTest 验证;UuGraph 全量配方图与 pattern_storage/replicator 链接随后续切片。"
     },
     {
       "registry": "block",
@@ -11186,7 +11196,12 @@
       "factory": "register",
       "expression": "TileEntityScanner::new",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/uu-scanner.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/UuScannerTests.java"
+      ],
+      "note": "扫描机本体(256 EU/tick、3300 tick、水晶盘记录、未知物品失败)经 GameTest 验证;UuGraph 全量配方图与 pattern_storage/replicator 链接随后续切片。"
     },
     {
       "registry": "block_entity",
@@ -12187,7 +12202,12 @@
       "factory": "registerManagedBe",
       "expression": "",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/uu-scanner.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/UuScannerTests.java"
+      ],
+      "note": "扫描机本体(256 EU/tick、3300 tick、水晶盘记录、未知物品失败)经 GameTest 验证;UuGraph 全量配方图与 pattern_storage/replicator 链接随后续切片。"
     },
     {
       "registry": "menu",

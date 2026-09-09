@@ -53,6 +53,7 @@ public enum MachineKind implements StringRepresentable {
     REACTOR_REDSTONE_PORT("reactor_redstone_port", 0, 0, 0, 0),
     RCI_RSH("rci_rsh", 48000, 13, 0, 0),
     RCI_LZH("rci_lzh", 48000, 13, 0, 0),
+    UU_SCANNER("uu_scanner", 512000, 2, 0, 0),
     TELEPORTER("teleporter", 0, 0, 0, 0),
     PERSONAL_CHEST("personal_chest", 0, 54, 0, 0),
     RT_HEAT_GENERATOR("rt_heat_generator", 0, 6, 0, 0),

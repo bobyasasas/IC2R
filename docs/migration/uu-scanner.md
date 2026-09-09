@@ -29,8 +29,33 @@ legacy `ItemCrystalMemory`(内嵌 ItemStack 的模式存储盘)及其空白晶�
   铁锭 → 读回铁锭 → 写空盘清空(组件写/清语义)。
 - IC2 与 GT 双模式 `runGameTestServer` 224 项全绿。
 
+## 切片二:uu_scanner 本体(2026-09-09)
+
+- `ic2.core.uu.UuValueGraph`(core,纯 Java):节点按物品 id 键;初始值
+  seed + 配方转换(成本:合成 0/熔炼 14);min 赋值传播直至稳定
+  (legacy `Node.setValue/updateValue` 算法等价)。
+- `UuScannerBlockEntity`(extends PoweredBlockEntity,512,000 EU 缓冲、
+  2 槽 = 输入 + 水晶盘、sink 256×1):每 tick 256 EU、3300 tick 完成扫描,
+  将输入物品写为水晶盘模式;价值表未覆盖的物品 FAILED 且不耗电。
+- `UuScannerScreen`(输入/水晶盘/进度)与客户端注册;uu_scanner 方块
+  资源与合成入列。
+- **已知裁剪**:价值图种子仅 iron/copper ingot(完整配方图解析器与
+  `uu_values.json` 数据包化随后续切片);pattern_storage 邻接链接未迁移
+  (无盘时 FAILED,等价 legacy TRANSFER_ERROR 分支)。
+
+## 测试证据(切片二)
+
+- `UuScannerTests.scansSeededItemOntoMemory`:铁锭扫描 3300 tick 后记录到
+  水晶盘、输入消耗、补电续跑。
+- `unknownItemFails`:价值表外物品(钻石)不消耗、盘保持空白。
+
+## 测试证据(切片一)
+
+- `CrystalMemoryTests.recordsAndReadsPattern`:写/读/清空组件语义。
+- IC2 与 GT 双模式 `runGameTestServer` 226 项全绿。
+
 ## 未验收 / 后续
 
-- uu_scanner 本体(依赖 UuGraph core 化:334 行配方图价值计算)、
-  pattern_storage 邻接链接、replicator;tooltip 的 UU 价值显示随 UuGraph。
+- UuGraph 全量配方图解析器与 `uu_values.json` 数据包化;pattern_storage
+  邻接链接;replicator;tooltip 的 UU 价值显示。
 - 客户端外观随实机测试(待测试.md 第 30 节)。

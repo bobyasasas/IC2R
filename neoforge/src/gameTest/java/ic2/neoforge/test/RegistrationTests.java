@@ -266,6 +266,8 @@ public final class RegistrationTests {
                 "reactor_heatpack_warm", () -> ReactorHeatEffectTests::heatpackWarmsVentStorage);
         FUNCTIONS.register(
                 "crystal_memory_roundtrip", () -> CrystalMemoryTests::recordsAndReadsPattern);
+        FUNCTIONS.register("uu_scanner_scan", () -> UuScannerTests::scansSeededItemOntoMemory);
+        FUNCTIONS.register("uu_scanner_unknown", () -> UuScannerTests::unknownItemFails);
         FUNCTIONS.register(
                 "reactor_redstone_port", () -> ReactorAccessHatchTests::redstonePortPowersCore);
         FUNCTIONS.register("reactor_hatch_grid", () -> ReactorAccessHatchTests::hatchExposesGrid);
