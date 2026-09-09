@@ -117,6 +117,7 @@ public final class ModMachines {
             case RCI_RSH, RCI_LZH -> new ic2.neoforge.machine.ReactorRciBlockEntity(pos, state);
             case UU_SCANNER -> new ic2.neoforge.machine.UuScannerBlockEntity(pos, state);
             case PATTERN_STORAGE -> new ic2.neoforge.machine.PatternStorageBlockEntity(pos, state);
+            case REPLICATOR -> new ic2.neoforge.machine.ReplicatorBlockEntity(pos, state);
             case TELEPORTER -> new TeleporterBlockEntity(pos, state);
             case WOODEN_STORAGE_BOX,
                     BRONZE_STORAGE_BOX,

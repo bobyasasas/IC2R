@@ -263,6 +263,10 @@ public final class RegistrationTests {
         FUNCTIONS.register(
                 "pattern_storage_disk", () -> PatternStorageTests::writesPatternBackToDisk);
         FUNCTIONS.register(
+                "replicator_single", () -> ReplicatorTests::replicatesPatternFromStorage);
+        FUNCTIONS.register(
+                "replicator_no_uu", () -> ReplicatorTests::modeStopsWithoutUu);
+        FUNCTIONS.register(
                 "reactor_fluid_mode",
                 () -> ReactorFluidModeTests::fluidModeConvertsHeatToHotCoolant);
         FUNCTIONS.register(

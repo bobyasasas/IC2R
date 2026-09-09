@@ -61,6 +61,7 @@
     "ic2:reactor_redstone_port",
     "ic2:reactor_vessel",
     "ic2:recycler",
+    "ic2:replicator",
     "ic2:rt_generator",
     "ic2:rt_heat_generator",
     "ic2:semifluid_generator",

@@ -100,6 +100,7 @@ final class MachineSounds {
                     NUCLEAR_REACTOR,
                     REACTOR_CHAMBER,
                     REACTOR_FLUID_PORT,
+                    REPLICATOR,
                     REACTOR_ACCESS_HATCH,
                     REACTOR_REDSTONE_PORT,
                     RCI_RSH,

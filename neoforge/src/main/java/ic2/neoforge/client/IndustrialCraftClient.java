@@ -104,6 +104,8 @@ public final class IndustrialCraftClient {
                         event.register(registration.menu().get(), NuclearReactorScreen::new);
                     else if (kind == MachineKind.UU_SCANNER)
                         event.register(registration.menu().get(), UuScannerScreen::new);
+                    else if (kind == MachineKind.REPLICATOR)
+                        event.register(registration.menu().get(), MachineScreen::new);
                     else if (kind == MachineKind.ITEM_BUFFER)
                         event.register(registration.menu().get(), ItemBufferScreen::new);
                     else if (kind == MachineKind.ADV_MINER)

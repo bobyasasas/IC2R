@@ -156,6 +156,17 @@ public final class MachineMenu extends AbstractContainerMenu {
                                     x + y * NuclearReactorBlockEntity.GRID_COLUMNS,
                                     8 + x * 18,
                                     17 + y * 18));
+        } else if (kind == MachineKind.REPLICATOR) {
+            addFluidContainerSlot(inventory, ReplicatorBlockEntity.FLUID_SLOT, 56, 17);
+            addSlot(
+                    new ResourceHandlerSlot(
+                            inventory, inventory::set, ReplicatorBlockEntity.CELL_SLOT, 125, 35) {
+                        @Override
+                        public boolean mayPlace(ItemStack stack) {
+                            return false;
+                        }
+                    });
+            addOutputSlot(inventory, ReplicatorBlockEntity.OUTPUT, 125, 53);
         } else if (kind == MachineKind.UU_SCANNER) {
             addSlot(
                     new ResourceHandlerSlot(inventory, inventory::set, 0, 56, 35) {
