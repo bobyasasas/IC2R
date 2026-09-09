@@ -34,9 +34,9 @@ final class NuclearReactorTests {
     static void uraniumRodPulsesAndDepletes(GameTestHelper helper) {
         var reactor = reactor(helper);
         var rod = ModReactorItems.URANIUM_FUEL_ROD.get().getDefaultInstance();
-        reactor.inventory().set(4, ItemResource.of(rod), 1);
+        reactor.inventory().set(9, ItemResource.of(rod), 1);
         cycles(reactor, helper, 3);
-        var slot = reactor.inventory().stack(4);
+        var slot = reactor.inventory().stack(9);
         helper.assertTrue(
                 slot.getItem() instanceof FuelRodItem,
                 "A fresh rod keeps running for 20000 cycles before depleting");
@@ -55,20 +55,21 @@ final class NuclearReactorTests {
         var reactor = reactor(helper);
         reactor.inventory()
                 .set(
-                        4,
+                        9,
                         ItemResource.of(
                                 ModReactorItems.URANIUM_FUEL_ROD.get().getDefaultInstance()),
                         1);
         reactor.inventory()
                 .set(
-                        5,
+                        10,
                         ItemResource.of(
                                 ModReactorItems.URANIUM_FUEL_ROD.get().getDefaultInstance()),
                         1);
         cycles(reactor, helper, 2);
         helper.assertTrue(
                 reactor.getReactorEnergyOutput() > 2,
-                "Adjacent rods pulse each other for extra output");
+                "Adjacent rods pulse each other for extra output, output="
+                        + reactor.getReactorEnergyOutput());
         helper.assertTrue(
                 reactor.getHeat() > 8, "Neighbouring pulses multiply the triangular heat formula");
         helper.succeed();
@@ -78,14 +79,14 @@ final class NuclearReactorTests {
         var reactor = reactor(helper);
         reactor.inventory()
                 .set(
-                        4,
+                        9,
                         ItemResource.of(
                                 ModReactorItems.URANIUM_FUEL_ROD.get().getDefaultInstance()),
                         1);
         reactor.inventory()
-                .set(5, ItemResource.of(ModReactorItems.HEAT_VENT.get().getDefaultInstance()), 1);
+                .set(10, ItemResource.of(ModReactorItems.HEAT_VENT.get().getDefaultInstance()), 1);
         cycles(reactor, helper, 3);
-        var vent = ModReactorItems.HEAT_VENT.get().heat(reactor.inventory().stack(5));
+        var vent = ModReactorItems.HEAT_VENT.get().heat(reactor.inventory().stack(10));
         helper.assertTrue(vent.stored() > 0, "The vent absorbed the rod's heat");
         helper.assertTrue(vent.stored() <= vent.capacity(), "The vent never exceeds capacity");
         helper.succeed();
@@ -93,7 +94,7 @@ final class NuclearReactorTests {
 
     static void meltDownExplodesCore(GameTestHelper helper) {
         var reactor = reactor(helper);
-        for (int slot = 4; slot <= 8; slot++)
+        for (int slot = 9; slot <= 11; slot++)
             reactor.inventory()
                     .set(
                             slot,
@@ -102,7 +103,7 @@ final class NuclearReactorTests {
                                             .get()
                                             .getDefaultInstance()),
                             1);
-        cycles(reactor, helper, 12);
+        cycles(reactor, helper, 20);
         helper.assertTrue(
                 !helper.getBlockState(POSITION)
                         .is(ModMachines.block(MachineKind.NUCLEAR_REACTOR)),

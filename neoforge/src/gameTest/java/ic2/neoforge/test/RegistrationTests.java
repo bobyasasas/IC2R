@@ -244,10 +244,12 @@ public final class RegistrationTests {
                 "reactor_rod_pulse", () -> NuclearReactorTests::uraniumRodPulsesAndDepletes);
         FUNCTIONS.register(
                 "reactor_adjacent_rods", () -> NuclearReactorTests::adjacentRodMultipliesHeat);
+        FUNCTIONS.register("reactor_vent_absorb", () -> NuclearReactorTests::ventAbsorbsRodHeat);
+        FUNCTIONS.register("reactor_meltdown", () -> NuclearReactorTests::meltDownExplodesCore);
+        FUNCTIONS.register("reactor_chamber_widen", () -> ReactorChamberTests::chamberWidensGrid);
         FUNCTIONS.register(
-                "reactor_vent_absorb", () -> NuclearReactorTests::ventAbsorbsRodHeat);
-        FUNCTIONS.register(
-                "reactor_meltdown", () -> NuclearReactorTests::meltDownExplodesCore);
+                "reactor_chamber_shrink", () -> ReactorChamberTests::brokenChamberEjectsColumn);
+        FUNCTIONS.register("reactor_mox_pulse", () -> ReactorChamberTests::moxPulseScalesWithHeat);
         FUNCTIONS.register(
                 "matter_generator_scrap", () -> MatterGeneratorTests::scrapAmplifiesAndGenerates);
         FUNCTIONS.register(

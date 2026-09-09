@@ -72,6 +72,7 @@
     "ic2:raw_lead_block",
     "ic2:raw_tin_block",
     "ic2:raw_uranium_block",
+    "ic2:reactor_chamber",
     "ic2:reactor_vessel",
     "ic2:recycler",
     "ic2:reinforced_stone",

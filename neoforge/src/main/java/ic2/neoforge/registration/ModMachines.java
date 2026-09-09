@@ -107,6 +107,7 @@ public final class ModMachines {
             case MATTER_GENERATOR ->
                     new ic2.neoforge.machine.MatterGeneratorBlockEntity(pos, state);
             case NUCLEAR_REACTOR -> new ic2.neoforge.machine.NuclearReactorBlockEntity(pos, state);
+            case REACTOR_CHAMBER -> new ic2.neoforge.machine.ReactorChamberBlockEntity(pos, state);
             case TELEPORTER -> new TeleporterBlockEntity(pos, state);
             case WOODEN_STORAGE_BOX,
                     BRONZE_STORAGE_BOX,

@@ -23,7 +23,8 @@ import net.neoforged.neoforge.transfer.item.ItemResource;
  * interactions, fluid cooling mode and the access ports land in later slices.
  */
 public final class NuclearReactorBlockEntity extends PoweredBlockEntity implements ReactorHost {
-    public static final int GRID_COLUMNS = 3;
+    public static final int BASE_COLUMNS = 3;
+    public static final int GRID_COLUMNS = 9;
     public static final int GRID_ROWS = 6;
     public static final int CYCLE_TICKS = 20;
     private static final int BASE_MAX_HEAT = 10000;
@@ -41,7 +42,7 @@ public final class NuclearReactorBlockEntity extends PoweredBlockEntity implemen
                 pos,
                 state,
                 100000,
-                18);
+                54);
     }
 
     @Override
@@ -65,6 +66,7 @@ public final class NuclearReactorBlockEntity extends PoweredBlockEntity implemen
         if (++cycleTicker % CYCLE_TICKS != 0) return;
         // The legacy loop always runs the two passes; the rods themselves only pulse while the
         // reactor receives a redstone signal.
+        ejectInactiveColumns(level);
         processChambers();
         if (meltDown(level)) return;
         producing = heat >= 1000 || output > 0.0F;
@@ -72,14 +74,49 @@ public final class NuclearReactorBlockEntity extends PoweredBlockEntity implemen
         setActive(producing);
     }
 
+    /** Each adjacent chamber widens the grid by one column, exactly like the legacy count. */
+    public int columns() {
+        int cols = BASE_COLUMNS;
+        if (getLevel() instanceof ServerLevel level) {
+            for (Direction direction : Direction.values()) {
+                if (level.getBlockEntity(worldPosition.relative(direction))
+                                instanceof ReactorChamberBlockEntity chamber
+                        && chamber.findReactor() == this) cols++;
+            }
+        }
+        return Math.min(cols, GRID_COLUMNS);
+    }
+
+    /**
+     * Items beyond the active columns are ejected at cycle start (legacy dropAllUnfittingStuff).
+     */
+    private void ejectInactiveColumns(ServerLevel level) {
+        for (int y = 0; y < GRID_ROWS; y++) {
+            for (int x = columns(); x < GRID_COLUMNS; x++) {
+                var stack = inventory.stack(y * GRID_COLUMNS + x);
+                if (stack != null && !stack.isEmpty()) {
+                    net.minecraft.world.Containers.dropItemStack(
+                            level,
+                            worldPosition.getX() + 0.5,
+                            worldPosition.getY() + 0.5,
+                            worldPosition.getZ() + 0.5,
+                            stack);
+                    // setItemAt gates on active columns; ejecting must write the raw slot.
+                    inventory.set(y * GRID_COLUMNS + x, ItemResource.EMPTY, 0);
+                }
+            }
+        }
+    }
+
     private void processChambers() {
         output = 0.0F;
         maxHeat = BASE_MAX_HEAT;
         hem = 1.0F;
+        int columns = columns();
         for (int pass = 0; pass < 2; pass++) {
             boolean heatRun = pass == 0;
             for (int y = 0; y < GRID_ROWS; y++) {
-                for (int x = 0; x < GRID_COLUMNS; x++) {
+                for (int x = 0; x < columns; x++) {
                     var stack = getItemAt(x, y);
                     if (stack == null || !(stack.getItem() instanceof ReactorComponent component))
                         continue;
@@ -160,14 +197,14 @@ public final class NuclearReactorBlockEntity extends PoweredBlockEntity implemen
 
     @Override
     public ItemStack getItemAt(int x, int y) {
-        return x >= 0 && x < GRID_COLUMNS && y >= 0 && y < GRID_ROWS
+        return x >= 0 && x < columns() && y >= 0 && y < GRID_ROWS
                 ? inventory.stack(x + y * GRID_COLUMNS)
                 : null;
     }
 
     @Override
     public void setItemAt(int x, int y, ItemStack stack) {
-        if (x >= 0 && x < GRID_COLUMNS && y >= 0 && y < GRID_ROWS) {
+        if (x >= 0 && x < columns() && y >= 0 && y < GRID_ROWS) {
             if (stack.isEmpty()) inventory.set(x + y * GRID_COLUMNS, ItemResource.EMPTY, 0);
             else inventory.set(x + y * GRID_COLUMNS, ItemResource.of(stack), stack.getCount());
         }

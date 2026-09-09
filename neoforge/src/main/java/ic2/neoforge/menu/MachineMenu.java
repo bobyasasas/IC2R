@@ -153,7 +153,7 @@ public final class MachineMenu extends AbstractContainerMenu {
                                     inventory,
                                     inventory::set,
                                     x + y * NuclearReactorBlockEntity.GRID_COLUMNS,
-                                    62 + x * 18,
+                                    8 + x * 18,
                                     17 + y * 18));
         } else if (kind == MachineKind.MATTER_GENERATOR) {
             addSlot(new ResourceHandlerSlot(inventory, inventory::set, 0, 72, 40));
