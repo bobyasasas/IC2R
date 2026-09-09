@@ -2064,7 +2064,12 @@
       "factory": "register",
       "expression": "new ItemBlockIc2(Ic2Blocks.BLAST_FURNACE, new Properties())",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/blast-furnace.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/BlastFurnaceTests.java"
+      ],
+      "note": "方块、热链(电热源→50,000 HU)、空气罐/单元、钢锭+炉渣产出经 GameTest 验证;真实客户端界面随实机测试。"
     },
     {
       "registry": "item",
@@ -7823,7 +7828,12 @@
       "factory": "register",
       "expression": "Ic2TileEntityBlock.create(Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).strength(2.0F, 10.0F).requiresCorrectToolForDrops().sound(SoundType.METAL), TileEntityBlastFurnace.class, true, Ic2TileEntityBlock.DefaultDrop.Machine, Util.allFacings, true)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/blast-furnace.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/BlastFurnaceTests.java"
+      ],
+      "note": "方块、热链(电热源→50,000 HU)、空气罐/单元、钢锭+炉渣产出经 GameTest 验证;真实客户端界面随实机测试。"
     },
     {
       "registry": "block",
@@ -10711,7 +10721,12 @@
       "factory": "register",
       "expression": "TileEntityBlastFurnace::new",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/blast-furnace.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/BlastFurnaceTests.java"
+      ],
+      "note": "方块、热链(电热源→50,000 HU)、空气罐/单元、钢锭+炉渣产出经 GameTest 验证;真实客户端界面随实机测试。"
     },
     {
       "registry": "block_entity",
@@ -13150,7 +13165,12 @@
       "factory": "register",
       "expression": "new BasicMachineRecipeSerializer(Ic2RecipeTypes.BLAST_FURNACE, twoIntsMeta())",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/blast-furnace.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/BlastFurnaceTests.java"
+      ],
+      "note": "方块、热链(电热源→50,000 HU)、空气罐/单元、钢锭+炉渣产出经 GameTest 验证;真实客户端界面随实机测试。"
     },
     {
       "registry": "recipe_serializer",
@@ -13335,7 +13355,12 @@
       "factory": "register",
       "expression": "",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/blast-furnace.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/BlastFurnaceTests.java"
+      ],
+      "note": "方块、热链(电热源→50,000 HU)、空气罐/单元、钢锭+炉渣产出经 GameTest 验证;真实客户端界面随实机测试。"
     },
     {
       "registry": "recipe_type",

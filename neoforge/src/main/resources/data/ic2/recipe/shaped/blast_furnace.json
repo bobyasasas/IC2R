@@ -1,0 +1,17 @@
+{
+  "type": "ic2:shaped",
+  "pattern": [
+    "III",
+    "IBI",
+    "IGI"
+  ],
+  "result": {
+    "id": "ic2:blast_furnace",
+    "count": 1
+  },
+  "key": {
+    "G": "ic2:heat_conductor",
+    "B": "ic2:machine",
+    "I": "ic2:iron_casing"
+  }
+}

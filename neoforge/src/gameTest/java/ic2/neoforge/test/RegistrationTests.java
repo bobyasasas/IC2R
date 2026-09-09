@@ -228,6 +228,9 @@ public final class RegistrationTests {
                 "block_cutter_weak_blade",
                 () -> BlockCutterTests::weakBladeStallsAndDiamondResumes);
         FUNCTIONS.register("block_cutter_no_blade", () -> BlockCutterTests::missingBladeStalls);
+        FUNCTIONS.register("blast_furnace_steel", () -> BlastFurnaceTests::smeltsIronIntoSteel);
+        FUNCTIONS.register("blast_furnace_cold", () -> BlastFurnaceTests::staysColdWithoutHeat);
+        FUNCTIONS.register("blast_furnace_air_cells", () -> BlastFurnaceTests::airCellsFillTank);
         FUNCTIONS.register("cooling_capacity", () -> HeatExchangerTests::nearlyFullOutput);
         FUNCTIONS.register("cooling_parts_budget", () -> HeatExchangerTests::partsAndBudget);
         FUNCTIONS.register("cooling_stirling_chain", () -> HeatExchangerTests::stirlingChain);

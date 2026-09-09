@@ -1,4 +1,9 @@
 [
+  "ic2:blast_furnace/crushed_iron_to_steel_ingot",
+  "ic2:blast_furnace/dusts_iron_to_steel_ingot",
+  "ic2:blast_furnace/iron_ingot_to_steel_ingot",
+  "ic2:blast_furnace/iron_ore_to_steel_ingot",
+  "ic2:blast_furnace/purified_iron_to_steel_ingot",
   "ic2:block_cutter/acacia_logs_to_acacia_planks",
   "ic2:block_cutter/birch_logs_to_birch_planks",
   "ic2:block_cutter/blocks_bronze_to_bronze_plate",
@@ -327,6 +332,7 @@
   "ic2:shaped/advanced_scanner",
   "ic2:shaped/batbox",
   "ic2:shaped/batbox_chargepad",
+  "ic2:shaped/blast_furnace",
   "ic2:shaped/block_cutter",
   "ic2:shaped/bronze_block",
   "ic2:shaped/bronze_dust",

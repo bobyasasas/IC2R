@@ -133,6 +133,18 @@ public final class MachineMenu extends AbstractContainerMenu {
                     });
             addSlot(new ResourceHandlerSlot(inventory, inventory::set, 2, 56, 53));
             addSlot(new ResourceHandlerSlot(inventory, inventory::set, 3, 102, 53));
+        } else if (kind == MachineKind.BLAST_FURNACE) {
+            addSlot(new ResourceHandlerSlot(inventory, inventory::set, 0, 56, 17));
+            addOutputSlot(inventory, 1, 116, 35);
+            addOutputSlot(inventory, 2, 134, 35);
+            addFluidContainerSlot(inventory, 3, 38, 53);
+            addSlot(
+                    new ResourceHandlerSlot(inventory, inventory::set, 4, 74, 53) {
+                        @Override
+                        public boolean mayPlace(ItemStack stack) {
+                            return false;
+                        }
+                    });
         } else if (kind == MachineKind.ITEM_BUFFER) {
             for (int slot = 0; slot < ItemBufferBlockEntity.GROUP_SIZE; slot++)
                 addSlot(

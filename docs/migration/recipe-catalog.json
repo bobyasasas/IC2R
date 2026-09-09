@@ -3,32 +3,32 @@
     {
       "source": "blast_furnace/crushed_iron_to_steel_ingot.json",
       "type": "ic2:blast_furnace",
-      "status": "pending",
-      "reason": "recipe family not ported"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/blast_furnace/crushed_iron_to_steel_ingot.json"
     },
     {
       "source": "blast_furnace/dusts_iron_to_steel_ingot.json",
       "type": "ic2:blast_furnace",
-      "status": "pending",
-      "reason": "recipe family not ported"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/blast_furnace/dusts_iron_to_steel_ingot.json"
     },
     {
       "source": "blast_furnace/iron_ingot_to_steel_ingot.json",
       "type": "ic2:blast_furnace",
-      "status": "pending",
-      "reason": "recipe family not ported"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/blast_furnace/iron_ingot_to_steel_ingot.json"
     },
     {
       "source": "blast_furnace/iron_ore_to_steel_ingot.json",
       "type": "ic2:blast_furnace",
-      "status": "pending",
-      "reason": "recipe family not ported"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/blast_furnace/iron_ore_to_steel_ingot.json"
     },
     {
       "source": "blast_furnace/purified_iron_to_steel_ingot.json",
       "type": "ic2:blast_furnace",
-      "status": "pending",
-      "reason": "recipe family not ported"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/blast_furnace/purified_iron_to_steel_ingot.json"
     },
     {
       "source": "block_cutter/acacia_logs_to_acacia_planks.json",
@@ -2121,8 +2121,8 @@
     {
       "source": "shaped/blast_furnace.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:blast_furnace"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/blast_furnace.json"
     },
     {
       "source": "shaped/block_cutter.json",

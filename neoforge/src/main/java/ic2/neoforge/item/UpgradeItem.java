@@ -37,6 +37,7 @@ public final class UpgradeItem extends Item {
         public boolean suitable(MachineKind machine) {
             if (machine == MachineKind.STEAM_KINETIC_GENERATOR) return fluid() || this == PULLING;
             if (machine == MachineKind.ITEM_BUFFER) return directional() && !fluid();
+            if (machine == MachineKind.BLAST_FURNACE) return directional() && !fluid();
             if (machine == MachineKind.CONDENSER) return directional() || this == TRANSFORMER;
             if (machine == MachineKind.ELECTROLYZER) return this == FLUID_PULLING;
             if (machine == MachineKind.TANK) return fluid();
