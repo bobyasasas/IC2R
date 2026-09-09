@@ -1848,7 +1848,11 @@
       "factory": "register",
       "expression": "new ItemBlockIc2(Ic2Blocks.SORTING_MACHINE, new Properties())",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/sorting-machine.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/SortingMachineTests.java"
+      ]
     },
     {
       "registry": "item",
@@ -7523,7 +7527,12 @@
       "factory": "register",
       "expression": "Ic2TileEntityBlock.create(Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).strength(2.0F, 10.0F).requiresCorrectToolForDrops().sound(SoundType.METAL), TileEntitySortingMachine.class, false, Ic2TileEntityBlock.DefaultDrop.Machine, Util.onlyNorth, false)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/sorting-machine.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/SortingMachineTests.java"
+      ],
+      "note": "过滤路由、默认面回退与 EU 计费已接入；升级与红石行为待验收。"
     },
     {
       "registry": "block",
@@ -10236,7 +10245,12 @@
       "factory": "register",
       "expression": "TileEntitySortingMachine::new",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/sorting-machine.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/SortingMachineTests.java"
+      ],
+      "note": "过滤路由、默认面回退与 EU 计费已接入；升级与红石行为待验收。"
     },
     {
       "registry": "block_entity",
@@ -11547,7 +11561,12 @@
       "factory": "registerManagedBe",
       "expression": "",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/sorting-machine.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/SortingMachineTests.java"
+      ],
+      "note": "过滤路由、默认面回退与 EU 计费已接入；升级与红石行为待验收。"
     },
     {
       "registry": "menu",

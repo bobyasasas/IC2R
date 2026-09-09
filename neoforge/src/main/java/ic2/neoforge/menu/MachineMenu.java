@@ -89,6 +89,30 @@ public final class MachineMenu extends AbstractContainerMenu {
                     });
         } else if (kind == MachineKind.STEAM_GENERATOR) {
             // The boiler has valves and fluid ports, but no internal item slots.
+        } else if (kind == MachineKind.SORTING_MACHINE) {
+            var sorting = (SortingMachineBlockEntity) machine;
+            for (int slot = 0; slot < 42; slot++)
+                addSlot(
+                        new ResourceHandlerSlot(
+                                sorting.filters(),
+                                sorting.filters()::set,
+                                slot,
+                                8 + (slot % 7) * 18,
+                                18 + (slot / 7) * 18) {
+                            @Override
+                            public int getMaxStackSize() {
+                                return 1;
+                            }
+                        });
+            for (int slot = 0; slot < 11; slot++)
+                addSlot(
+                        new ResourceHandlerSlot(
+                                inventory, inventory::set, slot, 8 + (slot % 11) * 16, 150) {
+                            @Override
+                            public int getMaxStackSize() {
+                                return 64;
+                            }
+                        });
         } else if (kind.storageBox()) {
             for (int slot = 0; slot < kind.slots(); slot++)
                 addSlot(

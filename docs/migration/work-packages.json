@@ -82,7 +82,7 @@
       "parent": "M11",
       "title": "存储与辅助机器",
       "status": "in_progress",
-      "acceptance": "储液罐已接入事务存储、比较器、容器交互与升级；四级充电垫（站立顺序充电、网络供电、朝向输出）与核材料链已接入并双模式 GameTest 验收；个人保险箱（首开认领、非所有者拒绝、拆除保护）已接入并双模式 GameTest 验收；五材质储物箱（27/45/45/63/126 格、任意面存取）已接入并双模式 GameTest 验收；分拣机、交易机、传送与磁化待迁移；个人保护随 P16。",
+      "acceptance": "储液罐已接入事务存储、比较器、容器交互与升级；四级充电垫（站立顺序充电、网络供电、朝向输出）与核材料链已接入并双模式 GameTest 验收；个人保险箱（首开认领、非所有者拒绝、拆除保护）已接入并双模式 GameTest 验收；五材质储物箱（27/45/45/63/126 格、任意面存取）已接入并双模式 GameTest 验收；分拣机（六面×七过滤、默认面回退、20 EU/件路由）已接入并双模式 GameTest 验收；交易机、传送与磁化待迁移；个人保护随 P16。",
       "evidence": [
         "docs/migration/tank.md",
         "docs/migration/chargepads.md",
@@ -90,7 +90,9 @@
         "docs/migration/personal-chest.md",
         "neoforge/src/gameTest/java/ic2/neoforge/test/PersonalChestTests.java",
         "docs/migration/storage-boxes.md",
-        "neoforge/src/gameTest/java/ic2/neoforge/test/StorageBoxTests.java"
+        "neoforge/src/gameTest/java/ic2/neoforge/test/StorageBoxTests.java",
+        "docs/migration/sorting-machine.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/SortingMachineTests.java"
       ]
     },
     {
