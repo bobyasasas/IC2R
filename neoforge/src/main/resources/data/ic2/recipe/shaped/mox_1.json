@@ -1,0 +1,17 @@
+{
+  "type": "ic2:shaped",
+  "pattern": [
+    "UUU",
+    "CCC",
+    "UUU"
+  ],
+  "group": "mox",
+  "result": {
+    "id": "ic2:mox",
+    "count": 1
+  },
+  "key": {
+    "U": "ic2:uranium_238",
+    "C": "ic2:plutonium"
+  }
+}

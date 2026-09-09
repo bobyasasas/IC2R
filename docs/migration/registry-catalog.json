@@ -3336,7 +3336,11 @@
       "factory": "register",
       "expression": "new ItemNuclearResource(new Properties(), 150, 100)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/nuclear-materials.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/NuclearTests.java"
+      ]
     },
     {
       "registry": "item",
@@ -3346,7 +3350,11 @@
       "factory": "register",
       "expression": "new ItemNuclearResource(new Properties(), 10, 90)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/nuclear-materials.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/NuclearTests.java"
+      ]
     },
     {
       "registry": "item",
@@ -3356,7 +3364,11 @@
       "factory": "register",
       "expression": "new ItemNuclearResource(new Properties(), 150, 100)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/nuclear-materials.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/NuclearTests.java"
+      ]
     },
     {
       "registry": "item",
@@ -3366,7 +3378,11 @@
       "factory": "register",
       "expression": "new ItemNuclearResource(new Properties(), 300, 100)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/nuclear-materials.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/NuclearTests.java"
+      ]
     },
     {
       "registry": "item",
@@ -3376,7 +3392,11 @@
       "factory": "register",
       "expression": "new ItemNuclearResource(new Properties(), 150, 100)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/nuclear-materials.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/NuclearTests.java"
+      ]
     },
     {
       "registry": "item",
@@ -3386,7 +3406,11 @@
       "factory": "register",
       "expression": "new ItemNuclearResource(new Properties(), 10, 90)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/nuclear-materials.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/NuclearTests.java"
+      ]
     },
     {
       "registry": "item",
@@ -3396,7 +3420,11 @@
       "factory": "register",
       "expression": "new ItemNuclearResource(new Properties(), 150, 100)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/nuclear-materials.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/NuclearTests.java"
+      ]
     },
     {
       "registry": "item",
@@ -3406,7 +3434,11 @@
       "factory": "register",
       "expression": "new ItemNuclearResource(new Properties(), 60, 100)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/nuclear-materials.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/NuclearTests.java"
+      ]
     },
     {
       "registry": "item",

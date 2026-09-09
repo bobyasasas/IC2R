@@ -22,6 +22,23 @@ public final class ModReactorItems {
     public static final DeferredItem<Item> RTG_PELLET =
             ITEMS.registerItem("rtg_pellet", properties -> new Item(properties.stacksTo(1)));
 
+    // Nuclear materials (P09): stackable refinement outputs of the ore and reactor chains.
+    // The recovered resources also irradiate an unprotected carrier; that behavior needs the
+    // hazmat armor set and lands with P16.
+    public static final DeferredItem<Item> URANIUM = nuclear("uranium");
+    public static final DeferredItem<Item> URANIUM_235 = nuclear("uranium_235");
+    public static final DeferredItem<Item> URANIUM_238 = nuclear("uranium_238");
+    public static final DeferredItem<Item> PLUTONIUM = nuclear("plutonium");
+    public static final DeferredItem<Item> SMALL_PLUTONIUM = nuclear("small_plutonium");
+    public static final DeferredItem<Item> SMALL_URANIUM_235 = nuclear("small_uranium_235");
+    public static final DeferredItem<Item> SMALL_URANIUM_238 = nuclear("small_uranium_238");
+    public static final DeferredItem<Item> MOX = nuclear("mox");
+    public static final DeferredItem<Item> URANIUM_PELLET = nuclear("uranium_pellet");
+
+    private static DeferredItem<Item> nuclear(String name) {
+        return ITEMS.registerItem(name, properties -> new Item(properties));
+    }
+
     public static void register(IEventBus bus) {
         ITEMS.register(bus);
         bus.addListener(ModReactorItems::creative);
@@ -30,7 +47,18 @@ public final class ModReactorItems {
 
     private static void creative(BuildCreativeModeTabContentsEvent event) {
         if (event.getTabKey().equals(CreativeModeTabs.FUNCTIONAL_BLOCKS)) event.accept(HEAT_VENT);
-        if (event.getTabKey().equals(CreativeModeTabs.INGREDIENTS)) event.accept(RTG_PELLET);
+        if (event.getTabKey().equals(CreativeModeTabs.INGREDIENTS)) {
+            event.accept(RTG_PELLET);
+            event.accept(URANIUM);
+            event.accept(URANIUM_235);
+            event.accept(URANIUM_238);
+            event.accept(PLUTONIUM);
+            event.accept(SMALL_PLUTONIUM);
+            event.accept(SMALL_URANIUM_235);
+            event.accept(SMALL_URANIUM_238);
+            event.accept(MOX);
+            event.accept(URANIUM_PELLET);
+        }
     }
 
     private static void tooltip(net.neoforged.neoforge.event.entity.player.ItemTooltipEvent event) {

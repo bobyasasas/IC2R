@@ -92,14 +92,15 @@
       "parent": "M11",
       "title": "金属及高阶加工",
       "status": "in_progress",
-      "acceptance": "金属成型、洗矿、离心、回收与感应炉主体已验证；离心机合成、核材料、铁栅栏、完整升级与多人验收待完成。",
+      "acceptance": "金属成型、洗矿、离心、回收与感应炉主体已验证；核材料（铀／铀 235／铀 238／钚／小撮系列／MOX／铀燃料丸）与热量门槛离心链（铀分离、RTG 丸回收、小撮压缩）已接入并双模式 GameTest 验收；铁栅栏与磁化机随 P08，完整升级与多人验收待完成。",
       "evidence": [
         "docs/migration/metal-former-toolbox.md",
         "neoforge/src/gameTest/java/ic2/neoforge/test/MetalFormerTests.java",
         "docs/migration/ore-washing.md",
         "docs/migration/centrifuge.md",
         "docs/migration/recycler.md",
-        "docs/migration/induction-furnace.md"
+        "docs/migration/induction-furnace.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/NuclearTests.java"
       ]
     },
     {

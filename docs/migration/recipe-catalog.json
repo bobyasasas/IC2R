@@ -286,7 +286,7 @@
       "source": "canner_bottle/mox_fuel_rod.json",
       "type": "ic2:canner_bottle",
       "status": "pending",
-      "reason": "unported item ic2:mox"
+      "reason": "unported result ic2:mox_fuel_rod"
     },
     {
       "source": "canner_bottle/mushroom_stew_filled_tin_can.json",
@@ -376,7 +376,7 @@
       "source": "canner_bottle/uranium_fuel_rod.json",
       "type": "ic2:canner_bottle",
       "status": "pending",
-      "reason": "unported item ic2:uranium"
+      "reason": "unported result ic2:uranium_fuel_rod"
     },
     {
       "source": "canner_enrich/biomass.json",
@@ -453,8 +453,8 @@
     {
       "source": "centrifuge/crushed_uranium_to_small_uranium_235.json",
       "type": "ic2:centrifuge",
-      "status": "pending",
-      "reason": "unported result ic2:small_uranium_235"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/centrifuge/crushed_uranium_to_small_uranium_235.json"
     },
     {
       "source": "centrifuge/depleted_dual_mox_fuel_rod_to_small_plutonium.json",
@@ -531,8 +531,8 @@
     {
       "source": "centrifuge/purified_uranium_to_small_uranium_235.json",
       "type": "ic2:centrifuge",
-      "status": "pending",
-      "reason": "unported result ic2:small_uranium_235"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/centrifuge/purified_uranium_to_small_uranium_235.json"
     },
     {
       "source": "centrifuge/quartz_to_small_lithium_dust.json",
@@ -543,8 +543,8 @@
     {
       "source": "centrifuge/rtg_pellet_to_plutonium.json",
       "type": "ic2:centrifuge",
-      "status": "pending",
-      "reason": "unported result ic2:plutonium"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/centrifuge/rtg_pellet_to_plutonium.json"
     },
     {
       "source": "centrifuge/slag_to_small_gold_dust.json",
@@ -555,8 +555,8 @@
     {
       "source": "centrifuge/uranium_to_uranium_238.json",
       "type": "ic2:centrifuge",
-      "status": "pending",
-      "reason": "unported item ic2:uranium"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/centrifuge/uranium_to_uranium_238.json"
     },
     {
       "source": "compressor/amethyst_shard_to_amethyst_block.json",
@@ -891,8 +891,8 @@
     {
       "source": "compressor/small_plutonium_to_plutonium.json",
       "type": "ic2:compressor",
-      "status": "pending",
-      "reason": "unported item ic2:small_plutonium"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/compressor/small_plutonium_to_plutonium.json"
     },
     {
       "source": "compressor/small_silver_dust_to_silver_dust.json",
@@ -915,8 +915,8 @@
     {
       "source": "compressor/small_uranium_235_to_uranium_235.json",
       "type": "ic2:compressor",
-      "status": "pending",
-      "reason": "unported item ic2:small_uranium_235"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/compressor/small_uranium_235_to_uranium_235.json"
     },
     {
       "source": "compressor/snow_block_to_ice.json",
@@ -3081,26 +3081,26 @@
     {
       "source": "shaped/mox_1.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:mox"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/mox_1.json"
     },
     {
       "source": "shaped/mox_2.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:mox"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/mox_2.json"
     },
     {
       "source": "shaped/mox_3.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:mox"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/mox_3.json"
     },
     {
       "source": "shaped/mox_4.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:mox"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/mox_4.json"
     },
     {
       "source": "shaped/mushroom_tfbp.json",
@@ -3279,8 +3279,8 @@
     {
       "source": "shaped/plutonium.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:plutonium"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/plutonium.json"
     },
     {
       "source": "shaped/power_unit.json",
@@ -3549,8 +3549,8 @@
     {
       "source": "shaped/rtg_pellet.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported item ic2:plutonium"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/rtg_pellet.json"
     },
     {
       "source": "shaped/rtg_pellet_2.json",
@@ -3561,8 +3561,8 @@
     {
       "source": "shaped/rtg_pellet_vertical.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported item ic2:plutonium"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/rtg_pellet_vertical.json"
     },
     {
       "source": "shaped/rtg_pellet_vertical_2.json",
@@ -3975,26 +3975,26 @@
     {
       "source": "shaped/uranium.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:uranium"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/uranium.json"
     },
     {
       "source": "shaped/uranium_2.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:uranium"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/uranium_2.json"
     },
     {
       "source": "shaped/uranium_235.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:uranium_235"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/uranium_235.json"
     },
     {
       "source": "shaped/uranium_block.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported item ic2:uranium_238"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/uranium_block.json"
     },
     {
       "source": "shaped/uranium_block_tagged.json",
@@ -4479,14 +4479,14 @@
     {
       "source": "shapeless/small_plutonium.json",
       "type": "ic2:shapeless",
-      "status": "pending",
-      "reason": "unported result ic2:small_plutonium"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shapeless/small_plutonium.json"
     },
     {
       "source": "shapeless/small_uranium_235.json",
       "type": "ic2:shapeless",
-      "status": "pending",
-      "reason": "unported result ic2:small_uranium_235"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shapeless/small_uranium_235.json"
     },
     {
       "source": "shapeless/sticky_piston.json",
@@ -4533,8 +4533,8 @@
     {
       "source": "shapeless/uranium_238.json",
       "type": "ic2:shapeless",
-      "status": "pending",
-      "reason": "unported result ic2:uranium_238"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shapeless/uranium_238.json"
     },
     {
       "source": "shapeless/water_cell.json",

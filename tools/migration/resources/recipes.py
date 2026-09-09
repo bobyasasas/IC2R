@@ -63,9 +63,19 @@ for file in sorted(recipe_root.rglob('*.json')):
         if 'conditions' in old:
             raise ValueError('conditional recipe requires explicit condition conversion')
         if old['type'] in {'ic2:ore_washer', 'ic2:centrifuge'}:
+            def split_stack(result):
+                # Item templates cap at 99; larger yields split and restack in the same slot.
+                count = result.get('count', 1)
+                if count <= 99:
+                    return [stack(result)]
+                template = stack({**result, 'count': 1})
+                return [{**template, 'count': part} for part in [99, count - 99] if part]
             results = old['result'] if isinstance(old['result'], list) else [old['result']]
+            stacks = [entry for result in results for entry in split_stack(result)]
+            if len(stacks) > 3:
+                raise ValueError('split outputs exceed three slots: ' + repr(results))
             new = {'type': old['type'], 'ingredient': ingredient(old['ingredient']), 'input_count': old['ingredient'].get('count', 1),
-                   'results': [stack(result) for result in results]}
+                   'results': stacks}
             new['water' if old['type'] == 'ic2:ore_washer' else 'min_heat'] = old['amount' if old['type'] == 'ic2:ore_washer' else 'minHeat']
         elif old['type'] == 'ic2:canner_bottle':
             def counted(value):
