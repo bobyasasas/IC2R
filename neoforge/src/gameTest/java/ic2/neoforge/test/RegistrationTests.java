@@ -278,6 +278,7 @@ public final class RegistrationTests {
                 "crystal_memory_roundtrip", () -> CrystalMemoryTests::recordsAndReadsPattern);
         FUNCTIONS.register("uu_scanner_scan", () -> UuScannerTests::scansSeededItemOntoMemory);
         FUNCTIONS.register("uu_scanner_unknown", () -> UuScannerTests::unknownItemFails);
+        FUNCTIONS.register("uu_scanner_seed_coverage", () -> UuScannerTests::expandedSeedCoverage);
         FUNCTIONS.register(
                 "reactor_redstone_port", () -> ReactorAccessHatchTests::redstonePortPowersCore);
         FUNCTIONS.register("reactor_hatch_grid", () -> ReactorAccessHatchTests::hatchExposesGrid);

@@ -1,7 +1,6 @@
 package ic2.neoforge.machine;
 
 import ic2.core.energy.grid.EnergyNode;
-import ic2.core.uu.UuValueGraph;
 import ic2.neoforge.component.ModDataComponents;
 import ic2.neoforge.item.CrystalMemoryItem;
 import ic2.neoforge.registration.ModMachines;
@@ -26,19 +25,6 @@ public final class UuScannerBlockEntity extends PoweredBlockEntity {
     public static final int DISK = 1;
     public static final int SCANNER_TICKS = 3300;
     private static final int EU_PER_TICK = 256;
-
-    /** Shared value graph, seeded with the slice's base resources. */
-    private static final UuValueGraph GRAPH = new UuValueGraph();
-
-    static {
-        GRAPH.setInitial("minecraft:iron_ingot", 14);
-        GRAPH.setInitial("minecraft:copper_ingot", 14);
-        GRAPH.addTransformation(
-                new UuValueGraph.Transformation(
-                        0,
-                        java.util.List.of(java.util.List.of("minecraft:iron_ore")),
-                        java.util.List.of("ic2:iron_dust")));
-    }
 
     private int progress;
     private String state = "IDLE";
@@ -87,10 +73,11 @@ public final class UuScannerBlockEntity extends PoweredBlockEntity {
             return;
         }
         double uu =
-                GRAPH.get(
-                        net.minecraft.core.registries.BuiltInRegistries.ITEM
-                                .getKey(input.getItem())
-                                .toString());
+                ic2.neoforge.uu.UuValues.graph(level)
+                        .get(
+                                net.minecraft.core.registries.BuiltInRegistries.ITEM
+                                        .getKey(input.getItem())
+                                        .toString());
         if (Double.isInfinite(uu)) {
             state = "FAILED";
             reset();
@@ -130,8 +117,7 @@ public final class UuScannerBlockEntity extends PoweredBlockEntity {
         }
     }
 
-    private ic2.neoforge.machine.PatternStorageBlockEntity patternStorageNear(
-            ServerLevel level) {
+    private ic2.neoforge.machine.PatternStorageBlockEntity patternStorageNear(ServerLevel level) {
         for (Direction direction : Direction.values()) {
             if (level.getBlockEntity(worldPosition.relative(direction))
                     instanceof ic2.neoforge.machine.PatternStorageBlockEntity storage)

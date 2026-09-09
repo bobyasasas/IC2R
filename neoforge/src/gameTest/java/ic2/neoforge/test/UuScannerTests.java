@@ -38,9 +38,15 @@ final class UuScannerTests {
         helper.assertTrue(
                 recorded.is(Items.IRON_INGOT),
                 "The scanner records the scanned iron ingot, input="
-                        + scanner.inventory().stack(0) + " memory=" + memory
-                        + " state=" + scanner.state() + " progress="
-                        + scanner.progress() + " energy=" + scanner.energy().stored());
+                        + scanner.inventory().stack(0)
+                        + " memory="
+                        + memory
+                        + " state="
+                        + scanner.state()
+                        + " progress="
+                        + scanner.progress()
+                        + " energy="
+                        + scanner.energy().stored());
         helper.assertTrue(scanner.inventory().stack(0).isEmpty(), "The scanned item is consumed");
         helper.succeed();
     }
@@ -61,6 +67,27 @@ final class UuScannerTests {
         helper.assertTrue(
                 scanner.inventory().stack(1).is(ModReactorItems.CRYSTAL_MEMORY.get()),
                 "The crystal memory stays blank for unknown items");
+        helper.succeed();
+    }
+
+    static void expandedSeedCoverage(GameTestHelper helper) {
+        var scanner = scanner(helper);
+        scanner.energy().insert(512000);
+        // Wheat: new seed; its value flows through the macerator/crop transformations.
+        scanner.inventory().set(0, ItemResource.of(new ItemStack(Items.WHEAT)), 1);
+        scanner.inventory()
+                .set(
+                        1,
+                        ItemResource.of(ModReactorItems.CRYSTAL_MEMORY.get().getDefaultInstance()),
+                        1);
+        for (int tick = 0; tick < 3400; tick++) {
+            if (tick % 1000 == 0) scanner.energy().insert(512000);
+            scanner.serverTick(helper.getLevel());
+        }
+        var memory = scanner.inventory().stack(1);
+        var recorded = ((CrystalMemoryItem) memory.getItem()).readPattern(memory);
+        helper.assertTrue(
+                recorded.is(Items.WHEAT), "The expanded seed table makes crops scannable");
         helper.succeed();
     }
 

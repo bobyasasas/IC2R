@@ -35,6 +35,10 @@ public final class UuValues {
         }
     }
 
+    /**
+     * Seed table with the classic per-resource values: cheap crops (1), rubber and organics (3),
+     * redstone (10), the base metal family (14), precious metals (56) and gems (112).
+     */
     private static void seed(UuValueGraph graph) {
         graph.setInitial("minecraft:iron_ore", 14);
         graph.setInitial("minecraft:deepslate_iron_ore", 14);
@@ -43,6 +47,19 @@ public final class UuValues {
         graph.setInitial("ic2:uranium_ore", 14);
         graph.setInitial("ic2:lead_ore", 14);
         graph.setInitial("ic2:tin_ore", 14);
+        graph.setInitial("minecraft:iron_ingot", 14);
+        graph.setInitial("minecraft:copper_ingot", 14);
+        graph.setInitial("minecraft:gold_ingot", 56);
+        graph.setInitial("ic2:rubber", 3);
+        graph.setInitial("ic2:sticky_resin", 3);
+        graph.setInitial("minecraft:redstone", 10);
+        graph.setInitial("minecraft:lapis_lazuli", 14);
+        graph.setInitial("minecraft:coal", 8);
+        graph.setInitial("minecraft:diamond", 112);
+        graph.setInitial("minecraft:wheat", 1);
+        graph.setInitial("minecraft:potato", 1);
+        graph.setInitial("minecraft:carrot", 1);
+        graph.setInitial("ic2:scrap", 1);
     }
 
     private static void collect(UuValueGraph graph, ServerLevel level) {
