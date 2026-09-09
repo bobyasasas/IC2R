@@ -1,9 +1,12 @@
 package ic2.neoforge.machine;
 
 import ic2.core.energy.grid.EnergyNode;
+import ic2.neoforge.fluid.FluidDefinition;
 import ic2.neoforge.item.ReactorComponent;
 import ic2.neoforge.item.ReactorHost;
+import ic2.neoforge.registration.ModFluids;
 import ic2.neoforge.registration.ModMachines;
+import ic2.neoforge.transfer.MachineFluidTank;
 import ic2.neoforge.transfer.ResourcePort;
 
 import net.minecraft.core.BlockPos;
@@ -16,7 +19,9 @@ import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.level.storage.ValueInput;
 import net.minecraft.world.level.storage.ValueOutput;
 import net.neoforged.neoforge.transfer.ResourceHandler;
+import net.neoforged.neoforge.transfer.fluid.FluidResource;
 import net.neoforged.neoforge.transfer.item.ItemResource;
+import net.neoforged.neoforge.transfer.transaction.Transaction;
 
 /**
  * EU-mode nuclear reactor core, first migration slice: a 3-column by 6-row component grid running
@@ -31,12 +36,40 @@ public final class NuclearReactorBlockEntity extends PoweredBlockEntity implemen
     public static final int CYCLE_TICKS = 20;
     private static final int BASE_MAX_HEAT = 10000;
 
+    public static final int COOLANT_TANK_CAPACITY = 10000;
+
+    /** Legacy default: 40 EU-worth of rod output converts one mB of coolant (outputModifier 1). */
+    private static final int HU_OUTPUT_MODIFIER = 40;
+
+    private final MachineFluidTank coolantTank =
+            new MachineFluidTank(
+                    COOLANT_TANK_CAPACITY,
+                    this::setChanged,
+                    resource ->
+                            resource.is(
+                                    ModFluids.FAMILIES
+                                            .get(FluidDefinition.COOLANT)
+                                            .source()
+                                            .get()));
+    private final MachineFluidTank hotCoolantTank =
+            new MachineFluidTank(
+                    COOLANT_TANK_CAPACITY,
+                    this::setChanged,
+                    resource ->
+                            resource.is(
+                                    ModFluids.FAMILIES
+                                            .get(FluidDefinition.HOT_COOLANT)
+                                            .source()
+                                            .get()));
+
     private int heat;
     private int maxHeat = BASE_MAX_HEAT;
     private float hem = 1.0F;
     private float output;
     private int cycleTicker;
     private boolean producing;
+    private int emitHeatBuffer;
+    private boolean fluidCooled;
 
     public NuclearReactorBlockEntity(BlockPos pos, BlockState state) {
         super(
@@ -66,14 +99,131 @@ public final class NuclearReactorBlockEntity extends PoweredBlockEntity implemen
     @Override
     public void serverTick(ServerLevel level) {
         if (++cycleTicker % CYCLE_TICKS != 0) return;
+        fluidCooled = fluidPortNear(level);
         // The legacy loop always runs the two passes; the rods themselves only pulse while the
         // reactor receives a redstone signal.
         ejectInactiveColumns(level);
         processChambers();
         if (meltDown(level)) return;
         producing = heat >= 1000 || output > 0.0F;
-        if (output > 0) energy.insert(output * CYCLE_TICKS);
+        if (fluidCooled) {
+            convertEmitHeatToHotCoolant();
+            producing = heat >= 1000;
+        } else if (output > 0) {
+            energy.insert(output * CYCLE_TICKS);
+        }
         setActive(producing);
+    }
+
+    /**
+     * Fluid mode: the pass heat becomes hot coolant at 40 HU per mB (legacy huOutputModifier);
+     * whatever the tanks cannot absorb heats the core instead.
+     */
+    private void convertEmitHeatToHotCoolant() {
+        int huOutput = HU_OUTPUT_MODIFIER * emitHeatBuffer;
+        emitHeatBuffer = 0;
+        if (huOutput <= 0) return;
+        int hotRoom = hotCoolantTank.getAmountAsInt(0);
+        int converted = Math.min(huOutput, COOLANT_TANK_CAPACITY - hotRoom);
+        if (converted <= 0) {
+            heat += huOutput;
+            return;
+        }
+        try (var transaction = Transaction.openRoot()) {
+            if (hotCoolantTank.insert(0, hotCoolant(), converted, transaction) != converted) {
+                return;
+            }
+            coolantTank.extract(0, coolant(), converted, transaction);
+            transaction.commit();
+        }
+        int unconverted = huOutput - converted;
+        if (unconverted > 0) heat += unconverted;
+    }
+
+    private FluidResource coolant() {
+        return FluidResource.of(ModFluids.FAMILIES.get(FluidDefinition.COOLANT).source().get());
+    }
+
+    private FluidResource hotCoolant() {
+        return FluidResource.of(ModFluids.FAMILIES.get(FluidDefinition.HOT_COOLANT).source().get());
+    }
+
+    /** Fluid mode engages when a reactor fluid port sits next to the core. */
+    private boolean fluidPortNear(ServerLevel level) {
+        for (Direction direction : Direction.values()) {
+            if (level.getBlockEntity(worldPosition.relative(direction))
+                            instanceof ReactorFluidPortBlockEntity port
+                    && port.findReactor() == this) return true;
+        }
+        return false;
+    }
+
+    /** Coolant in / hot coolant out, exposed through reactor fluid ports. */
+    public ResourceHandler<FluidResource> coolantTanks() {
+        return new ResourceHandler<>() {
+            @Override
+            public int size() {
+                return 2;
+            }
+
+            @Override
+            public FluidResource getResource(int index) {
+                return index == 0 ? coolant() : hotCoolant();
+            }
+
+            @Override
+            public long getAmountAsLong(int index) {
+                return index == 0
+                        ? coolantTank.getAmountAsInt(0)
+                        : hotCoolantTank.getAmountAsInt(0);
+            }
+
+            @Override
+            public long getCapacityAsLong(int index, FluidResource resource) {
+                return COOLANT_TANK_CAPACITY;
+            }
+
+            @Override
+            public boolean isValid(int index, FluidResource resource) {
+                return resource.is(index == 0 ? coolant().getFluid() : hotCoolant().getFluid());
+            }
+
+            @Override
+            public int insert(
+                    int index,
+                    FluidResource resource,
+                    int amount,
+                    net.neoforged.neoforge.transfer.transaction.TransactionContext transaction) {
+                if (index != 0) return 0;
+                return coolantTank.insert(0, resource, amount, transaction);
+            }
+
+            @Override
+            public int extract(
+                    int index,
+                    FluidResource resource,
+                    int amount,
+                    net.neoforged.neoforge.transfer.transaction.TransactionContext transaction) {
+                if (index != 1) return 0;
+                return hotCoolantTank.extract(0, resource, amount, transaction);
+            }
+        };
+    }
+
+    public boolean fluidCooled() {
+        return fluidCooled;
+    }
+
+    public int emitBuffer() {
+        return emitHeatBuffer;
+    }
+
+    public int coolantAmount() {
+        return coolantTank.getAmountAsInt(0);
+    }
+
+    public int hotCoolantAmount() {
+        return hotCoolantTank.getAmountAsInt(0);
     }
 
     /** Each adjacent chamber widens the grid by one column, exactly like the legacy count. */
@@ -288,6 +438,11 @@ public final class NuclearReactorBlockEntity extends PoweredBlockEntity implemen
     @Override
     public void addOutput(float energy) {
         output += energy;
+    }
+
+    @Override
+    public void addEmitHeat(int heat) {
+        emitHeatBuffer += heat;
     }
 
     @Override

@@ -99,6 +99,7 @@ final class MachineSounds {
                     MATTER_GENERATOR,
                     NUCLEAR_REACTOR,
                     REACTOR_CHAMBER,
+                    REACTOR_FLUID_PORT,
                     PUMP,
                     MINER,
                     ADV_MINER,

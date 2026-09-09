@@ -53,6 +53,7 @@
     "ic2:pump",
     "ic2:raw_uranium_block",
     "ic2:reactor_chamber",
+    "ic2:reactor_fluid_port",
     "ic2:reactor_vessel",
     "ic2:recycler",
     "ic2:rt_generator",

@@ -257,6 +257,12 @@ public final class RegistrationTests {
         FUNCTIONS.register(
                 "reactor_vent_spread", () -> ReactorComponentTests::ventSpreadCoolsNeighbours);
         FUNCTIONS.register(
+                "reactor_fluid_mode",
+                () -> ReactorFluidModeTests::fluidModeConvertsHeatToHotCoolant);
+        FUNCTIONS.register(
+                "reactor_fluid_port_extract",
+                () -> ReactorFluidModeTests::hotCoolantExtractsThroughPort);
+        FUNCTIONS.register(
                 "reactor_heatpack_warm", () -> ReactorHeatEffectTests::heatpackWarmsVentStorage);
         FUNCTIONS.register(
                 "matter_generator_scrap", () -> MatterGeneratorTests::scrapAmplifiesAndGenerates);

@@ -108,6 +108,8 @@ public final class ModMachines {
                     new ic2.neoforge.machine.MatterGeneratorBlockEntity(pos, state);
             case NUCLEAR_REACTOR -> new ic2.neoforge.machine.NuclearReactorBlockEntity(pos, state);
             case REACTOR_CHAMBER -> new ic2.neoforge.machine.ReactorChamberBlockEntity(pos, state);
+            case REACTOR_FLUID_PORT ->
+                    new ic2.neoforge.machine.ReactorFluidPortBlockEntity(pos, state);
             case TELEPORTER -> new TeleporterBlockEntity(pos, state);
             case WOODEN_STORAGE_BOX,
                     BRONZE_STORAGE_BOX,
@@ -264,6 +266,12 @@ public final class ModMachines {
                 ic2.neoforge.api.WorkCapabilities.HEAT,
                 entityType(MachineKind.ELECTRIC_HEAT_GENERATOR),
                 (machine, side) -> ((ElectricWorkBlockEntity) machine).output(side));
+        event.registerBlockEntity(
+                net.neoforged.neoforge.capabilities.Capabilities.Fluid.BLOCK,
+                entityType(MachineKind.REACTOR_FLUID_PORT),
+                (machine, side) ->
+                        ((ic2.neoforge.machine.ReactorFluidPortBlockEntity) machine)
+                                .fluidAutomation(side));
         event.registerBlockEntity(
                 ic2.neoforge.api.WorkCapabilities.KINETIC,
                 entityType(MachineKind.ELECTRIC_KINETIC_GENERATOR),

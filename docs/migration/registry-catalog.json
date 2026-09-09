@@ -1722,7 +1722,12 @@
       "factory": "register",
       "expression": "new ItemBlockIc2(Ic2Blocks.REACTOR_FLUID_PORT, new Properties().rarity(Rarity.UNCOMMON))",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/nuclear-reactor.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/ReactorFluidModeTests.java"
+      ],
+      "note": "流体口代理冷却罐、流体模式切换与热冷却液产出经 GameTest 验证;访问仓/红石口/RCI/反应堆外壳随后续切片。"
     },
     {
       "registry": "item",
@@ -7673,7 +7678,12 @@
       "factory": "register",
       "expression": "Ic2TileEntityBlock.create(Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).strength(40.0F, 90.0F).requiresCorrectToolForDrops().sound(SoundType.METAL), TileEntityReactorFluidPort.class, false, Ic2TileEntityBlock.DefaultDrop.Self, Util.onlyNorth, false)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/nuclear-reactor.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/ReactorFluidModeTests.java"
+      ],
+      "note": "流体口代理冷却罐、流体模式切换与热冷却液产出经 GameTest 验证;访问仓/红石口/RCI/反应堆外壳随后续切片。"
     },
     {
       "registry": "block",
@@ -10326,7 +10336,12 @@
       "factory": "register",
       "expression": "TileEntityReactorFluidPort::new",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/nuclear-reactor.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/ReactorFluidModeTests.java"
+      ],
+      "note": "流体口代理冷却罐、流体模式切换与热冷却液产出经 GameTest 验证;访问仓/红石口/RCI/反应堆外壳随后续切片。"
     },
     {
       "registry": "block_entity",
