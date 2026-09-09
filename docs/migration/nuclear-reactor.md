@@ -93,6 +93,26 @@ chamber 扩列(3→最高 9 列)、无效列弹出与 MOX 堆内脉冲。流体�
 - IC2 与 GT 双模式 `runGameTestServer` 220 项全绿。
 
 ## 测试证据(切片一/二)
+## 切片四a:地表热效果与热包
+
+- `meltDown` 中的地表热效果(legacy `calculateHeatEffects` 地表分支):
+  热 ≥ 85% 时随机格起火/岩浆化,≥ 50% 时蒸发相邻水(显式置空气——
+  `Level.removeBlock` 对流体会重建 legacy block,蒸发会"假装无效"),
+  ≥ 40% 时点燃可燃邻居;每轮按 hem 概率掷骰,随机坐标半径 2(不含自身)。
+- `HeatpackItem`(heatpack 1000/1):堆芯热量低于 `1000 × 堆叠数` 时,给
+  四邻热受体充 `1 × 堆叠数` 热(堆内"热包"供暖件)。
+- 配方 +1(heatpack),转换 650 → 651。
+
+## 测试证据(切片四a)
+
+- `ReactorHeatEffectTests.heatpackWarmsVentStorage`:heatpack(堆叠 60)把
+  相邻冷却单元从 0 充到 60,热量来自堆芯预算。
+- 地表火/岩浆/蒸水/点燃为随机命中,自动断言不稳定——实现经代码审查对齐
+  legacy,实际效果列入 `待测试.md` §27 实机验收。
+
+## 测试证据
+
+- `ReactorChamberTests.chamberWidensGrid`
 ## 测试证据
 
 - `ReactorChamberTests.chamberWidensGrid`:1/2 个 chamber 分别扩列到 4/5,
