@@ -11,6 +11,7 @@ import ic2.neoforge.machine.MachineKind;
 import ic2.neoforge.registration.ModMachines;
 import ic2.neoforge.registration.ModRubberBuilding;
 import ic2.neoforge.registration.ModToolbox;
+import ic2.neoforge.registration.ModTools;
 import ic2.neoforge.registration.ModWorldContent;
 
 import net.minecraft.client.Minecraft;
@@ -70,6 +71,7 @@ public final class IndustrialCraftClient {
 
     private static void registerScreens(RegisterMenuScreensEvent event) {
         event.register(ModToolbox.MENU.get(), ToolboxScreen::new);
+        event.register(ModTools.MINING_FILTER_MENU.get(), MiningFilterScreen::new);
         ModMachines.MACHINES.forEach(
                 (kind, registration) -> {
                     if (kind.energyDevice())

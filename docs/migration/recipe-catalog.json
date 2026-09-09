@@ -4396,7 +4396,7 @@
       "source": "shapeless/mining_filter.json",
       "type": "ic2:shapeless",
       "status": "pending",
-      "reason": "unported result ic2:mining_filter_card"
+      "reason": "unported item ic2:item_buffer"
     },
     {
       "source": "shapeless/obsidian.json",

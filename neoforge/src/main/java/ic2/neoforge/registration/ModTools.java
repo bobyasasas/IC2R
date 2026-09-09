@@ -5,6 +5,7 @@ import ic2.neoforge.IndustrialCraft;
 import ic2.neoforge.item.*;
 import ic2.neoforge.item.ElectricTreetapItem;
 import ic2.neoforge.item.TreetapItem;
+import ic2.neoforge.menu.MiningFilterMenu;
 
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -12,12 +13,15 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.Identifier;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.TagKey;
+import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.component.Tool;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.bus.api.IEventBus;
+import net.neoforged.neoforge.common.extensions.IMenuTypeExtension;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
+import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
@@ -108,6 +112,19 @@ public final class ModTools {
                                     new ElectricItemSpec(1000000, 512, 2, false),
                                     12,
                                     250));
+    public static final DeferredItem<MiningFilterCardItem> MINING_FILTER_CARD =
+            ITEMS.registerItem("mining_filter_card", p -> new MiningFilterCardItem(p.stacksTo(1)));
+
+    private static final DeferredRegister<MenuType<?>> MENUS =
+            DeferredRegister.create(Registries.MENU, IndustrialCraft.MOD_ID);
+    public static final DeferredHolder<MenuType<?>, MenuType<MiningFilterMenu>> MINING_FILTER_MENU =
+            MENUS.register(
+                    "mining_filter",
+                    () ->
+                            IMenuTypeExtension.create(
+                                    (id, inventory, data) ->
+                                            new MiningFilterMenu(
+                                                    id, inventory, data.readVarInt(), true)));
 
     private static Item.Properties tool(Item.Properties properties, int damage) {
         var blocks =
@@ -120,6 +137,7 @@ public final class ModTools {
 
     public static void register(IEventBus bus) {
         ITEMS.register(bus);
+        MENUS.register(bus);
         bus.addListener(ModTools::creativeContents);
     }
 
@@ -137,6 +155,7 @@ public final class ModTools {
             event.accept(SCANNER);
             event.accept(ADVANCED_SCANNER);
             event.accept(FREQUENCY_TRANSMITTER);
+            event.accept(MINING_FILTER_CARD);
         }
     }
 

@@ -141,6 +141,19 @@ public final class MachineMenu extends AbstractContainerMenu {
                             return stack.getItem() instanceof ic2.neoforge.item.ScannerItem;
                         }
                     });
+            addSlot(
+                    new ResourceHandlerSlot(
+                            inventory,
+                            inventory::set,
+                            ic2.neoforge.machine.AdvMinerBlockEntity.CARD_SLOT,
+                            152,
+                            8) {
+                        @Override
+                        public boolean mayPlace(ItemStack stack) {
+                            return stack.getItem()
+                                    instanceof ic2.neoforge.item.MiningFilterCardItem;
+                        }
+                    });
             for (int slot = 0; slot < ic2.neoforge.machine.AdvMinerBlockEntity.FILTER_SIZE; slot++)
                 addSlot(
                         new ResourceHandlerSlot(

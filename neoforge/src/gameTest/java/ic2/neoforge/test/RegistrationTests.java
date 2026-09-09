@@ -212,6 +212,14 @@ public final class RegistrationTests {
         FUNCTIONS.register("adv_miner_sweep", () -> AdvMinerTests::sweepsAndMines);
         FUNCTIONS.register("adv_miner_whitelist", () -> AdvMinerTests::whitelistGates);
         FUNCTIONS.register("adv_miner_silk_reset", () -> AdvMinerTests::silkAndReset);
+        FUNCTIONS.register(
+                "mining_filter_card_defer",
+                () -> MiningFilterCardTests::uneditedCardDefersToMachineFilter);
+        FUNCTIONS.register(
+                "mining_filter_card_override",
+                () -> MiningFilterCardTests::editedCardOverridesMachineFilter);
+        FUNCTIONS.register(
+                "mining_filter_card_menu", () -> MiningFilterCardTests::handheldMenuEditsCard);
         FUNCTIONS.register("cooling_capacity", () -> HeatExchangerTests::nearlyFullOutput);
         FUNCTIONS.register("cooling_parts_budget", () -> HeatExchangerTests::partsAndBudget);
         FUNCTIONS.register("cooling_stirling_chain", () -> HeatExchangerTests::stirlingChain);

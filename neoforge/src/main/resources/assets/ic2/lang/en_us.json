@@ -1099,6 +1099,7 @@
   "item.ic2.lzh_condensator": "LZH-Condensator",
   "item.ic2.magenta_painter": "Magenta Painter",
   "item.ic2.meter": "EU-Reader",
+  "item.ic2.mining_filter_card": "Mining Filter Card",
   "item.ic2.mining_laser": "Mining Laser",
   "item.ic2.mining_laser.tooltip.mode": "Mode: %1$s",
   "item.ic2.mining_laser.tooltip.mode.3x3": "3x3",

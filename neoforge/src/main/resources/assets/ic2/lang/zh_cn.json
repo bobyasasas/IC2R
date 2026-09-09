@@ -1099,6 +1099,7 @@
   "item.ic2.lzh_condensator": "青金石冷凝模块",
   "item.ic2.magenta_painter": "品红色刷子",
   "item.ic2.meter": "EU电表",
+  "item.ic2.mining_filter_card": "采矿过滤卡",
   "item.ic2.mining_laser": "采矿镭射枪",
   "item.ic2.mining_laser.tooltip.mode": "模式：%s",
   "item.ic2.mining_laser.tooltip.mode.3x3": "3x3",

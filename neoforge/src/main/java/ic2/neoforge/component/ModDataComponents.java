@@ -100,6 +100,39 @@ public final class ModDataComponents {
         return contents;
     }
 
+    // A card without the blacklist marker has never been edited and defers to the machine filter,
+    // mirroring the legacy NBT-absence check in TileEntityAdvMiner.
+    public static final Supplier<DataComponentType<ItemContainerContents>> MINING_FILTER_ITEMS =
+            TYPES.<ItemContainerContents>registerComponentType(
+                    "mining_filter_items",
+                    builder ->
+                            builder.persistent(
+                                            ItemContainerContents.CODEC.validate(
+                                                    contents ->
+                                                            contents.getSlots() <= 45
+                                                                    ? DataResult.success(contents)
+                                                                    : DataResult.error(
+                                                                            () ->
+                                                                                    "Mining filter"
+                                                                                        + " card"
+                                                                                        + " exceeds"
+                                                                                        + " 45 entries")))
+                                    .networkSynchronized(
+                                            ItemContainerContents.STREAM_CODEC.map(
+                                                    ModDataComponents::validFilter,
+                                                    ModDataComponents::validFilter)));
+    public static final Supplier<DataComponentType<Boolean>> MINING_FILTER_BLACKLIST =
+            TYPES.<Boolean>registerComponentType(
+                    "mining_filter_blacklist",
+                    builder ->
+                            builder.persistent(Codec.BOOL).networkSynchronized(ByteBufCodecs.BOOL));
+
+    private static ItemContainerContents validFilter(ItemContainerContents contents) {
+        if (contents.getSlots() > 45)
+            throw new IllegalArgumentException("Mining filter card exceeds 45 entries");
+        return contents;
+    }
+
     // Absence means empty; templates are immutable and safe to store in a component map.
     public static final Supplier<DataComponentType<FluidStackTemplate>> FLUID =
             TYPES.<FluidStackTemplate>registerComponentType(

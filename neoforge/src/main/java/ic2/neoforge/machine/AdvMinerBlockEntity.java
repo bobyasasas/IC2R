@@ -1,5 +1,6 @@
 package ic2.neoforge.machine;
 
+import ic2.neoforge.component.ModDataComponents;
 import ic2.neoforge.item.ElectricItemEnergy;
 import ic2.neoforge.item.ScannerItem;
 import ic2.neoforge.registration.ModMachines;
@@ -13,6 +14,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.Containers;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.component.ItemContainerContents;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.item.enchantment.ItemEnchantments;
 import net.minecraft.world.level.block.Block;
@@ -36,6 +38,7 @@ public final class AdvMinerBlockEntity extends PoweredBlockEntity {
     public static final int SCANNER_SLOT = 0;
     public static final int FILTER_START = 1;
     public static final int FILTER_SIZE = 15;
+    public static final int CARD_SLOT = 16;
     private static final int SCAN_ENERGY = 64;
     private static final int MINE_ENERGY = 512;
     private static final int WORK_TICKS = 20;
@@ -64,6 +67,8 @@ public final class AdvMinerBlockEntity extends PoweredBlockEntity {
     @Override
     protected boolean acceptsInventorySlot(int slot, ItemResource resource) {
         if (slot == SCANNER_SLOT) return resource.getItem() instanceof ScannerItem;
+        if (slot == CARD_SLOT)
+            return resource.getItem() instanceof ic2.neoforge.item.MiningFilterCardItem;
         return super.acceptsInventorySlot(slot, resource);
     }
 
@@ -155,15 +160,39 @@ public final class AdvMinerBlockEntity extends PoweredBlockEntity {
     }
 
     private boolean evaluateFilter(List<ItemStack> drops) {
+        // An edited card (one that carries the blacklist marker set by its editor) takes priority
+        // over the machine's own filter, exactly like the legacy card NBT check.
+        var card = inventory.stack(CARD_SLOT);
+        if (!card.isEmpty() && card.has(ModDataComponents.MINING_FILTER_BLACKLIST)) {
+            return matches(
+                    drops,
+                    card.getOrDefault(
+                                            ModDataComponents.MINING_FILTER_ITEMS,
+                                            ItemContainerContents.EMPTY)
+                                    .nonEmptyItemCopyStream()
+                            ::iterator,
+                    card.getOrDefault(ModDataComponents.MINING_FILTER_BLACKLIST, true));
+        }
+        return matches(drops, machineFilters(), blacklist);
+    }
+
+    private Iterable<ItemStack> machineFilters() {
+        var filters = new java.util.ArrayList<ItemStack>(FILTER_SIZE);
+        for (int slot = FILTER_START; slot < FILTER_START + FILTER_SIZE; slot++)
+            filters.add(inventory.stack(slot));
+        return filters;
+    }
+
+    private boolean matches(
+            List<ItemStack> drops, Iterable<ItemStack> filters, boolean isBlacklist) {
         for (var drop : drops) {
-            for (int slot = FILTER_START; slot < FILTER_START + FILTER_SIZE; slot++) {
-                var filter = inventory.stack(slot);
+            for (var filter : filters) {
                 if (!filter.isEmpty() && filter.getItem() == drop.getItem()) {
-                    return !blacklist;
+                    return !isBlacklist;
                 }
             }
         }
-        return blacklist;
+        return isBlacklist;
     }
 
     private void doMine(ServerLevel level, BlockPos pos, BlockState state) {
