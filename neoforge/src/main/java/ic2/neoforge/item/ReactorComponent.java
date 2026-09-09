@@ -33,6 +33,15 @@ public interface ReactorComponent {
         return heat;
     }
 
+    /** Stored heat of this component; heat switches read it to pace their balancing. */
+    default int getCurrentHeat(ItemStack stack, ReactorHost reactor, int x, int y) {
+        return 0;
+    }
+
+    default int getMaxHeat(ItemStack stack, ReactorHost reactor, int x, int y) {
+        return 0;
+    }
+
     default float influenceExplosion(ItemStack stack, ReactorHost reactor) {
         return 0.0F;
     }

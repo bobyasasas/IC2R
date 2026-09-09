@@ -8,7 +8,13 @@ components = ['heat_vent', 'rsh_condensator', 'lzh_condensator',
               'mox_fuel_rod', 'dual_mox_fuel_rod', 'quad_mox_fuel_rod',
               'depleted_uranium_fuel_rod', 'depleted_dual_uranium_fuel_rod',
               'depleted_quad_uranium_fuel_rod', 'depleted_mox_fuel_rod',
-              'depleted_dual_mox_fuel_rod', 'depleted_quad_mox_fuel_rod']
+              'depleted_dual_mox_fuel_rod', 'depleted_quad_mox_fuel_rod',
+              'reactor_heat_vent', 'overclocked_heat_vent', 'advanced_heat_vent',
+              'component_heat_vent', 'reactor_coolant_cell', 'triple_reactor_coolant_cell',
+              'sextuple_reactor_coolant_cell', 'reactor_plating', 'reactor_heat_plating',
+              'containment_reactor_plating', 'heat_exchanger', 'reactor_heat_exchanger',
+              'component_heat_exchanger', 'advanced_heat_exchanger', 'neutron_reflector',
+              'thick_neutron_reflector', 'iridium_neutron_reflector']
 for component in components:
     item(component)
 for locale in ['en_us', 'zh_cn']:

@@ -1,0 +1,17 @@
+{
+  "type": "ic2:shaped",
+  "pattern": [
+    "TcT",
+    "cCc",
+    "TcT"
+  ],
+  "result": {
+    "id": "ic2:neutron_reflector",
+    "count": 1
+  },
+  "key": {
+    "c": "#c:dusts/coal",
+    "C": "#c:plates/copper",
+    "T": "#c:dusts/tin"
+  }
+}

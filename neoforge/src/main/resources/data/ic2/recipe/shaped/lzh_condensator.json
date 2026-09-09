@@ -1,0 +1,19 @@
+{
+  "type": "ic2:shaped",
+  "pattern": [
+    "RVR",
+    "CLC",
+    "RSR"
+  ],
+  "result": {
+    "id": "ic2:lzh_condensator",
+    "count": 1
+  },
+  "key": {
+    "R": "minecraft:redstone",
+    "V": "ic2:reactor_heat_vent",
+    "S": "ic2:reactor_heat_exchanger",
+    "C": "ic2:rsh_condensator",
+    "L": "minecraft:lapis_block"
+  }
+}

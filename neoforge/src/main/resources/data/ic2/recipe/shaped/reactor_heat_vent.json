@@ -1,0 +1,16 @@
+{
+  "type": "ic2:shaped",
+  "pattern": [
+    "CCC",
+    "CVC",
+    "CCC"
+  ],
+  "result": {
+    "id": "ic2:reactor_heat_vent",
+    "count": 1
+  },
+  "key": {
+    "V": "ic2:heat_vent",
+    "C": "#c:plates/copper"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "type": "ic2:shaped",
+  "pattern": [
+    " I ",
+    "ICI",
+    " I "
+  ],
+  "result": {
+    "id": "ic2:reactor_chamber",
+    "count": 1
+  },
+  "key": {
+    "I": "#c:plates/lead",
+    "C": "ic2:machine"
+  }
+}

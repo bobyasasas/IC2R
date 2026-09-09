@@ -4400,7 +4400,12 @@
       "factory": "register",
       "expression": "new ItemReactorHeatStorage(new Properties(), 10000)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/nuclear-reactor.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/ReactorComponentTests.java"
+      ],
+      "note": "物品、堆内组件行为与合成配方经 GameTest 验证;客户端外观随实机测试。"
     },
     {
       "registry": "item",
@@ -4410,7 +4415,12 @@
       "factory": "register",
       "expression": "new ItemReactorHeatStorage(new Properties(), 30000)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/nuclear-reactor.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/ReactorComponentTests.java"
+      ],
+      "note": "物品、堆内组件行为与合成配方经 GameTest 验证;客户端外观随实机测试。"
     },
     {
       "registry": "item",
@@ -4420,7 +4430,12 @@
       "factory": "register",
       "expression": "new ItemReactorHeatStorage(new Properties(), 60000)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/nuclear-reactor.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/ReactorComponentTests.java"
+      ],
+      "note": "物品、堆内组件行为与合成配方经 GameTest 验证;客户端外观随实机测试。"
     },
     {
       "registry": "item",
@@ -4430,7 +4445,12 @@
       "factory": "register",
       "expression": "new ItemReactorPlating(new Properties(), 1000, 0.95F)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/nuclear-reactor.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/ReactorComponentTests.java"
+      ],
+      "note": "物品、堆内组件行为与合成配方经 GameTest 验证;客户端外观随实机测试。"
     },
     {
       "registry": "item",
@@ -4440,7 +4460,12 @@
       "factory": "register",
       "expression": "new ItemReactorPlating(new Properties(), 2000, 0.99F)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/nuclear-reactor.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/ReactorComponentTests.java"
+      ],
+      "note": "物品、堆内组件行为与合成配方经 GameTest 验证;客户端外观随实机测试。"
     },
     {
       "registry": "item",
@@ -4450,7 +4475,12 @@
       "factory": "register",
       "expression": "new ItemReactorPlating(new Properties(), 500, 0.9F)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/nuclear-reactor.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/ReactorComponentTests.java"
+      ],
+      "note": "物品、堆内组件行为与合成配方经 GameTest 验证;客户端外观随实机测试。"
     },
     {
       "registry": "item",
@@ -4460,7 +4490,12 @@
       "factory": "register",
       "expression": "new ItemReactorHeatSwitch(new Properties(), 2500, 12, 4)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/nuclear-reactor.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/ReactorComponentTests.java"
+      ],
+      "note": "物品、堆内组件行为与合成配方经 GameTest 验证;客户端外观随实机测试。"
     },
     {
       "registry": "item",
@@ -4470,7 +4505,12 @@
       "factory": "register",
       "expression": "new ItemReactorHeatSwitch(new Properties(), 5000, 0, 72)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/nuclear-reactor.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/ReactorComponentTests.java"
+      ],
+      "note": "物品、堆内组件行为与合成配方经 GameTest 验证;客户端外观随实机测试。"
     },
     {
       "registry": "item",
@@ -4480,7 +4520,12 @@
       "factory": "register",
       "expression": "new ItemReactorHeatSwitch(new Properties(), 5000, 36, 0)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/nuclear-reactor.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/ReactorComponentTests.java"
+      ],
+      "note": "物品、堆内组件行为与合成配方经 GameTest 验证;客户端外观随实机测试。"
     },
     {
       "registry": "item",
@@ -4490,7 +4535,12 @@
       "factory": "register",
       "expression": "new ItemReactorHeatSwitch(new Properties(), 10000, 24, 8)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/nuclear-reactor.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/ReactorComponentTests.java"
+      ],
+      "note": "物品、堆内组件行为与合成配方经 GameTest 验证;客户端外观随实机测试。"
     },
     {
       "registry": "item",
@@ -4515,7 +4565,12 @@
       "factory": "register",
       "expression": "new ItemReactorVent(new Properties(), 1000, 5, 5)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/nuclear-reactor.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/ReactorComponentTests.java"
+      ],
+      "note": "物品、堆内组件行为与合成配方经 GameTest 验证;客户端外观随实机测试。"
     },
     {
       "registry": "item",
@@ -4525,7 +4580,12 @@
       "factory": "register",
       "expression": "new ItemReactorVent(new Properties(), 1000, 20, 36)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/nuclear-reactor.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/ReactorComponentTests.java"
+      ],
+      "note": "物品、堆内组件行为与合成配方经 GameTest 验证;客户端外观随实机测试。"
     },
     {
       "registry": "item",
@@ -4535,7 +4595,12 @@
       "factory": "register",
       "expression": "new ItemReactorVentSpread(new Properties(), 4)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/nuclear-reactor.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/ReactorComponentTests.java"
+      ],
+      "note": "物品、堆内组件行为与合成配方经 GameTest 验证;客户端外观随实机测试。"
     },
     {
       "registry": "item",
@@ -4545,7 +4610,12 @@
       "factory": "register",
       "expression": "new ItemReactorVent(new Properties(), 1000, 12, 0)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/nuclear-reactor.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/ReactorComponentTests.java"
+      ],
+      "note": "物品、堆内组件行为与合成配方经 GameTest 验证;客户端外观随实机测试。"
     },
     {
       "registry": "item",
@@ -4555,7 +4625,12 @@
       "factory": "register",
       "expression": "new ItemReactorReflector(new Properties(), 30000)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/nuclear-reactor.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/ReactorComponentTests.java"
+      ],
+      "note": "物品、堆内组件行为与合成配方经 GameTest 验证;客户端外观随实机测试。"
     },
     {
       "registry": "item",
@@ -4565,7 +4640,12 @@
       "factory": "register",
       "expression": "new ItemReactorReflector(new Properties(), 120000)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/nuclear-reactor.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/ReactorComponentTests.java"
+      ],
+      "note": "物品、堆内组件行为与合成配方经 GameTest 验证;客户端外观随实机测试。"
     },
     {
       "registry": "item",
@@ -4575,7 +4655,12 @@
       "factory": "register",
       "expression": "new ItemReactorIridiumReflector(new Properties())",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/nuclear-reactor.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/ReactorComponentTests.java"
+      ],
+      "note": "物品、堆内组件行为与合成配方经 GameTest 验证;客户端外观随实机测试。"
     },
     {
       "registry": "item",

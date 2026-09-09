@@ -46,8 +46,7 @@ final class NuclearReactorTests {
         helper.assertTrue(
                 reactor.getReactorEnergyOutput() == pulses,
                 "A single uranium rod pulses once per cycle");
-        helper.assertTrue(
-                reactor.getHeat() == 12, "Three uncooled cycles accumulate twelve heat");
+        helper.assertTrue(reactor.getHeat() == 12, "Three uncooled cycles accumulate twelve heat");
         helper.succeed();
     }
 
@@ -84,11 +83,12 @@ final class NuclearReactorTests {
                                 ModReactorItems.URANIUM_FUEL_ROD.get().getDefaultInstance()),
                         1);
         reactor.inventory()
-                .set(10, ItemResource.of(ModReactorItems.HEAT_VENT.get().getDefaultInstance()), 1);
+                .set(10, ItemResource.of(ModReactorItems.REACTOR_COOLANT_CELL.get().getDefaultInstance()), 1);
         cycles(reactor, helper, 3);
-        var vent = ModReactorItems.HEAT_VENT.get().heat(reactor.inventory().stack(10));
-        helper.assertTrue(vent.stored() > 0, "The vent absorbed the rod's heat");
-        helper.assertTrue(vent.stored() <= vent.capacity(), "The vent never exceeds capacity");
+        var ventItem = (ic2.neoforge.item.HeatStorageComponent) ModReactorItems.REACTOR_COOLANT_CELL.get();
+        int ventStored = ventItem.currentHeat(reactor.inventory().stack(10));
+        helper.assertTrue(ventStored == 12, "The coolant cell absorbed the rod's heat, saw " + ventStored);
+        helper.assertTrue(ventStored <= ventItem.capacity(), "The vent never exceeds capacity");
         helper.succeed();
     }
 
@@ -105,8 +105,7 @@ final class NuclearReactorTests {
                             1);
         cycles(reactor, helper, 20);
         helper.assertTrue(
-                !helper.getBlockState(POSITION)
-                        .is(ModMachines.block(MachineKind.NUCLEAR_REACTOR)),
+                !helper.getBlockState(POSITION).is(ModMachines.block(MachineKind.NUCLEAR_REACTOR)),
                 "A full melt-down removes the reactor core");
         helper.assertTrue(reactor.getHeat() == 0, "The melt-down resets the heat accounting");
         boolean debris = helper.getEntities(net.minecraft.world.entity.EntityType.ITEM).isEmpty();

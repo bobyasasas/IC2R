@@ -1,0 +1,17 @@
+{
+  "type": "ic2:shaped",
+  "pattern": [
+    "TCT",
+    "TcT",
+    "TCT"
+  ],
+  "result": {
+    "id": "ic2:sextuple_reactor_coolant_cell",
+    "count": 1
+  },
+  "key": {
+    "C": "ic2:triple_reactor_coolant_cell",
+    "T": "#c:plates/tin",
+    "c": "#c:plates/iron"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "type": "ic2:shaped",
+  "pattern": [
+    "RCR",
+    "RIR",
+    "RCR"
+  ],
+  "group": "iridium_neutron_reflector",
+  "result": {
+    "id": "ic2:iridium_neutron_reflector",
+    "count": 1
+  },
+  "key": {
+    "C": "ic2:dense_copper_plate",
+    "R": "ic2:thick_neutron_reflector",
+    "I": "ic2:iridium"
+  }
+}

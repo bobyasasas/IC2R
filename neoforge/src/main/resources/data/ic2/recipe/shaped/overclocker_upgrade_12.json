@@ -1,0 +1,17 @@
+{
+  "type": "ic2:shaped",
+  "pattern": [
+    "CCC",
+    "WEW"
+  ],
+  "group": "overclocker_upgrade",
+  "result": {
+    "id": "ic2:overclocker_upgrade",
+    "count": 12
+  },
+  "key": {
+    "C": "ic2:sextuple_reactor_coolant_cell",
+    "W": "ic2:insulated_copper_cable",
+    "E": "ic2:circuit"
+  }
+}

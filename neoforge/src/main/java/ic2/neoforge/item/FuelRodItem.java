@@ -52,9 +52,9 @@ public class FuelRodItem extends Item implements ReactorComponent {
             if (!heatRun) {
                 for (int pulse = 0; pulse < pulses; pulse++)
                     acceptUraniumPulse(stack, reactor, stack, x, y, x, y, heatRun);
-                pulses += pulsableNeighbours(reactor, x, y, heatRun);
+                pulses += pulsableNeighbours(reactor, stack, x, y, heatRun);
             } else {
-                pulses += pulsableNeighbours(reactor, x, y, heatRun);
+                pulses += pulsableNeighbours(reactor, stack, x, y, heatRun);
                 int heat = ReactorMath.uraniumHeat(pulses);
                 heat = getFinalHeat(stack, reactor, heat);
                 List<ItemStack> acceptorStacks = new ArrayList<>();
@@ -115,20 +115,25 @@ public class FuelRodItem extends Item implements ReactorComponent {
         };
     }
 
-    private int pulsableNeighbours(ReactorHost reactor, int x, int y, boolean heatRun) {
-        return pulsable(reactor, x - 1, y, heatRun)
-                + pulsable(reactor, x + 1, y, heatRun)
-                + pulsable(reactor, x, y - 1, heatRun)
-                + pulsable(reactor, x, y + 1, heatRun);
+    private int pulsableNeighbours(
+            ReactorHost reactor, ItemStack rod, int x, int y, boolean heatRun) {
+        return pulsable(reactor, rod, x - 1, y, x, y, heatRun)
+                + pulsable(reactor, rod, x + 1, y, x, y, heatRun)
+                + pulsable(reactor, rod, x, y - 1, x, y, heatRun)
+                + pulsable(reactor, rod, x, y + 1, x, y, heatRun);
     }
 
-    private int pulsable(ReactorHost reactor, int x, int y, boolean heatRun) {
-        var other = reactor.getItemAt(x, y);
-        return other != null
-                        && other.getItem() instanceof ReactorComponent component
-                        && component.acceptUraniumPulse(other, reactor, other, x, y, x, y, heatRun)
-                ? 1
-                : 0;
+    private int pulsable(
+            ReactorHost reactor, ItemStack rod, int nx, int ny, int px, int py, boolean heatRun) {
+        var other = reactor.getItemAt(nx, ny);
+        if (other == null || !(other.getItem() instanceof ReactorComponent component)) return 0;
+        if (!component.acceptUraniumPulse(other, reactor, rod, nx, ny, px, py, heatRun)) return 0;
+        // Persist the neighbour's mutation (depleting reflectors) unless it consumed itself.
+        var current = reactor.getItemAt(nx, ny);
+        if (current.getItem() == other.getItem()
+                && !net.minecraft.world.item.ItemStack.matches(current, other))
+            reactor.setItemAt(nx, ny, other);
+        return 1;
     }
 
     private static void collectHeatAcceptors(

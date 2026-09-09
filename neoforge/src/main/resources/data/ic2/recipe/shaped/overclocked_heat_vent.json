@@ -1,0 +1,16 @@
+{
+  "type": "ic2:shaped",
+  "pattern": [
+    " G ",
+    "GVG",
+    " G "
+  ],
+  "result": {
+    "id": "ic2:overclocked_heat_vent",
+    "count": 1
+  },
+  "key": {
+    "V": "ic2:reactor_heat_vent",
+    "G": "#c:plates/gold"
+  }
+}

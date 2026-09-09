@@ -30,4 +30,7 @@ public interface ReactorHost {
     float getReactorEnergyOutput();
 
     void addOutput(float energy);
+
+    /** Fluid-cooling emission buffer; the EU-mode core leaves it unaccounted. */
+    default void addEmitHeat(int heat) {}
 }

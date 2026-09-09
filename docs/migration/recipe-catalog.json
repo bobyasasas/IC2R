@@ -2037,14 +2037,14 @@
     {
       "source": "shaped/advanced_heat_exchanger.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:advanced_heat_exchanger"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/advanced_heat_exchanger.json"
     },
     {
       "source": "shaped/advanced_heat_vent.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:advanced_heat_vent"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/advanced_heat_vent.json"
     },
     {
       "source": "shaped/advanced_machine.json",
@@ -2373,14 +2373,14 @@
     {
       "source": "shaped/component_heat_exchanger.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:component_heat_exchanger"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/component_heat_exchanger.json"
     },
     {
       "source": "shaped/component_heat_vent.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:component_heat_vent"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/component_heat_vent.json"
     },
     {
       "source": "shaped/compressor.json",
@@ -2751,8 +2751,8 @@
     {
       "source": "shaped/heat_exchanger_from_copper.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:heat_exchanger"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/heat_exchanger_from_copper.json"
     },
     {
       "source": "shaped/heat_vent.json",
@@ -2799,14 +2799,14 @@
     {
       "source": "shaped/iridium_neutron_reflector.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:iridium_neutron_reflector"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/iridium_neutron_reflector.json"
     },
     {
       "source": "shaped/iridium_neutron_reflector_vertical.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:iridium_neutron_reflector"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/iridium_neutron_reflector_vertical.json"
     },
     {
       "source": "shaped/iridium_storage_box.json",
@@ -2991,8 +2991,8 @@
     {
       "source": "shaped/lzh_condensator.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported item ic2:reactor_heat_vent"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/lzh_condensator.json"
     },
     {
       "source": "shaped/macerator.json",
@@ -3147,8 +3147,8 @@
     {
       "source": "shaped/neutron_reflector.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:neutron_reflector"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/neutron_reflector.json"
     },
     {
       "source": "shaped/night_vision_goggles.json",
@@ -3159,8 +3159,8 @@
     {
       "source": "shaped/nuclear_reactor.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:nuclear_reactor"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/nuclear_reactor.json"
     },
     {
       "source": "shaped/nuke.json",
@@ -3189,26 +3189,26 @@
     {
       "source": "shaped/overclocked_heat_vent.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:overclocked_heat_vent"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/overclocked_heat_vent.json"
     },
     {
       "source": "shaped/overclocker_upgrade_12.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported item ic2:sextuple_reactor_coolant_cell"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/overclocker_upgrade_12.json"
     },
     {
       "source": "shaped/overclocker_upgrade_2.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported item ic2:reactor_coolant_cell"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/overclocker_upgrade_2.json"
     },
     {
       "source": "shaped/overclocker_upgrade_6.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported item ic2:triple_reactor_coolant_cell"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/overclocker_upgrade_6.json"
     },
     {
       "source": "shaped/painter.json",
@@ -3411,14 +3411,14 @@
     {
       "source": "shaped/reactor_chamber.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:reactor_chamber"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/reactor_chamber.json"
     },
     {
       "source": "shaped/reactor_coolant_cell.json",
       "type": "ic2:shaped",
       "status": "pending",
-      "reason": "unported result ic2:reactor_coolant_cell"
+      "reason": "ingredient requires component/fluid conversion: {'fluid': 'ic2:coolant', 'amount': 1000}"
     },
     {
       "source": "shaped/reactor_fluid_port.json",
@@ -3429,20 +3429,20 @@
     {
       "source": "shaped/reactor_heat_exchanger.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:reactor_heat_exchanger"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/reactor_heat_exchanger.json"
     },
     {
       "source": "shaped/reactor_heat_plating.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:reactor_heat_plating"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/reactor_heat_plating.json"
     },
     {
       "source": "shaped/reactor_heat_vent.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:reactor_heat_vent"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/reactor_heat_vent.json"
     },
     {
       "source": "shaped/reactor_redstone_port.json",
@@ -3531,20 +3531,20 @@
     {
       "source": "shaped/rsh_condensator.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported item ic2:heat_exchanger"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/rsh_condensator.json"
     },
     {
       "source": "shaped/rt_generator.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported item ic2:reactor_chamber"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/rt_generator.json"
     },
     {
       "source": "shaped/rt_heat_generator.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported item ic2:reactor_chamber"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/rt_heat_generator.json"
     },
     {
       "source": "shaped/rtg_pellet.json",
@@ -3663,8 +3663,8 @@
     {
       "source": "shaped/sextuple_reactor_coolant_cell.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:sextuple_reactor_coolant_cell"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/sextuple_reactor_coolant_cell.json"
     },
     {
       "source": "shaped/silver_block.json",
@@ -3915,8 +3915,8 @@
     {
       "source": "shaped/thick_neutron_reflector.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:thick_neutron_reflector"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/thick_neutron_reflector.json"
     },
     {
       "source": "shaped/tin_block.json",
@@ -3969,8 +3969,8 @@
     {
       "source": "shaped/triple_reactor_coolant_cell.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:triple_reactor_coolant_cell"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/triple_reactor_coolant_cell.json"
     },
     {
       "source": "shaped/uranium.json",
@@ -4179,8 +4179,8 @@
     {
       "source": "shapeless/containment_reactor_plating.json",
       "type": "ic2:shapeless",
-      "status": "pending",
-      "reason": "unported result ic2:containment_reactor_plating"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shapeless/containment_reactor_plating.json"
     },
     {
       "source": "shapeless/copper_cable.json",
@@ -4443,8 +4443,8 @@
     {
       "source": "shapeless/reactor_plating.json",
       "type": "ic2:shapeless",
-      "status": "pending",
-      "reason": "unported result ic2:reactor_plating"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shapeless/reactor_plating.json"
     },
     {
       "source": "shapeless/red_painter.json",

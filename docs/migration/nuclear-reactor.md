@@ -58,6 +58,41 @@ chamber 扩列(3→最高 9 列)、无效列弹出与 MOX 堆内脉冲。流体�
   (legacy `ReaktorOutput`);`getFinalHeat` 的流体模式 ×2 分支留待流体
   冷却切片(当前恒为 EU 模式);耗尽棒对应 depleted MOX 物品。
 
+## 切片三:反射器/热开关/元件散热/plating
+
+- `HeatStorageComponent`(抽象基类):冷却单元/散热片/热开关共用的存热
+  基座(REACTOR_HEAT 组件、`alterHeat` 返回未吸收余量、耐久条/tooltip);
+  保留 legacy `exchangeHeat`/`heat` API 供既有测试与冷凝器兼容。
+- `ReactorVentItem`(heat_vent 1000/6/0、reactor_heat_vent 1000/5/5、
+  overclocked 1000/20/36、advanced 1000/12/0):先从堆芯抽 `reactorVent`
+  热入自身存储,再自放 `selfVent` 热入 EmitHeat。
+- `VentSpreadItem`(component_heat_vent 4):给四邻各降 4 热,余量计入
+  EmitHeat;冷却写回邻居堆栈。
+- `HeatSwitchItem`(heat_exchanger 2500/12/4、reactor_heat_exchanger
+  5000/0/72、component_heat_exchanger 5000/36/0、advanced 10000/24/8):
+  legacy 介质百分比配速的双向热平衡(自身↔邻件↔堆芯)。
+- `ReactorPlatingItem`(reactor_plating 1000/0.95、heat 2000/0.99、
+  containment 500/0.9):热遍历提升 maxHeat 并乘 hem;爆炸影响系数。
+- `ReflectorItem`(neutron_reflector 30000、thick 120000、iridium 永久):
+  脉冲弹回给棒(棒再产出 1 EU 并计一次脉冲);薄片每弹一次耗损 1,
+  耗尽即从网格消失;爆炸影响 -1。
+- **堆栈语义**:组件对邻居的修改(反射器耗损、散热片吸热、扩散冷却)
+  统一在工作副本上修改后写回;耗尽自毁的反射器不写回。
+- 16 个组件物品注册(创造页 INGREDIENTS),reactor.py 资源管线;
+  配方转换 624 → 650(组件合成 26 条解锁,含 iridium_neutron_reflector)。
+
+## 测试证据
+
+- `ReactorComponentTests.reflectorBouncesPulse`:反射器使棒二次脉冲
+  (输出 2、热 ≥ 三角形 8),薄片耗损 +1。
+- `platingRaisesCoreLimits`:plating 将 maxHeat 提至 11000、hem 乘 0.95。
+- `heatSwitchBalancesCoreHeat`:热交换器从 5,000 热的堆芯抽出热量。
+- `ventSpreadCoolsNeighbours`:扩散散热给相邻冷却单元降 4 热。
+- `ReactorChamberTests`/`NuclearReactorTests` 既有断言(扩列/收缩弹出/
+  MOX 脉冲/单棒脉冲/散热吸收/熔毁)全部保持通过。
+- IC2 与 GT 双模式 `runGameTestServer` 220 项全绿。
+
+## 测试证据(切片一/二)
 ## 测试证据
 
 - `ReactorChamberTests.chamberWidensGrid`:1/2 个 chamber 分别扩列到 4/5,

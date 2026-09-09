@@ -1,0 +1,16 @@
+{
+  "type": "ic2:shaped",
+  "pattern": [
+    "CCC",
+    "CSC",
+    "CCC"
+  ],
+  "result": {
+    "id": "ic2:reactor_heat_exchanger",
+    "count": 1
+  },
+  "key": {
+    "S": "ic2:heat_exchanger",
+    "C": "#c:plates/copper"
+  }
+}
