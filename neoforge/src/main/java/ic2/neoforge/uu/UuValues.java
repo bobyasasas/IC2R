@@ -5,6 +5,7 @@ import ic2.core.uu.UuValueGraph;
 import ic2.neoforge.registration.ModProcessingRecipes;
 
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeMap;
 import net.minecraft.world.item.crafting.RecipeType;
 
@@ -40,6 +41,10 @@ public final class UuValues {
      * redstone (10), the base metal family (14), precious metals (56) and gems (112).
      */
     private static void seed(UuValueGraph graph) {
+        if (!datapackSeeds.isEmpty()) {
+            for (var seed : datapackSeeds) graph.setInitial(seed.item(), seed.value());
+            return;
+        }
         graph.setInitial("minecraft:iron_ore", 14);
         graph.setInitial("minecraft:deepslate_iron_ore", 14);
         graph.setInitial("minecraft:copper_ore", 14);
@@ -84,6 +89,15 @@ public final class UuValues {
             }
         }
     }
+
+    /** Replaces the datapack seed set and invalidates the built graph. */
+    public static void applySeeds(Iterable<UuSeed> seeds) {
+        datapackSeeds.clear();
+        for (var seed : seeds) datapackSeeds.add(seed);
+        graph = null;
+    }
+
+    private static final List<UuSeed> datapackSeeds = new ArrayList<>();
 
     private UuValues() {}
 }
