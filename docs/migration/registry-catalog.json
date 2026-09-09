@@ -2299,7 +2299,7 @@
         "docs/migration/uu-scanner.md",
         "neoforge/src/gameTest/java/ic2/neoforge/test/UuScannerTests.java"
       ],
-      "note": "扫描机本体(256 EU/tick、3300 tick、水晶盘记录、未知物品失败)经 GameTest 验证;UuGraph 全量配方图与 pattern_storage/replicator 链接随后续切片。"
+      "note": "扫描机本体(256 EU/tick、3300 tick、水晶盘记录、未知物品失败)经 GameTest 验证;UuGraph 全量配方图与 pattern_storage/replicator 链接随后续切片。 价值图:已接入 UuValues(矿物种子+处理族配方图,core UuValueGraph)。"
     },
     {
       "registry": "item",
@@ -8258,7 +8258,7 @@
         "docs/migration/uu-scanner.md",
         "neoforge/src/gameTest/java/ic2/neoforge/test/UuScannerTests.java"
       ],
-      "note": "扫描机本体(256 EU/tick、3300 tick、水晶盘记录、未知物品失败)经 GameTest 验证;UuGraph 全量配方图与 pattern_storage/replicator 链接随后续切片。"
+      "note": "扫描机本体(256 EU/tick、3300 tick、水晶盘记录、未知物品失败)经 GameTest 验证;UuGraph 全量配方图与 pattern_storage/replicator 链接随后续切片。 价值图:已接入 UuValues(矿物种子+处理族配方图,core UuValueGraph)。"
     },
     {
       "registry": "block",
@@ -11231,7 +11231,7 @@
         "docs/migration/uu-scanner.md",
         "neoforge/src/gameTest/java/ic2/neoforge/test/UuScannerTests.java"
       ],
-      "note": "扫描机本体(256 EU/tick、3300 tick、水晶盘记录、未知物品失败)经 GameTest 验证;UuGraph 全量配方图与 pattern_storage/replicator 链接随后续切片。"
+      "note": "扫描机本体(256 EU/tick、3300 tick、水晶盘记录、未知物品失败)经 GameTest 验证;UuGraph 全量配方图与 pattern_storage/replicator 链接随后续切片。 价值图:已接入 UuValues(矿物种子+处理族配方图,core UuValueGraph)。"
     },
     {
       "registry": "block_entity",
@@ -12247,7 +12247,7 @@
         "docs/migration/uu-scanner.md",
         "neoforge/src/gameTest/java/ic2/neoforge/test/UuScannerTests.java"
       ],
-      "note": "扫描机本体(256 EU/tick、3300 tick、水晶盘记录、未知物品失败)经 GameTest 验证;UuGraph 全量配方图与 pattern_storage/replicator 链接随后续切片。"
+      "note": "扫描机本体(256 EU/tick、3300 tick、水晶盘记录、未知物品失败)经 GameTest 验证;UuGraph 全量配方图与 pattern_storage/replicator 链接随后续切片。 价值图:已接入 UuValues(矿物种子+处理族配方图,core UuValueGraph)。"
     },
     {
       "registry": "menu",
