@@ -139,6 +139,7 @@ final class MachineSounds {
                     CENTRIFUGE,
                     ORE_WASHING_PLANT,
                     METAL_FORMER,
+                    CROPMATRON,
                     SOLAR_GENERATOR ->
                     null;
             case ELECTROLYZER -> ModSounds.MACHINE_ELECTROLYZER_LOOP.get();

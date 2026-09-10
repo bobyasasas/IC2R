@@ -2329,7 +2329,13 @@
       "factory": "register",
       "expression": "new ItemBlockIc2(Ic2Blocks.CROPMATRON, new Properties())",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "docs/migration/crops.md",
+        "neoforge/src/main/java/ic2/neoforge/machine/CropmatronBlockEntity.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/CropmatronTests.java"
+      ],
+      "note": "作物监管机已实现：9x3x9 扫描光标、肥料/水/Weed-Ex 自动施加、耕地补水、储能与变压器升级、双流体槽与 GUI;完整多人验收待完成。"
     },
     {
       "registry": "item",
@@ -8476,7 +8482,13 @@
       "factory": "register",
       "expression": "Ic2TileEntityBlock.create(Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).strength(2.0F, 10.0F).requiresCorrectToolForDrops().sound(SoundType.METAL), TileEntityCropmatron.class, true, Ic2TileEntityBlock.DefaultDrop.Machine, Util.horizontalFacings, true)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "docs/migration/crops.md",
+        "neoforge/src/main/java/ic2/neoforge/machine/CropmatronBlockEntity.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/CropmatronTests.java"
+      ],
+      "note": "作物监管机已实现：9x3x9 扫描光标、肥料/水/Weed-Ex 自动施加、耕地补水、储能与变压器升级、双流体槽与 GUI;完整多人验收待完成。"
     },
     {
       "registry": "block",
@@ -11836,7 +11848,13 @@
       "factory": "register",
       "expression": "TileEntityCropmatron::new",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "docs/migration/crops.md",
+        "neoforge/src/main/java/ic2/neoforge/machine/CropmatronBlockEntity.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/CropmatronTests.java"
+      ],
+      "note": "作物监管机已实现：9x3x9 扫描光标、肥料/水/Weed-Ex 自动施加、耕地补水、储能与变压器升级、双流体槽与 GUI;完整多人验收待完成。"
     },
     {
       "registry": "block_entity",
@@ -12875,7 +12893,13 @@
       "factory": "registerManagedBe",
       "expression": "",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "docs/migration/crops.md",
+        "neoforge/src/main/java/ic2/neoforge/machine/CropmatronBlockEntity.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/CropmatronTests.java"
+      ],
+      "note": "作物监管机已实现：9x3x9 扫描光标、肥料/水/Weed-Ex 自动施加、耕地补水、储能与变压器升级、双流体槽与 GUI;完整多人验收待完成。"
     },
     {
       "registry": "menu",

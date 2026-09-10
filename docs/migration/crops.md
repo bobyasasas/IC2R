@@ -458,10 +458,56 @@ common 2000 / uncommon 2200,早段 800 / 750。
   (hydration_cell/weeding_trowel)与 recipe(weeding_trowel)
   catalog 翻正后 `progress.py` 重新生成并 `--check` 通过。
 
+## 切片十一:Cropmatron 作物监管机(2026-09-10)
+
+- **CropmatronBlockEntity**(legacy TileEntityCropmatron):
+  extends PoweredBlockEntity(10000 EU、tier 1 sink,不经
+  UpgradeableBlockEntity——其处理循环假定 slot 2 是电池槽)。
+  11 内容槽:7 肥料(0-6)+Weed-Ex 入/出(7/8)+水入/出(9/10),
+  外加 4 升级槽(`kind().slots()`=15,与 UpgradeableBlockEntity
+  同约定);双 MachineFluidTank 各 2000 mB(水/weed-ex 严格过滤),
+  CombinedResourceHandler 对外 insert-only(extract 恒拒)。
+- **扫描语义逐字迁移**:每 10 tick 且储能 ≥31 EU 时 scan():
+  光标从 (-4,-1,-4) 起 x→z→y 推进,每步耗 1 EU;命中 CropBlock
+  tile 时肥料(applyFertilizer(false) 机器剂量 +90、耗 1 肥料)、
+  水(applyHydration 真实施加,按返回量排罐)、weed-ex(手动=false
+  上限 150)各收 10 EU;非作物且湿度 <7 的耕地直接从水罐补水
+  (min(罐量,7-湿度))并收 10 EU。
+- **升级手动实现**(legacy 无 Overclocking 属性):refreshUpgrades
+  统计升级槽 ENERGY_STORAGE(+10000 EU/个,energy.resize)与
+  TRANSFORMER(+1 输入 tier,钳 1..4),仅
+  suitable() 放行(Suitable 除 OVERCLOCKER 全收)。
+- **菜单/界面**:MachineMenu CROPMATRON 分支(ex 罐位 49/67、
+  水罐位 57/75、肥料 7 槽 8+i×18,shift-click 肥料→槽 0、流体
+  容器→水入);CropmatronScreen extends MachineScreen,双
+  FluidTankDisplay(menuValue 0-2 水、3-5 ex)+通用能量条。
+- **注册与资源**:MachineKind 枚举驱动自动注册
+  block/item/BE/menu;blockstate 6 朝向×active 双态、
+  sides/bottom/top 纹理自 legacy 拷贝、loot(扳手掉自身)、
+  shaped 配方(cBc/UMU/CCC:作物杆×4+电路+木箱+cell)转换;
+  lang 键预存在(block.ic2.cropmatron)。
+- **GameTest 陷阱**:BE 库存尺寸必须 `kind().slots()`(11 内容
+  +4 升级=15),只传 11 会让 upgradeStart()==size 越界;机器施肥
+  剂量是 +90 不是手动的 +100。
+
+## 测试证据(切片十一)
+
+- `cropmatron_serves_crop`:一次 scan 顶满杆 tile(养分 90/水
+  200/weed-ex 150),耗 1 肥料、水罐 2000→1800、ex 罐
+  1000→850、EU 400→369;第二次 scan 仅耗步进 1 EU。
+- `cropmatron_hydrates_farmland`:湿度 0 的耕地一次 scan 补到
+  7、罐 50→43、EU 100→89;已湿耕地再 scan 仅耗 1 EU。
+- `cropmatron_containers_upgrades`:水桶→水罐 1000+空桶入输出
+  槽;weed-ex 罐→ex 罐 1000+空罐入输出槽;对外 insert 错流体
+  双向拒绝;ENERGY_STORAGE×2 → capacity 30000。
+- IC2 与 GT 双模式 `runGameTestServer` 341 项全绿;registry
+  (ic2:cropmatron 四条)与 recipe(shaped/cropmatron)catalog
+  翻正后 `progress.py` 重新生成并 `--check` 通过。
+
 ## 未验收 / 后续切片
 
 - 杂草自然出现(空杆 1/100 掷骰)与踩踏复位(`entityInside` 已
   接线)的实机观察。
-- 肥料/WeedEX/水化罐右键已交付(切片十);余下 Cropmatron、
-  收割机、群系加成(红小麦 swamp/mountain 与 env-proxy),
-  以及分析器/图鉴之外的卡信息展示面。
+- 肥料/WeedEX/水化罐右键与 Cropmatron 已交付(切片十/十一);
+  余下作物收割机、群系加成(红小麦 swamp/mountain 与
+  env-proxy),以及分析器/图鉴之外的卡信息展示面。

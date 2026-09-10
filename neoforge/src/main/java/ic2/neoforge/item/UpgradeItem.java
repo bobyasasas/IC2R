@@ -36,6 +36,8 @@ public final class UpgradeItem extends Item {
 
         public boolean suitable(MachineKind machine) {
             if (machine == MachineKind.STEAM_KINETIC_GENERATOR) return fluid() || this == PULLING;
+            // Legacy cropmatron upgrades exclude overclocking (no process to speed up).
+            if (machine == MachineKind.CROPMATRON) return this != OVERCLOCKER;
             if (machine == MachineKind.ITEM_BUFFER) return directional() && !fluid();
             if (machine == MachineKind.BLAST_FURNACE) return directional() && !fluid();
             if (machine == MachineKind.MATTER_GENERATOR) return directional() && !fluid();

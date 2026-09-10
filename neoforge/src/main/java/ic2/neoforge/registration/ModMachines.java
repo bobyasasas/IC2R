@@ -161,6 +161,7 @@ public final class ModMachines {
             case METAL_FORMER -> new MetalFormerBlockEntity(pos, state);
             case MACERATOR, EXTRACTOR, COMPRESSOR -> new SingleInputBlockEntity(pos, state);
             case BLOCK_CUTTER -> new ic2.neoforge.machine.BlockCutterBlockEntity(pos, state);
+            case CROPMATRON -> new ic2.neoforge.machine.CropmatronBlockEntity(pos, state);
         };
     }
 
@@ -301,7 +302,8 @@ public final class ModMachines {
                     || kind == MachineKind.STEAM_REPRESSURIZER
                     || kind == MachineKind.PUMP
                     || kind == MachineKind.CONDENSER
-                    || kind == MachineKind.FLUID_REGULATOR)
+                    || kind == MachineKind.FLUID_REGULATOR
+                    || kind == MachineKind.CROPMATRON)
                 event.registerBlockEntity(
                         Capabilities.Fluid.BLOCK,
                         entityType(kind),

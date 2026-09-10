@@ -390,6 +390,27 @@ public final class MachineMenu extends AbstractContainerMenu {
             addFluidContainerSlot(inventory, 2, 130, 17);
             addOutputSlot(inventory, 3, 130, 53);
             addOutputSlot(inventory, 4, 80, 53);
+        } else if (kind == MachineKind.CROPMATRON) {
+            // Legacy ContainerCropmatron: weed-ex row on top, water row below it,
+            // seven fertilizer doses along the bottom; tanks render beside them.
+            addFluidContainerSlot(inventory, CropmatronBlockEntity.EX_INPUT, 49, 18);
+            addOutputSlot(inventory, CropmatronBlockEntity.EX_OUTPUT, 67, 18);
+            addFluidContainerSlot(inventory, CropmatronBlockEntity.WATER_INPUT, 57, 40);
+            addOutputSlot(inventory, CropmatronBlockEntity.WATER_OUTPUT, 75, 40);
+            for (int slot = 0; slot < CropmatronBlockEntity.FERTILIZER_END; slot++) {
+                int index = slot;
+                addSlot(
+                        new ResourceHandlerSlot(
+                                inventory, inventory::set, index, 8 + index * 18, 62) {
+                            @Override
+                            public boolean mayPlace(ItemStack stack) {
+                                return stack.is(
+                                        ModItems.MATERIALS
+                                                .get(MaterialDefinition.FERTILIZER)
+                                                .get());
+                            }
+                        });
+            }
         } else if (kind.turbine()) {
             addSlot(
                     new ResourceHandlerSlot(inventory, inventory::set, 0, 133, 24) {
@@ -739,6 +760,12 @@ public final class MachineMenu extends AbstractContainerMenu {
         if (kind == MachineKind.ORE_WASHING_PLANT
                 && ItemAccess.forStack(stack.copy()).getCapability(Capabilities.Fluid.ITEM) != null)
             return OreWashingBlockEntity.WATER_INPUT;
+        if (kind == MachineKind.CROPMATRON) {
+            if (stack.is(ModItems.MATERIALS.get(MaterialDefinition.FERTILIZER).get()))
+                return CropmatronBlockEntity.FERTILIZER_START;
+            if (FluidContainerPort.accepts(ItemResource.of(stack)))
+                return CropmatronBlockEntity.WATER_INPUT;
+        }
         return 0;
     }
 

@@ -111,6 +111,8 @@ public final class IndustrialCraftClient {
                         event.register(registration.menu().get(), RotorGeneratorScreen::new);
                     else if (kind == MachineKind.ORE_WASHING_PLANT)
                         event.register(registration.menu().get(), OreWashingScreen::new);
+                    else if (kind == MachineKind.CROPMATRON)
+                        event.register(registration.menu().get(), CropmatronScreen::new);
                     else if (kind == MachineKind.CENTRIFUGE
                             || kind == MachineKind.INDUCTION_FURNACE)
                         event.register(registration.menu().get(), HeatedMachineScreen::new);

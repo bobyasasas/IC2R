@@ -1,0 +1,19 @@
+{
+  "type": "ic2:shaped",
+  "pattern": [
+    "cBc",
+    "UMU",
+    "CCC"
+  ],
+  "result": {
+    "id": "ic2:cropmatron",
+    "count": 1
+  },
+  "key": {
+    "M": "ic2:machine",
+    "C": "ic2:crop_stick",
+    "c": "ic2:circuit",
+    "B": "#c:chests/wooden",
+    "U": "ic2:facade_cell"
+  }
+}
