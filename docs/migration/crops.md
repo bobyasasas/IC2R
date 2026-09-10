@@ -265,3 +265,57 @@ common 2000 / uncommon 2200,早段 800 / 750。
   meat_rose/milk_wart/oil_berries/slime_plant/spidernip/tearstalks/
   withereed)、杂交/crossing base、作物分析器、Cropmatron、收割机、
   群系加成。
+
+## 切片七:GenericCropCard 数据作物 ×15(2026-09-10)
+
+- **参数化基类**(legacy GenericCropCard 对应移植):字段齐备的
+  数据卡——drops 固定掉落 + specialDrops 特殊掉落掷轮(每次收获
+  `nextInt(length*2+2)`,每个特殊项占一个槽位,单一特殊项即 1/4
+  概率)、时长公式 `growthSpeed<200 ? tier*200 : tier*growthSpeed`、
+  收获窗 `harvestSize>=2?harvestSize:maxSize-1`、收获后回
+  `afterHarvestSize`(register() 的归一化语义保留);根区 tag 门
+  (15 张卡均未用)与 `canCross`(age+2>maxSize)一并就位待杂交
+  切片;掉落物品全部惰性 supplier(材料注册表后绑定)。
+- **15 张卡逐字参数**:blazereed(火药+掷轮棒/硫粉)、bobs 浆果
+  (绿宝石特殊)、corium(皮革,无特殊)、corpse_plant(腐肉+骨/
+  骨粉×2)、creeper_weed(火药)、diareed(小撮钻石粉+钻石特殊,
+  tier 12)、egg_plant(蛋+鸡肉/羽毛×3,时长 6×900,收获回 2)、
+  ender_blossom(末影珍珠粉+珍珠×2/末影之眼)、meat_rose(粉红染
+  料+四肉,时长 7×1500)、milk_wart(奶疣,时长 6×900,唯一
+  base seed)、oil_berries(油莓,tier 9)、slime_plant(粘液球,
+  收获回 2)、spidernip(线+蜘蛛眼/蛛网,时长 4×600)、tearstalks
+  (恶魂之泪,tier 8)、withereed(煤炭粉尘+煤炭×2,tier 8)。
+- **maxSize 与方块 age 上界的错位**:legacy Ic2CropType 的
+  blazereed 族方块 age 属性上界为 3,而卡 setMaxSize(4)(egg_plant/
+  milk_wart/oil_berries 为 3 对 2);legacy `setCurrentAge` 把超出
+  钳到方块上界。新端 `CropBlockEntity.withCropAge` 按此补上钳制
+  (从 age property 的 possible values 取上界),越界生长静默停在
+  满龄;收获窗 maxSize-1 与方块满龄重合,行为与 legacy 等价。
+- 15 个方块子类(11 个 AGE 0..3、3 个 AGE 0..2)、ModCrops 全量
+  接线(方块注册、共享 CROP_ENTITY、cardFor/card(String)、
+  milk_wart base seed size 0);资源 15 套 blockstate/model/纹理
+  (legacy 0-based 纹理逐字拷贝)。
+
+## 测试证据(切片七)
+
+- `crop_generic_corium_drops`:corium 播种,getGains 断言恰为皮革;
+  age 2 拒绝收获,满龄 3 收获掉皮革(按 26% 空手率循环至多 16 轮),
+  回 age 1。
+- `crop_generic_special_drops`:blazereed 长到方块满龄 3 后再多跑
+  2500 tick 触发越界生长,断言钳制保持在 3 不崩;getGains 直接
+  掷轮 200 次断言火焰粉始终在场且棒/硫粉都出现,egg_plant 150 次
+  断言鸡肉与羽毛;egg_plant/slime_plant 收获回 2;spidernip/
+  milk_wart/meat_rose/oil_berries/diareed 时长公式抽查;真实收获
+  回 age 1。
+- `crop_generic_milk_wart_base_seed`:奶疣物品 base seed 注册断言,
+  右键播种,长到方块满龄 2(卡 maxSize 3 的钳制路径),多轮收获
+  累计奶疣,回 age 1。
+- IC2 与 GT 双模式 `runGameTestServer` 329 项全绿;core JUnit 110 项。
+
+## 未验收 / 后续切片
+
+- 杂草自然出现(空杆 1/100 掷骰)的实机观察;WeedEX 水罐/肥料/
+  水化罐的右键交互。踩踏判定已接线(`entityInside`),待实机观察。
+- 52 张作物卡的移植面已齐(其余均为卡内交互或环境项);杂交/
+  crossing base、作物分析器、Cropmatron、收割机、群系加成、
+  discoveredBy/attributes 的展示面(随分析器切片)。

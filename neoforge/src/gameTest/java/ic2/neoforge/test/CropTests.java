@@ -820,6 +820,130 @@ final class CropTests {
         helper.succeed();
     }
 
+    static void cropGenericCoriumDrops(GameTestHelper helper) {
+        helper.setBlock(POSITION.below(), Blocks.FARMLAND);
+        helper.setBlock(POSITION, ModCrops.CROP_STICK.get().defaultBlockState());
+        CropBlockEntity crop = crop(helper);
+        crop.refreshTerrain(helper.getLevel());
+        helper.assertTrue(
+                crop.tryPlantIn(ModCrops.CORIUM_CARD, 0, 1, 1, 1, 0), "Corium plants on a stick");
+        Item leather = Items.LEATHER;
+        helper.assertTrue(
+                ModCrops.CORIUM_CARD.getGains(crop(helper)).stream().allMatch(g -> g.is(leather)),
+                "Corium gains are exactly one leather stack");
+        // The harvest window opens at maxSize-1 == 3; age two is still too young. The tier-six
+        // gain chance drops ~26% of harvests, so repeat until the leather shows up.
+        growUntil(helper, 2, 20000);
+        helper.assertTrue(
+                !crop(helper).performManualHarvest(),
+                "Corium below the harvest window refuses to harvest");
+        boolean gotLeather = false;
+        for (int cycle = 0; cycle < 16 && !gotLeather; cycle++) {
+            growUntil(helper, 3, 30000);
+            if (crop(helper).getCurrentAge() == 3 && crop(helper).performManualHarvest()) {
+                gotLeather = countItems(helper, leather) > 0;
+            }
+        }
+        helper.assertTrue(gotLeather, "Harvested corium drops leather");
+        helper.assertTrue(
+                crop(helper).getCurrentAge() == 1, "Corium resets to age one after harvest");
+        helper.succeed();
+    }
+
+    static void cropGenericSpecialDrops(GameTestHelper helper) {
+        helper.setBlock(POSITION.below(), Blocks.FARMLAND);
+        helper.setBlock(POSITION, ModCrops.CROP_STICK.get().defaultBlockState());
+        CropBlockEntity crop = crop(helper);
+        crop.refreshTerrain(helper.getLevel());
+        helper.assertTrue(
+                crop.tryPlantIn(ModCrops.BLAZEREED_CARD, 0, 1, 1, 1, 0),
+                "Blazereed plants on a stick");
+        growUntil(helper, 3, 40000);
+        helper.assertTrue(
+                crop(helper).getCurrentAge() == 3, "Blazereed fills its block age three");
+        // Blazereed's card maxSize is four, one above the block states: run past the growth
+        // duration once more and the legacy clamp must hold the age at three without crashing.
+        for (int i = 0; i < 2500 && crop(helper).getCurrentAge() == 3; i++) {
+            CropBlockEntity be = crop(helper);
+            be.refreshTerrain(helper.getLevel());
+            be.performTick(1024L);
+        }
+        helper.assertTrue(
+                crop(helper).getCurrentAge() == 3,
+                "The over-grown blazereed stays at the block max age");
+        // The special-drop roulette is pure getGains logic: one roll of length*2+2 where each
+        // special owns a single slot, so every harvest carries the base drop and the specials
+        // show up over repeated rolls.
+        Item rod = Items.BLAZE_ROD;
+        Item sulfur = ModItems.MATERIALS.get(MaterialDefinition.SULFUR_DUST).get();
+        boolean sawRod = false;
+        boolean sawSulfur = false;
+        boolean alwaysBase = true;
+        for (int roll = 0; roll < 200; roll++) {
+            var gains = ModCrops.BLAZEREED_CARD.getGains(crop(helper));
+            boolean base = false;
+            for (ItemStack gain : gains) {
+                base |= gain.is(Items.BLAZE_POWDER);
+                sawRod |= gain.is(rod);
+                sawSulfur |= gain.is(sulfur);
+            }
+            alwaysBase &= base && gains.size() >= 1 && gains.size() <= 2;
+        }
+        helper.assertTrue(alwaysBase, "Every blazereed harvest carries its blaze powder");
+        helper.assertTrue(sawRod && sawSulfur, "The roulette yields both blaze rod and sulfur");
+        Item chicken = Items.CHICKEN;
+        Item feather = Items.FEATHER;
+        boolean sawChicken = false;
+        boolean sawFeather = false;
+        for (int roll = 0; roll < 150; roll++) {
+            for (ItemStack gain : ModCrops.EGG_PLANT_CARD.getGains(crop(helper))) {
+                sawChicken |= gain.is(chicken);
+                sawFeather |= gain.is(feather);
+            }
+        }
+        helper.assertTrue(sawChicken && sawFeather, "Egg plant specials cover chicken and feather");
+        helper.assertTrue(
+                ModCrops.EGG_PLANT_CARD.getAgeAfterHarvest(crop(helper)) == 2
+                        && ModCrops.SLIME_PLANT_CARD.getAgeAfterHarvest(crop(helper)) == 2,
+                "Egg plant and slime plant regrow to age two");
+        helper.assertTrue(
+                ModCrops.SPIDERNIP_CARD.getGrowthDuration(crop(helper)) == 4 * 600
+                        && ModCrops.MILK_WART_CARD.getGrowthDuration(crop(helper)) == 6 * 900
+                        && ModCrops.MEAT_ROSE_CARD.getGrowthDuration(crop(helper)) == 7 * 1500
+                        && ModCrops.OIL_BERRIES_CARD.getGrowthDuration(crop(helper)) == 9 * 200
+                        && ModCrops.DIAREED_CARD.getGrowthDuration(crop(helper)) == 12 * 200,
+                "Growth durations follow the tier times growth-speed table");
+        helper.assertTrue(crop(helper).performManualHarvest(), "The grown blazereed harvests");
+        helper.assertTrue(
+                crop(helper).getCurrentAge() == 1, "Blazereed resets to age one after harvest");
+        helper.succeed();
+    }
+
+    static void cropGenericMilkWartBaseSeed(GameTestHelper helper) {
+        helper.setBlock(POSITION.below(), Blocks.FARMLAND);
+        helper.setBlock(POSITION, ModCrops.CROP_STICK.get().defaultBlockState());
+        CropBlockEntity crop = crop(helper);
+        Item milkWart = ModItems.MATERIALS.get(MaterialDefinition.MILK_WART).get();
+        helper.assertTrue(
+                ModCrops.baseSeedFor(milkWart) != null, "The milk wart item is a base seed");
+        // Milk wart's card maxSize is three but its block tops at age two: growth clamps there
+        // and the harvest window (maxSize-1) still opens at the full block.
+        helper.assertTrue(
+                crop.rightClick(null, new ItemStack(milkWart)),
+                "A held milk wart plants the milk wart crop");
+        boolean gotMilkWart = false;
+        for (int cycle = 0; cycle < 16 && !gotMilkWart; cycle++) {
+            growUntil(helper, 2, 60000);
+            if (crop(helper).getCurrentAge() == 2 && crop(helper).performManualHarvest()) {
+                gotMilkWart = countItems(helper, milkWart) > 0;
+            }
+        }
+        helper.assertTrue(gotMilkWart, "Harvested milk wart drops milk warts");
+        helper.assertTrue(
+                crop(helper).getCurrentAge() == 1, "Milk wart resets to age one after harvest");
+        helper.succeed();
+    }
+
     private static int countItems(GameTestHelper helper, Item item) {
         int count = 0;
         for (var entity : helper.getEntities(EntityType.ITEM)) {

@@ -10204,7 +10204,13 @@
       "factory": "register",
       "expression": "Ic2TileEntityBlock.create(cropSettings, TileEntityCrop.class, false, Ic2TileEntityBlock.DefaultDrop.Self, Util.noFacings, false, Ic2CropType.blazereed)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModCrops.java",
+        "neoforge/src/main/java/ic2/neoforge/crop/GenericCropCard.java",
+        "docs/migration/crops.md"
+      ],
+      "note": "Crop slice seven: legacy GenericCropCard data crop (fixed drops plus the special-drop roulette of length*2+2 slots, tier*speed or tier*200 growth duration, harvest window maxSize-1, after-harvest reset; blazereed/egg_plant/milk_wart/oil_berries declare card maxSize one above the block age max and clamp like legacy setCurrentAge); milk_wart plants from a held milk wart base seed."
     },
     {
       "registry": "block",
@@ -10214,7 +10220,13 @@
       "factory": "register",
       "expression": "Ic2TileEntityBlock.create(cropSettings, TileEntityCrop.class, false, Ic2TileEntityBlock.DefaultDrop.Self, Util.noFacings, false, Ic2CropType.bobsYerUncleRanksBerries)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModCrops.java",
+        "neoforge/src/main/java/ic2/neoforge/crop/GenericCropCard.java",
+        "docs/migration/crops.md"
+      ],
+      "note": "Crop slice seven: legacy GenericCropCard data crop (fixed drops plus the special-drop roulette of length*2+2 slots, tier*speed or tier*200 growth duration, harvest window maxSize-1, after-harvest reset; blazereed/egg_plant/milk_wart/oil_berries declare card maxSize one above the block age max and clamp like legacy setCurrentAge); milk_wart plants from a held milk wart base seed."
     },
     {
       "registry": "block",
@@ -10224,7 +10236,13 @@
       "factory": "register",
       "expression": "Ic2TileEntityBlock.create(cropSettings, TileEntityCrop.class, false, Ic2TileEntityBlock.DefaultDrop.Self, Util.noFacings, false, Ic2CropType.corium)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModCrops.java",
+        "neoforge/src/main/java/ic2/neoforge/crop/GenericCropCard.java",
+        "docs/migration/crops.md"
+      ],
+      "note": "Crop slice seven: legacy GenericCropCard data crop (fixed drops plus the special-drop roulette of length*2+2 slots, tier*speed or tier*200 growth duration, harvest window maxSize-1, after-harvest reset; blazereed/egg_plant/milk_wart/oil_berries declare card maxSize one above the block age max and clamp like legacy setCurrentAge); milk_wart plants from a held milk wart base seed."
     },
     {
       "registry": "block",
@@ -10234,7 +10252,13 @@
       "factory": "register",
       "expression": "Ic2TileEntityBlock.create(cropSettings, TileEntityCrop.class, false, Ic2TileEntityBlock.DefaultDrop.Self, Util.noFacings, false, Ic2CropType.corpse_plant)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModCrops.java",
+        "neoforge/src/main/java/ic2/neoforge/crop/GenericCropCard.java",
+        "docs/migration/crops.md"
+      ],
+      "note": "Crop slice seven: legacy GenericCropCard data crop (fixed drops plus the special-drop roulette of length*2+2 slots, tier*speed or tier*200 growth duration, harvest window maxSize-1, after-harvest reset; blazereed/egg_plant/milk_wart/oil_berries declare card maxSize one above the block age max and clamp like legacy setCurrentAge); milk_wart plants from a held milk wart base seed."
     },
     {
       "registry": "block",
@@ -10244,7 +10268,13 @@
       "factory": "register",
       "expression": "Ic2TileEntityBlock.create(cropSettings, TileEntityCrop.class, false, Ic2TileEntityBlock.DefaultDrop.Self, Util.noFacings, false, Ic2CropType.creeper_weed)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModCrops.java",
+        "neoforge/src/main/java/ic2/neoforge/crop/GenericCropCard.java",
+        "docs/migration/crops.md"
+      ],
+      "note": "Crop slice seven: legacy GenericCropCard data crop (fixed drops plus the special-drop roulette of length*2+2 slots, tier*speed or tier*200 growth duration, harvest window maxSize-1, after-harvest reset; blazereed/egg_plant/milk_wart/oil_berries declare card maxSize one above the block age max and clamp like legacy setCurrentAge); milk_wart plants from a held milk wart base seed."
     },
     {
       "registry": "block",
@@ -10254,7 +10284,13 @@
       "factory": "register",
       "expression": "Ic2TileEntityBlock.create(cropSettings, TileEntityCrop.class, false, Ic2TileEntityBlock.DefaultDrop.Self, Util.noFacings, false, Ic2CropType.diareed)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModCrops.java",
+        "neoforge/src/main/java/ic2/neoforge/crop/GenericCropCard.java",
+        "docs/migration/crops.md"
+      ],
+      "note": "Crop slice seven: legacy GenericCropCard data crop (fixed drops plus the special-drop roulette of length*2+2 slots, tier*speed or tier*200 growth duration, harvest window maxSize-1, after-harvest reset; blazereed/egg_plant/milk_wart/oil_berries declare card maxSize one above the block age max and clamp like legacy setCurrentAge); milk_wart plants from a held milk wart base seed."
     },
     {
       "registry": "block",
@@ -10264,7 +10300,13 @@
       "factory": "register",
       "expression": "Ic2TileEntityBlock.create(cropSettings, TileEntityCrop.class, false, Ic2TileEntityBlock.DefaultDrop.Self, Util.noFacings, false, Ic2CropType.egg_plant)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModCrops.java",
+        "neoforge/src/main/java/ic2/neoforge/crop/GenericCropCard.java",
+        "docs/migration/crops.md"
+      ],
+      "note": "Crop slice seven: legacy GenericCropCard data crop (fixed drops plus the special-drop roulette of length*2+2 slots, tier*speed or tier*200 growth duration, harvest window maxSize-1, after-harvest reset; blazereed/egg_plant/milk_wart/oil_berries declare card maxSize one above the block age max and clamp like legacy setCurrentAge); milk_wart plants from a held milk wart base seed."
     },
     {
       "registry": "block",
@@ -10274,7 +10316,13 @@
       "factory": "register",
       "expression": "Ic2TileEntityBlock.create(cropSettings, TileEntityCrop.class, false, Ic2TileEntityBlock.DefaultDrop.Self, Util.noFacings, false, Ic2CropType.ender_blossom)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModCrops.java",
+        "neoforge/src/main/java/ic2/neoforge/crop/GenericCropCard.java",
+        "docs/migration/crops.md"
+      ],
+      "note": "Crop slice seven: legacy GenericCropCard data crop (fixed drops plus the special-drop roulette of length*2+2 slots, tier*speed or tier*200 growth duration, harvest window maxSize-1, after-harvest reset; blazereed/egg_plant/milk_wart/oil_berries declare card maxSize one above the block age max and clamp like legacy setCurrentAge); milk_wart plants from a held milk wart base seed."
     },
     {
       "registry": "block",
@@ -10284,7 +10332,13 @@
       "factory": "register",
       "expression": "Ic2TileEntityBlock.create(cropSettings, TileEntityCrop.class, false, Ic2TileEntityBlock.DefaultDrop.Self, Util.noFacings, false, Ic2CropType.meat_rose)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModCrops.java",
+        "neoforge/src/main/java/ic2/neoforge/crop/GenericCropCard.java",
+        "docs/migration/crops.md"
+      ],
+      "note": "Crop slice seven: legacy GenericCropCard data crop (fixed drops plus the special-drop roulette of length*2+2 slots, tier*speed or tier*200 growth duration, harvest window maxSize-1, after-harvest reset; blazereed/egg_plant/milk_wart/oil_berries declare card maxSize one above the block age max and clamp like legacy setCurrentAge); milk_wart plants from a held milk wart base seed."
     },
     {
       "registry": "block",
@@ -10294,7 +10348,13 @@
       "factory": "register",
       "expression": "Ic2TileEntityBlock.create(cropSettings, TileEntityCrop.class, false, Ic2TileEntityBlock.DefaultDrop.Self, Util.noFacings, false, Ic2CropType.milk_wart)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModCrops.java",
+        "neoforge/src/main/java/ic2/neoforge/crop/GenericCropCard.java",
+        "docs/migration/crops.md"
+      ],
+      "note": "Crop slice seven: legacy GenericCropCard data crop (fixed drops plus the special-drop roulette of length*2+2 slots, tier*speed or tier*200 growth duration, harvest window maxSize-1, after-harvest reset; blazereed/egg_plant/milk_wart/oil_berries declare card maxSize one above the block age max and clamp like legacy setCurrentAge); milk_wart plants from a held milk wart base seed."
     },
     {
       "registry": "block",
@@ -10304,7 +10364,13 @@
       "factory": "register",
       "expression": "Ic2TileEntityBlock.create(cropSettings, TileEntityCrop.class, false, Ic2TileEntityBlock.DefaultDrop.Self, Util.noFacings, false, Ic2CropType.oil_berries)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModCrops.java",
+        "neoforge/src/main/java/ic2/neoforge/crop/GenericCropCard.java",
+        "docs/migration/crops.md"
+      ],
+      "note": "Crop slice seven: legacy GenericCropCard data crop (fixed drops plus the special-drop roulette of length*2+2 slots, tier*speed or tier*200 growth duration, harvest window maxSize-1, after-harvest reset; blazereed/egg_plant/milk_wart/oil_berries declare card maxSize one above the block age max and clamp like legacy setCurrentAge); milk_wart plants from a held milk wart base seed."
     },
     {
       "registry": "block",
@@ -10314,7 +10380,13 @@
       "factory": "register",
       "expression": "Ic2TileEntityBlock.create(cropSettings, TileEntityCrop.class, false, Ic2TileEntityBlock.DefaultDrop.Self, Util.noFacings, false, Ic2CropType.slime_plant)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModCrops.java",
+        "neoforge/src/main/java/ic2/neoforge/crop/GenericCropCard.java",
+        "docs/migration/crops.md"
+      ],
+      "note": "Crop slice seven: legacy GenericCropCard data crop (fixed drops plus the special-drop roulette of length*2+2 slots, tier*speed or tier*200 growth duration, harvest window maxSize-1, after-harvest reset; blazereed/egg_plant/milk_wart/oil_berries declare card maxSize one above the block age max and clamp like legacy setCurrentAge); milk_wart plants from a held milk wart base seed."
     },
     {
       "registry": "block",
@@ -10324,7 +10396,13 @@
       "factory": "register",
       "expression": "Ic2TileEntityBlock.create(cropSettings, TileEntityCrop.class, false, Ic2TileEntityBlock.DefaultDrop.Self, Util.noFacings, false, Ic2CropType.spidernip)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModCrops.java",
+        "neoforge/src/main/java/ic2/neoforge/crop/GenericCropCard.java",
+        "docs/migration/crops.md"
+      ],
+      "note": "Crop slice seven: legacy GenericCropCard data crop (fixed drops plus the special-drop roulette of length*2+2 slots, tier*speed or tier*200 growth duration, harvest window maxSize-1, after-harvest reset; blazereed/egg_plant/milk_wart/oil_berries declare card maxSize one above the block age max and clamp like legacy setCurrentAge); milk_wart plants from a held milk wart base seed."
     },
     {
       "registry": "block",
@@ -10334,7 +10412,13 @@
       "factory": "register",
       "expression": "Ic2TileEntityBlock.create(cropSettings, TileEntityCrop.class, false, Ic2TileEntityBlock.DefaultDrop.Self, Util.noFacings, false, Ic2CropType.tearstalks)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModCrops.java",
+        "neoforge/src/main/java/ic2/neoforge/crop/GenericCropCard.java",
+        "docs/migration/crops.md"
+      ],
+      "note": "Crop slice seven: legacy GenericCropCard data crop (fixed drops plus the special-drop roulette of length*2+2 slots, tier*speed or tier*200 growth duration, harvest window maxSize-1, after-harvest reset; blazereed/egg_plant/milk_wart/oil_berries declare card maxSize one above the block age max and clamp like legacy setCurrentAge); milk_wart plants from a held milk wart base seed."
     },
     {
       "registry": "block",
@@ -10344,7 +10428,13 @@
       "factory": "register",
       "expression": "Ic2TileEntityBlock.create(cropSettings, TileEntityCrop.class, false, Ic2TileEntityBlock.DefaultDrop.Self, Util.noFacings, false, Ic2CropType.withereed)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModCrops.java",
+        "neoforge/src/main/java/ic2/neoforge/crop/GenericCropCard.java",
+        "docs/migration/crops.md"
+      ],
+      "note": "Crop slice seven: legacy GenericCropCard data crop (fixed drops plus the special-drop roulette of length*2+2 slots, tier*speed or tier*200 growth duration, harvest window maxSize-1, after-harvest reset; blazereed/egg_plant/milk_wart/oil_berries declare card maxSize one above the block age max and clamp like legacy setCurrentAge); milk_wart plants from a held milk wart base seed."
     },
     {
       "registry": "block_entity",

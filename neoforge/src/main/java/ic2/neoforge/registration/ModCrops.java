@@ -24,6 +24,22 @@ import ic2.neoforge.crop.DarkOakSaplingCropBlock;
 import ic2.neoforge.crop.DandelionCropBlock;
 import ic2.neoforge.crop.EatingPlantCropBlock;
 import ic2.neoforge.crop.EatingPlantCropCard;
+import ic2.neoforge.crop.BlazeReedCropBlock;
+import ic2.neoforge.crop.BobsYerUncleRanksBerriesCropBlock;
+import ic2.neoforge.crop.CorpsePlantCropBlock;
+import ic2.neoforge.crop.CoriumCropBlock;
+import ic2.neoforge.crop.CreeperWeedCropBlock;
+import ic2.neoforge.crop.DiareedCropBlock;
+import ic2.neoforge.crop.EggPlantCropBlock;
+import ic2.neoforge.crop.EnderBlossomCropBlock;
+import ic2.neoforge.crop.GenericCropCard;
+import ic2.neoforge.crop.MeatRoseCropBlock;
+import ic2.neoforge.crop.MilkWartCropBlock;
+import ic2.neoforge.crop.OilBerriesCropBlock;
+import ic2.neoforge.crop.SlimePlantCropBlock;
+import ic2.neoforge.crop.SpidernipCropBlock;
+import ic2.neoforge.crop.TearstalksCropBlock;
+import ic2.neoforge.crop.WithereedCropBlock;
 import ic2.neoforge.crop.FerruCropBlock;
 import ic2.neoforge.crop.FlaxCropBlock;
 import ic2.neoforge.crop.FlaxCropCard;
@@ -249,6 +265,71 @@ public final class ModCrops {
                     "eating_plant_crop",
                     properties ->
                             new EatingPlantCropBlock(cropSettings(properties)));
+    // Legacy GenericCropCard data crops: each has a dedicated block whose age range is the crop
+    // type's max (blazereed family tops at three even though the card maxSize is four).
+    public static final DeferredBlock<CropBlock> BLAZEREED_CROP =
+            BLOCKS.registerBlock(
+                    "blazereed_crop",
+                    properties ->
+                            new BlazeReedCropBlock(cropSettings(properties)));
+    public static final DeferredBlock<CropBlock> BOBS_YER_UNCLE_RANKS_BERRIES_CROP =
+            BLOCKS.registerBlock(
+                    "bobs_yer_uncle_ranks_berries_crop",
+                    properties ->
+                            new BobsYerUncleRanksBerriesCropBlock(cropSettings(properties)));
+    public static final DeferredBlock<CropBlock> CORIUM_CROP =
+            BLOCKS.registerBlock(
+                    "corium_crop", properties -> new CoriumCropBlock(cropSettings(properties)));
+    public static final DeferredBlock<CropBlock> CORPSE_PLANT_CROP =
+            BLOCKS.registerBlock(
+                    "corpse_plant_crop",
+                    properties ->
+                            new CorpsePlantCropBlock(cropSettings(properties)));
+    public static final DeferredBlock<CropBlock> CREEPER_WEED_CROP =
+            BLOCKS.registerBlock(
+                    "creeper_weed_crop",
+                    properties ->
+                            new CreeperWeedCropBlock(cropSettings(properties)));
+    public static final DeferredBlock<CropBlock> DIAREED_CROP =
+            BLOCKS.registerBlock(
+                    "diareed_crop", properties -> new DiareedCropBlock(cropSettings(properties)));
+    public static final DeferredBlock<CropBlock> EGG_PLANT_CROP =
+            BLOCKS.registerBlock(
+                    "egg_plant_crop",
+                    properties -> new EggPlantCropBlock(cropSettings(properties)));
+    public static final DeferredBlock<CropBlock> ENDER_BLOSSOM_CROP =
+            BLOCKS.registerBlock(
+                    "ender_blossom_crop",
+                    properties ->
+                            new EnderBlossomCropBlock(cropSettings(properties)));
+    public static final DeferredBlock<CropBlock> MEAT_ROSE_CROP =
+            BLOCKS.registerBlock(
+                    "meat_rose_crop",
+                    properties -> new MeatRoseCropBlock(cropSettings(properties)));
+    public static final DeferredBlock<CropBlock> MILK_WART_CROP =
+            BLOCKS.registerBlock(
+                    "milk_wart_crop",
+                    properties -> new MilkWartCropBlock(cropSettings(properties)));
+    public static final DeferredBlock<CropBlock> OIL_BERRIES_CROP =
+            BLOCKS.registerBlock(
+                    "oil_berries_crop",
+                    properties -> new OilBerriesCropBlock(cropSettings(properties)));
+    public static final DeferredBlock<CropBlock> SLIME_PLANT_CROP =
+            BLOCKS.registerBlock(
+                    "slime_plant_crop",
+                    properties -> new SlimePlantCropBlock(cropSettings(properties)));
+    public static final DeferredBlock<CropBlock> SPIDERNIP_CROP =
+            BLOCKS.registerBlock(
+                    "spidernip_crop",
+                    properties -> new SpidernipCropBlock(cropSettings(properties)));
+    public static final DeferredBlock<CropBlock> TEARSTALKS_CROP =
+            BLOCKS.registerBlock(
+                    "tearstalks_crop",
+                    properties -> new TearstalksCropBlock(cropSettings(properties)));
+    public static final DeferredBlock<CropBlock> WITHEREED_CROP =
+            BLOCKS.registerBlock(
+                    "withereed_crop",
+                    properties -> new WithereedCropBlock(cropSettings(properties)));
 
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<CropBlockEntity>>
             CROP_ENTITY =
@@ -294,7 +375,22 @@ public final class ModCrops {
                                             AURELIA_CROP.get(),
                                             SHINING_CROP.get(),
                                             RED_WHEAT_CROP.get(),
-                                            EATING_PLANT_CROP.get()));
+                                            EATING_PLANT_CROP.get(),
+                                            BLAZEREED_CROP.get(),
+                                            BOBS_YER_UNCLE_RANKS_BERRIES_CROP.get(),
+                                            CORIUM_CROP.get(),
+                                            CORPSE_PLANT_CROP.get(),
+                                            CREEPER_WEED_CROP.get(),
+                                            DIAREED_CROP.get(),
+                                            EGG_PLANT_CROP.get(),
+                                            ENDER_BLOSSOM_CROP.get(),
+                                            MEAT_ROSE_CROP.get(),
+                                            MILK_WART_CROP.get(),
+                                            OIL_BERRIES_CROP.get(),
+                                            SLIME_PLANT_CROP.get(),
+                                            SPIDERNIP_CROP.get(),
+                                            TEARSTALKS_CROP.get(),
+                                            WITHEREED_CROP.get()));
 
     public static final DeferredItem<CropStickItem> CROP_STICK_ITEM =
             ITEMS.registerItem(
@@ -481,6 +577,181 @@ public final class ModCrops {
                     true);
     public static final CropCard RED_WHEAT_CARD = new RedWheatCropCard();
     public static final CropCard EATING_PLANT_CARD = new EatingPlantCropCard();
+    // Legacy GenericCropCard data crops (cross-breeding products): fixed drops plus the
+    // special-drop roulette; growthSpeed zero means the tier*200 default duration.
+    public static final CropCard BLAZEREED_CARD =
+            new GenericCropCard(
+                    "blazereed",
+                    BLAZEREED_CROP::get,
+                    new ic2.core.crop.CropProperties(6, 0, 4, 1, 0, 0),
+                    4,
+                    List.of(() -> new ItemStack(Items.BLAZE_POWDER)),
+                    List.of(
+                            () -> new ItemStack(Items.BLAZE_ROD),
+                            material(MaterialDefinition.SULFUR_DUST)),
+                    0,
+                    1);
+    public static final CropCard BOBS_YER_UNCLE_RANKS_BERRIES_CARD =
+            new GenericCropCard(
+                    "bobs_yer_uncle_ranks_berries",
+                    BOBS_YER_UNCLE_RANKS_BERRIES_CROP::get,
+                    new ic2.core.crop.CropProperties(11, 4, 0, 8, 2, 9),
+                    4,
+                    List.of(material(MaterialDefinition.BOBS_YER_UNCLE_RANKS_BERRY)),
+                    List.of(() -> new ItemStack(Items.EMERALD)),
+                    0,
+                    1);
+    public static final CropCard CORIUM_CARD =
+            new GenericCropCard(
+                    "corium",
+                    CORIUM_CROP::get,
+                    new ic2.core.crop.CropProperties(6, 0, 2, 3, 1, 0),
+                    4,
+                    List.of(() -> new ItemStack(Items.LEATHER)),
+                    List.of(),
+                    0,
+                    1);
+    public static final CropCard CORPSE_PLANT_CARD =
+            new GenericCropCard(
+                    "corpse_plant",
+                    CORPSE_PLANT_CROP::get,
+                    new ic2.core.crop.CropProperties(5, 0, 2, 1, 0, 3),
+                    4,
+                    List.of(() -> new ItemStack(Items.ROTTEN_FLESH)),
+                    List.of(
+                            () -> new ItemStack(Items.BONE),
+                            () -> new ItemStack(Items.BONE_MEAL),
+                            () -> new ItemStack(Items.BONE_MEAL)),
+                    0,
+                    1);
+    public static final CropCard CREEPER_WEED_CARD =
+            new GenericCropCard(
+                    "creeper_weed",
+                    CREEPER_WEED_CROP::get,
+                    new ic2.core.crop.CropProperties(7, 3, 0, 5, 1, 3),
+                    4,
+                    List.of(() -> new ItemStack(Items.GUNPOWDER)),
+                    List.of(),
+                    0,
+                    1);
+    public static final CropCard DIAREED_CARD =
+            new GenericCropCard(
+                    "diareed",
+                    DIAREED_CROP::get,
+                    new ic2.core.crop.CropProperties(12, 5, 0, 10, 2, 10),
+                    4,
+                    List.of(material(MaterialDefinition.SMALL_DIAMOND_DUST)),
+                    List.of(() -> new ItemStack(Items.DIAMOND)),
+                    0,
+                    1);
+    public static final CropCard EGG_PLANT_CARD =
+            new GenericCropCard(
+                    "egg_plant",
+                    EGG_PLANT_CROP::get,
+                    new ic2.core.crop.CropProperties(6, 0, 4, 1, 0, 0),
+                    3,
+                    List.of(() -> new ItemStack(Items.EGG)),
+                    List.of(
+                            () -> new ItemStack(Items.CHICKEN),
+                            () -> new ItemStack(Items.FEATHER),
+                            () -> new ItemStack(Items.FEATHER),
+                            () -> new ItemStack(Items.FEATHER)),
+                    900,
+                    2);
+    public static final CropCard ENDER_BLOSSOM_CARD =
+            new GenericCropCard(
+                    "ender_blossom",
+                    ENDER_BLOSSOM_CROP::get,
+                    new ic2.core.crop.CropProperties(10, 5, 0, 2, 1, 6),
+                    4,
+                    List.of(material(MaterialDefinition.ENDER_PEARL_DUST)),
+                    List.of(
+                            () -> new ItemStack(Items.ENDER_PEARL),
+                            () -> new ItemStack(Items.ENDER_PEARL),
+                            () -> new ItemStack(Items.ENDER_EYE)),
+                    0,
+                    1);
+    public static final CropCard MEAT_ROSE_CARD =
+            new GenericCropCard(
+                    "meat_rose",
+                    MEAT_ROSE_CROP::get,
+                    new ic2.core.crop.CropProperties(7, 0, 4, 1, 3, 0),
+                    4,
+                    List.of(() -> new ItemStack(Items.PINK_DYE)),
+                    List.of(
+                            () -> new ItemStack(Items.BEEF),
+                            () -> new ItemStack(Items.PORKCHOP),
+                            () -> new ItemStack(Items.CHICKEN),
+                            () -> new ItemStack(Items.MUTTON)),
+                    1500,
+                    1);
+    public static final CropCard MILK_WART_CARD =
+            new GenericCropCard(
+                    "milk_wart",
+                    MILK_WART_CROP::get,
+                    new ic2.core.crop.CropProperties(6, 0, 3, 0, 1, 0),
+                    3,
+                    List.of(material(MaterialDefinition.MILK_WART)),
+                    List.of(),
+                    900,
+                    1);
+    public static final CropCard OIL_BERRIES_CARD =
+            new GenericCropCard(
+                    "oil_berries",
+                    OIL_BERRIES_CROP::get,
+                    new ic2.core.crop.CropProperties(9, 6, 1, 2, 1, 12),
+                    3,
+                    List.of(material(MaterialDefinition.OIL_BERRY)),
+                    List.of(),
+                    0,
+                    1);
+    public static final CropCard SLIME_PLANT_CARD =
+            new GenericCropCard(
+                    "slime_plant",
+                    SLIME_PLANT_CROP::get,
+                    new ic2.core.crop.CropProperties(6, 3, 0, 0, 0, 2),
+                    4,
+                    List.of(() -> new ItemStack(Items.SLIME_BALL)),
+                    List.of(),
+                    0,
+                    2);
+    public static final CropCard SPIDERNIP_CARD =
+            new GenericCropCard(
+                    "spidernip",
+                    SPIDERNIP_CROP::get,
+                    new ic2.core.crop.CropProperties(4, 2, 1, 4, 1, 3),
+                    4,
+                    List.of(() -> new ItemStack(Items.STRING)),
+                    List.of(
+                            () -> new ItemStack(Items.SPIDER_EYE),
+                            () -> new ItemStack(Items.COBWEB)),
+                    600,
+                    1);
+    public static final CropCard TEARSTALKS_CARD =
+            new GenericCropCard(
+                    "tearstalks",
+                    TEARSTALKS_CROP::get,
+                    new ic2.core.crop.CropProperties(8, 1, 2, 0, 0, 0),
+                    4,
+                    List.of(() -> new ItemStack(Items.GHAST_TEAR)),
+                    List.of(),
+                    0,
+                    1);
+    public static final CropCard WITHEREED_CARD =
+            new GenericCropCard(
+                    "withereed",
+                    WITHEREED_CROP::get,
+                    new ic2.core.crop.CropProperties(8, 2, 0, 4, 1, 3),
+                    4,
+                    List.of(material(MaterialDefinition.COAL_DUST)),
+                    List.of(() -> new ItemStack(Items.COAL), () -> new ItemStack(Items.COAL)),
+                    0,
+                    1);
+
+    /** Lazy IC2 material item stack: the materials registry binds after mod construction. */
+    private static java.util.function.Supplier<ItemStack> material(MaterialDefinition definition) {
+        return () -> new ItemStack(ModItems.MATERIALS.get(definition).get());
+    }
 
     /**
      * Legacy registerBaseSeed: a plain produce item plants its crop with fixed stats; the size is
@@ -528,6 +799,22 @@ public final class ModCrops {
         if (block == SHINING_CROP.get()) return SHINING_CARD;
         if (block == RED_WHEAT_CROP.get()) return RED_WHEAT_CARD;
         if (block == EATING_PLANT_CROP.get()) return EATING_PLANT_CARD;
+        if (block == BLAZEREED_CROP.get()) return BLAZEREED_CARD;
+        if (block == BOBS_YER_UNCLE_RANKS_BERRIES_CROP.get())
+            return BOBS_YER_UNCLE_RANKS_BERRIES_CARD;
+        if (block == CORIUM_CROP.get()) return CORIUM_CARD;
+        if (block == CORPSE_PLANT_CROP.get()) return CORPSE_PLANT_CARD;
+        if (block == CREEPER_WEED_CROP.get()) return CREEPER_WEED_CARD;
+        if (block == DIAREED_CROP.get()) return DIAREED_CARD;
+        if (block == EGG_PLANT_CROP.get()) return EGG_PLANT_CARD;
+        if (block == ENDER_BLOSSOM_CROP.get()) return ENDER_BLOSSOM_CARD;
+        if (block == MEAT_ROSE_CROP.get()) return MEAT_ROSE_CARD;
+        if (block == MILK_WART_CROP.get()) return MILK_WART_CARD;
+        if (block == OIL_BERRIES_CROP.get()) return OIL_BERRIES_CARD;
+        if (block == SLIME_PLANT_CROP.get()) return SLIME_PLANT_CARD;
+        if (block == SPIDERNIP_CROP.get()) return SPIDERNIP_CARD;
+        if (block == TEARSTALKS_CROP.get()) return TEARSTALKS_CARD;
+        if (block == WITHEREED_CROP.get()) return WITHEREED_CARD;
         return null;
     }
 
@@ -570,6 +857,21 @@ public final class ModCrops {
             case "shining" -> SHINING_CARD;
             case "red_wheat" -> RED_WHEAT_CARD;
             case "eating_plant" -> EATING_PLANT_CARD;
+            case "blazereed" -> BLAZEREED_CARD;
+            case "bobs_yer_uncle_ranks_berries" -> BOBS_YER_UNCLE_RANKS_BERRIES_CARD;
+            case "corium" -> CORIUM_CARD;
+            case "corpse_plant" -> CORPSE_PLANT_CARD;
+            case "creeper_weed" -> CREEPER_WEED_CARD;
+            case "diareed" -> DIAREED_CARD;
+            case "egg_plant" -> EGG_PLANT_CARD;
+            case "ender_blossom" -> ENDER_BLOSSOM_CARD;
+            case "meat_rose" -> MEAT_ROSE_CARD;
+            case "milk_wart" -> MILK_WART_CARD;
+            case "oil_berries" -> OIL_BERRIES_CARD;
+            case "slime_plant" -> SLIME_PLANT_CARD;
+            case "spidernip" -> SPIDERNIP_CARD;
+            case "tearstalks" -> TEARSTALKS_CARD;
+            case "withereed" -> WITHEREED_CARD;
             default -> null;
         };
     }
@@ -614,6 +916,9 @@ public final class ModCrops {
             seeds.put(Items.JUNGLE_SAPLING, new BaseSeed(JUNGLE_SAPLING_CARD, 0, 1, 1, 1));
             seeds.put(Items.ACACIA_SAPLING, new BaseSeed(ACACIA_SAPLING_CARD, 0, 1, 1, 1));
             seeds.put(Items.DARK_OAK_SAPLING, new BaseSeed(DARK_OAK_SAPLING_CARD, 0, 1, 1, 1));
+            seeds.put(
+                    ModItems.MATERIALS.get(MaterialDefinition.MILK_WART).get(),
+                    new BaseSeed(MILK_WART_CARD, 0, 1, 1, 1));
             map = Map.copyOf(seeds);
             baseSeeds = map;
         }

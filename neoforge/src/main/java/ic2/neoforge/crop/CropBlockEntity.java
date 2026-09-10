@@ -414,9 +414,15 @@ public class CropBlockEntity extends net.minecraft.world.level.block.entity.Bloc
         if (getBlockState().getBlock() instanceof CropBlock cropBlock
                 && cropBlock.ageProperty() != null
                 && getLevel() != null) {
+            var property = cropBlock.ageProperty();
+            // Legacy setCurrentAge clamps to the block's max age: a few cards (blazereed,
+            // egg_plant, milk_wart, oil_berries) declare a maxSize one above the block states.
+            int blockMax = 0;
+            for (int value : property.getPossibleValues()) blockMax = Math.max(blockMax, value);
+            if (age > blockMax) age = blockMax;
             getLevel()
                     .setBlockAndUpdate(
-                            worldPosition, getBlockState().setValue(cropBlock.ageProperty(), age));
+                            worldPosition, getBlockState().setValue(property, age));
         }
     }
 
