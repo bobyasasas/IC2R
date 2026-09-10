@@ -461,6 +461,7 @@
   "ic2:shaped/mv_transformer",
   "ic2:shaped/neutron_reflector",
   "ic2:shaped/nuclear_reactor",
+  "ic2:shaped/obscurator",
   "ic2:shaped/obsidian_dust",
   "ic2:shaped/ore_washing_plant",
   "ic2:shaped/overclocked_heat_vent",

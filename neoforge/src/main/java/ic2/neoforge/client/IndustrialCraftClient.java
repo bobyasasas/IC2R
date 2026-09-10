@@ -77,6 +77,8 @@ public final class IndustrialCraftClient {
                                 ic2.neoforge.registration.ModEntities.STICKY_DYNAMITE.get(),
                                 net.minecraft.client.renderer.entity.ThrownItemRenderer::new));
         modBus.addListener(FluidModels::register);
+        modBus.addListener(ObscuratorClient::registerModels);
+        ObscuratorClient.register();
         modBus.addListener(
                 (RegisterColorHandlersEvent.BlockTintSources event) ->
                         event.register(

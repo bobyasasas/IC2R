@@ -5556,7 +5556,14 @@
    "factory": "register",
    "expression": "new ItemObscurator(new Properties().stacksTo(1))",
    "decision": "preserve",
-   "status": "pending"
+   "status": "implemented",
+   "evidence": [
+    "neoforge/src/main/java/ic2/neoforge/item/ObscuratorItem.java",
+    "neoforge/src/main/java/ic2/neoforge/registration/ModObscurator.java",
+    "neoforge/src/main/java/ic2/neoforge/client/model/ObscuredWallModel.java",
+    "docs/migration/obscured-wall.md"
+   ],
+   "note": "ObscuratorItem 电动遮蔽器（100,000 EU/250 EU/t tier2）：站立右键 5,000 EU 把建筑泡沫墙重纹理为 obscured_wall（存墙色+被点面取样），潜行右键客户端烘焙采样 20,000 EU 经 ic2:obscurator_scan payload 上服务端复验电力后写组件；legacy RetextureEvent 扩展分支无监听者保持 PASS；物品模型用整图不迁移 legacy mask_overlay 电量蒙版（电量条由 ElectricItem 原生显示）；配方转换 683/796。"
   },
   {
    "registry": "item",
@@ -9257,7 +9264,13 @@
    "factory": "register",
    "expression": "Ic2TileEntityBlock.create(wallSettings, TileEntityWall.class, false, Ic2TileEntityBlock.DefaultDrop.Self, Util.noFacings, false)",
    "decision": "preserve",
-   "status": "pending"
+   "status": "implemented",
+   "evidence": [
+    "neoforge/src/main/java/ic2/neoforge/block/ObscuredWallBlock.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/ObscuredWallBlockEntity.java",
+    "docs/migration/obscured-wall.md"
+   ],
+   "note": "ObscuredWallBlock+ObscuredWallBlockEntity：六面各存一份参考面（状态经 id+variant 字符串持久化，渲染态经 ModelData 发布给网格线程）；blockstate 用 neoforge 自定义模型 ic2:obscured_wall（BlockStateModel 逐面输出墙色泡沫墙+参考贴图平铺 overlay，MutableQuad 构造）；无 BlockItem 与 legacy 一致；挖掘掉对应墙色泡沫墙；同步走 getUpdateTag/onDataPacket(ValueInput)。"
   },
   {
    "registry": "block",

@@ -146,6 +146,12 @@ public final class ModDataComponents {
                     builder ->
                             builder.persistent(RemoteLinks.CODEC)
                                     .networkSynchronized(RemoteLinks.STREAM_CODEC));
+    public static final Supplier<DataComponentType<ObscuratorReference>> OBSCURATOR_REFERENCE =
+            TYPES.<ObscuratorReference>registerComponentType(
+                    "obscurator_reference",
+                    builder ->
+                            builder.persistent(ObscuratorReference.CODEC)
+                                    .networkSynchronized(ObscuratorReference.STREAM_CODEC));
     public static final Supplier<DataComponentType<Integer>> HYDRATION_USES =
             TYPES.<Integer>registerComponentType(
                     "hydration_uses",

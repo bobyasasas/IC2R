@@ -351,6 +351,22 @@ public final class RegistrationTests {
         FUNCTIONS.register(
                 "cable_shock_gold_meltdown",
                 () -> CableShockTests::overloadedGoldCableMeltsDownAndShocks);
+        FUNCTIONS.register(
+                "obscurator_retextures_wall", () -> ObscuratorTests::obscuratorRetexturesWall);
+        FUNCTIONS.register(
+                "obscurator_requires_energy", () -> ObscuratorTests::obscuratorRequiresEnergy);
+        FUNCTIONS.register(
+                "obscurator_requires_reference",
+                () -> ObscuratorTests::obscuratorRequiresReference);
+        FUNCTIONS.register(
+                "obscurator_sneak_passes_server",
+                () -> ObscuratorTests::obscuratorSneakPassesServer);
+        FUNCTIONS.register("obscurator_scan_payload", () -> ObscuratorTests::obscuratorScanPayload);
+        FUNCTIONS.register(
+                "obscured_wall_persistence", () -> ObscuratorTests::obscuredWallPersistence);
+        FUNCTIONS.register(
+                "obscured_wall_drops_color_wall",
+                () -> ObscuratorTests::obscuredWallDropsColorWall);
         FUNCTIONS.register("dynamite_linked_toggle", () -> DynamiteTests::linkedStateToggles);
         FUNCTIONS.register("dynamite_redstone_fuse", () -> DynamiteTests::redstonePrimesFuse);
         FUNCTIONS.register("dynamite_break_fuse", () -> DynamiteTests::playerBreakPrimesFuse);
