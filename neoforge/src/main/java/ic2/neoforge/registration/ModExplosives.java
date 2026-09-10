@@ -8,6 +8,7 @@ import net.minecraft.world.level.material.MapColor;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.registries.DeferredBlock;
+import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
 /** Explosives: dynamite sticks paired to the remote detonator (P13). */
@@ -33,13 +34,18 @@ public final class ModExplosives {
                                                     net.minecraft.world.level.material.PushReaction
                                                             .DESTROY)));
 
+    public static final DeferredItem<ic2.neoforge.item.RemoteItem> REMOTE =
+            ITEMS.registerItem("remote", properties -> new ic2.neoforge.item.RemoteItem(properties.stacksTo(1)));
+
     public static void register(IEventBus bus) {
         BLOCKS.register(bus);
         ITEMS.register(bus);
         bus.addListener(
                 (BuildCreativeModeTabContentsEvent event) -> {
-                    if (event.getTabKey().equals(CreativeModeTabs.FUNCTIONAL_BLOCKS))
+                    if (event.getTabKey().equals(CreativeModeTabs.FUNCTIONAL_BLOCKS)) {
                         event.accept(DYNAMITE);
+                        event.accept(REMOTE);
+                    }
                 });
     }
 

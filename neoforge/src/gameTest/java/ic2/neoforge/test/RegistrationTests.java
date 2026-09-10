@@ -284,6 +284,7 @@ public final class RegistrationTests {
         FUNCTIONS.register("reactor_vessel_place", () -> ReactorVesselTests::vesselPlaces);
         FUNCTIONS.register(
                 "crystal_memory_roundtrip", () -> CrystalMemoryTests::recordsAndReadsPattern);
+        FUNCTIONS.register("remote_detonate", () -> RemoteTests::remoteDetonatesLinkedDynamite);
         FUNCTIONS.register("uu_scanner_scan", () -> UuScannerTests::scansSeededItemOntoMemory);
         FUNCTIONS.register("uu_scanner_unknown", () -> UuScannerTests::unknownItemFails);
         FUNCTIONS.register("uu_scanner_seed_coverage", () -> UuScannerTests::expandedSeedCoverage);

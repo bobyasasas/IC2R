@@ -81,4 +81,14 @@ public class DynamiteBlock extends Block {
         }
         return null;
     }
+
+    /** Legacy explode(): removes the stick and detonates a small explosion in place. */
+    public static void explode(Level level, BlockPos pos) {
+        level.removeBlock(pos, false);
+        level.explode(
+                null,
+                pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5,
+                2.5F,
+                net.minecraft.world.level.Level.ExplosionInteraction.TNT);
+    }
 }
