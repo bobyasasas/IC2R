@@ -3,6 +3,7 @@ package ic2.neoforge.registration;
 import ic2.neoforge.IndustrialCraft;
 import ic2.neoforge.entity.DynamiteEntity;
 import ic2.neoforge.entity.ItntEntity;
+import ic2.neoforge.entity.NukeEntity;
 
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.Identifier;
@@ -57,6 +58,17 @@ public final class ModEntities {
                                     .clientTrackingRange(8)
                                     .updateInterval(5)
                                     .build(key("sticky_dynamite")));
+
+    public static final Supplier<EntityType<NukeEntity>> NUKE =
+            TYPES.register(
+                    "nuke",
+                    () ->
+                            EntityType.Builder.<NukeEntity>of(NukeEntity::new, MobCategory.MISC)
+                                    .fireImmune()
+                                    .sized(0.98F, 0.98F)
+                                    .clientTrackingRange(10)
+                                    .updateInterval(10)
+                                    .build(key("nuke")));
 
     public static void register(IEventBus bus) {
         TYPES.register(bus);

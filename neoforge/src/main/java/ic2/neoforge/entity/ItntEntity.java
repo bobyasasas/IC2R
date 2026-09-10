@@ -44,7 +44,9 @@ public class ItntEntity extends Entity implements TraceableEntity {
     private static final String TAG_EXPLOSION_POWER = "explosion_power";
 
     private @Nullable EntityReference<LivingEntity> owner;
-    private float explosionPower = DEFAULT_EXPLOSION_POWER;
+    protected float explosionPower = DEFAULT_EXPLOSION_POWER;
+    protected float dropRate = DROP_RATE;
+    protected float damageVsEntities = DAMAGE_VS_ENTITIES;
 
     public ItntEntity(EntityType<? extends ItntEntity> type, Level level) {
         super(type, level);
@@ -125,7 +127,7 @@ public class ItntEntity extends Entity implements TraceableEntity {
         }
     }
 
-    private void explode() {
+    protected void explode() {
         if (this.level() instanceof ServerLevel level
                 && level.getGameRules().get(GameRules.TNT_EXPLODES)) {
             new Ic2Explosion(
@@ -136,7 +138,8 @@ public class ItntEntity extends Entity implements TraceableEntity {
                             this.getY(0.0625),
                             this.getZ(),
                             this.explosionPower,
-                            DROP_RATE,
+                            this.dropRate,
+                            this.damageVsEntities,
                             Ic2Explosion.Type.Normal,
                             0)
                     .doExplosion();
@@ -178,7 +181,7 @@ public class ItntEntity extends Entity implements TraceableEntity {
                 net.minecraft.util.Mth.clamp(
                         input.getFloatOr(TAG_EXPLOSION_POWER, DEFAULT_EXPLOSION_POWER),
                         0.0F,
-                        128.0F);
+                        this.maxSavedPower());
         this.owner = EntityReference.read(input, "owner");
     }
 
@@ -194,8 +197,17 @@ public class ItntEntity extends Entity implements TraceableEntity {
         return EntityReference.getLivingEntity(this.owner, this.level());
     }
 
+    protected void rememberOwner(LivingEntity owner) {
+        this.owner = EntityReference.of(owner);
+    }
+
     public int getFuse() {
         return this.entityData.get(DATA_FUSE);
+    }
+
+    /** Ceiling for the blast power restored from save data; the nuke is config-capped instead. */
+    protected float maxSavedPower() {
+        return 128.0F;
     }
 
     public void setFuse(int fuse) {

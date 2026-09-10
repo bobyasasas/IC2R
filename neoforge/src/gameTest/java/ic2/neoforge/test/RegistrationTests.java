@@ -303,6 +303,15 @@ public final class RegistrationTests {
                 () -> Ic2ExplosionTests::nuclearTypeResolvesNukeDamageSource);
         FUNCTIONS.register(
                 "itnt_blast_drops_debris", () -> Ic2ExplosionTests::itntBlastDropsDebris);
+        FUNCTIONS.register("nuke_power_formula", () -> NukeTests::powerFormulaFollowsLegacyScaling);
+        FUNCTIONS.register(
+                "nuke_radioactive_payload",
+                () -> NukeTests::radioactivePayloadBoostsPowerAndRadiation);
+        FUNCTIONS.register("nuke_redstone_primes", () -> NukeTests::redstonePrimesLoadedCharge);
+        FUNCTIONS.register("nuke_unloaded_refuses", () -> NukeTests::unloadedNukeRefusesToPrime);
+        FUNCTIONS.register("nuke_chain_reaction", () -> NukeTests::chainReactionShortFuse);
+        FUNCTIONS.register("nuke_wrench_defuses", () -> NukeTests::wrenchDefusesPrimedCharge);
+        FUNCTIONS.register("nuke_menu_slots", () -> NukeTests::menuAcceptsOnlyPayloadItems);
         FUNCTIONS.register("dynamite_linked_toggle", () -> DynamiteTests::linkedStateToggles);
         FUNCTIONS.register("dynamite_redstone_fuse", () -> DynamiteTests::redstonePrimesFuse);
         FUNCTIONS.register("dynamite_break_fuse", () -> DynamiteTests::playerBreakPrimesFuse);

@@ -64,6 +64,11 @@ public final class IndustrialCraftClient {
         modBus.addListener(
                 (EntityRenderersEvent.RegisterRenderers event) ->
                         event.registerEntityRenderer(
+                                ic2.neoforge.registration.ModEntities.NUKE.get(),
+                                ic2.neoforge.client.ItntRenderer::new));
+        modBus.addListener(
+                (EntityRenderersEvent.RegisterRenderers event) ->
+                        event.registerEntityRenderer(
                                 ic2.neoforge.registration.ModEntities.DYNAMITE.get(),
                                 net.minecraft.client.renderer.entity.ThrownItemRenderer::new));
         modBus.addListener(
@@ -86,6 +91,7 @@ public final class IndustrialCraftClient {
 
     private static void registerScreens(RegisterMenuScreensEvent event) {
         event.register(ModToolbox.MENU.get(), ToolboxScreen::new);
+        event.register(ic2.neoforge.registration.ModNuke.NUKE_MENU.get(), NukeScreen::new);
         event.register(ModTools.MINING_FILTER_MENU.get(), MiningFilterScreen::new);
         ModMachines.MACHINES.forEach(
                 (kind, registration) -> {

@@ -92,6 +92,7 @@ public class Ic2Explosion implements Explosion {
     private final @Nullable LivingEntity igniter;
     private final float power;
     private final float explosionDropRate;
+    private final float damageVsEntities;
     private final Type type;
     private final int radiationRange;
     private final DamageSource damageSource;
@@ -112,11 +113,27 @@ public class Ic2Explosion implements Explosion {
             float dropRate,
             Type type,
             int radiationRange) {
+        this(level, source, igniter, x, y, z, power, dropRate, 1.0F, type, radiationRange);
+    }
+
+    public Ic2Explosion(
+            ServerLevel level,
+            @Nullable Entity source,
+            @Nullable LivingEntity igniter,
+            double x,
+            double y,
+            double z,
+            float power,
+            float dropRate,
+            float damageVsEntities,
+            Type type,
+            int radiationRange) {
         this.level = level;
         this.source = source;
         this.igniter = igniter;
         this.power = power;
         this.explosionDropRate = dropRate;
+        this.damageVsEntities = damageVsEntities;
         this.type = type;
         this.radiationRange = radiationRange;
         this.center = new Vec3(x, y, z);
@@ -324,7 +341,7 @@ public class Ic2Explosion implements Explosion {
             Entity entity = entry.entity;
             if (square(entity.getX() - x) + square(entity.getY() - y) + square(entity.getZ() - z)
                     <= ENTITY_HIT_RANGE_SQUARED) {
-                double damage = DAMAGE_PER_POWER * power;
+                double damage = DAMAGE_PER_POWER * power * this.damageVsEntities;
                 entry.damage += damage;
                 entry.health -= damage;
                 double dx = entity.getX() - this.center.x;
