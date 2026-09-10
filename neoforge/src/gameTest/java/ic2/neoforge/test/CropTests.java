@@ -675,9 +675,17 @@ final class CropTests {
             }
         }
         helper.setBlock(POSITION.above(6), Blocks.GLOWSTONE);
+        // The light engine settles asynchronously and shares its queue with every other test
+        // batch, so poll for the light state instead of assuming a fixed settle delay.
         helper.startSequence()
-                .thenExecuteAfter(
-                        3,
+                .thenWaitUntil(
+                        () -> {
+                            int light = crop(helper).getLightLevel();
+                            helper.assertTrue(
+                                    light >= 5 && light <= 10,
+                                    "The roofed pocket settles to red wheat light, saw " + light);
+                        })
+                .thenExecute(
                         () -> {
                             CropBlockEntity crop = crop(helper);
                             crop.refreshTerrain(helper.getLevel());
@@ -687,21 +695,21 @@ final class CropTests {
                                             + crop.getLightLevel() + ")");
                             helper.setBlock(POSITION.above().above(), Blocks.GLOWSTONE);
                         })
-                .thenExecuteAfter(
-                        3,
-                        () -> {
-                            helper.assertTrue(
-                                    !ModCrops.RED_WHEAT_CARD.canGrow(crop(helper)),
-                                    "Light above ten blocks the red wheat");
-                            helper.setBlock(POSITION.above().above(), Blocks.AIR);
-                        })
-                .thenExecuteAfter(
-                        20,
+                .thenWaitUntil(
+                        () ->
+                                helper.assertTrue(
+                                        !ModCrops.RED_WHEAT_CARD.canGrow(crop(helper)),
+                                        "Light above ten blocks the red wheat"))
+                .thenExecute(() -> helper.setBlock(POSITION.above().above(), Blocks.AIR))
+                .thenWaitUntil(
                         () -> {
                             crop(helper).refreshTerrain(helper.getLevel());
                             helper.assertTrue(
                                     ModCrops.RED_WHEAT_CARD.canGrow(crop(helper)),
                                     "Dim light between five and ten lets the red wheat grow");
+                        })
+                .thenExecute(
+                        () -> {
                             growUntil(helper, 6, 12000);
                             helper.assertTrue(
                                     crop(helper).getCurrentAge() == 6,
