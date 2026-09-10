@@ -10044,7 +10044,13 @@
       "factory": "register",
       "expression": "Ic2TileEntityBlock.create(cropSettings, TileEntityCrop.class, false, Ic2TileEntityBlock.DefaultDrop.Self, Util.noFacings, false, Ic2CropType.ferru)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModCrops.java",
+        "neoforge/src/main/java/ic2/neoforge/crop/MetalCropCard.java",
+        "docs/migration/crops.md"
+      ],
+      "note": "Crop slice five: legacy CropBaseMetalCommon/Uncommon (tier 6, max age 3, roots 5, age-after-harvest 1); the final growth step requires the metal's ore or storage block tag in the root zone (c:lead_ores/c:tin_ores/c:*_blocks added for IC2 blocks); harvest yields the small dust, common halves dropGainChance, aurelia/shining are uncommon."
     },
     {
       "registry": "block",
@@ -10054,7 +10060,13 @@
       "factory": "register",
       "expression": "Ic2TileEntityBlock.create(cropSettings, TileEntityCrop.class, false, Ic2TileEntityBlock.DefaultDrop.Self, Util.noFacings, false, Ic2CropType.cyprium)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModCrops.java",
+        "neoforge/src/main/java/ic2/neoforge/crop/MetalCropCard.java",
+        "docs/migration/crops.md"
+      ],
+      "note": "Crop slice five: legacy CropBaseMetalCommon/Uncommon (tier 6, max age 3, roots 5, age-after-harvest 1); the final growth step requires the metal's ore or storage block tag in the root zone (c:lead_ores/c:tin_ores/c:*_blocks added for IC2 blocks); harvest yields the small dust, common halves dropGainChance, aurelia/shining are uncommon."
     },
     {
       "registry": "block",
@@ -10064,7 +10076,13 @@
       "factory": "register",
       "expression": "Ic2TileEntityBlock.create(cropSettings, TileEntityCrop.class, false, Ic2TileEntityBlock.DefaultDrop.Self, Util.noFacings, false, Ic2CropType.stagnium)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModCrops.java",
+        "neoforge/src/main/java/ic2/neoforge/crop/MetalCropCard.java",
+        "docs/migration/crops.md"
+      ],
+      "note": "Crop slice five: legacy CropBaseMetalCommon/Uncommon (tier 6, max age 3, roots 5, age-after-harvest 1); the final growth step requires the metal's ore or storage block tag in the root zone (c:lead_ores/c:tin_ores/c:*_blocks added for IC2 blocks); harvest yields the small dust, common halves dropGainChance, aurelia/shining are uncommon."
     },
     {
       "registry": "block",
@@ -10074,7 +10092,13 @@
       "factory": "register",
       "expression": "Ic2TileEntityBlock.create(cropSettings, TileEntityCrop.class, false, Ic2TileEntityBlock.DefaultDrop.Self, Util.noFacings, false, Ic2CropType.plumbiscus)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModCrops.java",
+        "neoforge/src/main/java/ic2/neoforge/crop/MetalCropCard.java",
+        "docs/migration/crops.md"
+      ],
+      "note": "Crop slice five: legacy CropBaseMetalCommon/Uncommon (tier 6, max age 3, roots 5, age-after-harvest 1); the final growth step requires the metal's ore or storage block tag in the root zone (c:lead_ores/c:tin_ores/c:*_blocks added for IC2 blocks); harvest yields the small dust, common halves dropGainChance, aurelia/shining are uncommon."
     },
     {
       "registry": "block",
@@ -10084,7 +10108,13 @@
       "factory": "register",
       "expression": "Ic2TileEntityBlock.create(cropSettings, TileEntityCrop.class, false, Ic2TileEntityBlock.DefaultDrop.Self, Util.noFacings, false, Ic2CropType.aurelia)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModCrops.java",
+        "neoforge/src/main/java/ic2/neoforge/crop/MetalCropCard.java",
+        "docs/migration/crops.md"
+      ],
+      "note": "Crop slice five: legacy CropBaseMetalCommon/Uncommon (tier 6, max age 3, roots 5, age-after-harvest 1); the final growth step requires the metal's ore or storage block tag in the root zone (c:lead_ores/c:tin_ores/c:*_blocks added for IC2 blocks); harvest yields the small dust, common halves dropGainChance, aurelia/shining are uncommon."
     },
     {
       "registry": "block",
@@ -10094,7 +10124,13 @@
       "factory": "register",
       "expression": "Ic2TileEntityBlock.create(cropSettings, TileEntityCrop.class, false, Ic2TileEntityBlock.DefaultDrop.Self, Util.noFacings, false, Ic2CropType.shining)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModCrops.java",
+        "neoforge/src/main/java/ic2/neoforge/crop/MetalCropCard.java",
+        "docs/migration/crops.md"
+      ],
+      "note": "Crop slice five: legacy CropBaseMetalCommon/Uncommon (tier 6, max age 3, roots 5, age-after-harvest 1); the final growth step requires the metal's ore or storage block tag in the root zone (c:lead_ores/c:tin_ores/c:*_blocks added for IC2 blocks); harvest yields the small dust, common halves dropGainChance, aurelia/shining are uncommon."
     },
     {
       "registry": "block",

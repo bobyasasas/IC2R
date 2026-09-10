@@ -2,6 +2,7 @@ package ic2.neoforge.registration;
 
 import ic2.neoforge.IndustrialCraft;
 import ic2.neoforge.crop.AcaciaSaplingCropBlock;
+import ic2.neoforge.crop.AureliaCropBlock;
 import ic2.neoforge.crop.BeetrootsCropBlock;
 import ic2.neoforge.crop.BirchSaplingCropBlock;
 import ic2.neoforge.crop.BlackthornCropBlock;
@@ -18,8 +19,10 @@ import ic2.neoforge.crop.CropSeedItem;
 import ic2.neoforge.crop.CropStickItem;
 import ic2.neoforge.crop.CarrotsCropBlock;
 import ic2.neoforge.crop.CyazintCropBlock;
+import ic2.neoforge.crop.CypriumCropBlock;
 import ic2.neoforge.crop.DarkOakSaplingCropBlock;
 import ic2.neoforge.crop.DandelionCropBlock;
+import ic2.neoforge.crop.FerruCropBlock;
 import ic2.neoforge.crop.FlaxCropBlock;
 import ic2.neoforge.crop.FlaxCropCard;
 import ic2.neoforge.crop.HopsCropBlock;
@@ -27,11 +30,13 @@ import ic2.neoforge.crop.HopsCropCard;
 import ic2.neoforge.crop.JungleSaplingCropBlock;
 import ic2.neoforge.crop.MelonCropBlock;
 import ic2.neoforge.crop.MelonCropCard;
+import ic2.neoforge.crop.MetalCropCard;
 import ic2.neoforge.crop.MushroomCropCard;
 import ic2.neoforge.crop.NetherWartCropBlock;
 import ic2.neoforge.crop.NetherWartCropCard;
 import ic2.neoforge.crop.OakSaplingCropBlock;
 import ic2.neoforge.crop.PoppyCropBlock;
+import ic2.neoforge.crop.PlumbiscusCropBlock;
 import ic2.neoforge.crop.PotatoCropBlock;
 import ic2.neoforge.crop.PotatoCropCard;
 import ic2.neoforge.crop.PumpkinCropBlock;
@@ -40,7 +45,9 @@ import ic2.neoforge.crop.RedMushroomCropBlock;
 import ic2.neoforge.crop.ReedCropBlock;
 import ic2.neoforge.crop.ReedCropCard;
 import ic2.neoforge.crop.SaplingCropCard;
+import ic2.neoforge.crop.ShiningCropBlock;
 import ic2.neoforge.crop.SpruceSaplingCropBlock;
+import ic2.neoforge.crop.StagniumCropBlock;
 import ic2.neoforge.crop.StickyReedCropBlock;
 import ic2.neoforge.crop.StickyReedCropCard;
 import ic2.neoforge.crop.TerraWartCropBlock;
@@ -56,6 +63,7 @@ import ic2.neoforge.crop.WheatCropCard;
 import ic2.neoforge.item.TerraWartItem;
 
 import net.minecraft.core.registries.Registries;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Item;
@@ -71,6 +79,7 @@ import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
+import java.util.List;
 import java.util.Map;
 import net.minecraft.world.item.ItemStack;
 
@@ -196,6 +205,25 @@ public final class ModCrops {
             BLOCKS.registerBlock(
                     "terra_wart_crop",
                     properties -> new TerraWartCropBlock(cropSettings(properties)));
+    public static final DeferredBlock<CropBlock> FERRU_CROP =
+            BLOCKS.registerBlock(
+                    "ferru_crop", properties -> new FerruCropBlock(cropSettings(properties)));
+    public static final DeferredBlock<CropBlock> CYPRIUM_CROP =
+            BLOCKS.registerBlock(
+                    "cyprium_crop", properties -> new CypriumCropBlock(cropSettings(properties)));
+    public static final DeferredBlock<CropBlock> STAGNIUM_CROP =
+            BLOCKS.registerBlock(
+                    "stagnium_crop", properties -> new StagniumCropBlock(cropSettings(properties)));
+    public static final DeferredBlock<CropBlock> PLUMBISCUS_CROP =
+            BLOCKS.registerBlock(
+                    "plumbiscus_crop",
+                    properties -> new PlumbiscusCropBlock(cropSettings(properties)));
+    public static final DeferredBlock<CropBlock> AURELIA_CROP =
+            BLOCKS.registerBlock(
+                    "aurelia_crop", properties -> new AureliaCropBlock(cropSettings(properties)));
+    public static final DeferredBlock<CropBlock> SHINING_CROP =
+            BLOCKS.registerBlock(
+                    "shining_crop", properties -> new ShiningCropBlock(cropSettings(properties)));
 
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<CropBlockEntity>>
             CROP_ENTITY =
@@ -233,7 +261,13 @@ public final class ModCrops {
                                             CYAZINT_CROP.get(),
                                             VENOMILIA_CROP.get(),
                                             STICKY_REED_CROP.get(),
-                                            TERRA_WART_CROP.get()));
+                                            TERRA_WART_CROP.get(),
+                                            FERRU_CROP.get(),
+                                            CYPRIUM_CROP.get(),
+                                            STAGNIUM_CROP.get(),
+                                            PLUMBISCUS_CROP.get(),
+                                            AURELIA_CROP.get(),
+                                            SHINING_CROP.get()));
 
     public static final DeferredItem<CropStickItem> CROP_STICK_ITEM =
             ITEMS.registerItem(
@@ -350,6 +384,74 @@ public final class ModCrops {
     public static final CropCard VENOMILIA_CARD = new VenomiliaCropCard();
     public static final CropCard STICKY_REED_CARD = new StickyReedCropCard();
     public static final CropCard TERRA_WART_CARD = new TerraWartCropCard();
+    // Metal crops (legacy CropBaseMetalCommon/Uncommon): cross-breeding products without a base
+    // seed; the final growth step needs ore or storage blocks of their metal in the root zone.
+    public static final CropCard FERRU_CARD =
+            new MetalCropCard(
+                    "ferru",
+                    FERRU_CROP::get,
+                    List.of(BlockTags.IRON_ORES, Ic2BlockTags.IRON_BLOCKS),
+                    () ->
+                            new ItemStack(
+                                    ModItems.MATERIALS
+                                            .get(MaterialDefinition.SMALL_IRON_DUST)
+                                            .get()),
+                    false);
+    public static final CropCard CYPRIUM_CARD =
+            new MetalCropCard(
+                    "cyprium",
+                    CYPRIUM_CROP::get,
+                    List.of(BlockTags.COPPER_ORES, Ic2BlockTags.COPPER_BLOCKS),
+                    () ->
+                            new ItemStack(
+                                    ModItems.MATERIALS
+                                            .get(MaterialDefinition.SMALL_COPPER_DUST)
+                                            .get()),
+                    false);
+    public static final CropCard STAGNIUM_CARD =
+            new MetalCropCard(
+                    "stagnium",
+                    STAGNIUM_CROP::get,
+                    List.of(Ic2BlockTags.TIN_ORES, Ic2BlockTags.TIN_BLOCKS),
+                    () ->
+                            new ItemStack(
+                                    ModItems.MATERIALS
+                                            .get(MaterialDefinition.SMALL_TIN_DUST)
+                                            .get()),
+                    false);
+    public static final CropCard PLUMBISCUS_CARD =
+            new MetalCropCard(
+                    "plumbiscus",
+                    PLUMBISCUS_CROP::get,
+                    List.of(Ic2BlockTags.LEAD_ORES, Ic2BlockTags.LEAD_BLOCKS),
+                    () ->
+                            new ItemStack(
+                                    ModItems.MATERIALS
+                                            .get(MaterialDefinition.SMALL_LEAD_DUST)
+                                            .get()),
+                    false);
+    public static final CropCard AURELIA_CARD =
+            new MetalCropCard(
+                    "aurelia",
+                    AURELIA_CROP::get,
+                    List.of(BlockTags.GOLD_ORES, Ic2BlockTags.GOLD_BLOCKS),
+                    () ->
+                            new ItemStack(
+                                    ModItems.MATERIALS
+                                            .get(MaterialDefinition.SMALL_GOLD_DUST)
+                                            .get()),
+                    true);
+    public static final CropCard SHINING_CARD =
+            new MetalCropCard(
+                    "shining",
+                    SHINING_CROP::get,
+                    List.of(Ic2BlockTags.SILVER_ORES, Ic2BlockTags.SILVER_BLOCKS),
+                    () ->
+                            new ItemStack(
+                                    ModItems.MATERIALS
+                                            .get(MaterialDefinition.SMALL_SILVER_DUST)
+                                            .get()),
+                    true);
 
     /**
      * Legacy registerBaseSeed: a plain produce item plants its crop with fixed stats; the size is
@@ -389,6 +491,12 @@ public final class ModCrops {
         if (block == VENOMILIA_CROP.get()) return VENOMILIA_CARD;
         if (block == STICKY_REED_CROP.get()) return STICKY_REED_CARD;
         if (block == TERRA_WART_CROP.get()) return TERRA_WART_CARD;
+        if (block == FERRU_CROP.get()) return FERRU_CARD;
+        if (block == CYPRIUM_CROP.get()) return CYPRIUM_CARD;
+        if (block == STAGNIUM_CROP.get()) return STAGNIUM_CARD;
+        if (block == PLUMBISCUS_CROP.get()) return PLUMBISCUS_CARD;
+        if (block == AURELIA_CROP.get()) return AURELIA_CARD;
+        if (block == SHINING_CROP.get()) return SHINING_CARD;
         return null;
     }
 
@@ -423,6 +531,12 @@ public final class ModCrops {
             case "venomilia" -> VENOMILIA_CARD;
             case "sticky_reed" -> STICKY_REED_CARD;
             case "terra_wart" -> TERRA_WART_CARD;
+            case "ferru" -> FERRU_CARD;
+            case "cyprium" -> CYPRIUM_CARD;
+            case "stagnium" -> STAGNIUM_CARD;
+            case "plumbiscus" -> PLUMBISCUS_CARD;
+            case "aurelia" -> AURELIA_CARD;
+            case "shining" -> SHINING_CARD;
             default -> null;
         };
     }

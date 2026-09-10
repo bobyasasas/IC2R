@@ -8,6 +8,7 @@ import ic2.neoforge.registration.ModCrops;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
@@ -366,6 +367,19 @@ public class CropBlockEntity extends net.minecraft.world.level.block.entity.Bloc
             BlockState state = level.getBlockState(below);
             if (state.isAir()) return false;
             if (state.is(reqBlock)) return true;
+        }
+        return false;
+    }
+
+    /** Tag variant of {@link #isBlockBelow(Block)}. */
+    public boolean isBlockBelow(TagKey<Block> reqTag) {
+        var crop = card();
+        if (crop == null || !(getLevel() instanceof ServerLevel level)) return false;
+        for (int i = 1; i < crop.getRootsLength(this); i++) {
+            BlockPos below = worldPosition.below(i);
+            BlockState state = level.getBlockState(below);
+            if (state.isAir()) return false;
+            if (state.is(reqTag)) return true;
         }
         return false;
     }

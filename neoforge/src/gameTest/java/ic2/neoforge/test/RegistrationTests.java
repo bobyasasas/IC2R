@@ -420,6 +420,10 @@ public final class RegistrationTests {
                 "crop_wart_snow_transmutation", () -> CropTests::cropWartSnowTransmutation);
         FUNCTIONS.register("crop_terra_wart_cure", () -> CropTests::cropTerraWartCure);
         FUNCTIONS.register(
+                "crop_metal_ore_root_gate", () -> CropTests::cropMetalOreRootGate);
+        FUNCTIONS.register(
+                "crop_shining_uncommon_roots", () -> CropTests::cropShiningUncommonRoots);
+        FUNCTIONS.register(
                 "radiation_hazmat_set", () -> RadiationTests::hazmatCompleteSetDetection);
         FUNCTIONS.register(
                 "radiation_effect_damage", () -> RadiationTests::radiationEffectDamagesHost);

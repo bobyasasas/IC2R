@@ -179,10 +179,47 @@ nether wart 补上雪→terra wart 的 1/300 转化(legacy 对偶语义)。
   ≤600t 而非清除。
 - IC2 与 GT 双模式 `runGameTestServer` 322 项全绿;core JUnit 110 项。
 
+## 切片五:六张矿质作物卡(2026-09-10)
+
+legacy CropBaseMetalCommon(ferru/cyprium/stagnium/plumbiscus)与
+CropBaseMetalUncommon(aurelia/shining)合并为参数化 `MetalCropCard`:
+tier 6、满龄 3、根区 5 格、收获后回 age 1、收获即产物本身
+(`cropDrop.copy()`,无种子产出)。共同语义:age < 2 自由生长,age == 2
+(末段)必须根区扫描命中任一需求 tag 才能继续(`isBlockBelow(TagKey)`
+新增重载,与方块版同样的"空气即停"扫描);差异:common 的
+dropGainChance 减半(0.95^6/2),uncommon 保持 0.95^6;末段时长
+common 2000 / uncommon 2200,早段 800 / 750。
+
+- 需求 tag 组合:ferru=iron_ores+iron_blocks、cyprium=copper_ores+
+  copper_blocks、stagnium=tin_ores+tin_blocks、plumbiscus=
+  lead_ores+lead_blocks、aurelia=gold_ores+gold_blocks、shining=
+  silver_ores+silver_blocks(原版三矿用 vanilla BlockTags,其余为
+  新增 `Ic2BlockTags` c: 常量)。
+- 新增 c: tag 数据:`c:lead_ores`/`c:tin_ores`(ic2 铅/锡矿及其
+  deepslate 变体)、`c:iron_blocks`/`c:copper_blocks`/`c:gold_blocks`
+  (原版矿块)、`c:tin_blocks`/`c:lead_blocks`/`c:silver_blocks`
+  (ic2 矿块)。`c:silver_ores` 刻意不建:移植侧与 legacy 一样没有
+  银矿方块(legacy 原版环境下该 tag 同样为空,银作物的矿石路径依赖
+  其他模组;本移植中 shining 可经 `c:silver_blocks` 的 ic2 银块成熟)。
+- 无 base seed(legacy 杂交产物,不可用物品播种);卡实例按
+  ColorFlower 先例在 ModCrops 直接参数化,六个方块子类 AGE 0..3,
+  纹理自 legacy 拷贝 age 0..3(aurelia/shining 的 `_4` 贴图是 legacy
+  未使用的遗留,不迁移)。
+
+## 测试证据(切片五)
+
+- `crop_metal_ore_root_gate`:ferru 自由长到 age 2,无矿 300 tick
+  停滞;下方放铁矿石后长到 age 3,多轮收获累计小撮铁粉,收获后回
+  age 1。
+- `crop_shining_uncommon_roots`:shining 播种,断言 uncommon 保持
+  dropGainChance(>ferru 的减半值)、早段时长 750 对 800、末段 2200;
+  下方放 ic2 银块(走 `c:silver_blocks`)后成熟,多轮收获累计小撮
+  银粉,卡片按方块解析正确。
+- IC2 与 GT 双模式 `runGameTestServer` 324 项全绿;core JUnit 110 项。
+
 ## 未验收 / 后续切片
 
 - 杂草自然出现(空杆 1/100 掷骰)的实机观察;WeedEX 水罐/肥料/
   水化罐的右键交互。踩踏判定已接线(`entityInside`),待实机观察。
-- 其余约 23 种作物卡(矿质作物 ×6、红小麦、食人植物、GenericCropCard
-  ×15)、杂交/crossing base、作物分析器、Cropmatron、收割机、群系
-  加成。
+- 其余约 17 种作物卡(红小麦、食人植物、GenericCropCard ×15)、
+  杂交/crossing base、作物分析器、Cropmatron、收割机、群系加成。

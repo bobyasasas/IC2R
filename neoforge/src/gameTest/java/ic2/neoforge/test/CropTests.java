@@ -3,7 +3,10 @@ package ic2.neoforge.test;
 import ic2.neoforge.component.CropSeed;
 import ic2.neoforge.component.ModDataComponents;
 import ic2.neoforge.crop.CropBlockEntity;
+import ic2.neoforge.registration.MaterialDefinition;
 import ic2.neoforge.registration.ModCrops;
+import ic2.neoforge.registration.ModItems;
+import ic2.neoforge.registration.ModMaterialBlocks;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.gametest.framework.GameTestHelper;
@@ -576,6 +579,84 @@ final class CropTests {
                 radiation != null && radiation.getDuration() <= 600,
                 "A long radiation dose shortens instead of ending, saw "
                         + (radiation == null ? "cured" : radiation.getDuration()));
+        helper.succeed();
+    }
+
+    static void cropMetalOreRootGate(GameTestHelper helper) {
+        helper.setBlock(POSITION, ModCrops.CROP_STICK.get().defaultBlockState());
+        CropBlockEntity crop = crop(helper);
+        helper.assertTrue(
+                crop.tryPlantIn(ModCrops.FERRU_CARD, 0, 1, 1, 1, 0),
+                "A ferru cross product plants into an empty crop stick");
+        growUntil(helper, 2, 3000);
+        helper.assertTrue(
+                crop(helper).getCurrentAge() == 2,
+                "Ferru grows freely up to age two, saw " + crop(helper).getCurrentAge());
+        for (int tick = 0; tick < 300; tick++) crop(helper).performTick(1024L);
+        helper.assertTrue(
+                crop(helper).getCurrentAge() == 2,
+                "Without metal below the final step stalls, saw " + crop(helper).getCurrentAge());
+        helper.setBlock(POSITION.below(), Blocks.IRON_ORE);
+        growUntil(helper, 3, 6000);
+        helper.assertTrue(
+                crop(helper).getCurrentAge() == 3,
+                "Iron ore in the roots ripens ferru, saw " + crop(helper).getCurrentAge());
+        Item ironDust = ModItems.MATERIALS.get(MaterialDefinition.SMALL_IRON_DUST).get();
+        boolean anyDust = false;
+        for (int cycle = 0; cycle < 6 && !anyDust; cycle++) {
+            for (int tick = 0; tick < 600 && crop(helper).getCurrentAge() < 3; tick++) {
+                crop(helper).performTick(1024L);
+            }
+            if (crop(helper).performManualHarvest()) {
+                anyDust |= countItems(helper, ironDust) > 0;
+                helper.assertTrue(
+                        crop(helper).getCurrentAge() == 1,
+                        "Metal crops reset to age one after harvest, saw "
+                                + crop(helper).getCurrentAge());
+            }
+        }
+        helper.assertTrue(anyDust, "Harvesting ferru drops small iron dust");
+        helper.succeed();
+    }
+
+    static void cropShiningUncommonRoots(GameTestHelper helper) {
+        helper.setBlock(POSITION, ModCrops.CROP_STICK.get().defaultBlockState());
+        CropBlockEntity crop = crop(helper);
+        helper.assertTrue(
+                crop.tryPlantIn(ModCrops.SHINING_CARD, 0, 1, 1, 1, 0),
+                "A shining cross product plants into an empty crop stick");
+        helper.assertTrue(
+                ModCrops.SHINING_CARD.dropGainChance() > ModCrops.FERRU_CARD.dropGainChance(),
+                "The uncommon metal pair keeps the tier gain chance the common pair halves");
+        helper.assertTrue(
+                ModCrops.FERRU_CARD.getGrowthDuration(crop(helper)) == 800
+                        && ModCrops.SHINING_CARD.getGrowthDuration(crop(helper)) == 750,
+                "Early growth durations differ between the common and uncommon metal crops");
+        growUntil(helper, 2, 3000);
+        helper.assertTrue(
+                ModCrops.SHINING_CARD.getGrowthDuration(crop(helper)) == 2200,
+                "The final shining step takes 2200 ticks");
+        helper.setBlock(
+                POSITION.below(), ModMaterialBlocks.MATERIALS.get("silver_block").get());
+        growUntil(helper, 3, 6000);
+        helper.assertTrue(
+                crop(helper).getCurrentAge() == 3,
+                "A silver block in the roots ripens shining, saw " + crop(helper).getCurrentAge());
+        helper.assertTrue(
+                ModCrops.cardFor(helper.getBlockState(POSITION).getBlock())
+                        == ModCrops.SHINING_CARD,
+                "The shining plant resolves to the shining card");
+        Item silverDust = ModItems.MATERIALS.get(MaterialDefinition.SMALL_SILVER_DUST).get();
+        boolean anyDust = false;
+        for (int cycle = 0; cycle < 6 && !anyDust; cycle++) {
+            for (int tick = 0; tick < 600 && crop(helper).getCurrentAge() < 3; tick++) {
+                crop(helper).performTick(1024L);
+            }
+            if (crop(helper).performManualHarvest()) {
+                anyDust |= countItems(helper, silverDust) > 0;
+            }
+        }
+        helper.assertTrue(anyDust, "Harvesting shining drops small silver dust");
         helper.succeed();
     }
 
