@@ -251,11 +251,15 @@ public final class RegistrationTests {
                 "reactor_chamber_shrink", () -> ReactorChamberTests::brokenChamberEjectsColumn);
         FUNCTIONS.register("reactor_mox_pulse", () -> ReactorChamberTests::moxPulseScalesWithHeat);
         FUNCTIONS.register(
-                "reactor_chamber_chain", () -> ReactorChamberTests::chamberChainWidensToNine);
+                "reactor_chamber_chain", () -> ReactorChamberTests::chamberChainLegacyCount);
+        FUNCTIONS.register(
+                "reactor_full_size", () -> ReactorChamberTests::sixChambersReachFullSize);
         FUNCTIONS.register(
                 "rci_bonus_full_size", () -> ReactorAccessHatchTests::rciBonusRaisesConversion);
         FUNCTIONS.register(
                 "reactor_vessel_ring", () -> ReactorAccessHatchTests::vesselRingDetection);
+        FUNCTIONS.register(
+                "vessel_ring_ports", () -> ReactorAccessHatchTests::vesselRingAcceptsWallPieces);
         FUNCTIONS.register("reactor_reflector", () -> ReactorComponentTests::reflectorBouncesPulse);
         FUNCTIONS.register("reactor_plating", () -> ReactorComponentTests::platingRaisesCoreLimits);
         FUNCTIONS.register(
@@ -274,6 +278,12 @@ public final class RegistrationTests {
         FUNCTIONS.register(
                 "reactor_fluid_mode",
                 () -> ReactorFluidModeTests::fluidModeConvertsHeatToHotCoolant);
+        FUNCTIONS.register(
+                "reactor_fluid_mode_gating",
+                () -> ReactorFluidModeTests::fluidModeRequiresFullStructure);
+        FUNCTIONS.register(
+                "reactor_vessel_conflict",
+                () -> ReactorFluidModeTests::conflictingFluidReactorBlocksMode);
         FUNCTIONS.register(
                 "reactor_fluid_port_extract",
                 () -> ReactorFluidModeTests::hotCoolantExtractsThroughPort);

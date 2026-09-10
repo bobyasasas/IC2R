@@ -117,5 +117,31 @@ final class ReactorAccessHatchTests {
         helper.succeed();
     }
 
+    static void vesselRingAcceptsWallPieces(GameTestHelper helper) {
+        var reactor = reactor(helper);
+        var vessel =
+                ic2.neoforge.registration.ModMaterialBlocks.MATERIALS.get("reactor_vessel").get();
+        for (int dx = -2; dx <= 2; dx++)
+            for (int dy = -2; dy <= 2; dy++)
+                for (int dz = -2; dz <= 2; dz++) {
+                    if (Math.max(Math.abs(dx), Math.max(Math.abs(dy), Math.abs(dz))) != 2) continue;
+                    helper.setBlock(POSITION.offset(dx, dy, dz), vessel.defaultBlockState());
+                }
+        // Ports count as wall pieces (legacy isWall), fuel-rod chambers do not.
+        helper.setBlock(
+                POSITION.east().east(),
+                ModMachines.block(MachineKind.REACTOR_FLUID_PORT).defaultBlockState());
+        helper.assertTrue(
+                reactor.hasVesselRing(helper.getLevel()),
+                "A fluid port in the shell keeps the ring complete");
+        helper.setBlock(
+                POSITION.east().east(),
+                ModMachines.block(MachineKind.REACTOR_CHAMBER).defaultBlockState());
+        helper.assertTrue(
+                !reactor.hasVesselRing(helper.getLevel()),
+                "A fuel-rod chamber is not a shell wall piece");
+        helper.succeed();
+    }
+
     private ReactorAccessHatchTests() {}
 }

@@ -5,9 +5,9 @@ import ic2.neoforge.registration.ModMachines;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.transfer.ResourceHandler;
 import net.neoforged.neoforge.transfer.item.ItemResource;
@@ -24,13 +24,19 @@ public final class ReactorAccessHatchBlockEntity extends MachineBlockEntity {
                 ((MachineBlock) state.getBlock()).kind().slots());
     }
 
+    /**
+     * Locates the reactor the hatch serves: any core within the Chebyshev radius 2 vessel shell.
+     * Unlike the legacy hatch this keeps working for an adjacent EU-mode core as well.
+     */
     @Nullable
     public NuclearReactorBlockEntity findReactor() {
         if (!(getLevel() instanceof ServerLevel level)) return null;
-        for (Direction direction : Direction.values()) {
-            if (level.getBlockEntity(worldPosition.relative(direction))
-                    instanceof NuclearReactorBlockEntity reactor) return reactor;
-        }
+        for (int dx = -2; dx <= 2; dx++)
+            for (int dy = -2; dy <= 2; dy++)
+                for (int dz = -2; dz <= 2; dz++) {
+                    if (level.getBlockEntity(worldPosition.offset(dx, dy, dz))
+                            instanceof NuclearReactorBlockEntity reactor) return reactor;
+                }
         return null;
     }
 
@@ -44,8 +50,7 @@ public final class ReactorAccessHatchBlockEntity extends MachineBlockEntity {
     public ResourceHandler<ItemResource> automation(Direction side) {
         var reactor = findReactor();
         return reactor == null
-                ? new ic2.neoforge.transfer.ResourcePort<>(
-                        inventory, slot -> false, slot -> false)
+                ? new ic2.neoforge.transfer.ResourcePort<>(inventory, slot -> false, slot -> false)
                 : reactor.automation(side);
     }
 

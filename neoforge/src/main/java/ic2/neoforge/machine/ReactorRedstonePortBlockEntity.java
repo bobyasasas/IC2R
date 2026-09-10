@@ -23,20 +23,23 @@ public final class ReactorRedstonePortBlockEntity extends MachineBlockEntity {
         return level.hasNeighborSignal(worldPosition);
     }
 
+    /** The core reads any powered port inside its Chebyshev radius 2 casing (legacy range 2). */
     public static ReactorRedstonePortBlockEntity poweredPortNear(
             NuclearReactorBlockEntity reactor, ServerLevel level) {
-        for (Direction direction : Direction.values()) {
-            if (level.getBlockEntity(reactor.getBlockPos().relative(direction))
-                    instanceof ReactorRedstonePortBlockEntity port
-                    && port.hasRedstoneInput(level)) return port;
-        }
+        var center = reactor.getBlockPos();
+        for (int dx = -2; dx <= 2; dx++)
+            for (int dy = -2; dy <= 2; dy++)
+                for (int dz = -2; dz <= 2; dz++) {
+                    if (level.getBlockEntity(center.offset(dx, dy, dz))
+                                    instanceof ReactorRedstonePortBlockEntity port
+                            && port.hasRedstoneInput(level)) return port;
+                }
         return null;
     }
 
     @Override
     public ResourceHandler<ItemResource> automation(Direction side) {
-        return new ic2.neoforge.transfer.ResourcePort<>(
-                inventory, slot -> false, slot -> false);
+        return new ic2.neoforge.transfer.ResourcePort<>(inventory, slot -> false, slot -> false);
     }
 
     @Override

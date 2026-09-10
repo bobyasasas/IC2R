@@ -63,8 +63,13 @@ public final class ReactorRciBlockEntity extends PoweredBlockEntity {
 
     public NuclearReactorBlockEntity findReactor(ServerLevel level) {
         for (Direction direction : Direction.values()) {
-            if (level.getBlockEntity(worldPosition.relative(direction))
-                    instanceof NuclearReactorBlockEntity reactor) return reactor;
+            var neighbor = level.getBlockEntity(worldPosition.relative(direction));
+            if (neighbor instanceof NuclearReactorBlockEntity reactor) return reactor;
+            // Legacy RCIs also reach the grid through a chamber wall.
+            if (neighbor instanceof ReactorChamberBlockEntity chamber) {
+                var throughChamber = chamber.findReactor();
+                if (throughChamber != null) return throughChamber;
+            }
         }
         return null;
     }

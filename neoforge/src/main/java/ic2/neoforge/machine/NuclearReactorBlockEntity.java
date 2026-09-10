@@ -26,8 +26,9 @@ import net.neoforged.neoforge.transfer.transaction.Transaction;
 /**
  * EU-mode nuclear reactor core, first migration slice: a 3-column by 6-row component grid running
  * the legacy two-pass cycle every 20 ticks. Fuel rods pulse and deplete, vent components absorb
- * their heat, heat above the limit melts the core down. Chamber columns, reflector/switch component
- * interactions, fluid cooling mode and the access ports land in later slices.
+ * their heat, heat above the limit melts the core down. Fluid-cooled mode engages only on the
+ * legacy full-size multiblock: six chamber columns (6x9 grid), a complete reactor-vessel shell at
+ * Chebyshev radius 2 and no competing full-size fluid core nearby.
  */
 public final class NuclearReactorBlockEntity extends PoweredBlockEntity implements ReactorHost {
     public static final int BASE_COLUMNS = 3;
@@ -38,8 +39,11 @@ public final class NuclearReactorBlockEntity extends PoweredBlockEntity implemen
 
     public static final int COOLANT_TANK_CAPACITY = 10000;
 
-    /** Legacy default: 40 EU-worth of rod output converts one mB of coolant (outputModifier 1). */
+    /** Legacy default: 40 EU-worth of rod output converts one heat point (outputModifier 1). */
     private static final int HU_OUTPUT_MODIFIER = 40;
+
+    /** Legacy coolant heat-exchange property: 20 HU convert one mB of coolant. */
+    private static final int HU_PER_MB = 20;
 
     private final MachineFluidTank coolantTank =
             new MachineFluidTank(
@@ -99,7 +103,7 @@ public final class NuclearReactorBlockEntity extends PoweredBlockEntity implemen
     @Override
     public void serverTick(ServerLevel level) {
         if (++cycleTicker % CYCLE_TICKS != 0) return;
-        fluidCooled = fluidPortNear(level);
+        fluidCooled = isFluidReactor(level);
         // The legacy loop always runs the two passes; the rods themselves only pulse while the
         // reactor receives a redstone signal.
         ejectInactiveColumns(level);
@@ -116,28 +120,30 @@ public final class NuclearReactorBlockEntity extends PoweredBlockEntity implemen
     }
 
     /**
-     * Fluid mode: the pass heat becomes hot coolant at 40 HU per mB (legacy huOutputModifier);
-     * whatever the tanks cannot absorb heats the core instead.
+     * Fluid mode: the pass heat becomes hot coolant at 20 HU per mB (legacy hot-coolant heat
+     * exchange property); only the coolant actually drained converts, and whatever the tanks cannot
+     * absorb heats the core instead (legacy addHeat of the unconverted remainder).
      */
     private void convertEmitHeatToHotCoolant() {
         int huOutput = HU_OUTPUT_MODIFIER * emitHeatBuffer + rciOutputBonus() * 100;
         emitHeatBuffer = 0;
         if (huOutput <= 0) return;
-        int hotRoom = hotCoolantTank.getAmountAsInt(0);
-        int converted = Math.min(huOutput, COOLANT_TANK_CAPACITY - hotRoom);
-        if (converted <= 0) {
-            heat += huOutput;
-            return;
-        }
-        try (var transaction = Transaction.openRoot()) {
-            if (hotCoolantTank.insert(0, hotCoolant(), converted, transaction) != converted) {
-                return;
+        int hotRoom = COOLANT_TANK_CAPACITY - hotCoolantTank.getAmountAsInt(0);
+        if (hotRoom > 0) {
+            try (var transaction = Transaction.openRoot()) {
+                int drained =
+                        coolantTank.extract(
+                                0, coolant(), Math.min(huOutput / HU_PER_MB, hotRoom), transaction);
+                if (drained > 0) {
+                    if (hotCoolantTank.insert(0, hotCoolant(), drained, transaction) != drained) {
+                        return;
+                    }
+                    huOutput -= drained * HU_PER_MB;
+                }
+                transaction.commit();
             }
-            coolantTank.extract(0, coolant(), converted, transaction);
-            transaction.commit();
         }
-        int unconverted = huOutput - converted;
-        if (unconverted > 0) heat += unconverted;
+        if (huOutput > 0) heat += huOutput / HU_OUTPUT_MODIFIER;
     }
 
     private FluidResource coolant() {
@@ -148,13 +154,25 @@ public final class NuclearReactorBlockEntity extends PoweredBlockEntity implemen
         return FluidResource.of(ModFluids.FAMILIES.get(FluidDefinition.HOT_COOLANT).source().get());
     }
 
-    /** Fluid mode engages when a reactor fluid port sits next to the core. */
-    private boolean fluidPortNear(ServerLevel level) {
-        for (Direction direction : Direction.values()) {
-            if (level.getBlockEntity(worldPosition.relative(direction))
-                            instanceof ReactorFluidPortBlockEntity port
-                    && port.findReactor() == this) return true;
-        }
+    /**
+     * Legacy isFluidReactor: the 6x9 full-size grid, a complete vessel shell and no competing
+     * full-size fluid core within range 4. Fluid ports ride along as the tank windows.
+     */
+    private boolean isFluidReactor(ServerLevel level) {
+        return isFullSize() && hasVesselRing(level) && !conflictingFluidReactorNear(level);
+    }
+
+    /** Another full-size fluid reactor within Chebyshev range 4 blocks fluid mode (legacy). */
+    private boolean conflictingFluidReactorNear(ServerLevel level) {
+        for (int dx = -4; dx <= 4; dx++)
+            for (int dy = -4; dy <= 4; dy++)
+                for (int dz = -4; dz <= 4; dz++) {
+                    if (dx == 0 && dy == 0 && dz == 0) continue;
+                    if (level.getBlockEntity(worldPosition.offset(dx, dy, dz))
+                                    instanceof NuclearReactorBlockEntity other
+                            && other.isFullSize()
+                            && other.hasVesselRing(level)) return true;
+                }
         return false;
     }
 
@@ -226,17 +244,28 @@ public final class NuclearReactorBlockEntity extends PoweredBlockEntity implemen
         return hotCoolantTank.getAmountAsInt(0);
     }
 
-    /** RCI (RSH/LZH condensator injector) output bonus stacks per adjacent injector. */
+    /**
+     * RCI (RSH/LZH condensator injector) output bonus stacks per injector. Legacy RCIs face the
+     * core or a chamber of the structure; in the full-size build the six core faces are all
+     * chambers, so injectors behind a chamber wall still count.
+     */
     public int rciOutputBonus() {
-        int bonus = 0;
-        if (getLevel() instanceof ServerLevel level) {
-            for (Direction direction : Direction.values()) {
-                if (level.getBlockEntity(worldPosition.relative(direction))
-                                instanceof ReactorRciBlockEntity rci
-                        && rci.findReactor(level) == this) bonus += 10;
+        if (!(getLevel() instanceof ServerLevel level)) return 0;
+        var injectors = new java.util.HashSet<ReactorRciBlockEntity>();
+        for (Direction direction : Direction.values()) {
+            var neighborPos = worldPosition.relative(direction);
+            var neighbor = level.getBlockEntity(neighborPos);
+            if (neighbor instanceof ReactorRciBlockEntity rci && rci.findReactor(level) == this) {
+                injectors.add(rci);
+            } else if (neighbor instanceof ReactorChamberBlockEntity chamber
+                    && chamber.findReactor() == this) {
+                for (Direction rciSide : Direction.values()) {
+                    if (level.getBlockEntity(chamber.getBlockPos().relative(rciSide))
+                            instanceof ReactorRciBlockEntity rci) injectors.add(rci);
+                }
             }
         }
-        return bonus;
+        return injectors.size() * 10;
     }
 
     /** Full 6×9 form: chamber columns reach nine. */
@@ -244,52 +273,40 @@ public final class NuclearReactorBlockEntity extends PoweredBlockEntity implemen
         return columns() >= GRID_COLUMNS;
     }
 
-    /** The vessel ring at Chebyshev radius 2 must be reactor_vessel casing. */
+    /**
+     * The vessel shell at Chebyshev radius 2 must be casing or wall-type vessel pieces (legacy
+     * isFluidChamberBlock: the reactor vessel block or any isWall chamber — hatches and ports
+     * qualify, fuel-rod chambers do not).
+     */
     public boolean hasVesselRing(ServerLevel level) {
-        var vessel =
-                ic2.neoforge.registration.ModMaterialBlocks.MATERIALS.get("reactor_vessel").get();
         for (int dx = -2; dx <= 2; dx++)
             for (int dy = -2; dy <= 2; dy++)
                 for (int dz = -2; dz <= 2; dz++) {
                     if (Math.max(Math.abs(dx), Math.max(Math.abs(dy), Math.abs(dz))) != 2) continue;
-                    var pos = worldPosition.offset(dx, dy, dz);
-                    if (!level.getBlockState(pos).is(vessel)) return false;
+                    if (!isVesselWallBlock(level, worldPosition.offset(dx, dy, dz))) return false;
                 }
         return true;
     }
 
-    /**
-     * Chambers widen the grid: one column per connected chamber block, counting whole chains of
-     * chamber-adjacent-chambers (legacy multiblock walls), capped at 9 columns.
-     */
+    /** Legacy isFluidChamberBlock: vessel casing or a wall-type vessel piece. */
+    static boolean isVesselWallBlock(ServerLevel level, BlockPos pos) {
+        if (level.getBlockState(pos)
+                .is(
+                        ic2.neoforge.registration.ModMaterialBlocks.MATERIALS
+                                .get("reactor_vessel")
+                                .get())) return true;
+        return level.getBlockEntity(pos) instanceof ReactorAccessHatchBlockEntity
+                || level.getBlockEntity(pos) instanceof ReactorRedstonePortBlockEntity
+                || level.getBlockEntity(pos) instanceof ReactorFluidPortBlockEntity;
+    }
+
+    /** Legacy getReactorSize: three base columns plus one per directly attached chamber. */
     public int columns() {
         int cols = BASE_COLUMNS;
-        var counted = new java.util.HashSet<BlockPos>();
-        var queue = new java.util.ArrayDeque<BlockPos>();
         if (getLevel() instanceof ServerLevel level) {
             for (Direction direction : Direction.values()) {
-                var pos = worldPosition.relative(direction);
-                if (level.getBlockEntity(pos) instanceof ReactorChamberBlockEntity chamber
-                        && chamber.findReactor() == this
-                        && counted.add(pos)) queue.add(pos);
-                while (!queue.isEmpty()) {
-                    var start = queue.poll();
-                    cols++;
-                    var visitedChains = new java.util.HashSet<BlockPos>();
-                    for (Direction chainDir : Direction.values()) {
-                        var chainPos = start.relative(chainDir);
-                        if (chainPos.equals(worldPosition)) continue;
-                        // Chained chambers count through adjacency; only direct-adjacent
-                        // chambers belong to this core (checked on the initial ring).
-                        if (level.getBlockEntity(chainPos)
-                                        instanceof ReactorChamberBlockEntity chained
-                                && counted.add(chainPos)) {
-                            cols++;
-                            queue.add(chainPos);
-                        }
-                        visitedChains.add(chainPos);
-                    }
-                }
+                if (level.getBlockEntity(worldPosition.relative(direction))
+                        instanceof ReactorChamberBlockEntity) cols++;
             }
         }
         return Math.min(cols, GRID_COLUMNS);

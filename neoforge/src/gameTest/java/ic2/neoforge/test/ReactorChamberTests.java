@@ -6,6 +6,7 @@ import ic2.neoforge.registration.ModMachines;
 import ic2.neoforge.registration.ModReactorItems;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.gametest.framework.GameTestHelper;
 import net.minecraft.world.level.block.Blocks;
 import net.neoforged.neoforge.transfer.item.ItemResource;
@@ -90,7 +91,7 @@ final class ReactorChamberTests {
         helper.succeed();
     }
 
-    static void chamberChainWidensToNine(GameTestHelper helper) {
+    static void chamberChainLegacyCount(GameTestHelper helper) {
         var reactor = reactor(helper);
         placeChamber(helper, POSITION.east());
         placeChamber(helper, POSITION.east().east());
@@ -98,9 +99,22 @@ final class ReactorChamberTests {
         placeChamber(helper, POSITION.west().west());
         placeChamber(helper, POSITION.north());
         placeChamber(helper, POSITION.south());
+        // Legacy getReactorSize counts only chambers directly attached to the core; chamber
+        // chains hanging off a first chamber widen nothing.
         helper.assertTrue(
-                reactor.columns() == 9,
-                "Chamber chains widen the grid to nine, saw " + reactor.columns());
+                reactor.columns() == 7,
+                "Only directly attached chambers widen the grid, saw " + reactor.columns());
+        helper.assertTrue(!reactor.isFullSize(), "Chained chambers alone never reach the 6x9 form");
+        helper.succeed();
+    }
+
+    static void sixChambersReachFullSize(GameTestHelper helper) {
+        var reactor = reactor(helper);
+        for (Direction face : Direction.values()) placeChamber(helper, POSITION.relative(face));
+        helper.assertTrue(
+                reactor.columns() == NuclearReactorBlockEntity.GRID_COLUMNS,
+                "Six attached chambers reach nine columns, saw " + reactor.columns());
+        helper.assertTrue(reactor.isFullSize(), "One chamber per face is the full 6x9 form");
         helper.succeed();
     }
 
