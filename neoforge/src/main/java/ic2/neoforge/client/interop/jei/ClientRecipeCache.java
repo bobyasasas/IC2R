@@ -4,8 +4,11 @@ import ic2.core.recipe.ProcessingMethod;
 import ic2.neoforge.recipe.ProcessingRecipe;
 import ic2.neoforge.registration.ModProcessingRecipes;
 
+import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeHolder;
+import net.minecraft.world.item.crafting.RecipeInput;
 import net.minecraft.world.item.crafting.RecipeMap;
+import net.minecraft.world.item.crafting.RecipeType;
 import net.neoforged.neoforge.client.event.RecipesReceivedEvent;
 
 import java.util.List;
@@ -26,6 +29,12 @@ public final class ClientRecipeCache {
     public static List<RecipeHolder<ProcessingRecipe>> processing(ProcessingMethod method) {
         RecipeMap map = recipes;
         return List.copyOf(map.byType(ModProcessingRecipes.type(method)));
+    }
+
+    public static <I extends RecipeInput, T extends Recipe<I>> List<RecipeHolder<T>> byType(
+            RecipeType<T> type) {
+        RecipeMap map = recipes;
+        return List.copyOf(map.byType(type));
     }
 
     private ClientRecipeCache() {}

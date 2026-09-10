@@ -7,8 +7,10 @@ import ic2.core.recipe.ProcessingMethod;
 import ic2.neoforge.machine.MachineKind;
 import ic2.neoforge.machine.SingleInputBlockEntity;
 import ic2.neoforge.recipe.ProcessingRecipe;
+import ic2.neoforge.registration.ModCannerRecipes;
 import ic2.neoforge.registration.ModMachines;
 import ic2.neoforge.registration.ModProcessingRecipes;
+import ic2.neoforge.registration.ModThermalRecipes;
 
 import io.netty.buffer.Unpooled;
 
@@ -23,12 +25,14 @@ import net.minecraft.world.item.ItemStackTemplate;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.Recipe;
+import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.neoforged.neoforge.transfer.item.ItemResource;
 
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -57,8 +61,19 @@ final class ProcessingTests {
 
     /** Each processing family the JEI plugin renders must have server-side recipes. */
     static void jeiCategoriesNonEmpty(GameTestHelper helper) {
-        for (ProcessingMethod method : ProcessingMethod.values()) {
-            var type = ModProcessingRecipes.type(method);
+        List<RecipeType<?>> categories = new ArrayList<>();
+        for (ProcessingMethod method : ProcessingMethod.values())
+            categories.add(ModProcessingRecipes.type(method));
+        categories.add(ModCannerRecipes.SOLID.get());
+        categories.add(ModCannerRecipes.ENRICH.get());
+        categories.add(ModThermalRecipes.FERMENTING.get());
+        categories.add(ModThermalRecipes.COOLING.get());
+        categories.add(ModThermalRecipes.ELECTROLYZING.get());
+        categories.add(ModProcessingRecipes.WASHING_TYPE.get());
+        categories.add(ModProcessingRecipes.CENTRIFUGE_TYPE.get());
+        categories.add(ModProcessingRecipes.BLAST_FURNACE_TYPE.get());
+        categories.add(ModProcessingRecipes.MATTER_FABRICATOR_TYPE.get());
+        for (RecipeType<?> type : categories) {
             long count =
                     helper.getLevel()
                             .recipeAccess()
@@ -68,7 +83,7 @@ final class ProcessingTests {
                             .count();
             helper.assertTrue(
                     count > 0,
-                    "No recipes for " + method.id() + "; JEI category would be empty");
+                    "No recipes for " + type + "; JEI category would be empty");
         }
         helper.succeed();
     }
