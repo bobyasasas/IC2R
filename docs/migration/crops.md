@@ -504,10 +504,89 @@ common 2000 / uncommon 2200,早段 800 / 750。
   (ic2:cropmatron 四条)与 recipe(shaped/cropmatron)catalog
   翻正后 `progress.py` 重新生成并 `--check` 通过。
 
+## 切片十二:Crop Harvester 作物收割机(2026-09-10)
+
+- **CropHarvesterBlockEntity**(legacy TileEntityCropHarvester):
+  extends PoweredBlockEntity(10000 EU、tier 1),15 内容槽
+  (`Access.IO`:自动化可进可出)+4 升级槽(`kind().slots()`=19)。
+- **扫描语义逐字迁移**:每 10 tick 且储能 ≥21 EU 时 scan():
+  光标与监管机同款(x→z→y,每步 1 EU);命中作物卡非空的
+  CropBlockEntity 且缓存未满时,age==最优收割年龄或==满龄即
+  `performHarvest()`,每收 1 组掉落付 20 EU;掉落先事务试插,
+  插入失败(缓存满/类型不合)整组掉在机器脚下(legacy 语义);
+  成熟收割后 tile 复位由 performHarvest 自带。
+- **喷射器支持**:serverTick 调 `UpgradeTransfers.tick`(与
+  UpgradeableBlockEntity 共用机制),EJECTER 按配置面把缓存
+  抽到相邻容器(速率 1/4/16/64 按count);legacy
+  putInInventory(WEST) 的默认面语义由"无配置=全面"覆盖。
+- **suitability 勘误(对照 legacy ItemUpgradeModule.isSuitableFor
+  映射表)**:cropmatron properties=Transformer/EnergyStorage/
+  ItemConsuming/FluidConsuming → 允许 TRANSFORMER/
+  ENERGY_STORAGE/PULLING/FLUID_PULLING(切片十一的
+  `!=OVERCLOCKER` 误放行了 EJECTOR,已修正);
+  crop harvester properties=Transformer/EnergyStorage/
+  ItemProducing → 允许 TRANSFORMER/ENERGY_STORAGE/EJECTOR。
+- **菜单/界面**:MachineMenu CROP_HARVESTER 分支 5×3 缓存格
+  (48+x·18, 17+y·18)+通用升级列;Screen 复用通用
+  MachineScreen(legacy 仅能量图标);blockstate 12 组合共单一
+  模型(legacy 无 active 态);配方 ABA/CDC/EEE(电路×2+木箱+
+  剪刀+机器+作物杆×3)转换;loot 同机器族(扳手掉自身);
+  lang 键预存在。
+
+## 测试证据(切片十二)
+
+- `crop_harvester_harvests`:六个连续光标位各放满龄 wheat,六次
+  scan 后全部复位且至少 1 组小麦入缓存、能量扣减 ≥26(6 步进
+  +至少一次 20;高斯零掉落概率被六重独立掷骰压到 ~0.01%)。
+- `crop_harvester_full_buffer`:15 槽全满时 scan 只付 1 EU,
+  作物不被收割不被复位(满仓守卫在收获之前)。
+- `crop_harvester_ejector_upgrades`:EJECTOR 配置 EAST 后一
+  tick 把缓存小麦抽进东侧木箱(3→2/箱+1);ENERGY_STORAGE×2
+  →capacity 30000;suitability 五例断言(Transformer/Storage/
+  Ejector 收,Overclocker/Pulling 拒)。
+- IC2 与 GT 双模式 `runGameTestServer` 344 项全绿;registry
+  (ic2:crop_harvester 四条)与 recipe(shaped/crop_harvester)
+  catalog 翻正后 `progress.py` 重新生成并 `--check` 通过。
+
+## 切片十三:群系加成勘误——env-proxy 是 stub,行为本就等价(2026-09-10)
+
+- **三重证据确认 legacy 群系分支为死代码**:①恢复版基线
+  checkout(/home/codex/minecraft/IC2R)与仓库内 legacy 副本的
+  `EnvProxyForge.biomeHasType` 均恒返 false、`getBiomeTypes`
+  均返空集;②readable jar 字节码反汇编实证
+  (`iconst_0; ireturn` / `Collections.emptySet`)——这是随
+  2.10.39-ex120-cannerfix1 发行时的行为,不是恢复工具产物。
+- **legacy 侧死代码影响面**(全部恒走"无群系"分支):作物湿度/
+  养分群系加成表(JUNGLE+10…DEAD−10,TileEntityCrop:604/621)、
+  食人植物 swamp/mountain 时长 /1.5(CropEating:172)、
+  `BiomeUtil.getBiomeTemperature` 的 HOT/COLD(恒 25,且无消费
+  方)、太阳能发电机 SANDY 免雨水衰减(SolarGenerator:41,恒
+  衰减)、太阳能蒸馏器 HOT/COLD 速率分档(恒 72)。
+- **勘误定性**:此前"群系加成因 env-proxy 缺席取 0(文档化
+  偏差)"应更正为"legacy 参考实现本身即取 0,新端行为等价";
+  群系加成从"缺口待迁移"销项。
+- **唯一真实分歧修正**:`SolarGeneratorBlockEntity` 原经
+  `Tags.Biomes.IS_SANDY` 实现了 sandy 免衰减(实现了 legacy 里
+  不可达的分支)——改为恒传 false,与发行字节码一致:任何群系
+  降雨都衰减 5/16。core `SolarGeneration.brightness` 公式保留
+  sandy 参数(忠实 legacy 公式形状,GenerationTest 已覆盖)。
+- **注释与测试**:CropBlockEntity 湿度/养分 terrain 注释、
+  EatingPlantCropCard 时长注释更正为 stub 等价定性;
+  generation_solar GameTest 追加雨水阶段(setRainLevel(1) 立即
+  生效,oRainLevel 同步)—— noon 输出须衰减到 11/16(688±),
+  清空后须恢复;仍属唯一 sunlight 消费测试,批内自恢复。
+
+## 测试证据(切片十三)
+
+- IC2 与 GT 双模式 `runGameTestServer` 344 项全绿(含扩展后的
+  generation_solar 雨水衰减阶段);build、core test、
+  verify_artifact、`git diff --check`、catalog `--check` 通过。
+
 ## 未验收 / 后续切片
 
 - 杂草自然出现(空杆 1/100 掷骰)与踩踏复位(`entityInside` 已
   接线)的实机观察。
-- 肥料/WeedEX/水化罐右键与 Cropmatron 已交付(切片十/十一);
-  余下作物收割机、群系加成(红小麦 swamp/mountain 与
-  env-proxy),以及分析器/图鉴之外的卡信息展示面。
+- 肥料/WeedEX/水化罐、Cropmatron 与作物收割机已交付
+  (切片十/十一/十二);群系加成已按勘误销项(切片十三);
+  余下分析器/图鉴之外的卡信息展示面。
+  未来移植太阳能蒸馏器时按恒 72 速率(不走 HOT/COLD 分档)。

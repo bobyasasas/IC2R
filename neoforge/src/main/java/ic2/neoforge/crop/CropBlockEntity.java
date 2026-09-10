@@ -612,7 +612,10 @@ public class CropBlockEntity extends net.minecraft.world.level.block.entity.Bloc
         setChanged();
     }
 
-    /** Legacy updateTerrainHumidity with the neutral (0) biome bonus of this slice. */
+    /**
+     * Legacy updateTerrainHumidity. The biome bonus term contributes nothing: the shipped
+     * EnvProxyForge stub reports no biome types, so the bonus table is dead code there too.
+     */
     public void updateTerrainHumidity(ServerLevel level) {
         int humidity = 0;
         BlockState below = level.getBlockState(worldPosition.below());
@@ -623,7 +626,7 @@ public class CropBlockEntity extends net.minecraft.world.level.block.entity.Bloc
         terrainHumidity = (byte) humidity;
     }
 
-    /** Legacy updateTerrainNutrients with the neutral (0) biome bonus of this slice. */
+    /** Legacy updateTerrainNutrients; its biome bonus term is dead code in legacy as well. */
     public void updateTerrainNutrients(ServerLevel level) {
         int nutrients = 0;
         for (int i = 1;

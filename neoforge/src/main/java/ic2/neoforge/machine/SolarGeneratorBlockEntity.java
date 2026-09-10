@@ -9,7 +9,6 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.attribute.EnvironmentAttributes;
 import net.minecraft.world.level.LightLayer;
 import net.minecraft.world.level.block.state.BlockState;
-import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.transfer.ResourceHandler;
 import net.neoforged.neoforge.transfer.item.ItemResource;
 
@@ -30,13 +29,16 @@ public final class SolarGeneratorBlockEntity extends GeneratingBlockEntity {
 
     public void sampleSunlight(ServerLevel level) {
         var sample = worldPosition.above();
+        // Legacy gates the rain attenuation behind biomeHasType(SANDY), but the shipped
+        // EnvProxyForge stub returns false unconditionally (bytecode: iconst_0), so every
+        // biome attenuates; the sandy branch is unreachable and stays out here too.
         sunlight =
                 SolarGeneration.brightness(
                         level.dimensionType().hasSkyLight(),
                         level.getBrightness(LightLayer.SKY, sample),
                         level.environmentAttributes()
                                 .getValue(EnvironmentAttributes.SUN_ANGLE, sample),
-                        level.getBiome(sample).is(Tags.Biomes.IS_SANDY),
+                        false,
                         level.getRainLevel(1),
                         level.getThunderLevel(1));
         sampled = true;

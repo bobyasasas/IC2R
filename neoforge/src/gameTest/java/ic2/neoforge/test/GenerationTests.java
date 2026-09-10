@@ -134,6 +134,25 @@ final class GenerationTests {
                                     machine.progress() == 0, "Night must remove solar input");
                         })
                 .thenExecute(() -> helper.setTime(6000))
+                // Legacy's sandy-biome branch is dead (EnvProxyForge stub), so rain must
+                // attenuate everywhere: 1 - 5/16 leaves 11/16 of the noon output.
+                .thenExecute(() -> helper.getLevel().setRainLevel(1.0F))
+                .thenWaitUntil(
+                        () -> {
+                            machine.sampleSunlight(helper.getLevel());
+                            int progress = machine.progress();
+                            helper.assertTrue(
+                                    progress >= 600 && progress <= 700,
+                                    "Rain must attenuate solar output to 11/16, saw " + progress);
+                        })
+                .thenExecute(() -> helper.getLevel().setRainLevel(0.0F))
+                .thenWaitUntil(
+                        () -> {
+                            machine.sampleSunlight(helper.getLevel());
+                            helper.assertTrue(
+                                    machine.progress() > 900,
+                                    "Clear sky must restore full noon output");
+                        })
                 .thenSucceed();
     }
 

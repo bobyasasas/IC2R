@@ -135,8 +135,8 @@ public class EatingPlantCropCard implements CropCard {
 
     @Override
     public int getGrowthDuration(CropBlockEntity crop) {
-        // Legacy additionally divides by 1.5 in swamp or mountain biomes; the environment biome
-        // types are not ported, so that bonus stays out (documented slice-one policy).
+        // Legacy's swamp/mountain 1.5-speed divisor sits behind biomeHasType, whose shipped
+        // stub always answers false, so only the terrain air quality divisor ever applies.
         float multiplier = 1.0F;
         multiplier /= 1.0F + crop.getTerrainAirQuality() / 10.0F;
         return (int) (CropCard.super.getGrowthDuration(crop) * multiplier);
