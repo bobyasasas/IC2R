@@ -37,15 +37,20 @@ final class DynamiteTests {
         helper.assertTrue(
                 helper.getBlockState(POSITION).isAir(), "Losing support pops the dynamite");
         var support = helper.absolutePos(POSITION.south());
-        helper.assertTrue(
-                !helper.getLevel()
-                        .getEntities(
-                                EntityType.ITEM,
-                                new AABB(support).inflate(1.5),
-                                entity -> entity.isAlive())
-                        .isEmpty(),
-                "The popped stick drops a dynamite item");
-        helper.succeed();
+        // The popped item is spawned synchronously, but entity section visibility on a loaded
+        // runner can lag a tick; poll instead of asserting inside the setup tick.
+        helper.startSequence()
+                .thenWaitUntil(
+                        () ->
+                                helper.assertTrue(
+                                        !helper.getLevel()
+                                                .getEntities(
+                                                        EntityType.ITEM,
+                                                        new AABB(support).inflate(1.5),
+                                                        entity -> entity.isAlive())
+                                                .isEmpty(),
+                                        "The popped stick drops a dynamite item"))
+                .thenSucceed();
     }
 
     static void linkedStateToggles(GameTestHelper helper) {
