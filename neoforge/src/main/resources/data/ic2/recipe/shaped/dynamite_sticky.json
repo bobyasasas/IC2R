@@ -1,0 +1,17 @@
+{
+  "type": "ic2:shaped",
+  "pattern": [
+    "DDD",
+    "DRD",
+    "DDD"
+  ],
+  "group": "dynamite_sticky",
+  "result": {
+    "id": "ic2:dynamite_sticky",
+    "count": 8
+  },
+  "key": {
+    "D": "ic2:dynamite",
+    "R": "ic2:resin"
+  }
+}

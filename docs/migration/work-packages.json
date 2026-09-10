@@ -168,9 +168,16 @@
       "id": "P13",
       "parent": "M12",
       "title": "爆炸与电缆附加行为",
-      "status": "todo",
-      "acceptance": "IC2 爆炸、核弹、炸药、遥控；电击、涂色、建筑泡沫。",
-      "evidence": []
+      "status": "in_progress",
+      "acceptance": "炸药棒方块状态机、遥控器配对群爆、工业TNT（实体/方块/渲染/配方）与投掷/粘性炸药（引信链、PointExplosion、发射器、dynamite_sticky 配方）已接入并双模式 GameTest 验收；核弹（Ic2Explosion 全尺寸）、电击、涂色、建筑泡沫与遥控器配对上限待迁移。",
+      "evidence": [
+        "docs/migration/dynamite.md",
+        "docs/migration/itnt.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/DynamiteTests.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/ThrownDynamiteTests.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/ItntTests.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/RemoteTests.java"
+      ]
     },
     {
       "id": "P14",

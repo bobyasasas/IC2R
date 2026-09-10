@@ -1,6 +1,6 @@
 {
   "type": "minecraft:function",
-  "function": "ic2_tests:remote_detonate",
+  "function": "ic2_tests:dynamite_break_fuse",
   "environment": "minecraft:default",
   "structure": "ic2_tests:heat_room",
   "max_ticks": 120

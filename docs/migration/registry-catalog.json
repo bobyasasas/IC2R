@@ -791,12 +791,13 @@
       "factory": "register",
       "expression": "new ItemDynamite(new Properties(), false)",
       "decision": "preserve",
-      "status": "partial",
+      "status": "implemented",
       "evidence": [
         "docs/migration/dynamite.md",
-        "neoforge/src/gameTest/java/ic2/neoforge/test/DynamiteTests.java"
+        "neoforge/src/gameTest/java/ic2/neoforge/test/DynamiteTests.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/ThrownDynamiteTests.java"
       ],
-      "note": "方块状态机/贴面生存/LINKED/放置测试与遥控器配对群爆已交付;支撑弹出与 BlockItem 于切片三补齐;投掷炸药、粘性炸药与红石引信链随后续切片。"
+      "note": "方块状态机/贴面生存/LINKED/遥控器配对群爆、支撑弹出、投掷引信与红石/挖掘/爆炸40/5 tick 引信链已交付;工具箱存储(canBeStoredInToolbox)未单独验收。"
     },
     {
       "registry": "item",
@@ -806,7 +807,12 @@
       "factory": "register",
       "expression": "new ItemDynamite(new Properties(), true)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "note": "StickyDynamiteItem(不放置只投掷)与 StickyDynamite 实体类型、攀附加速引信、支撑脱落回退已交付;发射器投掷行为共享。",
+      "evidence": [
+        "docs/migration/dynamite.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/ThrownDynamiteTests.java"
+      ]
     },
     {
       "registry": "item",
@@ -11840,12 +11846,12 @@
       "factory": "register",
       "expression": "Builder.<DynamiteEntity>of(DynamiteEntity::new, MobCategory.MISC).sized(0.5F, 0.5F).clientTrackingRange(8).updateInterval(5)",
       "decision": "preserve",
-      "status": "partial",
+      "status": "implemented",
       "evidence": [
         "docs/migration/dynamite.md",
-        "neoforge/src/gameTest/java/ic2/neoforge/test/DynamiteTests.java"
+        "neoforge/src/gameTest/java/ic2/neoforge/test/ThrownDynamiteTests.java"
       ],
-      "note": "方块状态机/贴面生存/LINKED/放置测试与遥控器配对群爆已交付;支撑弹出与 BlockItem 于切片三补齐;投掷炸药、粘性炸药与红石引信链随后续切片。"
+      "note": "DynamiteEntity 投掷实体(fuse 100、反弹物理、水中哑火、PointExplosion 3×3×3 威力1/实体伤害20)已交付;爆炸威力不随 legacy dropRate 配置化。"
     },
     {
       "registry": "entity",
@@ -11855,7 +11861,12 @@
       "factory": "register",
       "expression": "Builder.<StickyDynamiteEntity>of(StickyDynamiteEntity::new, MobCategory.MISC).sized(0.5F, 0.5F).clientTrackingRange(8).updateInterval(5)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "note": "粘性类型共用 DynamiteEntity(按实体类型区分):攀附、每 tick 额外 -3 引信、支撑消失回退掉落、方块引爆共用 sticky 类型已交付。",
+      "evidence": [
+        "docs/migration/dynamite.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/ThrownDynamiteTests.java"
+      ]
     },
     {
       "registry": "menu",

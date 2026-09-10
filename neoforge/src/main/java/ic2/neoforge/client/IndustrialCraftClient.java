@@ -61,6 +61,16 @@ public final class IndustrialCraftClient {
                         event.registerEntityRenderer(
                                 ic2.neoforge.registration.ModEntities.ITNT.get(),
                                 ic2.neoforge.client.ItntRenderer::new));
+        modBus.addListener(
+                (EntityRenderersEvent.RegisterRenderers event) ->
+                        event.registerEntityRenderer(
+                                ic2.neoforge.registration.ModEntities.DYNAMITE.get(),
+                                net.minecraft.client.renderer.entity.ThrownItemRenderer::new));
+        modBus.addListener(
+                (EntityRenderersEvent.RegisterRenderers event) ->
+                        event.registerEntityRenderer(
+                                ic2.neoforge.registration.ModEntities.STICKY_DYNAMITE.get(),
+                                net.minecraft.client.renderer.entity.ThrownItemRenderer::new));
         modBus.addListener(FluidModels::register);
         modBus.addListener(
                 (RegisterColorHandlersEvent.BlockTintSources event) ->

@@ -1,7 +1,7 @@
 {
   "type": "minecraft:function",
-  "function": "ic2_tests:remote_detonate",
+  "function": "ic2_tests:dynamite_redstone_fuse",
   "environment": "minecraft:default",
   "structure": "ic2_tests:heat_room",
-  "max_ticks": 120
+  "max_ticks": 200
 }

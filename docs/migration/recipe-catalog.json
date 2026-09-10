@@ -2493,8 +2493,8 @@
     {
       "source": "shaped/dynamite_sticky.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:dynamite_sticky"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/dynamite_sticky.json"
     },
     {
       "source": "shaped/ejector_upgrade.json",

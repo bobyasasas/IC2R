@@ -285,6 +285,15 @@ public final class RegistrationTests {
         FUNCTIONS.register("itnt_break_primes", () -> ItntTests::playerBreakPrimes);
         FUNCTIONS.register("itnt_chain_reaction", () -> ItntTests::chainReaction);
         FUNCTIONS.register("dynamite_linked_toggle", () -> DynamiteTests::linkedStateToggles);
+        FUNCTIONS.register("dynamite_redstone_fuse", () -> DynamiteTests::redstonePrimesFuse);
+        FUNCTIONS.register("dynamite_break_fuse", () -> DynamiteTests::playerBreakPrimesFuse);
+        FUNCTIONS.register("dynamite_explosion_chain", () -> DynamiteTests::explosionChainsFuse);
+        FUNCTIONS.register(
+                "thrown_dynamite_detonates", () -> ThrownDynamiteTests::thrownDynamiteDetonates);
+        FUNCTIONS.register(
+                "sticky_dynamite_accelerates",
+                () -> ThrownDynamiteTests::stickyDynamiteFuseAccelerates);
+        FUNCTIONS.register("dynamite_water_disarms", () -> ThrownDynamiteTests::waterDisarmsFuse);
         FUNCTIONS.register("reactor_vessel_place", () -> ReactorVesselTests::vesselPlaces);
         FUNCTIONS.register(
                 "crystal_memory_roundtrip", () -> CrystalMemoryTests::recordsAndReadsPattern);
