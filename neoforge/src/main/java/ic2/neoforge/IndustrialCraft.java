@@ -26,6 +26,7 @@ import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.config.ModConfig;
+import net.neoforged.fml.loading.FMLEnvironment;
 import net.neoforged.neoforge.common.NeoForge;
 
 /** Composition root: platform registration belongs here, machine rules belong in core. */
@@ -77,6 +78,9 @@ public final class IndustrialCraft {
         gameBus.addListener(WorldEnergyNetworks::tick);
         gameBus.addListener(WorldWind::tick);
         gameBus.addListener(ic2.neoforge.item.HazmatHelper::onIncomingDamage);
+        if (FMLEnvironment.getDist().isClient()) {
+            gameBus.addListener(ic2.neoforge.client.interop.jei.ClientRecipeCache::onRecipesReceived);
+        }
         gameBus.addListener(
                 (net.neoforged.neoforge.event.AddServerReloadListenersEvent event) ->
                         event.addListener(

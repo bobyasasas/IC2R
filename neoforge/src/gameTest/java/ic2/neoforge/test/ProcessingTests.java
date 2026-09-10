@@ -8,6 +8,7 @@ import ic2.neoforge.machine.MachineKind;
 import ic2.neoforge.machine.SingleInputBlockEntity;
 import ic2.neoforge.recipe.ProcessingRecipe;
 import ic2.neoforge.registration.ModMachines;
+import ic2.neoforge.registration.ModProcessingRecipes;
 
 import io.netty.buffer.Unpooled;
 
@@ -50,6 +51,24 @@ final class ProcessingTests {
             helper.assertTrue(!ids.isEmpty(), "Recipe manifest must not be empty");
         } catch (IOException error) {
             throw new AssertionError(error);
+        }
+        helper.succeed();
+    }
+
+    /** Each processing family the JEI plugin renders must have server-side recipes. */
+    static void jeiCategoriesNonEmpty(GameTestHelper helper) {
+        for (ProcessingMethod method : ProcessingMethod.values()) {
+            var type = ModProcessingRecipes.type(method);
+            long count =
+                    helper.getLevel()
+                            .recipeAccess()
+                            .getRecipes()
+                            .stream()
+                            .filter(holder -> holder.value().getType() == type)
+                            .count();
+            helper.assertTrue(
+                    count > 0,
+                    "No recipes for " + method.id() + "; JEI category would be empty");
         }
         helper.succeed();
     }

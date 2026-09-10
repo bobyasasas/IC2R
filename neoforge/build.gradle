@@ -2,7 +2,20 @@ plugins { id 'net.neoforged.moddev' }
 
 base { archivesName = 'ic2-neoforge' }
 
-dependencies { implementation project(':core') }
+repositories {
+    maven {
+        name = 'blamejared'
+        url = 'https://maven.blamejared.com/'
+    }
+}
+
+dependencies {
+    implementation project(':core')
+    // JEI 29.37.0.98 is the 26.1.2 line (M14). Compile-only on purpose: the runtime
+    // jar never ships with IC2 and the @JeiPlugin class stays unloaded without JEI.
+    compileOnly 'mezz.jei:jei-26.1.2-common-api:29.37.0.98'
+    compileOnly 'mezz.jei:jei-26.1.2-neoforge-api:29.37.0.98'
+}
 
 sourceSets {
     gameTest {

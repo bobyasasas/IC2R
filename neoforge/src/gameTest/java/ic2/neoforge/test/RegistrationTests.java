@@ -504,6 +504,7 @@ public final class RegistrationTests {
         FUNCTIONS.register("processing_machines", () -> ProcessingTests::processing);
         FUNCTIONS.register("weighted_persistence", () -> ProcessingTests::weightedPersistence);
         FUNCTIONS.register("processing_recipe_codec", () -> ProcessingTests::recipeCodec);
+        FUNCTIONS.register("jei_categories_non_empty", () -> ProcessingTests::jeiCategoriesNonEmpty);
 
         FUNCTIONS.register("machine_chain", () -> MachineTests::chain);
         FUNCTIONS.register("wire_reconnect", () -> MachineTests::reconnect);
