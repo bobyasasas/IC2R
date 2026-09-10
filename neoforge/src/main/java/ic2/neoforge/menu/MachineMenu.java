@@ -411,6 +411,17 @@ public final class MachineMenu extends AbstractContainerMenu {
                             }
                         });
             }
+        } else if (kind == MachineKind.CROP_HARVESTER) {
+            // Legacy ContainerCropHarvester: a 5x3 harvest buffer, upgrades on the right.
+            for (int slot = 0; slot < CropHarvesterBlockEntity.CONTENT_END; slot++) {
+                addSlot(
+                        new ResourceHandlerSlot(
+                                inventory,
+                                inventory::set,
+                                slot,
+                                48 + slot % 5 * 18,
+                                17 + slot / 5 * 18));
+            }
         } else if (kind.turbine()) {
             addSlot(
                     new ResourceHandlerSlot(inventory, inventory::set, 0, 133, 24) {

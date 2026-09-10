@@ -2421,8 +2421,8 @@
     {
       "source": "shaped/crop_harvester.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:crop_harvester"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/crop_harvester.json"
     },
     {
       "source": "shaped/crop_stick.json",

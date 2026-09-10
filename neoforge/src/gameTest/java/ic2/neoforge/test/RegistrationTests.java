@@ -453,6 +453,12 @@ public final class RegistrationTests {
         FUNCTIONS.register(
                 "cropmatron_containers_upgrades", () -> CropmatronTests::containersAndUpgrades);
         FUNCTIONS.register(
+                "crop_harvester_harvests", () -> CropHarvesterTests::harvestsRipeCrop);
+        FUNCTIONS.register(
+                "crop_harvester_full_buffer", () -> CropHarvesterTests::fullBufferGuards);
+        FUNCTIONS.register(
+                "crop_harvester_ejector_upgrades", () -> CropHarvesterTests::ejectorAndUpgrades);
+        FUNCTIONS.register(
                 "radiation_hazmat_set", () -> RadiationTests::hazmatCompleteSetDetection);
         FUNCTIONS.register(
                 "radiation_effect_damage", () -> RadiationTests::radiationEffectDamagesHost);

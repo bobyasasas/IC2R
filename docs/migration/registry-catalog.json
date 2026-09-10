@@ -2319,7 +2319,13 @@
       "factory": "register",
       "expression": "new ItemBlockIc2(Ic2Blocks.CROP_HARVESTER, new Properties())",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "docs/migration/crops.md",
+        "neoforge/src/main/java/ic2/neoforge/machine/CropHarvesterBlockEntity.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/CropHarvesterTests.java"
+      ],
+      "note": "作物收割机已实现：9x3x9 扫描收割、15 槽缓存、满仓守卫、喷射器导出、储能与变压器升级；实机/多人验收待完成。"
     },
     {
       "registry": "item",
@@ -8472,7 +8478,13 @@
       "factory": "register",
       "expression": "Ic2TileEntityBlock.create(Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).strength(2.0F, 10.0F).requiresCorrectToolForDrops().sound(SoundType.METAL), TileEntityCropHarvester.class, false, Ic2TileEntityBlock.DefaultDrop.Machine, Util.horizontalFacings, true)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "docs/migration/crops.md",
+        "neoforge/src/main/java/ic2/neoforge/machine/CropHarvesterBlockEntity.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/CropHarvesterTests.java"
+      ],
+      "note": "作物收割机已实现：9x3x9 扫描收割、15 槽缓存、满仓守卫、喷射器导出、储能与变压器升级；实机/多人验收待完成。"
     },
     {
       "registry": "block",
@@ -11838,7 +11850,13 @@
       "factory": "register",
       "expression": "TileEntityCropHarvester::new",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "docs/migration/crops.md",
+        "neoforge/src/main/java/ic2/neoforge/machine/CropHarvesterBlockEntity.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/CropHarvesterTests.java"
+      ],
+      "note": "作物收割机已实现：9x3x9 扫描收割、15 槽缓存、满仓守卫、喷射器导出、储能与变压器升级；实机/多人验收待完成。"
     },
     {
       "registry": "block_entity",
@@ -12883,7 +12901,13 @@
       "factory": "registerManagedBe",
       "expression": "",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "docs/migration/crops.md",
+        "neoforge/src/main/java/ic2/neoforge/machine/CropHarvesterBlockEntity.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/CropHarvesterTests.java"
+      ],
+      "note": "作物收割机已实现：9x3x9 扫描收割、15 槽缓存、满仓守卫、喷射器导出、储能与变压器升级；实机/多人验收待完成。"
     },
     {
       "registry": "menu",

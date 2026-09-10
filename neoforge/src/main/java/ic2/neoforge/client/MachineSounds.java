@@ -140,6 +140,7 @@ final class MachineSounds {
                     ORE_WASHING_PLANT,
                     METAL_FORMER,
                     CROPMATRON,
+                    CROP_HARVESTER,
                     SOLAR_GENERATOR ->
                     null;
             case ELECTROLYZER -> ModSounds.MACHINE_ELECTROLYZER_LOOP.get();

@@ -82,7 +82,8 @@ public enum MachineKind implements StringRepresentable {
     EXTRACTOR("extractor", 600, 3, 300, 2),
     COMPRESSOR("compressor", 600, 3, 300, 2),
     BLOCK_CUTTER("block_cutter", 1800, 4, 450, 4),
-    CROPMATRON("cropmatron", 10000, 11, 0, 0);
+    CROPMATRON("cropmatron", 10000, 11, 0, 0),
+    CROP_HARVESTER("crop_harvester", 10000, 15, 0, 0);
 
     public static final Codec<MachineKind> CODEC =
             StringRepresentable.fromEnum(MachineKind::values);
@@ -255,6 +256,7 @@ public enum MachineKind implements StringRepresentable {
 
     public int upgradeSlots() {
         if (this == CROPMATRON) return 4;
+        if (this == CROP_HARVESTER) return 4;
         if (this == ADV_MINER) return 4;
         if (this == ITEM_BUFFER || this == BLAST_FURNACE) return 2;
         if (this == MATTER_GENERATOR) return 4;

@@ -162,6 +162,7 @@ public final class ModMachines {
             case MACERATOR, EXTRACTOR, COMPRESSOR -> new SingleInputBlockEntity(pos, state);
             case BLOCK_CUTTER -> new ic2.neoforge.machine.BlockCutterBlockEntity(pos, state);
             case CROPMATRON -> new ic2.neoforge.machine.CropmatronBlockEntity(pos, state);
+            case CROP_HARVESTER -> new ic2.neoforge.machine.CropHarvesterBlockEntity(pos, state);
         };
     }
 
