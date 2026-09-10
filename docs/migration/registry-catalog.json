@@ -5063,7 +5063,14 @@
       "factory": "register",
       "expression": "new ItemCropAnalyzer(new Properties().stacksTo(1).rarity(Rarity.UNCOMMON))",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/item/CropAnalyzerItem.java",
+        "neoforge/src/main/java/ic2/neoforge/menu/CropAnalyzerMenu.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/CropAnalyzerTests.java",
+        "docs/migration/crops.md"
+      ],
+      "note": "作物分析仪：手持 GUI 三槽（输入/输出/电池）、右键作物 900 EU 七行播报、扫描 10/90/9000/免费四级已验证。"
     },
     {
       "registry": "item",
@@ -13159,7 +13166,14 @@
       "factory": "registerManagedItem",
       "expression": "",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/item/CropAnalyzerItem.java",
+        "neoforge/src/main/java/ic2/neoforge/menu/CropAnalyzerMenu.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/CropAnalyzerTests.java",
+        "docs/migration/crops.md"
+      ],
+      "note": "IMenuTypeExtension 手持菜单模式，槽内容持久化到分析器数据组件，broadcastChanges 每 tick tryScan。"
     },
     {
       "registry": "menu",

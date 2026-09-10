@@ -51,4 +51,9 @@ public record CropSeed(String cropId, int growth, int gain, int resistance, int 
     private static int clampStat(int value) {
         return Math.clamp(value, 0, 31);
     }
+
+    /** Legacy addScan: one analyzer scan step, capped at 31 like every other stat. */
+    public CropSeed incrementScan() {
+        return new CropSeed(cropId, growth, gain, resistance, scan + 1);
+    }
 }

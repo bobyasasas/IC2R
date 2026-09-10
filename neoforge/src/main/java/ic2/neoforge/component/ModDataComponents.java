@@ -121,6 +121,26 @@ public final class ModDataComponents {
                                             ItemContainerContents.STREAM_CODEC.map(
                                                     ModDataComponents::validFilter,
                                                     ModDataComponents::validFilter)));
+    /** The crop analyzer's three handheld slots (input, output, battery). */
+    public static final Supplier<DataComponentType<ItemContainerContents>> ANALYZER_CONTENTS =
+            TYPES.<ItemContainerContents>registerComponentType(
+                    "analyzer_contents",
+                    builder ->
+                            builder.persistent(
+                                            ItemContainerContents.CODEC.validate(
+                                                    contents ->
+                                                            contents.getSlots() <= 3
+                                                                    ? DataResult.success(contents)
+                                                                    : DataResult.error(
+                                                                            () ->
+                                                                                    "Crop analyzer"
+                                                                                        + " carries"
+                                                                                        + " more"
+                                                                                        + " than"
+                                                                                        + " three"
+                                                                                        + " slots")))
+                                    .networkSynchronized(ItemContainerContents.STREAM_CODEC));
+
     public static final Supplier<DataComponentType<Boolean>> MINING_FILTER_BLACKLIST =
             TYPES.<Boolean>registerComponentType(
                     "mining_filter_blacklist",

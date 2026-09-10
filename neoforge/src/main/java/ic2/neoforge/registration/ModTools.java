@@ -5,6 +5,7 @@ import ic2.neoforge.IndustrialCraft;
 import ic2.neoforge.item.*;
 import ic2.neoforge.item.ElectricTreetapItem;
 import ic2.neoforge.item.TreetapItem;
+import ic2.neoforge.menu.CropAnalyzerMenu;
 import ic2.neoforge.menu.MiningFilterMenu;
 
 import net.minecraft.core.component.DataComponents;
@@ -17,6 +18,7 @@ import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.component.Tool;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.bus.api.IEventBus;
@@ -125,6 +127,13 @@ public final class ModTools {
                                     50));
     public static final DeferredItem<FrequencyTransmitterItem> FREQUENCY_TRANSMITTER =
             ITEMS.registerItem("frequency_transmitter", FrequencyTransmitterItem::new);
+    public static final DeferredItem<CropAnalyzerItem> CROP_ANALYZER =
+            ITEMS.registerItem(
+                    "crop_analyzer",
+                    p ->
+                            new CropAnalyzerItem(
+                                    p.stacksTo(1).rarity(Rarity.UNCOMMON),
+                                    new ElectricItemSpec(100000, 128, 2, false)));
     public static final DeferredItem<ScannerItem> ADVANCED_SCANNER =
             ITEMS.registerItem(
                     "advanced_scanner",
@@ -159,6 +168,14 @@ public final class ModTools {
                                     (id, inventory, data) ->
                                             new MiningFilterMenu(
                                                     id, inventory, data.readVarInt(), true)));
+    public static final DeferredHolder<MenuType<?>, MenuType<CropAnalyzerMenu>> CROP_ANALYZER_MENU =
+            MENUS.register(
+                    "crop_analyzer",
+                    () ->
+                            IMenuTypeExtension.create(
+                                    (id, inventory, data) ->
+                                            new CropAnalyzerMenu(
+                                                    id, inventory, data.readVarInt(), true)));
 
     private static Item.Properties tool(Item.Properties properties, int damage) {
         var blocks =
@@ -189,6 +206,7 @@ public final class ModTools {
             event.accept(SCANNER);
             event.accept(ADVANCED_SCANNER);
             event.accept(FREQUENCY_TRANSMITTER);
+            event.accept(CROP_ANALYZER);
             event.accept(MINING_FILTER_CARD);
             event.accept(PAINTER);
             for (DyeColor color : DyeColor.values()) {

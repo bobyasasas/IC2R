@@ -437,6 +437,9 @@ public final class RegistrationTests {
                 "crop_crossing_base_interactions", () -> CropTests::cropCrossingBaseInteractions);
         FUNCTIONS.register("crop_crossing_breed", () -> CropTests::cropCrossingBreed);
         FUNCTIONS.register("crop_crossing_spread", () -> CropTests::cropCrossingSpread);
+        FUNCTIONS.register("crop_analyzer_scan_ladder", () -> CropAnalyzerTests::scanLadder);
+        FUNCTIONS.register("crop_analyzer_report", () -> CropAnalyzerTests::cropReport);
+        FUNCTIONS.register("crop_analyzer_menu", () -> CropAnalyzerTests::menuIntegration);
         FUNCTIONS.register(
                 "radiation_hazmat_set", () -> RadiationTests::hazmatCompleteSetDetection);
         FUNCTIONS.register(

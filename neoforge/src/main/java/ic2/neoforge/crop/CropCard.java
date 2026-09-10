@@ -63,6 +63,29 @@ public interface CropCard {
         return new String[0];
     }
 
+    /** Legacy getDiscoveredBy: breeding credit; no card in this migration overrides it. */
+    default String getDiscoveredBy() {
+        return "unknown";
+    }
+
+    /** Legacy desc: the attribute list folded into the analyzer's two description lines. */
+    default String desc(int index) {
+        String[] attributes = getAttributes();
+        if (attributes.length == 0) return "";
+        if (index == 0) {
+            String line = attributes[0];
+            if (attributes.length >= 2) {
+                line += ", " + attributes[1];
+                if (attributes.length >= 3) line += ",";
+            }
+            return line;
+        }
+        if (attributes.length < 3) return "";
+        String line = attributes[2];
+        if (attributes.length >= 4) line += ", " + attributes[3];
+        return line;
+    }
+
     /** How deep below the stick the crop's roots reach (legacy getRootsLength). */
     default int getRootsLength(CropBlockEntity crop) {
         return 1;

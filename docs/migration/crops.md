@@ -366,3 +366,64 @@ common 2000 / uncommon 2200,早段 800 / 750。
 - 52 张作物卡的移植面已齐(其余均为卡内交互或环境项);杂交/
   crossing base 已交付,余下作物分析器、Cropmatron、收割机、
   群系加成、discoveredBy/attributes 的展示面(随分析器切片)。
+
+
+## 未验收 / 后续切片
+
+- 杂草自然出现(空杆 1/100 掷骰)的实机观察;WeedEX 水罐/肥料/
+  水化罐的右键交互。踩踏判定已接线(`entityInside`),待实机观察。
+- 作物分析器已交付(切片九);余下 Cropmatron、收割机、群系
+  加成(红小麦 swamp/mountain 与 env-proxy),以及分析器/图鉴
+  之外的卡信息展示面。
+## 切片九:作物分析器(2026-09-10)
+
+- **物品**(legacy ItemCropAnalyzer):手持 10 万 EU/tier 2 缓冲
+  (转移 128),UNCOMMON 稀有度,能量条显示沿用 ElectricItem。
+  空手 `use` 打开手持 GUI(服务端 `openMenu`,槽位序号走
+  varint 附加数据);`onItemUseFirst` 右键作物 tile(非潜行、
+  服务端、tile 有卡)付 900 EU(`energyForLevel(2)`)播报 7 行
+  系统消息:名称(内嵌 `ic2.crop.<id>`)、发现者、年龄、养分、
+  水分、WeedEX、生长点数/周期;电量不足静默 PASS(legacy 语义:
+  use 失败不提示)。报告以 `List<Component>` 返回供测试断言。
+- **CropCard 展示面**:接口补 `getDiscoveredBy()`(本迁移无卡覆
+  写,默认 "unknown")与 `desc(int)`(legacy 属性表折叠成两行:
+  desc(0)=att[0]+", "+att[1],desc(1)=att[2]+", "+att[3],越界
+  跳过),分析器 GUI 与未来图鉴共用。
+- **手持菜单**(legacy ContainerAnalyzer/HandHeldCropAnalyzer):
+  三真实槽——输入(8,7)仅收种子袋、输出(41,7)只出不进、电池
+  (152,7)为 `SlotDischarge(tier)` 等价的放电门(需能按分析器
+  tier 放出电量,空电池拒收,与 legacy simulate 判定一致)+玩家
+  背包三排与快捷栏(176×223)。槽内容持久化到分析器栈
+  `analyzer_contents` 数据组件(≤3 槽校验);`broadcastChanges`
+  每 tick `tryScan`,槽位变更即回写;`stillValid` 校验手持同一
+  栈,数字键换位被挡(MiningFilterMenu 同款)。关 GUI 物件留栈
+  (26.1.2 removed() 不清槽容器,即 legacy 手持库存行为)。
+- **tryScan 全语义**:输出占用/输入空/非种子→不动;scan≥4 免费
+  挪到输出(不扣电不升级);否则按 `energyForLevel`(1→90/
+  2→900/3→9000/default→10)从分析器自身扣费(legacy 电池槽只
+  是放置门,不喂扫描),扣后 scan+1 并移到输出。
+- **GUI**(legacy GuiCropAnalyzer,程序化背景无纹理):按扫描
+  等级逐层揭示——0→UNKNOWN(8,37);≥1→作物名;≥2→Tier 罗马字
+  (I..XVI,默认 0)+Discovered by(8,50/73/86);≥3→desc 两行
+  (8,109/122);≥4→Growth/Gain/Resistance 标签与数值
+  (118 列,色 0xAE26E6/0xEEC900/0x00CED1)。客户端直接读同步
+  槽栈上的 CROP_SEED 组件与卡查询,无自建网络同步。
+- **配方**:legacy shaped(AA /BCB/BDB:绝缘铜缆+红石×4+#c:glass
+  +电路)转 `ic2:shaped`;新端无 c:glass tag,按 forge:glass
+  1.20.1 内容新建(玻璃+tinted+16 染色玻璃);补上切片一遗漏的
+  crop_stick 配方(S S/S S,4 棍出 2)——该行自切片一起一直
+  pending 而物品早已实现,本次一并转正。
+
+## 测试证据(切片九)
+
+- `crop_analyzer_scan_ladder`:规格断言(10 万/tier 2/128);
+  无电不动;10/90/900/9000 四级精确扣费逐级升 scan;满级免费挪
+  且不扣电;输出占用拒绝;非种子袋拒绝。
+- `crop_analyzer_report`:种 wheat 后(tile 已换成作物方块,重新
+  取 BE)未电无报告;充电 1000 报告 7 行,余 100(900 EU 费)。
+- `crop_analyzer_menu`:mock 玩家手持充电分析器开菜单;输入槽
+  仅收种子袋/输出槽拒放/电池槽收充过 RE 电池拒泥土;塞入种子袋
+  一次 broadcastChanges 即完成 10 EU 扫描并移到输出;组件回写
+  (尾空槽裁剪后 2 槽,槽 1 为 scan 1 的袋)。
+- IC2 与 GT 双模式 `runGameTestServer` 335 项全绿;registry/
+  recipe catalog 翻正后 `progress.py` 重新生成并 `--check` 通过。

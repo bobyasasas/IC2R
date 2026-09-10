@@ -1,0 +1,18 @@
+{
+  "type": "ic2:shaped",
+  "pattern": [
+    "AA ",
+    "BCB",
+    "BDB"
+  ],
+  "result": {
+    "id": "ic2:crop_analyzer",
+    "count": 1
+  },
+  "key": {
+    "A": "ic2:insulated_copper_cable",
+    "B": "minecraft:redstone",
+    "C": "#c:glass",
+    "D": "ic2:circuit"
+  }
+}

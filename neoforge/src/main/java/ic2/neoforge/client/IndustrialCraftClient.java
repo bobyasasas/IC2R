@@ -95,6 +95,7 @@ public final class IndustrialCraftClient {
         event.register(ModToolbox.MENU.get(), ToolboxScreen::new);
         event.register(ic2.neoforge.registration.ModNuke.NUKE_MENU.get(), NukeScreen::new);
         event.register(ModTools.MINING_FILTER_MENU.get(), MiningFilterScreen::new);
+        event.register(ModTools.CROP_ANALYZER_MENU.get(), CropAnalyzerScreen::new);
         ModMachines.MACHINES.forEach(
                 (kind, registration) -> {
                     if (kind.energyDevice())

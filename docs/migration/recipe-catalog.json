@@ -2415,8 +2415,8 @@
     {
       "source": "shaped/crop_analyzer.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:crop_analyzer"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/crop_analyzer.json"
     },
     {
       "source": "shaped/crop_harvester.json",
@@ -2427,8 +2427,8 @@
     {
       "source": "shaped/crop_stick.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:crop_stick"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/crop_stick.json"
     },
     {
       "source": "shaped/cropmatron.json",
