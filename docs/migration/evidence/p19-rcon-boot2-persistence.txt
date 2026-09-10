@@ -1,0 +1,12 @@
+== boot2 forceload
+No chunks were marked for force loading
+
+== generator after restart
+-9, 56, -6 has the following block data: {components: {}, fuel: 0, x: -9, y: 56, z: -6, totalFuel: 400, id: "ic2:generator", inventory: {stacks: [{}, {}]}, energy: 3328.0d}
+
+== transformer after restart
+-7, 56, -6 has the following block data: {mode: 2, components: {}, x: -7, y: 56, z: -6, id: "ic2:lv_transformer", inventory: {stacks: []}, energy: 256.0d}
+
+== sign after restart
+-7, 56, -4 has the following block data: {back_text: {has_glowing_text: 0b, color: "black", messages: ["", "", "", ""]}, components: {}, is_waxed: 0b, x: -7, y: 56, z: -4, id: "ic2:sign", front_text: {has_glowing_text: 1b, color: "blue", messages: ["IC2R 26.1.2", "Rubber Wood", "Native Sign", "Migration"]}}
+

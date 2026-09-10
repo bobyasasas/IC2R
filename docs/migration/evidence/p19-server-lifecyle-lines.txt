@@ -1,0 +1,25 @@
+/tmp/p19-server-boot1.log:[19:07:24] [Server thread/INFO] [minecraft/DedicatedServer]: Done (0.171s)! For help, type "help"
+/tmp/p19-server-boot1.log:[19:07:24] [Server thread/INFO] [minecraft/MinecraftServer]: Saving chunks for level 'ServerLevel[IC2 Migration Smoke]'/minecraft:overworld
+/tmp/p19-server-boot1.log:[19:07:24] [Server thread/INFO] [minecraft/MinecraftServer]: Saving chunks for level 'ServerLevel[IC2 Migration Smoke]'/minecraft:the_end
+/tmp/p19-server-boot1.log:[19:07:24] [Server thread/INFO] [minecraft/MinecraftServer]: Saving chunks for level 'ServerLevel[IC2 Migration Smoke]'/minecraft:the_nether
+/tmp/p19-server-boot1.log:[19:07:24] [Server thread/INFO] [minecraft/MinecraftServer]: ThreadedAnvilChunkStorage: All dimensions are saved
+/tmp/p19-server-boot1.log:[19:13:47] [Server thread/INFO] [minecraft/PlayerList]: Dev[/127.0.0.1:57308] logged in with entity id 1 at (-6.5, 56.0, -6.5)
+/tmp/p19-server-boot1.log:[19:13:47] [Server thread/INFO] [minecraft/MinecraftServer]: Dev joined the game
+/tmp/p19-server-boot1.log:[19:15:29] [Server thread/INFO] [minecraft/MinecraftServer]: Saving chunks for level 'ServerLevel[IC2 Migration Smoke]'/minecraft:overworld
+/tmp/p19-server-boot1.log:[19:15:29] [Server thread/INFO] [minecraft/MinecraftServer]: Saving chunks for level 'ServerLevel[IC2 Migration Smoke]'/minecraft:the_end
+/tmp/p19-server-boot1.log:[19:15:29] [Server thread/INFO] [minecraft/MinecraftServer]: Saving chunks for level 'ServerLevel[IC2 Migration Smoke]'/minecraft:the_nether
+/tmp/p19-server-boot1.log:[19:15:29] [Server thread/INFO] [minecraft/MinecraftServer]: ThreadedAnvilChunkStorage: All dimensions are saved
+/tmp/p19-server-boot2.log:[19:16:17] [Server thread/INFO] [minecraft/DedicatedServer]: Done (0.372s)! For help, type "help"
+/tmp/p19-server-boot2.log:[19:16:17] [Server thread/INFO] [minecraft/MinecraftServer]: Saving chunks for level 'ServerLevel[IC2 Migration Smoke]'/minecraft:overworld
+/tmp/p19-server-boot2.log:[19:16:18] [Server thread/INFO] [minecraft/MinecraftServer]: Saving chunks for level 'ServerLevel[IC2 Migration Smoke]'/minecraft:the_end
+/tmp/p19-server-boot2.log:[19:16:18] [Server thread/INFO] [minecraft/MinecraftServer]: Saving chunks for level 'ServerLevel[IC2 Migration Smoke]'/minecraft:the_nether
+/tmp/p19-server-boot2.log:[19:16:18] [Server thread/INFO] [minecraft/MinecraftServer]: ThreadedAnvilChunkStorage: All dimensions are saved
+/tmp/p19-server-boot2.log:[19:17:03] [Server thread/INFO] [minecraft/PlayerList]: Dev[/127.0.0.1:56724] logged in with entity id 1 at (-6.5, 56.0, -4.5)
+/tmp/p19-server-boot2.log:[19:17:03] [Server thread/INFO] [minecraft/MinecraftServer]: Dev joined the game
+/tmp/p19-server-boot2.log:[19:17:45] [Server thread/INFO] [minecraft/ServerGamePacketListenerImpl]: Dev lost connection: Disconnected
+/tmp/p19-server-boot2.log:[19:17:45] [Server thread/INFO] [minecraft/MinecraftServer]: Dev left the game
+/tmp/p19-server-boot2.log:[19:18:35] [Server thread/INFO] [minecraft/MinecraftServer]: [Rcon: Stopping the server]
+/tmp/p19-server-boot2.log:[19:18:35] [Server thread/INFO] [minecraft/MinecraftServer]: Saving chunks for level 'ServerLevel[IC2 Migration Smoke]'/minecraft:overworld
+/tmp/p19-server-boot2.log:[19:18:35] [Server thread/INFO] [minecraft/MinecraftServer]: Saving chunks for level 'ServerLevel[IC2 Migration Smoke]'/minecraft:the_end
+/tmp/p19-server-boot2.log:[19:18:35] [Server thread/INFO] [minecraft/MinecraftServer]: Saving chunks for level 'ServerLevel[IC2 Migration Smoke]'/minecraft:the_nether
+/tmp/p19-server-boot2.log:[19:18:35] [Server thread/INFO] [minecraft/MinecraftServer]: ThreadedAnvilChunkStorage: All dimensions are saved

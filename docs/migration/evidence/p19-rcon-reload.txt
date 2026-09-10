@@ -1,0 +1,14 @@
+== reload start
+1789081968.895885105
+Reloading!
+
+1789081981.460833341
+== reload errors check
+There are 0 of a max of 20 players online: 
+
+== data get generator after reload
+-9, 56, -6 has the following block data: {components: {}, fuel: 0, x: -9, y: 56, z: -6, totalFuel: 400, id: "ic2:generator", inventory: {stacks: [{}, {}]}, energy: 3328.0d}
+
+== data get transformer after reload
+-7, 56, -6 has the following block data: {mode: 2, components: {}, x: -7, y: 56, z: -6, id: "ic2:lv_transformer", inventory: {stacks: []}, energy: 256.0d}
+

@@ -1,0 +1,18 @@
+== forceload
+Marked 16 chunks in Overworld from [-2, -2] to [1, 1] to be force loaded
+
+== data get generator
+-9, 56, -6 has the following block data: {components: {}, fuel: 0, x: -9, y: 56, z: -6, totalFuel: 400, id: "ic2:generator", inventory: {stacks: [{}, {}]}, energy: 3328.0d}
+
+== data get lv_transformer
+-7, 56, -6 has the following block data: {mode: 2, components: {}, x: -7, y: 56, z: -6, id: "ic2:lv_transformer", inventory: {stacks: []}, energy: 256.0d}
+
+== tick query
+The game is running normally
+Target tick rate: 20.0 per second.
+Average time per tick: 0.3ms (Target: 50.0ms)
+Percentiles: P50: 0.2ms P95: 0.4ms P99: 2.8ms. Sample: 100
+
+== time query gametime
+The game time is 110052 tick(s)
+

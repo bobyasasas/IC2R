@@ -1,0 +1,15 @@
+== list
+There are 1 of a max of 20 players online: Dev
+
+== tp
+Teleported Dev to -6.500000, 57.000000, -4.500000
+
+== tick query with player
+The game is running normally
+Target tick rate: 20.0 per second.
+Average time per tick: 1.2ms (Target: 50.0ms)
+Percentiles: P50: 1.1ms P95: 1.7ms P99: 3.3ms. Sample: 100
+
+== gametime t0
+The game time is 110526 tick(s)
+

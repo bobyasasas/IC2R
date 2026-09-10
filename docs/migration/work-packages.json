@@ -274,9 +274,16 @@
       "id": "P19",
       "parent": "M16",
       "title": "多人及性能",
-      "status": "todo",
+      "status": "in_progress",
       "acceptance": "双人操作、断线、区块加载、重启、资源重载与性能基线。",
-      "evidence": []
+      "evidence": [
+        "docs/migration/multiplayer-perf.md",
+        "tools/migration/rcon.py",
+        "docs/migration/evidence/p19-rcon-boot2-persistence.txt",
+        "docs/migration/evidence/p19-rcon-reload.txt",
+        "docs/migration/evidence/p19-rcon-disconnect-stop.txt",
+        "docs/migration/evidence/p19-server-lifecyle-lines.txt"
+      ]
     },
     {
       "id": "P20",
