@@ -3,6 +3,7 @@ package ic2.neoforge.crop;
 import ic2.core.crop.CropProperties;
 import ic2.neoforge.registration.ModCrops;
 
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
@@ -41,9 +42,11 @@ public class NetherWartCropCard implements CropCard {
     public void tick(CropBlockEntity crop) {
         if (crop.isBlockBelow(Blocks.SOUL_SAND)) {
             if (canGrow(crop)) crop.setGrowthPoints(crop.getGrowthPoints() + 100);
+        } else if (crop.isBlockBelow(Blocks.SNOW)
+                && crop.getLevel() instanceof ServerLevel level
+                && level.getRandom().nextInt(300) == 0) {
+            crop.setCrop(level, ModCrops.TERRA_WART_CARD);
         }
-        // The legacy snow-below transmutation into terra wort stays out: the terra wart card and
-        // item are not migrated yet.
     }
 
     @Override

@@ -101,7 +101,22 @@ public class CropBlock extends Block implements EntityBlock {
     protected void attack(BlockState state, Level level, BlockPos pos, Player player) {
         if (level instanceof ServerLevel serverLevel
                 && serverLevel.getBlockEntity(pos) instanceof CropBlockEntity crop) {
-            crop.pick();
+            var card = crop.card();
+            if (card != null) card.onLeftClick(crop, player);
+        }
+    }
+
+    @Override
+    protected void entityInside(
+            BlockState state,
+            Level level,
+            BlockPos pos,
+            net.minecraft.world.entity.Entity entity,
+            net.minecraft.world.entity.InsideBlockEffectApplier effectApplier,
+            boolean isPrecise) {
+        if (level instanceof ServerLevel serverLevel
+                && serverLevel.getBlockEntity(pos) instanceof CropBlockEntity crop) {
+            crop.onEntityCollision(entity);
         }
     }
 

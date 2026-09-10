@@ -50,7 +50,7 @@ public class HopsCropCard implements CropCard {
     }
 
     @Override
-    public int getAgeAfterHarvest() {
+    public int getAgeAfterHarvest(CropBlockEntity crop) {
         return 2;
     }
 }

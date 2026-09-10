@@ -5237,7 +5237,13 @@
       "factory": "register",
       "expression": "new ItemTerraWart(new Properties().food(new Builder().nutrition(0).saturationMod(1.0F).alwaysEat().build()).rarity(Rarity.RARE))",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModCrops.java",
+        "neoforge/src/main/java/ic2/neoforge/item/TerraWartItem.java",
+        "docs/migration/crops.md"
+      ],
+      "note": "Crop slice four: legacy ItemTerraWart food cure chain (nausea/mining fatigue/hunger/slowness/weakness/blindness/poison/wither + radiation shortened by 600 ticks); creative food tab."
     },
     {
       "registry": "item",
@@ -9708,7 +9714,12 @@
       "factory": "register",
       "expression": "Ic2TileEntityBlock.create(cropSettings, TileEntityCrop.class, false, Ic2TileEntityBlock.DefaultDrop.Self, Util.noFacings, false, Ic2CropType.pumpkin)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModCrops.java",
+        "docs/migration/crops.md"
+      ],
+      "note": "Crop slice four: card ported with base seeds (flowers at legacy size three) and age semantics verified against legacy CropPumpkin/CropMelon/CropColorFlower/CropVenomilia/CropStickyReed/CropTerraWart."
     },
     {
       "registry": "block",
@@ -9718,7 +9729,12 @@
       "factory": "register",
       "expression": "Ic2TileEntityBlock.create(cropSettings, TileEntityCrop.class, false, Ic2TileEntityBlock.DefaultDrop.Self, Util.noFacings, false, Ic2CropType.melon)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModCrops.java",
+        "docs/migration/crops.md"
+      ],
+      "note": "Crop slice four: card ported with base seeds (flowers at legacy size three) and age semantics verified against legacy CropPumpkin/CropMelon/CropColorFlower/CropVenomilia/CropStickyReed/CropTerraWart."
     },
     {
       "registry": "block",
@@ -9728,7 +9744,12 @@
       "factory": "register",
       "expression": "Ic2TileEntityBlock.create(cropSettings, TileEntityCrop.class, false, Ic2TileEntityBlock.DefaultDrop.Self, Util.noFacings, false, Ic2CropType.dandelion)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModCrops.java",
+        "docs/migration/crops.md"
+      ],
+      "note": "Crop slice four: card ported with base seeds (flowers at legacy size three) and age semantics verified against legacy CropPumpkin/CropMelon/CropColorFlower/CropVenomilia/CropStickyReed/CropTerraWart."
     },
     {
       "registry": "block",
@@ -9738,7 +9759,12 @@
       "factory": "register",
       "expression": "Ic2TileEntityBlock.create(cropSettings, TileEntityCrop.class, false, Ic2TileEntityBlock.DefaultDrop.Self, Util.noFacings, false, Ic2CropType.poppy)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModCrops.java",
+        "docs/migration/crops.md"
+      ],
+      "note": "Crop slice four: card ported with base seeds (flowers at legacy size three) and age semantics verified against legacy CropPumpkin/CropMelon/CropColorFlower/CropVenomilia/CropStickyReed/CropTerraWart."
     },
     {
       "registry": "block",
@@ -9748,7 +9774,12 @@
       "factory": "register",
       "expression": "Ic2TileEntityBlock.create(cropSettings, TileEntityCrop.class, false, Ic2TileEntityBlock.DefaultDrop.Self, Util.noFacings, false, Ic2CropType.blackthorn)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModCrops.java",
+        "docs/migration/crops.md"
+      ],
+      "note": "Crop slice four: card ported with base seeds (flowers at legacy size three) and age semantics verified against legacy CropPumpkin/CropMelon/CropColorFlower/CropVenomilia/CropStickyReed/CropTerraWart."
     },
     {
       "registry": "block",
@@ -9758,7 +9789,12 @@
       "factory": "register",
       "expression": "Ic2TileEntityBlock.create(cropSettings, TileEntityCrop.class, false, Ic2TileEntityBlock.DefaultDrop.Self, Util.noFacings, false, Ic2CropType.tulip)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModCrops.java",
+        "docs/migration/crops.md"
+      ],
+      "note": "Crop slice four: card ported with base seeds (flowers at legacy size three) and age semantics verified against legacy CropPumpkin/CropMelon/CropColorFlower/CropVenomilia/CropStickyReed/CropTerraWart."
     },
     {
       "registry": "block",
@@ -9768,7 +9804,12 @@
       "factory": "register",
       "expression": "Ic2TileEntityBlock.create(cropSettings, TileEntityCrop.class, false, Ic2TileEntityBlock.DefaultDrop.Self, Util.noFacings, false, Ic2CropType.cyazint)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModCrops.java",
+        "docs/migration/crops.md"
+      ],
+      "note": "Crop slice four: card ported with base seeds (flowers at legacy size three) and age semantics verified against legacy CropPumpkin/CropMelon/CropColorFlower/CropVenomilia/CropStickyReed/CropTerraWart."
     },
     {
       "registry": "block",
@@ -9778,7 +9819,12 @@
       "factory": "register",
       "expression": "Ic2TileEntityBlock.create(cropSettings, TileEntityCrop.class, false, Ic2TileEntityBlock.DefaultDrop.Self, Util.noFacings, false, Ic2CropType.venomilia)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModCrops.java",
+        "docs/migration/crops.md"
+      ],
+      "note": "Crop slice four: card ported with base seeds (flowers at legacy size three) and age semantics verified against legacy CropPumpkin/CropMelon/CropColorFlower/CropVenomilia/CropStickyReed/CropTerraWart."
     },
     {
       "registry": "block",
@@ -9803,7 +9849,12 @@
       "factory": "register",
       "expression": "Ic2TileEntityBlock.create(cropSettings, TileEntityCrop.class, false, Ic2TileEntityBlock.DefaultDrop.Self, Util.noFacings, false, Ic2CropType.stickyReed)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModCrops.java",
+        "docs/migration/crops.md"
+      ],
+      "note": "Crop slice four: card ported with base seeds (flowers at legacy size three) and age semantics verified against legacy CropPumpkin/CropMelon/CropColorFlower/CropVenomilia/CropStickyReed/CropTerraWart."
     },
     {
       "registry": "block",
@@ -9888,7 +9939,12 @@
       "factory": "register",
       "expression": "Ic2TileEntityBlock.create(cropSettings, TileEntityCrop.class, false, Ic2TileEntityBlock.DefaultDrop.Self, Util.noFacings, false, Ic2CropType.terraWart)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModCrops.java",
+        "docs/migration/crops.md"
+      ],
+      "note": "Crop slice four: card ported with base seeds (flowers at legacy size three) and age semantics verified against legacy CropPumpkin/CropMelon/CropColorFlower/CropVenomilia/CropStickyReed/CropTerraWart."
     },
     {
       "registry": "block",

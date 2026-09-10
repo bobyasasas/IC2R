@@ -76,7 +76,7 @@ public class SaplingCropCard implements CropCard {
     }
 
     @Override
-    public int getAgeAfterHarvest() {
+    public int getAgeAfterHarvest(CropBlockEntity crop) {
         return getMaxAge() - 1;
     }
 }

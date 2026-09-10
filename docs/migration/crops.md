@@ -135,11 +135,54 @@
   (`getAgeAfterHarvest`),多轮累计掉落原木。
 - IC2 与 GT 双模式 `runGameTestServer` 314 项全绿;core JUnit 110 项。
 
+## 切片四:十张花/瓜果/杂交作物卡与 terra wart(2026-09-10)
+
+卡片:南瓜/西瓜(CropVanillaStem 基类:湿度加权 1.1/0.9、收获回
+maxAge-1)、五色花(CropColorFlower 参数化:光 ≥12、收获掉对应染料、
+回 age 2、age 2→3 时长 600)、Venomilia(满龄 5、age 4 碰撞施毒并回
+age 3、收获掉 grin powder、age 4 且 Gr≥8 视为杂草、右/左键非潜行也
+触发毒刺)、粘性芦苇(满龄 3 掉树脂、幼龄掉甘蔗×age、收获后 2/0 随机
+回退、免疫踩踏、湿度 1.2/空气 0.8 加权)、terra wart(雪下每 tick
++100 生长点、灵魂沙下 1/300 转化回 nether wart、dropGainChance 0.8)。
+nether wart 补上雪→terra wart 的 1/300 转化(legacy 对偶语义)。
+
+- 方块 ×10(pumpkin/melon/dandelion/poppy/blackthorn/tulip/cyazint/
+  venomilia/sticky_reed/terra_wart_crop),纹理自 legacy 逐字拷贝。
+- base seed:南瓜籽/西瓜籽(size 0)、罂粟/蒲公英(**size 3**:种在
+  age 3 并消耗 3 朵,legacy quirk)、terra wart 物品(size 0)。
+- 新物品 `ic2:terra_wart`(ItemTerraWart:食用清除失明/反胃/饥饿/
+  中毒/凋零/虚弱/缓慢/挖掘疲劳;辐射 ≤600t 直接清除,更长剂量减
+  600t;食物属性 nutrition 0 / alwaysEat / Rarity.RARE)。
+- 交互钩子补全(共享缺陷修复):此前卡片 `onEntityCollision` 定义了
+  但从未被调用——本切片接线 `CropBlock.entityInside` → BE 踩踏判定
+  (1/100 且 nextInt(40)>Re → 植株重置且下方变泥土),并补 legacy
+  `onRightClick`/`onLeftClick` 卡片钩子(use=收获/attack=拾取,卡片可
+  附加毒刺等副作用);`getAgeAfterHarvest`/`onEntityCollision` 签名
+  补 crop 参数以支持粘性芦苇的随机回退与 Venomilia 的毒刺。
+- `CropBlockEntity.setCrop`(legacy 单参 transformCropBlock 语义:保留
+  年龄换卡并刷新地形)供双向转化使用。
+
+## 测试证据(切片四)
+
+- `crop_flower_dye_harvest`:4 朵罂粟播种消耗 3 朵、种下即 age 3、
+  收获回 age 2,多轮累计掉落红色染料。
+- `crop_pumpkin_stem` / `crop_melon_stem`:播种生长到满龄 3,收获掉
+  南瓜/西瓜或西瓜片,收获回 age 2。
+- `crop_venomilia_poison`:直接种在 age 4,收获掉 grin powder;猪碰撞
+  后获得中毒效果且植株回 age 3。
+- `crop_sticky_reed_resin`:age 1 收获累计掉甘蔗,满龄收获累计掉树脂。
+- `crop_terra_wart_snow`:无雪 5 tick 生长点 <500,放雪后 5 tick 增量
+  ≥500,长到满龄 2 并收获 terra wart。
+- `crop_wart_snow_transmutation`:nether wart 雪下 9000 次掷骰内转化为
+  terra wart 卡(1/300 分支)。
+- `crop_terra_wart_cure`:食用清除中毒,900t 辐射剂量食用后缩短为
+  ≤600t 而非清除。
+- IC2 与 GT 双模式 `runGameTestServer` 322 项全绿;core JUnit 110 项。
+
 ## 未验收 / 后续切片
 
 - 杂草自然出现(空杆 1/100 掷骰)的实机观察;WeedEX 水罐/肥料/
-  水化罐的右键交互;踩踏破坏。
-- nether wart 雪→terra wart 转化(terra wart 卡/物品未迁移)。
-- 其余约 33 种作物卡(五色花/南瓜/西瓜/粘性芦苇/Venomilia/黑荆/
-  郁金香/矿质作物等)、杂交/crossing base、作物分析器、Cropmatron、
-  收割机、群系加成。
+  水化罐的右键交互。踩踏判定已接线(`entityInside`),待实机观察。
+- 其余约 23 种作物卡(矿质作物 ×6、红小麦、食人植物、GenericCropCard
+  ×15)、杂交/crossing base、作物分析器、Cropmatron、收割机、群系
+  加成。

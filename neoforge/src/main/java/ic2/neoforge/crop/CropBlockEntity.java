@@ -161,6 +161,36 @@ public class CropBlockEntity extends net.minecraft.world.level.block.entity.Bloc
                 : null;
     }
 
+    /**
+     * Legacy setCrop through the single-arg transformCropBlock: swaps the crop keeping its age
+     * (clamped to the new block) and refreshes the terrain; the stats reset with the fresh tile.
+     */
+    public void setCrop(ServerLevel level, ic2.neoforge.crop.CropCard crop) {
+        CropBlock plantBlock = (CropBlock) crop.getCropBlock();
+        BlockState newState = plantBlock.defaultBlockState();
+        if (plantBlock.ageProperty() != null) {
+            int age = Math.clamp(getCurrentAge(), 0, crop.getMaxAge());
+            newState = newState.setValue(plantBlock.ageProperty(), age);
+        }
+        level.setBlockAndUpdate(worldPosition, newState);
+        refreshTerrain(level);
+    }
+
+    /**
+     * Legacy onEntityCollision: the card decides eligibility (and may poison), then the trample
+     * roll may reset the crop and the soil below it.
+     */
+    public void onEntityCollision(net.minecraft.world.entity.Entity entity) {
+        var crop = card();
+        if (crop == null || !(getLevel() instanceof ServerLevel level)) return;
+        if (crop.onEntityCollision(this, entity)
+                && level.getRandom().nextInt(100) == 0
+                && level.getRandom().nextInt(40) > statResistance) {
+            reset(level);
+            level.setBlock(worldPosition.below(), Blocks.DIRT.defaultBlockState(), 7);
+        }
+    }
+
     /** Legacy tryPlantIn: plants a card with stats; rejected on weeds or an already-grown crop. */
     public boolean tryPlantIn(
             ic2.neoforge.crop.CropCard crop,
@@ -184,16 +214,24 @@ public class CropBlockEntity extends net.minecraft.world.level.block.entity.Bloc
     /** Legacy rightClick: harvest a mature crop, or plant a base seed produce on an empty stick. */
     public boolean rightClick(Player player, ItemStack held) {
         var crop = card();
-        if (crop == null && held != null && !held.isEmpty()) {
-            var base = ModCrops.baseSeedFor(held.getItem());
-            if (base != null) {
-                // Legacy consumeOrError with the registered size; zero consumes nothing.
-                if (base.size() > 0) held.shrink(base.size());
-                return tryPlantIn(
-                        base.card(), base.size(), base.growth(), base.gain(), base.resistance(), 0);
+        if (crop == null) {
+            if (held != null && !held.isEmpty()) {
+                var base = ModCrops.baseSeedFor(held.getItem());
+                if (base != null) {
+                    // Legacy consumeOrError with the registered size; zero consumes nothing.
+                    if (base.size() > 0) held.shrink(base.size());
+                    return tryPlantIn(
+                            base.card(),
+                            base.size(),
+                            base.growth(),
+                            base.gain(),
+                            base.resistance(),
+                            0);
+                }
             }
+            return false;
         }
-        return crop != null && performManualHarvest();
+        return crop.onRightClick(this, player);
     }
 
     public boolean rightClick(Player player) {
@@ -233,7 +271,7 @@ public class CropBlockEntity extends net.minecraft.world.level.block.entity.Bloc
                 ret.add(drop);
             }
         }
-        withCropAge(crop.getAgeAfterHarvest());
+        withCropAge(crop.getAgeAfterHarvest(this));
         return ret;
     }
 

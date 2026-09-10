@@ -49,7 +49,7 @@ public class ReedCropCard implements CropCard {
     }
 
     @Override
-    public boolean onEntityCollision(net.minecraft.world.entity.Entity entity) {
+    public boolean onEntityCollision(CropBlockEntity crop, net.minecraft.world.entity.Entity entity) {
         return false;
     }
 

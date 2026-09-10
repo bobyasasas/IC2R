@@ -408,6 +408,18 @@ public final class RegistrationTests {
         FUNCTIONS.register("crop_mushroom_base_seed", () -> CropTests::cropMushroomBaseSeed);
         FUNCTIONS.register("crop_sapling_gains", () -> CropTests::cropSaplingGains);
         FUNCTIONS.register(
+                "crop_flower_dye_harvest", () -> CropTests::cropFlowerDyeHarvest);
+        FUNCTIONS.register("crop_pumpkin_stem", () -> CropTests::cropPumpkinStem);
+        FUNCTIONS.register("crop_melon_stem", () -> CropTests::cropMelonStem);
+        FUNCTIONS.register(
+                "crop_venomilia_poison", () -> CropTests::cropVenomiliaPoison);
+        FUNCTIONS.register(
+                "crop_sticky_reed_resin", () -> CropTests::cropStickyReedResin);
+        FUNCTIONS.register("crop_terra_wart_snow", () -> CropTests::cropTerraWartSnow);
+        FUNCTIONS.register(
+                "crop_wart_snow_transmutation", () -> CropTests::cropWartSnowTransmutation);
+        FUNCTIONS.register("crop_terra_wart_cure", () -> CropTests::cropTerraWartCure);
+        FUNCTIONS.register(
                 "radiation_hazmat_set", () -> RadiationTests::hazmatCompleteSetDetection);
         FUNCTIONS.register(
                 "radiation_effect_damage", () -> RadiationTests::radiationEffectDamagesHost);

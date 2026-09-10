@@ -4,41 +4,59 @@ import ic2.neoforge.IndustrialCraft;
 import ic2.neoforge.crop.AcaciaSaplingCropBlock;
 import ic2.neoforge.crop.BeetrootsCropBlock;
 import ic2.neoforge.crop.BirchSaplingCropBlock;
+import ic2.neoforge.crop.BlackthornCropBlock;
 import ic2.neoforge.crop.BrownMushroomCropBlock;
 import ic2.neoforge.crop.CocoaCropBlock;
 import ic2.neoforge.crop.CocoaCropCard;
 import ic2.neoforge.crop.CoffeeCropBlock;
 import ic2.neoforge.crop.CoffeeCropCard;
+import ic2.neoforge.crop.ColorFlowerCropCard;
 import ic2.neoforge.crop.CropBlock;
 import ic2.neoforge.crop.CropBlockEntity;
 import ic2.neoforge.crop.CropCard;
 import ic2.neoforge.crop.CropSeedItem;
 import ic2.neoforge.crop.CropStickItem;
 import ic2.neoforge.crop.CarrotsCropBlock;
+import ic2.neoforge.crop.CyazintCropBlock;
 import ic2.neoforge.crop.DarkOakSaplingCropBlock;
+import ic2.neoforge.crop.DandelionCropBlock;
 import ic2.neoforge.crop.FlaxCropBlock;
 import ic2.neoforge.crop.FlaxCropCard;
 import ic2.neoforge.crop.HopsCropBlock;
 import ic2.neoforge.crop.HopsCropCard;
 import ic2.neoforge.crop.JungleSaplingCropBlock;
+import ic2.neoforge.crop.MelonCropBlock;
+import ic2.neoforge.crop.MelonCropCard;
 import ic2.neoforge.crop.MushroomCropCard;
 import ic2.neoforge.crop.NetherWartCropBlock;
 import ic2.neoforge.crop.NetherWartCropCard;
 import ic2.neoforge.crop.OakSaplingCropBlock;
+import ic2.neoforge.crop.PoppyCropBlock;
 import ic2.neoforge.crop.PotatoCropBlock;
 import ic2.neoforge.crop.PotatoCropCard;
+import ic2.neoforge.crop.PumpkinCropBlock;
+import ic2.neoforge.crop.PumpkinCropCard;
 import ic2.neoforge.crop.RedMushroomCropBlock;
 import ic2.neoforge.crop.ReedCropBlock;
 import ic2.neoforge.crop.ReedCropCard;
 import ic2.neoforge.crop.SaplingCropCard;
 import ic2.neoforge.crop.SpruceSaplingCropBlock;
+import ic2.neoforge.crop.StickyReedCropBlock;
+import ic2.neoforge.crop.StickyReedCropCard;
+import ic2.neoforge.crop.TerraWartCropBlock;
+import ic2.neoforge.crop.TerraWartCropCard;
+import ic2.neoforge.crop.TulipCropBlock;
 import ic2.neoforge.crop.VanillaProduceCropCard;
+import ic2.neoforge.crop.VenomiliaCropBlock;
+import ic2.neoforge.crop.VenomiliaCropCard;
 import ic2.neoforge.crop.WeedCropBlock;
 import ic2.neoforge.crop.WeedCropCard;
 import ic2.neoforge.crop.WheatCropBlock;
 import ic2.neoforge.crop.WheatCropCard;
+import ic2.neoforge.item.TerraWartItem;
 
 import net.minecraft.core.registries.Registries;
+import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
@@ -143,6 +161,41 @@ public final class ModCrops {
             BLOCKS.registerBlock(
                     "dark_oak_sapling_crop",
                     properties -> new DarkOakSaplingCropBlock(cropSettings(properties)));
+    public static final DeferredBlock<CropBlock> PUMPKIN_CROP =
+            BLOCKS.registerBlock(
+                    "pumpkin_crop", properties -> new PumpkinCropBlock(cropSettings(properties)));
+    public static final DeferredBlock<CropBlock> MELON_CROP =
+            BLOCKS.registerBlock(
+                    "melon_crop", properties -> new MelonCropBlock(cropSettings(properties)));
+    public static final DeferredBlock<CropBlock> DANDELION_CROP =
+            BLOCKS.registerBlock(
+                    "dandelion_crop",
+                    properties -> new DandelionCropBlock(cropSettings(properties)));
+    public static final DeferredBlock<CropBlock> POPPY_CROP =
+            BLOCKS.registerBlock(
+                    "poppy_crop", properties -> new PoppyCropBlock(cropSettings(properties)));
+    public static final DeferredBlock<CropBlock> BLACKTHORN_CROP =
+            BLOCKS.registerBlock(
+                    "blackthorn_crop",
+                    properties -> new BlackthornCropBlock(cropSettings(properties)));
+    public static final DeferredBlock<CropBlock> TULIP_CROP =
+            BLOCKS.registerBlock(
+                    "tulip_crop", properties -> new TulipCropBlock(cropSettings(properties)));
+    public static final DeferredBlock<CropBlock> CYAZINT_CROP =
+            BLOCKS.registerBlock(
+                    "cyazint_crop", properties -> new CyazintCropBlock(cropSettings(properties)));
+    public static final DeferredBlock<CropBlock> VENOMILIA_CROP =
+            BLOCKS.registerBlock(
+                    "venomilia_crop",
+                    properties -> new VenomiliaCropBlock(cropSettings(properties)));
+    public static final DeferredBlock<CropBlock> STICKY_REED_CROP =
+            BLOCKS.registerBlock(
+                    "sticky_reed_crop",
+                    properties -> new StickyReedCropBlock(cropSettings(properties)));
+    public static final DeferredBlock<CropBlock> TERRA_WART_CROP =
+            BLOCKS.registerBlock(
+                    "terra_wart_crop",
+                    properties -> new TerraWartCropBlock(cropSettings(properties)));
 
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<CropBlockEntity>>
             CROP_ENTITY =
@@ -170,7 +223,17 @@ public final class ModCrops {
                                             BIRCH_SAPLING_CROP.get(),
                                             JUNGLE_SAPLING_CROP.get(),
                                             ACACIA_SAPLING_CROP.get(),
-                                            DARK_OAK_SAPLING_CROP.get()));
+                                            DARK_OAK_SAPLING_CROP.get(),
+                                            PUMPKIN_CROP.get(),
+                                            MELON_CROP.get(),
+                                            DANDELION_CROP.get(),
+                                            POPPY_CROP.get(),
+                                            BLACKTHORN_CROP.get(),
+                                            TULIP_CROP.get(),
+                                            CYAZINT_CROP.get(),
+                                            VENOMILIA_CROP.get(),
+                                            STICKY_REED_CROP.get(),
+                                            TERRA_WART_CROP.get()));
 
     public static final DeferredItem<CropStickItem> CROP_STICK_ITEM =
             ITEMS.registerItem(
@@ -178,6 +241,17 @@ public final class ModCrops {
     public static final DeferredItem<CropSeedItem> CROP_SEED_BAG =
             ITEMS.registerItem(
                     "crop_seed_bag", properties -> new CropSeedItem(properties.stacksTo(1)));
+    public static final DeferredItem<TerraWartItem> TERRA_WART =
+            ITEMS.registerItem(
+                    "terra_wart",
+                    properties ->
+                            new TerraWartItem(
+                                    properties.food(
+                                            new FoodProperties.Builder()
+                                                    .nutrition(0)
+                                                    .saturationModifier(1.0F)
+                                                    .alwaysEdible()
+                                                    .build()).rarity(net.minecraft.world.item.Rarity.RARE)));
 
     public static final CropCard WHEAT_CARD = new WheatCropCard();
     public static final WeedCropCard WEED_CARD = new WeedCropCard();
@@ -256,6 +330,26 @@ public final class ModCrops {
                     () -> new ItemStack(net.minecraft.world.level.block.Blocks.DARK_OAK_LOG),
                     () -> new ItemStack(net.minecraft.world.level.block.Blocks.DARK_OAK_SAPLING),
                     false);
+    public static final CropCard PUMPKIN_CARD = new PumpkinCropCard();
+    public static final CropCard MELON_CARD = new MelonCropCard();
+    public static final CropCard DANDELION_CARD =
+            new ColorFlowerCropCard(
+                    "dandelion", DANDELION_CROP::get, () -> new ItemStack(Items.YELLOW_DYE));
+    public static final CropCard POPPY_CARD =
+            new ColorFlowerCropCard(
+                    "poppy", POPPY_CROP::get, () -> new ItemStack(Items.RED_DYE));
+    public static final CropCard BLACKTHORN_CARD =
+            new ColorFlowerCropCard(
+                    "blackthorn", BLACKTHORN_CROP::get, () -> new ItemStack(Items.BLACK_DYE));
+    public static final CropCard TULIP_CARD =
+            new ColorFlowerCropCard(
+                    "tulip", TULIP_CROP::get, () -> new ItemStack(Items.PURPLE_DYE));
+    public static final CropCard CYAZINT_CARD =
+            new ColorFlowerCropCard(
+                    "cyazint", CYAZINT_CROP::get, () -> new ItemStack(Items.CYAN_DYE));
+    public static final CropCard VENOMILIA_CARD = new VenomiliaCropCard();
+    public static final CropCard STICKY_REED_CARD = new StickyReedCropCard();
+    public static final CropCard TERRA_WART_CARD = new TerraWartCropCard();
 
     /**
      * Legacy registerBaseSeed: a plain produce item plants its crop with fixed stats; the size is
@@ -285,6 +379,16 @@ public final class ModCrops {
         if (block == JUNGLE_SAPLING_CROP.get()) return JUNGLE_SAPLING_CARD;
         if (block == ACACIA_SAPLING_CROP.get()) return ACACIA_SAPLING_CARD;
         if (block == DARK_OAK_SAPLING_CROP.get()) return DARK_OAK_SAPLING_CARD;
+        if (block == PUMPKIN_CROP.get()) return PUMPKIN_CARD;
+        if (block == MELON_CROP.get()) return MELON_CARD;
+        if (block == DANDELION_CROP.get()) return DANDELION_CARD;
+        if (block == POPPY_CROP.get()) return POPPY_CARD;
+        if (block == BLACKTHORN_CROP.get()) return BLACKTHORN_CARD;
+        if (block == TULIP_CROP.get()) return TULIP_CARD;
+        if (block == CYAZINT_CROP.get()) return CYAZINT_CARD;
+        if (block == VENOMILIA_CROP.get()) return VENOMILIA_CARD;
+        if (block == STICKY_REED_CROP.get()) return STICKY_REED_CARD;
+        if (block == TERRA_WART_CROP.get()) return TERRA_WART_CARD;
         return null;
     }
 
@@ -309,6 +413,16 @@ public final class ModCrops {
             case "jungle_sapling" -> JUNGLE_SAPLING_CARD;
             case "acacia_sapling" -> ACACIA_SAPLING_CARD;
             case "dark_oak_sapling" -> DARK_OAK_SAPLING_CARD;
+            case "pumpkin" -> PUMPKIN_CARD;
+            case "melon" -> MELON_CARD;
+            case "dandelion" -> DANDELION_CARD;
+            case "poppy" -> POPPY_CARD;
+            case "blackthorn" -> BLACKTHORN_CARD;
+            case "tulip" -> TULIP_CARD;
+            case "cyazint" -> CYAZINT_CARD;
+            case "venomilia" -> VENOMILIA_CARD;
+            case "sticky_reed" -> STICKY_REED_CARD;
+            case "terra_wart" -> TERRA_WART_CARD;
             default -> null;
         };
     }
@@ -327,6 +441,12 @@ public final class ModCrops {
             var seeds = new java.util.HashMap<Item, BaseSeed>();
             seeds.put(Items.SUGAR_CANE, new BaseSeed(REED_CARD, 0, 3, 0, 2));
             seeds.put(Items.COCOA_BEANS, new BaseSeed(COCOA_CARD, 0, 0, 0, 0));
+            seeds.put(Items.PUMPKIN_SEEDS, new BaseSeed(PUMPKIN_CARD, 0, 1, 1, 1));
+            seeds.put(Items.MELON_SEEDS, new BaseSeed(MELON_CARD, 0, 1, 1, 1));
+            // Legacy plants flowers at age three and consumes three of the held blooms.
+            seeds.put(Items.POPPY.asItem(), new BaseSeed(POPPY_CARD, 3, 1, 1, 1));
+            seeds.put(Items.DANDELION.asItem(), new BaseSeed(DANDELION_CARD, 3, 1, 1, 1));
+            seeds.put(TERRA_WART.get(), new BaseSeed(TERRA_WART_CARD, 0, 1, 1, 1));
             seeds.put(
                     ModItems.MATERIALS.get(MaterialDefinition.COFFEE_BEANS).get(),
                     new BaseSeed(COFFEE_CARD, 0, 1, 1, 1));
@@ -363,6 +483,9 @@ public final class ModCrops {
         if (postEvent.getTabKey() == CreativeModeTabs.NATURAL_BLOCKS) {
             postEvent.accept(CROP_STICK_ITEM);
             postEvent.accept(CROP_SEED_BAG);
+        }
+        if (postEvent.getTabKey() == CreativeModeTabs.FOOD_AND_DRINKS) {
+            postEvent.accept(TERRA_WART);
         }
     }
 

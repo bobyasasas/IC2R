@@ -345,6 +345,240 @@ final class CropTests {
         helper.succeed();
     }
 
+    static void cropFlowerDyeHarvest(GameTestHelper helper) {
+        helper.setBlock(POSITION.below(), Blocks.FARMLAND);
+        helper.setBlock(POSITION.above().above(), Blocks.GLOWSTONE);
+        helper.setBlock(POSITION, ModCrops.CROP_STICK.get().defaultBlockState());
+        CropBlockEntity crop = crop(helper);
+        ItemStack poppies = new ItemStack(Items.POPPY, 4);
+        helper.assertTrue(crop.rightClick(null, poppies), "Poppies plant a poppy crop");
+        helper.assertTrue(
+                helper.getBlockState(POSITION).is(ModCrops.POPPY_CROP.get()),
+                "The poppy crop block replaces the stick");
+        helper.assertTrue(
+                poppies.getCount() == 1,
+                "Planting a flower consumes three of four poppies (legacy size three), saw "
+                        + poppies.getCount());
+        helper.assertTrue(
+                crop(helper).getCurrentAge() == 3,
+                "Flowers plant at their bloom age, saw " + crop(helper).getCurrentAge());
+        helper.assertTrue(crop(helper).performManualHarvest(), "The planted bloom harvests");
+        helper.assertTrue(
+                crop(helper).getCurrentAge() == 2,
+                "Harvest resets the flower one age below the bloom, saw "
+                        + crop(helper).getCurrentAge());
+        boolean anyDye = false;
+        for (int cycle = 0; cycle < 6 && !anyDye; cycle++) {
+            growUntil(helper, 3, 4000);
+            if (crop(helper).performManualHarvest()) {
+                anyDye |= countItems(helper, Items.RED_DYE) > 0;
+            }
+        }
+        helper.assertTrue(anyDye, "Harvesting a bloom drops red dye");
+        helper.succeed();
+    }
+
+    static void cropPumpkinStem(GameTestHelper helper) {
+        helper.setBlock(POSITION.below(), Blocks.FARMLAND);
+        helper.setBlock(POSITION.above().above(), Blocks.GLOWSTONE);
+        helper.setBlock(POSITION, ModCrops.CROP_STICK.get().defaultBlockState());
+        CropBlockEntity crop = crop(helper);
+        helper.assertTrue(
+                crop.rightClick(null, new ItemStack(Items.PUMPKIN_SEEDS)),
+                "Pumpkin seeds plant a pumpkin stem");
+        helper.assertTrue(
+                helper.getBlockState(POSITION).is(ModCrops.PUMPKIN_CROP.get()),
+                "The pumpkin crop block replaces the stick");
+        crop(helper).refreshTerrain(helper.getLevel());
+        boolean anyPumpkin = false;
+        for (int cycle = 0; cycle < 6 && !anyPumpkin; cycle++) {
+            growUntil(helper, 3, 4000);
+            if (crop(helper).performManualHarvest()) {
+                anyPumpkin |= countItems(helper, Items.PUMPKIN) > 0;
+            }
+        }
+        helper.assertTrue(anyPumpkin, "Harvesting the stem drops pumpkins");
+        helper.assertTrue(
+                crop(helper).getCurrentAge() == 2,
+                "Harvest regrows the stem one age below full, saw "
+                        + crop(helper).getCurrentAge());
+        helper.succeed();
+    }
+
+    static void cropMelonStem(GameTestHelper helper) {
+        helper.setBlock(POSITION.below(), Blocks.FARMLAND);
+        helper.setBlock(POSITION.above().above(), Blocks.GLOWSTONE);
+        helper.setBlock(POSITION, ModCrops.CROP_STICK.get().defaultBlockState());
+        CropBlockEntity crop = crop(helper);
+        helper.assertTrue(
+                crop.rightClick(null, new ItemStack(Items.MELON_SEEDS)),
+                "Melon seeds plant a melon stem");
+        helper.assertTrue(
+                helper.getBlockState(POSITION).is(ModCrops.MELON_CROP.get()),
+                "The melon crop block replaces the stick");
+        crop(helper).refreshTerrain(helper.getLevel());
+        boolean anyMelon = false;
+        for (int cycle = 0; cycle < 6 && !anyMelon; cycle++) {
+            growUntil(helper, 3, 5000);
+            if (crop(helper).performManualHarvest()) {
+                anyMelon |= countItems(helper, Items.MELON) > 0;
+                anyMelon |= countItems(helper, Items.MELON_SLICE) > 0;
+            }
+        }
+        helper.assertTrue(anyMelon, "Harvesting the stem drops a melon or slices");
+        helper.succeed();
+    }
+
+    static void cropVenomiliaPoison(GameTestHelper helper) {
+        helper.setBlock(POSITION.below(), Blocks.FARMLAND);
+        helper.setBlock(POSITION.above().above(), Blocks.GLOWSTONE);
+        helper.setBlock(POSITION, ModCrops.CROP_STICK.get().defaultBlockState());
+        CropBlockEntity crop = crop(helper);
+        helper.assertTrue(
+                crop.tryPlantIn(ModCrops.VENOMILIA_CARD, 4, 1, 1, 1, 0),
+                "Venomilia plants directly at its bloom age (hybrid crop, no base seed)");
+        helper.assertTrue(
+                crop(helper).getCurrentAge() == 4,
+                "The venomilia blooms, saw " + crop(helper).getCurrentAge());
+        var grinPowder =
+                ic2.neoforge.registration.ModItems.MATERIALS
+                        .get(ic2.neoforge.registration.MaterialDefinition.GRIN_POWDER)
+                        .get();
+        boolean anyGrin = false;
+        for (int cycle = 0; cycle < 6 && !anyGrin; cycle++) {
+            growUntil(helper, 4, 6000);
+            if (crop(helper).getCurrentAge() == 4 && crop(helper).performManualHarvest()) {
+                anyGrin |= countItems(helper, grinPowder) > 0;
+            }
+        }
+        helper.assertTrue(anyGrin, "Harvesting the full bloom drops grin powder");
+        // Bring the bloom back for the collision check.
+        growUntil(helper, 4, 6000);
+        helper.assertTrue(
+                crop(helper).getCurrentAge() == 4,
+                "The venomilia blooms again, saw " + crop(helper).getCurrentAge());
+        var pig = helper.spawn(EntityType.PIG, POSITION);
+        helper.startSequence()
+                .thenExecuteAfter(
+                        5,
+                        () -> {
+                            helper.assertTrue(
+                                    pig.hasEffect(net.minecraft.world.effect.MobEffects.POISON),
+                                    "The full bloom poisons a colliding animal");
+                            helper.assertTrue(
+                                    crop(helper).getCurrentAge() == 3,
+                                    "Poisoning regresses the bloom, saw "
+                                            + crop(helper).getCurrentAge());
+                        })
+                .thenSucceed();
+    }
+
+    static void cropStickyReedResin(GameTestHelper helper) {
+        helper.setBlock(POSITION.below(), Blocks.FARMLAND);
+        helper.setBlock(POSITION.above().above(), Blocks.GLOWSTONE);
+        helper.setBlock(POSITION, ModCrops.CROP_STICK.get().defaultBlockState());
+        CropBlockEntity crop = crop(helper);
+        helper.assertTrue(
+                crop.tryPlantIn(ModCrops.STICKY_REED_CARD, 0, 1, 1, 1, 0),
+                "The sticky reed plants on a stick (hybrid crop, no base seed)");
+        growUntil(helper, 1, 2000);
+        // A young harvest yields cane scaled by age, but the gaussian can legitimately roll zero.
+        boolean anyCane = false;
+        for (int cycle = 0; cycle < 6 && !anyCane; cycle++) {
+            growUntil(helper, 1, 2000);
+            if (crop(helper).performManualHarvest()) {
+                anyCane |= countItems(helper, Items.SUGAR_CANE) >= 1;
+            }
+        }
+        helper.assertTrue(anyCane, "A young sticky reed yields cane");
+        var resin =
+                ic2.neoforge.registration.ModItems.MATERIALS
+                        .get(ic2.neoforge.registration.MaterialDefinition.RESIN)
+                        .get();
+        boolean anyResin = false;
+        for (int cycle = 0; cycle < 6 && !anyResin; cycle++) {
+            growUntil(helper, 3, 4000);
+            if (crop(helper).performManualHarvest()) {
+                anyResin |= countItems(helper, resin) > 0;
+            }
+        }
+        helper.assertTrue(anyResin, "The full sticky reed oozes resin");
+        helper.succeed();
+    }
+
+    static void cropTerraWartSnow(GameTestHelper helper) {
+        helper.setBlock(POSITION, ModCrops.CROP_STICK.get().defaultBlockState());
+        CropBlockEntity crop = crop(helper);
+        helper.assertTrue(
+                crop.rightClick(null, new ItemStack(ModCrops.TERRA_WART.get())),
+                "A terra wart plants a terra wart crop");
+        helper.assertTrue(
+                helper.getBlockState(POSITION).is(ModCrops.TERRA_WART_CROP.get()),
+                "The terra wart crop block replaces the stick");
+        crop(helper).refreshTerrain(helper.getLevel());
+        for (int tick = 0; tick < 5; tick++) crop(helper).performTick(1024L);
+        int plain = crop(helper).getGrowthPoints();
+        helper.assertTrue(plain < 500, "Without snow growth stays slow, saw " + plain);
+        helper.setBlock(POSITION.below(), Blocks.SNOW);
+        for (int tick = 0; tick < 5; tick++) crop(helper).performTick(1024L);
+        int boosted = crop(helper).getGrowthPoints() - plain;
+        helper.assertTrue(
+                boosted >= 500, "Snow grants +100 growth points per tick, saw " + boosted);
+        boolean anyWart = false;
+        for (int cycle = 0; cycle < 8 && !anyWart; cycle++) {
+            for (int tick = 0; tick < 400 && crop(helper).getCurrentAge() < 2; tick++) {
+                crop(helper).performTick(1024L);
+            }
+            if (crop(helper).performManualHarvest()) {
+                anyWart |= countItems(helper, ModCrops.TERRA_WART.get()) > 0;
+            }
+        }
+        helper.assertTrue(anyWart, "Harvesting drops terra warts");
+        helper.succeed();
+    }
+
+    static void cropWartSnowTransmutation(GameTestHelper helper) {
+        helper.setBlock(POSITION, ModCrops.CROP_STICK.get().defaultBlockState());
+        CropBlockEntity crop = crop(helper);
+        helper.assertTrue(
+                crop.rightClick(null, new ItemStack(Items.NETHER_WART)),
+                "Nether wart plants a nether wart crop");
+        helper.setBlock(POSITION.below(), Blocks.SNOW);
+        boolean converted = false;
+        for (int roll = 0; roll < 9000 && !converted; roll++) {
+            if (helper.getBlockState(POSITION).is(ModCrops.TERRA_WART_CROP.get())) {
+                converted = true;
+                break;
+            }
+            ModCrops.NETHER_WART_CARD.tick(crop(helper));
+        }
+        helper.assertTrue(converted, "Snow slowly transmutes the nether wart into a terra wart");
+        helper.assertTrue(
+                ModCrops.cardFor(helper.getBlockState(POSITION).getBlock())
+                        == ModCrops.TERRA_WART_CARD,
+                "The transmuted plant resolves to the terra wart card");
+        helper.succeed();
+    }
+
+    static void cropTerraWartCure(GameTestHelper helper) {
+        var pig = helper.spawn(EntityType.PIG, POSITION.above());
+        pig.addEffect(new net.minecraft.world.effect.MobEffectInstance(
+                net.minecraft.world.effect.MobEffects.POISON, 200, 0));
+        pig.addEffect(new net.minecraft.world.effect.MobEffectInstance(
+                ic2.neoforge.registration.ModEffects.RADIATION, 900, 0));
+        ItemStack warts = new ItemStack(ModCrops.TERRA_WART.get());
+        warts.finishUsingItem(helper.getLevel(), pig);
+        helper.assertTrue(
+                !pig.hasEffect(net.minecraft.world.effect.MobEffects.POISON),
+                "A terra wart cures poison");
+        var radiation = pig.getEffect(ic2.neoforge.registration.ModEffects.RADIATION);
+        helper.assertTrue(
+                radiation != null && radiation.getDuration() <= 600,
+                "A long radiation dose shortens instead of ending, saw "
+                        + (radiation == null ? "cured" : radiation.getDuration()));
+        helper.succeed();
+    }
+
     private static int countItems(GameTestHelper helper, Item item) {
         int count = 0;
         for (var entity : helper.getEntities(EntityType.ITEM)) {

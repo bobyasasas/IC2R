@@ -5,6 +5,7 @@ import ic2.neoforge.registration.ModCrops;
 
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
 
@@ -61,7 +62,7 @@ public interface CropCard {
         return getMaxAge();
     }
 
-    default int getAgeAfterHarvest() {
+    default int getAgeAfterHarvest(CropBlockEntity crop) {
         return 0;
     }
 
@@ -70,8 +71,18 @@ public interface CropCard {
                 && (this == ModCrops.WEED_CARD || crop.getStatGrowth() >= 24);
     }
 
-    default boolean onEntityCollision(Entity entity) {
+    default boolean onEntityCollision(CropBlockEntity crop, Entity entity) {
         return entity instanceof LivingEntity living && living.isSprinting();
+    }
+
+    /** Legacy onRightClick: harvest a harvestable crop; cards add their side effects. */
+    default boolean onRightClick(CropBlockEntity crop, Player player) {
+        return crop.performManualHarvest();
+    }
+
+    /** Legacy onLeftClick: pick the seeds; cards add their side effects. */
+    default boolean onLeftClick(CropBlockEntity crop, Player player) {
+        return crop.pick();
     }
 
     default void tick(CropBlockEntity crop) {}
