@@ -197,6 +197,13 @@ public final class ModDataComponents {
                             builder.persistent(Codec.intRange(0, 1))
                                     .networkSynchronized(ByteBufCodecs.VAR_INT));
 
+    // Mirrors the legacy painter NBT autoRefill flag toggled with shift use.
+    public static final Supplier<DataComponentType<Boolean>> PAINTER_AUTO_REFILL =
+            TYPES.<Boolean>registerComponentType(
+                    "painter_auto_refill",
+                    builder ->
+                            builder.persistent(Codec.BOOL).networkSynchronized(ByteBufCodecs.BOOL));
+
     private ModDataComponents() {}
 
     private static double validCharge(double value) {

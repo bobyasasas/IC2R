@@ -3213,8 +3213,8 @@
     {
       "source": "shaped/painter.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:painter"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/painter.json"
     },
     {
       "source": "shaped/pattern_storage.json",
@@ -4095,14 +4095,14 @@
     {
       "source": "shapeless/black_painter.json",
       "type": "ic2:shapeless",
-      "status": "pending",
-      "reason": "unported result ic2:black_painter"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shapeless/black_painter.json"
     },
     {
       "source": "shapeless/blue_painter.json",
       "type": "ic2:shapeless",
-      "status": "pending",
-      "reason": "unported result ic2:blue_painter"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shapeless/blue_painter.json"
     },
     {
       "source": "shapeless/bronze_casing.json",
@@ -4125,8 +4125,8 @@
     {
       "source": "shapeless/brown_painter.json",
       "type": "ic2:shapeless",
-      "status": "pending",
-      "reason": "unported result ic2:brown_painter"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shapeless/brown_painter.json"
     },
     {
       "source": "shapeless/carbon_mesh.json",
@@ -4203,8 +4203,8 @@
     {
       "source": "shapeless/cyan_painter.json",
       "type": "ic2:shapeless",
-      "status": "pending",
-      "reason": "unported result ic2:cyan_painter"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shapeless/cyan_painter.json"
     },
     {
       "source": "shapeless/double_insulated_gold_cable.json",
@@ -4281,14 +4281,14 @@
     {
       "source": "shapeless/gray_painter.json",
       "type": "ic2:shapeless",
-      "status": "pending",
-      "reason": "unported result ic2:gray_painter"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shapeless/gray_painter.json"
     },
     {
       "source": "shapeless/green_painter.json",
       "type": "ic2:shapeless",
-      "status": "pending",
-      "reason": "unported result ic2:green_painter"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shapeless/green_painter.json"
     },
     {
       "source": "shapeless/hydrated_tin_dust.json",
@@ -4353,20 +4353,20 @@
     {
       "source": "shapeless/light_blue_painter.json",
       "type": "ic2:shapeless",
-      "status": "pending",
-      "reason": "unported result ic2:light_blue_painter"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shapeless/light_blue_painter.json"
     },
     {
       "source": "shapeless/light_gray_painter.json",
       "type": "ic2:shapeless",
-      "status": "pending",
-      "reason": "unported result ic2:light_gray_painter"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shapeless/light_gray_painter.json"
     },
     {
       "source": "shapeless/lime_painter.json",
       "type": "ic2:shapeless",
-      "status": "pending",
-      "reason": "unported result ic2:lime_painter"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shapeless/lime_painter.json"
     },
     {
       "source": "shapeless/lzh_condensator_lapis.json",
@@ -4383,8 +4383,8 @@
     {
       "source": "shapeless/magenta_painter.json",
       "type": "ic2:shapeless",
-      "status": "pending",
-      "reason": "unported result ic2:magenta_painter"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shapeless/magenta_painter.json"
     },
     {
       "source": "shapeless/manual_kinetic_generator.json",
@@ -4407,20 +4407,20 @@
     {
       "source": "shapeless/orange_painter.json",
       "type": "ic2:shapeless",
-      "status": "pending",
-      "reason": "unported result ic2:orange_painter"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shapeless/orange_painter.json"
     },
     {
       "source": "shapeless/pink_painter.json",
       "type": "ic2:shapeless",
-      "status": "pending",
-      "reason": "unported result ic2:pink_painter"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shapeless/pink_painter.json"
     },
     {
       "source": "shapeless/purple_painter.json",
       "type": "ic2:shapeless",
-      "status": "pending",
-      "reason": "unported result ic2:purple_painter"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shapeless/purple_painter.json"
     },
     {
       "source": "shapeless/raw_ore/lead.json",
@@ -4449,8 +4449,8 @@
     {
       "source": "shapeless/red_painter.json",
       "type": "ic2:shapeless",
-      "status": "pending",
-      "reason": "unported result ic2:red_painter"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shapeless/red_painter.json"
     },
     {
       "source": "shapeless/rsh_condensator_redstone.json",
@@ -4557,14 +4557,14 @@
     {
       "source": "shapeless/white_painter.json",
       "type": "ic2:shapeless",
-      "status": "pending",
-      "reason": "unported result ic2:white_painter"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shapeless/white_painter.json"
     },
     {
       "source": "shapeless/yellow_painter.json",
       "type": "ic2:shapeless",
-      "status": "pending",
-      "reason": "unported result ic2:yellow_painter"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shapeless/yellow_painter.json"
     },
     {
       "source": "smelting/bronze_ingot_from_bronze_dust.json",

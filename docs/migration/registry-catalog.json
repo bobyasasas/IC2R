@@ -5591,7 +5591,12 @@
    "factory": "register",
    "expression": "new ItemToolPainter(new Properties().stacksTo(1).durability(32), null)",
    "decision": "preserve",
-   "status": "pending"
+   "status": "implemented",
+   "evidence": [
+    "neoforge/src/main/java/ic2/neoforge/item/PainterItem.java",
+    "neoforge/src/main/java/ic2/neoforge/registration/ModTools.java"
+   ],
+   "note": "PainterItem：13 分支按 legacy 顺序染原版可染色方块（羊毛/染色玻璃/玻璃板/床/蜡烛/旗帜/陶瓦/带釉陶瓦/混凝土粉末/地毯/潜影盒含容器数据/混凝土），同色与不可染色返回 PASS；羊染色；耐久 32，耗尽还原为无色 painter；autoRefill 用潜行右键切换（替代 legacy M 键位），补料消耗背包同色刷并收纳无色刷；IC2 自有墙无染色分支与 legacy 一致；模式键位/遮蔽墙见 painter.md 差异记录。"
   },
   {
    "registry": "item",
@@ -5601,7 +5606,12 @@
    "factory": "register",
    "expression": "new ItemToolPainter(new Properties().stacksTo(1).durability(32), Ic2Color.BLACK)",
    "decision": "preserve",
-   "status": "pending"
+   "status": "implemented",
+   "evidence": [
+    "neoforge/src/main/java/ic2/neoforge/item/PainterItem.java",
+    "neoforge/src/main/java/ic2/neoforge/registration/ModTools.java"
+   ],
+   "note": "PainterItem：13 分支按 legacy 顺序染原版可染色方块（羊毛/染色玻璃/玻璃板/床/蜡烛/旗帜/陶瓦/带釉陶瓦/混凝土粉末/地毯/潜影盒含容器数据/混凝土），同色与不可染色返回 PASS；羊染色；耐久 32，耗尽还原为无色 painter；autoRefill 用潜行右键切换（替代 legacy M 键位），补料消耗背包同色刷并收纳无色刷；IC2 自有墙无染色分支与 legacy 一致；模式键位/遮蔽墙见 painter.md 差异记录。"
   },
   {
    "registry": "item",
@@ -5611,7 +5621,12 @@
    "factory": "register",
    "expression": "new ItemToolPainter(new Properties().stacksTo(1).durability(32), Ic2Color.BLUE)",
    "decision": "preserve",
-   "status": "pending"
+   "status": "implemented",
+   "evidence": [
+    "neoforge/src/main/java/ic2/neoforge/item/PainterItem.java",
+    "neoforge/src/main/java/ic2/neoforge/registration/ModTools.java"
+   ],
+   "note": "PainterItem：13 分支按 legacy 顺序染原版可染色方块（羊毛/染色玻璃/玻璃板/床/蜡烛/旗帜/陶瓦/带釉陶瓦/混凝土粉末/地毯/潜影盒含容器数据/混凝土），同色与不可染色返回 PASS；羊染色；耐久 32，耗尽还原为无色 painter；autoRefill 用潜行右键切换（替代 legacy M 键位），补料消耗背包同色刷并收纳无色刷；IC2 自有墙无染色分支与 legacy 一致；模式键位/遮蔽墙见 painter.md 差异记录。"
   },
   {
    "registry": "item",
@@ -5621,7 +5636,12 @@
    "factory": "register",
    "expression": "new ItemToolPainter(new Properties().stacksTo(1).durability(32), Ic2Color.BROWN)",
    "decision": "preserve",
-   "status": "pending"
+   "status": "implemented",
+   "evidence": [
+    "neoforge/src/main/java/ic2/neoforge/item/PainterItem.java",
+    "neoforge/src/main/java/ic2/neoforge/registration/ModTools.java"
+   ],
+   "note": "PainterItem：13 分支按 legacy 顺序染原版可染色方块（羊毛/染色玻璃/玻璃板/床/蜡烛/旗帜/陶瓦/带釉陶瓦/混凝土粉末/地毯/潜影盒含容器数据/混凝土），同色与不可染色返回 PASS；羊染色；耐久 32，耗尽还原为无色 painter；autoRefill 用潜行右键切换（替代 legacy M 键位），补料消耗背包同色刷并收纳无色刷；IC2 自有墙无染色分支与 legacy 一致；模式键位/遮蔽墙见 painter.md 差异记录。"
   },
   {
    "registry": "item",
@@ -5631,7 +5651,12 @@
    "factory": "register",
    "expression": "new ItemToolPainter(new Properties().stacksTo(1).durability(32), Ic2Color.CYAN)",
    "decision": "preserve",
-   "status": "pending"
+   "status": "implemented",
+   "evidence": [
+    "neoforge/src/main/java/ic2/neoforge/item/PainterItem.java",
+    "neoforge/src/main/java/ic2/neoforge/registration/ModTools.java"
+   ],
+   "note": "PainterItem：13 分支按 legacy 顺序染原版可染色方块（羊毛/染色玻璃/玻璃板/床/蜡烛/旗帜/陶瓦/带釉陶瓦/混凝土粉末/地毯/潜影盒含容器数据/混凝土），同色与不可染色返回 PASS；羊染色；耐久 32，耗尽还原为无色 painter；autoRefill 用潜行右键切换（替代 legacy M 键位），补料消耗背包同色刷并收纳无色刷；IC2 自有墙无染色分支与 legacy 一致；模式键位/遮蔽墙见 painter.md 差异记录。"
   },
   {
    "registry": "item",
@@ -5641,7 +5666,12 @@
    "factory": "register",
    "expression": "new ItemToolPainter(new Properties().stacksTo(1).durability(32), Ic2Color.GRAY)",
    "decision": "preserve",
-   "status": "pending"
+   "status": "implemented",
+   "evidence": [
+    "neoforge/src/main/java/ic2/neoforge/item/PainterItem.java",
+    "neoforge/src/main/java/ic2/neoforge/registration/ModTools.java"
+   ],
+   "note": "PainterItem：13 分支按 legacy 顺序染原版可染色方块（羊毛/染色玻璃/玻璃板/床/蜡烛/旗帜/陶瓦/带釉陶瓦/混凝土粉末/地毯/潜影盒含容器数据/混凝土），同色与不可染色返回 PASS；羊染色；耐久 32，耗尽还原为无色 painter；autoRefill 用潜行右键切换（替代 legacy M 键位），补料消耗背包同色刷并收纳无色刷；IC2 自有墙无染色分支与 legacy 一致；模式键位/遮蔽墙见 painter.md 差异记录。"
   },
   {
    "registry": "item",
@@ -5651,7 +5681,12 @@
    "factory": "register",
    "expression": "new ItemToolPainter(new Properties().stacksTo(1).durability(32), Ic2Color.GREEN)",
    "decision": "preserve",
-   "status": "pending"
+   "status": "implemented",
+   "evidence": [
+    "neoforge/src/main/java/ic2/neoforge/item/PainterItem.java",
+    "neoforge/src/main/java/ic2/neoforge/registration/ModTools.java"
+   ],
+   "note": "PainterItem：13 分支按 legacy 顺序染原版可染色方块（羊毛/染色玻璃/玻璃板/床/蜡烛/旗帜/陶瓦/带釉陶瓦/混凝土粉末/地毯/潜影盒含容器数据/混凝土），同色与不可染色返回 PASS；羊染色；耐久 32，耗尽还原为无色 painter；autoRefill 用潜行右键切换（替代 legacy M 键位），补料消耗背包同色刷并收纳无色刷；IC2 自有墙无染色分支与 legacy 一致；模式键位/遮蔽墙见 painter.md 差异记录。"
   },
   {
    "registry": "item",
@@ -5661,7 +5696,12 @@
    "factory": "register",
    "expression": "new ItemToolPainter(new Properties().stacksTo(1).durability(32), Ic2Color.LIGHT_BLUE)",
    "decision": "preserve",
-   "status": "pending"
+   "status": "implemented",
+   "evidence": [
+    "neoforge/src/main/java/ic2/neoforge/item/PainterItem.java",
+    "neoforge/src/main/java/ic2/neoforge/registration/ModTools.java"
+   ],
+   "note": "PainterItem：13 分支按 legacy 顺序染原版可染色方块（羊毛/染色玻璃/玻璃板/床/蜡烛/旗帜/陶瓦/带釉陶瓦/混凝土粉末/地毯/潜影盒含容器数据/混凝土），同色与不可染色返回 PASS；羊染色；耐久 32，耗尽还原为无色 painter；autoRefill 用潜行右键切换（替代 legacy M 键位），补料消耗背包同色刷并收纳无色刷；IC2 自有墙无染色分支与 legacy 一致；模式键位/遮蔽墙见 painter.md 差异记录。"
   },
   {
    "registry": "item",
@@ -5671,7 +5711,12 @@
    "factory": "register",
    "expression": "new ItemToolPainter(new Properties().stacksTo(1).durability(32), Ic2Color.LIGHT_GRAY)",
    "decision": "preserve",
-   "status": "pending"
+   "status": "implemented",
+   "evidence": [
+    "neoforge/src/main/java/ic2/neoforge/item/PainterItem.java",
+    "neoforge/src/main/java/ic2/neoforge/registration/ModTools.java"
+   ],
+   "note": "PainterItem：13 分支按 legacy 顺序染原版可染色方块（羊毛/染色玻璃/玻璃板/床/蜡烛/旗帜/陶瓦/带釉陶瓦/混凝土粉末/地毯/潜影盒含容器数据/混凝土），同色与不可染色返回 PASS；羊染色；耐久 32，耗尽还原为无色 painter；autoRefill 用潜行右键切换（替代 legacy M 键位），补料消耗背包同色刷并收纳无色刷；IC2 自有墙无染色分支与 legacy 一致；模式键位/遮蔽墙见 painter.md 差异记录。"
   },
   {
    "registry": "item",
@@ -5681,7 +5726,12 @@
    "factory": "register",
    "expression": "new ItemToolPainter(new Properties().stacksTo(1).durability(32), Ic2Color.LIME)",
    "decision": "preserve",
-   "status": "pending"
+   "status": "implemented",
+   "evidence": [
+    "neoforge/src/main/java/ic2/neoforge/item/PainterItem.java",
+    "neoforge/src/main/java/ic2/neoforge/registration/ModTools.java"
+   ],
+   "note": "PainterItem：13 分支按 legacy 顺序染原版可染色方块（羊毛/染色玻璃/玻璃板/床/蜡烛/旗帜/陶瓦/带釉陶瓦/混凝土粉末/地毯/潜影盒含容器数据/混凝土），同色与不可染色返回 PASS；羊染色；耐久 32，耗尽还原为无色 painter；autoRefill 用潜行右键切换（替代 legacy M 键位），补料消耗背包同色刷并收纳无色刷；IC2 自有墙无染色分支与 legacy 一致；模式键位/遮蔽墙见 painter.md 差异记录。"
   },
   {
    "registry": "item",
@@ -5691,7 +5741,12 @@
    "factory": "register",
    "expression": "new ItemToolPainter(new Properties().stacksTo(1).durability(32), Ic2Color.MAGENTA)",
    "decision": "preserve",
-   "status": "pending"
+   "status": "implemented",
+   "evidence": [
+    "neoforge/src/main/java/ic2/neoforge/item/PainterItem.java",
+    "neoforge/src/main/java/ic2/neoforge/registration/ModTools.java"
+   ],
+   "note": "PainterItem：13 分支按 legacy 顺序染原版可染色方块（羊毛/染色玻璃/玻璃板/床/蜡烛/旗帜/陶瓦/带釉陶瓦/混凝土粉末/地毯/潜影盒含容器数据/混凝土），同色与不可染色返回 PASS；羊染色；耐久 32，耗尽还原为无色 painter；autoRefill 用潜行右键切换（替代 legacy M 键位），补料消耗背包同色刷并收纳无色刷；IC2 自有墙无染色分支与 legacy 一致；模式键位/遮蔽墙见 painter.md 差异记录。"
   },
   {
    "registry": "item",
@@ -5701,7 +5756,12 @@
    "factory": "register",
    "expression": "new ItemToolPainter(new Properties().stacksTo(1).durability(32), Ic2Color.ORANGE)",
    "decision": "preserve",
-   "status": "pending"
+   "status": "implemented",
+   "evidence": [
+    "neoforge/src/main/java/ic2/neoforge/item/PainterItem.java",
+    "neoforge/src/main/java/ic2/neoforge/registration/ModTools.java"
+   ],
+   "note": "PainterItem：13 分支按 legacy 顺序染原版可染色方块（羊毛/染色玻璃/玻璃板/床/蜡烛/旗帜/陶瓦/带釉陶瓦/混凝土粉末/地毯/潜影盒含容器数据/混凝土），同色与不可染色返回 PASS；羊染色；耐久 32，耗尽还原为无色 painter；autoRefill 用潜行右键切换（替代 legacy M 键位），补料消耗背包同色刷并收纳无色刷；IC2 自有墙无染色分支与 legacy 一致；模式键位/遮蔽墙见 painter.md 差异记录。"
   },
   {
    "registry": "item",
@@ -5711,7 +5771,12 @@
    "factory": "register",
    "expression": "new ItemToolPainter(new Properties().stacksTo(1).durability(32), Ic2Color.PINK)",
    "decision": "preserve",
-   "status": "pending"
+   "status": "implemented",
+   "evidence": [
+    "neoforge/src/main/java/ic2/neoforge/item/PainterItem.java",
+    "neoforge/src/main/java/ic2/neoforge/registration/ModTools.java"
+   ],
+   "note": "PainterItem：13 分支按 legacy 顺序染原版可染色方块（羊毛/染色玻璃/玻璃板/床/蜡烛/旗帜/陶瓦/带釉陶瓦/混凝土粉末/地毯/潜影盒含容器数据/混凝土），同色与不可染色返回 PASS；羊染色；耐久 32，耗尽还原为无色 painter；autoRefill 用潜行右键切换（替代 legacy M 键位），补料消耗背包同色刷并收纳无色刷；IC2 自有墙无染色分支与 legacy 一致；模式键位/遮蔽墙见 painter.md 差异记录。"
   },
   {
    "registry": "item",
@@ -5721,7 +5786,12 @@
    "factory": "register",
    "expression": "new ItemToolPainter(new Properties().stacksTo(1).durability(32), Ic2Color.PURPLE)",
    "decision": "preserve",
-   "status": "pending"
+   "status": "implemented",
+   "evidence": [
+    "neoforge/src/main/java/ic2/neoforge/item/PainterItem.java",
+    "neoforge/src/main/java/ic2/neoforge/registration/ModTools.java"
+   ],
+   "note": "PainterItem：13 分支按 legacy 顺序染原版可染色方块（羊毛/染色玻璃/玻璃板/床/蜡烛/旗帜/陶瓦/带釉陶瓦/混凝土粉末/地毯/潜影盒含容器数据/混凝土），同色与不可染色返回 PASS；羊染色；耐久 32，耗尽还原为无色 painter；autoRefill 用潜行右键切换（替代 legacy M 键位），补料消耗背包同色刷并收纳无色刷；IC2 自有墙无染色分支与 legacy 一致；模式键位/遮蔽墙见 painter.md 差异记录。"
   },
   {
    "registry": "item",
@@ -5731,7 +5801,12 @@
    "factory": "register",
    "expression": "new ItemToolPainter(new Properties().stacksTo(1).durability(32), Ic2Color.RED)",
    "decision": "preserve",
-   "status": "pending"
+   "status": "implemented",
+   "evidence": [
+    "neoforge/src/main/java/ic2/neoforge/item/PainterItem.java",
+    "neoforge/src/main/java/ic2/neoforge/registration/ModTools.java"
+   ],
+   "note": "PainterItem：13 分支按 legacy 顺序染原版可染色方块（羊毛/染色玻璃/玻璃板/床/蜡烛/旗帜/陶瓦/带釉陶瓦/混凝土粉末/地毯/潜影盒含容器数据/混凝土），同色与不可染色返回 PASS；羊染色；耐久 32，耗尽还原为无色 painter；autoRefill 用潜行右键切换（替代 legacy M 键位），补料消耗背包同色刷并收纳无色刷；IC2 自有墙无染色分支与 legacy 一致；模式键位/遮蔽墙见 painter.md 差异记录。"
   },
   {
    "registry": "item",
@@ -5741,7 +5816,12 @@
    "factory": "register",
    "expression": "new ItemToolPainter(new Properties().stacksTo(1).durability(32), Ic2Color.WHITE)",
    "decision": "preserve",
-   "status": "pending"
+   "status": "implemented",
+   "evidence": [
+    "neoforge/src/main/java/ic2/neoforge/item/PainterItem.java",
+    "neoforge/src/main/java/ic2/neoforge/registration/ModTools.java"
+   ],
+   "note": "PainterItem：13 分支按 legacy 顺序染原版可染色方块（羊毛/染色玻璃/玻璃板/床/蜡烛/旗帜/陶瓦/带釉陶瓦/混凝土粉末/地毯/潜影盒含容器数据/混凝土），同色与不可染色返回 PASS；羊染色；耐久 32，耗尽还原为无色 painter；autoRefill 用潜行右键切换（替代 legacy M 键位），补料消耗背包同色刷并收纳无色刷；IC2 自有墙无染色分支与 legacy 一致；模式键位/遮蔽墙见 painter.md 差异记录。"
   },
   {
    "registry": "item",
@@ -5751,7 +5831,12 @@
    "factory": "register",
    "expression": "new ItemToolPainter(new Properties().stacksTo(1).durability(32), Ic2Color.YELLOW)",
    "decision": "preserve",
-   "status": "pending"
+   "status": "implemented",
+   "evidence": [
+    "neoforge/src/main/java/ic2/neoforge/item/PainterItem.java",
+    "neoforge/src/main/java/ic2/neoforge/registration/ModTools.java"
+   ],
+   "note": "PainterItem：13 分支按 legacy 顺序染原版可染色方块（羊毛/染色玻璃/玻璃板/床/蜡烛/旗帜/陶瓦/带釉陶瓦/混凝土粉末/地毯/潜影盒含容器数据/混凝土），同色与不可染色返回 PASS；羊染色；耐久 32，耗尽还原为无色 painter；autoRefill 用潜行右键切换（替代 legacy M 键位），补料消耗背包同色刷并收纳无色刷；IC2 自有墙无染色分支与 legacy 一致；模式键位/遮蔽墙见 painter.md 差异记录。"
   },
   {
    "registry": "item",

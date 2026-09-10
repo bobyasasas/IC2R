@@ -1,0 +1,7 @@
+{
+  "type": "minecraft:function",
+  "function": "ic2_tests:painter_toggles_auto_refill",
+  "environment": "minecraft:default",
+  "structure": "ic2_tests:heat_room",
+  "max_ticks": 60
+}

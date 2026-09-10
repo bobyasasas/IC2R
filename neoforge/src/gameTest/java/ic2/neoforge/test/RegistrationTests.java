@@ -321,6 +321,27 @@ public final class RegistrationTests {
         FUNCTIONS.register("foam_fluid_slows", () -> FoamTests::foamFluidSlowsEntities);
         FUNCTIONS.register(
                 "foam_sprayer_fluid_filter", () -> FoamTests::sprayerAcceptsOnlyConstructionFoam);
+        FUNCTIONS.register("painter_recolors_wool", () -> PainterTests::painterRecolorsWool);
+        FUNCTIONS.register(
+                "painter_recolors_glass", () -> PainterTests::painterRecolorsGlassFamily);
+        FUNCTIONS.register(
+                "painter_recolors_terracotta_concrete",
+                () -> PainterTests::painterRecolorsTerracottaAndConcrete);
+        FUNCTIONS.register(
+                "painter_recolors_carpet_candle",
+                () -> PainterTests::painterRecolorsCarpetAndCandle);
+        FUNCTIONS.register(
+                "painter_recolors_bed", () -> PainterTests::painterRecolorsBedBothHalves);
+        FUNCTIONS.register(
+                "painter_recolors_shulker",
+                () -> PainterTests::painterRecolorsShulkerBoxKeepsContents);
+        FUNCTIONS.register("painter_wear_reverts", () -> PainterTests::painterWearRevertsToPlain);
+        FUNCTIONS.register(
+                "painter_auto_refill", () -> PainterTests::painterAutoRefillConsumesSpare);
+        FUNCTIONS.register("painter_dyes_sheep", () -> PainterTests::painterDyesSheep);
+        FUNCTIONS.register("painter_plain_passes", () -> PainterTests::plainPainterPasses);
+        FUNCTIONS.register(
+                "painter_toggles_auto_refill", () -> PainterTests::painterTogglesAutoRefill);
         FUNCTIONS.register("dynamite_linked_toggle", () -> DynamiteTests::linkedStateToggles);
         FUNCTIONS.register("dynamite_redstone_fuse", () -> DynamiteTests::redstonePrimesFuse);
         FUNCTIONS.register("dynamite_break_fuse", () -> DynamiteTests::playerBreakPrimesFuse);

@@ -15,6 +15,7 @@ import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.item.CreativeModeTabs;
+import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.component.Tool;
 import net.minecraft.world.level.block.Block;
@@ -25,7 +26,9 @@ import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
+import java.util.EnumMap;
 import java.util.List;
+import java.util.Map;
 
 public final class ModTools {
     private static final DeferredRegister.Items ITEMS =
@@ -47,6 +50,25 @@ public final class ModTools {
             ITEMS.registerItem("treetap", p -> new TreetapItem(p.durability(16)));
     public static final DeferredItem<ElectricTreetapItem> ELECTRIC_TREETAP =
             ITEMS.registerItem("electric_treetap", p -> new ElectricTreetapItem(p.stacksTo(1)));
+
+    public static final DeferredItem<PainterItem> PAINTER =
+            ITEMS.registerItem("painter", p -> new PainterItem(p.durability(32), null));
+    private static final Map<DyeColor, DeferredItem<PainterItem>> PAINTERS =
+            new EnumMap<>(DyeColor.class);
+
+    static {
+        for (DyeColor color : DyeColor.values()) {
+            PAINTERS.put(
+                    color,
+                    ITEMS.registerItem(
+                            color.getName() + "_painter",
+                            p -> new PainterItem(p.durability(32), color)));
+        }
+    }
+
+    public static DeferredItem<PainterItem> painter(DyeColor color) {
+        return PAINTERS.get(color);
+    }
 
     // Drill miner constants keep the legacy TileEntityMiner pacing: EU per tick, ticks per
     // block, then the per-harvest drill wear energy.
@@ -168,6 +190,10 @@ public final class ModTools {
             event.accept(ADVANCED_SCANNER);
             event.accept(FREQUENCY_TRANSMITTER);
             event.accept(MINING_FILTER_CARD);
+            event.accept(PAINTER);
+            for (DyeColor color : DyeColor.values()) {
+                event.accept(PAINTERS.get(color));
+            }
             event.accept(IRON_CUTTING_BLADE);
             event.accept(STEEL_CUTTING_BLADE);
             event.accept(DIAMOND_CUTTING_BLADE);

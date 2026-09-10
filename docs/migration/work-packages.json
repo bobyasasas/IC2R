@@ -169,7 +169,7 @@
    "parent": "M12",
    "title": "爆炸与电缆附加行为",
    "status": "in_progress",
-   "acceptance": "炸药棒方块状态机、遥控器配对群爆、工业TNT（实体/方块/渲染/配方）、投掷/粘性炸药（引信链、PointExplosion、发射器、dynamite_sticky 配方）、Ic2Explosion 射线引擎（Type 五型、吸收/穿越、dropRate 聚合掉落、实体累积伤害含 damageVsEntities、ic2:nuke 与 reactor_explosion 伤害类型）与核弹（NukeBlockEntity 威力公式/装载槽、NukeEntity 300 tick 引信与扳手拆除、NukeMenu 1+8 槽 GUI、enableNuke/nukeExplosionPowerLimit 配置、onBlockExploded 连锁不重复掉落）已接入并双模式 GameTest 验收。建筑泡沫链已交付：FoamBlock 双态光照依赖硬化（normal→泡沫墙浅灰、reinforced→强化石头、沙子速凝）、16 色 IC2 泡沫墙方块、FoamSprayerItem BFS 喷涂（≤10/单块、脚手架就地覆盖、背包优先供液）、CFPackItem 80,000 mB 胸甲罐（护甲 8）、建筑泡沫流体缓慢效果、foam_sprayer/cf_pack 配方（并解锁 remote 两条挂起配方）。剩余：电击、涂色；电缆泡沫覆盖随电缆切片；辐射效果随 P16。勘误：legacy ItemRemote 无配对上限（基线与原始反编译均为无界列表），无需迁移。",
+   "acceptance": "炸药棒方块状态机、遥控器配对群爆、工业TNT（实体/方块/渲染/配方）、投掷/粘性炸药（引信链、PointExplosion、发射器、dynamite_sticky 配方）、Ic2Explosion 射线引擎（Type 五型、吸收/穿越、dropRate 聚合掉落、实体累积伤害含 damageVsEntities、ic2:nuke 与 reactor_explosion 伤害类型）与核弹（NukeBlockEntity 威力公式/装载槽、NukeEntity 300 tick 引信与扳手拆除、NukeMenu 1+8 槽 GUI、enableNuke/nukeExplosionPowerLimit 配置、onBlockExploded 连锁不重复掉落）已接入并双模式 GameTest 验收。建筑泡沫链已交付：FoamBlock 双态光照依赖硬化（normal→泡沫墙浅灰、reinforced→强化石头、沙子速凝）、16 色 IC2 泡沫墙方块、FoamSprayerItem BFS 喷涂（≤10/单块、脚手架就地覆盖、背包优先供液）、CFPackItem 80,000 mB 胸甲罐（护甲 8）、建筑泡沫流体缓慢效果、foam_sprayer/cf_pack 配方（并解锁 remote 两条挂起配方）。涂色器已交付：17 个 PainterItem（无色+16 色，耐久 32）按 legacy 13 分支染原版可染色方块（羊毛/染色玻璃/玻璃板/床/蜡烛/旗帜/陶瓦/带釉陶瓦/混凝土粉末/地毯/混凝土/潜影盒含物品保留）、羊染色、耗尽还原无色刷、autoRefill 潜行切换补料（painter+16 色配方转换 682/796）。剩余：电击、遮蔽墙重纹理（ItemObscurator 电动工具+obscured_wall+TileEntityWall 渲染，自涂色切片拆出）；电缆泡沫覆盖随电缆切片；辐射效果随 P16。勘误：legacy ItemRemote 无配对上限（基线与原始反编译均为无界列表），无需迁移。",
    "evidence": [
     "docs/migration/dynamite.md",
     "docs/migration/itnt.md",
@@ -182,7 +182,9 @@
     "neoforge/src/gameTest/java/ic2/neoforge/test/Ic2ExplosionTests.java",
     "neoforge/src/gameTest/java/ic2/neoforge/test/NukeTests.java",
     "neoforge/src/gameTest/java/ic2/neoforge/test/RemoteTests.java",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/FoamTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/FoamTests.java",
+    "docs/migration/painter.md",
+    "neoforge/src/gameTest/java/ic2/neoforge/test/PainterTests.java"
    ]
   },
   {

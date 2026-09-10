@@ -1,0 +1,12 @@
+{
+  "type": "ic2:shapeless",
+  "consuming": true,
+  "result": {
+    "id": "ic2:light_blue_painter",
+    "count": 1
+  },
+  "ingredients": [
+    "ic2:painter",
+    "minecraft:light_blue_dye"
+  ]
+}

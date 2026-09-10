@@ -556,6 +556,8 @@
   "ic2.Scanner.gui.info7": "transfer error no storage",
   "ic2.Scanner.gui.info8": "Error: already recorded",
   "ic2.SolidHeatGenerator.gui.tooltipheat": "currently transmitted heat / max transferable heat",
+  "ic2.painter.auto_refill.disabled": "Painter automatic refill mode disabled",
+  "ic2.painter.auto_refill.enabled": "Painter automatic refill mode enabled",
   "ic2.steam_generator.gui.calcification": "Calcification: %1$s",
   "ic2.steam_generator.gui.heatInput": "Input: %1$s Hu/t",
   "ic2.steam_generator.gui.info.fluidoutput": "Output:",

@@ -7,6 +7,23 @@
     "ic2:treetap",
     "ic2:electric_treetap",
     "ic2:scanner",
-    "ic2:advanced_scanner"
+    "ic2:advanced_scanner",
+    "ic2:painter",
+    "ic2:white_painter",
+    "ic2:orange_painter",
+    "ic2:magenta_painter",
+    "ic2:light_blue_painter",
+    "ic2:yellow_painter",
+    "ic2:lime_painter",
+    "ic2:pink_painter",
+    "ic2:gray_painter",
+    "ic2:light_gray_painter",
+    "ic2:cyan_painter",
+    "ic2:purple_painter",
+    "ic2:blue_painter",
+    "ic2:brown_painter",
+    "ic2:green_painter",
+    "ic2:red_painter",
+    "ic2:black_painter"
   ]
 }
