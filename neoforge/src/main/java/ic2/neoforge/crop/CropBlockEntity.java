@@ -37,6 +37,7 @@ public class CropBlockEntity extends net.minecraft.world.level.block.entity.Bloc
     private int storageWater;
     private int storageWeedEx;
     private int terrainAirQuality = -1;
+    private boolean eaten;
     private int terrainHumidity = -1;
     private int terrainNutrients = -1;
     private int growthPoints;
@@ -351,6 +352,15 @@ public class CropBlockEntity extends net.minecraft.world.level.block.entity.Bloc
         terrainAirQuality = (byte) value;
     }
 
+    /** Legacy customData "eaten" flag: the eating plant drops rotten flesh on the next tick. */
+    public boolean hasEaten() {
+        return eaten;
+    }
+
+    public void setEaten(boolean value) {
+        eaten = value;
+    }
+
     /** Legacy setCrop convenience: refreshes all three terrain qualities from the world. */
     public void refreshTerrain(ServerLevel level) {
         updateTerrainHumidity(level);
@@ -526,6 +536,7 @@ public class CropBlockEntity extends net.minecraft.world.level.block.entity.Bloc
         terrainNutrients = input.getByteOr("soil", (byte) -1);
         growthPoints = input.getShortOr("growth_points", (short) 0);
         scanLevel = input.getByteOr("scan", (byte) 0);
+        eaten = input.getBooleanOr("eaten", false);
     }
 
     @Override
@@ -542,5 +553,6 @@ public class CropBlockEntity extends net.minecraft.world.level.block.entity.Bloc
         output.putByte("soil", (byte) terrainNutrients);
         output.putShort("growth_points", (short) growthPoints);
         output.putByte("scan", (byte) scanLevel);
+        output.putBoolean("eaten", eaten);
     }
 }

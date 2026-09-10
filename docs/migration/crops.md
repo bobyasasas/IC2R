@@ -217,9 +217,51 @@ common 2000 / uncommon 2200,早段 800 / 750。
   银粉,卡片按方块解析正确。
 - IC2 与 GT 双模式 `runGameTestServer` 324 项全绿;core JUnit 110 项。
 
+## 切片六:红小麦与食人植物(2026-09-10)
+
+- **红小麦**(legacy CropRedWheat,maxAge 6,tier 6):只在光照
+  5–10 的暗处生长(`lightLevel` 方块属性让满龄杆发出的 7 级光不会
+  阻断自身收获后的再生长,因满龄不可再生长);满龄发出红石信号 15
+  (`RedWheatCropBlock.isSignalSource/getSignal`,对应 legacy
+  isRedstoneSignalEmitter/getEmittedRedstoneSignal)与 7 级光;
+  dropGainChance 0.5;收获产物按 legacy 语义:邻块信号 ≤0 时小麦/
+  红石各 50%,任一邻居供电则必掉红石;时长 600,收获回 age 1。
+- **食人植物**(legacy CropEating,maxAge 5,tier 6):光照 >10;
+  age ≥2 后末段生长需根区 5 格内熔岩(`isBlockBelow(LAVA)`);
+  收获带为 age 3–4(`optimalHarvestAge = maxAge-2`),满龄 5 不可
+  收获,带内收获掉仙人掌;根区 5。
+- **食客行为**(age ≥1 的 tick):legacy customData "eaten" 标志
+  持久化为 BE `eaten` 字段——喂食后的下一 tick 掉腐肉;AABB ±1 格、
+  高 2 格内选随机活体(排除创造/旁观,创造玩家跳过),拖向中心
+  (Δv×0.5、vy ≤ −0.05),`ic2:crop_eating` 伤害源(新 damage_type
+  JSON 自 legacy 原样复制)按 (age+1)×2 扣血;玩家无 IC2 金属甲时
+  附加缓慢 64t/amp 50、隐身 64t、失明 64t(新 `MetalArmorLike`
+  标记接口对应 legacy IMetalArmor——防化服是橡胶不算金属甲,当前
+  移植尚无金属甲物品,标记就位待青铜甲切片);进食且可生长时
+  +100 生长点,播放 GENERIC_EAT 音效,每 tick 只咬一个。
+- 群系加成(swamp/mountain 时长 ÷1.5)仍随 env-proxy 缺席取 0
+  (文档化偏差);空气品质 ÷(1+air/10) 已移植。
+- base seed:仙人掌 → 食人植物(size 0);红小麦无 base seed。
+- 纹理 red_wheat 0..6、eating_plant 0..5 自 legacy 逐字拷贝。
+
+## 测试证据(切片六)
+
+- `crop_red_wheat_dim_light`:露天房间内石顶封出暗袋 + 6 格高处
+  萤石得到带内光照,断言光 >10 抑制生长、5–10 允许生长;满龄红石
+  信号 15(`Level.getSignal`,`absolutePos` 换算)、满龄方块
+  `getLightEmission()==7` 而收获后归 0;多轮收获累计出小麦与红石,
+  收获回 age 1;邻置红石块后必掉红石不掉小麦。
+- `crop_eating_plant_lava`:仙人掌右键播种;亮光长到 age 2,无熔岩
+  300 tick 停滞,放熔岩后长到 5;满龄不可收获,age 4 收获累计掉
+  仙人掌;age 1 时咬猪(扣血、缓慢/失明/隐身),下一 tick 掉腐肉。
+- IC2 与 GT 双模式 `runGameTestServer` 326 项全绿;core JUnit 110 项。
+
 ## 未验收 / 后续切片
 
 - 杂草自然出现(空杆 1/100 掷骰)的实机观察;WeedEX 水罐/肥料/
   水化罐的右键交互。踩踏判定已接线(`entityInside`),待实机观察。
-- 其余约 17 种作物卡(红小麦、食人植物、GenericCropCard ×15)、
-  杂交/crossing base、作物分析器、Cropmatron、收割机、群系加成。
+- 其余约 15 种作物卡(GenericCropCard ×15:blazereed/bobs/corium/
+  corpse_plant/creeper_weed/diareed/egg_plant/ender_blossom/
+  meat_rose/milk_wart/oil_berries/slime_plant/spidernip/tearstalks/
+  withereed)、杂交/crossing base、作物分析器、Cropmatron、收割机、
+  群系加成。

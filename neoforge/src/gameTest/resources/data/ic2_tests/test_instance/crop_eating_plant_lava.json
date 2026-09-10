@@ -1,0 +1,7 @@
+{
+  "type": "minecraft:function",
+  "function": "ic2_tests:crop_eating_plant_lava",
+  "environment": "minecraft:default",
+  "structure": "ic2_tests:world_room",
+  "max_ticks": 300
+}

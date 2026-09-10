@@ -22,6 +22,8 @@ import ic2.neoforge.crop.CyazintCropBlock;
 import ic2.neoforge.crop.CypriumCropBlock;
 import ic2.neoforge.crop.DarkOakSaplingCropBlock;
 import ic2.neoforge.crop.DandelionCropBlock;
+import ic2.neoforge.crop.EatingPlantCropBlock;
+import ic2.neoforge.crop.EatingPlantCropCard;
 import ic2.neoforge.crop.FerruCropBlock;
 import ic2.neoforge.crop.FlaxCropBlock;
 import ic2.neoforge.crop.FlaxCropCard;
@@ -41,6 +43,8 @@ import ic2.neoforge.crop.PotatoCropBlock;
 import ic2.neoforge.crop.PotatoCropCard;
 import ic2.neoforge.crop.PumpkinCropBlock;
 import ic2.neoforge.crop.PumpkinCropCard;
+import ic2.neoforge.crop.RedWheatCropBlock;
+import ic2.neoforge.crop.RedWheatCropCard;
 import ic2.neoforge.crop.RedMushroomCropBlock;
 import ic2.neoforge.crop.ReedCropBlock;
 import ic2.neoforge.crop.ReedCropCard;
@@ -224,6 +228,27 @@ public final class ModCrops {
     public static final DeferredBlock<CropBlock> SHINING_CROP =
             BLOCKS.registerBlock(
                     "shining_crop", properties -> new ShiningCropBlock(cropSettings(properties)));
+    public static final DeferredBlock<CropBlock> RED_WHEAT_CROP =
+            BLOCKS.registerBlock(
+                    "red_wheat_crop",
+                    properties ->
+                            new RedWheatCropBlock(
+                                    cropSettings(properties)
+                                            .lightLevel(
+                                                    state ->
+                                                            state.hasProperty(
+                                                                    RedWheatCropBlock.AGE)
+                                                                    && state.getValue(
+                                                                            RedWheatCropBlock.AGE)
+                                                                            == RedWheatCropBlock
+                                                                                    .MAX_AGE
+                                                            ? 7
+                                                            : 0)));
+    public static final DeferredBlock<CropBlock> EATING_PLANT_CROP =
+            BLOCKS.registerBlock(
+                    "eating_plant_crop",
+                    properties ->
+                            new EatingPlantCropBlock(cropSettings(properties)));
 
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<CropBlockEntity>>
             CROP_ENTITY =
@@ -267,7 +292,9 @@ public final class ModCrops {
                                             STAGNIUM_CROP.get(),
                                             PLUMBISCUS_CROP.get(),
                                             AURELIA_CROP.get(),
-                                            SHINING_CROP.get()));
+                                            SHINING_CROP.get(),
+                                            RED_WHEAT_CROP.get(),
+                                            EATING_PLANT_CROP.get()));
 
     public static final DeferredItem<CropStickItem> CROP_STICK_ITEM =
             ITEMS.registerItem(
@@ -452,6 +479,8 @@ public final class ModCrops {
                                             .get(MaterialDefinition.SMALL_SILVER_DUST)
                                             .get()),
                     true);
+    public static final CropCard RED_WHEAT_CARD = new RedWheatCropCard();
+    public static final CropCard EATING_PLANT_CARD = new EatingPlantCropCard();
 
     /**
      * Legacy registerBaseSeed: a plain produce item plants its crop with fixed stats; the size is
@@ -497,6 +526,8 @@ public final class ModCrops {
         if (block == PLUMBISCUS_CROP.get()) return PLUMBISCUS_CARD;
         if (block == AURELIA_CROP.get()) return AURELIA_CARD;
         if (block == SHINING_CROP.get()) return SHINING_CARD;
+        if (block == RED_WHEAT_CROP.get()) return RED_WHEAT_CARD;
+        if (block == EATING_PLANT_CROP.get()) return EATING_PLANT_CARD;
         return null;
     }
 
@@ -537,6 +568,8 @@ public final class ModCrops {
             case "plumbiscus" -> PLUMBISCUS_CARD;
             case "aurelia" -> AURELIA_CARD;
             case "shining" -> SHINING_CARD;
+            case "red_wheat" -> RED_WHEAT_CARD;
+            case "eating_plant" -> EATING_PLANT_CARD;
             default -> null;
         };
     }
@@ -554,6 +587,7 @@ public final class ModCrops {
         if (map == null) {
             var seeds = new java.util.HashMap<Item, BaseSeed>();
             seeds.put(Items.SUGAR_CANE, new BaseSeed(REED_CARD, 0, 3, 0, 2));
+            seeds.put(Items.CACTUS, new BaseSeed(EATING_PLANT_CARD, 0, 1, 1, 1));
             seeds.put(Items.COCOA_BEANS, new BaseSeed(COCOA_CARD, 0, 0, 0, 0));
             seeds.put(Items.PUMPKIN_SEEDS, new BaseSeed(PUMPKIN_CARD, 0, 1, 1, 1));
             seeds.put(Items.MELON_SEEDS, new BaseSeed(MELON_CARD, 0, 1, 1, 1));

@@ -10140,7 +10140,14 @@
       "factory": "register",
       "expression": "Ic2TileEntityBlock.create(cropSettings, TileEntityCrop.class, false, Ic2TileEntityBlock.DefaultDrop.Self, Util.noFacings, false, Ic2CropType.redWheat)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModCrops.java",
+        "neoforge/src/main/java/ic2/neoforge/crop/RedWheatCropCard.java",
+        "neoforge/src/main/java/ic2/neoforge/crop/EatingPlantCropCard.java",
+        "docs/migration/crops.md"
+      ],
+      "note": "Crop slice six: legacy CropRedWheat (tier 6, max age 6, light 5-10 band, dropGainChance 0.5, ripe stalk emits light 7 and a full redstone signal, unpowered harvest splits wheat/redstone 50/50 unless a neighbor powers it, age-after-harvest 1, duration 600) and legacy CropEating (tier 6, max age 5, bright light, late growth needs lava in the root zone, harvest band ages 3-4 for cactus, bites nearby creatures for damage+slowness/invisibility/blindness unless IC2 metal armor is worn, drops rotten flesh the tick after feeding, cactus base seed size 0, roots 5)."
     },
     {
       "registry": "block",
@@ -10180,7 +10187,14 @@
       "factory": "register",
       "expression": "Ic2TileEntityBlock.create(cropSettings, TileEntityCrop.class, false, Ic2TileEntityBlock.DefaultDrop.Self, Util.noFacings, false, Ic2CropType.eatingPlant)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModCrops.java",
+        "neoforge/src/main/java/ic2/neoforge/crop/RedWheatCropCard.java",
+        "neoforge/src/main/java/ic2/neoforge/crop/EatingPlantCropCard.java",
+        "docs/migration/crops.md"
+      ],
+      "note": "Crop slice six: legacy CropRedWheat (tier 6, max age 6, light 5-10 band, dropGainChance 0.5, ripe stalk emits light 7 and a full redstone signal, unpowered harvest splits wheat/redstone 50/50 unless a neighbor powers it, age-after-harvest 1, duration 600) and legacy CropEating (tier 6, max age 5, bright light, late growth needs lava in the root zone, harvest band ages 3-4 for cactus, bites nearby creatures for damage+slowness/invisibility/blindness unless IC2 metal armor is worn, drops rotten flesh the tick after feeding, cactus base seed size 0, roots 5)."
     },
     {
       "registry": "block",

@@ -424,6 +424,10 @@ public final class RegistrationTests {
         FUNCTIONS.register(
                 "crop_shining_uncommon_roots", () -> CropTests::cropShiningUncommonRoots);
         FUNCTIONS.register(
+                "crop_red_wheat_dim_light", () -> CropTests::cropRedWheatDimLight);
+        FUNCTIONS.register(
+                "crop_eating_plant_lava", () -> CropTests::cropEatingPlantLava);
+        FUNCTIONS.register(
                 "radiation_hazmat_set", () -> RadiationTests::hazmatCompleteSetDetection);
         FUNCTIONS.register(
                 "radiation_effect_damage", () -> RadiationTests::radiationEffectDamagesHost);

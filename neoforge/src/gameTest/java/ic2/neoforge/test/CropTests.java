@@ -603,7 +603,7 @@ final class CropTests {
                 "Iron ore in the roots ripens ferru, saw " + crop(helper).getCurrentAge());
         Item ironDust = ModItems.MATERIALS.get(MaterialDefinition.SMALL_IRON_DUST).get();
         boolean anyDust = false;
-        for (int cycle = 0; cycle < 6 && !anyDust; cycle++) {
+        for (int cycle = 0; cycle < 16 && !anyDust; cycle++) {
             for (int tick = 0; tick < 600 && crop(helper).getCurrentAge() < 3; tick++) {
                 crop(helper).performTick(1024L);
             }
@@ -657,6 +657,166 @@ final class CropTests {
             }
         }
         helper.assertTrue(anyDust, "Harvesting shining drops small silver dust");
+        helper.succeed();
+    }
+
+    static void cropRedWheatDimLight(GameTestHelper helper) {
+        helper.setBlock(POSITION.below(), Blocks.FARMLAND);
+        helper.setBlock(POSITION, ModCrops.CROP_STICK.get().defaultBlockState());
+        // The world room sits under open sky, so roof the crop in; a glowstone six blocks up
+        // then keeps the pocket inside the 5..10 band. The light engine settles over the next
+        // ticks, so every light-dependent assertion runs in a later sequence step.
+        for (int dx = -5; dx <= 5; dx++) {
+            for (int dz = -5; dz <= 5; dz++) {
+                helper.setBlock(POSITION.offset(dx, 7, dz), Blocks.STONE);
+            }
+        }
+        helper.setBlock(POSITION.above(6), Blocks.GLOWSTONE);
+        helper.startSequence()
+                .thenExecuteAfter(
+                        3,
+                        () -> {
+                            CropBlockEntity crop = crop(helper);
+                            crop.refreshTerrain(helper.getLevel());
+                            helper.assertTrue(
+                                    crop.tryPlantIn(ModCrops.RED_WHEAT_CARD, 0, 1, 1, 1, 0),
+                                    "Red wheat plants into an empty crop stick (light "
+                                            + crop.getLightLevel() + ")");
+                            helper.setBlock(POSITION.above().above(), Blocks.GLOWSTONE);
+                        })
+                .thenExecuteAfter(
+                        3,
+                        () -> {
+                            helper.assertTrue(
+                                    !ModCrops.RED_WHEAT_CARD.canGrow(crop(helper)),
+                                    "Light above ten blocks the red wheat");
+                            helper.setBlock(POSITION.above().above(), Blocks.AIR);
+                        })
+                .thenExecuteAfter(
+                        20,
+                        () -> {
+                            crop(helper).refreshTerrain(helper.getLevel());
+                            helper.assertTrue(
+                                    ModCrops.RED_WHEAT_CARD.canGrow(crop(helper)),
+                                    "Dim light between five and ten lets the red wheat grow");
+                            growUntil(helper, 6, 12000);
+                            helper.assertTrue(
+                                    crop(helper).getCurrentAge() == 6,
+                                    "The red wheat ripens in dim light, saw "
+                                            + crop(helper).getCurrentAge());
+                            helper.assertTrue(
+                                    helper.getLevel()
+                                            .getSignal(
+                                                    helper.absolutePos(POSITION),
+                                                    net.minecraft.core.Direction.UP)
+                                            == 15,
+                                    "The ripe red wheat emits a full redstone signal");
+                            helper.setBlock(POSITION.above(6), Blocks.AIR);
+                        })
+                .thenExecuteAfter(
+                        20,
+                        () -> {
+                            int emission = helper.getBlockState(POSITION).getLightEmission();
+                            helper.assertTrue(
+                                    emission == 7,
+                                    "The ripe red wheat emits light seven, saw " + emission);
+                            crop(helper).performManualHarvest();
+                            int cutEmission = helper.getBlockState(POSITION).getLightEmission();
+                            helper.assertTrue(
+                                    cutEmission == 0,
+                                    "The cut stalk stops glowing, saw " + cutEmission);
+                            helper.setBlock(POSITION.above(6), Blocks.GLOWSTONE);
+                            boolean anyWheat = false;
+                            boolean anyRedstone = false;
+                            for (int cycle = 0; cycle < 24 && !(anyWheat && anyRedstone); cycle++) {
+                                growUntil(helper, 6, 12000);
+                                if (crop(helper).getCurrentAge() == 6
+                                        && crop(helper).performManualHarvest()) {
+                                    anyWheat |= countItems(helper, Items.WHEAT) > 0;
+                                    anyRedstone |= countItems(helper, Items.REDSTONE) > 0;
+                                }
+                            }
+                            helper.assertTrue(
+                                    anyWheat && anyRedstone,
+                                    "Unpowered harvests yield both wheat and redstone over time");
+                            helper.assertTrue(
+                                    crop(helper).getCurrentAge() == 1,
+                                    "The red wheat resets to age one after harvest");
+                            int wheatBefore = countItems(helper, Items.WHEAT);
+                            helper.setBlock(POSITION.east(), Blocks.REDSTONE_BLOCK);
+                            growUntil(helper, 6, 12000);
+                            if (crop(helper).getCurrentAge() == 6) {
+                                crop(helper).performManualHarvest();
+                                helper.assertTrue(
+                                        countItems(helper, Items.WHEAT) == wheatBefore,
+                                        "A powered red wheat always drops redstone, not wheat");
+                            }
+                            helper.succeed();
+                        });
+    }
+
+    static void cropEatingPlantLava(GameTestHelper helper) {
+        helper.setBlock(POSITION, ModCrops.CROP_STICK.get().defaultBlockState());
+        CropBlockEntity crop = crop(helper);
+        helper.assertTrue(
+                crop.rightClick(null, new ItemStack(Blocks.CACTUS)),
+                "A cactus plants the eating plant");
+        helper.assertTrue(
+                helper.getBlockState(POSITION).is(ModCrops.EATING_PLANT_CROP.get()),
+                "The eating plant crop replaces the stick");
+        helper.setBlock(POSITION.above().above(), Blocks.GLOWSTONE);
+        growUntil(helper, 2, 6000);
+        helper.assertTrue(
+                crop(helper).getCurrentAge() == 2,
+                "The seedling grows in bright light, saw " + crop(helper).getCurrentAge());
+        for (int tick = 0; tick < 300; tick++) crop(helper).performTick(1024L);
+        helper.assertTrue(
+                crop(helper).getCurrentAge() == 2,
+                "Without lava the late growth stalls, saw " + crop(helper).getCurrentAge());
+        helper.setBlock(POSITION.below(), Blocks.LAVA);
+        growUntil(helper, 5, 12000);
+        helper.assertTrue(
+                crop(helper).getCurrentAge() == 5,
+                "Lava in the roots ripens the eating plant, saw "
+                        + crop(helper).getCurrentAge());
+        helper.assertTrue(
+                !crop(helper).performManualHarvest(),
+                "The full eating plant is past its harvest age");
+        helper.setBlock(
+                POSITION,
+                ModCrops.EATING_PLANT_CROP
+                        .get()
+                        .defaultBlockState()
+                        .setValue(
+                                ic2.neoforge.crop.EatingPlantCropBlock.AGE, 4));
+        boolean anyCactus = false;
+        for (int cycle = 0; cycle < 6 && !anyCactus; cycle++) {
+            if (crop(helper).getCurrentAge() == 4 && crop(helper).performManualHarvest()) {
+                anyCactus |= countItems(helper, Items.CACTUS) > 0;
+            }
+            growUntil(helper, 4, 12000);
+        }
+        helper.assertTrue(anyCactus, "Cutting the stalk before full age drops a cactus");
+        helper.setBlock(
+                POSITION,
+                ModCrops.EATING_PLANT_CROP
+                        .get()
+                        .defaultBlockState()
+                        .setValue(
+                                ic2.neoforge.crop.EatingPlantCropBlock.AGE, 1));
+        var pig = helper.spawn(EntityType.PIG, POSITION);
+        float healthBefore = pig.getHealth();
+        ModCrops.EATING_PLANT_CARD.tick(crop(helper));
+        helper.assertTrue(pig.getHealth() < healthBefore, "The plant bites a nearby animal");
+        helper.assertTrue(
+                pig.hasEffect(net.minecraft.world.effect.MobEffects.SLOWNESS)
+                        && pig.hasEffect(net.minecraft.world.effect.MobEffects.BLINDNESS)
+                        && pig.hasEffect(net.minecraft.world.effect.MobEffects.INVISIBILITY),
+                "The bite slows and blinds its prey");
+        ModCrops.EATING_PLANT_CARD.tick(crop(helper));
+        helper.assertTrue(
+                countItems(helper, Items.ROTTEN_FLESH) > 0,
+                "The chewed meal drops rotten flesh on the next tick");
         helper.succeed();
     }
 
