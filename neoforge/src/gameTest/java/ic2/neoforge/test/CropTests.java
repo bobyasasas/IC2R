@@ -2,13 +2,16 @@ package ic2.neoforge.test;
 
 import ic2.neoforge.component.CropSeed;
 import ic2.neoforge.component.ModDataComponents;
+import ic2.neoforge.crop.CropBlock;
 import ic2.neoforge.crop.CropBlockEntity;
+import ic2.neoforge.crop.WheatCropBlock;
 import ic2.neoforge.registration.MaterialDefinition;
 import ic2.neoforge.registration.ModCrops;
 import ic2.neoforge.registration.ModItems;
 import ic2.neoforge.registration.ModMaterialBlocks;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.gametest.framework.GameTestHelper;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.Item;
@@ -941,6 +944,159 @@ final class CropTests {
         helper.assertTrue(gotMilkWart, "Harvested milk wart drops milk warts");
         helper.assertTrue(
                 crop(helper).getCurrentAge() == 1, "Milk wart resets to age one after harvest");
+        helper.succeed();
+    }
+
+    static void cropCrossingBaseInteractions(GameTestHelper helper) {
+        helper.setBlock(POSITION.below(), Blocks.FARMLAND);
+        helper.setBlock(POSITION, ModCrops.CROP_STICK.get().defaultBlockState());
+        helper.assertFalse(crop(helper).isCrossingBase(), "A fresh stick is no crossing base");
+        // Right-clicking with a crop stick upgrades the stick and consumes one item.
+        ItemStack sticks = new ItemStack(ModCrops.CROP_STICK_ITEM.get(), 4);
+        helper.assertTrue(crop(helper).rightClick(null, sticks), "A crop stick upgrades the stick");
+        helper.assertTrue(crop(helper).isCrossingBase(), "The stick becomes a crossing base");
+        helper.assertTrue(sticks.getCount() == 3, "Upgrading consumes one crop stick");
+        helper.assertTrue(
+                helper.getBlockState(POSITION).getValue(CropBlock.CROSSING_BASE),
+                "The crossing base shows its upgraded block state");
+        // A base seed is neither consumed nor planted on a crossing base.
+        ItemStack milkWart =
+                new ItemStack(ModItems.MATERIALS.get(MaterialDefinition.MILK_WART).get());
+        helper.assertFalse(crop(helper).rightClick(null, milkWart), "A crossing base ignores seeds");
+        helper.assertTrue(milkWart.getCount() == 1, "The base seed is kept");
+        // Left-clicking the crossing base downgrades it and drops the stick.
+        helper.assertTrue(
+                crop(helper).onLeftClickEmpty(null), "Left-clicking downgrades the crossing base");
+        helper.assertFalse(crop(helper).isCrossingBase(), "The downgrade clears the flag");
+        helper.assertTrue(
+                countItems(helper, ModCrops.CROP_STICK_ITEM.get()) == 1,
+                "Downgrading drops the crop stick");
+        helper.assertFalse(crop(helper).onLeftClickEmpty(null), "A plain stick ignores left clicks");
+        helper.succeed();
+    }
+
+    /** The four breeding clusters, each a crossing base surrounded by four wheat neighbours. */
+    private static final BlockPos[] CROSSING_BASES = {
+        new BlockPos(3, 8, 3),
+        new BlockPos(13, 8, 3),
+        new BlockPos(13, 8, 13),
+        new BlockPos(3, 8, 13)
+    };
+
+    private static void plantWheatNeighbour(GameTestHelper helper, BlockPos pos, int age) {
+        helper.setBlock(pos.below(), Blocks.FARMLAND);
+        helper.setBlock(
+                pos, ModCrops.WHEAT_CROP.get().defaultBlockState().setValue(WheatCropBlock.AGE, age));
+        CropBlockEntity neighbour = helper.getBlockEntity(pos, CropBlockEntity.class);
+        neighbour.setStatGrowth(10);
+        neighbour.setStatGain(10);
+        neighbour.setStatResistance(10);
+    }
+
+    static void cropCrossingBreed(GameTestHelper helper) {
+        for (BlockPos base : CROSSING_BASES) {
+            helper.setBlock(base.below(), Blocks.FARMLAND);
+            helper.setBlock(base, ModCrops.CROP_STICK.get().defaultBlockState());
+            for (Direction direction : Direction.Plane.HORIZONTAL) {
+                plantWheatNeighbour(helper, base.relative(direction), 3);
+            }
+        }
+        // The crossing chance is probabilistic; looping the attempt keeps the assertion
+        // deterministic while the 10/10/10 stats pin the inheritance window.
+        int wheatBreeds = 0;
+        for (BlockPos base : CROSSING_BASES) {
+            boolean crossed = false;
+            for (int attempt = 0; attempt < 300 && !crossed; attempt++) {
+                CropBlockEntity crop = helper.getBlockEntity(base, CropBlockEntity.class);
+                crop.refreshTerrain(helper.getLevel());
+                crossed = crop.attemptCrossing(helper.getLevel());
+            }
+            helper.assertTrue(crossed, "A surrounded crossing base eventually breeds");
+            var card = ModCrops.cardFor(helper.getBlockState(base).getBlock());
+            helper.assertTrue(card != null, "The breeding grows a crop card");
+            CropBlockEntity grown = helper.getBlockEntity(base, CropBlockEntity.class);
+            helper.assertTrue(grown.getCurrentAge() == 0, "The new crop starts at age zero");
+            helper.assertTrue(
+                    grown.getStatGrowth() >= 6
+                            && grown.getStatGrowth() <= 14
+                            && grown.getStatGain() >= 6
+                            && grown.getStatGain() <= 14
+                            && grown.getStatResistance() >= 6
+                            && grown.getStatResistance() <= 14,
+                    "The breed averages the neighbour stats plus jitter, saw "
+                            + grown.getStatGrowth()
+                            + "/"
+                            + grown.getStatGain()
+                            + "/"
+                            + grown.getStatResistance());
+            wheatBreeds += card == ModCrops.WHEAT_CARD ? 1 : 0;
+        }
+        helper.assertTrue(wheatBreeds > 0, "Four wheat neighbours overwhelmingly breed wheat");
+        helper.succeed();
+    }
+
+    static void cropCrossingSpread(GameTestHelper helper) {
+        helper.setBlock(POSITION.below(), Blocks.FARMLAND);
+        helper.setBlock(POSITION, ModCrops.CROP_STICK.get().defaultBlockState());
+        crop(helper).setCrossingBase(true);
+        BlockPos neighbourPos = POSITION.north();
+        plantWheatNeighbour(helper, neighbourPos, 3);
+        var neighbour = helper.getBlockEntity(neighbourPos, CropBlockEntity.class);
+        neighbour.setStatGrowth(5);
+        neighbour.setStatGain(6);
+        neighbour.setStatResistance(7);
+        boolean spread = false;
+        for (int attempt = 0; attempt < 200 && !spread; attempt++) {
+            spread = crop(helper).attemptSpreading(helper.getLevel());
+        }
+        helper.assertTrue(spread, "A single strong neighbour eventually spreads onto the base");
+        helper.assertTrue(
+                ModCrops.cardFor(helper.getBlockState(POSITION).getBlock())
+                        == ModCrops.WHEAT_CARD,
+                "The base adopts the neighbour's wheat");
+        CropBlockEntity spreadCrop = crop(helper);
+        helper.assertTrue(spreadCrop.getCurrentAge() == 0, "The spread crop starts at age zero");
+        helper.assertTrue(
+                spreadCrop.getStatGrowth() == 5
+                        && spreadCrop.getStatGain() == 6
+                        && spreadCrop.getStatResistance() == 7,
+                "Spreading copies the neighbour stats exactly, saw "
+                        + spreadCrop.getStatGrowth()
+                        + "/"
+                        + spreadCrop.getStatGain()
+                        + "/"
+                        + spreadCrop.getStatResistance());
+        // Negative: two crop neighbours never spread (legacy requires exactly one).
+        BlockPos twoNeighbours = new BlockPos(3, 8, 3);
+        helper.setBlock(twoNeighbours.below(), Blocks.FARMLAND);
+        helper.setBlock(twoNeighbours, ModCrops.CROP_STICK.get().defaultBlockState());
+        Direction[] sides = {Direction.NORTH, Direction.SOUTH};
+        for (Direction direction : sides) plantWheatNeighbour(helper, twoNeighbours.relative(direction), 3);
+        CropBlockEntity crowded = helper.getBlockEntity(twoNeighbours, CropBlockEntity.class);
+        crowded.setCrossingBase(true);
+        helper.assertFalse(
+                crowded.attemptSpreading(helper.getLevel()), "Two neighbours never spread");
+        // Negative: an immature neighbour cannot cross onto the base.
+        BlockPos immature = new BlockPos(13, 8, 3);
+        helper.setBlock(immature.below(), Blocks.FARMLAND);
+        helper.setBlock(immature, ModCrops.CROP_STICK.get().defaultBlockState());
+        plantWheatNeighbour(helper, immature.north(), 1);
+        CropBlockEntity youngBase = helper.getBlockEntity(immature, CropBlockEntity.class);
+        youngBase.setCrossingBase(true);
+        helper.assertFalse(
+                youngBase.attemptSpreading(helper.getLevel()),
+                "An immature neighbour cannot spread");
+        // Negative: an empty neighbouring stick has no crop to spread.
+        BlockPos emptySide = new BlockPos(3, 8, 13);
+        helper.setBlock(emptySide.below(), Blocks.FARMLAND);
+        helper.setBlock(emptySide, ModCrops.CROP_STICK.get().defaultBlockState());
+        helper.setBlock(emptySide.north().below(), Blocks.FARMLAND);
+        helper.setBlock(emptySide.north(), ModCrops.CROP_STICK.get().defaultBlockState());
+        CropBlockEntity bareBase = helper.getBlockEntity(emptySide, CropBlockEntity.class);
+        bareBase.setCrossingBase(true);
+        helper.assertFalse(
+                bareBase.attemptSpreading(helper.getLevel()),
+                "An empty neighbour has no crop to spread");
         helper.succeed();
     }
 

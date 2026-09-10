@@ -16,11 +16,14 @@ public class ColorFlowerCropCard implements CropCard {
     private final String id;
     private final Supplier<Block> block;
     private final Supplier<ItemStack> gain;
+    private final String[] attributes;
 
-    public ColorFlowerCropCard(String id, Supplier<Block> block, Supplier<ItemStack> gain) {
+    public ColorFlowerCropCard(
+            String id, Supplier<Block> block, Supplier<ItemStack> gain, String[] attributes) {
         this.id = id;
         this.block = block;
         this.gain = gain;
+        this.attributes = attributes;
     }
 
     @Override
@@ -61,5 +64,10 @@ public class ColorFlowerCropCard implements CropCard {
     @Override
     public int getGrowthDuration(CropBlockEntity crop) {
         return crop.getCurrentAge() == getMaxAge() - 1 ? 600 : 400;
+    }
+
+    @Override
+    public String[] getAttributes() {
+        return attributes;
     }
 }

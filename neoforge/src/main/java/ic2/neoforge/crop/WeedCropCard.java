@@ -62,4 +62,9 @@ public class WeedCropCard implements CropCard {
     public boolean onEntityCollision(CropBlockEntity crop, net.minecraft.world.entity.Entity entity) {
         return false;
     }
+
+    @Override
+    public String[] getAttributes() {
+        return new String[] { "Weed", "Bad" };
+    }
 }

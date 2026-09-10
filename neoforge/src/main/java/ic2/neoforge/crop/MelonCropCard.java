@@ -22,7 +22,8 @@ public class MelonCropCard extends VanillaStemCropCard {
                 3,
                 new CropProperties(2, 0, 4, 0, 2, 0),
                 MelonCropCard::randomMelon,
-                () -> new ItemStack(Items.MELON_SEEDS, RANDOM.nextInt(2) + 1));
+                () -> new ItemStack(Items.MELON_SEEDS, RANDOM.nextInt(2) + 1),
+                new String[] {"Green", "Food", "Stem"});
     }
 
     private static ItemStack randomMelon() {

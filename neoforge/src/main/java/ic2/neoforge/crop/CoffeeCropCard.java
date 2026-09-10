@@ -69,4 +69,9 @@ public class CoffeeCropCard implements CropCard {
     public int getOptimalHarvestAge() {
         return getMaxAge() - 2;
     }
+
+    @Override
+    public String[] getAttributes() {
+        return new String[] { "Leaves", "Ingredient", "Beans" };
+    }
 }

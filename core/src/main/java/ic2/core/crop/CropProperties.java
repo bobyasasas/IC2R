@@ -5,4 +5,10 @@ package ic2.core.crop;
  * chances; the remaining traits classify the crop for breeding (a later slice).
  */
 public record CropProperties(
-        int tier, int chemistry, int consumable, int defensive, int colorful, int weed) {}
+        int tier, int chemistry, int consumable, int defensive, int colorful, int weed) {
+
+    /** Legacy getAllProperties: the five non-tier trait values feeding the breeding ratios. */
+    public int[] getAllProperties() {
+        return new int[] {chemistry, consumable, defensive, colorful, weed};
+    }
+}

@@ -58,4 +58,9 @@ public class WheatCropCard implements CropCard {
     public int getAgeAfterHarvest(CropBlockEntity crop) {
         return 2;
     }
+
+    @Override
+    public String[] getAttributes() {
+        return new String[] { "Yellow", "Food", "Wheat" };
+    }
 }

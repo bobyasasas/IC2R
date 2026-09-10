@@ -27,12 +27,25 @@ import org.jetbrains.annotations.Nullable;
  * picks (seed drops), use harvests a mature crop.
  */
 public class CropBlock extends Block implements EntityBlock {
+    /**
+     * Legacy crossing-base flag: only the bare stick carries it, so planting a crop (which swaps
+     * the block) implicitly clears it — matching the tile-field behaviour of the original.
+     */
+    public static final net.minecraft.world.level.block.state.properties.BooleanProperty
+            CROSSING_BASE =
+                    net.minecraft.world.level.block.state.properties.BooleanProperty.create(
+                            "crossing_base");
+
     @Nullable private final IntegerProperty ageProperty;
 
     public CropBlock(@Nullable IntegerProperty ageProperty, Properties properties) {
         super(properties);
         this.ageProperty = ageProperty;
-        if (ageProperty != null) registerDefaultState(defaultBlockState().setValue(ageProperty, 0));
+        if (ageProperty != null) {
+            registerDefaultState(defaultBlockState().setValue(ageProperty, 0));
+        } else {
+            registerDefaultState(defaultBlockState().setValue(CROSSING_BASE, false));
+        }
     }
 
     /**
@@ -56,6 +69,7 @@ public class CropBlock extends Block implements EntityBlock {
         super.createBlockStateDefinition(builder);
         IntegerProperty property = property();
         if (property != null) builder.add(property);
+        else builder.add(CROSSING_BASE);
     }
 
     @Override
@@ -103,6 +117,7 @@ public class CropBlock extends Block implements EntityBlock {
                 && serverLevel.getBlockEntity(pos) instanceof CropBlockEntity crop) {
             var card = crop.card();
             if (card != null) card.onLeftClick(crop, player);
+            else crop.onLeftClickEmpty(player);
         }
     }
 

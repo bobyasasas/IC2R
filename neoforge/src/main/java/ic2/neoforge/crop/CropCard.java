@@ -53,6 +53,16 @@ public interface CropCard {
         return crop.getCurrentAge() == getMaxAge();
     }
 
+    /** Legacy canCross default: a crop breeds once it is two steps into growth. */
+    default boolean canCross(CropBlockEntity crop) {
+        return crop.getCurrentAge() >= 2;
+    }
+
+    /** Legacy getAttributes: trait tags feeding the crossing ratio table (and tooltips). */
+    default String[] getAttributes() {
+        return new String[0];
+    }
+
     /** How deep below the stick the crop's roots reach (legacy getRootsLength). */
     default int getRootsLength(CropBlockEntity crop) {
         return 1;

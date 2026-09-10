@@ -22,18 +22,21 @@ public class MetalCropCard implements CropCard {
     private final Supplier<ItemStack> cropDrop;
     private final List<TagKey<Block>> rootsRequirement;
     private final boolean uncommon;
+    private final String[] attributes;
 
     public MetalCropCard(
             String id,
             Supplier<Block> block,
             List<TagKey<Block>> rootsRequirement,
             Supplier<ItemStack> cropDrop,
-            boolean uncommon) {
+            boolean uncommon,
+            String[] attributes) {
         this.id = id;
         this.block = block;
         this.rootsRequirement = rootsRequirement;
         this.cropDrop = cropDrop;
         this.uncommon = uncommon;
+        this.attributes = attributes;
     }
 
     @Override
@@ -93,5 +96,10 @@ public class MetalCropCard implements CropCard {
     @Override
     public int getAgeAfterHarvest(CropBlockEntity crop) {
         return 1;
+    }
+
+    @Override
+    public String[] getAttributes() {
+        return attributes;
     }
 }

@@ -60,4 +60,9 @@ public class PotatoCropCard implements CropCard {
         }
         return List.of();
     }
+
+    @Override
+    public String[] getAttributes() {
+        return new String[] { "Yellow", "Food", "Potato" };
+    }
 }

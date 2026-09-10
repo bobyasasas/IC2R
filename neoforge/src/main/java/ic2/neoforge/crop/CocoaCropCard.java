@@ -50,4 +50,9 @@ public class CocoaCropCard implements CropCard {
     public List<ItemStack> getGains(CropBlockEntity crop) {
         return List.of(new ItemStack(Items.COCOA_BEANS));
     }
+
+    @Override
+    public String[] getAttributes() {
+        return new String[] { "Brown", "Food", "Stem" };
+    }
 }

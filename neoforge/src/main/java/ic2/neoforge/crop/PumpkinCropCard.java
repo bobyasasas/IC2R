@@ -22,7 +22,8 @@ public class PumpkinCropCard extends VanillaStemCropCard {
                 3,
                 new CropProperties(1, 0, 1, 0, 3, 1),
                 () -> new ItemStack(Items.PUMPKIN),
-                () -> new ItemStack(Items.PUMPKIN_SEEDS, RANDOM.nextInt(3) + 1));
+                () -> new ItemStack(Items.PUMPKIN_SEEDS, RANDOM.nextInt(3) + 1),
+                new String[] {"Orange", "Decoration", "Stem"});
     }
 
     @Override

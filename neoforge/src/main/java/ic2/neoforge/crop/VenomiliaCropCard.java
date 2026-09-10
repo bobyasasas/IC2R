@@ -109,4 +109,9 @@ public class VenomiliaCropCard implements CropCard {
         }
         return CropCard.super.onEntityCollision(crop, entity);
     }
+
+    @Override
+    public String[] getAttributes() {
+        return new String[] { "Purple", "Flower", "Tulip", "Poison" };
+    }
 }

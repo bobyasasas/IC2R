@@ -64,6 +64,12 @@ public class CropBlockEntity extends net.minecraft.world.level.block.entity.Bloc
         if ((ticker + TICK_RATE * 2L) % (TICK_RATE << 2) == 0L) updateTerrainAirQuality(level);
 
         var crop = card();
+        if (crop == null && isCrossingBase()) {
+            // Legacy: a crossing base breeds first; spreading only runs when crossing failed.
+            // Either success swaps in a new crop whose growth tick runs on this very tick.
+            if (!attemptCrossing(level)) attemptSpreading(level);
+            crop = card();
+        }
         if (crop != null) {
             crop.tick(this);
             if (crop.canGrow(this)) {
@@ -202,7 +208,7 @@ public class CropBlockEntity extends net.minecraft.world.level.block.entity.Bloc
             int statResistance,
             int scan) {
         if (!(getLevel() instanceof ServerLevel level)) return false;
-        if (crop == null || crop == ModCrops.WEED_CARD) return false;
+        if (crop == null || crop == ModCrops.WEED_CARD || isCrossingBase()) return false;
         if (!crop.canGrow(this)) return false;
         CropBlockEntity planted = transformCropBlock(level, crop, size);
         if (planted == null) return false;
@@ -218,17 +224,28 @@ public class CropBlockEntity extends net.minecraft.world.level.block.entity.Bloc
         var crop = card();
         if (crop == null) {
             if (held != null && !held.isEmpty()) {
-                var base = ModCrops.baseSeedFor(held.getItem());
-                if (base != null) {
-                    // Legacy consumeOrError with the registered size; zero consumes nothing.
-                    if (base.size() > 0) held.shrink(base.size());
-                    return tryPlantIn(
-                            base.card(),
-                            base.size(),
-                            base.growth(),
-                            base.gain(),
-                            base.resistance(),
-                            0);
+                // Legacy: a crop stick on an empty stick upgrades it to a crossing base
+                // (creative players keep their stack).
+                if (!isCrossingBase() && held.is(ModCrops.CROP_STICK_ITEM.get())) {
+                    if (player == null || !player.getAbilities().instabuild) held.shrink(1);
+                    setCrossingBase(true);
+                    return true;
+                }
+                // Legacy gates the base-seed branch on a plain stick too: a crossing base
+                // ignores seeds entirely instead of consuming them.
+                if (!isCrossingBase()) {
+                    var base = ModCrops.baseSeedFor(held.getItem());
+                    if (base != null) {
+                        // Legacy consumeOrError with the registered size; zero consumes nothing.
+                        if (base.size() > 0) held.shrink(base.size());
+                        return tryPlantIn(
+                                base.card(),
+                                base.size(),
+                                base.growth(),
+                                base.gain(),
+                                base.resistance(),
+                                0);
+                    }
                 }
             }
             return false;
@@ -296,6 +313,175 @@ public class CropBlockEntity extends net.minecraft.world.level.block.entity.Bloc
         for (int i = 0; i < dropCount; i++) dropAsEntity(level, crop.getSeedsItem(this));
         reset(level);
         return true;
+    }
+
+    /** Legacy isCrossingBase: the bare stick's crossing_base state; crop blocks never carry it. */
+    public boolean isCrossingBase() {
+        BlockState state = getBlockState();
+        return state.hasProperty(CropBlock.CROSSING_BASE) && state.getValue(CropBlock.CROSSING_BASE);
+    }
+
+    public void setCrossingBase(boolean value) {
+        if (!(getLevel() instanceof ServerLevel level)) return;
+        BlockState state = getBlockState();
+        if (!state.hasProperty(CropBlock.CROSSING_BASE)) return;
+        level.setBlockAndUpdate(worldPosition, state.setValue(CropBlock.CROSSING_BASE, value));
+    }
+
+    /**
+     * Legacy onClicked for the empty stick: left-clicking a crossing base downgrades it back to a
+     * stick and drops the stick (creative players pass, like every other left click).
+     */
+    public boolean onLeftClickEmpty(Player player) {
+        if (player != null && player.getAbilities().instabuild) return false;
+        if (!(getLevel() instanceof ServerLevel level) || !isCrossingBase()) return false;
+        setCrossingBase(false);
+        dropAsEntity(level, new ItemStack(ModCrops.CROP_STICK_ITEM.get()));
+        return true;
+    }
+
+    /**
+     * Legacy attemptCrossing: with 1/3 chance per crop tick, a crossing base with at least two
+     * crossable neighbours grows a new crop weighted by the attribute ratio table, inheriting the
+     * averaged neighbour stats plus a per-stat jitter. Public for deterministic GameTests.
+     */
+    public boolean attemptCrossing(ServerLevel level) {
+        if (level.getRandom().nextInt(3) != 0) return false;
+
+        List<CropBlockEntity> neighbours = new ArrayList<>(4);
+        checkCrossingAvailability(level, worldPosition.north(), neighbours);
+        checkCrossingAvailability(level, worldPosition.south(), neighbours);
+        checkCrossingAvailability(level, worldPosition.east(), neighbours);
+        checkCrossingAvailability(level, worldPosition.west(), neighbours);
+        if (neighbours.size() < 2) return false;
+
+        List<ic2.neoforge.crop.CropCard> crops = ModCrops.allCards();
+        int[] ratios = new int[crops.size()];
+        int total = 0;
+        for (int i = 0; i < ratios.length; i++) {
+            ic2.neoforge.crop.CropCard crop = crops.get(i);
+            if (crop.canGrow(this)) {
+                for (CropBlockEntity te : neighbours) {
+                    total += calculateRatioFor(crop, te.card());
+                }
+            }
+            ratios[i] = total;
+        }
+        // Legacy rolls nextInt(total) here, which throws on an empty table; treat that as
+        // "no candidate" instead.
+        if (total <= 0) return false;
+
+        int search = level.getRandom().nextInt(total);
+        int min = 0;
+        int max = ratios.length - 1;
+        while (min < max) {
+            int cur = (min + max) / 2;
+            if (search < ratios[cur]) max = cur;
+            else min = cur + 1;
+        }
+
+        ic2.neoforge.crop.CropCard result = crops.get(min);
+        statGrowth = 0;
+        statGain = 0;
+        statResistance = 0;
+        for (CropBlockEntity te : neighbours) {
+            statGrowth += te.statGrowth;
+            statGain += te.statGain;
+            statResistance += te.statResistance;
+        }
+        int count = neighbours.size();
+        statGrowth /= count;
+        statGain /= count;
+        statResistance /= count;
+        statGrowth = Math.clamp(statGrowth + level.getRandom().nextInt(1 + 2 * count) - count, 0, 31);
+        statGain = Math.clamp(statGain + level.getRandom().nextInt(1 + 2 * count) - count, 0, 31);
+        statResistance =
+                Math.clamp(
+                        statResistance + level.getRandom().nextInt(1 + 2 * count) - count, 0, 31);
+        CropBlockEntity crossed = transformCropBlock(level, result, 0);
+        crossed.setCurrentAge(0);
+        crossed.setStatGrowth(statGrowth);
+        crossed.setStatGain(statGain);
+        crossed.setStatResistance(statResistance);
+        return true;
+    }
+
+    /**
+     * Legacy attemptSpreading: a crossing base with exactly one crop neighbour may adopt that
+     * neighbour's crop, copying its stats exactly (no jitter). Public for deterministic GameTests.
+     */
+    public boolean attemptSpreading(ServerLevel level) {
+        List<CropBlockEntity> neighbours = new ArrayList<>(4);
+        for (Direction direction : Direction.Plane.HORIZONTAL) {
+            if (level.getBlockEntity(worldPosition.relative(direction))
+                    instanceof CropBlockEntity sideCrop) {
+                neighbours.add(sideCrop);
+            }
+        }
+        if (neighbours.size() != 1) return false;
+
+        CropBlockEntity sideCrop = neighbours.get(0);
+        var neighborCrop = sideCrop.card();
+        if (neighborCrop == null) return false;
+        if (!neighborCrop.canGrow(this)
+                || !neighborCrop.canCross(sideCrop)
+                || !crossingStatGate(level, sideCrop)) {
+            return false;
+        }
+
+        CropBlockEntity spread = transformCropBlock(level, neighborCrop, 0);
+        spread.setStatGrowth(sideCrop.statGrowth);
+        spread.setStatGain(sideCrop.statGain);
+        spread.setStatResistance(sideCrop.statResistance);
+        return true;
+    }
+
+    /** Legacy checkCrossingAvailability: crossable, grown-enough neighbours passing the stat gate. */
+    private void checkCrossingAvailability(
+            ServerLevel level, BlockPos pos, List<CropBlockEntity> crops) {
+        if (level.getBlockEntity(pos) instanceof CropBlockEntity sideCrop) {
+            var neighborCrop = sideCrop.card();
+            if (neighborCrop != null
+                    && neighborCrop.canGrow(this)
+                    && neighborCrop.canCross(sideCrop)
+                    && crossingStatGate(level, sideCrop)) {
+                crops.add(sideCrop);
+            }
+        }
+    }
+
+    /** Legacy stat gate: hardier neighbours cross more reliably; 4 base vs a d16 roll. */
+    private boolean crossingStatGate(ServerLevel level, CropBlockEntity sideCrop) {
+        int base = 4;
+        if (sideCrop.statGrowth >= 16) base++;
+        if (sideCrop.statGrowth >= 30) base++;
+        if (sideCrop.statResistance >= 28) base += 27 - sideCrop.statResistance;
+        return base >= level.getRandom().nextInt(16);
+    }
+
+    /** Legacy calculateRatioFor: trait affinity of the candidate against one neighbour. */
+    private int calculateRatioFor(
+            ic2.neoforge.crop.CropCard newCrop, ic2.neoforge.crop.CropCard oldCrop) {
+        if (newCrop == oldCrop) return 500;
+
+        int value = 0;
+        int[] propOld = oldCrop.getProperties().getAllProperties();
+        int[] propNew = newCrop.getProperties().getAllProperties();
+        for (int i = 0; i < 5; i++) {
+            value += -Math.abs(propOld[i] - propNew[i]) + 2;
+        }
+
+        for (String attributeNew : newCrop.getAttributes()) {
+            for (String attributeOld : oldCrop.getAttributes()) {
+                if (attributeNew.equalsIgnoreCase(attributeOld)) value += 5;
+            }
+        }
+
+        int diff = newCrop.getProperties().tier() - oldCrop.getProperties().tier();
+        if (diff > 1) value -= 2 * diff;
+        if (diff < -3) value -= -diff;
+
+        return Math.max(value, 0);
     }
 
     public void reset(ServerLevel level) {

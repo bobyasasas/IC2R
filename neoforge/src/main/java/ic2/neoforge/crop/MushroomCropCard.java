@@ -13,11 +13,14 @@ public class MushroomCropCard implements CropCard {
     private final String id;
     private final Supplier<Block> block;
     private final Supplier<ItemStack> drop;
+    private final String[] attributes;
 
-    public MushroomCropCard(String id, Supplier<Block> block, Supplier<ItemStack> drop) {
+    public MushroomCropCard(
+            String id, Supplier<Block> block, Supplier<ItemStack> drop, String[] attributes) {
         this.id = id;
         this.block = block;
         this.drop = drop;
+        this.attributes = attributes;
     }
 
     @Override
@@ -48,5 +51,10 @@ public class MushroomCropCard implements CropCard {
     @Override
     public List<ItemStack> getGains(CropBlockEntity crop) {
         return List.of(drop.get());
+    }
+
+    @Override
+    public String[] getAttributes() {
+        return attributes;
     }
 }

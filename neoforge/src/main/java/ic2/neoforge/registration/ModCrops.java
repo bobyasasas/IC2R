@@ -422,12 +422,14 @@ public final class ModCrops {
             new MushroomCropCard(
                     "red_mushroom",
                     RED_MUSHROOM_CROP::get,
-                    () -> new ItemStack(net.minecraft.world.level.block.Blocks.RED_MUSHROOM));
+                    () -> new ItemStack(net.minecraft.world.level.block.Blocks.RED_MUSHROOM),
+                    new String[] {"Red", "Food", "Mushroom"});
     public static final CropCard BROWN_MUSHROOM_CARD =
             new MushroomCropCard(
                     "brown_mushroom",
                     BROWN_MUSHROOM_CROP::get,
-                    () -> new ItemStack(net.minecraft.world.level.block.Blocks.BROWN_MUSHROOM));
+                    () -> new ItemStack(net.minecraft.world.level.block.Blocks.BROWN_MUSHROOM),
+                    new String[] {"Brown", "Food", "Mushroom"});
     public static final CropCard CARROTS_CARD =
             new VanillaProduceCropCard(
                     "carrots",
@@ -435,7 +437,8 @@ public final class ModCrops {
                     3,
                     new ic2.core.crop.CropProperties(2, 0, 4, 0, 0, 2),
                     () -> new ItemStack(Items.CARROT),
-                    () -> new ItemStack(Items.CARROT));
+                    () -> new ItemStack(Items.CARROT),
+                    new String[] {"Orange", "Food", "Carrots"});
     public static final CropCard BEETROOTS_CARD =
             new VanillaProduceCropCard(
                     "beetroots",
@@ -443,7 +446,8 @@ public final class ModCrops {
                     3,
                     new ic2.core.crop.CropProperties(1, 0, 4, 0, 1, 2),
                     () -> new ItemStack(Items.BEETROOT),
-                    () -> new ItemStack(Items.BEETROOT_SEEDS));
+                    () -> new ItemStack(Items.BEETROOT_SEEDS),
+                    new String[] {"Red", "Food", "Beetroot"});
     public static final CropCard POTATO_CARD = new PotatoCropCard();
     public static final CropCard OAK_SAPLING_CARD =
             new SaplingCropCard(
@@ -491,19 +495,24 @@ public final class ModCrops {
     public static final CropCard MELON_CARD = new MelonCropCard();
     public static final CropCard DANDELION_CARD =
             new ColorFlowerCropCard(
-                    "dandelion", DANDELION_CROP::get, () -> new ItemStack(Items.YELLOW_DYE));
+                    "dandelion", DANDELION_CROP::get, () -> new ItemStack(Items.YELLOW_DYE),
+                    new String[] {"Yellow", "Flower"});
     public static final CropCard POPPY_CARD =
             new ColorFlowerCropCard(
-                    "poppy", POPPY_CROP::get, () -> new ItemStack(Items.RED_DYE));
+                    "poppy", POPPY_CROP::get, () -> new ItemStack(Items.RED_DYE),
+                    new String[] {"Red", "Flower", "Rose"});
     public static final CropCard BLACKTHORN_CARD =
             new ColorFlowerCropCard(
-                    "blackthorn", BLACKTHORN_CROP::get, () -> new ItemStack(Items.BLACK_DYE));
+                    "blackthorn", BLACKTHORN_CROP::get, () -> new ItemStack(Items.BLACK_DYE),
+                    new String[] {"Black", "Flower", "Rose"});
     public static final CropCard TULIP_CARD =
             new ColorFlowerCropCard(
-                    "tulip", TULIP_CROP::get, () -> new ItemStack(Items.PURPLE_DYE));
+                    "tulip", TULIP_CROP::get, () -> new ItemStack(Items.PURPLE_DYE),
+                    new String[] {"Purple", "Flower", "Tulip"});
     public static final CropCard CYAZINT_CARD =
             new ColorFlowerCropCard(
-                    "cyazint", CYAZINT_CROP::get, () -> new ItemStack(Items.CYAN_DYE));
+                    "cyazint", CYAZINT_CROP::get, () -> new ItemStack(Items.CYAN_DYE),
+                    new String[] {"Blue", "Flower"});
     public static final CropCard VENOMILIA_CARD = new VenomiliaCropCard();
     public static final CropCard STICKY_REED_CARD = new StickyReedCropCard();
     public static final CropCard TERRA_WART_CARD = new TerraWartCropCard();
@@ -519,7 +528,8 @@ public final class ModCrops {
                                     ModItems.MATERIALS
                                             .get(MaterialDefinition.SMALL_IRON_DUST)
                                             .get()),
-                    false);
+                    false,
+                    new String[] {"Gray", "Leaves", "Metal"});
     public static final CropCard CYPRIUM_CARD =
             new MetalCropCard(
                     "cyprium",
@@ -530,7 +540,8 @@ public final class ModCrops {
                                     ModItems.MATERIALS
                                             .get(MaterialDefinition.SMALL_COPPER_DUST)
                                             .get()),
-                    false);
+                    false,
+                    new String[] {"Orange", "Leaves", "Metal"});
     public static final CropCard STAGNIUM_CARD =
             new MetalCropCard(
                     "stagnium",
@@ -541,7 +552,8 @@ public final class ModCrops {
                                     ModItems.MATERIALS
                                             .get(MaterialDefinition.SMALL_TIN_DUST)
                                             .get()),
-                    false);
+                    false,
+                    new String[] {"Shiny", "Leaves", "Metal"});
     public static final CropCard PLUMBISCUS_CARD =
             new MetalCropCard(
                     "plumbiscus",
@@ -552,7 +564,8 @@ public final class ModCrops {
                                     ModItems.MATERIALS
                                             .get(MaterialDefinition.SMALL_LEAD_DUST)
                                             .get()),
-                    false);
+                    false,
+                    new String[] {"Dense", "Leaves", "Metal"});
     public static final CropCard AURELIA_CARD =
             new MetalCropCard(
                     "aurelia",
@@ -563,7 +576,8 @@ public final class ModCrops {
                                     ModItems.MATERIALS
                                             .get(MaterialDefinition.SMALL_GOLD_DUST)
                                             .get()),
-                    true);
+                    true,
+                    new String[] {"Gold", "Leaves", "Metal"});
     public static final CropCard SHINING_CARD =
             new MetalCropCard(
                     "shining",
@@ -574,7 +588,8 @@ public final class ModCrops {
                                     ModItems.MATERIALS
                                             .get(MaterialDefinition.SMALL_SILVER_DUST)
                                             .get()),
-                    true);
+                    true,
+                    new String[] {"Silver", "Leaves", "Metal"});
     public static final CropCard RED_WHEAT_CARD = new RedWheatCropCard();
     public static final CropCard EATING_PLANT_CARD = new EatingPlantCropCard();
     // Legacy GenericCropCard data crops (cross-breeding products): fixed drops plus the
@@ -590,7 +605,8 @@ public final class ModCrops {
                             () -> new ItemStack(Items.BLAZE_ROD),
                             material(MaterialDefinition.SULFUR_DUST)),
                     0,
-                    1);
+                    1,
+                    new String[] {"Fire", "Blaze", "Reed", "Sulfur"});
     public static final CropCard BOBS_YER_UNCLE_RANKS_BERRIES_CARD =
             new GenericCropCard(
                     "bobs_yer_uncle_ranks_berries",
@@ -600,7 +616,8 @@ public final class ModCrops {
                     List.of(material(MaterialDefinition.BOBS_YER_UNCLE_RANKS_BERRY)),
                     List.of(() -> new ItemStack(Items.EMERALD)),
                     0,
-                    1);
+                    1,
+                    new String[] {"Shiny", "Vine", "Emerald", "Berylium", "Crystal"});
     public static final CropCard CORIUM_CARD =
             new GenericCropCard(
                     "corium",
@@ -610,7 +627,8 @@ public final class ModCrops {
                     List.of(() -> new ItemStack(Items.LEATHER)),
                     List.of(),
                     0,
-                    1);
+                    1,
+                    new String[] {"Cow", "Silk", "Vine"});
     public static final CropCard CORPSE_PLANT_CARD =
             new GenericCropCard(
                     "corpse_plant",
@@ -623,7 +641,8 @@ public final class ModCrops {
                             () -> new ItemStack(Items.BONE_MEAL),
                             () -> new ItemStack(Items.BONE_MEAL)),
                     0,
-                    1);
+                    1,
+                    new String[] {"Toxic", "Undead", "Vine", "Edible", "Rotten"});
     public static final CropCard CREEPER_WEED_CARD =
             new GenericCropCard(
                     "creeper_weed",
@@ -633,7 +652,8 @@ public final class ModCrops {
                     List.of(() -> new ItemStack(Items.GUNPOWDER)),
                     List.of(),
                     0,
-                    1);
+                    1,
+                    new String[] {"Creeper", "Vine", "Explosive", "Fire", "Sulfur", "Saltpeter", "Coal"});
     public static final CropCard DIAREED_CARD =
             new GenericCropCard(
                     "diareed",
@@ -643,7 +663,8 @@ public final class ModCrops {
                     List.of(material(MaterialDefinition.SMALL_DIAMOND_DUST)),
                     List.of(() -> new ItemStack(Items.DIAMOND)),
                     0,
-                    1);
+                    1,
+                    new String[] {"Fire", "Shiny", "Reed", "Coal", "Diamond", "Crystal"});
     public static final CropCard EGG_PLANT_CARD =
             new GenericCropCard(
                     "egg_plant",
@@ -657,7 +678,8 @@ public final class ModCrops {
                             () -> new ItemStack(Items.FEATHER),
                             () -> new ItemStack(Items.FEATHER)),
                     900,
-                    2);
+                    2,
+                    new String[] {"Chicken", "Egg", "Edible", "Feather", "Flower", "Addictive"});
     public static final CropCard ENDER_BLOSSOM_CARD =
             new GenericCropCard(
                     "ender_blossom",
@@ -670,7 +692,8 @@ public final class ModCrops {
                             () -> new ItemStack(Items.ENDER_PEARL),
                             () -> new ItemStack(Items.ENDER_EYE)),
                     0,
-                    1);
+                    1,
+                    new String[] {"Ender", "Flower", "Shiny"});
     public static final CropCard MEAT_ROSE_CARD =
             new GenericCropCard(
                     "meat_rose",
@@ -684,7 +707,8 @@ public final class ModCrops {
                             () -> new ItemStack(Items.CHICKEN),
                             () -> new ItemStack(Items.MUTTON)),
                     1500,
-                    1);
+                    1,
+                    new String[] {"Edible", "Flower", "Cow", "Chicken", "Pig", "Sheep"});
     public static final CropCard MILK_WART_CARD =
             new GenericCropCard(
                     "milk_wart",
@@ -694,7 +718,8 @@ public final class ModCrops {
                     List.of(material(MaterialDefinition.MILK_WART)),
                     List.of(),
                     900,
-                    1);
+                    1,
+                    new String[] {"Edible", "Milk", "Cow"});
     public static final CropCard OIL_BERRIES_CARD =
             new GenericCropCard(
                     "oil_berries",
@@ -704,7 +729,8 @@ public final class ModCrops {
                     List.of(material(MaterialDefinition.OIL_BERRY)),
                     List.of(),
                     0,
-                    1);
+                    1,
+                    new String[] {"Fire", "Dark", "Reed", "Rotten", "Coal", "Oil"});
     public static final CropCard SLIME_PLANT_CARD =
             new GenericCropCard(
                     "slime_plant",
@@ -714,7 +740,8 @@ public final class ModCrops {
                     List.of(() -> new ItemStack(Items.SLIME_BALL)),
                     List.of(),
                     0,
-                    2);
+                    2,
+                    new String[] {"Slime", "Bouncy", "Sticky", "Bush"});
     public static final CropCard SPIDERNIP_CARD =
             new GenericCropCard(
                     "spidernip",
@@ -726,7 +753,8 @@ public final class ModCrops {
                             () -> new ItemStack(Items.SPIDER_EYE),
                             () -> new ItemStack(Items.COBWEB)),
                     600,
-                    1);
+                    1,
+                    new String[] {"Toxic", "Silk", "Spider", "Flower", "Ingredient", "Addictive"});
     public static final CropCard TEARSTALKS_CARD =
             new GenericCropCard(
                     "tearstalks",
@@ -736,7 +764,8 @@ public final class ModCrops {
                     List.of(() -> new ItemStack(Items.GHAST_TEAR)),
                     List.of(),
                     0,
-                    1);
+                    1,
+                    new String[] {"Healing", "Nether", "Ingredient", "Reed", "Ghast"});
     public static final CropCard WITHEREED_CARD =
             new GenericCropCard(
                     "withereed",
@@ -746,7 +775,75 @@ public final class ModCrops {
                     List.of(material(MaterialDefinition.COAL_DUST)),
                     List.of(() -> new ItemStack(Items.COAL), () -> new ItemStack(Items.COAL)),
                     0,
-                    1);
+                    1,
+                    new String[] {"Fire", "Undead", "Reed", "Coal", "Rotten", "Wither"});
+
+    private static List<CropCard> allCardsCache;
+
+    /**
+     * Legacy Crops.instance.getCrops(): every card in registration order. The crossing ratio table
+     * iterates this, so the order decides ties in the weighted pick.
+     */
+    public static synchronized List<CropCard> allCards() {
+        if (allCardsCache == null) {
+            allCardsCache =
+                    List.of(
+            WHEAT_CARD,
+            WEED_CARD,
+            REED_CARD,
+            FLAX_CARD,
+            HOPS_CARD,
+            COFFEE_CARD,
+            COCOA_CARD,
+            NETHER_WART_CARD,
+            RED_MUSHROOM_CARD,
+            BROWN_MUSHROOM_CARD,
+            CARROTS_CARD,
+            BEETROOTS_CARD,
+            POTATO_CARD,
+            OAK_SAPLING_CARD,
+            SPRUCE_SAPLING_CARD,
+            BIRCH_SAPLING_CARD,
+            JUNGLE_SAPLING_CARD,
+            ACACIA_SAPLING_CARD,
+            DARK_OAK_SAPLING_CARD,
+            PUMPKIN_CARD,
+            MELON_CARD,
+            DANDELION_CARD,
+            POPPY_CARD,
+            BLACKTHORN_CARD,
+            TULIP_CARD,
+            CYAZINT_CARD,
+            VENOMILIA_CARD,
+            STICKY_REED_CARD,
+            TERRA_WART_CARD,
+            FERRU_CARD,
+            CYPRIUM_CARD,
+            STAGNIUM_CARD,
+            PLUMBISCUS_CARD,
+            AURELIA_CARD,
+            SHINING_CARD,
+            RED_WHEAT_CARD,
+            EATING_PLANT_CARD,
+            BLAZEREED_CARD,
+            BOBS_YER_UNCLE_RANKS_BERRIES_CARD,
+            CORIUM_CARD,
+            CORPSE_PLANT_CARD,
+            CREEPER_WEED_CARD,
+            DIAREED_CARD,
+            EGG_PLANT_CARD,
+            ENDER_BLOSSOM_CARD,
+            MEAT_ROSE_CARD,
+            MILK_WART_CARD,
+            OIL_BERRIES_CARD,
+            SLIME_PLANT_CARD,
+            SPIDERNIP_CARD,
+            TEARSTALKS_CARD,
+            WITHEREED_CARD
+                    );
+        }
+        return allCardsCache;
+    }
 
     /** Lazy IC2 material item stack: the materials registry binds after mod construction. */
     private static java.util.function.Supplier<ItemStack> material(MaterialDefinition definition) {

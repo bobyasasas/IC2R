@@ -40,4 +40,9 @@ public class FlaxCropCard implements CropCard {
     public List<ItemStack> getGains(CropBlockEntity crop) {
         return List.of(new ItemStack(Items.STRING));
     }
+
+    @Override
+    public String[] getAttributes() {
+        return new String[] { "Silk", "Vine", "Addictive" };
+    }
 }

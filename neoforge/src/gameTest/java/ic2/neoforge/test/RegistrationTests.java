@@ -434,6 +434,10 @@ public final class RegistrationTests {
         FUNCTIONS.register(
                 "crop_generic_milk_wart_base_seed", () -> CropTests::cropGenericMilkWartBaseSeed);
         FUNCTIONS.register(
+                "crop_crossing_base_interactions", () -> CropTests::cropCrossingBaseInteractions);
+        FUNCTIONS.register("crop_crossing_breed", () -> CropTests::cropCrossingBreed);
+        FUNCTIONS.register("crop_crossing_spread", () -> CropTests::cropCrossingSpread);
+        FUNCTIONS.register(
                 "radiation_hazmat_set", () -> RadiationTests::hazmatCompleteSetDetection);
         FUNCTIONS.register(
                 "radiation_effect_damage", () -> RadiationTests::radiationEffectDamagesHost);

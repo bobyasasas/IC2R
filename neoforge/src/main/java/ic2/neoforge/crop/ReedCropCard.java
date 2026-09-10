@@ -57,4 +57,9 @@ public class ReedCropCard implements CropCard {
     public int getGrowthDuration(CropBlockEntity crop) {
         return 200;
     }
+
+    @Override
+    public String[] getAttributes() {
+        return new String[] { "Reed" };
+    }
 }

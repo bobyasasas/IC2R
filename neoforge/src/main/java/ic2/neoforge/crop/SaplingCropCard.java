@@ -79,4 +79,9 @@ public class SaplingCropCard implements CropCard {
     public int getAgeAfterHarvest(CropBlockEntity crop) {
         return getMaxAge() - 1;
     }
+
+    @Override
+    public String[] getAttributes() {
+        return new String[] { "Leaves", "Sapling", "Green" };
+    }
 }

@@ -14,8 +14,8 @@ import java.util.function.Supplier;
 public class VanillaStemCropCard extends VanillaProduceCropCard {
     public VanillaStemCropCard(
             String id, Supplier<Block> block, int maxAge, CropProperties properties,
-            Supplier<ItemStack> produce, Supplier<ItemStack> seeds) {
-        super(id, block, maxAge, properties, produce, seeds);
+            Supplier<ItemStack> produce, Supplier<ItemStack> seeds, String[] attributes) {
+        super(id, block, maxAge, properties, produce, seeds, attributes);
     }
 
     @Override

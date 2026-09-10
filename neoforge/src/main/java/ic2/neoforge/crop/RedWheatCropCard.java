@@ -70,4 +70,9 @@ public class RedWheatCropCard implements CropCard {
     public int getAgeAfterHarvest(CropBlockEntity crop) {
         return 1;
     }
+
+    @Override
+    public String[] getAttributes() {
+        return new String[] { "Red", "Redstone", "Wheat" };
+    }
 }

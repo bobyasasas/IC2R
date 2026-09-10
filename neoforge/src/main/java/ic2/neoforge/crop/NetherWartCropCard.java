@@ -58,4 +58,9 @@ public class NetherWartCropCard implements CropCard {
     public int getRootsLength(CropBlockEntity crop) {
         return 5;
     }
+
+    @Override
+    public String[] getAttributes() {
+        return new String[] { "Red", "Nether", "Ingredient", "Soulsand" };
+    }
 }

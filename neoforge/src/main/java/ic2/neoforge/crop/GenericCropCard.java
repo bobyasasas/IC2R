@@ -27,6 +27,7 @@ public class GenericCropCard implements CropCard {
     private final int optimalHarvestSize;
     private final int afterHarvestSize;
     private final List<TagKey<Block>> rootRequirements;
+    private final String[] attributes;
 
     /** The shape all fifteen legacy data crops use: default harvest window, no root gate. */
     public GenericCropCard(
@@ -37,9 +38,10 @@ public class GenericCropCard implements CropCard {
             List<Supplier<ItemStack>> drops,
             List<Supplier<ItemStack>> specialDrops,
             int growthSpeed,
-            int afterHarvestSize) {
+            int afterHarvestSize,
+            String[] attributes) {
         this(id, block, properties, maxSize, drops, specialDrops, growthSpeed,
-                0, 0, afterHarvestSize, List.of());
+                0, 0, afterHarvestSize, List.of(), attributes);
     }
 
     public GenericCropCard(
@@ -53,14 +55,17 @@ public class GenericCropCard implements CropCard {
             int harvestSize,
             int optimalHarvestSize,
             int afterHarvestSize,
-            List<TagKey<Block>> rootRequirements) {
+            List<TagKey<Block>> rootRequirements,
+            String[] attributes) {
         this.id = id;
         this.block = block;
         this.properties = properties;
         this.maxSize = maxSize;
         this.drops = List.copyOf(drops);
         this.specialDrops = List.copyOf(specialDrops);
+        this.attributes = attributes;
         this.growthSpeed = growthSpeed;
+
         // Legacy register() normalization: unset sizes fall back to the defaults.
         this.harvestSize = harvestSize >= 2 ? harvestSize : maxSize - 1;
         this.optimalHarvestSize =
@@ -138,8 +143,14 @@ public class GenericCropCard implements CropCard {
         return gains;
     }
 
-    /** Legacy canCross: a crop joins cross-breeding once it is two steps from full. */
+    /** Legacy canCross override: the data crops breed from two below their maxSize. */
+    @Override
     public boolean canCross(CropBlockEntity crop) {
         return crop.getCurrentAge() + 2 > maxSize;
+    }
+
+    @Override
+    public String[] getAttributes() {
+        return attributes;
     }
 }

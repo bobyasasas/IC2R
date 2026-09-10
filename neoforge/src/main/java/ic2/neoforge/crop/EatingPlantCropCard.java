@@ -159,4 +159,9 @@ public class EatingPlantCropCard implements CropCard {
         }
         return false;
     }
+
+    @Override
+    public String[] getAttributes() {
+        return new String[] { "Bad", "Food" };
+    }
 }

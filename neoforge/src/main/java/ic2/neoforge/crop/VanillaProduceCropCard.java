@@ -19,16 +19,18 @@ public class VanillaProduceCropCard implements CropCard {
     private final CropProperties properties;
     private final Supplier<ItemStack> produce;
     private final Supplier<ItemStack> seeds;
+    private final String[] attributes;
 
     public VanillaProduceCropCard(
             String id, Supplier<Block> block, int maxAge, CropProperties properties,
-            Supplier<ItemStack> produce, Supplier<ItemStack> seeds) {
+            Supplier<ItemStack> produce, Supplier<ItemStack> seeds, String[] attributes) {
         this.id = id;
         this.block = block;
         this.maxAge = maxAge;
         this.properties = properties;
         this.produce = produce;
         this.seeds = seeds;
+        this.attributes = attributes;
     }
 
     @Override
@@ -69,5 +71,10 @@ public class VanillaProduceCropCard implements CropCard {
         }
         return crop.generateSeeds(this, crop.getStatGrowth(), crop.getStatGain(),
                 crop.getStatResistance(), crop.getScanLevel());
+    }
+
+    @Override
+    public String[] getAttributes() {
+        return attributes;
     }
 }

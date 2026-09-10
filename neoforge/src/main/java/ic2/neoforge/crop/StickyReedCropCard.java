@@ -69,4 +69,9 @@ public class StickyReedCropCard implements CropCard {
     public int getGrowthDuration(CropBlockEntity crop) {
         return crop.getCurrentAge() == getMaxAge() ? 400 : 100;
     }
+
+    @Override
+    public String[] getAttributes() {
+        return new String[] { "Reed", "Resin" };
+    }
 }
