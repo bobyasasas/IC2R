@@ -235,11 +235,13 @@
    "parent": "M13",
    "title": "工具与装备",
    "status": "in_progress",
-   "acceptance": "扳手、切线钳、钻头、锯、喷枪、背包与护甲；消耗、附魔、渲染和同步。",
+   "acceptance": "扳手、切线钳、钻头、锯、喷枪、背包与护甲；消耗、附魔、渲染和同步。辐射链已接入：ic2:radiation 药水与伤害类型、防化四件套（头盔/胸甲/护腿/橡胶靴）全套豁免火/电/辐射、核爆辐射环与反应堆 70% 热辐射。",
    "evidence": [
     "docs/migration/tools.md",
     "neoforge/src/gameTest/java/ic2/neoforge/test/ToolTests.java",
-    "docs/migration/metal-former-toolbox.md"
+    "docs/migration/metal-former-toolbox.md",
+    "docs/migration/radiation-hazmat.md",
+    "neoforge/src/gameTest/java/ic2/neoforge/test/RadiationTests.java"
    ]
   },
   {

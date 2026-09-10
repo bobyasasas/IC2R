@@ -387,6 +387,26 @@ public final class NuclearReactorBlockEntity extends PoweredBlockEntity implemen
                 && hem > 0.0F
                 && net.minecraft.util.RandomSource.create().nextFloat() <= 0.2F * hem)
             burnOrMelt(level, randomCoordination(level, 2));
+        if (power >= 0.7F) {
+            // Legacy: direct radiation damage to every living entity nearby; a complete hazmat
+            // suit cancels the damage through the ic2:radiation player hook, not here.
+            for (net.minecraft.world.entity.LivingEntity entity :
+                    level.getEntitiesOfClass(
+                            net.minecraft.world.entity.LivingEntity.class,
+                            new net.minecraft.world.phys.AABB(
+                                    worldPosition.getX() - 3,
+                                    worldPosition.getY() - 3,
+                                    worldPosition.getZ() - 3,
+                                    worldPosition.getX() + 4,
+                                    worldPosition.getY() + 4,
+                                    worldPosition.getZ() + 4),
+                            net.minecraft.world.entity.EntitySelector.NO_CREATIVE_OR_SPECTATOR)) {
+                entity.hurtServer(
+                        level,
+                        ic2.neoforge.effect.RadiationEffect.radiationSource(level),
+                        (int) (net.minecraft.util.RandomSource.create().nextInt(4) * hem));
+            }
+        }
         if (power >= 0.5F
                 && hem > 0.0F
                 && net.minecraft.util.RandomSource.create().nextFloat() <= hem)

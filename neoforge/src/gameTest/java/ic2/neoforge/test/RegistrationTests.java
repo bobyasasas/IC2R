@@ -394,6 +394,15 @@ public final class RegistrationTests {
                 "crystal_memory_roundtrip", () -> CrystalMemoryTests::recordsAndReadsPattern);
         FUNCTIONS.register("remote_detonate", () -> RemoteTests::remoteDetonatesLinkedDynamite);
         FUNCTIONS.register("uu_scanner_scan", () -> UuScannerTests::scansSeededItemOntoMemory);
+        FUNCTIONS.register(
+                "radiation_hazmat_set", () -> RadiationTests::hazmatCompleteSetDetection);
+        FUNCTIONS.register(
+                "radiation_effect_damage", () -> RadiationTests::radiationEffectDamagesHost);
+        FUNCTIONS.register(
+                "radiation_explosion_ring",
+                () -> RadiationTests::explosionRadiationAffectsUnprotectedMobs);
+        FUNCTIONS.register(
+                "reactor_heat_radiation", () -> RadiationTests::reactorHeatRadiationDamages);
         FUNCTIONS.register("uu_values_datapack", () -> UuScannerTests::datapackSeedsDriveGraph);
         FUNCTIONS.register("uu_scanner_unknown", () -> UuScannerTests::unknownItemFails);
         FUNCTIONS.register("uu_scanner_seed_coverage", () -> UuScannerTests::expandedSeedCoverage);

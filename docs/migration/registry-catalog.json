@@ -6727,7 +6727,13 @@
    "factory": "register",
    "expression": "new ItemArmorHazmat(EquipmentSlot.CHEST, new Properties())",
    "decision": "preserve",
-   "status": "pending"
+   "status": "implemented",
+   "evidence": [
+    "neoforge/src/main/java/ic2/neoforge/registration/ModArmor.java",
+    "neoforge/src/main/java/ic2/neoforge/item/HazmatArmorItem.java",
+    "docs/migration/radiation-hazmat.md"
+   ],
+   "note": "HazmatArmorItem addsProtection=true; complete-set radiation immunity (legacy IHazmatLike semantics)"
   },
   {
    "registry": "item",
@@ -6737,7 +6743,13 @@
    "factory": "register",
    "expression": "new ItemArmorHazmat(EquipmentSlot.HEAD, new Properties())",
    "decision": "preserve",
-   "status": "pending"
+   "status": "implemented",
+   "evidence": [
+    "neoforge/src/main/java/ic2/neoforge/registration/ModArmor.java",
+    "neoforge/src/main/java/ic2/neoforge/item/HazmatArmorItem.java",
+    "docs/migration/radiation-hazmat.md"
+   ],
+   "note": "HazmatArmorItem addsProtection=true; complete-set radiation immunity (legacy IHazmatLike semantics)"
   },
   {
    "registry": "item",
@@ -6747,7 +6759,13 @@
    "factory": "register",
    "expression": "new ItemArmorHazmat(EquipmentSlot.LEGS, new Properties())",
    "decision": "preserve",
-   "status": "pending"
+   "status": "implemented",
+   "evidence": [
+    "neoforge/src/main/java/ic2/neoforge/registration/ModArmor.java",
+    "neoforge/src/main/java/ic2/neoforge/item/HazmatArmorItem.java",
+    "docs/migration/radiation-hazmat.md"
+   ],
+   "note": "HazmatArmorItem addsProtection=true; complete-set radiation immunity (legacy IHazmatLike semantics)"
   },
   {
    "registry": "item",
@@ -6897,7 +6915,13 @@
    "factory": "register",
    "expression": "new ItemArmorHazmat(EquipmentSlot.FEET, new Properties())",
    "decision": "preserve",
-   "status": "pending"
+   "status": "implemented",
+   "evidence": [
+    "neoforge/src/main/java/ic2/neoforge/registration/ModArmor.java",
+    "neoforge/src/main/java/ic2/neoforge/item/HazmatArmorItem.java",
+    "docs/migration/radiation-hazmat.md"
+   ],
+   "note": "HazmatArmorItem addsProtection=true; complete-set radiation immunity (legacy IHazmatLike semantics)"
   },
   {
    "registry": "item",

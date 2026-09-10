@@ -32,7 +32,7 @@ import java.util.Map;
 public final class WorldEnergyNetworks {
     private static final Map<ServerLevel, Network> NETWORKS = new IdentityHashMap<>();
 
-    private static final ResourceKey<DamageType> ELECTRICITY_TYPE =
+    public static final ResourceKey<DamageType> ELECTRICITY_TYPE =
             ResourceKey.create(
                     Registries.DAMAGE_TYPE, Identifier.fromNamespaceAndPath("ic2", "electricity"));
 

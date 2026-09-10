@@ -2727,20 +2727,20 @@
     {
       "source": "shaped/hazmat_chestplate.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:hazmat_chestplate"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/hazmat_chestplate.json"
     },
     {
       "source": "shaped/hazmat_helmet.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:hazmat_helmet"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/hazmat_helmet.json"
     },
     {
       "source": "shaped/hazmat_leggings.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:hazmat_leggings"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/hazmat_leggings.json"
     },
     {
       "source": "shaped/heat_conductor.json",
@@ -3579,8 +3579,8 @@
     {
       "source": "shaped/rubber_boots.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:rubber_boots"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/rubber_boots.json"
     },
     {
       "source": "shaped/rubber_door.json",

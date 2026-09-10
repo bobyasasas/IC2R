@@ -46,6 +46,8 @@ public final class IndustrialCraft {
         ic2.neoforge.registration.ModNuke.register(modBus);
         ic2.neoforge.registration.ModFoam.register(modBus);
         ic2.neoforge.registration.ModObscurator.register(modBus);
+        ic2.neoforge.registration.ModEffects.register(modBus);
+        ic2.neoforge.registration.ModArmor.register(modBus);
         ic2.neoforge.network.ModNetworking.register(modBus);
         ModEntities.register(modBus);
         ModToolbox.register(modBus);
@@ -73,6 +75,7 @@ public final class IndustrialCraft {
         gameBus.addListener(WorldEnergyNetworks::onChunkUnload);
         gameBus.addListener(WorldEnergyNetworks::tick);
         gameBus.addListener(WorldWind::tick);
+        gameBus.addListener(ic2.neoforge.item.HazmatHelper::onIncomingDamage);
         gameBus.addListener(
                 (net.neoforged.neoforge.event.AddServerReloadListenersEvent event) ->
                         event.addListener(

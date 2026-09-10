@@ -1,5 +1,7 @@
 package ic2.neoforge.world;
 
+import ic2.neoforge.effect.RadiationEffect;
+import ic2.neoforge.item.HazmatLike;
 import ic2.neoforge.registration.ModSounds;
 
 import net.minecraft.core.BlockPos;
@@ -14,8 +16,12 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageType;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntitySelector;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Explosion;
@@ -202,11 +208,42 @@ public class Ic2Explosion implements Explosion {
                                     entry.motionZ * reduction));
         }
 
-        // The legacy radiation sickness loop over mobs without a hazmat suit needs the P16
-        // radiation potion and armour items and lands with that package.
+        if (this.isNuclear() && this.radiationRange >= 1) {
+            applyNuclearRadiation(this.level, this.center, this.radiationRange);
+        }
 
         this.playExplosionEffect();
         this.destroyAndCollectDrops();
+    }
+
+    /**
+     * Legacy Ic2Explosion nuclear tail: every mob inside the radiation range that does not wear a
+     * complete hazmat suit gets hunger plus the radiation sickness effect, scaled by its distance
+     * from the blast centre. Players are exempt here (they are covered by the hazmat damage hook).
+     */
+    public static void applyNuclearRadiation(ServerLevel level, Vec3 center, int radiationRange) {
+        for (Mob entity :
+                level.getEntitiesOfClass(
+                        Mob.class,
+                        new AABB(
+                                center.x - radiationRange,
+                                center.y - radiationRange,
+                                center.z - radiationRange,
+                                center.x + radiationRange,
+                                center.y + radiationRange,
+                                center.z + radiationRange),
+                        EntitySelector.NO_CREATIVE_OR_SPECTATOR)) {
+            if (HazmatLike.hasCompleteHazmat(entity)) continue;
+            double distance = entity.position().distanceTo(center);
+            int hungerLength = (int) (120.0 * (radiationRange - distance));
+            int poisonLength = (int) (80.0 * (radiationRange / 3.0 - distance));
+            if (hungerLength >= 0) {
+                entity.addEffect(new MobEffectInstance(MobEffects.HUNGER, hungerLength, 0));
+            }
+            if (poisonLength >= 0) {
+                RadiationEffect.applyTo(entity, poisonLength, 0);
+            }
+        }
     }
 
     private void collectEntities() {
