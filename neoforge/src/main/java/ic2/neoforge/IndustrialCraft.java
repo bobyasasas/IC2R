@@ -48,6 +48,7 @@ public final class IndustrialCraft {
         ic2.neoforge.registration.ModObscurator.register(modBus);
         ic2.neoforge.registration.ModEffects.register(modBus);
         ic2.neoforge.registration.ModArmor.register(modBus);
+        ic2.neoforge.registration.ModCrops.register(modBus);
         ic2.neoforge.network.ModNetworking.register(modBus);
         ModEntities.register(modBus);
         ModToolbox.register(modBus);

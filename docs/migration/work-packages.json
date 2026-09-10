@@ -226,9 +226,13 @@
    "id": "P15",
    "parent": "M13",
    "title": "作物与农业",
-   "status": "todo",
-   "acceptance": "作物卡、杂交、养分、生长、收获、农药及种子持久化。",
-   "evidence": []
+   "status": "in_progress",
+   "acceptance": "作物卡、杂交、养分、生长、收获、农药及种子持久化。切片一已接入：作物杆+小麦/杂草卡、生长内核（质量公式/地形三项/存储衰减/杂草扩散）、播种收获拾取闭环与种子袋组件化；剩余其余作物卡、杂交、分析器、Cropmatron、收割机与群系加成。",
+   "evidence": [
+    "docs/migration/crops.md",
+    "core/src/main/java/ic2/core/crop/CropMath.java",
+    "neoforge/src/gameTest/java/ic2/neoforge/test/CropTests.java"
+   ]
   },
   {
    "id": "P16",

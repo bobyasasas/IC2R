@@ -5033,7 +5033,12 @@
    "factory": "register",
    "expression": "new ItemCrop(new Properties())",
    "decision": "preserve",
-   "status": "pending"
+   "status": "implemented",
+   "evidence": [
+    "neoforge/src/main/java/ic2/neoforge/crop/CropStickItem.java",
+    "docs/migration/crops.md"
+   ],
+   "note": "Crop slice one: growth kernel, harvest and seed bags (docs/migration/crops.md)"
   },
   {
    "registry": "item",
@@ -5043,7 +5048,12 @@
    "factory": "register",
    "expression": "new ItemCropSeed(new Properties().stacksTo(1))",
    "decision": "preserve",
-   "status": "pending"
+   "status": "implemented",
+   "evidence": [
+    "neoforge/src/main/java/ic2/neoforge/crop/CropSeedItem.java",
+    "docs/migration/crops.md"
+   ],
+   "note": "Crop slice one: growth kernel, harvest and seed bags (docs/migration/crops.md)"
   },
   {
    "registry": "item",
@@ -9608,7 +9618,12 @@
    "factory": "register",
    "expression": "Ic2TileEntityBlock.create(cropSettings, TileEntityCrop.class, false, Ic2TileEntityBlock.DefaultDrop.Self, Util.noFacings, false, Ic2CropType.none)",
    "decision": "preserve",
-   "status": "pending"
+   "status": "implemented",
+   "evidence": [
+    "neoforge/src/main/java/ic2/neoforge/crop/CropBlockEntity.java",
+    "docs/migration/crops.md"
+   ],
+   "note": "Crop slice one: growth kernel, harvest and seed bags (docs/migration/crops.md)"
   },
   {
    "registry": "block",
@@ -9618,7 +9633,12 @@
    "factory": "register",
    "expression": "Ic2TileEntityBlock.create(cropSettings, TileEntityCrop.class, false, Ic2TileEntityBlock.DefaultDrop.Self, Util.noFacings, false, Ic2CropType.weed)",
    "decision": "preserve",
-   "status": "pending"
+   "status": "implemented",
+   "evidence": [
+    "neoforge/src/main/java/ic2/neoforge/crop/WeedCropBlock.java",
+    "docs/migration/crops.md"
+   ],
+   "note": "Crop slice one: growth kernel, harvest and seed bags (docs/migration/crops.md)"
   },
   {
    "registry": "block",
@@ -9628,7 +9648,12 @@
    "factory": "register",
    "expression": "Ic2TileEntityBlock.create(cropSettings, TileEntityCrop.class, false, Ic2TileEntityBlock.DefaultDrop.Self, Util.noFacings, false, Ic2CropType.wheat)",
    "decision": "preserve",
-   "status": "pending"
+   "status": "implemented",
+   "evidence": [
+    "neoforge/src/main/java/ic2/neoforge/crop/WheatCropBlock.java",
+    "docs/migration/crops.md"
+   ],
+   "note": "Crop slice one: growth kernel, harvest and seed bags (docs/migration/crops.md)"
   },
   {
    "registry": "block",

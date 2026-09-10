@@ -32,8 +32,8 @@
 
 | 注册类别 | 已实现 | 部分实现 | 基线总数 |
 |---|---:|---:|---:|
-| item | 247 | 178 | 528 |
-| block | 59 | 105 | 264 |
+| item | 249 | 178 | 528 |
+| block | 62 | 105 | 264 |
 | block_entity | 3 | 75 | 157 |
 | entity | 4 | 0 | 8 |
 | menu | 1 | 25 | 55 |
@@ -80,7 +80,7 @@
 | P13 爆炸与电缆附加行为 | M12 | 进行中 | 炸药棒方块状态机、遥控器配对群爆、工业TNT（实体/方块/渲染/配方）、投掷/粘性炸药（引信链、PointExplosion、发射器、dynamite_sticky 配方）、Ic2Explosion 射线引擎（Type 五型、吸收/穿越、dropRate 聚合掉落、实体累积伤害含 damageVsEntities、ic2:nuke 与 reactor_explosion 伤害类型）与核弹（NukeBlockEntity 威力公式/装载槽、NukeEntity 300 tick 引信与扳手拆除、NukeMenu 1+8 槽 GUI、enableNuke/nukeExplosionPowerLimit 配置、onBlockExploded 连锁不重复掉落）已接入并双模式 GameTest 验收。建筑泡沫链已交付：FoamBlock 双态光照依赖硬化（normal→泡沫墙浅灰、reinforced→强化石头、沙子速凝）、16 色 IC2 泡沫墙方块、FoamSprayerItem BFS 喷涂（≤10/单块、脚手架就地覆盖、背包优先供液）、CFPackItem 80,000 mB 胸甲罐（护甲 8）、建筑泡沫流体缓慢效果、foam_sprayer/cf_pack 配方（并解锁 remote 两条挂起配方）。涂色器已交付：17 个 PainterItem（无色+16 色，耐久 32）按 legacy 13 分支染原版可染色方块（羊毛/染色玻璃/玻璃板/床/蜡烛/旗帜/陶瓦/带釉陶瓦/混凝土粉末/地毯/混凝土/潜影盒含物品保留）、羊染色、耗尽还原无色刷、autoRefill 潜行切换补料（painter+16 色配方转换 682/796）。电缆电击已交付：PacketDistributor 路径级 RouteLoad 峰值包统计、CableSpec.insulationAbsorption 按 legacy 电力等级表（8/32/128/512/2048，玻璃族永不电击）、WorldEnergyNetworks 对过载导线 1 格 AABB 内活体实体按路径最大值累加 ceil(EU/64) 点 ic2:electricity 伤害（cableShocks 配置开关）；金缆 2048 EU 过压在 IC2 模式先电击后熔毁、GT 模式断路不电击；legacy 剥绝缘分支（阈值 9001）在全部电缆熔毁阈值（capacity+1 ≤ 8193）之上不可达，不迁移。遮蔽墙重纹理已交付：ObscuratorItem 电动物品（100,000 EU/250 EU/t tier2，站立 5,000 EU 应用+潜行客户端 20,000 EU 采样经 ic2:obscurator_scan payload 上行）、ObscuratorReference 数据组件（id+variant+side+colorMuls）、ObscuredWallBlock+ObscuredWallBlockEntity（ValueInput/ValueOutput 持久化、ModelData 发布渲染态、掉落对应墙色泡沫墙）、客户端 ObscuredWallModel（CustomUnbakedBlockStateModel 注册 ic2:obscured_wall，BlockStateModel 逐面输出墙色墙面+MutableQuad 平铺 overlay）与 ObscuredFaceSampler（规整面优先采样，translucent 拒绝）；obscurator 配方转换 683/796。P13 功能面完成：转出项电缆泡沫覆盖随电缆切片、辐射效果随 P16，RetextureEvent 扩展分支无监听者不迁移（见 obscured-wall.md 有意差异）。勘误：legacy ItemRemote 无配对上限（基线与原始反编译均为无界列表），无需迁移。 |
 | P14 树木、矿石与世界生成 | M13 | 已完成 | 矿脉、树苗、橡胶采集、标签及树叶衰减通过；普通新区块与客户端保存重载已验收。 |
 | P21 橡胶木建筑部件 | M13 | 已完成 | 按钮、门、栅栏、台阶、告示牌；原生交互、掉落、文字保存和客户端渲染。 |
-| P15 作物与农业 | M13 | 待开始 | 作物卡、杂交、养分、生长、收获、农药及种子持久化。 |
+| P15 作物与农业 | M13 | 进行中 | 作物卡、杂交、养分、生长、收获、农药及种子持久化。切片一已接入：作物杆+小麦/杂草卡、生长内核（质量公式/地形三项/存储衰减/杂草扩散）、播种收获拾取闭环与种子袋组件化；剩余其余作物卡、杂交、分析器、Cropmatron、收割机与群系加成。 |
 | P16 工具与装备 | M13 | 进行中 | 扳手、切线钳、钻头、锯、喷枪、背包与护甲；消耗、附魔、渲染和同步。辐射链已接入：ic2:radiation 药水与伤害类型、防化四件套（头盔/胸甲/护腿/橡胶靴）全套豁免火/电/辐射、核爆辐射环与反应堆 70% 热辐射。 |
 | P17 可选集成 | M14 | 待开始 | 逐个核对 JEI、Jade、AE2 的目标版本与行为，缺少依赖仍可启动。 |
 | P18 旧存档转换 | M15 | 待开始 | 用副本建立跨版本数据迁移工具和可复现流程，列出不支持项。 |

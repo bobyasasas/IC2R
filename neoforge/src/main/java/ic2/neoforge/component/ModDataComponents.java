@@ -152,6 +152,12 @@ public final class ModDataComponents {
                     builder ->
                             builder.persistent(ObscuratorReference.CODEC)
                                     .networkSynchronized(ObscuratorReference.STREAM_CODEC));
+    public static final Supplier<DataComponentType<CropSeed>> CROP_SEED =
+            TYPES.<CropSeed>registerComponentType(
+                    "crop_seed",
+                    builder ->
+                            builder.persistent(CropSeed.CODEC)
+                                    .networkSynchronized(CropSeed.STREAM_CODEC));
     public static final Supplier<DataComponentType<Integer>> HYDRATION_USES =
             TYPES.<Integer>registerComponentType(
                     "hydration_uses",
