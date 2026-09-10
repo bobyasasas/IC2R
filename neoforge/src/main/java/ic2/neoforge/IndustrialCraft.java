@@ -8,6 +8,7 @@ import ic2.neoforge.machine.WorldWind;
 import ic2.neoforge.registration.ModCannerRecipes;
 import ic2.neoforge.registration.ModCells;
 import ic2.neoforge.registration.ModCraftingRecipes;
+import ic2.neoforge.registration.ModEntities;
 import ic2.neoforge.registration.ModFluids;
 import ic2.neoforge.registration.ModGameEvents;
 import ic2.neoforge.registration.ModItems;
@@ -42,6 +43,7 @@ public final class IndustrialCraft {
         ic2.neoforge.registration.ModRotors.register(modBus);
         ic2.neoforge.registration.ModReactorItems.register(modBus);
         ic2.neoforge.registration.ModExplosives.register(modBus);
+        ModEntities.register(modBus);
         ModToolbox.register(modBus);
         ModUpgrades.register(modBus);
         ModSounds.register(modBus);

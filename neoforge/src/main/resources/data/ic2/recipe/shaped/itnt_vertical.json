@@ -1,0 +1,17 @@
+{
+  "type": "ic2:shaped",
+  "pattern": [
+    "FTF",
+    "FTF",
+    "FTF"
+  ],
+  "group": "itnt",
+  "result": {
+    "id": "ic2:itnt",
+    "count": 4
+  },
+  "key": {
+    "F": "minecraft:flint",
+    "T": "minecraft:tnt"
+  }
+}

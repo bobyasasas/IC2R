@@ -2889,14 +2889,14 @@
     {
       "source": "shaped/itnt.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:itnt"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/itnt.json"
     },
     {
       "source": "shaped/itnt_vertical.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:itnt"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/itnt_vertical.json"
     },
     {
       "source": "shaped/jetpack.json",
@@ -4233,8 +4233,8 @@
     {
       "source": "shapeless/dynamite.json",
       "type": "ic2:shapeless",
-      "status": "pending",
-      "reason": "unported result ic2:dynamite"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shapeless/dynamite.json"
     },
     {
       "source": "shapeless/electric_treetap.json",

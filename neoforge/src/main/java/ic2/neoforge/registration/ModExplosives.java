@@ -1,17 +1,20 @@
 package ic2.neoforge.registration;
 
+import ic2.neoforge.item.RemoteItem;
 import ic2.neoforge.world.DynamiteBlock;
+import ic2.neoforge.world.ItntBlock;
 
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.material.MapColor;
+import net.minecraft.world.level.material.PushReaction;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
-/** Explosives: dynamite sticks paired to the remote detonator (P13). */
+/** Explosives: dynamite sticks with the remote detonator and industrial TNT (P13). */
 public final class ModExplosives {
     private static final DeferredRegister.Blocks BLOCKS =
             DeferredRegister.createBlocks(ic2.neoforge.IndustrialCraft.MOD_ID);
@@ -30,14 +33,25 @@ public final class ModExplosives {
                                             .noCollision()
                                             .instabreak()
                                             .noLootTable()
-                                            .pushReaction(
-                                                    net.minecraft.world.level.material.PushReaction
-                                                            .DESTROY)));
+                                            .pushReaction(PushReaction.DESTROY)));
 
-    public static final DeferredItem<ic2.neoforge.item.RemoteItem> REMOTE =
-            ITEMS.registerItem("remote", properties -> new ic2.neoforge.item.RemoteItem(properties.stacksTo(1)));
+    public static final DeferredItem<RemoteItem> REMOTE =
+            ITEMS.registerItem("remote", properties -> new RemoteItem(properties.stacksTo(1)));
+
+    public static final DeferredBlock<ItntBlock> ITNT =
+            BLOCKS.registerBlock(
+                    "itnt",
+                    properties ->
+                            new ItntBlock(
+                                    properties
+                                            .mapColor(MapColor.FIRE)
+                                            .strength(0.0F)
+                                            .sound(SoundType.GRASS)
+                                            .noLootTable()));
 
     public static void register(IEventBus bus) {
+        ITEMS.registerSimpleBlockItem(DYNAMITE);
+        ITEMS.registerSimpleBlockItem(ITNT);
         BLOCKS.register(bus);
         ITEMS.register(bus);
         bus.addListener(
@@ -45,6 +59,7 @@ public final class ModExplosives {
                     if (event.getTabKey().equals(CreativeModeTabs.FUNCTIONAL_BLOCKS)) {
                         event.accept(DYNAMITE);
                         event.accept(REMOTE);
+                        event.accept(ITNT);
                     }
                 });
     }

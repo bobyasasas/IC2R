@@ -56,6 +56,11 @@ public final class IndustrialCraftClient {
                             event.registerBlockEntityRenderer(
                                     ModMachines.entityType(kind), RotorRenderer::new);
                 });
+        modBus.addListener(
+                (EntityRenderersEvent.RegisterRenderers event) ->
+                        event.registerEntityRenderer(
+                                ic2.neoforge.registration.ModEntities.ITNT.get(),
+                                ic2.neoforge.client.ItntRenderer::new));
         modBus.addListener(FluidModels::register);
         modBus.addListener(
                 (RegisterColorHandlersEvent.BlockTintSources event) ->

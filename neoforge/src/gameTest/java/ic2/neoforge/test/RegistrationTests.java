@@ -280,6 +280,10 @@ public final class RegistrationTests {
         FUNCTIONS.register(
                 "reactor_heatpack_warm", () -> ReactorHeatEffectTests::heatpackWarmsVentStorage);
         FUNCTIONS.register("dynamite_placement", () -> DynamiteTests::placesWithFacingAndSupport);
+        FUNCTIONS.register("itnt_redstone_prime", () -> ItntTests::redstonePrimesFusedCharge);
+        FUNCTIONS.register("itnt_fuse_detonation", () -> ItntTests::fuseDetonates);
+        FUNCTIONS.register("itnt_break_primes", () -> ItntTests::playerBreakPrimes);
+        FUNCTIONS.register("itnt_chain_reaction", () -> ItntTests::chainReaction);
         FUNCTIONS.register("dynamite_linked_toggle", () -> DynamiteTests::linkedStateToggles);
         FUNCTIONS.register("reactor_vessel_place", () -> ReactorVesselTests::vesselPlaces);
         FUNCTIONS.register(

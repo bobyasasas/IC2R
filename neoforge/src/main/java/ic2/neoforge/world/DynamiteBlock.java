@@ -1,12 +1,18 @@
 package ic2.neoforge.world;
 
+import ic2.neoforge.registration.ModExplosives;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.ScheduledTickAccess;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
@@ -33,20 +39,18 @@ public class DynamiteBlock extends Block {
 
     public DynamiteBlock(Properties properties) {
         super(properties);
-        registerDefaultState(stateDefinition.any()
-                .setValue(FACING, Direction.UP)
-                .setValue(LINKED, false));
+        registerDefaultState(
+                stateDefinition.any().setValue(FACING, Direction.UP).setValue(LINKED, false));
     }
 
     @Override
-    protected void createBlockStateDefinition(
-            StateDefinition.Builder<Block, BlockState> builder) {
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         builder.add(FACING, LINKED);
     }
 
     @Override
-    protected VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos,
-            CollisionContext context) {
+    protected VoxelShape getShape(
+            BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
         return switch (state.getValue(FACING)) {
             case NORTH -> NORTH;
             case SOUTH -> SOUTH;
@@ -82,12 +86,34 @@ public class DynamiteBlock extends Block {
         return null;
     }
 
+    @Override
+    protected BlockState updateShape(
+            BlockState state,
+            LevelReader level,
+            ScheduledTickAccess ticks,
+            BlockPos pos,
+            Direction direction,
+            BlockPos neighbourPos,
+            BlockState neighbourState,
+            RandomSource random) {
+        // Legacy updateShape(): losing the support face pops the stick as an item.
+        if (state.getValue(FACING).getOpposite() == direction && !state.canSurvive(level, pos)) {
+            if (level instanceof Level realLevel && !realLevel.isClientSide()) {
+                Block.popResource(realLevel, pos, new ItemStack(ModExplosives.DYNAMITE.get()));
+            }
+            return Blocks.AIR.defaultBlockState();
+        }
+        return state;
+    }
+
     /** Legacy explode(): removes the stick and detonates a small explosion in place. */
     public static void explode(Level level, BlockPos pos) {
         level.removeBlock(pos, false);
         level.explode(
                 null,
-                pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5,
+                pos.getX() + 0.5,
+                pos.getY() + 0.5,
+                pos.getZ() + 0.5,
                 2.5F,
                 net.minecraft.world.level.Level.ExplosionInteraction.TNT);
     }
