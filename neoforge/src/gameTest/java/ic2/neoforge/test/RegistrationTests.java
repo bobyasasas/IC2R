@@ -402,6 +402,12 @@ public final class RegistrationTests {
         FUNCTIONS.register("crop_coffee_harvest_window", () -> CropTests::cropCoffeeHarvestWindow);
         FUNCTIONS.register("crop_cocoa_nutrient_gate", () -> CropTests::cropCocoaNutrientGate);
         FUNCTIONS.register(
+                "crop_nether_wart_soul_sand", () -> CropTests::cropNetherWartSoulSand);
+        FUNCTIONS.register(
+                "crop_potato_harvest_band", () -> CropTests::cropPotatoHarvestBand);
+        FUNCTIONS.register("crop_mushroom_base_seed", () -> CropTests::cropMushroomBaseSeed);
+        FUNCTIONS.register("crop_sapling_gains", () -> CropTests::cropSaplingGains);
+        FUNCTIONS.register(
                 "radiation_hazmat_set", () -> RadiationTests::hazmatCompleteSetDetection);
         FUNCTIONS.register(
                 "radiation_effect_damage", () -> RadiationTests::radiationEffectDamagesHost);

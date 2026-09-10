@@ -226,6 +226,125 @@ final class CropTests {
         helper.succeed();
     }
 
+    static void cropNetherWartSoulSand(GameTestHelper helper) {
+        helper.setBlock(POSITION, ModCrops.CROP_STICK.get().defaultBlockState());
+        CropBlockEntity crop = crop(helper);
+        helper.assertTrue(
+                crop.rightClick(null, new ItemStack(Items.NETHER_WART)),
+                "Nether wart plants a nether wart crop");
+        crop(helper).refreshTerrain(helper.getLevel());
+        for (int tick = 0; tick < 5; tick++) crop(helper).performTick(1024L);
+        int plain = crop(helper).getGrowthPoints();
+        helper.assertTrue(
+                plain < 500, "Without soul sand growth stays slow, saw " + plain);
+        helper.setBlock(POSITION.below(), Blocks.SOUL_SAND);
+        for (int tick = 0; tick < 5; tick++) crop(helper).performTick(1024L);
+        int boosted = crop(helper).getGrowthPoints() - plain;
+        helper.assertTrue(
+                boosted >= 500,
+                "Soul sand grants +100 growth points per tick, saw " + boosted);
+        for (int tick = 0; tick < 400 && crop(helper).getCurrentAge() < 2; tick++) {
+            crop(helper).performTick(1024L);
+        }
+        helper.assertTrue(
+                crop(helper).getCurrentAge() == 2,
+                "The nether wart reaches age two, saw " + crop(helper).getCurrentAge());
+        helper.succeed();
+    }
+
+    static void cropPotatoHarvestBand(GameTestHelper helper) {
+        helper.setBlock(POSITION.below(), Blocks.FARMLAND);
+        helper.setBlock(POSITION.above().above(), Blocks.GLOWSTONE);
+        helper.setBlock(POSITION, ModCrops.CROP_STICK.get().defaultBlockState());
+        CropBlockEntity crop = crop(helper);
+        helper.assertTrue(
+                crop.rightClick(null, new ItemStack(Items.POTATO)),
+                "A potato plants a potato crop");
+        crop(helper).refreshTerrain(helper.getLevel());
+        growUntil(helper, 2, 4000);
+        helper.assertTrue(
+                crop(helper).getCurrentAge() == 2,
+                "The potato opens its harvest band at age two, saw "
+                        + crop(helper).getCurrentAge());
+        helper.assertTrue(
+                crop(helper).performManualHarvest(), "The half-ripe potato harvests");
+        growUntil(helper, 3, 4000);
+        helper.assertTrue(
+                crop(helper).getCurrentAge() == 3,
+                "The potato reaches full ripeness, saw " + crop(helper).getCurrentAge());
+        helper.assertTrue(crop(helper).performManualHarvest(), "The ripe potato harvests");
+        // Poisonous potatoes are a 5% full-ripe roll; plain potatoes dominate across cycles.
+        boolean anyPotato = false;
+        for (int cycle = 0; cycle < 6 && !anyPotato; cycle++) {
+            growUntil(helper, 3, 4000);
+            if (crop(helper).performManualHarvest()) {
+                anyPotato |= countItems(helper, Items.POTATO) > 0;
+            }
+        }
+        helper.assertTrue(anyPotato, "Harvesting potatoes drops potato produce");
+        helper.succeed();
+    }
+
+    static void cropMushroomBaseSeed(GameTestHelper helper) {
+        helper.setBlock(POSITION, ModCrops.CROP_STICK.get().defaultBlockState());
+        CropBlockEntity crop = crop(helper);
+        ItemStack mushrooms = new ItemStack(Items.BROWN_MUSHROOM, 4);
+        helper.assertTrue(
+                crop.rightClick(null, mushrooms), "Brown mushrooms plant a mushroom crop");
+        helper.assertTrue(
+                helper.getBlockState(POSITION).is(ModCrops.BROWN_MUSHROOM_CROP.get()),
+                "The mushroom crop block replaces the stick");
+        helper.assertTrue(
+                mushrooms.getCount() == 4,
+                "A zero-size base seed consumes nothing (legacy quirk)");
+        crop(helper).refreshTerrain(helper.getLevel());
+        growUntil(helper, 2, 2000);
+        helper.assertTrue(
+                crop(helper).getCurrentAge() == 2,
+                "The mushroom reaches full ripeness, saw " + crop(helper).getCurrentAge());
+        boolean anyMushroom = false;
+        for (int cycle = 0; cycle < 6 && !anyMushroom; cycle++) {
+            growUntil(helper, 2, 2000);
+            if (crop(helper).performManualHarvest()) {
+                anyMushroom |= countItems(helper, Items.BROWN_MUSHROOM) > 0;
+            }
+        }
+        helper.assertTrue(anyMushroom, "Harvesting mushrooms returns brown mushrooms");
+        helper.succeed();
+    }
+
+    static void cropSaplingGains(GameTestHelper helper) {
+        helper.setBlock(POSITION.below(), Blocks.FARMLAND);
+        helper.setBlock(POSITION.above().above(), Blocks.GLOWSTONE);
+        helper.setBlock(POSITION, ModCrops.CROP_STICK.get().defaultBlockState());
+        CropBlockEntity crop = crop(helper);
+        helper.assertTrue(
+                crop.rightClick(null, new ItemStack(Items.OAK_SAPLING)),
+                "An oak sapling plants a sapling crop");
+        helper.assertTrue(
+                helper.getBlockState(POSITION).is(ModCrops.OAK_SAPLING_CROP.get()),
+                "The sapling crop block replaces the stick");
+        crop(helper).refreshTerrain(helper.getLevel());
+        growUntil(helper, 4, 12000);
+        helper.assertTrue(
+                crop(helper).getCurrentAge() == 4,
+                "The sapling reaches full ripeness, saw " + crop(helper).getCurrentAge());
+        helper.assertTrue(crop(helper).performManualHarvest(), "The ripe sapling harvests");
+        helper.assertTrue(
+                crop(helper).getCurrentAge() == 3,
+                "Harvest leaves the sapling one step below full ripeness, saw "
+                        + crop(helper).getCurrentAge());
+        boolean anyLog = false;
+        for (int cycle = 0; cycle < 8 && !anyLog; cycle++) {
+            growUntil(helper, 4, 12000);
+            if (crop(helper).performManualHarvest()) {
+                anyLog |= countItems(helper, Items.OAK_LOG) > 0;
+            }
+        }
+        helper.assertTrue(anyLog, "Harvesting saplings drops logs");
+        helper.succeed();
+    }
+
     private static int countItems(GameTestHelper helper, Item item) {
         int count = 0;
         for (var entity : helper.getEntities(EntityType.ITEM)) {

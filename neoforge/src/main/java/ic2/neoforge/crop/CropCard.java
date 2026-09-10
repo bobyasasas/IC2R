@@ -52,6 +52,11 @@ public interface CropCard {
         return crop.getCurrentAge() == getMaxAge();
     }
 
+    /** How deep below the stick the crop's roots reach (legacy getRootsLength). */
+    default int getRootsLength(CropBlockEntity crop) {
+        return 1;
+    }
+
     default int getOptimalHarvestAge() {
         return getMaxAge();
     }

@@ -100,9 +100,46 @@
 - `crop_cocoa_nutrient_gate`:无养分不生长,设置存储养分后生长。
 - IC2 与 GT 双模式 `runGameTestServer` 310 项全绿;core JUnit 110 项。
 
+## 切片三:12 张原版产物作物卡与 base seed(2026-09-10)
+
+- **作物卡**:nether_wart(地狱疣,props (5,4,2,0,2,1),dropGainChance
+  ×2.0,rootsLength 5,产物地狱疣;card tick 中灵魂沙在根区则
+  `canGrow` 时 +100 生长点;雪下转化为 terra wart 因该卡未迁移而
+  跳过,见「未验收」)、red/brown_mushroom(`CropBaseMushroom`,props
+  (2,0,4,0,0,4),时长 200,产物自身蘑菇)、carrots/beetroots
+  (`CropVanilla`,props (2,0,4,0,0,2)/(1,0,4,0,1,2),光照 ≥9,产物
+  胡萝卜/甜菜,低统计拾取掉原版种子——甜菜掉甜菜种子而非产物)、
+  potato(`CropPotato`,props (2,0,4,0,0,2),光照 ≥9,age ≥2 开收获带,
+  满龄 5% 有毒土豆否则土豆,未满龄无产物)、6 种树苗
+  (`CropBaseSapling`,props (3,1,0,4,4,0),maxAge 4,光照 ≥9,时长
+  600/末段 150,收获回 age 3,产物原木 +25% 树苗,橡树另 25% 苹果)。
+- **方块**:12 个 `CropBlock` 子类(age 上限 2/2/2/3/3/3/4×6)。
+- **base seed**(legacy `registerBaseSeed` 第三参 size 均为 0,不消耗
+  ——legacy 蘑菇注册的 `new ItemStack(BLOCK, 4)` 中 4 是物品堆数量
+  而非 size):地狱疣/胡萝卜/土豆/甜菜种子/红菇/棕菇/6 树苗 →
+  (0,1,1,1);可可等既有项不变。
+- **BE/接口**:`CropCard.getRootsLength`(默认 1)、
+  `CropBlockEntity.isBlockBelow`(沿根区向下扫描,遇空气停止)、
+  `setGrowthPoints`(地狱疣卡片 tick 加点)。
+- 资源:12 作物方块状态/横切模型/纹理自 legacy 逐字拷贝;无新增物品。
+
+## 测试证据(切片三)
+
+- `crop_nether_wart_soul_sand`:无灵魂沙 5 tick 生长点 <500,放置
+  灵魂沙后 5 tick 增量 ≥500(每 tick +100),并长到满龄 2。
+- `crop_potato_harvest_band`:age 2 进入收获带可收获、长到满龄 3
+  可收获,多轮累计掉落土豆。
+- `crop_mushroom_base_seed`:棕菇播种(size 0 不消耗 legacy quirk)、
+  时长 200 下长到满龄 2、收获回蘑菇。
+- `crop_sapling_gains`:橡树苗长到满龄 4、收获后回 age 3
+  (`getAgeAfterHarvest`),多轮累计掉落原木。
+- IC2 与 GT 双模式 `runGameTestServer` 314 项全绿;core JUnit 110 项。
+
 ## 未验收 / 后续切片
 
 - 杂草自然出现(空杆 1/100 掷骰)的实机观察;WeedEX 水罐/肥料/
   水化罐的右键交互;踩踏破坏。
-- 其余约 45 种作物卡(花/蘑菇/树苗/矿质作物等)、杂交/crossing base、
-  作物分析器、Cropmatron、收割机、群系加成。
+- nether wart 雪→terra wart 转化(terra wart 卡/物品未迁移)。
+- 其余约 33 种作物卡(五色花/南瓜/西瓜/粘性芦苇/Venomilia/黑荆/
+  郁金香/矿质作物等)、杂交/crossing base、作物分析器、Cropmatron、
+  收割机、群系加成。

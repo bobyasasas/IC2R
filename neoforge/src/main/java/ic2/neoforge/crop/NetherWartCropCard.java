@@ -1,0 +1,58 @@
+package ic2.neoforge.crop;
+
+import ic2.core.crop.CropProperties;
+import ic2.neoforge.registration.ModCrops;
+
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+
+import java.util.List;
+
+/** The nether wart crop (legacy CropNetherWart): soul sand fuels growth, snow transmutes it. */
+public class NetherWartCropCard implements CropCard {
+    @Override
+    public String getId() {
+        return "nether_wart";
+    }
+
+    @Override
+    public Block getCropBlock() {
+        return ModCrops.NETHER_WART_CROP.get();
+    }
+
+    @Override
+    public CropProperties getProperties() {
+        return new CropProperties(5, 4, 2, 0, 2, 1);
+    }
+
+    @Override
+    public int getMaxAge() {
+        return 2;
+    }
+
+    @Override
+    public double dropGainChance() {
+        return 2.0;
+    }
+
+    @Override
+    public void tick(CropBlockEntity crop) {
+        if (crop.isBlockBelow(Blocks.SOUL_SAND)) {
+            if (canGrow(crop)) crop.setGrowthPoints(crop.getGrowthPoints() + 100);
+        }
+        // The legacy snow-below transmutation into terra wort stays out: the terra wart card and
+        // item are not migrated yet.
+    }
+
+    @Override
+    public List<ItemStack> getGains(CropBlockEntity crop) {
+        return List.of(new ItemStack(Items.NETHER_WART));
+    }
+
+    @Override
+    public int getRootsLength(CropBlockEntity crop) {
+        return 5;
+    }
+}

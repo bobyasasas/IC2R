@@ -202,7 +202,9 @@ public class CropBlockEntity extends net.minecraft.world.level.block.entity.Bloc
 
     public boolean performManualHarvest() {
         List<ItemStack> drops = performHarvest();
-        if (drops == null || drops.isEmpty()) return false;
+        // Null means "not harvestable"; an empty list is a harvest whose gaussian rolled zero
+        // drops — legacy still resets the plant in that case.
+        if (drops == null) return false;
         if (getLevel() instanceof ServerLevel level) {
             for (ItemStack drop : drops) dropAsEntity(level, drop);
         }
@@ -315,6 +317,19 @@ public class CropBlockEntity extends net.minecraft.world.level.block.entity.Bloc
         updateTerrainHumidity(level);
         updateTerrainNutrients(level);
         updateTerrainAirQuality(level);
+    }
+
+    /** Legacy isBlockBelow: scans the root zone (down to rootsLength) without air gaps. */
+    public boolean isBlockBelow(net.minecraft.world.level.block.Block reqBlock) {
+        var crop = card();
+        if (crop == null || !(getLevel() instanceof ServerLevel level)) return false;
+        for (int i = 1; i < crop.getRootsLength(this); i++) {
+            BlockPos below = worldPosition.below(i);
+            BlockState state = level.getBlockState(below);
+            if (state.isAir()) return false;
+            if (state.is(reqBlock)) return true;
+        }
+        return false;
     }
 
     public int getLightLevel() {
@@ -434,6 +449,11 @@ public class CropBlockEntity extends net.minecraft.world.level.block.entity.Bloc
 
     public int getGrowthPoints() {
         return growthPoints;
+    }
+
+    /** Legacy setGrowthPoints: card ticks (e.g. nether wart on soul sand) grant bonus points. */
+    public void setGrowthPoints(int value) {
+        growthPoints = value;
     }
 
     public Vec3 position() {
