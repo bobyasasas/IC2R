@@ -32,15 +32,15 @@
 
 | 注册类别 | 已实现 | 部分实现 | 基线总数 |
 |---|---:|---:|---:|
-| item | 206 | 178 | 528 |
-| block | 40 | 106 | 264 |
+| item | 225 | 178 | 528 |
+| block | 58 | 105 | 264 |
 | block_entity | 3 | 75 | 157 |
 | entity | 4 | 0 | 8 |
 | menu | 1 | 25 | 55 |
 | sound | 62 | 0 | 62 |
 | recipe_serializer | 0 | 16 | 17 |
 | recipe_type | 0 | 12 | 13 |
-| fluid_family | 0 | 17 | 17 |
+| fluid_family | 1 | 16 | 17 |
 | game_event | 5 | 0 | 5 |
 | fluid_type | 17 | 0 | 17 |
 | fluid | 34 | 0 | 34 |
@@ -53,7 +53,7 @@
 
 ## 配方迁移覆盖
 
-已转换并纳入加载测试：**661 / 796**。
+已转换并纳入加载测试：**665 / 796**。
 
 转换计数不等于生存模式可达率；原料、工具与前置机器仍需逐步验收。
 
@@ -77,7 +77,7 @@
 | P10 热力与动能机器 | M11 | 进行中 | 风力／水力动能与五种转子、手动动能、电热、电动动能、固体／流体热源、蒸汽发生器升温／压力／结垢、双级蒸汽动能与完整水循环、冷凝与散热片、电解双气体输出、流体冷却换热、发酵与沼气链、原生事务能力与转电链已接入；蒸汽再压缩（有界热储备、c:steam 候选选择、取热差额修复、零倍率停机）已接入并双模式 GameTest 验收；同位素热源与 RT 发电机（指数输出曲线、单面热输出、燃料不消耗、电池槽充电）已接入并双模式 GameTest 验收；升温换热经核对在恢复源码中无实现依据（热冷却剂仅存在于冷却方向），不作为独立迁移项。 |
 | P11 UU 及复制系统 | M11 | 待开始 | 复制、扫描、模式存储和流体 UU；数据与网络同步。 |
 | P12 反应堆热量与组件 | M12 | 进行中 | 热量记账、散热片数据与锅炉热爆炸基础已接入；按冷却／交换／反射／燃料组件、网格脉冲、EU／流体模式、热效应和爆炸分步验收。 |
-| P13 爆炸与电缆附加行为 | M12 | 进行中 | 炸药棒方块状态机、遥控器配对群爆、工业TNT（实体/方块/渲染/配方）、投掷/粘性炸药（引信链、PointExplosion、发射器、dynamite_sticky 配方）、Ic2Explosion 射线引擎（Type 五型、吸收/穿越、dropRate 聚合掉落、实体累积伤害含 damageVsEntities、ic2:nuke 与 reactor_explosion 伤害类型）与核弹（NukeBlockEntity 威力公式/装载槽、NukeEntity 300 tick 引信与扳手拆除、NukeMenu 1+8 槽 GUI、enableNuke/nukeExplosionPowerLimit 配置、onBlockExploded 连锁不重复掉落）已接入并双模式 GameTest 验收；电击、涂色、建筑泡沫待迁移；辐射效果随 P16。勘误：legacy ItemRemote 无配对上限（基线与原始反编译均为无界列表），无需迁移。 |
+| P13 爆炸与电缆附加行为 | M12 | 进行中 | 炸药棒方块状态机、遥控器配对群爆、工业TNT（实体/方块/渲染/配方）、投掷/粘性炸药（引信链、PointExplosion、发射器、dynamite_sticky 配方）、Ic2Explosion 射线引擎（Type 五型、吸收/穿越、dropRate 聚合掉落、实体累积伤害含 damageVsEntities、ic2:nuke 与 reactor_explosion 伤害类型）与核弹（NukeBlockEntity 威力公式/装载槽、NukeEntity 300 tick 引信与扳手拆除、NukeMenu 1+8 槽 GUI、enableNuke/nukeExplosionPowerLimit 配置、onBlockExploded 连锁不重复掉落）已接入并双模式 GameTest 验收。建筑泡沫链已交付：FoamBlock 双态光照依赖硬化（normal→泡沫墙浅灰、reinforced→强化石头、沙子速凝）、16 色 IC2 泡沫墙方块、FoamSprayerItem BFS 喷涂（≤10/单块、脚手架就地覆盖、背包优先供液）、CFPackItem 80,000 mB 胸甲罐（护甲 8）、建筑泡沫流体缓慢效果、foam_sprayer/cf_pack 配方（并解锁 remote 两条挂起配方）。剩余：电击、涂色；电缆泡沫覆盖随电缆切片；辐射效果随 P16。勘误：legacy ItemRemote 无配对上限（基线与原始反编译均为无界列表），无需迁移。 |
 | P14 树木、矿石与世界生成 | M13 | 已完成 | 矿脉、树苗、橡胶采集、标签及树叶衰减通过；普通新区块与客户端保存重载已验收。 |
 | P21 橡胶木建筑部件 | M13 | 已完成 | 按钮、门、栅栏、台阶、告示牌；原生交互、掉落、文字保存和客户端渲染。 |
 | P15 作物与农业 | M13 | 待开始 | 作物卡、杂交、养分、生长、收获、农药及种子持久化。 |

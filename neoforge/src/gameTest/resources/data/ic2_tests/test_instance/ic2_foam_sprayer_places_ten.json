@@ -1,0 +1,7 @@
+{
+  "type": "minecraft:function",
+  "function": "ic2_tests:foam_sprayer_places_ten",
+  "environment": "minecraft:default",
+  "structure": "ic2_tests:heat_room",
+  "max_ticks": 60
+}

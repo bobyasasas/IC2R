@@ -1,0 +1,18 @@
+{
+  "type": "ic2:shaped",
+  "pattern": [
+    " C ",
+    "TLT",
+    " F "
+  ],
+  "result": {
+    "id": "ic2:remote",
+    "count": 1
+  },
+  "key": {
+    "C": "ic2:insulated_copper_cable",
+    "T": "ic2:tin_casing",
+    "L": "#c:dusts/lapis",
+    "F": "ic2:frequency_transmitter"
+  }
+}

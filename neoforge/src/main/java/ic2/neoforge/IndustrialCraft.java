@@ -44,6 +44,7 @@ public final class IndustrialCraft {
         ic2.neoforge.registration.ModReactorItems.register(modBus);
         ic2.neoforge.registration.ModExplosives.register(modBus);
         ic2.neoforge.registration.ModNuke.register(modBus);
+        ic2.neoforge.registration.ModFoam.register(modBus);
         ModEntities.register(modBus);
         ModToolbox.register(modBus);
         ModUpgrades.register(modBus);

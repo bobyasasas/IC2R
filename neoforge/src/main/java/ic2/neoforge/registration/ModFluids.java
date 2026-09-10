@@ -61,7 +61,11 @@ public final class ModFluids {
             var block =
                     BLOCKS.registerBlock(
                             "fluid_block_" + id,
-                            p -> new LiquidBlock(source.get(), p),
+                            p ->
+                                    definition == FluidDefinition.CONSTRUCTION_FOAM
+                                            ? new ic2.neoforge.world.ConstructionFoamBlock(
+                                                    source.get(), p)
+                                            : new LiquidBlock(source.get(), p),
                             () -> BlockBehaviour.Properties.ofFullCopy(Blocks.WATER).noLootTable());
             var bucket =
                     ITEMS.registerItem(

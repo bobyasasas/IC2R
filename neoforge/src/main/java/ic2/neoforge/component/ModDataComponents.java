@@ -189,6 +189,14 @@ public final class ModDataComponents {
                                                     ModDataComponents::validReactorHeat,
                                                     ModDataComponents::validReactorHeat)));
 
+    // 0 spreads up to ten blocks, 1 sprays a single block; mirrors the legacy sprayer NBT mode.
+    public static final Supplier<DataComponentType<Integer>> SPRAY_MODE =
+            TYPES.<Integer>registerComponentType(
+                    "spray_mode",
+                    builder ->
+                            builder.persistent(Codec.intRange(0, 1))
+                                    .networkSynchronized(ByteBufCodecs.VAR_INT));
+
     private ModDataComponents() {}
 
     private static double validCharge(double value) {

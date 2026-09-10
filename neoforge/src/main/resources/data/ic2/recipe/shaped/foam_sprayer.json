@@ -1,0 +1,16 @@
+{
+  "type": "ic2:shaped",
+  "pattern": [
+    "A  ",
+    " A ",
+    " BA"
+  ],
+  "result": {
+    "id": "ic2:foam_sprayer",
+    "count": 1
+  },
+  "key": {
+    "A": "ic2:iron_casing",
+    "B": "ic2:facade_cell"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "type": "ic2:shaped",
+  "pattern": [
+    " c ",
+    "GCG",
+    "TTT"
+  ],
+  "result": {
+    "id": "ic2:remote",
+    "count": 1
+  },
+  "key": {
+    "c": "ic2:insulated_copper_cable",
+    "G": "minecraft:glowstone_dust",
+    "C": "ic2:circuit",
+    "T": "minecraft:tnt"
+  }
+}

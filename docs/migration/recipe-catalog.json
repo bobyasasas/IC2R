@@ -2283,8 +2283,8 @@
     {
       "source": "shaped/cf_pack.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:cf_pack"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/cf_pack.json"
     },
     {
       "source": "shaped/cf_powder.json",
@@ -2661,8 +2661,8 @@
     {
       "source": "shaped/foam_sprayer.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:foam_sprayer"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/foam_sprayer.json"
     },
     {
       "source": "shaped/forge_hammer.json",
@@ -3507,14 +3507,14 @@
     {
       "source": "shaped/remote.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:remote"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/remote.json"
     },
     {
       "source": "shaped/remote_from_frequency_transmitter.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:remote"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/remote_from_frequency_transmitter.json"
     },
     {
       "source": "shaped/replicator.json",

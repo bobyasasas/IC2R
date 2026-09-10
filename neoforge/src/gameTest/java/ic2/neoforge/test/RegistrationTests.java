@@ -312,6 +312,15 @@ public final class RegistrationTests {
         FUNCTIONS.register("nuke_chain_reaction", () -> NukeTests::chainReactionShortFuse);
         FUNCTIONS.register("nuke_wrench_defuses", () -> NukeTests::wrenchDefusesPrimedCharge);
         FUNCTIONS.register("nuke_menu_slots", () -> NukeTests::menuAcceptsOnlyPayloadItems);
+        FUNCTIONS.register(
+                "foam_sprayer_places_ten", () -> FoamTests::sprayerPlacesUpToTenFoamBlocks);
+        FUNCTIONS.register("foam_sprayer_single_mode", () -> FoamTests::singleModeSpraysOneBlock);
+        FUNCTIONS.register("foam_scaffolding_covered", () -> FoamTests::scaffoldingIsCoveredInFoam);
+        FUNCTIONS.register("foam_sand_hardens", () -> FoamTests::sandInstantlyHardensFoam);
+        FUNCTIONS.register("foam_pack_supplies", () -> FoamTests::foamPackSuppliesSprayer);
+        FUNCTIONS.register("foam_fluid_slows", () -> FoamTests::foamFluidSlowsEntities);
+        FUNCTIONS.register(
+                "foam_sprayer_fluid_filter", () -> FoamTests::sprayerAcceptsOnlyConstructionFoam);
         FUNCTIONS.register("dynamite_linked_toggle", () -> DynamiteTests::linkedStateToggles);
         FUNCTIONS.register("dynamite_redstone_fuse", () -> DynamiteTests::redstonePrimesFuse);
         FUNCTIONS.register("dynamite_break_fuse", () -> DynamiteTests::playerBreakPrimesFuse);
