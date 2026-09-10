@@ -312,10 +312,57 @@ common 2000 / uncommon 2200,早段 800 / 750。
   累计奶疣,回 age 1。
 - IC2 与 GT 双模式 `runGameTestServer` 329 项全绿;core JUnit 110 项。
 
+## 切片八:杂交与 crossing base(2026-09-10)
+
+- **crossing base 状态**(legacy tile 字段改 blockstate 承载):空
+  作物杆方块新增 `crossing_base` 属性(false→原杆模型,true→
+  legacy `stick_upgraded` 模型/纹理逐字拷贝);种植作物时方块被
+  换掉,标志随之消失,与 legacy tile 字段语义等价。右键持作物杆
+  升级空杆(消耗 1,创造 instabuild 不耗);左键空 crossing base
+  降级并掉落作物杆(创造顶层 PASS);base seed 与 `tryPlantIn`
+  在 crossing base 上一律拒绝(legacy 消耗前先挡,物品不掉)。
+- **attemptCrossing 全语义**:每作物 tick 1/3 概率门;四向邻株
+  逐一过 `canGrow(本tile)`/`canCross(邻tile)`(legacy 默认
+  age≥2,GenericCropCard 为 age+2>maxSize)与 d16 stat 门(基础
+  4,Gr≥16/≥30 加成,Re≥28 加 27−Re);候选遍历全部 52 张注册卡
+  (ModCrops.allCards 注册序,决定加权二分查找的平局),比率表
+  `calculateRatioFor`:同卡 500,五项非 tier 属性差 Σ(2−|Δ|),
+  共享 attribute(忽略大小写)+5,tier 差 >1 罚 2×diff、<−3 罚
+  −diff,下限 0;total≤0 视为无候选(legacy 在此 nextInt(0) 会
+  抛异常,新端守卫并注释)。stat 继承:邻株求和取均 + 每项
+  `nextInt(1+2n)−n` 抖动,钳 0..31;成功后 transformCropBlock
+  (新卡,age 0)并在同一 tick 内走生长。
+- **attemptSpreading**:恰好 1 个水平 TileEntityCrop 邻居(空杆
+  也计入)且邻卡可种可交、stat 门通过时,邻卡直接蔓延到 crossing
+  base,三项 stat 精确复制无抖动;checkSpreadingAvailability 是
+  legacy 死代码未移植。performTick 顺序保持 legacy 短路:有作物
+  不杂交,crossing 失败才 spreading,成功当 tick 新作物即生长。
+- **52 张卡 attributes 全量**:接口默认 canCross(age≥2)/
+  getAttributes(空);GenericCropCard 15 卡逐字、专用卡 17 张、
+  参数化类(花/蘑菇/原版产物/金属)构造透传;core CropProperties
+  补 `getAllProperties()`(五项非 tier 值)供比率表使用。
+
+## 测试证据(切片八)
+
+- `crop_crossing_base_interactions`:右键 4 根作物杆断言消耗 1 且
+  blockstate 置位;crossing base 上右键奶疣 base seed 拒绝且物品
+  保留;左键降级掉落作物杆(计数 1);空杆左键无动作。
+- `crop_crossing_breed`:四簇 crossing base 各围 4 株 wheat
+  (10/10/10,age 3),循环 attemptCrossing(每簇至多 300 次,消掉
+  1/3 门与 stat 门的随机性)至成功;断言每簇成卡、age 0、三 stat
+  落在均值 10±抖动 4 的 [6,14] 区间,且至少一簇为 wheat(同卡
+  比率 4×500 压倒性主导)。
+- `crop_crossing_spread`:恰 1 邻 wheat(5/6/7,age 3)循环
+  attemptSpreading 至成功,断言变 wheat、age 0、stat 精确复制
+  5/6/7;负例三连:两邻居拒绝、邻株 age 1(canCross 不过)拒绝、
+  唯一邻居为空杆拒绝。
+- IC2 与 GT 双模式 `runGameTestServer` 332 项全绿;core JUnit
+  110 项。CI run 34514309416(headSha d995bd3d)success。
+
 ## 未验收 / 后续切片
 
 - 杂草自然出现(空杆 1/100 掷骰)的实机观察;WeedEX 水罐/肥料/
   水化罐的右键交互。踩踏判定已接线(`entityInside`),待实机观察。
 - 52 张作物卡的移植面已齐(其余均为卡内交互或环境项);杂交/
-  crossing base、作物分析器、Cropmatron、收割机、群系加成、
-  discoveredBy/attributes 的展示面(随分析器切片)。
+  crossing base 已交付,余下作物分析器、Cropmatron、收割机、
+  群系加成、discoveredBy/attributes 的展示面(随分析器切片)。
