@@ -284,6 +284,25 @@ public final class RegistrationTests {
         FUNCTIONS.register("itnt_fuse_detonation", () -> ItntTests::fuseDetonates);
         FUNCTIONS.register("itnt_break_primes", () -> ItntTests::playerBreakPrimes);
         FUNCTIONS.register("itnt_chain_reaction", () -> ItntTests::chainReaction);
+        FUNCTIONS.register(
+                "ic2_explosion_ray_crater", () -> Ic2ExplosionTests::rayCraterStopsAtAbsorption);
+        FUNCTIONS.register(
+                "ic2_explosion_bedrock_passthrough",
+                () -> Ic2ExplosionTests::ultraResistantBedrockIsPassedThrough);
+        FUNCTIONS.register(
+                "ic2_explosion_shield_stops_rays", () -> Ic2ExplosionTests::stoneShieldStopsRays);
+        FUNCTIONS.register(
+                "ic2_explosion_drop_rate_zero",
+                () -> Ic2ExplosionTests::zeroDropRateSuppressesDrops);
+        FUNCTIONS.register(
+                "ic2_explosion_drop_rate_full", () -> Ic2ExplosionTests::fullDropRateKeepsDrops);
+        FUNCTIONS.register(
+                "ic2_explosion_ray_damage", () -> Ic2ExplosionTests::accumulatedRayDamageKillsMob);
+        FUNCTIONS.register(
+                "ic2_explosion_nuclear_source",
+                () -> Ic2ExplosionTests::nuclearTypeResolvesNukeDamageSource);
+        FUNCTIONS.register(
+                "itnt_blast_drops_debris", () -> Ic2ExplosionTests::itntBlastDropsDebris);
         FUNCTIONS.register("dynamite_linked_toggle", () -> DynamiteTests::linkedStateToggles);
         FUNCTIONS.register("dynamite_redstone_fuse", () -> DynamiteTests::redstonePrimesFuse);
         FUNCTIONS.register("dynamite_break_fuse", () -> DynamiteTests::playerBreakPrimesFuse);

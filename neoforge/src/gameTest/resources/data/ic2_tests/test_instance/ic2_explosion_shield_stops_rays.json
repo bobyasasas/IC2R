@@ -1,0 +1,7 @@
+{
+  "type": "minecraft:function",
+  "function": "ic2_tests:ic2_explosion_shield_stops_rays",
+  "environment": "minecraft:default",
+  "structure": "ic2_tests:heat_room",
+  "max_ticks": 60
+}

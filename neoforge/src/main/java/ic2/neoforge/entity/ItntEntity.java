@@ -2,6 +2,7 @@ package ic2.neoforge.entity;
 
 import ic2.neoforge.registration.ModEntities;
 import ic2.neoforge.registration.ModExplosives;
+import ic2.neoforge.world.Ic2Explosion;
 
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.syncher.EntityDataAccessor;
@@ -14,7 +15,6 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.MoverType;
 import net.minecraft.world.entity.TraceableEntity;
-import net.minecraft.world.level.Explosion;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.gamerules.GameRules;
@@ -36,6 +36,9 @@ public class ItntEntity extends Entity implements TraceableEntity {
 
     static final int DEFAULT_FUSE = 60;
     static final float DEFAULT_EXPLOSION_POWER = 5.5F;
+    // Legacy ITntEntity blast profile: most blocks drop, entity damage stays deliberately low.
+    static final float DROP_RATE = 0.9F;
+    static final float DAMAGE_VS_ENTITIES = 0.3F;
     private static final String TAG_FUSE = "fuse";
     private static final String TAG_BLOCK_STATE = "block_state";
     private static final String TAG_EXPLOSION_POWER = "explosion_power";
@@ -125,16 +128,18 @@ public class ItntEntity extends Entity implements TraceableEntity {
     private void explode() {
         if (this.level() instanceof ServerLevel level
                 && level.getGameRules().get(GameRules.TNT_EXPLODES)) {
-            level.explode(
-                    this,
-                    Explosion.getDefaultDamageSource(level, this),
-                    null,
-                    this.getX(),
-                    this.getY(0.0625),
-                    this.getZ(),
-                    this.explosionPower,
-                    false,
-                    Level.ExplosionInteraction.TNT);
+            new Ic2Explosion(
+                            level,
+                            this,
+                            this.getOwner(),
+                            this.getX(),
+                            this.getY(0.0625),
+                            this.getZ(),
+                            this.explosionPower,
+                            DROP_RATE,
+                            Ic2Explosion.Type.Normal,
+                            0)
+                    .doExplosion();
         }
     }
 
