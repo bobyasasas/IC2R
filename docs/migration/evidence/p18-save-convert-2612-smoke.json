@@ -1,0 +1,26 @@
+{
+  "chunks_kept": 6962,
+  "chunks_rewritten": 0,
+  "dropped": {},
+  "preserved": {
+    "block_entity": {
+      "ic2:generator": 1,
+      "ic2:lv_transformer": 1,
+      "ic2:sign": 1
+    },
+    "item": {
+      "ic2:generator": 1,
+      "ic2:lv_transformer": 1,
+      "ic2:sign": 1,
+      "ic2:wrench": 1
+    },
+    "palette": {
+      "ic2:generator": 1,
+      "ic2:insulated_copper_cable": 1,
+      "ic2:lv_transformer": 1,
+      "ic2:rubber_log": 3,
+      "ic2:rubber_sign": 1
+    }
+  },
+  "renamed": {}
+}

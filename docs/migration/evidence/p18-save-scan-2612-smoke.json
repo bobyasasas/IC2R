@@ -1,0 +1,67 @@
+{
+  "block_properties": {
+    "ic2:generator": [
+      "active",
+      "facing"
+    ],
+    "ic2:insulated_copper_cable": [
+      "down",
+      "east",
+      "north",
+      "south",
+      "up",
+      "west"
+    ],
+    "ic2:lv_transformer": [
+      "active",
+      "facing"
+    ],
+    "ic2:rubber_log": [
+      "axis",
+      "state"
+    ],
+    "ic2:rubber_sign": [
+      "rotation",
+      "waterlogged"
+    ]
+  },
+  "chunks": 6962,
+  "counts": {
+    "block_entity": {
+      "ic2:generator": 1,
+      "ic2:lv_transformer": 1,
+      "ic2:sign": 1
+    },
+    "item": {
+      "ic2:wrench": 1
+    },
+    "other": {
+      "ic2:wrench": 1
+    },
+    "palette": {
+      "ic2:generator": 1,
+      "ic2:insulated_copper_cable": 1,
+      "ic2:lv_transformer": 1,
+      "ic2:rubber_log": 3,
+      "ic2:rubber_sign": 1,
+      "minecraft:air": 143554,
+      "minecraft:bedrock": 3362,
+      "minecraft:dirt": 1,
+      "minecraft:sandstone": 26896,
+      "minecraft:stone": 3362
+    }
+  },
+  "data_versions": {
+    "380df991-f603-344c-a090-369bad2a924a.dat": [
+      4790
+    ],
+    "region": [
+      4790
+    ]
+  },
+  "files_scanned": 29,
+  "unparsed_files": [
+    "neoforge/run/saves/IC2 Migration Smoke/dimensions/minecraft/overworld/entities/r.-1.-1.mca: external chunk slot (unsupported, see docs)",
+    "neoforge/run/saves/IC2 Migration Smoke/dimensions/minecraft/overworld/entities/r.-1.0.mca: external chunk slot (unsupported, see docs)"
+  ]
+}

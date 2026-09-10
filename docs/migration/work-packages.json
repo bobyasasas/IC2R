@@ -1,284 +1,290 @@
 {
- "packages": [
-  {
-   "id": "P01",
-   "parent": "M11",
-   "title": "基础加工与铁炉",
-   "status": "in_progress",
-   "acceptance": "配方、事务、随机产出持久化已通过；升级及特殊配方待验收。",
-   "evidence": [
-    "neoforge/src/gameTest/java/ic2/neoforge/test/ProcessingTests.java"
-   ]
-  },
-  {
-   "id": "P02",
-   "parent": "M11",
-   "title": "罐装机四模式",
-   "status": "in_progress",
-   "acceptance": "固体、装填、排空、富集及 cannerfix1 输出边界；升级、全部原料和声音验收。",
-   "evidence": [
-    "neoforge/src/gameTest/java/ic2/neoforge/test/CannerTests.java",
-    "docs/migration/canner-fluids.md"
-   ]
-  },
-  {
-   "id": "P03",
-   "parent": "M11",
-   "title": "流体与单元",
-   "status": "in_progress",
-   "acceptance": "流体调节器已接入按秒／刻输送及部分接收守恒；17 个流体族、20 个单元；特殊流体世界行为及所有容器交互。",
-   "evidence": [
-    "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java",
-    "docs/migration/fluid-regulator.md"
-   ]
-  },
-  {
-   "id": "P04",
-   "parent": "M11",
-   "title": "升级与侧面配置",
-   "status": "in_progress",
-   "acceptance": "倍率、容量、升级槽与定向自动进出已验证；高级过滤、反相、远程及其他机器待验收。",
-   "evidence": [
-    "docs/migration/upgrades.md",
-    "core/src/test/java/ic2/core/machine/UpgradeProfileTest.java",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/UpgradeTests.java"
-   ]
-  },
-  {
-   "id": "P05",
-   "parent": "M11",
-   "title": "电力储能与变压器",
-   "status": "in_progress",
-   "acceptance": "BatBox、CESU、MFE、MFSU、四档变压器；方向、红石、供电模式、过压和重载。",
-   "evidence": [
-    "docs/migration/energy-devices.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/EnergyDeviceTests.java"
-   ]
-  },
-  {
-   "id": "P06",
-   "parent": "M11",
-   "title": "其余发电机",
-   "status": "in_progress",
-   "acceptance": "太阳能、地热、半流质、水力、风力、斯特林及动能转电已接入；同位素、其余配置及整体验收待完成。",
-   "evidence": [
-    "docs/migration/generators.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/GenerationTests.java",
-    "docs/migration/water-generation.md",
-    "docs/migration/wind-generation.md",
-    "docs/migration/work-energy.md"
-   ]
-  },
-  {
-   "id": "P07",
-   "parent": "M11",
-   "title": "泵与采矿",
-   "status": "in_progress",
-   "acceptance": "泵（面向水源抽取、BFS 源搜索、8,000 mB 罐与自动装桶、进度持久化）已接入并双模式 GameTest 验收；矿机、高级矿机、管道、钻头与过滤待迁移；泵与矿机供液联动随矿机切片。",
-   "evidence": [
-    "docs/migration/pump.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/PumpTests.java"
-   ]
-  },
-  {
-   "id": "P08",
-   "parent": "M11",
-   "title": "存储与辅助机器",
-   "status": "in_progress",
-   "acceptance": "储液罐已接入事务存储、比较器、容器交互与升级；四级充电垫（站立顺序充电、网络供电、朝向输出）与核材料链已接入并双模式 GameTest 验收；个人保险箱（首开认领、非所有者拒绝、拆除保护）已接入并双模式 GameTest 验收；五材质储物箱（27/45/45/63/126 格、任意面存取）已接入并双模式 GameTest 验收；分拣机（六面×七过滤、默认面回退、20 EU/件路由）已接入并双模式 GameTest 验收；磁化机与铁栅栏（垂直柱搜索、均摊 boost、攀爬速度规则）已接入并双模式 GameTest 验收；交易机（demand/offer 模板、无限与邻接供应库存两种模式）已接入并双模式 GameTest 验收；传送机待迁移；个人保护随 P16。",
-   "evidence": [
-    "docs/migration/tank.md",
-    "docs/migration/chargepads.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/ChargepadTests.java",
-    "docs/migration/personal-chest.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/PersonalChestTests.java",
-    "docs/migration/storage-boxes.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/StorageBoxTests.java",
-    "docs/migration/sorting-machine.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/SortingMachineTests.java",
-    "docs/migration/magnetizer.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/MagnetizerTests.java",
-    "docs/migration/trade-o-mat.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/TradeOMatTests.java"
-   ]
-  },
-  {
-   "id": "P09",
-   "parent": "M11",
-   "title": "金属及高阶加工",
-   "status": "in_progress",
-   "acceptance": "金属成型、洗矿、离心、回收与感应炉主体已验证；核材料（铀／铀 235／铀 238／钚／小撮系列／MOX／铀燃料丸）与热量门槛离心链（铀分离、RTG 丸回收、小撮压缩）已接入并双模式 GameTest 验收；铁栅栏与磁化机随 P08，完整升级与多人验收待完成。",
-   "evidence": [
-    "docs/migration/metal-former-toolbox.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/MetalFormerTests.java",
-    "docs/migration/ore-washing.md",
-    "docs/migration/centrifuge.md",
-    "docs/migration/recycler.md",
-    "docs/migration/induction-furnace.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/NuclearTests.java"
-   ]
-  },
-  {
-   "id": "P10",
-   "parent": "M11",
-   "title": "热力与动能机器",
-   "status": "in_progress",
-   "acceptance": "风力／水力动能与五种转子、手动动能、电热、电动动能、固体／流体热源、蒸汽发生器升温／压力／结垢、双级蒸汽动能与完整水循环、冷凝与散热片、电解双气体输出、流体冷却换热、发酵与沼气链、原生事务能力与转电链已接入；蒸汽再压缩（有界热储备、c:steam 候选选择、取热差额修复、零倍率停机）已接入并双模式 GameTest 验收；同位素热源与 RT 发电机（指数输出曲线、单面热输出、燃料不消耗、电池槽充电）已接入并双模式 GameTest 验收；升温换热经核对在恢复源码中无实现依据（热冷却剂仅存在于冷却方向），不作为独立迁移项。",
-   "evidence": [
-    "docs/migration/work-energy.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/WorkEnergyTests.java",
-    "docs/migration/fuel-heat.md",
-    "docs/migration/manual-kinetic.md",
-    "docs/migration/wind-turbine.md",
-    "docs/migration/water-turbine.md",
-    "docs/migration/fermenter.md",
-    "docs/migration/heat-exchanger.md",
-    "docs/migration/electrolyzer.md",
-    "docs/migration/condenser.md",
-    "docs/migration/steam-generator.md",
-    "docs/migration/steam-turbine.md",
-    "docs/migration/steam-repressurizer.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/SteamRepressurizerTests.java",
-    "docs/migration/isotopic-heat.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/RtGeneratorTests.java"
-   ]
-  },
-  {
-   "id": "P11",
-   "parent": "M11",
-   "title": "UU 及复制系统",
-   "status": "in_progress",
-   "acceptance": "水晶记忆盘、uu_scanner（数据包化 UU 价值图＋world-scan 种子集）、pattern_storage、replicator（价值导出 UU 消耗）与 matter_generator 已接入；剩余实机验收、客户端外观与多人同步。",
-   "evidence": [
-    "docs/migration/uu-scanner.md",
-    "docs/migration/matter-generator.md",
-    "neoforge/src/main/resources/data/ic2/uu_values/world_scan.json",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/UuScannerTests.java",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/ReplicatorTests.java"
-   ]
-  },
-  {
-   "id": "P12",
-   "parent": "M12",
-   "title": "反应堆热量与组件",
-   "status": "in_progress",
-   "acceptance": "热量记账、散热片数据与锅炉热爆炸基础已接入；反应堆本体 EU 模式、chamber 扩列、反射／热开关／散热／plating 组件、地表热效果、流体冷却模式与 6×9 满尺寸多方块校验已接入；剩余实机验收、真实电缆链路与多人回归。",
-   "evidence": [
-    "docs/migration/condenser.md",
-    "core/src/test/java/ic2/core/reactor/ReactorHeatTest.java",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/CondenserTests.java",
-    "docs/migration/heat-explosions.md",
-    "docs/migration/nuclear-reactor.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/ReactorFluidModeTests.java",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/ReactorVesselTests.java"
-   ]
-  },
-  {
-   "id": "P13",
-   "parent": "M12",
-   "title": "爆炸与电缆附加行为",
-   "status": "in_progress",
-   "acceptance": "炸药棒方块状态机、遥控器配对群爆、工业TNT（实体/方块/渲染/配方）、投掷/粘性炸药（引信链、PointExplosion、发射器、dynamite_sticky 配方）、Ic2Explosion 射线引擎（Type 五型、吸收/穿越、dropRate 聚合掉落、实体累积伤害含 damageVsEntities、ic2:nuke 与 reactor_explosion 伤害类型）与核弹（NukeBlockEntity 威力公式/装载槽、NukeEntity 300 tick 引信与扳手拆除、NukeMenu 1+8 槽 GUI、enableNuke/nukeExplosionPowerLimit 配置、onBlockExploded 连锁不重复掉落）已接入并双模式 GameTest 验收。建筑泡沫链已交付：FoamBlock 双态光照依赖硬化（normal→泡沫墙浅灰、reinforced→强化石头、沙子速凝）、16 色 IC2 泡沫墙方块、FoamSprayerItem BFS 喷涂（≤10/单块、脚手架就地覆盖、背包优先供液）、CFPackItem 80,000 mB 胸甲罐（护甲 8）、建筑泡沫流体缓慢效果、foam_sprayer/cf_pack 配方（并解锁 remote 两条挂起配方）。涂色器已交付：17 个 PainterItem（无色+16 色，耐久 32）按 legacy 13 分支染原版可染色方块（羊毛/染色玻璃/玻璃板/床/蜡烛/旗帜/陶瓦/带釉陶瓦/混凝土粉末/地毯/混凝土/潜影盒含物品保留）、羊染色、耗尽还原无色刷、autoRefill 潜行切换补料（painter+16 色配方转换 682/796）。电缆电击已交付：PacketDistributor 路径级 RouteLoad 峰值包统计、CableSpec.insulationAbsorption 按 legacy 电力等级表（8/32/128/512/2048，玻璃族永不电击）、WorldEnergyNetworks 对过载导线 1 格 AABB 内活体实体按路径最大值累加 ceil(EU/64) 点 ic2:electricity 伤害（cableShocks 配置开关）；金缆 2048 EU 过压在 IC2 模式先电击后熔毁、GT 模式断路不电击；legacy 剥绝缘分支（阈值 9001）在全部电缆熔毁阈值（capacity+1 ≤ 8193）之上不可达，不迁移。遮蔽墙重纹理已交付：ObscuratorItem 电动物品（100,000 EU/250 EU/t tier2，站立 5,000 EU 应用+潜行客户端 20,000 EU 采样经 ic2:obscurator_scan payload 上行）、ObscuratorReference 数据组件（id+variant+side+colorMuls）、ObscuredWallBlock+ObscuredWallBlockEntity（ValueInput/ValueOutput 持久化、ModelData 发布渲染态、掉落对应墙色泡沫墙）、客户端 ObscuredWallModel（CustomUnbakedBlockStateModel 注册 ic2:obscured_wall，BlockStateModel 逐面输出墙色墙面+MutableQuad 平铺 overlay）与 ObscuredFaceSampler（规整面优先采样，translucent 拒绝）；obscurator 配方转换 683/796。P13 功能面完成：转出项电缆泡沫覆盖随电缆切片、辐射效果随 P16，RetextureEvent 扩展分支无监听者不迁移（见 obscured-wall.md 有意差异）。勘误：legacy ItemRemote 无配对上限（基线与原始反编译均为无界列表），无需迁移。",
-   "evidence": [
-    "docs/migration/dynamite.md",
-    "docs/migration/itnt.md",
-    "docs/migration/explosion.md",
-    "docs/migration/nuke.md",
-    "docs/migration/foam.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/DynamiteTests.java",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/ThrownDynamiteTests.java",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/ItntTests.java",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/Ic2ExplosionTests.java",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/NukeTests.java",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/RemoteTests.java",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/FoamTests.java",
-    "docs/migration/painter.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/PainterTests.java",
-    "docs/migration/cable-shocks.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/CableShockTests.java",
-    "docs/migration/obscured-wall.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/ObscuratorTests.java"
-   ]
-  },
-  {
-   "id": "P14",
-   "parent": "M13",
-   "title": "树木、矿石与世界生成",
-   "status": "done",
-   "acceptance": "矿脉、树苗、橡胶采集、标签及树叶衰减通过；普通新区块与客户端保存重载已验收。",
-   "evidence": [
-    "docs/migration/world-content.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/WorldContentTests.java"
-   ]
-  },
-  {
-   "id": "P21",
-   "parent": "M13",
-   "title": "橡胶木建筑部件",
-   "status": "done",
-   "acceptance": "按钮、门、栅栏、台阶、告示牌；原生交互、掉落、文字保存和客户端渲染。",
-   "evidence": [
-    "docs/migration/rubber-building.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/BuildingTests.java"
-   ]
-  },
-  {
-   "id": "P15",
-   "parent": "M13",
-   "title": "作物与农业",
-   "status": "in_progress",
-   "acceptance": "作物卡、杂交、养分、生长、收获、农药及种子持久化。切片一已接入：作物杆+小麦/杂草卡、生长内核（质量公式/地形三项/存储衰减/杂草扩散）、播种收获拾取闭环与种子袋组件化；剩余其余作物卡、杂交、分析器、Cropmatron、收割机与群系加成。",
-   "evidence": [
-    "docs/migration/crops.md",
-    "core/src/main/java/ic2/core/crop/CropMath.java",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/CropTests.java"
-   ]
-  },
-  {
-   "id": "P16",
-   "parent": "M13",
-   "title": "工具与装备",
-   "status": "in_progress",
-   "acceptance": "扳手、切线钳、钻头、锯、喷枪、背包与护甲；消耗、附魔、渲染和同步。辐射链已接入：ic2:radiation 药水与伤害类型、防化四件套（头盔/胸甲/护腿/橡胶靴）全套豁免火/电/辐射、核爆辐射环与反应堆 70% 热辐射。",
-   "evidence": [
-    "docs/migration/tools.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/ToolTests.java",
-    "docs/migration/metal-former-toolbox.md",
-    "docs/migration/radiation-hazmat.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/RadiationTests.java"
-   ]
-  },
-  {
-   "id": "P17",
-   "parent": "M14",
-   "title": "可选集成",
-   "status": "todo",
-   "acceptance": "逐个核对 JEI、Jade、AE2 的目标版本与行为，缺少依赖仍可启动。",
-   "evidence": []
-  },
-  {
-   "id": "P18",
-   "parent": "M15",
-   "title": "旧存档转换",
-   "status": "todo",
-   "acceptance": "用副本建立跨版本数据迁移工具和可复现流程，列出不支持项。",
-   "evidence": []
-  },
-  {
-   "id": "P19",
-   "parent": "M16",
-   "title": "多人及性能",
-   "status": "todo",
-   "acceptance": "双人操作、断线、区块加载、重启、资源重载与性能基线。",
-   "evidence": []
-  },
-  {
-   "id": "P20",
-   "parent": "M17",
-   "title": "候选版本",
-   "status": "todo",
-   "acceptance": "所有清单验收后发布 Actions 候选 Release，保留校验和及回归记录。",
-   "evidence": []
-  }
- ]
+  "packages": [
+    {
+      "id": "P01",
+      "parent": "M11",
+      "title": "基础加工与铁炉",
+      "status": "in_progress",
+      "acceptance": "配方、事务、随机产出持久化已通过；升级及特殊配方待验收。",
+      "evidence": [
+        "neoforge/src/gameTest/java/ic2/neoforge/test/ProcessingTests.java"
+      ]
+    },
+    {
+      "id": "P02",
+      "parent": "M11",
+      "title": "罐装机四模式",
+      "status": "in_progress",
+      "acceptance": "固体、装填、排空、富集及 cannerfix1 输出边界；升级、全部原料和声音验收。",
+      "evidence": [
+        "neoforge/src/gameTest/java/ic2/neoforge/test/CannerTests.java",
+        "docs/migration/canner-fluids.md"
+      ]
+    },
+    {
+      "id": "P03",
+      "parent": "M11",
+      "title": "流体与单元",
+      "status": "in_progress",
+      "acceptance": "流体调节器已接入按秒／刻输送及部分接收守恒；17 个流体族、20 个单元；特殊流体世界行为及所有容器交互。",
+      "evidence": [
+        "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java",
+        "docs/migration/fluid-regulator.md"
+      ]
+    },
+    {
+      "id": "P04",
+      "parent": "M11",
+      "title": "升级与侧面配置",
+      "status": "in_progress",
+      "acceptance": "倍率、容量、升级槽与定向自动进出已验证；高级过滤、反相、远程及其他机器待验收。",
+      "evidence": [
+        "docs/migration/upgrades.md",
+        "core/src/test/java/ic2/core/machine/UpgradeProfileTest.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/UpgradeTests.java"
+      ]
+    },
+    {
+      "id": "P05",
+      "parent": "M11",
+      "title": "电力储能与变压器",
+      "status": "in_progress",
+      "acceptance": "BatBox、CESU、MFE、MFSU、四档变压器；方向、红石、供电模式、过压和重载。",
+      "evidence": [
+        "docs/migration/energy-devices.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/EnergyDeviceTests.java"
+      ]
+    },
+    {
+      "id": "P06",
+      "parent": "M11",
+      "title": "其余发电机",
+      "status": "in_progress",
+      "acceptance": "太阳能、地热、半流质、水力、风力、斯特林及动能转电已接入；同位素、其余配置及整体验收待完成。",
+      "evidence": [
+        "docs/migration/generators.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/GenerationTests.java",
+        "docs/migration/water-generation.md",
+        "docs/migration/wind-generation.md",
+        "docs/migration/work-energy.md"
+      ]
+    },
+    {
+      "id": "P07",
+      "parent": "M11",
+      "title": "泵与采矿",
+      "status": "in_progress",
+      "acceptance": "泵（面向水源抽取、BFS 源搜索、8,000 mB 罐与自动装桶、进度持久化）已接入并双模式 GameTest 验收；矿机、高级矿机、管道、钻头与过滤待迁移；泵与矿机供液联动随矿机切片。",
+      "evidence": [
+        "docs/migration/pump.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/PumpTests.java"
+      ]
+    },
+    {
+      "id": "P08",
+      "parent": "M11",
+      "title": "存储与辅助机器",
+      "status": "in_progress",
+      "acceptance": "储液罐已接入事务存储、比较器、容器交互与升级；四级充电垫（站立顺序充电、网络供电、朝向输出）与核材料链已接入并双模式 GameTest 验收；个人保险箱（首开认领、非所有者拒绝、拆除保护）已接入并双模式 GameTest 验收；五材质储物箱（27/45/45/63/126 格、任意面存取）已接入并双模式 GameTest 验收；分拣机（六面×七过滤、默认面回退、20 EU/件路由）已接入并双模式 GameTest 验收；磁化机与铁栅栏（垂直柱搜索、均摊 boost、攀爬速度规则）已接入并双模式 GameTest 验收；交易机（demand/offer 模板、无限与邻接供应库存两种模式）已接入并双模式 GameTest 验收；传送机待迁移；个人保护随 P16。",
+      "evidence": [
+        "docs/migration/tank.md",
+        "docs/migration/chargepads.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/ChargepadTests.java",
+        "docs/migration/personal-chest.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/PersonalChestTests.java",
+        "docs/migration/storage-boxes.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/StorageBoxTests.java",
+        "docs/migration/sorting-machine.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/SortingMachineTests.java",
+        "docs/migration/magnetizer.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/MagnetizerTests.java",
+        "docs/migration/trade-o-mat.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/TradeOMatTests.java"
+      ]
+    },
+    {
+      "id": "P09",
+      "parent": "M11",
+      "title": "金属及高阶加工",
+      "status": "in_progress",
+      "acceptance": "金属成型、洗矿、离心、回收与感应炉主体已验证；核材料（铀／铀 235／铀 238／钚／小撮系列／MOX／铀燃料丸）与热量门槛离心链（铀分离、RTG 丸回收、小撮压缩）已接入并双模式 GameTest 验收；铁栅栏与磁化机随 P08，完整升级与多人验收待完成。",
+      "evidence": [
+        "docs/migration/metal-former-toolbox.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/MetalFormerTests.java",
+        "docs/migration/ore-washing.md",
+        "docs/migration/centrifuge.md",
+        "docs/migration/recycler.md",
+        "docs/migration/induction-furnace.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/NuclearTests.java"
+      ]
+    },
+    {
+      "id": "P10",
+      "parent": "M11",
+      "title": "热力与动能机器",
+      "status": "in_progress",
+      "acceptance": "风力／水力动能与五种转子、手动动能、电热、电动动能、固体／流体热源、蒸汽发生器升温／压力／结垢、双级蒸汽动能与完整水循环、冷凝与散热片、电解双气体输出、流体冷却换热、发酵与沼气链、原生事务能力与转电链已接入；蒸汽再压缩（有界热储备、c:steam 候选选择、取热差额修复、零倍率停机）已接入并双模式 GameTest 验收；同位素热源与 RT 发电机（指数输出曲线、单面热输出、燃料不消耗、电池槽充电）已接入并双模式 GameTest 验收；升温换热经核对在恢复源码中无实现依据（热冷却剂仅存在于冷却方向），不作为独立迁移项。",
+      "evidence": [
+        "docs/migration/work-energy.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/WorkEnergyTests.java",
+        "docs/migration/fuel-heat.md",
+        "docs/migration/manual-kinetic.md",
+        "docs/migration/wind-turbine.md",
+        "docs/migration/water-turbine.md",
+        "docs/migration/fermenter.md",
+        "docs/migration/heat-exchanger.md",
+        "docs/migration/electrolyzer.md",
+        "docs/migration/condenser.md",
+        "docs/migration/steam-generator.md",
+        "docs/migration/steam-turbine.md",
+        "docs/migration/steam-repressurizer.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/SteamRepressurizerTests.java",
+        "docs/migration/isotopic-heat.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/RtGeneratorTests.java"
+      ]
+    },
+    {
+      "id": "P11",
+      "parent": "M11",
+      "title": "UU 及复制系统",
+      "status": "in_progress",
+      "acceptance": "水晶记忆盘、uu_scanner（数据包化 UU 价值图＋world-scan 种子集）、pattern_storage、replicator（价值导出 UU 消耗）与 matter_generator 已接入；剩余实机验收、客户端外观与多人同步。",
+      "evidence": [
+        "docs/migration/uu-scanner.md",
+        "docs/migration/matter-generator.md",
+        "neoforge/src/main/resources/data/ic2/uu_values/world_scan.json",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/UuScannerTests.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/ReplicatorTests.java"
+      ]
+    },
+    {
+      "id": "P12",
+      "parent": "M12",
+      "title": "反应堆热量与组件",
+      "status": "in_progress",
+      "acceptance": "热量记账、散热片数据与锅炉热爆炸基础已接入；反应堆本体 EU 模式、chamber 扩列、反射／热开关／散热／plating 组件、地表热效果、流体冷却模式与 6×9 满尺寸多方块校验已接入；剩余实机验收、真实电缆链路与多人回归。",
+      "evidence": [
+        "docs/migration/condenser.md",
+        "core/src/test/java/ic2/core/reactor/ReactorHeatTest.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/CondenserTests.java",
+        "docs/migration/heat-explosions.md",
+        "docs/migration/nuclear-reactor.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/ReactorFluidModeTests.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/ReactorVesselTests.java"
+      ]
+    },
+    {
+      "id": "P13",
+      "parent": "M12",
+      "title": "爆炸与电缆附加行为",
+      "status": "in_progress",
+      "acceptance": "炸药棒方块状态机、遥控器配对群爆、工业TNT（实体/方块/渲染/配方）、投掷/粘性炸药（引信链、PointExplosion、发射器、dynamite_sticky 配方）、Ic2Explosion 射线引擎（Type 五型、吸收/穿越、dropRate 聚合掉落、实体累积伤害含 damageVsEntities、ic2:nuke 与 reactor_explosion 伤害类型）与核弹（NukeBlockEntity 威力公式/装载槽、NukeEntity 300 tick 引信与扳手拆除、NukeMenu 1+8 槽 GUI、enableNuke/nukeExplosionPowerLimit 配置、onBlockExploded 连锁不重复掉落）已接入并双模式 GameTest 验收。建筑泡沫链已交付：FoamBlock 双态光照依赖硬化（normal→泡沫墙浅灰、reinforced→强化石头、沙子速凝）、16 色 IC2 泡沫墙方块、FoamSprayerItem BFS 喷涂（≤10/单块、脚手架就地覆盖、背包优先供液）、CFPackItem 80,000 mB 胸甲罐（护甲 8）、建筑泡沫流体缓慢效果、foam_sprayer/cf_pack 配方（并解锁 remote 两条挂起配方）。涂色器已交付：17 个 PainterItem（无色+16 色，耐久 32）按 legacy 13 分支染原版可染色方块（羊毛/染色玻璃/玻璃板/床/蜡烛/旗帜/陶瓦/带釉陶瓦/混凝土粉末/地毯/混凝土/潜影盒含物品保留）、羊染色、耗尽还原无色刷、autoRefill 潜行切换补料（painter+16 色配方转换 682/796）。电缆电击已交付：PacketDistributor 路径级 RouteLoad 峰值包统计、CableSpec.insulationAbsorption 按 legacy 电力等级表（8/32/128/512/2048，玻璃族永不电击）、WorldEnergyNetworks 对过载导线 1 格 AABB 内活体实体按路径最大值累加 ceil(EU/64) 点 ic2:electricity 伤害（cableShocks 配置开关）；金缆 2048 EU 过压在 IC2 模式先电击后熔毁、GT 模式断路不电击；legacy 剥绝缘分支（阈值 9001）在全部电缆熔毁阈值（capacity+1 ≤ 8193）之上不可达，不迁移。遮蔽墙重纹理已交付：ObscuratorItem 电动物品（100,000 EU/250 EU/t tier2，站立 5,000 EU 应用+潜行客户端 20,000 EU 采样经 ic2:obscurator_scan payload 上行）、ObscuratorReference 数据组件（id+variant+side+colorMuls）、ObscuredWallBlock+ObscuredWallBlockEntity（ValueInput/ValueOutput 持久化、ModelData 发布渲染态、掉落对应墙色泡沫墙）、客户端 ObscuredWallModel（CustomUnbakedBlockStateModel 注册 ic2:obscured_wall，BlockStateModel 逐面输出墙色墙面+MutableQuad 平铺 overlay）与 ObscuredFaceSampler（规整面优先采样，translucent 拒绝）；obscurator 配方转换 683/796。P13 功能面完成：转出项电缆泡沫覆盖随电缆切片、辐射效果随 P16，RetextureEvent 扩展分支无监听者不迁移（见 obscured-wall.md 有意差异）。勘误：legacy ItemRemote 无配对上限（基线与原始反编译均为无界列表），无需迁移。",
+      "evidence": [
+        "docs/migration/dynamite.md",
+        "docs/migration/itnt.md",
+        "docs/migration/explosion.md",
+        "docs/migration/nuke.md",
+        "docs/migration/foam.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/DynamiteTests.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/ThrownDynamiteTests.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/ItntTests.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/Ic2ExplosionTests.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/NukeTests.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/RemoteTests.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/FoamTests.java",
+        "docs/migration/painter.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/PainterTests.java",
+        "docs/migration/cable-shocks.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/CableShockTests.java",
+        "docs/migration/obscured-wall.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/ObscuratorTests.java"
+      ]
+    },
+    {
+      "id": "P14",
+      "parent": "M13",
+      "title": "树木、矿石与世界生成",
+      "status": "done",
+      "acceptance": "矿脉、树苗、橡胶采集、标签及树叶衰减通过；普通新区块与客户端保存重载已验收。",
+      "evidence": [
+        "docs/migration/world-content.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/WorldContentTests.java"
+      ]
+    },
+    {
+      "id": "P21",
+      "parent": "M13",
+      "title": "橡胶木建筑部件",
+      "status": "done",
+      "acceptance": "按钮、门、栅栏、台阶、告示牌；原生交互、掉落、文字保存和客户端渲染。",
+      "evidence": [
+        "docs/migration/rubber-building.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/BuildingTests.java"
+      ]
+    },
+    {
+      "id": "P15",
+      "parent": "M13",
+      "title": "作物与农业",
+      "status": "in_progress",
+      "acceptance": "作物卡、杂交、养分、生长、收获、农药及种子持久化。切片一已接入：作物杆+小麦/杂草卡、生长内核（质量公式/地形三项/存储衰减/杂草扩散）、播种收获拾取闭环与种子袋组件化；剩余其余作物卡、杂交、分析器、Cropmatron、收割机与群系加成。",
+      "evidence": [
+        "docs/migration/crops.md",
+        "core/src/main/java/ic2/core/crop/CropMath.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/CropTests.java"
+      ]
+    },
+    {
+      "id": "P16",
+      "parent": "M13",
+      "title": "工具与装备",
+      "status": "in_progress",
+      "acceptance": "扳手、切线钳、钻头、锯、喷枪、背包与护甲；消耗、附魔、渲染和同步。辐射链已接入：ic2:radiation 药水与伤害类型、防化四件套（头盔/胸甲/护腿/橡胶靴）全套豁免火/电/辐射、核爆辐射环与反应堆 70% 热辐射。",
+      "evidence": [
+        "docs/migration/tools.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/ToolTests.java",
+        "docs/migration/metal-former-toolbox.md",
+        "docs/migration/radiation-hazmat.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/RadiationTests.java"
+      ]
+    },
+    {
+      "id": "P17",
+      "parent": "M14",
+      "title": "可选集成",
+      "status": "todo",
+      "acceptance": "逐个核对 JEI、Jade、AE2 的目标版本与行为，缺少依赖仍可启动。",
+      "evidence": []
+    },
+    {
+      "id": "P18",
+      "parent": "M15",
+      "title": "旧存档转换",
+      "status": "done",
+      "acceptance": "用副本建立跨版本数据迁移工具和可复现流程，列出不支持项。",
+      "evidence": [
+        "tools/migration/save_convert.py",
+        "tools/migration/save_id_map.json",
+        "docs/migration/save-conversion.md",
+        "docs/migration/evidence/p18-save-scan-2612-smoke.json",
+        "docs/migration/evidence/p18-save-convert-2612-smoke.json"
+      ]
+    },
+    {
+      "id": "P19",
+      "parent": "M16",
+      "title": "多人及性能",
+      "status": "todo",
+      "acceptance": "双人操作、断线、区块加载、重启、资源重载与性能基线。",
+      "evidence": []
+    },
+    {
+      "id": "P20",
+      "parent": "M17",
+      "title": "候选版本",
+      "status": "todo",
+      "acceptance": "所有清单验收后发布 Actions 候选 Release，保留校验和及回归记录。",
+      "evidence": []
+    }
+  ]
 }

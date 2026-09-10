@@ -1,0 +1,18 @@
+{
+  "_comment": [
+    "P18 save id map: IC2R legacy 1.20.1 -> IC2R 26.1.2.",
+    "Generated from docs/migration/registry-catalog.json (1199 entries: preserve=1198, replace=1).",
+    "Ids NOT listed here are preserved verbatim (1198/1199 catalog entries are decision=preserve,",
+    "old and new share the identifier), so the map only carries the deviations.",
+    "A block_entity value of \"\" means: drop the block entity from the chunk (the new mod implements",
+    "the behavior at block level and registers no block entity type with that id)."
+  ],
+  "generated_from": "docs/migration/registry-catalog.json",
+  "block": {},
+  "block_entity": {
+    "ic2:itnt": ""
+  },
+  "item": {},
+  "entity": {},
+  "fluid": {}
+}
