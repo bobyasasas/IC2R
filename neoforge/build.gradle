@@ -7,6 +7,11 @@ repositories {
         name = 'blamejared'
         url = 'https://maven.blamejared.com/'
     }
+    maven {
+        name = 'cursemaven'
+        url = 'https://cursemaven.com'
+        content { includeGroup 'curse.maven' }
+    }
 }
 
 dependencies {
@@ -15,6 +20,9 @@ dependencies {
     // jar never ships with IC2 and the @JeiPlugin class stays unloaded without JEI.
     compileOnly 'mezz.jei:jei-26.1.2-common-api:29.37.0.98'
     compileOnly 'mezz.jei:jei-26.1.2-neoforge-api:29.37.0.98'
+    // Jade 26.1.10+neoforge (M14-b), same compile-only interop policy as JEI.
+    // Resolved through CurseMaven (project 324717, file 8651070).
+    compileOnly 'curse.maven:jade-324717:8651070'
 }
 
 sourceSets {

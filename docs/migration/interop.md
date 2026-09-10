@@ -1,6 +1,6 @@
 # M14／P17：可选模组集成（JEI、Jade、AE2）
 
-状态：进行中（2026-09-10，M14-a 切片交付）。本文记录目标版本评估证据、集成策略与已验证边界。
+状态：进行中（2026-09-10，M14-a JEI 切片 + M14-b Jade 切片交付）。本文记录目标版本评估证据、集成策略与已验证边界。
 
 ## 目标版本评估（2026-09-10 取证）
 
@@ -36,8 +36,16 @@
 
 未验证（待后续）：JEI 插件的真实客户端运行时表现（类别页布局、tooltip、催化剂入口）需要装 JEI 的真实客户端——记录于待测试.md §64，M14 收尾验收时执行。
 
+## 已交付：M14-b 切片（Jade 机器 EU/进度）
+
+- 依赖解析勘误：本开发环境 DNS 解析不了 `maven.modrinth.com`，改走 **CurseMaven**（`curse.maven:jade-324717:8651070` = Jade-mc26.1-NeoForge-26.1.10.jar，与 Modrinth 26.1.10+neoforge 同一二进制，字节数一致 1,003,732 已核对）；`compileOnly` 策略与 JEI 相同。
+- `ic2/neoforge/interop/jade/Ic2JadePlugin`（`@WailaPlugin`，落位**普通包**而非 client 包：Jade 在装了 Jade 的专服上也会加载插件做数据同步，本类只引用 Jade 公共 API 与机器类，无任何 net/minecraft/client 引用，专服边界校验通过）。
+- 两个 provider 走 Jade **universal 视图**模式（服务端 `IServerExtensionProvider` + 客户端 `IClientExtensionProvider`，渲染复用 Jade 内置 energy/progress 样式与配置）：
+  - `MachineEnergyProvider`（注册到 `PoweredBlockEntity.class`）：`energy.stored()/capacity()` → `EnergyView.Data`，单位 " EU"，capacity≤0 不上报；
+  - `MachineProgressProvider`（注册到 `MachineBlockEntity.class`）：`progress()/progressMaximum()` → `ProgressView.Data`，maximum≤0 不上报，客户端文本复用既有词表 `ic2.jade.progress`（"%s%%"，en/zh 都已在 lang 里）。
+- GameTest 数量不变（345×2，Jade 不在运行时，provider 逻辑只接受编译期校验）。
+
 ## 后续切片
 
-- M14-b：Jade 26.1.10 集成（机器 EU 存量/进度的 WAILA tooltip，compileOnly + `@WailaPlugin` 同策略）。
 - M14-c 起：JEI 剩余配方类别（罐装、热力三族、离心、洗矿、高炉、物质生成、电炉/感应炉）与 JEI 信息页（P15 卡信息展示面共用）。
-- P17 收尾：AE2 结论存档（见上），三模组真实客户端联验。
+- P17 收尾：AE2 结论存档（见上），JEI+Jade 真实客户端联验（Jade 面：机器能量条/进度条/百分比文本样式）。
