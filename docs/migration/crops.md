@@ -359,22 +359,6 @@ common 2000 / uncommon 2200,早段 800 / 750。
 - IC2 与 GT 双模式 `runGameTestServer` 332 项全绿;core JUnit
   110 项。CI run 34514309416(headSha d995bd3d)success。
 
-## 未验收 / 后续切片
-
-- 杂草自然出现(空杆 1/100 掷骰)的实机观察;WeedEX 水罐/肥料/
-  水化罐的右键交互。踩踏判定已接线(`entityInside`),待实机观察。
-- 52 张作物卡的移植面已齐(其余均为卡内交互或环境项);杂交/
-  crossing base 已交付,余下作物分析器、Cropmatron、收割机、
-  群系加成、discoveredBy/attributes 的展示面(随分析器切片)。
-
-
-## 未验收 / 后续切片
-
-- 杂草自然出现(空杆 1/100 掷骰)的实机观察;WeedEX 水罐/肥料/
-  水化罐的右键交互。踩踏判定已接线(`entityInside`),待实机观察。
-- 作物分析器已交付(切片九);余下 Cropmatron、收割机、群系
-  加成(红小麦 swamp/mountain 与 env-proxy),以及分析器/图鉴
-  之外的卡信息展示面。
 ## 切片九:作物分析器(2026-09-10)
 
 - **物品**(legacy ItemCropAnalyzer):手持 10 万 EU/tier 2 缓冲
@@ -427,3 +411,57 @@ common 2000 / uncommon 2200,早段 800 / 750。
   (尾空槽裁剪后 2 槽,槽 1 为 scan 1 的袋)。
 - IC2 与 GT 双模式 `runGameTestServer` 335 项全绿;registry/
   recipe catalog 翻正后 `progress.py` 重新生成并 `--check` 通过。
+## 切片十:作物护理物品(2026-09-10)
+
+- **水化罐**(legacy ItemHydrationCell→`HydrationCellItem`):10000
+  次使用(`hydration_uses` 数据组件,早已注册待用);`useOn` 作物
+  tile 走 `applyToCrop`:每次使用先记 1 次「开罐费」再灌,机器喂
+  每次上限 180、手持无上限;全部用尽时罐消失(`shrink`),耐久条
+  uses>0 显示、宽度 chargeLevel×13、色 `hsvToRgb(chargeLevel/3)`,
+  高级 tooltip 显示 `item.durability`(仅 count==1)。legacy 无配方
+  (registry 条目注明,仅创造/机器供给)。
+- **除草铲**(legacy ItemWeedingTrowel→`WeedingTrowelItem`):
+  stacksTo(1),`onItemUseFirst` 仅服务端:对 weed 卡 tile 掉落
+  age+1 个 weed 材料并 `reset` 回作物杆(resetData 不清 storage
+  字段,即 legacy 原义)。配方 shaped(铁锭 A A/ A /BAB+橡胶)转
+  `ic2:shaped`。
+- **TileEntityCrop.rightClick 重排为 legacy 顺序**:空杆+作物杆→
+  crossing base;作物+肥料→`applyFertilizer(true)` 且无论成败都
+  消耗 1(创造不耗)恒 true;水化罐→applyToCrop;水容器→
+  applyFluidFromHand(WATER);WeedEx 流体容器→applyFluidFromHand
+  (weed_ex);base seed;空手→crop.onRightClick。
+- **tile 三 apply 方法**:`applyHydration`(上限 200)、
+  `applyWeedEx`(手动 100/机器 150,fixedAmount 要求 space>amount)、
+  `applyFertilizer`(≥100 拒;手动 +100、机器 +90),均带 simulate。
+- **流体容器分支语义**:legacy 经典罐排液是整罐(真实排液恒返
+  1000 并清罐)——新端先 simulate 排全量定大小,真实排液请求
+  全部存量(非钳制后的 applied),再把结果喂给 tile,复现
+  legacy 两步顶满;weedEx 分支同样二次入账。
+- **26.1.2 关键坑**:`ItemAccess.forStack` 的 `StackItemAccess`
+  拒绝交换底层物品(水罐→空罐正是物品交换),extract 恒 0;
+  手持容器必须解析为玩家背包槽 access(`forPlayerSlot`,主手/
+  副手判定),仅栈不在手中时(直调/测试)回退 forStack。
+- **注册**:两物品入 ModCrops(TOOLS_AND_UTILITIES 创造栏),
+  items/model 定义、legacy 纹理拷贝、中英 lang 键齐备。
+
+## 测试证据(切片十)
+
+- `crop_care_fertilizer`:种 wheat 后肥料一次顶满 100 并消耗;
+  满仓再施肥仍消耗但不再加(legacy 无论成败都扣)。
+- `crop_care_hydration`:水罐灌至 200 且罐变空罐(经手持槽
+  交换);满 tile 拒水化罐且罐不动;干 tile 水化罐一次灌 200、
+  uses=1+200。
+- `crop_care_weed_ex_trowel`:空杆收 weed-ex 罐→storage 100(手动
+  上限)罐变空罐;trowel 对 age 3 的 weed 掉 4 个 weed(UseOnContext
+  直构)且回到作物杆。
+- IC2 与 GT 双模式 `runGameTestServer` 338 项全绿;registry
+  (hydration_cell/weeding_trowel)与 recipe(weeding_trowel)
+  catalog 翻正后 `progress.py` 重新生成并 `--check` 通过。
+
+## 未验收 / 后续切片
+
+- 杂草自然出现(空杆 1/100 掷骰)与踩踏复位(`entityInside` 已
+  接线)的实机观察。
+- 肥料/WeedEX/水化罐右键已交付(切片十);余下 Cropmatron、
+  收割机、群系加成(红小麦 swamp/mountain 与 env-proxy),
+  以及分析器/图鉴之外的卡信息展示面。

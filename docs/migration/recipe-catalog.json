@@ -4023,8 +4023,8 @@
     {
       "source": "shaped/weeding_trowel.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:weeding_trowel"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/weeding_trowel.json"
     },
     {
       "source": "shaped/weighted_fluid_distributor.json",

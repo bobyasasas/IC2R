@@ -5080,7 +5080,14 @@
       "factory": "register",
       "expression": "new ItemWeedingTrowel(new Properties().stacksTo(1))",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/item/WeedingTrowelItem.java",
+        "neoforge/src/main/java/ic2/neoforge/crop/CropBlockEntity.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/CropCareTests.java",
+        "docs/migration/crops.md"
+      ],
+      "note": "除草铲：服务端 onItemUseFirst 清除 weed 作物、掉落 age+1 个 weed 并复位为作物杆；配方已转 shaped/weeding_trowel.json。"
     },
     {
       "registry": "item",
@@ -6199,7 +6206,14 @@
       "factory": "register",
       "expression": "new ItemHydrationCell(new Properties().stacksTo(1))",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/item/HydrationCellItem.java",
+        "neoforge/src/main/java/ic2/neoforge/crop/CropBlockEntity.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/CropCareTests.java",
+        "docs/migration/crops.md"
+      ],
+      "note": "水化罐：10000 次使用、手动浇水无 180 上限、耐久条与高级 tooltip 已验证；legacy 无配方（仅创造/机器供给）。"
     },
     {
       "registry": "item",

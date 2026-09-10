@@ -3,7 +3,12 @@ package ic2.neoforge.crop;
 import ic2.core.crop.CropMath;
 import ic2.neoforge.component.CropSeed;
 import ic2.neoforge.component.ModDataComponents;
+import ic2.neoforge.fluid.FluidDefinition;
+import ic2.neoforge.item.HydrationCellItem;
+import ic2.neoforge.registration.MaterialDefinition;
 import ic2.neoforge.registration.ModCrops;
+import ic2.neoforge.registration.ModFluids;
+import ic2.neoforge.registration.ModItems;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -15,9 +20,16 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.FarmlandBlock;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.material.Fluid;
+import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.level.storage.ValueInput;
 import net.minecraft.world.level.storage.ValueOutput;
 import net.minecraft.world.phys.Vec3;
+import net.neoforged.neoforge.capabilities.Capabilities;
+import net.neoforged.neoforge.transfer.access.ItemAccess;
+import net.neoforged.neoforge.transfer.ResourceHandler;
+import net.neoforged.neoforge.transfer.transaction.Transaction;
+import net.neoforged.neoforge.transfer.fluid.FluidResource;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -219,38 +231,137 @@ public class CropBlockEntity extends net.minecraft.world.level.block.entity.Bloc
         return true;
     }
 
-    /** Legacy rightClick: harvest a mature crop, or plant a base seed produce on an empty stick. */
+    /** Legacy rightClick: item interactions in legacy order, then harvest via the card hook. */
     public boolean rightClick(Player player, ItemStack held) {
         var crop = card();
-        if (crop == null) {
-            if (held != null && !held.isEmpty()) {
-                // Legacy: a crop stick on an empty stick upgrades it to a crossing base
-                // (creative players keep their stack).
-                if (!isCrossingBase() && held.is(ModCrops.CROP_STICK_ITEM.get())) {
-                    if (player == null || !player.getAbilities().instabuild) held.shrink(1);
-                    setCrossingBase(true);
-                    return true;
-                }
-                // Legacy gates the base-seed branch on a plain stick too: a crossing base
-                // ignores seeds entirely instead of consuming them.
-                if (!isCrossingBase()) {
-                    var base = ModCrops.baseSeedFor(held.getItem());
-                    if (base != null) {
-                        // Legacy consumeOrError with the registered size; zero consumes nothing.
-                        if (base.size() > 0) held.shrink(base.size());
-                        return tryPlantIn(
-                                base.card(),
-                                base.size(),
-                                base.growth(),
-                                base.gain(),
-                                base.resistance(),
-                                0);
-                    }
+        boolean creative = player != null && player.getAbilities().instabuild;
+        if (held != null && !held.isEmpty()) {
+            // Legacy: a crop stick on an empty stick upgrades it to a crossing base
+            // (creative players keep their stack).
+            if (crop == null && !isCrossingBase() && held.is(ModCrops.CROP_STICK_ITEM.get())) {
+                if (!creative) held.shrink(1);
+                setCrossingBase(true);
+                return true;
+            }
+            // Legacy consumes the fertilizer even when the tile is already saturated.
+            if (crop != null && held.is(ModItems.MATERIALS.get(MaterialDefinition.FERTILIZER).get())) {
+                if (applyFertilizer(true)) setChanged();
+                if (!creative) held.shrink(1);
+                return true;
+            }
+            if (held.getItem() instanceof HydrationCellItem hydrationCell
+                    && hydrationCell.applyToCrop(held, this, true)) {
+                setChanged();
+                return true;
+            }
+            if (applyFluidFromHand(player, held, Fluids.WATER, false)) return true;
+            if (applyFluidFromHand(
+                    player,
+                    held,
+                    ModFluids.FAMILIES.get(FluidDefinition.WEED_EX).source().get(),
+                    true)) {
+                return true;
+            }
+            // Legacy gates the base-seed branch on a plain stick too: a crossing base
+            // ignores seeds entirely instead of consuming them.
+            if (crop == null && !isCrossingBase()) {
+                var base = ModCrops.baseSeedFor(held.getItem());
+                if (base != null) {
+                    // Legacy consumeOrError with the registered size; zero consumes nothing.
+                    if (base.size() > 0) held.shrink(base.size());
+                    return tryPlantIn(
+                            base.card(),
+                            base.size(),
+                            base.growth(),
+                            base.gain(),
+                            base.resistance(),
+                            0);
                 }
             }
-            return false;
         }
-        return crop.onRightClick(this, player);
+        return crop != null && crop.onRightClick(this, player);
+    }
+
+    /**
+     * Legacy water/weed-ex container branch: a simulate drain sizes the request, the tile takes
+     * what fits and the real drain hands over the container's whole content (classic cells and
+     * buckets are whole-container), then the remainder tops the tile up.
+     */
+    private boolean applyFluidFromHand(Player player, ItemStack held, Fluid fluid, boolean weedEx) {
+        var handler = handAccess(player, held).getCapability(Capabilities.Fluid.ITEM);
+        if (handler == null) return false;
+        int available = drain(handler, fluid, false);
+        if (available <= 0) return false;
+        int applied = weedEx ? applyWeedEx(available, false, true, true) : applyHydration(available, true);
+        if (applied <= 0) return false;
+        int drained = drain(handler, fluid, true);
+        if (weedEx) applyWeedEx(drained, false, true, false);
+        else applyHydration(drained, false);
+        setChanged();
+        return true;
+    }
+
+    /**
+     * Draining a container may swap the item (a full cell becomes an empty cell), which the
+     * fixed-item forStack access refuses; only stacks outside the player's hands fall back to it.
+     */
+    private static ItemAccess handAccess(Player player, ItemStack held) {
+        if (player != null) {
+            var inventory = player.getInventory();
+            int selected = inventory.getSelectedSlot();
+            if (inventory.getItem(selected) == held)
+                return ItemAccess.forPlayerSlot(player, selected);
+            if (inventory.getItem(net.minecraft.world.entity.player.Inventory.SLOT_OFFHAND) == held)
+                return ItemAccess.forPlayerSlot(
+                        player, net.minecraft.world.entity.player.Inventory.SLOT_OFFHAND);
+        }
+        return ItemAccess.forStack(held);
+    }
+
+    private static int drain(
+            ResourceHandler<FluidResource> handler, Fluid fluid, boolean commit) {
+        int total = 0;
+        try (var transaction = Transaction.openRoot()) {
+            for (int index = 0; index < handler.size(); index++) {
+                var resource = handler.getResource(index);
+                if (!resource.isEmpty() && resource.getFluid() == fluid) {
+                    total +=
+                            handler.extract(
+                                    index, resource, handler.getAmountAsInt(index), transaction);
+                }
+            }
+            if (commit) transaction.commit();
+        }
+        return total;
+    }
+
+    /** Legacy applyHydration: the tile stores at most 200 water. */
+    public int applyHydration(int amount, boolean simulate) {
+        int space = 200 - storageWater;
+        if (space <= 0) return 0;
+        amount = Math.min(amount, space);
+        if (!simulate) storageWater += amount;
+        return amount;
+    }
+
+    /** Legacy applyWeedEx: hand use caps at 100, the machine at 150; fixedAmount demands all. */
+    public int applyWeedEx(int amount, boolean fixedAmount, boolean manual, boolean simulate) {
+        int space = (manual ? 100 : 150) - storageWeedEx;
+        if (fixedAmount) {
+            if (space <= amount) return 0;
+        } else {
+            if (space <= 0) return 0;
+            amount = Math.min(amount, space);
+        }
+        if (!simulate) storageWeedEx += amount;
+        return amount;
+    }
+
+    /** Legacy applyFertilizer: hand use adds 100 (machine 90) below 100 stored nutrients. */
+    public boolean applyFertilizer(boolean manual) {
+        if (storageNutrients >= 100) return false;
+        storageNutrients += manual ? 100 : 90;
+        return true;
     }
 
     public boolean rightClick(Player player) {

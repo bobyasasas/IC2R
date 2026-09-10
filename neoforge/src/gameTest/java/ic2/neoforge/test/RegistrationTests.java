@@ -441,6 +441,12 @@ public final class RegistrationTests {
         FUNCTIONS.register("crop_analyzer_report", () -> CropAnalyzerTests::cropReport);
         FUNCTIONS.register("crop_analyzer_menu", () -> CropAnalyzerTests::menuIntegration);
         FUNCTIONS.register(
+                "crop_care_fertilizer", () -> CropCareTests::fertilizerUse);
+        FUNCTIONS.register(
+                "crop_care_hydration", () -> CropCareTests::hydrationUse);
+        FUNCTIONS.register(
+                "crop_care_weed_ex_trowel", () -> CropCareTests::weedExAndTrowel);
+        FUNCTIONS.register(
                 "radiation_hazmat_set", () -> RadiationTests::hazmatCompleteSetDetection);
         FUNCTIONS.register(
                 "radiation_effect_damage", () -> RadiationTests::radiationEffectDamagesHost);

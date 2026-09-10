@@ -1450,5 +1450,6 @@
   "ic2.steam_turbine.throttled": "积水降低动能输出",
   "ic2.steam_turbine.running": "运行中",
   "ic2.steam_turbine.idle": "等待蒸汽",
-  "ic2.tooltip.reactor_heat": "热量：%s%%"
+  "ic2.tooltip.reactor_heat": "热量：%s%%",
+  "item.ic2.hydration_cell": "水化罐"
 }

@@ -398,6 +398,14 @@ public final class ModCrops {
     public static final DeferredItem<CropSeedItem> CROP_SEED_BAG =
             ITEMS.registerItem(
                     "crop_seed_bag", properties -> new CropSeedItem(properties.stacksTo(1)));
+    public static final DeferredItem<ic2.neoforge.item.HydrationCellItem> HYDRATION_CELL =
+            ITEMS.registerItem(
+                    "hydration_cell",
+                    properties -> new ic2.neoforge.item.HydrationCellItem(properties.stacksTo(1)));
+    public static final DeferredItem<ic2.neoforge.item.WeedingTrowelItem> WEEDING_TROWEL =
+            ITEMS.registerItem(
+                    "weeding_trowel",
+                    properties -> new ic2.neoforge.item.WeedingTrowelItem(properties.stacksTo(1)));
     public static final DeferredItem<TerraWartItem> TERRA_WART =
             ITEMS.registerItem(
                     "terra_wart",
@@ -1036,6 +1044,10 @@ public final class ModCrops {
         }
         if (postEvent.getTabKey() == CreativeModeTabs.FOOD_AND_DRINKS) {
             postEvent.accept(TERRA_WART);
+        }
+        if (postEvent.getTabKey() == CreativeModeTabs.TOOLS_AND_UTILITIES) {
+            postEvent.accept(HYDRATION_CELL);
+            postEvent.accept(WEEDING_TROWEL);
         }
     }
 
