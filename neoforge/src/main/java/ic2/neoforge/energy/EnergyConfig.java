@@ -10,6 +10,7 @@ public final class EnergyConfig {
     public static final ModConfigSpec.EnumValue<EnergyMode> MODE;
     public static final ModConfigSpec.BooleanValue ROUND_CLASSIC_LOSS;
     public static final ModConfigSpec.BooleanValue CABLE_MELTDOWN;
+    public static final ModConfigSpec.BooleanValue CABLE_SHOCKS;
     public static final ModConfigSpec.BooleanValue MACHINE_EXPLOSIONS;
 
     static {
@@ -21,6 +22,11 @@ public final class EnergyConfig {
                         .defineEnum("mode", EnergyMode.IC2);
         ROUND_CLASSIC_LOSS = builder.define("roundClassicLoss", true);
         CABLE_MELTDOWN = builder.define("cableMeltdown", true);
+        CABLE_SHOCKS =
+                builder.comment(
+                                "Uninsulated cables overloaded above their insulation tier shock"
+                                    + " nearby living entities.")
+                        .define("cableShocks", true);
         MACHINE_EXPLOSIONS = builder.define("machineExplosions", true);
         builder.pop();
         SPEC = builder.build();

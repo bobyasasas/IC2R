@@ -8,8 +8,15 @@ import ic2.neoforge.machine.PoweredBlockEntity;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.Identifier;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.damagesource.DamageType;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.AABB;
 import net.neoforged.neoforge.event.level.ChunkEvent;
 import net.neoforged.neoforge.event.level.LevelEvent;
 import net.neoforged.neoforge.event.tick.LevelTickEvent;
@@ -18,11 +25,16 @@ import java.util.ArrayDeque;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.IdentityHashMap;
+import java.util.List;
 import java.util.Map;
 
 /** World lifetime and effects adapter. Graph algorithms never receive a world or block entity. */
 public final class WorldEnergyNetworks {
     private static final Map<ServerLevel, Network> NETWORKS = new IdentityHashMap<>();
+
+    private static final ResourceKey<DamageType> ELECTRICITY_TYPE =
+            ResourceKey.create(
+                    Registries.DAMAGE_TYPE, Identifier.fromNamespaceAndPath("ic2", "electricity"));
 
     private WorldEnergyNetworks() {}
 
@@ -94,6 +106,59 @@ public final class WorldEnergyNetworks {
                 }
             } else if (EnergyConfig.CABLE_MELTDOWN.get()) level.removeBlock(pos, false);
         }
+        applyCableShocks(level, network.graph, result.routeLoads());
+    }
+
+    /**
+     * Legacy applyCableEffects: a route whose peak packet exceeds the weakest insulation on the
+     * path shocks living entities within one block of every overloaded conductor, summing the
+     * per-route maxima and dealing one damage per sixty-four accumulated EU.
+     */
+    private static void applyCableShocks(
+            ServerLevel level, EnergyGraph graph, List<PacketDistributor.RouteLoad> routeLoads) {
+        if (!EnergyConfig.CABLE_SHOCKS.get() || routeLoads.isEmpty()) return;
+        Map<LivingEntity, Double> shockEnergy = new IdentityHashMap<>();
+        for (var load : routeLoads) {
+            double weakestInsulation = Double.POSITIVE_INFINITY;
+            for (GridPosition position : load.conductors())
+                if (graph.node(position) instanceof EnergyNode.Conductor cable)
+                    weakestInsulation =
+                            Math.min(
+                                    weakestInsulation,
+                                    cable.specification().insulationAbsorption());
+            double amount = load.maxPacket();
+            if (amount <= weakestInsulation) continue;
+            Map<LivingEntity, Double> routeShocks = new IdentityHashMap<>();
+            for (GridPosition position : load.conductors()) {
+                if (!(graph.node(position) instanceof EnergyNode.Conductor cable)) continue;
+                double absorption = cable.specification().insulationAbsorption();
+                if (amount <= absorption) continue;
+                int shock = (int) (amount - absorption);
+                BlockPos pos = block(position);
+                var nearby =
+                        level.getEntitiesOfClass(
+                                LivingEntity.class,
+                                new AABB(
+                                        pos.getX() - 1,
+                                        pos.getY() - 1,
+                                        pos.getZ() - 1,
+                                        pos.getX() + 2,
+                                        pos.getY() + 2,
+                                        pos.getZ() + 2),
+                                LivingEntity::isAlive);
+                for (LivingEntity entity : nearby)
+                    routeShocks.merge(entity, (double) shock, Math::max);
+            }
+            routeShocks.forEach((entity, shock) -> shockEnergy.merge(entity, shock, Double::sum));
+        }
+        if (shockEnergy.isEmpty()) return;
+        DamageSource source =
+                new DamageSource(level.damageSources().damageTypes.getOrThrow(ELECTRICITY_TYPE));
+        shockEnergy.forEach(
+                (entity, shock) -> {
+                    int damage = (int) Math.ceil(shock / 64.0);
+                    if (entity.isAlive() && damage > 0) entity.hurtServer(level, source, damage);
+                });
     }
 
     private static final class Network {

@@ -16,14 +16,23 @@ public final class PacketDistributor {
 
     public record Fault(GridPosition position, FaultKind kind, double power) {}
 
+    /** Peak packet power carried by one route this tick; routes shock entities above insulation. */
+    public record RouteLoad(GridPosition target, List<GridPosition> conductors, double maxPacket) {
+        public RouteLoad {
+            conductors = List.copyOf(conductors);
+        }
+    }
+
     public record Result(
             double drawn,
             double delivered,
             double dissipated,
             List<Fault> faults,
+            List<RouteLoad> routeLoads,
             Map<GridPosition, Integer> cableAmps) {
         public Result {
             faults = List.copyOf(faults);
+            routeLoads = List.copyOf(routeLoads);
             cableAmps = Map.copyOf(cableAmps);
         }
     }
@@ -83,6 +92,7 @@ public final class PacketDistributor {
                 state.delivered,
                 state.drawn - state.delivered,
                 new ArrayList<>(state.faults.values()),
+                new ArrayList<>(state.routeLoads.values()),
                 state.cableAmps);
     }
 
@@ -107,6 +117,7 @@ public final class PacketDistributor {
         }
         if (drawn > sink.input().orElseThrow().voltage())
             state.fault(route.target(), FaultKind.SINK_VOLTAGE, drawn);
+        state.routeLoad(route, drawn);
         return drawn;
     }
 
@@ -147,6 +158,7 @@ public final class PacketDistributor {
         state.drawn += voltage;
         state.delivered += accepted;
         if (voltage > input.voltage()) state.fault(route.target(), FaultKind.SINK_VOLTAGE, voltage);
+        state.routeLoad(route, voltage);
         return voltage;
     }
 
@@ -155,6 +167,7 @@ public final class PacketDistributor {
         final Map<GridPosition, Integer> cableAmps = new HashMap<>();
         final Map<GridPosition, Integer> sinkAmps = new HashMap<>();
         final Map<GridPosition, Fault> faults = new LinkedHashMap<>();
+        final Map<GridPosition, RouteLoad> routeLoads = new LinkedHashMap<>();
 
         void fault(GridPosition position, FaultKind kind, double power) {
             faults.compute(
@@ -162,6 +175,16 @@ public final class PacketDistributor {
                     (ignored, previous) ->
                             previous == null || previous.power() < power
                                     ? new Fault(position, kind, power)
+                                    : previous);
+        }
+
+        /** Tracks the peak packet power per route, mirroring the legacy path energy statistics. */
+        void routeLoad(EnergyGraph.Route route, double packet) {
+            routeLoads.compute(
+                    route.target(),
+                    (ignored, previous) ->
+                            previous == null || previous.maxPacket() < packet
+                                    ? new RouteLoad(route.target(), route.conductors(), packet)
                                     : previous);
         }
 

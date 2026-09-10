@@ -140,4 +140,27 @@ class EnergyNetworkTest {
         assertEquals(0.2, result.dissipated(), 1e-9);
         assertEquals(10995, line.source.stored() + line.sink.stored() + result.dissipated(), 1e-9);
     }
+
+    @Test
+    void routeLoadsTrackPeakPacketPowerPerRoute() {
+        var line = line(32, 2, 512, 2);
+        var result = new PacketDistributor(line.graph, true).tick(EnergyMode.IC2, 0);
+        assertEquals(64, result.drawn());
+        var load = result.routeLoads().getFirst();
+        assertEquals(p(2), load.target());
+        assertEquals(java.util.List.of(p(1)), load.conductors());
+        assertEquals(64, load.maxPacket(), 1e-9);
+    }
+
+    @Test
+    void insulationAbsorptionFollowsRecoveredTierTable() {
+        assertEquals(8.0, CableSpec.Material.TIN.insulated(0).insulationAbsorption(), 0.0);
+        assertEquals(32.0, CableSpec.Material.TIN.insulated(1).insulationAbsorption(), 0.0);
+        assertEquals(32.0, CableSpec.Material.COPPER.insulated(0).insulationAbsorption(), 0.0);
+        assertEquals(128.0, CableSpec.Material.COPPER.insulated(1).insulationAbsorption(), 0.0);
+        assertEquals(32.0, CableSpec.Material.GOLD.insulated(0).insulationAbsorption(), 0.0);
+        assertEquals(512.0, CableSpec.Material.GOLD.insulated(2).insulationAbsorption(), 0.0);
+        assertEquals(2048.0, CableSpec.Material.IRON.insulated(3).insulationAbsorption(), 0.0);
+        assertTrue(Double.isInfinite(CableSpec.Material.GLASS.insulated(0).insulationAbsorption()));
+    }
 }

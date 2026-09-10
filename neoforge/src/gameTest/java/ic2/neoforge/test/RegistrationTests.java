@@ -342,6 +342,15 @@ public final class RegistrationTests {
         FUNCTIONS.register("painter_plain_passes", () -> PainterTests::plainPainterPasses);
         FUNCTIONS.register(
                 "painter_toggles_auto_refill", () -> PainterTests::painterTogglesAutoRefill);
+        FUNCTIONS.register(
+                "cable_shock_uninsulated",
+                () -> CableShockTests::uninsulatedCableShocksNearbyEntities);
+        FUNCTIONS.register(
+                "cable_shock_insulated", () -> CableShockTests::insulatedCableShieldsEntities);
+        FUNCTIONS.register("cable_shock_glass", () -> CableShockTests::glassFibreCableNeverShocks);
+        FUNCTIONS.register(
+                "cable_shock_gold_meltdown",
+                () -> CableShockTests::overloadedGoldCableMeltsDownAndShocks);
         FUNCTIONS.register("dynamite_linked_toggle", () -> DynamiteTests::linkedStateToggles);
         FUNCTIONS.register("dynamite_redstone_fuse", () -> DynamiteTests::redstonePrimesFuse);
         FUNCTIONS.register("dynamite_break_fuse", () -> DynamiteTests::playerBreakPrimesFuse);
