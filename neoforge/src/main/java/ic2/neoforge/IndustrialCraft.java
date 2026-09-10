@@ -73,5 +73,11 @@ public final class IndustrialCraft {
         gameBus.addListener(WorldEnergyNetworks::onChunkUnload);
         gameBus.addListener(WorldEnergyNetworks::tick);
         gameBus.addListener(WorldWind::tick);
+        gameBus.addListener(
+                (net.neoforged.neoforge.event.AddServerReloadListenersEvent event) ->
+                        event.addListener(
+                                net.minecraft.resources.Identifier.fromNamespaceAndPath(
+                                        MOD_ID, "uu_values"),
+                                new ic2.neoforge.uu.UuValueReloadListener()));
     }
 }

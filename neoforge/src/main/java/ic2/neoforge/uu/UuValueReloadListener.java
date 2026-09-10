@@ -49,7 +49,7 @@ public final class UuValueReloadListener
                 if (obj.has("item") && obj.has("value")) {
                     seeds.add(new UuSeed(
                             obj.get("item").getAsString(),
-                            obj.get("value").getAsInt()));
+                            obj.get("value").getAsDouble()));
                 }
             }
         }

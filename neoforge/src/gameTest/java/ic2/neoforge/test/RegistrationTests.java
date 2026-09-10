@@ -276,6 +276,8 @@ public final class RegistrationTests {
                 "replicator_single", () -> ReplicatorTests::replicatesPatternFromStorage);
         FUNCTIONS.register("replicator_no_uu", () -> ReplicatorTests::modeStopsWithoutUu);
         FUNCTIONS.register(
+                "replicator_value_uu", () -> ReplicatorTests::replicatorChargesValueDerivedUu);
+        FUNCTIONS.register(
                 "reactor_fluid_mode",
                 () -> ReactorFluidModeTests::fluidModeConvertsHeatToHotCoolant);
         FUNCTIONS.register(
@@ -392,6 +394,7 @@ public final class RegistrationTests {
                 "crystal_memory_roundtrip", () -> CrystalMemoryTests::recordsAndReadsPattern);
         FUNCTIONS.register("remote_detonate", () -> RemoteTests::remoteDetonatesLinkedDynamite);
         FUNCTIONS.register("uu_scanner_scan", () -> UuScannerTests::scansSeededItemOntoMemory);
+        FUNCTIONS.register("uu_values_datapack", () -> UuScannerTests::datapackSeedsDriveGraph);
         FUNCTIONS.register("uu_scanner_unknown", () -> UuScannerTests::unknownItemFails);
         FUNCTIONS.register("uu_scanner_seed_coverage", () -> UuScannerTests::expandedSeedCoverage);
         FUNCTIONS.register(

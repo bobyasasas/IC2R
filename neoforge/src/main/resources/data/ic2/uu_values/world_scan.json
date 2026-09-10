@@ -1,0 +1,514 @@
+[
+  {
+    "item": "minecraft:cobblestone",
+    "value": 1.0
+  },
+  {
+    "item": "minecraft:dirt",
+    "value": 14.857483653272267
+  },
+  {
+    "item": "minecraft:sandstone",
+    "value": 133.57127953885157
+  },
+  {
+    "item": "minecraft:sand",
+    "value": 106.90291914587954
+  },
+  {
+    "item": "minecraft:gravel",
+    "value": 44.48567475377741
+  },
+  {
+    "item": "minecraft:brown_terracotta",
+    "value": 2102.398128595354
+  },
+  {
+    "item": "minecraft:terracotta",
+    "value": 615.557967486897
+  },
+  {
+    "item": "minecraft:flint",
+    "value": 399.761391695243
+  },
+  {
+    "item": "minecraft:orange_terracotta",
+    "value": 1609.7813554124502
+  },
+  {
+    "item": "minecraft:red_terracotta",
+    "value": 2493.3561846915572
+  },
+  {
+    "item": "minecraft:snowball",
+    "value": 276.3148760172392
+  },
+  {
+    "item": "minecraft:light_gray_terracotta",
+    "value": 9242.072183098591
+  },
+  {
+    "item": "minecraft:white_terracotta",
+    "value": 5257.781989802113
+  },
+  {
+    "item": "minecraft:yellow_terracotta",
+    "value": 5794.1467991169975
+  },
+  {
+    "item": "minecraft:red_sand",
+    "value": 13058.450248756219
+  },
+  {
+    "item": "minecraft:coarse_dirt",
+    "value": 16844.943698949824
+  },
+  {
+    "item": "minecraft:lily_pad",
+    "value": 45491.96454831933
+  },
+  {
+    "item": "minecraft:red_sandstone",
+    "value": 4812038.916666667
+  },
+  {
+    "item": "minecraft:andesite",
+    "value": 16.363280265570552
+  },
+  {
+    "item": "minecraft:granite",
+    "value": 17.088380001493466
+  },
+  {
+    "item": "minecraft:diorite",
+    "value": 17.776792295554227
+  },
+  {
+    "item": "minecraft:coal",
+    "value": 60.62629764082485
+  },
+  {
+    "item": "minecraft:redstone",
+    "value": 79.72506644392134
+  },
+  {
+    "item": "minecraft:iron_ore",
+    "value": 107.27283597727642
+  },
+  {
+    "item": "ic2:tin_ore",
+    "value": 136.03834175163496
+  },
+  {
+    "item": "minecraft:lapis_lazuli",
+    "value": 416.5736474186792
+  },
+  {
+    "item": "ic2:lead_ore",
+    "value": 918.2355519747268
+  },
+  {
+    "item": "minecraft:gold_ore",
+    "value": 1015.019634382141
+  },
+  {
+    "item": "minecraft:clay_ball",
+    "value": 1734.484771116184
+  },
+  {
+    "item": "ic2:uranium_ore",
+    "value": 1607.0037848217517
+  },
+  {
+    "item": "minecraft:dark_oak_log",
+    "value": 2654.795963403981
+  },
+  {
+    "item": "minecraft:prismarine",
+    "value": 29381.513059701494
+  },
+  {
+    "item": "minecraft:prismarine_bricks",
+    "value": 23463.82242990654
+  },
+  {
+    "item": "minecraft:spruce_log",
+    "value": 2938.849133104876
+  },
+  {
+    "item": "minecraft:oak_log",
+    "value": 3505.4717107126958
+  },
+  {
+    "item": "minecraft:diamond",
+    "value": 2879.305260533533
+  },
+  {
+    "item": "minecraft:oak_planks",
+    "value": 2053.9642759749113
+  },
+  {
+    "item": "minecraft:oak_fence",
+    "value": 2773.6870917125657
+  },
+  {
+    "item": "minecraft:oak_sapling",
+    "value": 5349.18638258453
+  },
+  {
+    "item": "minecraft:wheat_seeds",
+    "value": 4738.0723428696465
+  },
+  {
+    "item": "minecraft:jungle_log",
+    "value": 7112.847505645658
+  },
+  {
+    "item": "minecraft:birch_log",
+    "value": 5604.989193386611
+  },
+  {
+    "item": "minecraft:spruce_sapling",
+    "value": 10023.34091303593
+  },
+  {
+    "item": "minecraft:dark_oak_sapling",
+    "value": 20679.64677092038
+  },
+  {
+    "item": "minecraft:string",
+    "value": 9721.29074074074
+  },
+  {
+    "item": "minecraft:rail",
+    "value": 8117.398481795604
+  },
+  {
+    "item": "minecraft:birch_sapling",
+    "value": 13292.925184162063
+  },
+  {
+    "item": "minecraft:mossy_cobblestone",
+    "value": 19798.102971428572
+  },
+  {
+    "item": "minecraft:prismarine_crystals",
+    "value": 1007170.9360465116
+  },
+  {
+    "item": "minecraft:apple",
+    "value": 42805.38695329874
+  },
+  {
+    "item": "minecraft:dandelion",
+    "value": 30148.520884093283
+  },
+  {
+    "item": "minecraft:emerald",
+    "value": 26754.193204633204
+  },
+  {
+    "item": "minecraft:dark_prismarine",
+    "value": 931362.3709677419
+  },
+  {
+    "item": "minecraft:acacia_log",
+    "value": 55012.19466497301
+  },
+  {
+    "item": "minecraft:poppy",
+    "value": 46568.118548387094
+  },
+  {
+    "item": "minecraft:white_tulip",
+    "value": 373347.8469827586
+  },
+  {
+    "item": "minecraft:acacia_sapling",
+    "value": 127565.09646539028
+  },
+  {
+    "item": "minecraft:red_mushroom",
+    "value": 165141.4690181125
+  },
+  {
+    "item": "minecraft:brown_mushroom",
+    "value": 62971.06543075245
+  },
+  {
+    "item": "minecraft:jungle_sapling",
+    "value": 78033.06351351351
+  },
+  {
+    "item": "ic2:rubber_wood",
+    "value": 93036.19817400645
+  },
+  {
+    "item": "minecraft:torch",
+    "value": 67722.20523846755
+  },
+  {
+    "item": "minecraft:azure_bluet",
+    "value": 161147.34976744186
+  },
+  {
+    "item": "minecraft:orange_tulip",
+    "value": 386681.69866071426
+  },
+  {
+    "item": "minecraft:red_tulip",
+    "value": 448791.19430051814
+  },
+  {
+    "item": "minecraft:stick",
+    "value": 115488.934
+  },
+  {
+    "item": "minecraft:pink_tulip",
+    "value": 828867.947368421
+  },
+  {
+    "item": "minecraft:cactus",
+    "value": 264075.306402439
+  },
+  {
+    "item": "minecraft:sugar_cane",
+    "value": 194425.8148148148
+  },
+  {
+    "item": "minecraft:rose_bush",
+    "value": 433083.5025
+  },
+  {
+    "item": "ic2:rubber_sapling",
+    "value": 357182.2701030928
+  },
+  {
+    "item": "minecraft:allium",
+    "value": 425634.8918918919
+  },
+  {
+    "item": "minecraft:peony",
+    "value": 502125.8
+  },
+  {
+    "item": "minecraft:lilac",
+    "value": 380732.7494505494
+  },
+  {
+    "item": "minecraft:oxeye_daisy",
+    "value": 276730.67252396164
+  },
+  {
+    "item": "minecraft:blue_orchid",
+    "value": 1219953.528169014
+  },
+  {
+    "item": "minecraft:cocoa_beans",
+    "value": 534670.9907407408
+  },
+  {
+    "item": "ic2:resin",
+    "value": 3331411.5576923075
+  },
+  {
+    "item": "minecraft:pumpkin",
+    "value": 2439907.056338028
+  },
+  {
+    "item": "minecraft:sandstone_stairs",
+    "value": 1007170.9360465116
+  },
+  {
+    "item": "minecraft:smooth_sandstone",
+    "value": 690172.9123505976
+  },
+  {
+    "item": "minecraft:sunflower",
+    "value": 474612.0575342466
+  },
+  {
+    "item": "minecraft:melon",
+    "value": 874916.1666666666
+  },
+  {
+    "item": "minecraft:bone",
+    "value": 261681.8746223565
+  },
+  {
+    "item": "minecraft:rotten_flesh",
+    "value": 226448.89019607843
+  },
+  {
+    "item": "minecraft:gunpowder",
+    "value": 247123.25392296718
+  },
+  {
+    "item": "minecraft:chest",
+    "value": 821011.3791469195
+  },
+  {
+    "item": "minecraft:melon_seeds",
+    "value": 1302506.7744360901
+  },
+  {
+    "item": "minecraft:music_disc_13",
+    "value": 3535375.5306122447
+  },
+  {
+    "item": "minecraft:gold_ingot",
+    "value": 5774446.7
+  },
+  {
+    "item": "minecraft:name_tag",
+    "value": 2510629.0
+  },
+  {
+    "item": "minecraft:pumpkin_seeds",
+    "value": 1283210.3777777778
+  },
+  {
+    "item": "minecraft:enchanted_golden_apple",
+    "value": 28872233.5
+  },
+  {
+    "item": "minecraft:bucket",
+    "value": 4330835.025
+  },
+  {
+    "item": "minecraft:music_disc_cat",
+    "value": 3937122.75
+  },
+  {
+    "item": "minecraft:saddle",
+    "value": 2706771.890625
+  },
+  {
+    "item": "minecraft:golden_apple",
+    "value": 3396733.3529411764
+  },
+  {
+    "item": "minecraft:enchanted_book",
+    "value": 173233401.0
+  },
+  {
+    "item": "minecraft:iron_horse_armor",
+    "value": 3149698.2
+  },
+  {
+    "item": "minecraft:bread",
+    "value": 2165417.5125
+  },
+  {
+    "item": "minecraft:chiseled_sandstone",
+    "value": 14436116.75
+  },
+  {
+    "item": "minecraft:iron_ingot",
+    "value": 1342894.5813953488
+  },
+  {
+    "item": "minecraft:tnt",
+    "value": 603597.1111111111
+  },
+  {
+    "item": "minecraft:gold_block",
+    "value": 10827087.5625
+  },
+  {
+    "item": "minecraft:cobblestone_stairs",
+    "value": 34646680.2
+  },
+  {
+    "item": "minecraft:diamond_horse_armor",
+    "value": 9624077.833333334
+  },
+  {
+    "item": "minecraft:spider_eye",
+    "value": 5432374.0
+  },
+  {
+    "item": "minecraft:stone_pressure_plate",
+    "value": 5432374.0
+  },
+  {
+    "item": "minecraft:sandstone_slab",
+    "value": 7218058.375
+  },
+  {
+    "item": "minecraft:oak_door",
+    "value": 14436116.75
+  },
+  {
+    "item": "minecraft:golden_horse_armor",
+    "value": 4330835.025
+  },
+  {
+    "item": "minecraft:black_wool",
+    "value": 5432374.0
+  },
+  {
+    "item": "minecraft:blue_terracotta",
+    "value": 5432374.0
+  },
+  {
+    "item": "minecraft:oak_pressure_plate",
+    "value": 19248155.666666668
+  },
+  {
+    "item": "minecraft:wheat",
+    "value": 674059.9260700389
+  },
+  {
+    "item": "minecraft:beetroot_seeds",
+    "value": 1211422.3846153845
+  },
+  {
+    "item": "minecraft:oak_stairs",
+    "value": 577444.67
+  },
+  {
+    "item": "minecraft:potato",
+    "value": 1862724.7419354839
+  },
+  {
+    "item": "minecraft:book",
+    "value": 2749736.523809524
+  },
+  {
+    "item": "minecraft:stone_slab",
+    "value": 3268554.7358490564
+  },
+  {
+    "item": "minecraft:carrot",
+    "value": 5249497.0
+  },
+  {
+    "item": "minecraft:stone_bricks",
+    "value": 6416051.888888889
+  },
+  {
+    "item": "minecraft:wet_sponge",
+    "value": 6662823.115384615
+  },
+  {
+    "item": "minecraft:beetroot",
+    "value": 14436116.75
+  },
+  {
+    "item": "minecraft:ladder",
+    "value": 21654175.125
+  },
+  {
+    "item": "minecraft:obsidian",
+    "value": 43308350.25
+  },
+  {
+    "item": "minecraft:crafting_table",
+    "value": 86616700.5
+  },
+  {
+    "item": "minecraft:cracked_stone_bricks",
+    "value": 86616700.5
+  }
+]

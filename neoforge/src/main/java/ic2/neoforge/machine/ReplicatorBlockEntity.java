@@ -22,13 +22,16 @@ import java.util.List;
 
 /**
  * Replicator (legacy TileEntityReplicator): materialises the selected pattern from an adjacent
- * pattern storage using UU-matter. Documented unit simplification: the pattern's stack count is
- * paid as mB of UU-matter, one mB per tick at 512 EU/tick (the legacy UU-unit conversion is
- * deferred to the value-graph datapack slice). Modes: stopped, single and continuous.
+ * pattern storage using UU-matter. The pattern costs its UU graph value converted legacy-style
+ * ({@code getInBuckets = value × 1e-5}, 1 bucket = 1000 mB), consumed at the legacy rate of 1e-4
+ * buckets (0.1 mB) per tick at 512 EU/tick, with the fractional remainder banked between integer mB
+ * drains (legacy {@code extraUuStored}). Modes: stopped, single and continuous.
  */
 public final class ReplicatorBlockEntity extends PoweredBlockEntity {
     public static final int TANK_CAPACITY = 16000;
     public static final int FLUID_SLOT = 0, CELL_SLOT = 1, OUTPUT = 2;
+
+    private static final double UU_PER_TICK_MB = 0.1;
 
     private final MachineFluidTank tank =
             new MachineFluidTank(
@@ -43,6 +46,10 @@ public final class ReplicatorBlockEntity extends PoweredBlockEntity {
     private final List<ItemStack> patterns = new ArrayList<>();
     private int patternIndex;
     private double uuProcessed;
+
+    /** mB banked from past integer drains, covering sub-mB work (legacy extraUuStored). */
+    private double uuBank;
+
     private int mode; // 0 stopped, 1 single, 2 continuous
 
     public ReplicatorBlockEntity(BlockPos pos, BlockState state) {
@@ -146,41 +153,78 @@ public final class ReplicatorBlockEntity extends PoweredBlockEntity {
         boolean running = false;
         if (mode != 0 && !patterns.isEmpty() && energy.stored() >= 512) {
             var pattern = patterns.get(Math.floorMod(patternIndex, patterns.size()));
+            double requiredMb = requiredMb(level, pattern);
             boolean fits =
                     inventory.stack(OUTPUT).isEmpty()
                             || inventory.stack(OUTPUT).is(pattern.getItem())
                                     && inventory.stack(OUTPUT).getCount() + pattern.getCount()
                                             <= 64;
-            if (fits) {
-                running = true;
-                boolean paid;
-                try (var drain = Transaction.openRoot()) {
-                    paid = tank.extract(0, uuMatter(), 1, drain) == 1;
-                    drain.commit();
+            if (Double.isFinite(requiredMb) && fits) {
+                double uuRemaining = requiredMb - uuProcessed;
+                boolean finish;
+                if (uuRemaining <= UU_PER_TICK_MB) {
+                    finish = true;
+                } else {
+                    uuRemaining = UU_PER_TICK_MB;
+                    finish = false;
                 }
-                if (!paid) {
+                if (consumeUu(uuRemaining)) {
+                    running = true;
+                    energy.extract(512);
+                    uuProcessed += uuRemaining;
+                    if (finish) {
+                        uuProcessed = 0;
+                        if (mode == 1) mode = 0;
+                        patternIndex = Math.floorMod(patternIndex + 1, patterns.size());
+                        try (var transaction = Transaction.openRoot()) {
+                            inventory.insert(
+                                    OUTPUT,
+                                    ItemResource.of(pattern),
+                                    pattern.getCount(),
+                                    transaction);
+                            transaction.commit();
+                        }
+                        setChanged();
+                    }
+                } else {
                     setActive(false);
                     return;
-                }
-                uuProcessed++;
-                if (uuProcessed >= requiredMb(pattern)) {
-                    uuProcessed = 0;
-                    if (mode == 1) mode = 0;
-                    patternIndex = Math.floorMod(patternIndex + 1, patterns.size());
-                    try (var transaction = Transaction.openRoot()) {
-                        inventory.insert(
-                                OUTPUT, ItemResource.of(pattern), pattern.getCount(), transaction);
-                        transaction.commit();
-                    }
-                    setChanged();
                 }
             }
         }
         setActive(running);
     }
 
-    private double requiredMb(ItemStack pattern) {
-        return pattern.getCount();
+    /** Legacy conversion: the pattern's graph value in buckets × 1000 mB per bucket. */
+    private double requiredMb(ServerLevel level, ItemStack pattern) {
+        double value =
+                ic2.neoforge.uu.UuValues.graph(level)
+                        .get(
+                                net.minecraft.core.registries.BuiltInRegistries.ITEM
+                                        .getKey(pattern.getItem())
+                                        .toString());
+        return value * 1.0E-5 * 1000.0;
+    }
+
+    /**
+     * Legacy consumeUu: sub-mB work is served from the bank; a drain takes the smallest whole mB
+     * that covers the remaining work and banks what it did not use. Unlike the legacy code the bank
+     * is restored when the tank cannot supply the whole drain.
+     */
+    private boolean consumeUu(double amountMb) {
+        if (amountMb <= uuBank) {
+            uuBank -= amountMb;
+            return true;
+        }
+        amountMb -= uuBank;
+        int toDrain = (int) Math.ceil(amountMb);
+        try (var drain = Transaction.openRoot()) {
+            int extracted = tank.extract(0, uuMatter(), toDrain, drain);
+            if (extracted != toDrain) return false;
+            uuBank = toDrain - amountMb;
+            drain.commit();
+            return true;
+        }
     }
 
     private FluidResource uuMatter() {
@@ -253,6 +297,9 @@ public final class ReplicatorBlockEntity extends PoweredBlockEntity {
 
     @Override
     public int progressMaximum() {
-        return patterns.isEmpty() ? 1 : Math.max(1, patterns.get(0).getCount());
+        if (patterns.isEmpty() || !(getLevel() instanceof ServerLevel level)) return 1;
+        var pattern = patterns.get(Math.floorMod(patternIndex, patterns.size()));
+        double requiredMb = requiredMb(level, pattern);
+        return Double.isFinite(requiredMb) ? Math.max(1, (int) Math.ceil(requiredMb)) : 1;
     }
 }

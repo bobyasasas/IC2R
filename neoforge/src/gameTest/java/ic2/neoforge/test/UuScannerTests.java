@@ -59,7 +59,7 @@ final class UuScannerTests {
                         1,
                         ItemResource.of(ModReactorItems.CRYSTAL_MEMORY.get().getDefaultInstance()),
                         1);
-        scanner.inventory().set(0, ItemResource.of(new ItemStack(Items.DIAMOND)), 1);
+        scanner.inventory().set(0, ItemResource.of(new ItemStack(Items.NETHER_STAR)), 1);
         for (int tick = 0; tick < 3400; tick++) scanner.serverTick(helper.getLevel());
         helper.assertTrue(
                 !scanner.inventory().stack(0).isEmpty(),
@@ -88,6 +88,25 @@ final class UuScannerTests {
         var recorded = ((CrystalMemoryItem) memory.getItem()).readPattern(memory);
         helper.assertTrue(
                 recorded.is(Items.WHEAT), "The expanded seed table makes crops scannable");
+        helper.succeed();
+    }
+
+    static void datapackSeedsDriveGraph(GameTestHelper helper) {
+        var graph = ic2.neoforge.uu.UuValues.graph(helper.getLevel());
+        // Cobblestone and dirt only exist in the shipped world-scan seed datapack; the built-in
+        // fallback table does not contain them, so a finite value proves the reload listener
+        // loaded data/ic2/uu_values/world_scan.json.
+        helper.assertTrue(
+                graph.get("minecraft:cobblestone") == 1.0,
+                "The world-scan datapack seeds cobblestone at 1.0, saw "
+                        + graph.get("minecraft:cobblestone"));
+        helper.assertTrue(
+                graph.get("minecraft:dirt") == 14.857483653272267,
+                "Fractional world-scan values round-trip, saw " + graph.get("minecraft:dirt"));
+        // World-scan coverage: previously unscannable world blocks now carry values.
+        helper.assertTrue(
+                Double.isFinite(graph.get("minecraft:sand")),
+                "The shipped seed set expands the scan coverage");
         helper.succeed();
     }
 

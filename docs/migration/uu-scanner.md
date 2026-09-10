@@ -83,8 +83,47 @@ legacy `ItemCrystalMemory`(内嵌 ItemStack 的模式存储盘)及其空白晶�
 - `CrystalMemoryTests.recordsAndReadsPattern`:写/读/清空组件语义。
 - IC2 与 GT 双模式 `runGameTestServer` 226 项全绿。
 
+## 切片五:UuGraph 数据包化与扫描覆盖面扩展(2026-09-10)
+
+- **数据包化**:`UuValueReloadListener` 注册到
+  `AddServerReloadListenersEvent`(全局 NeoForge 总线);每个
+  `uu_values/*.json` 为 `{"item": id, "value": n}` 数组,合并后非空集
+  即替换内置种子。发布 `data/ic2/uu_values/world_scan.json`——legacy
+  `IC2UuScanConfig` 默认 world-scan 清单 **128 条逐字迁移**
+  (cobblestone=1.0 基准,含分数值与 1.7E8 级大值);`UuSeed` 值域由
+  int 放宽为 double。修复:`getAsInt()` 截断分数值(首个 GameTest 运行
+  即暴露,dirt 14.857→14)。
+- **扫描覆盖面**:legacy 覆盖面 = world-scan 配置清单(UuIndex 的配方
+  resolver 在 IC2R 中从未注册,属死代码);数据包发布后扫描器可扫 128
+  种世界方块/物品,叠加 IC2 加工族转换(成本 0)形成闭包。
+- **replicator 换算统一**(legacy TileEntityReplicator):
+  `patternUu = getInBuckets(值×1e-5)`,1 bucket = 1000 mB,每 tick 消耗
+  `1e-4` bucket(=0.1 mB)+ 512 EU,小数余量经 `extraUuStored` 银行在
+  整数 mB 排空间结转;替换此前"模式堆叠数 = 所需 mB"的单位简化。
+  `requiredMb = 价值/100`(cobblestone 0.01 mB、铁锭 13,428.95 mB);
+  价值非有限(:不在种子集/闭包)的模式跳过不运行(legacy 会永久空转
+  烧 UU,新端防御性停止,文档化偏差)。
+- **修复**:replicator 此前只检查 `stored() >= 512` 从不扣能——补
+  `energy.extract(512)`(legacy `useEnergy`);银行扣减在排空失败时回补
+  (legacy 泄漏不回补);`progressMaximum` 修正为当前模式的
+  `ceil(requiredMb)`(原为 patterns[0] 的堆叠数)。
+- **勘误(切片二)**:"价值图种子仅 iron/copper ingot"与"配方图解析器
+  ……数据包化随后续切片"的裁剪记录至此闭环;legacy 配方 resolver 死
+  代码与合成/熔炼转换不迁移(legacy 自身未接线,新端加工族转换已按
+  0 成本覆盖)。
+
+## 测试证据(切片五)
+
+- `uu_values_datapack`:cobblestone=1.0 与 dirt=14.857483653272267 从
+  已发布数据包经 reload listener 读入(内置种子不含这两项,端到端证明);
+- `replicator_value_uu`:铁锭整跑 134,290 tick,恰排水
+  ceil(价值/100)=13,429 mB + 单次产出后停机;
+- `replicator_single` 改用 cobblestone(1 tick/1 mB);`uu_scanner_unknown`
+  的未知物品由钻石(已入 world-scan)改为下界之星;
+- IC2 与 GT 双模式 `runGameTestServer` 299 项全绿。
+
 ## 未验收 / 后续
 
-- UuGraph 全量配方图解析器与 `uu_values.json` 数据包化;pattern_storage
-  邻接链接;replicator;tooltip 的 UU 价值显示。
-- 客户端外观随实机测试(待测试.md 第 30 节)。
+- 水晶盘 tooltip 的 UU 价值显示(价值图目前仅服务端构建,客户端展示
+  需同步方案)。
+- 客户端外观随实机测试(待测试.md 第 30/49 节)。

@@ -147,9 +147,15 @@
    "id": "P11",
    "parent": "M11",
    "title": "UU 及复制系统",
-   "status": "todo",
-   "acceptance": "复制、扫描、模式存储和流体 UU；数据与网络同步。",
-   "evidence": []
+   "status": "in_progress",
+   "acceptance": "水晶记忆盘、uu_scanner（数据包化 UU 价值图＋world-scan 种子集）、pattern_storage、replicator（价值导出 UU 消耗）与 matter_generator 已接入；剩余实机验收、客户端外观与多人同步。",
+   "evidence": [
+    "docs/migration/uu-scanner.md",
+    "docs/migration/matter-generator.md",
+    "neoforge/src/main/resources/data/ic2/uu_values/world_scan.json",
+    "neoforge/src/gameTest/java/ic2/neoforge/test/UuScannerTests.java",
+    "neoforge/src/gameTest/java/ic2/neoforge/test/ReplicatorTests.java"
+   ]
   },
   {
    "id": "P12",

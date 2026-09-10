@@ -1,0 +1,7 @@
+{
+  "type": "minecraft:function",
+  "function": "ic2_tests:uu_values_datapack",
+  "environment": "minecraft:default",
+  "structure": "ic2_tests:world_room",
+  "max_ticks": 60
+}
