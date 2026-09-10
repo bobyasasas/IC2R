@@ -14,6 +14,10 @@ repositories {
     }
 }
 
+configurations {
+    devRunInterop
+}
+
 dependencies {
     implementation project(':core')
     // JEI 29.37.0.98 is the 26.1.2 line (M14). Compile-only on purpose: the runtime
@@ -23,6 +27,12 @@ dependencies {
     // Jade 26.1.10+neoforge (M14-b), same compile-only interop policy as JEI.
     // Resolved through CurseMaven (project 324717, file 8651070).
     compileOnly 'curse.maven:jade-324717:8651070'
+    // Full JEI+Jade jars for dev runs only (M14/P17 real-client interop pass).
+    // MDG 26.1.2 removed additionalRuntimeClasspath and discovers mods directly on
+    // the source-set runtime classpath, so devRunInterop feeds runtimeClasspath,
+    // staying out of compileClasspath and out of the published POM.
+    devRunInterop 'mezz.jei:jei-26.1.2-neoforge:29.37.0.98'
+    devRunInterop 'curse.maven:jade-324717:8651070'
 }
 
 sourceSets {
@@ -33,11 +43,26 @@ sourceSets {
 }
 configurations.gameTestImplementation.extendsFrom configurations.implementation
 
+configurations.matching { it.name == 'runtimeClasspath' }.configureEach {
+    extendsFrom configurations.devRunInterop
+}
+
 neoForge {
     version = project.neo_version
     addModdingDependenciesTo sourceSets.gameTest
     runs {
-        client { client() }
+        client {
+            client()
+            // Optional real-client interop pass (M14/P17): -Pic2Join=host:port or
+            // -Pic2World="save name" jump straight into a world with JEI+Jade loaded.
+            if (project.hasProperty('ic2Join')) {
+                programArgument '--quickPlayMultiplayer'
+                programArgument project.property('ic2Join').toString()
+            } else if (project.hasProperty('ic2World')) {
+                programArgument '--quickPlaySingleplayer'
+                programArgument project.property('ic2World').toString()
+            }
+        }
         server {
             server()
             programArgument '--nogui'

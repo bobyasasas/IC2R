@@ -13,10 +13,15 @@ import net.minecraft.gametest.framework.GameTestHelper;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.common.Mod;
+import net.neoforged.neoforge.capabilities.Capabilities;
+import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.server.ServerAboutToStartEvent;
+import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
 import java.util.function.Consumer;
@@ -26,6 +31,14 @@ import java.util.function.Consumer;
 public final class RegistrationTests {
     private static final DeferredRegister<Consumer<GameTestHelper>> FUNCTIONS =
             DeferredRegister.create(BuiltInRegistries.TEST_FUNCTION, "ic2_tests");
+
+    private static final DeferredRegister.Blocks BLOCKS =
+            DeferredRegister.createBlocks("ic2_tests");
+
+    /** Fake ae2:energy_acceptor: merged into ic2:ae2_energy_acceptor by the test tag. */
+    public static final DeferredBlock<Block> TEST_ACCEPTOR =
+            BLOCKS.registerBlock(
+                    "test_energy_acceptor", properties -> new Block(properties));
 
     private static final DeferredRegister<
                     com.mojang.serialization.MapCodec<
@@ -520,11 +533,22 @@ public final class RegistrationTests {
         FUNCTIONS.register("invalid_charge", () -> ComponentTests::invalidCharge);
         FUNCTIONS.register("inventory_transactions", () -> TransferTests::inventory);
         FUNCTIONS.register("fluid_transactions", () -> TransferTests::fluid);
+        FUNCTIONS.register("ae2_bridge_feeds", () -> Ae2BridgeTests::bridgeFeedsAcceptorOverCable);
+        FUNCTIONS.register("ae2_bridge_ratio", () -> Ae2BridgeTests::bridgeChargesTwoAePerEuExactly);
+        FUNCTIONS.register("ae2_bridge_no_path", () -> Ae2BridgeTests::bridgeWithoutPathDrawsNothing);
     }
 
     public RegistrationTests(IEventBus modBus) {
         FUNCTIONS.register(modBus);
         ENVIRONMENTS.register(modBus);
+        BLOCKS.register(modBus);
+        modBus.addListener(
+                (RegisterCapabilitiesEvent event) ->
+                        event.registerBlock(
+                                Capabilities.Energy.BLOCK,
+                                (level, pos, state, blockEntity, side) ->
+                                        TestEnergyStorage.at(level, pos),
+                                TEST_ACCEPTOR.get()));
         NeoForge.EVENT_BUS.addListener(
                 (ServerAboutToStartEvent event) -> {
                     var mode =

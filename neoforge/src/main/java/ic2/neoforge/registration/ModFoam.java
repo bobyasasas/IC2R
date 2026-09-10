@@ -148,8 +148,9 @@ public final class ModFoam {
 
     private static void creativeContents(BuildCreativeModeTabContentsEvent event) {
         if (event.getTabKey().equals(CreativeModeTabs.BUILDING_BLOCKS)) {
+            // Foam has no BlockItem (sprayer-placed only); accepting the bare block
+            // would hand the tab an ItemStack.EMPTY and crash the tab build.
             WALLS.values().forEach(event::accept);
-            event.accept(FOAM);
         } else if (event.getTabKey().equals(CreativeModeTabs.TOOLS_AND_UTILITIES)) {
             event.accept(FOAM_SPRAYER);
         } else if (event.getTabKey().equals(CreativeModeTabs.COMBAT)) {

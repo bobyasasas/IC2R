@@ -14,11 +14,8 @@ import net.minecraft.client.renderer.entity.TntMinecartRenderer;
 import net.minecraft.client.renderer.entity.state.TntRenderState;
 import net.minecraft.client.renderer.state.level.CameraRenderState;
 import net.minecraft.util.Mth;
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.api.distmarker.OnlyIn;
 
 /** Renders the primed industrial TNT charge as its flashing source block. */
-@OnlyIn(Dist.CLIENT)
 public class ItntRenderer extends EntityRenderer<ItntEntity, TntRenderState> {
     private static final BlockDisplayContext BLOCK_DISPLAY_CONTEXT = BlockDisplayContext.create();
     private final BlockModelResolver blockModelResolver;

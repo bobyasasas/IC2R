@@ -304,6 +304,8 @@ public final class Ic2JeiPlugin implements IModPlugin {
                                     recipe.result());
                         }));
         registration.addRecipeCategories(categories.toArray(IRecipeCategory[]::new));
+        com.mojang.logging.LogUtils.getLogger()
+                .info("IC2 JEI plugin registered {} recipe categories", categories.size());
     }
 
     private static IDrawable icon(IGuiHelper guiHelper, MachineKind machine) {

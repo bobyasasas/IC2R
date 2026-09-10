@@ -32,6 +32,21 @@ import java.util.Map;
 public final class WorldEnergyNetworks {
     private static final Map<ServerLevel, Network> NETWORKS = new IdentityHashMap<>();
 
+    /** Provides sink terminals for energy consumers outside the IC2 machine set (AE2 bridge). */
+    public interface ExternalTerminals {
+        @javax.annotation.Nullable
+        EnergyNode.Terminal terminal(ServerLevel level, BlockPos pos);
+
+        /** Runs once per level tick after packet distribution: drain and stale cleanup. */
+        void afterDistribution(ServerLevel level);
+    }
+
+    private static volatile ExternalTerminals externalTerminals;
+
+    public static void setExternalTerminals(@javax.annotation.Nullable ExternalTerminals provider) {
+        externalTerminals = provider;
+    }
+
     public static final ResourceKey<DamageType> ELECTRICITY_TYPE =
             ResourceKey.create(
                     Registries.DAMAGE_TYPE, Identifier.fromNamespaceAndPath("ic2", "electricity"));
@@ -90,6 +105,8 @@ public final class WorldEnergyNetworks {
                 (pos, machine) -> {
                     if (previousEnergy.get(pos) != machine.energy().stored()) machine.setChanged();
                 });
+        ExternalTerminals externals = externalTerminals;
+        if (externals != null) externals.afterDistribution(level);
         for (var fault : result.faults()) {
             BlockPos pos = block(fault.position());
             if (!level.isLoaded(pos)) continue;
@@ -190,6 +207,13 @@ public final class WorldEnergyNetworks {
                             && level.getBlockState(neighbor).getBlock()
                                     instanceof CableBlock cable) {
                         graph.put(grid(neighbor), new EnergyNode.Conductor(cable.specification()));
+                    }
+                    if (graph.node(grid(neighbor)) == null) {
+                        ExternalTerminals externals = externalTerminals;
+                        if (externals != null) {
+                            EnergyNode.Terminal external = externals.terminal(level, neighbor);
+                            if (external != null) graph.put(grid(neighbor), external);
+                        }
                     }
                     EnergyNode from = graph.node(grid(pos)), to = graph.node(grid(neighbor));
                     if (to == null) continue;
