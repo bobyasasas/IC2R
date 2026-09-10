@@ -68,9 +68,41 @@
 - `crop_weed_growth`:种子袋拒种杂草;空杆转杂草后生长且 `isWeed`。
 - IC2 与 GT 双模式 `runGameTestServer` 306 项全绿;core JUnit 110 项。
 
+## 切片二:五张 IC2 作物卡与 base seed 播种(2026-09-10)
+
+- **作物卡**:reed(芦苇,age 0..2,湿度加权 `h*1.2+n+0.8a`,age>0 即
+  可收获,产物甘蔗×当前年龄)、flax(亚麻,线,humidity+nutrients+air,
+  光照 ≥9)、hops(啤酒花,age 0..6,时长 600,收获后回 age 2,产物
+  `ic2:hops`)、coffee(咖啡,age 0..4,权重 `0.4h+1.4n+1.2a`,分阶段
+  时长(age2 ×0.5、age1 ×1.5)、age ≥3 开收获窗但 age 3 无产物、最优
+  收获 age 2,产物 `ic2:coffee_beans`)、cocoa(可可,`canGrow` 要求
+  存储养分 ≥3,时长 900/400 分段,age 2 收获,产物可可豆)。
+- **base seed 播种**(legacy `registerBaseSeed`/`getBaseSeed`):
+  `BaseSeed(card, size, growth, gain, resistance)`——甘蔗→芦苇
+  (0,3,0,2)、可可豆→可可(0,0,0,0)、咖啡豆→咖啡(0,1,1,1);
+  size 同时是播种年龄与消耗数量(size 0 不消耗,legacy quirk);
+  手持产物对空杆右键播种(`CropBlock.useItemOn` 手持路径 +
+  `rightClick(player, held)`)。
+- **关键行为**:可可的养分门同样挡播种(legacy 须先对杆施肥——
+  肥料交互随后续切片,测试以直接设置存储养分等价);
+  年龄切换产生的新 BE 地形未初始化,负质量会触发 legacy 死亡掷骰——
+  提供 `refreshTerrain`(对应 legacy `setCrop` 立即刷新语义)供
+  生长循环与测试使用。
+- 资源:5 个方块状态/横切模型/纹理逐字拷贝;无新增物品。
+
+## 测试证据(切片二)
+
+- `crop_base_seed_planting`:甘蔗播种芦苇(size 0 不消耗)、未注册
+  产物拒绝、可可无养分拒绝播种且保持空杆。
+- `crop_reed_age_gains`:多轮收获累计产出甘蔗(age 比例产物)。
+- `crop_coffee_harvest_window`:分阶段时长下长到收获窗,窗口期收获
+  无产物,成熟后多轮累计产出咖啡豆。
+- `crop_cocoa_nutrient_gate`:无养分不生长,设置存储养分后生长。
+- IC2 与 GT 双模式 `runGameTestServer` 310 项全绿;core JUnit 110 项。
+
 ## 未验收 / 后续切片
 
 - 杂草自然出现(空杆 1/100 掷骰)的实机观察;WeedEX 水罐/肥料/
   水化罐的右键交互;踩踏破坏。
-- 其余 50 种作物卡、杂交/crossing base、作物分析器、Cropmatron、
-  收割机、群系加成。
+- 其余约 45 种作物卡(花/蘑菇/树苗/矿质作物等)、杂交/crossing base、
+  作物分析器、Cropmatron、收割机、群系加成。

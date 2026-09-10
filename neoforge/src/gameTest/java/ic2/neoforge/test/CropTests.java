@@ -87,8 +87,18 @@ final class CropTests {
     }
 
     private static void growToMaturity(GameTestHelper helper) {
-        for (int tick = 0; tick < 2100 && crop(helper).getCurrentAge() < 7; tick++) {
-            crop(helper).performTick(1024L);
+        growUntil(helper, 7, 2100);
+    }
+
+    /**
+     * Refreshes the terrain qualities before every tick: age changes swap the tile and a fresh
+     * tile starts with unset terrain, which legacy compensates on its staggered refresh cycle.
+     */
+    private static void growUntil(GameTestHelper helper, int targetAge, int maxTicks) {
+        for (int tick = 0; tick < maxTicks && crop(helper).getCurrentAge() < targetAge; tick++) {
+            CropBlockEntity crop = crop(helper);
+            crop.refreshTerrain(helper.getLevel());
+            crop.performTick(1024L);
         }
     }
 
@@ -108,6 +118,111 @@ final class CropTests {
         helper.assertTrue(
                 ModCrops.cardFor(helper.getBlockState(POSITION).getBlock()).isWeed(weedCrop),
                 "A grown weed counts as a weed");
+        helper.succeed();
+    }
+
+    static void cropBaseSeedPlanting(GameTestHelper helper) {
+        helper.setBlock(POSITION, ModCrops.CROP_STICK.get().defaultBlockState());
+        CropBlockEntity crop = crop(helper);
+        ItemStack cane = new ItemStack(Items.SUGAR_CANE, 8);
+        helper.assertTrue(crop.rightClick(null, cane), "Sugar cane plants a reed crop");
+        helper.assertTrue(
+                helper.getBlockState(POSITION).is(ModCrops.REED_CROP.get()),
+                "The reed crop block replaces the stick");
+        helper.assertTrue(
+                cane.getCount() == 8, "A zero-size base seed consumes nothing (legacy quirk)");
+        helper.assertTrue(
+                !crop(helper).rightClick(null, new ItemStack(Items.DIRT)),
+                "Produce without a base seed registration never plants");
+        helper.setBlock(POSITION, ModCrops.CROP_STICK.get().defaultBlockState());
+        // Cocoa demands stored nutrients even for planting (legacy: fertilise the stick first).
+        helper.assertTrue(
+                !crop(helper).rightClick(null, new ItemStack(Items.COCOA_BEANS)),
+                "Cocoa refuses to plant on a nutrient-free stick");
+        helper.assertTrue(
+                helper.getBlockState(POSITION).is(ModCrops.CROP_STICK.get()),
+                "A refused planting keeps the empty stick");
+        helper.succeed();
+    }
+
+    static void cropReedAgeScaledGains(GameTestHelper helper) {
+        helper.setBlock(POSITION, ModCrops.CROP_STICK.get().defaultBlockState());
+        CropBlockEntity crop = crop(helper);
+        helper.assertTrue(
+                crop.rightClick(null, new ItemStack(Items.SUGAR_CANE)),
+                "Sugar cane plants a reed crop");
+        boolean anyCane = false;
+        for (int cycle = 0; cycle < 6; cycle++) {
+            growUntil(helper, 2, 900);
+            if (crop(helper).performManualHarvest()) {
+                anyCane |= countItems(helper, Items.SUGAR_CANE) > 0;
+            }
+        }
+        helper.assertTrue(anyCane, "Harvesting a reed drops cane");
+        helper.succeed();
+    }
+
+    static void cropCoffeeHarvestWindow(GameTestHelper helper) {
+        helper.setBlock(POSITION.below(), Blocks.FARMLAND);
+        helper.setBlock(POSITION.above().above(), Blocks.GLOWSTONE);
+        helper.setBlock(POSITION, ModCrops.CROP_STICK.get().defaultBlockState());
+        CropBlockEntity crop = crop(helper);
+        helper.assertTrue(
+                crop.rightClick(
+                        null,
+                        new ItemStack(
+                                ic2.neoforge.registration.ModItems.MATERIALS
+                                        .get(
+                                                ic2.neoforge.registration.MaterialDefinition
+                                                        .COFFEE_BEANS)
+                                        .get())),
+                "Coffee beans plant a coffee crop");
+        // Age three opens the harvest window but yields no beans (legacy getGain null branch).
+        growUntil(helper, 3, 4000);
+        helper.assertTrue(
+                crop(helper).getCurrentAge() == 3,
+                "The coffee stops at the window age, saw " + crop(helper).getCurrentAge());
+        boolean anyBeans = false;
+        String lastSeen = "";
+        for (int cycle = 0; cycle < 8 && !anyBeans; cycle++) {
+            growUntil(helper, 4, 6000);
+            lastSeen = "age " + crop(helper).getCurrentAge();
+            boolean harvested = crop(helper).performManualHarvest();
+            lastSeen += " harvested " + harvested;
+            if (harvested) {
+                anyBeans |=
+                        countItems(
+                                        helper,
+                                        ic2.neoforge.registration.ModItems.MATERIALS
+                                                .get(
+                                                        ic2.neoforge.registration.MaterialDefinition
+                                                                .COFFEE_BEANS)
+                                                .get())
+                                > 0;
+            }
+        }
+        helper.assertTrue(anyBeans, "Ripe coffee drops coffee beans, last " + lastSeen);
+        helper.succeed();
+    }
+
+    static void cropCocoaNutrientGate(GameTestHelper helper) {
+        helper.setBlock(POSITION, ModCrops.CROP_STICK.get().defaultBlockState());
+        CropBlockEntity crop = crop(helper);
+        // Planting itself sits behind the nutrient gate (legacy fertilise-first flow).
+        crop.setStorageNutrients(3);
+        helper.assertTrue(
+                crop.rightClick(null, new ItemStack(Items.COCOA_BEANS)),
+                "Cocoa beans plant a fertilised stick");
+        for (int tick = 0; tick < 120; tick++) crop(helper).performTick(1024L);
+        helper.assertTrue(
+                crop(helper).getCurrentAge() == 0,
+                "Cocoa refuses to grow without stored nutrients, saw "
+                        + crop(helper).getCurrentAge());
+        crop(helper).setStorageNutrients(1000);
+        growUntil(helper, 1, 400);
+        helper.assertTrue(
+                crop(helper).getCurrentAge() >= 1,
+                "Stored nutrients unlock cocoa growth, saw " + crop(helper).getCurrentAge());
         helper.succeed();
     }
 

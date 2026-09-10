@@ -1,8 +1,9 @@
 package ic2.neoforge.crop;
 
 import net.minecraft.world.level.block.state.BlockBehaviour;
-import org.jspecify.annotations.Nullable;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
+
+import org.jspecify.annotations.Nullable;
 
 /** The weed crop block (legacy WEED_CROP): ages zero through four. */
 public class WeedCropBlock extends CropBlock {

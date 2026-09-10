@@ -9773,7 +9773,12 @@
    "factory": "register",
    "expression": "Ic2TileEntityBlock.create(cropSettings, TileEntityCrop.class, false, Ic2TileEntityBlock.DefaultDrop.Self, Util.noFacings, false, Ic2CropType.reed)",
    "decision": "preserve",
-   "status": "pending"
+   "status": "implemented",
+   "evidence": [
+    "neoforge/src/main/java/ic2/neoforge/registration/ModCrops.java",
+    "docs/migration/crops.md"
+   ],
+   "note": "Crop slice two: card ported with base-seed planting (docs/migration/crops.md)"
   },
   {
    "registry": "block",
@@ -9793,7 +9798,12 @@
    "factory": "register",
    "expression": "Ic2TileEntityBlock.create(cropSettings, TileEntityCrop.class, false, Ic2TileEntityBlock.DefaultDrop.Self, Util.noFacings, false, Ic2CropType.cocoa)",
    "decision": "preserve",
-   "status": "pending"
+   "status": "implemented",
+   "evidence": [
+    "neoforge/src/main/java/ic2/neoforge/registration/ModCrops.java",
+    "docs/migration/crops.md"
+   ],
+   "note": "Crop slice two: card ported with base-seed planting (docs/migration/crops.md)"
   },
   {
    "registry": "block",
@@ -9803,7 +9813,12 @@
    "factory": "register",
    "expression": "Ic2TileEntityBlock.create(cropSettings, TileEntityCrop.class, false, Ic2TileEntityBlock.DefaultDrop.Self, Util.noFacings, false, Ic2CropType.flax)",
    "decision": "preserve",
-   "status": "pending"
+   "status": "implemented",
+   "evidence": [
+    "neoforge/src/main/java/ic2/neoforge/registration/ModCrops.java",
+    "docs/migration/crops.md"
+   ],
+   "note": "Crop slice two: card ported with base-seed planting (docs/migration/crops.md)"
   },
   {
    "registry": "block",
@@ -9983,7 +9998,12 @@
    "factory": "register",
    "expression": "Ic2TileEntityBlock.create(cropSettings, TileEntityCrop.class, false, Ic2TileEntityBlock.DefaultDrop.Self, Util.noFacings, false, Ic2CropType.coffee)",
    "decision": "preserve",
-   "status": "pending"
+   "status": "implemented",
+   "evidence": [
+    "neoforge/src/main/java/ic2/neoforge/registration/ModCrops.java",
+    "docs/migration/crops.md"
+   ],
+   "note": "Crop slice two: card ported with base-seed planting (docs/migration/crops.md)"
   },
   {
    "registry": "block",
@@ -9993,7 +10013,12 @@
    "factory": "register",
    "expression": "Ic2TileEntityBlock.create(cropSettings, TileEntityCrop.class, false, Ic2TileEntityBlock.DefaultDrop.Self, Util.noFacings, false, Ic2CropType.hops)",
    "decision": "preserve",
-   "status": "pending"
+   "status": "implemented",
+   "evidence": [
+    "neoforge/src/main/java/ic2/neoforge/registration/ModCrops.java",
+    "docs/migration/crops.md"
+   ],
+   "note": "Crop slice two: card ported with base-seed planting (docs/migration/crops.md)"
   },
   {
    "registry": "block",

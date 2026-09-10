@@ -34,7 +34,7 @@ public class WeedCropCard implements CropCard {
     }
 
     @Override
-    public int getGrowthDuration() {
+    public int getGrowthDuration(CropBlockEntity crop) {
         return 300;
     }
 

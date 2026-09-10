@@ -24,7 +24,7 @@ public interface CropCard {
 
     int getMaxAge();
 
-    default int getGrowthDuration() {
+    default int getGrowthDuration(CropBlockEntity crop) {
         return getProperties().tier() * 200;
     }
 
@@ -75,6 +75,13 @@ public interface CropCard {
         return List.of();
     }
 
-    /** The pick drop (legacy getSeeds(ICropTile)); generates a stat-carrying seed bag. */
-    ItemStack getSeedsItem(CropBlockEntity crop);
+    /** The pick drop (legacy getSeeds(ICropTile)); defaults to a stat-carrying seed bag. */
+    default ItemStack getSeedsItem(CropBlockEntity crop) {
+        return crop.generateSeeds(
+                this,
+                crop.getStatGrowth(),
+                crop.getStatGain(),
+                crop.getStatResistance(),
+                crop.getScanLevel());
+    }
 }

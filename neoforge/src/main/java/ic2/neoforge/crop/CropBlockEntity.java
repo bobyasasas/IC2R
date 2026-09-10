@@ -67,7 +67,7 @@ public class CropBlockEntity extends net.minecraft.world.level.block.entity.Bloc
             if (crop.canGrow(this)) {
                 performGrowthTick(level, crop);
                 if (card() == null) return;
-                if (growthPoints >= crop.getGrowthDuration()) {
+                if (growthPoints >= crop.getGrowthDuration(this)) {
                     growthPoints = 0;
                     setCurrentAge(getCurrentAge() + 1);
                 }
@@ -181,10 +181,23 @@ public class CropBlockEntity extends net.minecraft.world.level.block.entity.Bloc
         return true;
     }
 
-    /** Legacy rightClick (slice one): a mature crop harvests on use. */
-    public boolean rightClick(Player player) {
+    /** Legacy rightClick: harvest a mature crop, or plant a base seed produce on an empty stick. */
+    public boolean rightClick(Player player, ItemStack held) {
         var crop = card();
+        if (crop == null && held != null && !held.isEmpty()) {
+            var base = ModCrops.baseSeedFor(held.getItem());
+            if (base != null) {
+                // Legacy consumeOrError with the registered size; zero consumes nothing.
+                if (base.size() > 0) held.shrink(base.size());
+                return tryPlantIn(
+                        base.card(), base.size(), base.growth(), base.gain(), base.resistance(), 0);
+            }
+        }
         return crop != null && performManualHarvest();
+    }
+
+    public boolean rightClick(Player player) {
+        return rightClick(player, ItemStack.EMPTY);
     }
 
     public boolean performManualHarvest() {
@@ -295,6 +308,13 @@ public class CropBlockEntity extends net.minecraft.world.level.block.entity.Bloc
         }
         int value = CropMath.airQuality(altitude, fresh, level.canSeeSky(worldPosition.above()));
         terrainAirQuality = (byte) value;
+    }
+
+    /** Legacy setCrop convenience: refreshes all three terrain qualities from the world. */
+    public void refreshTerrain(ServerLevel level) {
+        updateTerrainHumidity(level);
+        updateTerrainNutrients(level);
+        updateTerrainAirQuality(level);
     }
 
     public int getLightLevel() {

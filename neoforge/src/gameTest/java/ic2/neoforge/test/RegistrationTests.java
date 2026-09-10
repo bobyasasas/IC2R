@@ -397,6 +397,10 @@ public final class RegistrationTests {
         FUNCTIONS.register("crop_seed_bag_roundtrip", () -> CropTests::cropSeedBagRoundtrip);
         FUNCTIONS.register("crop_plant_harvest", () -> CropTests::cropPlantGrowHarvest);
         FUNCTIONS.register("crop_weed_growth", () -> CropTests::cropWeedGrowth);
+        FUNCTIONS.register("crop_base_seed_planting", () -> CropTests::cropBaseSeedPlanting);
+        FUNCTIONS.register("crop_reed_age_gains", () -> CropTests::cropReedAgeScaledGains);
+        FUNCTIONS.register("crop_coffee_harvest_window", () -> CropTests::cropCoffeeHarvestWindow);
+        FUNCTIONS.register("crop_cocoa_nutrient_gate", () -> CropTests::cropCocoaNutrientGate);
         FUNCTIONS.register(
                 "radiation_hazmat_set", () -> RadiationTests::hazmatCompleteSetDetection);
         FUNCTIONS.register(

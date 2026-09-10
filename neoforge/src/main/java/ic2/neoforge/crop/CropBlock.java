@@ -6,6 +6,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.EntityBlock;
@@ -75,6 +76,23 @@ public class CropBlock extends Block implements EntityBlock {
             net.minecraft.world.phys.BlockHitResult hit) {
         if (level.getBlockEntity(pos) instanceof CropBlockEntity crop) {
             return crop.rightClick(player) ? InteractionResult.CONSUME : InteractionResult.PASS;
+        }
+        return InteractionResult.PASS;
+    }
+
+    @Override
+    protected InteractionResult useItemOn(
+            ItemStack stack,
+            BlockState state,
+            Level level,
+            BlockPos pos,
+            Player player,
+            net.minecraft.world.InteractionHand hand,
+            net.minecraft.world.phys.BlockHitResult hit) {
+        if (level.getBlockEntity(pos) instanceof CropBlockEntity crop) {
+            return crop.rightClick(player, stack)
+                    ? InteractionResult.CONSUME
+                    : InteractionResult.PASS;
         }
         return InteractionResult.PASS;
     }

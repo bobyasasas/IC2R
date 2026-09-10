@@ -5,11 +5,11 @@ import net.minecraft.world.level.block.state.properties.IntegerProperty;
 
 import org.jspecify.annotations.Nullable;
 
-/** The wheat crop block (legacy WHEAT_CROP): ages zero through seven. */
-public class WheatCropBlock extends CropBlock {
-    public static final IntegerProperty AGE = IntegerProperty.create("age", 0, 7);
+/** The reed crop block (legacy REED_CROP): ages zero through 2. */
+public class ReedCropBlock extends CropBlock {
+    public static final IntegerProperty AGE = IntegerProperty.create("age", 0, 2);
 
-    public WheatCropBlock(BlockBehaviour.Properties properties) {
+    public ReedCropBlock(BlockBehaviour.Properties properties) {
         super(AGE, properties);
     }
 
