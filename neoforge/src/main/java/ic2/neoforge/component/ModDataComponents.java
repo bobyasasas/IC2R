@@ -243,6 +243,13 @@ public final class ModDataComponents {
                     builder ->
                             builder.persistent(Codec.BOOL).networkSynchronized(ByteBufCodecs.BOOL));
 
+    // Mirrors the legacy night vision NBT active flag (goggles and NanoSuit helmet).
+    public static final Supplier<DataComponentType<Boolean>> NIGHT_VISION_ACTIVE =
+            TYPES.<Boolean>registerComponentType(
+                    "night_vision_active",
+                    builder ->
+                            builder.persistent(Codec.BOOL).networkSynchronized(ByteBufCodecs.BOOL));
+
     private ModDataComponents() {}
 
     private static double validCharge(double value) {

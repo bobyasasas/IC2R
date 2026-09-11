@@ -77,6 +77,10 @@ public final class RegistrationTests {
         FUNCTIONS.register("batpack_distribution", () -> BatpackTests::armorDistribution);
         FUNCTIONS.register("batpack_tier_gating", () -> BatpackTests::tierGating);
         FUNCTIONS.register("batpack_mining", () -> BatpackTests::miningThroughBatpack);
+        FUNCTIONS.register("nano_spec_charged_attributes", () -> NanoArmorTests::specAndChargedAttributes);
+        FUNCTIONS.register("nano_energy_absorption", () -> NanoArmorTests::energyAbsorption);
+        FUNCTIONS.register("nano_fall_absorption", () -> NanoArmorTests::fallAbsorption);
+        FUNCTIONS.register("nano_night_vision", () -> NanoArmorTests::nightVisionToggleAndTick);
         FUNCTIONS.register("tool_interactions", () -> ToolTests::rotationAndInsulation);
         FUNCTIONS.register("tool_crafting", () -> ToolTests::crafting);
         FUNCTIONS.register("transformer_profiles", () -> EnergyDeviceTests::profiles);

@@ -4,6 +4,8 @@ import ic2.core.energy.ElectricItemSpec;
 import ic2.neoforge.IndustrialCraft;
 import ic2.neoforge.item.ElectricItem;
 import ic2.neoforge.item.HazmatArmorItem;
+import ic2.neoforge.item.NanoSuitItem;
+import ic2.neoforge.item.NightVisionGogglesItem;
 
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.resources.Identifier;
@@ -14,6 +16,7 @@ import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.equipment.ArmorMaterial;
 import net.minecraft.world.item.equipment.ArmorType;
 import net.minecraft.world.item.equipment.EquipmentAssets;
@@ -123,6 +126,136 @@ public final class ModArmor {
                                 .build());
     }
 
+    /**
+     * Legacy Ic2ArmorMaterials.NANO_SUIT: zero protection while uncharged — the charged
+     * protection values (3/6/8/3 per slot) come from ElectricArmorItem instead. Toughness 2.0,
+     * zero durability and enchantability.
+     */
+    private static final ArmorMaterial NANO_SUIT =
+            new ArmorMaterial(
+                    0,
+                    Map.of(
+                            ArmorType.BOOTS,
+                            0,
+                            ArmorType.LEGGINGS,
+                            0,
+                            ArmorType.CHESTPLATE,
+                            0,
+                            ArmorType.HELMET,
+                            0),
+                    0,
+                    SoundEvents.ARMOR_EQUIP_IRON,
+                    2.0F,
+                    0.0F,
+                    NO_REPAIR,
+                    ResourceKey.create(
+                            EquipmentAssets.ROOT_ID,
+                            Identifier.fromNamespaceAndPath(IndustrialCraft.MOD_ID, "ic2_nano")));
+
+    /**
+     * Legacy Ic2ArmorMaterials.NIGHT_VISION_GOGGLES: 3-point helmet, toughness 2.0 (the legacy
+     * protection array {0,0,0,3} indexes [boots,legs,chest,helmet]).
+     */
+    private static final ArmorMaterial NIGHT_VISION =
+            new ArmorMaterial(
+                    0,
+                    Map.of(
+                            ArmorType.BOOTS,
+                            0,
+                            ArmorType.LEGGINGS,
+                            0,
+                            ArmorType.CHESTPLATE,
+                            0,
+                            ArmorType.HELMET,
+                            3),
+                    0,
+                    SoundEvents.ARMOR_EQUIP_IRON,
+                    2.0F,
+                    0.0F,
+                    NO_REPAIR,
+                    ResourceKey.create(
+                            EquipmentAssets.ROOT_ID,
+                            Identifier.fromNamespaceAndPath(
+                                    IndustrialCraft.MOD_ID, "ic2_night_vision")));
+
+    /** Legacy ItemArmorNanoSuit: 1M EU, tier 3, 1600 EU/t. */
+    public static final DeferredItem<NanoSuitItem> NANO_HELMET =
+            ITEMS.registerItem(
+                    "nano_helmet",
+                    p ->
+                            new NanoSuitItem(
+                                    nano(p, ArmorType.HELMET, EquipmentSlot.HEAD),
+                                    nanoSpec(),
+                                    ArmorType.HELMET,
+                                    NANO_SUIT,
+                                    3));
+    public static final DeferredItem<NanoSuitItem> NANO_CHESTPLATE =
+            ITEMS.registerItem(
+                    "nano_chestplate",
+                    p ->
+                            new NanoSuitItem(
+                                    nano(p, ArmorType.CHESTPLATE, EquipmentSlot.CHEST),
+                                    nanoSpec(),
+                                    ArmorType.CHESTPLATE,
+                                    NANO_SUIT,
+                                    8));
+    public static final DeferredItem<NanoSuitItem> NANO_LEGGINGS =
+            ITEMS.registerItem(
+                    "nano_leggings",
+                    p ->
+                            new NanoSuitItem(
+                                    nano(p, ArmorType.LEGGINGS, EquipmentSlot.LEGS),
+                                    nanoSpec(),
+                                    ArmorType.LEGGINGS,
+                                    NANO_SUIT,
+                                    6));
+    public static final DeferredItem<NanoSuitItem> NANO_BOOTS =
+            ITEMS.registerItem(
+                    "nano_boots",
+                    p ->
+                            new NanoSuitItem(
+                                    nano(p, ArmorType.BOOTS, EquipmentSlot.FEET),
+                                    nanoSpec(),
+                                    ArmorType.BOOTS,
+                                    NANO_SUIT,
+                                    3));
+
+    private static ElectricItemSpec nanoSpec() {
+        return new ElectricItemSpec(1000000, 1600, 3, false);
+    }
+
+    private static Item.Properties nano(
+            Item.Properties properties, ArmorType type, EquipmentSlot slot) {
+        // No static ATTRIBUTE_MODIFIERS component: the charged/uncharged switch lives in
+        // ElectricArmorItem.getDefaultAttributeModifiers, which the stack only consults
+        // while the component stays empty.
+        return properties
+                .rarity(Rarity.UNCOMMON)
+                .component(
+                        DataComponents.EQUIPPABLE,
+                        Equippable.builder(slot)
+                                .setEquipSound(NANO_SUIT.equipSound())
+                                .setAsset(NANO_SUIT.assetId())
+                                .build());
+    }
+
+    /** Legacy ItemArmorNightVisionGoggles: 200k EU at tier 1 and a 27-use durability bar. */
+    public static final DeferredItem<NightVisionGogglesItem> NIGHT_VISION_GOGGLES =
+            ITEMS.registerItem(
+                    "night_vision_goggles",
+                    p ->
+                            new NightVisionGogglesItem(
+                                    p.attributes(NIGHT_VISION.createAttributes(ArmorType.HELMET))
+                                            .durability(27)
+                                            .component(
+                                                    DataComponents.EQUIPPABLE,
+                                                    Equippable.builder(EquipmentSlot.HEAD)
+                                                            .setEquipSound(
+                                                                    NIGHT_VISION.equipSound())
+                                                            .setAsset(NIGHT_VISION.assetId())
+                                                            .build()),
+                                    new ElectricItemSpec(200000, 200, 1, false)));
+
     private static UnaryOperator<Item.Properties> hazmat(ArmorType type, EquipmentSlot slot) {
         return properties ->
                 properties
@@ -148,6 +281,11 @@ public final class ModArmor {
             event.accept(ModArmor.RUBBER_BOOTS);
             event.accept(ModArmor.BATPACK);
             event.accept(ModArmor.ADVANCED_BATPACK);
+            event.accept(ModArmor.NANO_HELMET);
+            event.accept(ModArmor.NANO_CHESTPLATE);
+            event.accept(ModArmor.NANO_LEGGINGS);
+            event.accept(ModArmor.NANO_BOOTS);
+            event.accept(ModArmor.NIGHT_VISION_GOGGLES);
         }
     }
 
