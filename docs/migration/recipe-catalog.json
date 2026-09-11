@@ -2901,26 +2901,26 @@
     {
       "source": "shaped/jetpack.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:jetpack"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/jetpack.json"
     },
     {
       "source": "shaped/jetpack_attachment.json",
       "type": "ic2:jetpack_attachment",
-      "status": "pending",
-      "reason": "recipe family not ported"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/jetpack_attachment.json"
     },
     {
       "source": "shaped/jetpack_attachment_plate.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:jetpack_attachment_plate"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/jetpack_attachment_plate.json"
     },
     {
       "source": "shaped/jetpack_electric.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:jetpack_electric"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/jetpack_electric.json"
     },
     {
       "source": "shaped/kinetic_generator.json",

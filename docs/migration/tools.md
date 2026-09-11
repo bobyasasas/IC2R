@@ -61,3 +61,29 @@
 - **键盘依赖降级**（如实记录）：legacy 跳跃键按住推进+跳跃/模式键切悬停——服务器无法读键，两个背包统一为潜行+use 切 `jetpack_active` 组件（复用 quantum 先例与 legacy 文案），激活即持续推进，潜行=悬停下降钳制，sprint=legacy 前进推进；UX 待人工。
 - 配方 8 条照搬 legacy：energy_pack/lappack（水晶链）、solar_helmet 与 static_boots 各含原版盔甲改装变体（`*_from_helmet/_from_boots`）、jetpack（facade_cell/circuit/redstone；legacy 的 `consuming` 标志对纯物品配方行为等价故省略）、jetpack_electric；创造页 COMBAT，经典背包同时提供满罐堆（对应 legacy `fillItemCategory` 双堆展示）。
 - GameTest 5 项（双模式共 **371 项**真实执行）：六件规格/静态属性/罐语义（超量拒付、逐量扣减）、太阳光充电（测量单 tick 增量恰等于亮度公式、晴天/室内分离）、静电靴 5 格 1 EU→10 格 2 EU→骑乘冻结、电动背包推力复算（含顶高钳制与 5% 斜坡）/悬停 −0.1/地面不耗电/sneak+use 装备、经典背包推力/2 mB 扣减/1 mB 拒付/空罐不动。
+
+## 喷气背包家族收尾：jetpack attachment 与经典背包世界侧充装（P16-f）
+
+Legacy `ic2.core.item.armor.jetpack` 包（JetpackHandler/JetpackAttachmentRecipe）与
+`ItemArmorFluidTank`（经典背包流体罐）补齐，详见 [jetpack-attachment.md](jetpack-attachment.md)。
+
+- **附加配方** `ic2:jetpack_attachment`（无图案，`MapCodec.unit`/`StreamCodec.unit` 无字段序列化器）：
+  电力喷气背包 + 非黑名单胸甲（26.1.2 用 `DataComponents.EQUIPPABLE` 判定 CHEST——
+  `Mob.getEquipmentSlotForItem` 已是实例方法）+ 连接部件；黑名单固定 = 经典/电动背包、量子胸、鞘翅
+  （legacy 的可配置 blacklist 勘误：port 无等效动态配置机制）。
+- **电量转移**：电动护甲（ElectricItem）进自身电池；普通护甲进 `jetpack_charge` 组件
+  （上限 30,000，对应 legacy JetpackHandler 作为 IBackupElectricItemManager 的 NBT `charge` 语义）。
+- **虚拟背包视图**：`JetpackAttachmentHelper.jetpackView()` 返回电力背包参数（0.7/0.05/0.1/1.28）的
+  `JetpackLike`，`JetpackLogic` 胸甲分派顺序 = 原生背包 → 附加视图；扣费沿用 +6 quirk（8/7）。
+- **破损弹回**：`LivingIncomingDamageEvent` 记录胸甲（BYPASSES_INVULNERABILITY 豁免）→ 下 tick
+  胸空 → 新电力背包带虚拟电量 `setItemSlot` 弹回（legacy LivingEquipmentChangeEvent 语义按效果等价移植）。
+- **键盘降级**：sneak+use 持有已附加护甲切 `jetpack_active`（`RightClickItem` 取消原版装备替换），
+  潜行=悬停；tooltip 黄行 + 非电动护甲的 EU 电量行（`DecimalFormat("0.##")`）。
+- **世界侧充装**：`JetpackTankHandler extends ItemAccessResourceHandler<FluidResource>`（1 槽/30,000 mB/
+  `isValid` 沼气限定对应 legacy `canFill`/`FLUID` 组件写回）注册 `Capabilities.Fluid.ITEM`；
+  TANK 右键走 `MachineBlock.useItemOn` 既有 `FluidUtil` 路径端到端充装。
+- **板物品**：`JetpackAttachmentPlateItem` 三行 tooltip（craft/attach/warning 键已预存）；
+  配方 `shaped/jetpack_attachment_plate` 照搬 legacy（iridium_shard 填 `c:nuggets/iridium` tag）。
+- GameTest 4 项（双模式共 **378 项**）：配方装配两条电量路径+黑名单+重复/缺件/已附加拒绝+板图案、
+  附加飞行推力复算+悬停+地面免耗+电动护甲自电池路径、弹回带电量+护甲存活不换+未附加不弹、
+  capability 沼气限定+组件写回+TANK 右键端到端。

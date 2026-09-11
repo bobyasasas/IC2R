@@ -4509,7 +4509,14 @@
       "factory": "register",
       "expression": "new Item(new Properties()){\n    \n    @Override\n    public void appendHoverText(@NotNull\n    ItemStack item, @Nullable\n    Level level, @NotNull\n    List<Component> components, @NotNull\n    TooltipFlag flag) {\n        Ic2Tooltip.add(components, Component.translatable(\"ic2.tooltip.jetpack_attachment.craft\"));\n        Ic2Tooltip.add(components, Component.translatable(\"ic2.tooltip.jetpack_attachment.attach\"));\n        Ic2Tooltip.add(components, Component.translatable(\"ic2.tooltip.jetpack_attachment.warning\"));\n    }\n}",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModItems.java",
+        "neoforge/src/main/java/ic2/neoforge/item/JetpackAttachmentPlateItem.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/JetpackAttachmentTests.java",
+        "docs/migration/jetpack-attachment.md"
+      ],
+      "note": "板物品+三行 tooltip（JetpackAttachmentPlateItem）+legacy 图案配方；jetpack_attachment 配方装配测试覆盖。"
     },
     {
       "registry": "item",
@@ -6828,7 +6835,15 @@
       "factory": "register",
       "expression": "new ItemArmorJetpack(new Properties())",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModArmor.java",
+        "neoforge/src/main/java/ic2/neoforge/item/JetpackItem.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/EquipmentPackTests.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/JetpackAttachmentTests.java",
+        "docs/migration/jetpack-attachment.md"
+      ],
+      "note": "此前切片交付本体与飞行（EquipmentPackTests 371），本切片补记 evidence；世界侧充装（沼气罐 Fluid.ITEM capability）见 jetpack-attachment.md。"
     },
     {
       "registry": "item",
@@ -6838,7 +6853,15 @@
       "factory": "register",
       "expression": "new ItemArmorJetpackElectric()",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModArmor.java",
+        "neoforge/src/main/java/ic2/neoforge/item/JetpackItem.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/EquipmentPackTests.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/JetpackAttachmentTests.java",
+        "docs/migration/jetpack-attachment.md"
+      ],
+      "note": "此前切片交付本体与飞行（EquipmentPackTests 371），本切片补记 evidence。"
     },
     {
       "registry": "item",
@@ -14189,7 +14212,14 @@
       "factory": "register",
       "expression": "new ic2.core.item.armor.jetpack.JetpackAttachmentRecipe.Serializer()",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/recipe/JetpackAttachmentRecipe.java",
+        "neoforge/src/main/java/ic2/neoforge/registration/ModCraftingRecipes.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/JetpackAttachmentTests.java",
+        "docs/migration/jetpack-attachment.md"
+      ],
+      "note": "无字段配方（MapCodec.unit/StreamCodec.unit）；黑名单与电量转移语义见 jetpack-attachment.md。"
     },
     {
       "registry": "recipe_serializer",

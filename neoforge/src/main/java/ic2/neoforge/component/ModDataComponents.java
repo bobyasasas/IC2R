@@ -264,6 +264,19 @@ public final class ModDataComponents {
 
     // QuantumSuit per-piece NBT flags and the legs speed ticker, toggled with shift use
     // (legacy read the client keyboard instead; the port has no client keybinds yet).
+    // Legacy JetpackHandler: the hasIC2Jetpack NBT flag and the virtual "charge" battery it
+    // lends to chest armors that are not electric items themselves.
+    public static final Supplier<DataComponentType<Boolean>> JETPACK_ATTACHED =
+            TYPES.<Boolean>registerComponentType(
+                    "jetpack_attached",
+                    builder ->
+                            builder.persistent(Codec.BOOL).networkSynchronized(ByteBufCodecs.BOOL));
+    public static final Supplier<DataComponentType<Double>> JETPACK_CHARGE =
+            TYPES.<Double>registerComponentType(
+                    "jetpack_charge",
+                    builder ->
+                            builder.persistent(Codec.DOUBLE)
+                                    .networkSynchronized(ByteBufCodecs.DOUBLE));
     public static final Supplier<DataComponentType<Boolean>> JETPACK_ACTIVE =
             TYPES.<Boolean>registerComponentType(
                     "jetpack_active",

@@ -1,6 +1,7 @@
 package ic2.neoforge.registration;
 
 import ic2.neoforge.IndustrialCraft;
+import ic2.neoforge.registration.ModArmor;
 import ic2.neoforge.fluid.FluidDefinition;
 
 import net.minecraft.core.registries.Registries;
@@ -103,6 +104,11 @@ public final class ModFluids {
                                         Capabilities.Fluid.ITEM,
                                         (stack, access) -> new BucketResourceHandler(access),
                                         family.bucket().get()));
+        // Legacy ItemArmorJetpack is a StandardFluidItem; the tank fills world-side.
+        event.registerItem(
+                Capabilities.Fluid.ITEM,
+                (stack, access) -> new ic2.neoforge.item.JetpackTankHandler(access),
+                ModArmor.JETPACK.get());
     }
 
     private static void creativeContents(BuildCreativeModeTabContentsEvent event) {

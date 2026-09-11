@@ -17,7 +17,14 @@ public final class JetpackLogic {
         if (player.level().isClientSide()) return;
 
         ItemStack chest = player.getItemBySlot(net.minecraft.world.entity.EquipmentSlot.CHEST);
-        if (chest.getItem() instanceof JetpackLike jetpack && jetpack.isJetpackActive(chest)) {
+        JetpackLike jetpack = null;
+        if (chest.getItem() instanceof JetpackLike like && like.isJetpackActive(chest)) {
+            jetpack = like;
+        } else if (JetpackAttachmentHelper.hasAttached(chest)
+                && JetpackAttachmentHelper.jetpackView().isJetpackActive(chest)) {
+            jetpack = JetpackAttachmentHelper.jetpackView();
+        }
+        if (jetpack != null) {
             useJetpack(player, jetpack, chest);
         }
     }

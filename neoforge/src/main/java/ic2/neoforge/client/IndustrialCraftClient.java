@@ -176,6 +176,7 @@ public final class IndustrialCraftClient {
 
     private static void addTooltip(ItemTooltipEvent event) {
         var stack = event.getItemStack();
+        ic2.neoforge.item.JetpackAttachmentHelper.addTooltip(event);
         if (stack.getItem() instanceof UpgradeItem item) {
             int count = stack.getCount();
             var format = new java.text.DecimalFormat("0.##");

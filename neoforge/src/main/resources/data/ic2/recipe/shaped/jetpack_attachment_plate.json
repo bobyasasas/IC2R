@@ -1,0 +1,18 @@
+{
+  "type": "ic2:shaped",
+  "pattern": [
+    "IAI",
+    "CRC",
+    "IAI"
+  ],
+  "result": {
+    "id": "ic2:jetpack_attachment_plate",
+    "count": 1
+  },
+  "key": {
+    "R": "#c:plates/steel",
+    "A": "ic2:alloy",
+    "C": "ic2:carbon_plate",
+    "I": "#c:nuggets/iridium"
+  }
+}

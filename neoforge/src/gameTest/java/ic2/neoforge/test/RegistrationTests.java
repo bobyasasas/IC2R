@@ -92,6 +92,10 @@ public final class RegistrationTests {
         FUNCTIONS.register("equipment_static_boots", () -> EquipmentPackTests::staticBootsChargesChest);
         FUNCTIONS.register("equipment_jetpack_electric", () -> EquipmentPackTests::jetpackElectricFlight);
         FUNCTIONS.register("equipment_jetpack_classic", () -> EquipmentPackTests::jetpackClassicFlight);
+        FUNCTIONS.register("jetpack_attachment_recipe", () -> JetpackAttachmentTests::attachmentRecipe);
+        FUNCTIONS.register("jetpack_attached_flight", () -> JetpackAttachmentTests::attachedFlight);
+        FUNCTIONS.register("jetpack_pop_back", () -> JetpackAttachmentTests::popBack);
+        FUNCTIONS.register("jetpack_world_fill", () -> JetpackAttachmentTests::worldFill);
         FUNCTIONS.register("tool_interactions", () -> ToolTests::rotationAndInsulation);
         FUNCTIONS.register("tool_crafting", () -> ToolTests::crafting);
         FUNCTIONS.register("transformer_profiles", () -> EnergyDeviceTests::profiles);

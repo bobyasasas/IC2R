@@ -2,8 +2,13 @@ package ic2.neoforge.registration;
 
 import ic2.neoforge.IndustrialCraft;
 import ic2.neoforge.recipe.ElectricCraftingRecipe;
+import ic2.neoforge.recipe.JetpackAttachmentRecipe;
+
+import com.mojang.serialization.MapCodec;
 
 import net.minecraft.core.registries.Registries;
+import net.minecraft.network.RegistryFriendlyByteBuf;
+import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.ShapedRecipe;
 import net.minecraft.world.item.crafting.ShapelessRecipe;
@@ -39,6 +44,16 @@ public final class ModCraftingRecipes {
                                             ElectricCraftingRecipe.streamCodec(
                                                     ShapelessRecipe.STREAM_CODEC,
                                                     ShapelessRecipe.class)));
+
+    public static final DeferredHolder<
+                    RecipeSerializer<?>, RecipeSerializer<JetpackAttachmentRecipe>>
+            JETPACK_ATTACHMENT =
+                    SERIALIZERS.register(
+                            "jetpack_attachment",
+                            () ->
+                                    new RecipeSerializer<JetpackAttachmentRecipe>(
+                                            MapCodec.unit(new JetpackAttachmentRecipe()),
+                                            StreamCodec.unit(new JetpackAttachmentRecipe())));
 
     public static void register(IEventBus bus) {
         SERIALIZERS.register(bus);
