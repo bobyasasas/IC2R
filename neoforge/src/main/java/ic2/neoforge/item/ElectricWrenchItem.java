@@ -36,7 +36,7 @@ public final class ElectricWrenchItem extends ElectricItem implements WrenchTool
     @Override
     public boolean mineBlock(
             ItemStack stack, Level level, BlockState state, BlockPos pos, LivingEntity owner) {
-        if (!level.isClientSide()) ElectricItemEnergy.discharge(stack, 100, 1, true, false, false);
+        if (!level.isClientSide()) ElectricItemEnergy.use(stack, 100, owner);
         return true;
     }
 }

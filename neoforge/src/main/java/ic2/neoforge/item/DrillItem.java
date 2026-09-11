@@ -88,8 +88,7 @@ public class DrillItem extends ElectricItem {
     public boolean mineBlock(
             ItemStack stack, Level level, BlockState state, BlockPos pos, LivingEntity owner) {
         if (!level.isClientSide() && state.getDestroySpeed(level, pos) != 0.0F && canUse(stack)) {
-            ElectricItemEnergy.discharge(
-                    stack, operationEnergyCost, specification().tier(), true, false, false);
+            ElectricItemEnergy.use(stack, operationEnergyCost, owner);
         }
         return true;
     }

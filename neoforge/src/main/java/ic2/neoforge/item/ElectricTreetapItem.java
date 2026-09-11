@@ -15,7 +15,7 @@ public final class ElectricTreetapItem extends ElectricItem {
         if (ElectricItemEnergy.charge(context.getItemInHand()) < 50
                 || !TreetapActions.extract(context, true)) return InteractionResult.PASS;
         if (!context.getLevel().isClientSide())
-            ElectricItemEnergy.discharge(context.getItemInHand(), 50, 1, true, false, false);
+            ElectricItemEnergy.use(context.getItemInHand(), 50, context.getPlayer());
         return InteractionResult.SUCCESS;
     }
 }

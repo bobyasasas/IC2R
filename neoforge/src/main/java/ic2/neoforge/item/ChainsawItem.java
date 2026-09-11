@@ -18,7 +18,6 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.EquipmentSlotGroup;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.Shearable;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.monster.piglin.PiglinAi;
@@ -36,10 +35,13 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.LeavesBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.gameevent.GameEvent;
+import net.neoforged.neoforge.common.IShearable;
 import net.neoforged.neoforge.event.level.block.BreakBlockEvent;
 
 import java.util.List;
 import java.util.function.Consumer;
+
+import javax.annotation.Nullable;
 
 /**
  * Electric chainsaw: axe-speed logger that also shears vegetation and livestock. Ordinary axe
@@ -147,7 +149,7 @@ public class ChainsawItem extends ElectricItem {
         if (attacker.level().isClientSide()) {
             return;
         }
-        if (dischargeOperation(stack)) {
+        if (dischargeOperation(stack, attacker)) {
             playUsingSound(attacker);
         }
     }
@@ -155,17 +157,25 @@ public class ChainsawItem extends ElectricItem {
     @Override
     public InteractionResult interactLivingEntity(
             ItemStack stack, Player player, LivingEntity target, InteractionHand hand) {
-        if (!this.isShearMode(stack)
-                || !(target instanceof Shearable shearable)
-                || !shearable.readyForShearing()) {
+        if (!this.isShearMode(stack) || !(target instanceof IShearable shearable)) {
             return InteractionResult.PASS;
         }
         Level level = target.level();
         if (level.isClientSide()) {
             return InteractionResult.SUCCESS;
         }
-        if (dischargeOperation(stack)) {
-            shearable.shear((ServerLevel) level, SoundSource.PLAYERS, stack);
+        var pos = target.blockPosition();
+        if (!shearable.isShearable(player, stack, level, pos)) {
+            return InteractionResult.PASS;
+        }
+        if (dischargeOperation(stack, player)) {
+            // NeoForge routes shearing through IShearable like legacy IForgeShearable: onSheared
+            // returns the drops and the caller spawns them.
+            for (ItemStack drop : shearable.onSheared(player, stack, level, pos)) {
+                if (!drop.isEmpty()) {
+                    shearable.spawnShearedDrop((ServerLevel) level, pos, drop);
+                }
+            }
             playUsingSound(player);
             return InteractionResult.SUCCESS;
         }
@@ -181,7 +191,7 @@ public class ChainsawItem extends ElectricItem {
         ItemStack stack = player.getItemInHand(hand);
         if (player.isSecondaryUseActive()) {
             if (!level.isClientSide()) {
-                boolean disableShear = !this.isShearMode(stack);
+                boolean disableShear = this.isShearMode(stack);
                 stack.set(ModDataComponents.CHAINSAW_DISABLE_SHEAR, disableShear);
                 player.sendSystemMessage(
                         Component.translatable(
@@ -219,7 +229,7 @@ public class ChainsawItem extends ElectricItem {
             return;
         }
         if (event.getLevel() instanceof Level level
-                && chainsaw.dischargeOperation(stack)
+                && chainsaw.dischargeOperation(stack, event.getPlayer())
                 && shearBreak(level, event.getPlayer(), event.getPos(), event.getState(), stack)) {
             event.setCanceled(true);
         }
@@ -244,16 +254,10 @@ public class ChainsawItem extends ElectricItem {
         return true;
     }
 
-    /** One EU operation spent, mirroring legacy consumeEnergy's canUse + discharge pair. */
-    private boolean dischargeOperation(ItemStack stack) {
-        return ElectricItemEnergy.discharge(
-                        stack,
-                        OPERATION_ENERGY_COST,
-                        this.specification().tier(),
-                        true,
-                        false,
-                        false)
-                >= OPERATION_ENERGY_COST;
+    /** One EU operation spent, mirroring legacy consumeEnergy's canUse + use pair. */
+    private boolean dischargeOperation(ItemStack stack, @Nullable LivingEntity entity) {
+        return this.canUse(stack)
+                && ElectricItemEnergy.use(stack, OPERATION_ENERGY_COST, entity);
     }
 
     private void playUsingSound(LivingEntity user) {

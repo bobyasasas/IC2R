@@ -1,0 +1,7 @@
+{
+  "type": "minecraft:function",
+  "function": "ic2_tests:chainsaw_shear_break",
+  "environment": "minecraft:default",
+  "structure": "ic2_tests:machine_room",
+  "max_ticks": 200
+}

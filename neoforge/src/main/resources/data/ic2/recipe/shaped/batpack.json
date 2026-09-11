@@ -1,0 +1,17 @@
+{
+  "type": "ic2:shaped",
+  "pattern": [
+    "ABA",
+    "ACA",
+    "A A"
+  ],
+  "result": {
+    "id": "ic2:batpack",
+    "count": 1
+  },
+  "key": {
+    "A": "ic2:re_battery",
+    "B": "ic2:circuit",
+    "C": "#minecraft:planks"
+  }
+}

@@ -1,6 +1,8 @@
 package ic2.neoforge.registration;
 
+import ic2.core.energy.ElectricItemSpec;
 import ic2.neoforge.IndustrialCraft;
+import ic2.neoforge.item.ElectricItem;
 import ic2.neoforge.item.HazmatArmorItem;
 
 import net.minecraft.core.component.DataComponents;
@@ -80,6 +82,47 @@ public final class ModArmor {
                     HazmatArmorItem::new,
                     hazmat(ArmorType.BOOTS, EquipmentSlot.FEET));
 
+    /**
+     * The legacy wearable batteries: chest slot, no protection outside the material's 8-point
+     * chestplate defence, and externally dischargeable so worn packs can feed held tools through
+     * ElectricItemEnergy.use. Ic2ArmorMaterials.BAT_PACK: defence 0/0/8/0, toughness 2.0, zero
+     * durability and enchantability.
+     */
+    private static final ArmorMaterial BAT_PACK =
+            new ArmorMaterial(
+                    0,
+                    Map.of(ArmorType.CHESTPLATE, 8),
+                    0,
+                    SoundEvents.ARMOR_EQUIP_IRON,
+                    2.0F,
+                    0.0F,
+                    NO_REPAIR,
+                    ResourceKey.create(
+                            EquipmentAssets.ROOT_ID,
+                            Identifier.fromNamespaceAndPath(IndustrialCraft.MOD_ID, "ic2_bat_pack")));
+
+    public static final DeferredItem<ElectricItem> BATPACK =
+            ITEMS.registerItem(
+                    "batpack",
+                    p -> new ElectricItem(batpack(p), new ElectricItemSpec(60000, 100, 1, true)));
+    public static final DeferredItem<ElectricItem> ADVANCED_BATPACK =
+            ITEMS.registerItem(
+                    "advanced_batpack",
+                    p ->
+                            new ElectricItem(
+                                    batpack(p), new ElectricItemSpec(600000, 1000, 2, true)));
+
+    private static Item.Properties batpack(Item.Properties properties) {
+        return properties
+                .attributes(BAT_PACK.createAttributes(ArmorType.CHESTPLATE))
+                .component(
+                        DataComponents.EQUIPPABLE,
+                        Equippable.builder(EquipmentSlot.CHEST)
+                                .setEquipSound(BAT_PACK.equipSound())
+                                .setAsset(BAT_PACK.assetId())
+                                .build());
+    }
+
     private static UnaryOperator<Item.Properties> hazmat(ArmorType type, EquipmentSlot slot) {
         return properties ->
                 properties
@@ -103,6 +146,8 @@ public final class ModArmor {
             event.accept(ModArmor.HAZMAT_CHESTPLATE);
             event.accept(ModArmor.HAZMAT_LEGGINGS);
             event.accept(ModArmor.RUBBER_BOOTS);
+            event.accept(ModArmor.BATPACK);
+            event.accept(ModArmor.ADVANCED_BATPACK);
         }
     }
 

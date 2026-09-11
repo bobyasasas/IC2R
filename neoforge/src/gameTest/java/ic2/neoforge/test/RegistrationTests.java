@@ -73,6 +73,10 @@ public final class RegistrationTests {
         FUNCTIONS.register("chainsaw_shear_break", () -> ChainsawItemTests::shearBreak);
         FUNCTIONS.register("chainsaw_mode_toggle", () -> ChainsawItemTests::modeToggle);
         FUNCTIONS.register("chainsaw_entity_shear", () -> ChainsawItemTests::entityShear);
+        FUNCTIONS.register("batpack_spec_armor", () -> BatpackTests::specArmorAndExternalOutput);
+        FUNCTIONS.register("batpack_distribution", () -> BatpackTests::armorDistribution);
+        FUNCTIONS.register("batpack_tier_gating", () -> BatpackTests::tierGating);
+        FUNCTIONS.register("batpack_mining", () -> BatpackTests::miningThroughBatpack);
         FUNCTIONS.register("tool_interactions", () -> ToolTests::rotationAndInsulation);
         FUNCTIONS.register("tool_crafting", () -> ToolTests::crafting);
         FUNCTIONS.register("transformer_profiles", () -> EnergyDeviceTests::profiles);
