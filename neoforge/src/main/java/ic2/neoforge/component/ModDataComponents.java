@@ -250,6 +250,18 @@ public final class ModDataComponents {
                     builder ->
                             builder.persistent(Codec.BOOL).networkSynchronized(ByteBufCodecs.BOOL));
 
+    // Mirrors the legacy static boots NBT x/z walk markers (Integer NBT on the stack).
+    public static final Supplier<DataComponentType<Integer>> STATIC_BOOTS_X =
+            TYPES.<Integer>registerComponentType(
+                    "static_boots_x",
+                    builder ->
+                            builder.persistent(Codec.INT).networkSynchronized(ByteBufCodecs.VAR_INT));
+    public static final Supplier<DataComponentType<Integer>> STATIC_BOOTS_Z =
+            TYPES.<Integer>registerComponentType(
+                    "static_boots_z",
+                    builder ->
+                            builder.persistent(Codec.INT).networkSynchronized(ByteBufCodecs.VAR_INT));
+
     // QuantumSuit per-piece NBT flags and the legs speed ticker, toggled with shift use
     // (legacy read the client keyboard instead; the port has no client keybinds yet).
     public static final Supplier<DataComponentType<Boolean>> JETPACK_ACTIVE =

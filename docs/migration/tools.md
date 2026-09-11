@@ -49,3 +49,15 @@
 - 键盘依赖降级（如实记录）：legacy 读客户端键位（悬停/速度/跳跃/前进），服务器移植无法读取——模式开关统一为潜行+use 切对应布尔组件（含系统消息复用 legacy 文案），前进/加速用 `isSprinting` 替代，悬停用潜行替代；待人工验收键位降级 UX。
 - 配方：胸/腿/靴三条照搬 legacy（iridium+lapotron_crystal+alloy|machine+glowstone_dust|rubber_boots，纳米件为基底）；**quantum_helmet 配方暂缓**（reinforced_glass 未移植，同 goggles 先例，已记录）。创造页 COMBAT。
 - GameTest 6 项（含同步的 test_instance JSON，双模式共 366 项真实执行）：规格与充能属性/染色组件/hazmat 充能门控、generic 伤害精确账目（4.8 点 96000 EU、电量受限时坦克见底、BYPASSES 门控）、头盔三线生命维持（供氧 300 耗 1000、三罐 10→13 耗 1000、三毒全清耗 90100 且无关效果幸存）、喷气推力公式（含 5% 电量斜坡与维度顶高钳制的期望复算）/悬停 −0.1/每 tick 8 EU/摔落重置/地面不耗电、超级跳起跳 0.3 与离地 4000 EU、直调摔落 15 格 100000 EU 与 25 格 300000 EU（无上限）及事件取消、疾速 0.22 推力/第十 tick 付费/组件关闭断电。
+
+## 穿戴装备家族二：Lappack/Energypack/太阳能头盔/静电靴/双喷气背包（P16-e）
+
+已接入六件 legacy 装备，与 batpack 同模式走静态属性组件 + `Equippable`（26.1.2 数据组件先例），复用穿戴配电与摔落/减伤基建。
+
+- **Lappack**：20,000,000 EU/2500 传输/等级 4、UNCOMMON、外部可放电（对应 legacy `canProvideEnergy`），胸甲 8 点/韧性 2.0；**Energypack**：2,000,000/1000/等级 3、外放、同胸甲材料。二者无能量减伤（legacy energyPerDamage=0/比率 0）。
+- **太阳能头盔**：盔 3 点（无韧性）；`UtilityArmorHelper` 每 tick 以太阳能发电机同款亮度公式（`SolarGeneration.brightness`：天空光/15 × 太阳角因子 × 11/16 雨衰减，sandy 分支按勘误恒 false）在玩家位置取样，把亮度值 EU 充给胸甲槽的任何电动物品（满正午 = 1 EU/t）。
+- **静电靴**：靴 3 点；水平位移累计 ≥5 格时给胸甲槽充 `min(3, 距离/5)` EU 并重置标记；骑乘或水中冻结标记（`static_boots_x/z` 数据组件，对应 legacy NBT x/z）。
+- **电动喷气背包**：30,000 EU/60 传输/等级 1；**经典喷气背包**：30000 mB 沼气罐（`FLUID` 数据组件，同 CF 背包先例；罐与沼气流体比对用 `Holder.value()`——26.1.2 `FluidStackTemplate.fluid()` 返回 Holder 而非 Fluid）。二者实现 `JetpackLike`（推力 1.0/0.7、掉电斜坡 20%/5%、悬停系数 0.2/0.1、顶高分母 1.0/1.28），共享 `JetpackLogic`（legacy JetpackLogic 移植）：`motionY=min(+power×0.2, 0.6)`、顶高 25 格内线性衰减、空中每 tick 耗 1–2 单位（电动背包 +legacy +6 quirk；经典罐不足整 tick 拒付但仍动作）、`resetFallDistance`。
+- **键盘依赖降级**（如实记录）：legacy 跳跃键按住推进+跳跃/模式键切悬停——服务器无法读键，两个背包统一为潜行+use 切 `jetpack_active` 组件（复用 quantum 先例与 legacy 文案），激活即持续推进，潜行=悬停下降钳制，sprint=legacy 前进推进；UX 待人工。
+- 配方 8 条照搬 legacy：energy_pack/lappack（水晶链）、solar_helmet 与 static_boots 各含原版盔甲改装变体（`*_from_helmet/_from_boots`）、jetpack（facade_cell/circuit/redstone；legacy 的 `consuming` 标志对纯物品配方行为等价故省略）、jetpack_electric；创造页 COMBAT，经典背包同时提供满罐堆（对应 legacy `fillItemCategory` 双堆展示）。
+- GameTest 5 项（双模式共 **371 项**真实执行）：六件规格/静态属性/罐语义（超量拒付、逐量扣减）、太阳光充电（测量单 tick 增量恰等于亮度公式、晴天/室内分离）、静电靴 5 格 1 EU→10 格 2 EU→骑乘冻结、电动背包推力复算（含顶高钳制与 5% 斜坡）/悬停 −0.1/地面不耗电/sneak+use 装备、经典背包推力/2 mB 扣减/1 mB 拒付/空罐不动。

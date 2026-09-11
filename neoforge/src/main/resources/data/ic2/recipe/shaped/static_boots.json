@@ -1,0 +1,17 @@
+{
+  "type": "ic2:shaped",
+  "pattern": [
+    "I I",
+    "ISI",
+    "CCC"
+  ],
+  "result": {
+    "id": "ic2:static_boots",
+    "count": 1
+  },
+  "key": {
+    "I": "minecraft:iron_ingot",
+    "S": "#minecraft:wool",
+    "C": "ic2:insulated_copper_cable"
+  }
+}

@@ -87,6 +87,11 @@ public final class RegistrationTests {
         FUNCTIONS.register("quantum_jetpack_flight", () -> QuantumArmorTests::jetpackFlight);
         FUNCTIONS.register("quantum_jump_fall", () -> QuantumArmorTests::jumpAndFall);
         FUNCTIONS.register("quantum_legs_speed", () -> QuantumArmorTests::legsSpeedBoost);
+        FUNCTIONS.register("equipment_specs", () -> EquipmentPackTests::equipmentSpecs);
+        FUNCTIONS.register("equipment_solar_helmet", () -> EquipmentPackTests::solarHelmetChargesChest);
+        FUNCTIONS.register("equipment_static_boots", () -> EquipmentPackTests::staticBootsChargesChest);
+        FUNCTIONS.register("equipment_jetpack_electric", () -> EquipmentPackTests::jetpackElectricFlight);
+        FUNCTIONS.register("equipment_jetpack_classic", () -> EquipmentPackTests::jetpackClassicFlight);
         FUNCTIONS.register("tool_interactions", () -> ToolTests::rotationAndInsulation);
         FUNCTIONS.register("tool_crafting", () -> ToolTests::crafting);
         FUNCTIONS.register("transformer_profiles", () -> EnergyDeviceTests::profiles);

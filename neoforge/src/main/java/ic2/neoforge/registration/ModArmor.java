@@ -6,7 +6,11 @@ import ic2.neoforge.item.ElectricItem;
 import ic2.neoforge.item.HazmatArmorItem;
 import ic2.neoforge.item.NanoSuitItem;
 import ic2.neoforge.item.NightVisionGogglesItem;
+import ic2.neoforge.item.JetpackElectricItem;
+import ic2.neoforge.item.JetpackItem;
 import ic2.neoforge.item.QuantumSuitItem;
+import ic2.neoforge.item.SolarHelmetItem;
+import ic2.neoforge.item.StaticBootsItem;
 
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.resources.Identifier;
@@ -15,8 +19,10 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.EquipmentSlotGroup;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.equipment.ArmorMaterial;
 import net.minecraft.world.item.equipment.ArmorType;
@@ -126,6 +132,110 @@ public final class ModArmor {
                                 .setAsset(BAT_PACK.assetId())
                                 .build());
     }
+
+    /** The remaining legacy chest/helmet/feet utility packs: JET_PACK, JET_PACK_ELECTRIC,
+     * ENERGY_PACK and LAP_PACK share the batpack's 8-point chest defence and 2.0 toughness;
+     * SOLAR_HELMET carries a 3-point helmet with no toughness and STATIC_BOOTS a 3-point boot.
+     */
+    private static ArmorMaterial utilityMaterial(
+            String asset, EquipmentSlotGroup slot, int defence, float toughness) {
+        return new ArmorMaterial(
+                0,
+                Map.of(armorTypeOf(slot), defence),
+                0,
+                SoundEvents.ARMOR_EQUIP_IRON,
+                toughness,
+                0.0F,
+                NO_REPAIR,
+                ResourceKey.create(
+                        EquipmentAssets.ROOT_ID,
+                        Identifier.fromNamespaceAndPath(IndustrialCraft.MOD_ID, asset)));
+    }
+
+    private static ArmorType armorTypeOf(EquipmentSlotGroup group) {
+        return switch (group) {
+            case HEAD -> ArmorType.HELMET;
+            case CHEST -> ArmorType.CHESTPLATE;
+            case LEGS -> ArmorType.LEGGINGS;
+            case FEET -> ArmorType.BOOTS;
+            default -> ArmorType.BODY;
+        };
+    }
+
+    private static final ArmorMaterial LAP_PACK_MATERIAL =
+            utilityMaterial("ic2_lap_pack", EquipmentSlotGroup.CHEST, 8, 2.0F);
+    private static final ArmorMaterial ENERGY_PACK_MATERIAL =
+            utilityMaterial("ic2_energy_pack", EquipmentSlotGroup.CHEST, 8, 2.0F);
+    private static final ArmorMaterial JET_PACK_MATERIAL =
+            utilityMaterial("ic2_jet_pack", EquipmentSlotGroup.CHEST, 8, 2.0F);
+    private static final ArmorMaterial JET_PACK_ELECTRIC_MATERIAL =
+            utilityMaterial("ic2_jet_pack_electric", EquipmentSlotGroup.CHEST, 8, 2.0F);
+    private static final ArmorMaterial SOLAR_HELMET_MATERIAL =
+            utilityMaterial("ic2_solar_helmet", EquipmentSlotGroup.HEAD, 3, 0.0F);
+    private static final ArmorMaterial STATIC_BOOTS_MATERIAL =
+            utilityMaterial("ic2_static_boots", EquipmentSlotGroup.FEET, 3, 0.0F);
+
+    private static Item.Properties utility(
+            Item.Properties properties,
+            ArmorMaterial material,
+            EquipmentSlotGroup group,
+            EquipmentSlot slot) {
+        return properties
+                .attributes(material.createAttributes(armorTypeOf(group)))
+                .component(
+                        DataComponents.EQUIPPABLE,
+                        Equippable.builder(slot)
+                                .setEquipSound(material.equipSound())
+                                .setAsset(material.assetId())
+                                .build());
+    }
+
+    /** Legacy ItemArmorLappack: 20M EU, 2500 transfer, tier 4, externally dischargeable. */
+    public static final DeferredItem<ElectricItem> LAPACK =
+            ITEMS.registerItem(
+                    "lappack",
+                    p ->
+                            new ElectricItem(
+                                    utility(p, LAP_PACK_MATERIAL, EquipmentSlotGroup.CHEST, EquipmentSlot.CHEST)
+                                            .rarity(Rarity.UNCOMMON),
+                                    new ElectricItemSpec(20000000, 2500, 4, true)));
+    /** Legacy ItemArmorEnergypack: 2M EU, 1000 transfer, tier 3, externally dischargeable. */
+    public static final DeferredItem<ElectricItem> ENERGY_PACK =
+            ITEMS.registerItem(
+                    "energy_pack",
+                    p ->
+                            new ElectricItem(
+                                    utility(p, ENERGY_PACK_MATERIAL, EquipmentSlotGroup.CHEST, EquipmentSlot.CHEST),
+                                    new ElectricItemSpec(2000000, 1000, 3, true)));
+    /** Legacy ItemArmorJetpackElectric: 30000 EU, 60 transfer, tier 1, thrust 0.7. */
+    public static final DeferredItem<JetpackElectricItem> JETPACK_ELECTRIC =
+            ITEMS.registerItem(
+                    "jetpack_electric",
+                    p ->
+                            new JetpackElectricItem(
+                                    utility(p, JET_PACK_ELECTRIC_MATERIAL, EquipmentSlotGroup.CHEST, EquipmentSlot.CHEST),
+                                    new ElectricItemSpec(30000, 60, 1, false)));
+    /** Legacy ItemArmorJetpack: the 30000 mB biogas tank jetpack, thrust 1.0. */
+    public static final DeferredItem<JetpackItem> JETPACK =
+            ITEMS.registerItem(
+                    "jetpack",
+                    p ->
+                            new JetpackItem(
+                                    utility(p, JET_PACK_MATERIAL, EquipmentSlotGroup.CHEST, EquipmentSlot.CHEST)));
+    /** Legacy ItemArmorSolarHelmet: charges the worn chest piece from sunlight. */
+    public static final DeferredItem<SolarHelmetItem> SOLAR_HELMET_ITEM =
+            ITEMS.registerItem(
+                    "solar_helmet",
+                    p ->
+                            new SolarHelmetItem(
+                                    utility(p, SOLAR_HELMET_MATERIAL, EquipmentSlotGroup.HEAD, EquipmentSlot.HEAD)));
+    /** Legacy ItemArmorStaticBoots: charges the worn chest piece from walking. */
+    public static final DeferredItem<StaticBootsItem> STATIC_BOOTS_ITEM =
+            ITEMS.registerItem(
+                    "static_boots",
+                    p ->
+                            new StaticBootsItem(
+                                    utility(p, STATIC_BOOTS_MATERIAL, EquipmentSlotGroup.FEET, EquipmentSlot.FEET)));
 
     /**
      * Legacy Ic2ArmorMaterials.NANO_SUIT: zero protection while uncharged — the charged
@@ -377,6 +487,16 @@ public final class ModArmor {
             event.accept(ModArmor.QUANTUM_CHESTPLATE);
             event.accept(ModArmor.QUANTUM_LEGGINGS);
             event.accept(ModArmor.QUANTUM_BOOTS);
+            event.accept(ModArmor.LAPACK);
+            event.accept(ModArmor.ENERGY_PACK);
+            event.accept(ModArmor.JETPACK_ELECTRIC);
+            event.accept(ModArmor.JETPACK);
+            event.accept(ModArmor.SOLAR_HELMET_ITEM);
+            event.accept(ModArmor.STATIC_BOOTS_ITEM);
+            // Legacy fillItemCategory showed the biogas jetpack filled and empty.
+            var filledJetpack = new ItemStack(ModArmor.JETPACK.get());
+            JetpackItem.fillMb(filledJetpack, JetpackItem.CAPACITY_MB);
+            event.accept(filledJetpack);
         }
     }
 

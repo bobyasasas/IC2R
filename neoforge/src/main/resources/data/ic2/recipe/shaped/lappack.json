@@ -1,0 +1,17 @@
+{
+  "type": "ic2:shaped",
+  "pattern": [
+    "ABA",
+    "ACA",
+    "A A"
+  ],
+  "result": {
+    "id": "ic2:lappack",
+    "count": 1
+  },
+  "key": {
+    "A": "ic2:lapotron_crystal",
+    "B": "ic2:advanced_circuit",
+    "C": "ic2:energy_pack"
+  }
+}
