@@ -239,14 +239,15 @@
       "parent": "M13",
       "title": "工具与装备",
       "status": "in_progress",
-      "acceptance": "扳手、切线钳、钻头、锯、喷枪、背包与护甲；消耗、附魔、渲染和同步。辐射链已接入：ic2:radiation 药水与伤害类型、防化四件套（头盔/胸甲/护腿/橡胶靴）全套豁免火/电/辐射、核爆辐射环与反应堆 70% 热辐射。电链锯已接入：ChainsawItem（30000 EU/100 传输/等级 1、斧速 12 且普通挖掘与蜘蛛网免费、剪切模式默认开经潜行+use 切换 chainsaw_disable_shear 组件、可剪切方块破坏掉自身耗 100 EU 经 BreakBlockEvent 替代已移除的 onBlockStartBreak、右键剪 Shearable 与攻击各耗 100 EU（+11 攻伤/-3 攻速）、铁矿板+动力单元与钢锭+电路+RE 电池两条配方）已接入并双模式 GameTest 4 项验收；",
+      "acceptance": "扳手、切线钳、钻头、锯、喷枪、背包与护甲；消耗、附魔、渲染和同步。辐射链已接入：ic2:radiation 药水与伤害类型、防化四件套（头盔/胸甲/护腿/橡胶靴）全套豁免火/电/辐射、核爆辐射环与反应堆 70% 热辐射。电链锯已接入：ChainsawItem（30000 EU/100 传输/等级 1、斧速 12 且普通挖掘与蜘蛛网免费、剪切模式默认开经潜行+use 切换 chainsaw_disable_shear 组件、可剪切方块破坏掉自身耗 100 EU 经 BreakBlockEvent 替代已移除的 onBlockStartBreak、右键剪 Shearable 与攻击各耗 100 EU（+11 攻伤/-3 攻速）、铁矿板+动力单元与钢锭+电路+RE 电池两条配方）已接入并双模式 GameTest 4 项验收；电动背包已接入：BatPack/AdvBatPack（60000/100/t1 与 600000/1000/t2、胸甲槽、外部可放电、legacy 材料 8 点胸甲/韧性 2.0 经数据组件、穿着层贴图）；ElectricItemEnergy.use 复刻 legacy manager.use 先充后耗分配（chargeFromArmor 双向忽略上限、护甲等级门控、canUse 先行门控空钻不拉电），链锯/钻头/电动扳手/电动树洞钻消耗路径接入；生物剪切改走 NeoForge IShearable（onSheared+spawnShearedDrop 对应 legacy IForgeShearable）；test_instance JSON 缺失致上轮链锯 4 测试未运行已勘误补齐，双模式 356 项真实执行。已接入并双模式 GameTest 8 项（链锯 4+背包 4）验收；",
       "evidence": [
         "docs/migration/tools.md",
         "neoforge/src/gameTest/java/ic2/neoforge/test/ToolTests.java",
         "docs/migration/metal-former-toolbox.md",
         "docs/migration/radiation-hazmat.md",
         "neoforge/src/gameTest/java/ic2/neoforge/test/RadiationTests.java",
-        "neoforge/src/gameTest/java/ic2/neoforge/test/ChainsawItemTests.java"
+        "neoforge/src/gameTest/java/ic2/neoforge/test/ChainsawItemTests.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/BatpackTests.java"
       ]
     },
     {
