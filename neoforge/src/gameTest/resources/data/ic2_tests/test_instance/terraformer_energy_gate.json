@@ -2,6 +2,6 @@
   "type": "minecraft:function",
   "function": "ic2_tests:terraformer_energy_gate",
   "environment": "minecraft:default",
-  "structure": "ic2_tests:terraformer_yard",
+  "structure": "ic2_tests:terraformer_yard_large",
   "max_ticks": 200
 }

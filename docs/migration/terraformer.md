@@ -61,16 +61,19 @@ consume/10**——机器没有任何 GUI：右键先弹出已装蓝图，空手�
 
 ## 验证（GameTest 5 项，双模式 390 项全绿）
 
-专用 25×25 泥土场地结构 `ic2_tests:terraformer_yard`：chilling 程序在任何实体顶面自持
-成功（水→冰→雪层→雪块→雪块上可继续承雪是原版 canSurvive 特性），使逐 tick 能耗可断言；
-GameTest 骨架在箱子外围放置 barrier，扫描工具按上文勘误跳过。
+两块专用泥土场地结构：`ic2_tests:terraformer_yard`（25×8×25，供无游走/短程测试）与
+`ic2_tests:terraformer_yard_large`（85×8×85，供游走类测试——chilling 首散布 ±10 加
+每 tick ±5 续走，6 tick 最坏漂移 35 < 半宽 42，游走被数学锁进场内，不依赖 GT 网格间距
+的运气）。chilling 程序在任何实体顶面自持成功（水→冰→雪层→雪块→雪块上可继续承雪是
+原版 canSurvive 特性），使逐 tick 能耗可断言；GameTest 骨架在箱子外围放置 barrier，
+扫描工具按上文勘误跳过。
 
-- `terraformer_chilling_ledger`：装 chilling 灌满电跑 30 tick——消耗落在
-  [2000, 60000]（首尝试必落场内成功 ≥1 次整价、每 tick 至多一次整价）、active、场地
-  出现雪/雪块。游走可能探出场外骨架列只烧 1/10 价，故为界限断言；**精确整价账目由
-  energy_gate 钉死**。
-- `terraformer_energy_gate`：1999 EU 五 tick 原地不动且 inactive；+1 EU 后一 tick 恰好
-  0（一次整价 2000 编辑）且 active。
+- `terraformer_chilling_ledger`：大场地装 chilling 灌满电跑 6 tick——**精确断言**
+  消耗 = 6×2000 = 12000（每 tick 恰一次整价成功编辑）、active、场地出现雪/雪块。
+  （此前 25×25 场地为 30 tick 界限断言 [2000, 60000]，因游走可能探出场外骨架列只烧
+  1/10 价；大场地把游走锁进场内后升级为精确整价账目，是收紧而非放宽。）
+- `terraformer_energy_gate`：大场地；1999 EU 五 tick 原地不动且 inactive；+1 EU 后
+  一 tick 恰好 0（一次整价 2000 编辑）且 active。
 - `terraformer_blank_blueprint`：空蓝图 10 tick 电量分文不动且 active（legacy 怪癖）。
 - `terraformer_hand_insert_eject`：主手插入→再右键弹出成掉落物实体→非蓝图拒收。
 - `terraformer_program_transforms`：六程序直接驱动——cultivation 泥→草、desertification
@@ -83,3 +86,19 @@ M11/P08 辅助机器链新增地形改造机+TFBP 家族（7 卡）。勘误：l
 潜在 bug）修复为 getMinY；barrier/structure_void 作为技术方块对扫描透明；Mushroom 群系
 写入跳过与 NW 条带保留；blank 零耗怪癖保留。待人工：实机听觉（loop 音效）与手装蓝图的
 手感；M14 人工验收保留人工，P20 待清单全部验收后再启动。
+
+### CI 34620146197 失败事件（如实记录）
+
+8feee725 推送后 CI run 34620146197 失败于 **solar_distiller_containers**（既有测试，
+非本切片新测试；本地双模式当时全绿）。根因与本切片无因果，但由本切片首暴露：该测试断言
+的精确罐量会被蒸馏相位 tick 蚀 1 mB——`updateTicker` 以机器世界坐标 hash 为种子
+（`floorMod(pos.hashCode(), 72)`），而 GameTest 网格出生点每次运行随机 → 相位每次重掷
+（69/70/71 落进断言窗口即两种失败文案，与实测逐值吻合）；是否真正蒸馏还取决于世界时刻，
+并发测试经 `setTime` 全局改写昼夜 → run 间方差。这是该测试自带的 ~4%/run 偶发率，此前
+CI 全绿属抽样侥幸。修复（测试侧，不动生产代码）：经 NBT 往返钉 `updateTicker=0`
+（sustainability 测试同款先例），首个相位被推到全部断言之后 69 tick。附带加固与勘误：
+①游走类测试移入 85×8×85 大场地 + ledger 升级 6 tick 精确账目（隔离收紧；"游走污染
+邻箱"假设后被证伪，如实记录）；②大场地 nbt 生成脚本两处 bug（blocks 列表误嵌套
+palette[1] 内 + 列表元素多写类型字节）曾致 vanilla 报 EOF/"Failed to place test
+structure"——以逐字节严格解析器对照可加载的小场地修正；经验：手写 gzip NBT 的校验器
+必须独立于生成器实现，且列表元素不带类型前缀。

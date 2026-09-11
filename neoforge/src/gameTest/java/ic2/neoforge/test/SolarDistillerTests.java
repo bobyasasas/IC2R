@@ -186,6 +186,7 @@ final class SolarDistillerTests {
 
     static void containers(GameTestHelper helper) {
         var machine = machine(helper);
+        machine = pinDistillationPhase(helper, machine);
         machine.inventory()
                 .set(0, ItemResource.of(new ItemStack(Items.WATER_BUCKET)), 1);
         machine.serverTick(helper.getLevel());
@@ -247,6 +248,28 @@ final class SolarDistillerTests {
     private static SolarDistillerBlockEntity machine(GameTestHelper helper) {
         helper.setBlock(POSITION, ModMachines.block(MachineKind.SOLAR_DISTILLER));
         return helper.getBlockEntity(POSITION, SolarDistillerBlockEntity.class);
+    }
+
+    /**
+     * updateTicker is seeded from the machine's world position, and the game test grid
+     * randomizes that position every run; a distillation phase tick landing inside an
+     * assert window below would silently drain 1 mB through the port under test. Pinning
+     * phase 0 keeps the first phase 72 ticks out, past every assert in this test.
+     */
+    private static SolarDistillerBlockEntity pinDistillationPhase(
+            GameTestHelper helper, SolarDistillerBlockEntity machine) {
+        var tag = machine.saveWithFullMetadata(helper.getLevel().registryAccess());
+        tag.putInt("updateTicker", 0);
+        var restored =
+                (SolarDistillerBlockEntity)
+                        BlockEntity.loadStatic(
+                                machine.getBlockPos(),
+                                machine.getBlockState(),
+                                tag,
+                                helper.getLevel().registryAccess());
+        helper.getLevel().removeBlockEntity(machine.getBlockPos());
+        helper.getLevel().setBlockEntity(restored);
+        return restored;
     }
 
     private static FluidResource fluid(FluidDefinition definition) {

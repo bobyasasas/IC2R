@@ -19,27 +19,28 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 
 /**
- * The 25x25 dirt yard makes the legacy random walk provably succeed on every target, so the
- * chilling cartridge burns exactly its 2000 EU per tick; the other programs are driven directly
+ * The dirt yards make the legacy random walk provably contained: the small yard hosts the
+ * walk-free tests, while the 85x85 large yard holds the walk tests — worst-case reach from the
+ * centre is one first spread of ±10 plus five ±5 steps, which stays inside the floor, so every
+ * edit lands in the box and the chilling ledger is exact. The other programs are driven directly
  * on separate probe columns.
  */
 final class TerraformerTests {
     private static final BlockPos POSITION = new BlockPos(12, 1, 12);
+    private static final BlockPos LARGE_POSITION = new BlockPos(42, 1, 42);
 
     static void chillingLedger(GameTestHelper helper) {
-        var machine = machine(helper);
+        var machine = machine(helper, LARGE_POSITION);
         insert(machine, player(helper), new ItemStack(ModItems.CHILLING_TFBP.get()));
         machine.energy().insert(TerraformerBlockEntity.CAPACITY);
-        for (int tick = 0; tick < 30; tick++) machine.serverTick(helper.getLevel());
-        // The random walk can leave the yard and probe the harness scaffolding columns, where an
-        // edit fails and only burns a tenth of the price; the first attempt always lands inside
-        // the yard, so the burn is bounded and at least one full-price edit is certain. The exact
-        // per-edit price is pinned by energyGate below.
-        int stored = (int) machine.energy().stored();
-        helper.assertTrue(stored <= TerraformerBlockEntity.CAPACITY - 2000,
-                "At least one full-price edit ran");
-        helper.assertTrue(stored >= TerraformerBlockEntity.CAPACITY - 30 * 2000,
-                "No tick burns more than one full-price edit");
+        // Six ticks keep the walk at most one first spread of ±10 plus five ±5 steps from the
+        // centre — always inside the 85x85 yard — so every tick edits the yard and pays the
+        // exact 2000 EU price.
+        for (int tick = 0; tick < 6; tick++) machine.serverTick(helper.getLevel());
+        helper.assertValueEqual(
+                (int) machine.energy().stored(),
+                TerraformerBlockEntity.CAPACITY - 6 * 2000,
+                "Six successful edits drain exactly 12000 EU");
         helper.assertTrue(
                 machine.getBlockState().getValue(MachineBlock.ACTIVE),
                 "A fed terraformer reports active");
@@ -48,7 +49,7 @@ final class TerraformerTests {
     }
 
     static void energyGate(GameTestHelper helper) {
-        var machine = machine(helper);
+        var machine = machine(helper, LARGE_POSITION);
         insert(machine, player(helper), new ItemStack(ModItems.CHILLING_TFBP.get()));
         machine.energy().insert(1999);
         for (int tick = 0; tick < 5; tick++) machine.serverTick(helper.getLevel());
@@ -158,8 +159,12 @@ final class TerraformerTests {
     }
 
     private static TerraformerBlockEntity machine(GameTestHelper helper) {
-        helper.setBlock(POSITION, ModMachines.block(MachineKind.TERRAFORMER));
-        return helper.getBlockEntity(POSITION, TerraformerBlockEntity.class);
+        return machine(helper, POSITION);
+    }
+
+    private static TerraformerBlockEntity machine(GameTestHelper helper, BlockPos position) {
+        helper.setBlock(position, ModMachines.block(MachineKind.TERRAFORMER));
+        return helper.getBlockEntity(position, TerraformerBlockEntity.class);
     }
 
     private static Player player(GameTestHelper helper) {
@@ -174,8 +179,8 @@ final class TerraformerTests {
 
     private static boolean anySnow(GameTestHelper helper) {
         ServerLevel level = helper.getLevel();
-        for (int x = 0; x < 25; x++) {
-            for (int z = 0; z < 25; z++) {
+        for (int x = 0; x < 85; x++) {
+            for (int z = 0; z < 85; z++) {
                 for (int y = 1; y < 4; y++) {
                     BlockState state = level.getBlockState(helper.absolutePos(new BlockPos(x, y, z)));
                     if (state.is(Blocks.SNOW) || state.is(Blocks.SNOW_BLOCK)) return true;
