@@ -1,0 +1,12 @@
+== generator t+12s
+-9, 56, -6 has the following block data: {components: {}, fuel: 0, x: -9, y: 56, z: -6, totalFuel: 400, id: "ic2:generator", inventory: {stacks: [{}, {}]}, energy: 4000.0d}
+
+== transformer t+12s
+-7, 56, -6 has the following block data: {mode: 2, components: {}, x: -7, y: 56, z: -6, id: "ic2:lv_transformer", inventory: {stacks: []}, energy: 256.0d}
+
+== generator t+22s
+-9, 56, -6 has the following block data: {components: {}, fuel: 0, x: -9, y: 56, z: -6, totalFuel: 400, id: "ic2:generator", inventory: {stacks: [{}, {}]}, energy: 4000.0d}
+
+== transformer t+22s
+-7, 56, -6 has the following block data: {mode: 2, components: {}, x: -7, y: 56, z: -6, id: "ic2:lv_transformer", inventory: {stacks: []}, energy: 256.0d}
+

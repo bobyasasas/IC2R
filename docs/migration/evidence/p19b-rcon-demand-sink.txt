@@ -1,0 +1,15 @@
+== setblock batbox behind generator
+Changed the block at -10, 56, -6
+
+== batbox t0
+-10, 56, -6 has the following block data: {components: {}, x: -10, y: 56, z: -6, id: "ic2:batbox", inventory: {stacks: [{}, {}]}, redstoneMode: 0, energy: 1344.0d}
+
+== set generator to 3990 (below clamp)
+Modified block data of -9, 56, -6
+
+== generator t+10s
+-9, 56, -6 has the following block data: {components: {}, fuel: 0, x: -9, y: 56, z: -6, totalFuel: 400, id: "ic2:generator", inventory: {stacks: [{}, {}]}, energy: 0.0d}
+
+== batbox t+10s
+-10, 56, -6 has the following block data: {components: {}, x: -10, y: 56, z: -6, id: "ic2:batbox", inventory: {stacks: [{}, {}]}, redstoneMode: 0, energy: 5334.0d}
+

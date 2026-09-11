@@ -1,0 +1,24 @@
+== list (2 players)
+There are 2 of a max of 20 players online: Dev, P19B
+
+== tp both to machines
+Teleported Dev to -6.500000, 57.000000, -4.500000
+
+Teleported P19B to -7.500000, 57.000000, -3.500000
+
+== fuel generator
+Incorrect argument for command
+...ntainer.0 minecraft:charcoal 16<--[HERE]
+
+== generator t0
+-9, 56, -6 has the following block data: {components: {}, fuel: 0, x: -9, y: 56, z: -6, totalFuel: 400, id: "ic2:generator", inventory: {stacks: [{}, {}]}, energy: 3328.0d}
+
+== transformer t0
+-7, 56, -6 has the following block data: {mode: 2, components: {}, x: -7, y: 56, z: -6, id: "ic2:lv_transformer", inventory: {stacks: []}, energy: 256.0d}
+
+== tick query 2 players
+The game is running normally
+Target tick rate: 20.0 per second.
+Average time per tick: 1.1ms (Target: 50.0ms)
+Percentiles: P50: 0.9ms P95: 1.6ms P99: 13.8ms. Sample: 100
+

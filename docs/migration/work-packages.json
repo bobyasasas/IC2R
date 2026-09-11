@@ -282,7 +282,16 @@
         "docs/migration/evidence/p19-rcon-boot2-persistence.txt",
         "docs/migration/evidence/p19-rcon-reload.txt",
         "docs/migration/evidence/p19-rcon-disconnect-stop.txt",
-        "docs/migration/evidence/p19-server-lifecyle-lines.txt"
+        "docs/migration/evidence/p19-server-lifecyle-lines.txt",
+        "docs/migration/evidence/p19b-server-log-extract.txt",
+        "docs/migration/evidence/p19b-rcon-concurrent-start.txt",
+        "docs/migration/evidence/p19b-rcon-demand-sink.txt",
+        "docs/migration/evidence/p19b-rcon-grid-live.txt",
+        "docs/migration/evidence/p19b-chunk-unload-poll.txt",
+        "docs/migration/evidence/p19b-gui-open.png",
+        "docs/migration/evidence/p19b-kick-screen.png",
+        "docs/migration/evidence/p19b-client-a-dual-player.png",
+        "neoforge/build.gradle"
       ]
     },
     {

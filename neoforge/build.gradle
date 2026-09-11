@@ -55,6 +55,12 @@ neoForge {
             client()
             // Optional real-client interop pass (M14/P17): -Pic2Join=host:port or
             // -Pic2World="save name" jump straight into a world with JEI+Jade loaded.
+            // -Pic2User=<name> overrides the dev player name (P19 dual-client soak:
+            // the offline-mode server rejects a second client named "Dev").
+            if (project.hasProperty('ic2User')) {
+                programArgument '--username'
+                programArgument project.property('ic2User').toString()
+            }
             if (project.hasProperty('ic2Join')) {
                 programArgument '--quickPlayMultiplayer'
                 programArgument project.property('ic2Join').toString()
