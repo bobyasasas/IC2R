@@ -167,6 +167,7 @@ public final class ModMachines {
             case CROPMATRON -> new ic2.neoforge.machine.CropmatronBlockEntity(pos, state);
             case CROP_HARVESTER -> new ic2.neoforge.machine.CropHarvesterBlockEntity(pos, state);
             case TESLA_COIL -> new ic2.neoforge.machine.TeslaCoilBlockEntity(pos, state);
+            case TERRAFORMER -> new ic2.neoforge.machine.TerraformerBlockEntity(pos, state);
         };
     }
 

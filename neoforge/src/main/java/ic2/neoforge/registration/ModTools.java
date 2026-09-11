@@ -220,6 +220,20 @@ public final class ModTools {
             event.accept(IRON_CUTTING_BLADE);
             event.accept(STEEL_CUTTING_BLADE);
             event.accept(DIAMOND_CUTTING_BLADE);
+            event.accept(ModItems.BLANK_TFBP);
+            event.accept(ModItems.CULTIVATION_TFBP);
+            event.accept(ModItems.DESERTIFICATION_TFBP);
+            event.accept(ModItems.FLATIFICATION_TFBP);
+            event.accept(ModItems.CHILLING_TFBP);
+            event.accept(ModItems.IRRIGATION_TFBP);
+            event.accept(ModItems.MUSHROOM_TFBP);
+            event.accept(ModItems.BLANK_TFBP);
+            event.accept(ModItems.CHILLING_TFBP);
+            event.accept(ModItems.CULTIVATION_TFBP);
+            event.accept(ModItems.DESERTIFICATION_TFBP);
+            event.accept(ModItems.FLATIFICATION_TFBP);
+            event.accept(ModItems.IRRIGATION_TFBP);
+            event.accept(ModItems.MUSHROOM_TFBP);
         }
     }
 

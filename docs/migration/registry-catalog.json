@@ -2038,7 +2038,14 @@
       "factory": "register",
       "expression": "new ItemBlockIc2(Ic2Blocks.TERRAFORMER, new Properties().rarity(Rarity.UNCOMMON))",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/machine/MachineKind.java",
+        "neoforge/src/main/java/ic2/neoforge/machine/TerraformerBlockEntity.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/TerraformerTests.java",
+        "docs/migration/terraformer.md"
+      ],
+      "note": "机器方块物品随 MachineKind.TERRAFORMER 注册；GameTest 5 项（游走/逐次付账/能量门控/手持装卸/六程序变换）见 terraformer.md。"
     },
     {
       "registry": "item",
@@ -6643,7 +6650,14 @@
       "factory": "register",
       "expression": "new Tfbp(new Properties().stacksTo(1), 0.0, 0, null)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModItems.java",
+        "neoforge/src/main/java/ic2/neoforge/item/tfbp/TerraformingBlueprintItem.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/TerraformerTests.java",
+        "docs/migration/terraformer.md"
+      ],
+      "note": "consume=0/range=0/无程序；legacy 怪癖忠实保留：空蓝图机器照常运转且零耗。"
     },
     {
       "registry": "item",
@@ -6653,7 +6667,14 @@
       "factory": "register",
       "expression": "new Tfbp(new Properties().stacksTo(1), 2000.0, 50, new Chilling())",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModItems.java",
+        "neoforge/src/main/java/ic2/neoforge/item/tfbp/TerraformingBlueprintItem.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/TerraformerTests.java",
+        "docs/migration/terraformer.md"
+      ],
+      "note": "consume=2000/range=50，冻水成冰、雪层渐进、四邻全雪升级雪块。"
     },
     {
       "registry": "item",
@@ -6663,7 +6684,14 @@
       "factory": "register",
       "expression": "new Tfbp(new Properties().stacksTo(1), 4000.0, 40, new Cultivation())",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModItems.java",
+        "neoforge/src/main/java/ic2/neoforge/item/tfbp/TerraformingBlueprintItem.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/TerraformerTests.java",
+        "docs/migration/terraformer.md"
+      ],
+      "note": "consume=4000/range=40，沙/末地石转泥土、泥土转草方块并在草上播种（含橡胶树苗）。"
     },
     {
       "registry": "item",
@@ -6673,7 +6701,14 @@
       "factory": "register",
       "expression": "new Tfbp(new Properties().stacksTo(1), 2500.0, 40, new Desertification())",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModItems.java",
+        "neoforge/src/main/java/ic2/neoforge/item/tfbp/TerraformingBlueprintItem.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/TerraformerTests.java",
+        "docs/migration/terraformer.md"
+      ],
+      "note": "consume=2500/range=40，泥/草/耕地转沙、烧除植被（可燃木 1/15 起火）、冰雪融水。"
     },
     {
       "registry": "item",
@@ -6683,7 +6718,14 @@
       "factory": "register",
       "expression": "new Tfbp(new Properties().stacksTo(1), 4000.0, 40, new Flatification())",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModItems.java",
+        "neoforge/src/main/java/ic2/neoforge/item/tfbp/TerraformingBlueprintItem.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/TerraformerTests.java",
+        "docs/migration/terraformer.md"
+      ],
+      "note": "consume=4000/range=40，低于基准填泥土、高于基准削除可移除方块。"
     },
     {
       "registry": "item",
@@ -6693,7 +6735,14 @@
       "factory": "register",
       "expression": "new Tfbp(new Properties().stacksTo(1), 3000.0, 60, new Irrigation())",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModItems.java",
+        "neoforge/src/main/java/ic2/neoforge/item/tfbp/TerraformingBlueprintItem.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/TerraformerTests.java",
+        "docs/migration/terraformer.md"
+      ],
+      "note": "consume=3000/range=60，沙转土、骨粉催熟、原木长叶、1/48000 触发降雨（26.1.2 经 server.setWeatherParameters）。"
     },
     {
       "registry": "item",
@@ -6703,7 +6752,14 @@
       "factory": "register",
       "expression": "new Tfbp(new Properties().stacksTo(1), 8000.0, 25, new Mushroom())",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModItems.java",
+        "neoforge/src/main/java/ic2/neoforge/item/tfbp/TerraformingBlueprintItem.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/TerraformerTests.java",
+        "docs/migration/terraformer.md"
+      ],
+      "note": "consume=8000/range=25，菌丝→小蘑菇→巨型伞盖；legacy 只扫 NW 条带 off-by-one 忠实保留；运行时群系写入 API 不存在如实跳过。"
     },
     {
       "registry": "item",
@@ -8263,7 +8319,14 @@
       "factory": "register",
       "expression": "Ic2TileEntityBlock.create(Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).strength(2.0F, 10.0F).requiresCorrectToolForDrops().sound(SoundType.METAL), TileEntityTerra.class, true, Ic2TileEntityBlock.DefaultDrop.AdvMachine, Util.noFacings, false)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModMachines.java",
+        "neoforge/src/main/java/ic2/neoforge/machine/MachineBlock.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/TerraformerTests.java",
+        "docs/migration/terraformer.md"
+      ],
+      "note": "MachineBlock 统一材质/硬度/工具；legacy DefaultDrop.AdvMachine——port 战利品表 alternatives：扳手保机器/否则掉 advanced_machine；blockstate facing×active 12 变体；无 GUI，右键直通蓝图装卸。"
     },
     {
       "registry": "block",
@@ -11511,7 +11574,14 @@
       "factory": "register",
       "expression": "TileEntityTerra::new",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/machine/MachineKind.java",
+        "neoforge/src/main/java/ic2/neoforge/machine/TerraformerBlockEntity.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/TerraformerTests.java",
+        "docs/migration/terraformer.md"
+      ],
+      "note": "TerraformerBlockEntity：TFBP 逐次付账（成功 consume/失败 consume/10）、lastPos±range/10 游走与失败扩散（failedAttempts 封顶 4）、blank 永续运转零耗怪癖、扫描工具跳过 barrier/structure_void（GameTest 骨架非地形）、legacy y>=0 扫描下界修复为 world.getMinY()（1.20.1 已是潜在 bug）、静态 tier-4 sink、右键先弹出后插入、无自动化口。"
     },
     {
       "registry": "block_entity",

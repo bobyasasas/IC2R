@@ -158,10 +158,13 @@ public final class MachineBlock extends BaseEntityBlock {
             BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hit) {
         if (!level.isClientSide()
                 && level.getBlockEntity(pos) instanceof MachineBlockEntity machine) {
-            if (machine instanceof ManualKineticBlockEntity manual
-                    && player instanceof net.minecraft.server.level.ServerPlayer serverPlayer)
+            if (machine instanceof TerraformerBlockEntity terraformer) {
+                // Legacy terraformer has no GUI; right-click swaps the blueprint by hand.
+                if (!player.isShiftKeyDown()) terraformer.useFromHand(player);
+            } else if (machine instanceof ManualKineticBlockEntity manual
+                    && player instanceof net.minecraft.server.level.ServerPlayer serverPlayer) {
                 manual.turn(serverPlayer);
-            else player.openMenu(machine, buffer -> buffer.writeBlockPos(pos));
+            } else player.openMenu(machine, buffer -> buffer.writeBlockPos(pos));
         }
         return InteractionResult.SUCCESS;
     }

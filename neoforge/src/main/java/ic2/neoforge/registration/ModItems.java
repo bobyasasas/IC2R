@@ -5,6 +5,14 @@ import ic2.neoforge.IndustrialCraft;
 import ic2.neoforge.item.BatteryItem;
 import ic2.neoforge.item.JetpackAttachmentPlateItem;
 import ic2.neoforge.item.TinCanItem;
+import ic2.neoforge.item.tfbp.Chilling;
+import ic2.neoforge.item.tfbp.Cultivation;
+import ic2.neoforge.item.tfbp.Desertification;
+import ic2.neoforge.item.tfbp.Flatification;
+import ic2.neoforge.item.tfbp.Irrigation;
+import ic2.neoforge.item.tfbp.Mushroom;
+import ic2.neoforge.item.tfbp.TerraformingBlueprintItem;
+import ic2.neoforge.item.tfbp.TerraformerProgram;
 
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Item;
@@ -13,6 +21,8 @@ import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
+
+import org.jspecify.annotations.Nullable;
 
 import java.util.Collections;
 import java.util.EnumMap;
@@ -49,6 +59,30 @@ public final class ModItems {
             battery("energy_crystal", 1000000, 2048, 3, 16, Rarity.COMMON);
     public static final DeferredItem<BatteryItem> LAPOTRON_CRYSTAL =
             battery("lapotron_crystal", 10000000, 8092, 4, 16, Rarity.UNCOMMON);
+
+    public static final DeferredItem<TerraformingBlueprintItem> BLANK_TFBP =
+            tfbp("blank_tfbp", 0.0, 0, null);
+    public static final DeferredItem<TerraformingBlueprintItem> CHILLING_TFBP =
+            tfbp("chilling_tfbp", 2000.0, 50, new Chilling());
+    public static final DeferredItem<TerraformingBlueprintItem> CULTIVATION_TFBP =
+            tfbp("cultivation_tfbp", 4000.0, 40, new Cultivation());
+    public static final DeferredItem<TerraformingBlueprintItem> DESERTIFICATION_TFBP =
+            tfbp("desertification_tfbp", 2500.0, 40, new Desertification());
+    public static final DeferredItem<TerraformingBlueprintItem> FLATIFICATION_TFBP =
+            tfbp("flatification_tfbp", 4000.0, 40, new Flatification());
+    public static final DeferredItem<TerraformingBlueprintItem> IRRIGATION_TFBP =
+            tfbp("irrigation_tfbp", 3000.0, 60, new Irrigation());
+    public static final DeferredItem<TerraformingBlueprintItem> MUSHROOM_TFBP =
+            tfbp("mushroom_tfbp", 8000.0, 25, new Mushroom());
+
+    private static DeferredItem<TerraformingBlueprintItem> tfbp(
+            String id, double consume, int range, @Nullable TerraformerProgram program) {
+        return ITEMS.registerItem(
+                id,
+                properties ->
+                        new TerraformingBlueprintItem(
+                                properties.stacksTo(1), consume, range, program));
+    }
 
     private static DeferredItem<BatteryItem> battery(
             String id, double capacity, double limit, int tier, int stackSize, Rarity rarity) {

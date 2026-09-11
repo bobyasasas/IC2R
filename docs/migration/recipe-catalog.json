@@ -2115,8 +2115,8 @@
     {
       "source": "shaped/blank_tfbp.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:blank_tfbp"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/blank_tfbp.json"
     },
     {
       "source": "shaped/blast_furnace.json",
@@ -2325,8 +2325,8 @@
     {
       "source": "shaped/chilling_tfbp.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:chilling_tfbp"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/chilling_tfbp.json"
     },
     {
       "source": "shaped/chunk_loader.json",
@@ -2439,8 +2439,8 @@
     {
       "source": "shaped/cultivation_tfbp.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:cultivation_tfbp"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/cultivation_tfbp.json"
     },
     {
       "source": "shaped/cutter.json",
@@ -2451,8 +2451,8 @@
     {
       "source": "shaped/desertification_tfbp.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:desertification_tfbp"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/desertification_tfbp.json"
     },
     {
       "source": "shaped/detector_cable.json",
@@ -2607,8 +2607,8 @@
     {
       "source": "shaped/flatification_tfbp.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:flatification_tfbp"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/flatification_tfbp.json"
     },
     {
       "source": "shaped/fluid_bottler.json",
@@ -2877,8 +2877,8 @@
     {
       "source": "shaped/irrigation_tfbp.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:irrigation_tfbp"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/irrigation_tfbp.json"
     },
     {
       "source": "shaped/item_buffer.json",
@@ -3105,8 +3105,8 @@
     {
       "source": "shaped/mushroom_tfbp.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:mushroom_tfbp"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/mushroom_tfbp.json"
     },
     {
       "source": "shaped/mv_transformer.json",
@@ -3903,8 +3903,8 @@
     {
       "source": "shaped/terraformer.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:terraformer"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/terraformer.json"
     },
     {
       "source": "shaped/tesla_coil.json",

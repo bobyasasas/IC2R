@@ -1,0 +1,40 @@
+{
+  "variants": {
+    "facing=north,active=false": {
+      "model": "ic2:block/machine/misc/terraformer"
+    },
+    "facing=north,active=true": {
+      "model": "ic2:block/machine/misc/terraformer_active"
+    },
+    "facing=south,active=false": {
+      "model": "ic2:block/machine/misc/terraformer"
+    },
+    "facing=south,active=true": {
+      "model": "ic2:block/machine/misc/terraformer_active"
+    },
+    "facing=west,active=false": {
+      "model": "ic2:block/machine/misc/terraformer"
+    },
+    "facing=west,active=true": {
+      "model": "ic2:block/machine/misc/terraformer_active"
+    },
+    "facing=east,active=false": {
+      "model": "ic2:block/machine/misc/terraformer"
+    },
+    "facing=east,active=true": {
+      "model": "ic2:block/machine/misc/terraformer_active"
+    },
+    "facing=up,active=false": {
+      "model": "ic2:block/machine/misc/terraformer"
+    },
+    "facing=up,active=true": {
+      "model": "ic2:block/machine/misc/terraformer_active"
+    },
+    "facing=down,active=false": {
+      "model": "ic2:block/machine/misc/terraformer"
+    },
+    "facing=down,active=true": {
+      "model": "ic2:block/machine/misc/terraformer_active"
+    }
+  }
+}

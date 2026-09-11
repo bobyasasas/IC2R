@@ -239,6 +239,11 @@ public final class RegistrationTests {
         FUNCTIONS.register("energy_o_mat_gate", () -> EnergyOMatTests::unpaidGate);
         FUNCTIONS.register("energy_o_mat_charge", () -> EnergyOMatTests::creditPaysForCharge);
         FUNCTIONS.register("energy_o_mat_price", () -> EnergyOMatTests::priceKeypad);
+        FUNCTIONS.register("terraformer_chilling_ledger", () -> TerraformerTests::chillingLedger);
+        FUNCTIONS.register("terraformer_energy_gate", () -> TerraformerTests::energyGate);
+        FUNCTIONS.register("terraformer_blank_blueprint", () -> TerraformerTests::blankBlueprint);
+        FUNCTIONS.register("terraformer_hand_insert_eject", () -> TerraformerTests::handInsertEject);
+        FUNCTIONS.register("terraformer_program_transforms", () -> TerraformerTests::programTransforms);
         FUNCTIONS.register("pump_faced_water", () -> PumpTests::pumpsFacedWater);
         FUNCTIONS.register("pump_fills_buckets", () -> PumpTests::fillsBuckets);
         FUNCTIONS.register("pump_progress_reload", () -> PumpTests::survivesReload);
