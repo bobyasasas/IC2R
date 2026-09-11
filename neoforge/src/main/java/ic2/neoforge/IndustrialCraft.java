@@ -81,6 +81,7 @@ public final class IndustrialCraft {
         gameBus.addListener(WorldEnergyNetworks::tick);
         gameBus.addListener(WorldWind::tick);
         gameBus.addListener(ic2.neoforge.item.HazmatHelper::onIncomingDamage);
+        gameBus.addListener(ic2.neoforge.item.ChainsawItem::onBreakBlock);
         if (FMLEnvironment.getDist().isClient()) {
             gameBus.addListener(ic2.neoforge.client.interop.jei.ClientRecipeCache::onRecipesReceived);
         }

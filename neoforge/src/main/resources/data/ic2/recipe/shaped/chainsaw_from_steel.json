@@ -1,0 +1,17 @@
+{
+  "type": "ic2:shaped",
+  "pattern": [
+    " AA",
+    "ABA",
+    "CA "
+  ],
+  "result": {
+    "id": "ic2:chainsaw",
+    "count": 1
+  },
+  "key": {
+    "A": "ic2:steel_ingot",
+    "B": "ic2:circuit",
+    "C": "ic2:re_battery"
+  }
+}

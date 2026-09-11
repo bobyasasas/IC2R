@@ -1,0 +1,16 @@
+{
+  "type": "ic2:shaped",
+  "pattern": [
+    " AA",
+    "AAA",
+    "BA "
+  ],
+  "result": {
+    "id": "ic2:chainsaw",
+    "count": 1
+  },
+  "key": {
+    "A": "ic2:iron_plate",
+    "B": "ic2:power_unit"
+  }
+}

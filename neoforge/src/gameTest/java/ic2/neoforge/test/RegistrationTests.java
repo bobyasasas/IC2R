@@ -69,6 +69,10 @@ public final class RegistrationTests {
         FUNCTIONS.register("world_features", () -> WorldContentTests::loadedFeatures);
         FUNCTIONS.register("tin_can_consumption", () -> ConsumptionTests::tinCans);
         FUNCTIONS.register("tool_mining", () -> ToolTests::miningAndRetention);
+        FUNCTIONS.register("chainsaw_speed_and_drops", () -> ChainsawItemTests::constantsSpeedAndDrops);
+        FUNCTIONS.register("chainsaw_shear_break", () -> ChainsawItemTests::shearBreak);
+        FUNCTIONS.register("chainsaw_mode_toggle", () -> ChainsawItemTests::modeToggle);
+        FUNCTIONS.register("chainsaw_entity_shear", () -> ChainsawItemTests::entityShear);
         FUNCTIONS.register("tool_interactions", () -> ToolTests::rotationAndInsulation);
         FUNCTIONS.register("tool_crafting", () -> ToolTests::crafting);
         FUNCTIONS.register("transformer_profiles", () -> EnergyDeviceTests::profiles);

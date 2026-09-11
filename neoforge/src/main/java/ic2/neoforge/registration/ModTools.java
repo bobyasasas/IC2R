@@ -116,6 +116,10 @@ public final class ModTools {
                                     200,
                                     20,
                                     3));
+    public static final DeferredItem<ChainsawItem> CHAINSAW =
+            ITEMS.registerItem(
+                    "chainsaw",
+                    p -> new ChainsawItem(p.stacksTo(1), new ElectricItemSpec(30000, 100, 1, false)));
     public static final DeferredItem<ScannerItem> SCANNER =
             ITEMS.registerItem(
                     "scanner",
@@ -203,6 +207,7 @@ public final class ModTools {
             event.accept(DRILL);
             event.accept(DIAMOND_DRILL);
             event.accept(IRIDIUM_DRILL);
+            event.accept(CHAINSAW);
             event.accept(SCANNER);
             event.accept(ADVANCED_SCANNER);
             event.accept(FREQUENCY_TRANSMITTER);

@@ -236,6 +236,13 @@ public final class ModDataComponents {
                     builder ->
                             builder.persistent(Codec.BOOL).networkSynchronized(ByteBufCodecs.BOOL));
 
+    // Mirrors the legacy chainsaw NBT disableShear flag toggled with shift use.
+    public static final Supplier<DataComponentType<Boolean>> CHAINSAW_DISABLE_SHEAR =
+            TYPES.<Boolean>registerComponentType(
+                    "chainsaw_disable_shear",
+                    builder ->
+                            builder.persistent(Codec.BOOL).networkSynchronized(ByteBufCodecs.BOOL));
+
     private ModDataComponents() {}
 
     private static double validCharge(double value) {
