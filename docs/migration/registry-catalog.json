@@ -2437,7 +2437,14 @@
       "factory": "register",
       "expression": "new ItemBlockIc2(Ic2Blocks.ENERGY_O_MAT, new Properties())",
       "decision": "preserve",
-      "status": "pending"
+            "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/machine/MachineKind.java",
+        "neoforge/src/main/java/ic2/neoforge/machine/EnergyOMatBlockEntity.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/EnergyOMatTests.java",
+        "docs/migration/energy-o-mat.md"
+      ],
+      "note": "机器方块物品随 MachineKind.ENERGY_O_MAT 注册；GameTest 4 项与付账/门控/记账不变量见 energy-o-mat.md。"
     },
     {
       "registry": "item",
@@ -8629,7 +8636,13 @@
       "factory": "register",
       "expression": "Ic2TileEntityBlock.create(Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).strength(-1.0F, 3600000.0F).requiresCorrectToolForDrops().sound(SoundType.METAL), TileEntityEnergyOMat.class, false, Ic2TileEntityBlock.DefaultDrop.Self, Util.allFacings, false)",
       "decision": "preserve",
-      "status": "pending"
+            "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModMachines.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/EnergyOMatTests.java",
+        "docs/migration/energy-o-mat.md"
+      ],
+      "note": "MachineBlock 统一材质/硬度/工具；legacy DefaultDrop.Self+全朝向——port 战利品表扳手保机器/普通掉自身，blockstate 全朝向变体（trade_o_mat 先例）。legacy IPersonalBlock 认领/不可破坏随 TradeOMat 同待遇简化。"
     },
     {
       "registry": "block",
@@ -12012,7 +12025,14 @@
       "factory": "register",
       "expression": "TileEntityEnergyOMat::new",
       "decision": "preserve",
-      "status": "pending"
+            "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/machine/MachineKind.java",
+        "neoforge/src/main/java/ic2/neoforge/machine/EnergyOMatBlockEntity.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/EnergyOMatTests.java",
+        "docs/migration/energy-o-mat.md"
+      ],
+      "note": "EnergyOMatBlockEntity：demand/input/charge+1 升级槽、换物入邻箱付 1000 EU 信用（paidFor）、paidFor>0 才收电（acceptsFrom 动态面+invalidate）、缓冲充电槽（100 EU/t 传输限制）与正面输出、调价 0-7 键 ±100000/10000/1000/100 下限 100、储能/变压器升级手写结算。"
     },
     {
       "registry": "block_entity",

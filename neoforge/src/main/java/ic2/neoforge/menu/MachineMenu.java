@@ -134,6 +134,16 @@ public final class MachineMenu extends AbstractContainerMenu {
                     });
             addSlot(new ResourceHandlerSlot(inventory, inventory::set, 2, 56, 53));
             addSlot(new ResourceHandlerSlot(inventory, inventory::set, 3, 102, 53));
+        } else if (kind == MachineKind.ENERGY_O_MAT) {
+            addSlot(
+                    new ResourceHandlerSlot(inventory, inventory::set, 0, 38, 74) {
+                        @Override
+                        public int getMaxStackSize() {
+                            return 1;
+                        }
+                    });
+            addSlot(new ResourceHandlerSlot(inventory, inventory::set, 1, 74, 74));
+            addBatterySlot(inventory, 2, 110, 74);
         } else if (kind == MachineKind.BLAST_FURNACE) {
             addSlot(new ResourceHandlerSlot(inventory, inventory::set, 0, 56, 17));
             addOutputSlot(inventory, 1, 116, 35);
@@ -748,6 +758,8 @@ public final class MachineMenu extends AbstractContainerMenu {
         }
         if (kind == MachineKind.ELECTROLYZER)
             return stack.getItem() instanceof ElectricItem ? 0 : -1;
+        if (kind == MachineKind.ENERGY_O_MAT)
+            return stack.getItem() instanceof ElectricItem ? 2 : 1;
         if (kind == MachineKind.TANK) return -1;
         if (kind == MachineKind.LIQUID_HEAT_EXCHANGER
                 && stack.is(ModItems.MATERIALS.get(MaterialDefinition.HEAT_CONDUCTOR).get()))

@@ -168,6 +168,8 @@ public final class IndustrialCraftClient {
                         event.register(registration.menu().get(), FermenterScreen::new);
                     else if (kind == MachineKind.SOLAR_DISTILLER)
                         event.register(registration.menu().get(), SolarDistillerScreen::new);
+                    else if (kind == MachineKind.ENERGY_O_MAT)
+                        event.register(registration.menu().get(), EnergyOMatScreen::new);
                     else if (kind == MachineKind.CANNER)
                         event.register(registration.menu().get(), CannerScreen::new);
                     else event.register(registration.menu().get(), MachineScreen::new);

@@ -32,9 +32,9 @@
 
 | 注册类别 | 已实现 | 部分实现 | 基线总数 |
 |---|---:|---:|---:|
-| item | 259 | 179 | 528 |
-| block | 115 | 106 | 264 |
-| block_entity | 6 | 76 | 157 |
+| item | 260 | 179 | 528 |
+| block | 116 | 106 | 264 |
+| block_entity | 7 | 76 | 157 |
 | entity | 4 | 0 | 8 |
 | menu | 4 | 26 | 55 |
 | sound | 62 | 0 | 62 |
@@ -53,7 +53,7 @@
 
 ## 配方迁移覆盖
 
-已转换并纳入加载测试：**698 / 796**。
+已转换并纳入加载测试：**699 / 796**。
 
 转换计数不等于生存模式可达率；原料、工具与前置机器仍需逐步验收。
 
@@ -72,7 +72,7 @@
 | P05 电力储能与变压器 | M11 | 进行中 | BatBox、CESU、MFE、MFSU、四档变压器；方向、红石、供电模式、过压和重载。 |
 | P06 其余发电机 | M11 | 进行中 | 太阳能、地热、半流质、水力、风力、斯特林及动能转电已接入；同位素、其余配置及整体验收待完成。 |
 | P07 泵与采矿 | M11 | 进行中 | 泵（面向水源抽取、BFS 源搜索、8,000 mB 罐与自动装桶、进度持久化）已接入并双模式 GameTest 验收；矿机、高级矿机、管道、钻头与过滤待迁移；泵与矿机供液联动随矿机切片。 |
-| P08 存储与辅助机器 | M11 | 进行中 | 储液罐已接入事务存储、比较器、容器交互与升级；四级充电垫（站立顺序充电、网络供电、朝向输出）与核材料链已接入并双模式 GameTest 验收；个人保险箱（首开认领、非所有者拒绝、拆除保护）已接入并双模式 GameTest 验收；五材质储物箱（27/45/45/63/126 格、任意面存取）已接入并双模式 GameTest 验收；分拣机（六面×七过滤、默认面回退、20 EU/件路由）已接入并双模式 GameTest 验收；磁化机与铁栅栏（垂直柱搜索、均摊 boost、攀爬速度规则）已接入并双模式 GameTest 验收；交易机（demand/offer 模板、无限与邻接供应库存两种模式）已接入并双模式 GameTest 验收；传送机待迁移；个人保护随 P16。特斯拉线圈已接入：TeslaCoilBlockEntity（10000 EU/等级 2 sink、红石门控、待机 1 EU/t、每 32 tick stored/400 总伤害半径 4 全体 LivingEntity 平分（整除余数丢弃=legacy quirk）、全套 hazmat 免疫（免疫者仍计入分母）、命中再扣 damage×400、ic2:electricity 伤害源、26.1.2 hurtServer boolean 适配、蓝尘粒子、坐标哈希相位对应 legacy random）；配方 shaped/tesla_coil（RRR/RMR/ICI 照搬）+扳手保机器战利品表+legacy 贴图 2 张；账目不变量：满罐单实体 64 tick 后恰 336 EU（GameTest 精确锚定）；双模式 381 项 GameTest 3 项（tesla_coil_shock/gate/hazmat，含 test_instance JSON）验收。 |
+| P08 存储与辅助机器 | M11 | 进行中 | 储液罐已接入事务存储、比较器、容器交互与升级；四级充电垫（站立顺序充电、网络供电、朝向输出）与核材料链已接入并双模式 GameTest 验收；个人保险箱（首开认领、非所有者拒绝、拆除保护）已接入并双模式 GameTest 验收；五材质储物箱（27/45/45/63/126 格、任意面存取）已接入并双模式 GameTest 验收；分拣机（六面×七过滤、默认面回退、20 EU/件路由）已接入并双模式 GameTest 验收；磁化机与铁栅栏（垂直柱搜索、均摊 boost、攀爬速度规则）已接入并双模式 GameTest 验收；交易机（demand/offer 模板、无限与邻接供应库存两种模式）已接入并双模式 GameTest 验收；传送机待迁移；个人保护随 P16。特斯拉线圈已接入：TeslaCoilBlockEntity（10000 EU/等级 2 sink、红石门控、待机 1 EU/t、每 32 tick stored/400 总伤害半径 4 全体 LivingEntity 平分（整除余数丢弃=legacy quirk）、全套 hazmat 免疫（免疫者仍计入分母）、命中再扣 damage×400、ic2:electricity 伤害源、26.1.2 hurtServer boolean 适配、蓝尘粒子、坐标哈希相位对应 legacy random）；配方 shaped/tesla_coil（RRR/RMR/ICI 照搬）+扳手保机器战利品表+legacy 贴图 2 张；账目不变量：满罐单实体 64 tick 后恰 336 EU（GameTest 精确锚定）；双模式 381 项 GameTest 3 项（tesla_coil_shock/gate/hazmat，含 test_instance JSON）验收。能源交易机已接入：EnergyOMatBlockEntity（demand/input/charge+1 升级槽；换物整组入邻箱才成立并付 euOffer=1000 信用（下限 100，menuAction 0-7 八档调价）；paidFor>0 才收电——acceptsFrom 连接级门控+每 tick 到账计量等额扣信用+跨 0 invalidate（粒度一个包如实记录）；10,000 EU 缓冲经充电槽（RE 电池 100 EU/t 传输限制）与正面输出；储能/变压器升级手写结算容量 10000×(1+n)/tier；配方 RBR/CMC+战利品表扳手保机器/普通掉自身（legacy DefaultDrop.Self）+legacy 贴图 4 张；legacy IPersonalBlock 认领随 TradeOMat 同待遇简化如实记录）；双模式 385 项 GameTest 4 项（energy_o_mat_trade/gate/charge/price，含 test_instance JSON）验收。 |
 | P09 金属及高阶加工 | M11 | 进行中 | 金属成型、洗矿、离心、回收与感应炉主体已验证；核材料（铀／铀 235／铀 238／钚／小撮系列／MOX／铀燃料丸）与热量门槛离心链（铀分离、RTG 丸回收、小撮压缩）已接入并双模式 GameTest 验收；铁栅栏与磁化机随 P08，完整升级与多人验收待完成。 |
 | P10 热力与动能机器 | M11 | 进行中 | 风力／水力动能与五种转子、手动动能、电热、电动动能、固体／流体热源、蒸汽发生器升温／压力／结垢、双级蒸汽动能与完整水循环、冷凝与散热片、电解双气体输出、流体冷却换热、发酵与沼气链、原生事务能力与转电链已接入；蒸汽再压缩（有界热储备、c:steam 候选选择、取热差额修复、零倍率停机）已接入并双模式 GameTest 验收；同位素热源与 RT 发电机（指数输出曲线、单面热输出、燃料不消耗、电池槽充电）已接入并双模式 GameTest 验收；升温换热经核对在恢复源码中无实现依据（热冷却剂仅存在于冷却方向），不作为独立迁移项。太阳能蒸馏器已接入：非能量被动流体机 SolarDistillerBlockEntity（双罐各 10000 mB，恒 72 tick 速率——legacy HOT=36/COLD=144 因 EnvProxy biomeHasType 桩恒 false 不可达，按 crops.md 决策取常数），每周期在方块上方取样 SolarGeneration.brightness，亮度 >0.5 且水罐非空、蒸馏罐未满时转化 1 mB 水→蒸馏水；水容器顶部进罐/蒸馏罐底部装桶双向 FluidContainerPort，流体自动化端口全侧面（入水罐只进水、蒸馏罐只出），2 升级槽（legacy GUI 2/声明 3 差异按 GUI 收敛），专用屏幕双罐显示+光照百分比；配方 GGG/G G/CMC（玻璃+machine+facade_cell）与扳手/外壳战利品表落地，registry/recipe catalog 条目转已移植；双模式 374 项 GameTest 3 项（规格端口/昼间周期与夜晚遮罩门控/容器交换，含 test_instance JSON）验收。 |
 | P11 UU 及复制系统 | M11 | 进行中 | 水晶记忆盘、uu_scanner（数据包化 UU 价值图＋world-scan 种子集）、pattern_storage、replicator（价值导出 UU 消耗）与 matter_generator 已接入；剩余实机验收、客户端外观与多人同步。 |

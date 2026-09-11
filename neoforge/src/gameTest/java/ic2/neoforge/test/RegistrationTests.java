@@ -235,6 +235,10 @@ public final class RegistrationTests {
         FUNCTIONS.register("magnetizer_unpowered", () -> MagnetizerTests::unpoweredStays);
         FUNCTIONS.register("trade_o_mat_infinite", () -> TradeOMatTests::infiniteTrade);
         FUNCTIONS.register("trade_o_mat_supply", () -> TradeOMatTests::suppliedTrade);
+        FUNCTIONS.register("energy_o_mat_trade", () -> EnergyOMatTests::tradePaysForCredit);
+        FUNCTIONS.register("energy_o_mat_gate", () -> EnergyOMatTests::unpaidGate);
+        FUNCTIONS.register("energy_o_mat_charge", () -> EnergyOMatTests::creditPaysForCharge);
+        FUNCTIONS.register("energy_o_mat_price", () -> EnergyOMatTests::priceKeypad);
         FUNCTIONS.register("pump_faced_water", () -> PumpTests::pumpsFacedWater);
         FUNCTIONS.register("pump_fills_buckets", () -> PumpTests::fillsBuckets);
         FUNCTIONS.register("pump_progress_reload", () -> PumpTests::survivesReload);

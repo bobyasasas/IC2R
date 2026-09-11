@@ -44,6 +44,7 @@ public enum MachineKind implements StringRepresentable {
     ADV_MINER("advanced_miner", 4000000, 17, 0, 0),
     SORTING_MACHINE("sorting_machine", 15000, 14, 0, 0),
     TRADE_O_MAT("trade_o_mat", 0, 4, 0, 0),
+    ENERGY_O_MAT("energy_o_mat", 10000, 3, 0, 0),
     ITEM_BUFFER("item_buffer", 0, 48, 0, 0),
     BLAST_FURNACE("blast_furnace", 0, 5, 0, 0),
     MATTER_GENERATOR("matter_generator", 1000000, 3, 0, 0),
@@ -230,6 +231,7 @@ public enum MachineKind implements StringRepresentable {
 
     public int menuHeight() {
         if (this == STEAM_GENERATOR) return 238;
+        if (this == ENERGY_O_MAT) return 184;
         if (this == PERSONAL_CHEST) return 222;
         if (this == ITEM_BUFFER) return 232;
         if (this == NUCLEAR_REACTOR) return 232;
@@ -266,6 +268,7 @@ public enum MachineKind implements StringRepresentable {
         if (this == MATTER_GENERATOR) return 4;
         if (this == RCI_RSH || this == RCI_LZH) return 4;
         if (this == CONDENSER || this == STEAM_KINETIC_GENERATOR || this == MINER) return 1;
+        if (this == ENERGY_O_MAT) return 1;
         if (this == TANK) return 4;
         if (this == LIQUID_HEAT_EXCHANGER) return 3;
         if (this == SOLAR_DISTILLER) return 2;

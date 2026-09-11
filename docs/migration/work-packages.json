@@ -85,7 +85,7 @@
       "parent": "M11",
       "title": "存储与辅助机器",
       "status": "in_progress",
-      "acceptance": "储液罐已接入事务存储、比较器、容器交互与升级；四级充电垫（站立顺序充电、网络供电、朝向输出）与核材料链已接入并双模式 GameTest 验收；个人保险箱（首开认领、非所有者拒绝、拆除保护）已接入并双模式 GameTest 验收；五材质储物箱（27/45/45/63/126 格、任意面存取）已接入并双模式 GameTest 验收；分拣机（六面×七过滤、默认面回退、20 EU/件路由）已接入并双模式 GameTest 验收；磁化机与铁栅栏（垂直柱搜索、均摊 boost、攀爬速度规则）已接入并双模式 GameTest 验收；交易机（demand/offer 模板、无限与邻接供应库存两种模式）已接入并双模式 GameTest 验收；传送机待迁移；个人保护随 P16。特斯拉线圈已接入：TeslaCoilBlockEntity（10000 EU/等级 2 sink、红石门控、待机 1 EU/t、每 32 tick stored/400 总伤害半径 4 全体 LivingEntity 平分（整除余数丢弃=legacy quirk）、全套 hazmat 免疫（免疫者仍计入分母）、命中再扣 damage×400、ic2:electricity 伤害源、26.1.2 hurtServer boolean 适配、蓝尘粒子、坐标哈希相位对应 legacy random）；配方 shaped/tesla_coil（RRR/RMR/ICI 照搬）+扳手保机器战利品表+legacy 贴图 2 张；账目不变量：满罐单实体 64 tick 后恰 336 EU（GameTest 精确锚定）；双模式 381 项 GameTest 3 项（tesla_coil_shock/gate/hazmat，含 test_instance JSON）验收。",
+      "acceptance": "储液罐已接入事务存储、比较器、容器交互与升级；四级充电垫（站立顺序充电、网络供电、朝向输出）与核材料链已接入并双模式 GameTest 验收；个人保险箱（首开认领、非所有者拒绝、拆除保护）已接入并双模式 GameTest 验收；五材质储物箱（27/45/45/63/126 格、任意面存取）已接入并双模式 GameTest 验收；分拣机（六面×七过滤、默认面回退、20 EU/件路由）已接入并双模式 GameTest 验收；磁化机与铁栅栏（垂直柱搜索、均摊 boost、攀爬速度规则）已接入并双模式 GameTest 验收；交易机（demand/offer 模板、无限与邻接供应库存两种模式）已接入并双模式 GameTest 验收；传送机待迁移；个人保护随 P16。特斯拉线圈已接入：TeslaCoilBlockEntity（10000 EU/等级 2 sink、红石门控、待机 1 EU/t、每 32 tick stored/400 总伤害半径 4 全体 LivingEntity 平分（整除余数丢弃=legacy quirk）、全套 hazmat 免疫（免疫者仍计入分母）、命中再扣 damage×400、ic2:electricity 伤害源、26.1.2 hurtServer boolean 适配、蓝尘粒子、坐标哈希相位对应 legacy random）；配方 shaped/tesla_coil（RRR/RMR/ICI 照搬）+扳手保机器战利品表+legacy 贴图 2 张；账目不变量：满罐单实体 64 tick 后恰 336 EU（GameTest 精确锚定）；双模式 381 项 GameTest 3 项（tesla_coil_shock/gate/hazmat，含 test_instance JSON）验收。能源交易机已接入：EnergyOMatBlockEntity（demand/input/charge+1 升级槽；换物整组入邻箱才成立并付 euOffer=1000 信用（下限 100，menuAction 0-7 八档调价）；paidFor>0 才收电——acceptsFrom 连接级门控+每 tick 到账计量等额扣信用+跨 0 invalidate（粒度一个包如实记录）；10,000 EU 缓冲经充电槽（RE 电池 100 EU/t 传输限制）与正面输出；储能/变压器升级手写结算容量 10000×(1+n)/tier；配方 RBR/CMC+战利品表扳手保机器/普通掉自身（legacy DefaultDrop.Self）+legacy 贴图 4 张；legacy IPersonalBlock 认领随 TradeOMat 同待遇简化如实记录）；双模式 385 项 GameTest 4 项（energy_o_mat_trade/gate/charge/price，含 test_instance JSON）验收。",
       "evidence": [
         "docs/migration/tank.md",
         "docs/migration/chargepads.md",
@@ -103,6 +103,10 @@
         "neoforge/src/main/java/ic2/neoforge/machine/TeslaCoilBlockEntity.java",
         "neoforge/src/gameTest/java/ic2/neoforge/test/TeslaCoilTests.java",
         "docs/migration/tesla-coil.md"
+   ,
+        "neoforge/src/main/java/ic2/neoforge/machine/EnergyOMatBlockEntity.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/EnergyOMatTests.java",
+        "docs/migration/energy-o-mat.md"
       ]
     },
     {

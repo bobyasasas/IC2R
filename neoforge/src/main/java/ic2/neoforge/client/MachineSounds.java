@@ -93,6 +93,7 @@ final class MachineSounds {
                     RT_GENERATOR,
                     MAGNETIZER,
                     TRADE_O_MAT,
+                    ENERGY_O_MAT,
                     ITEM_BUFFER,
                     BLOCK_CUTTER,
                     BLAST_FURNACE,

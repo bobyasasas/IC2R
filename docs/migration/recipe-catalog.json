@@ -2565,8 +2565,8 @@
     {
       "source": "shaped/energy_o_mat.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:energy_o_mat"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/energy_o_mat.json"
     },
     {
       "source": "shaped/energy_pack.json",
