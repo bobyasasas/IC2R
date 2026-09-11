@@ -96,6 +96,9 @@ public final class RegistrationTests {
         FUNCTIONS.register("jetpack_attached_flight", () -> JetpackAttachmentTests::attachedFlight);
         FUNCTIONS.register("jetpack_pop_back", () -> JetpackAttachmentTests::popBack);
         FUNCTIONS.register("jetpack_world_fill", () -> JetpackAttachmentTests::worldFill);
+        FUNCTIONS.register("tesla_coil_shock", () -> TeslaCoilTests::shockAndLedger);
+        FUNCTIONS.register("tesla_coil_gate", () -> TeslaCoilTests::redstoneGateAndEmptyTank);
+        FUNCTIONS.register("tesla_coil_hazmat", () -> TeslaCoilTests::hazmatImmunityAndSplit);
         FUNCTIONS.register("tool_interactions", () -> ToolTests::rotationAndInsulation);
         FUNCTIONS.register("tool_crafting", () -> ToolTests::crafting);
         FUNCTIONS.register("transformer_profiles", () -> EnergyDeviceTests::profiles);

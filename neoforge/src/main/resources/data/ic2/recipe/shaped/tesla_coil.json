@@ -1,0 +1,18 @@
+{
+  "type": "ic2:shaped",
+  "pattern": [
+    "RRR",
+    "RMR",
+    "ICI"
+  ],
+  "key": {
+    "R": "minecraft:redstone",
+    "M": "ic2:mv_transformer",
+    "C": "ic2:circuit",
+    "I": "ic2:iron_casing"
+  },
+  "result": {
+    "id": "ic2:tesla_coil",
+    "count": 1
+  }
+}

@@ -84,7 +84,8 @@ public enum MachineKind implements StringRepresentable {
     COMPRESSOR("compressor", 600, 3, 300, 2),
     BLOCK_CUTTER("block_cutter", 1800, 4, 450, 4),
     CROPMATRON("cropmatron", 10000, 11, 0, 0),
-    CROP_HARVESTER("crop_harvester", 10000, 15, 0, 0);
+    CROP_HARVESTER("crop_harvester", 10000, 15, 0, 0),
+    TESLA_COIL("tesla_coil", 10000, 0, 0, 0);
 
     public static final Codec<MachineKind> CODEC =
             StringRepresentable.fromEnum(MachineKind::values);
@@ -195,7 +196,8 @@ public enum MachineKind implements StringRepresentable {
                     CENTRIFUGE,
                     INDUCTION_FURNACE,
                     ELECTROLYZER,
-                    SORTING_MACHINE ->
+                    SORTING_MACHINE,
+                    TESLA_COIL ->
                     2;
             case MFE, HV_TRANSFORMER, CONDENSER, MATTER_GENERATOR -> 3;
             case MFE_CHARGEPAD -> 3;

@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "facing=north,active=false": {"model": "ic2:block/machine/misc/tesla_coil"},
+    "facing=north,active=true": {"model": "ic2:block/machine/misc/tesla_coil"},
+    "facing=south,active=false": {"model": "ic2:block/machine/misc/tesla_coil"},
+    "facing=south,active=true": {"model": "ic2:block/machine/misc/tesla_coil"},
+    "facing=west,active=false": {"model": "ic2:block/machine/misc/tesla_coil"},
+    "facing=west,active=true": {"model": "ic2:block/machine/misc/tesla_coil"},
+    "facing=east,active=false": {"model": "ic2:block/machine/misc/tesla_coil"},
+    "facing=east,active=true": {"model": "ic2:block/machine/misc/tesla_coil"},
+    "facing=up,active=false": {"model": "ic2:block/machine/misc/tesla_coil"},
+    "facing=up,active=true": {"model": "ic2:block/machine/misc/tesla_coil"},
+    "facing=down,active=false": {"model": "ic2:block/machine/misc/tesla_coil"},
+    "facing=down,active=true": {"model": "ic2:block/machine/misc/tesla_coil"}
+  }
+}

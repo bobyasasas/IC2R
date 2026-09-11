@@ -85,7 +85,7 @@
       "parent": "M11",
       "title": "存储与辅助机器",
       "status": "in_progress",
-      "acceptance": "储液罐已接入事务存储、比较器、容器交互与升级；四级充电垫（站立顺序充电、网络供电、朝向输出）与核材料链已接入并双模式 GameTest 验收；个人保险箱（首开认领、非所有者拒绝、拆除保护）已接入并双模式 GameTest 验收；五材质储物箱（27/45/45/63/126 格、任意面存取）已接入并双模式 GameTest 验收；分拣机（六面×七过滤、默认面回退、20 EU/件路由）已接入并双模式 GameTest 验收；磁化机与铁栅栏（垂直柱搜索、均摊 boost、攀爬速度规则）已接入并双模式 GameTest 验收；交易机（demand/offer 模板、无限与邻接供应库存两种模式）已接入并双模式 GameTest 验收；传送机待迁移；个人保护随 P16。",
+      "acceptance": "储液罐已接入事务存储、比较器、容器交互与升级；四级充电垫（站立顺序充电、网络供电、朝向输出）与核材料链已接入并双模式 GameTest 验收；个人保险箱（首开认领、非所有者拒绝、拆除保护）已接入并双模式 GameTest 验收；五材质储物箱（27/45/45/63/126 格、任意面存取）已接入并双模式 GameTest 验收；分拣机（六面×七过滤、默认面回退、20 EU/件路由）已接入并双模式 GameTest 验收；磁化机与铁栅栏（垂直柱搜索、均摊 boost、攀爬速度规则）已接入并双模式 GameTest 验收；交易机（demand/offer 模板、无限与邻接供应库存两种模式）已接入并双模式 GameTest 验收；传送机待迁移；个人保护随 P16。特斯拉线圈已接入：TeslaCoilBlockEntity（10000 EU/等级 2 sink、红石门控、待机 1 EU/t、每 32 tick stored/400 总伤害半径 4 全体 LivingEntity 平分（整除余数丢弃=legacy quirk）、全套 hazmat 免疫（免疫者仍计入分母）、命中再扣 damage×400、ic2:electricity 伤害源、26.1.2 hurtServer boolean 适配、蓝尘粒子、坐标哈希相位对应 legacy random）；配方 shaped/tesla_coil（RRR/RMR/ICI 照搬）+扳手保机器战利品表+legacy 贴图 2 张；账目不变量：满罐单实体 64 tick 后恰 336 EU（GameTest 精确锚定）；双模式 381 项 GameTest 3 项（tesla_coil_shock/gate/hazmat，含 test_instance JSON）验收。",
       "evidence": [
         "docs/migration/tank.md",
         "docs/migration/chargepads.md",
@@ -99,7 +99,10 @@
         "docs/migration/magnetizer.md",
         "neoforge/src/gameTest/java/ic2/neoforge/test/MagnetizerTests.java",
         "docs/migration/trade-o-mat.md",
-        "neoforge/src/gameTest/java/ic2/neoforge/test/TradeOMatTests.java"
+        "neoforge/src/gameTest/java/ic2/neoforge/test/TradeOMatTests.java",
+        "neoforge/src/main/java/ic2/neoforge/machine/TeslaCoilBlockEntity.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/TeslaCoilTests.java",
+        "docs/migration/tesla-coil.md"
       ]
     },
     {

@@ -3909,8 +3909,8 @@
     {
       "source": "shaped/tesla_coil.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:tesla_coil"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/tesla_coil.json"
     },
     {
       "source": "shaped/thick_neutron_reflector.json",
