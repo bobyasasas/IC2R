@@ -8,6 +8,7 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.neoforged.neoforge.transfer.item.ItemResource;
 import net.neoforged.neoforge.transfer.item.PlayerInventoryWrapper;
@@ -45,5 +46,29 @@ public final class TinCanItem extends Item {
         }
         player.getFoodData().eat(amount, amount);
         return InteractionResult.SUCCESS;
+    }
+
+    /**
+     * Legacy ItemTinCan.onEaten driven from the quantum helmet: bulk-eats the first filled can
+     * stack found in the main inventory and stows the empty cans, like the legacy path.
+     */
+    public static boolean eatFromInventory(Player player) {
+        var food = player.getFoodData();
+        var items = player.getInventory().getNonEquipmentItems();
+        for (int i = 0; i < items.size(); i++) {
+            ItemStack stack = items.get(i);
+            if (stack.getItem() != ModItems.FILLED_TIN_CAN.get()) continue;
+            int amount = Math.min(stack.getCount(), 20 - food.getFoodLevel());
+            if (amount <= 0) return false;
+            ItemStack empties =
+                    new ItemStack(
+                            ModItems.MATERIALS.get(MaterialDefinition.TIN_CAN).get(), amount);
+            if (!player.getInventory().add(empties)) return false;
+            food.eat(amount, amount);
+            stack.shrink(amount);
+            return true;
+        }
+
+        return false;
     }
 }

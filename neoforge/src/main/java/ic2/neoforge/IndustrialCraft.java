@@ -83,6 +83,7 @@ public final class IndustrialCraft {
         gameBus.addListener(ic2.neoforge.item.HazmatHelper::onIncomingDamage);
         gameBus.addListener(ic2.neoforge.item.ElectricArmorHelper::onIncomingDamage);
         gameBus.addListener(ic2.neoforge.item.ElectricArmorHelper::onLivingFall);
+        gameBus.addListener(ic2.neoforge.item.QuantumArmorHelper::onPlayerTick);
         gameBus.addListener(ic2.neoforge.item.NightVisionHelper::onPlayerTick);
         gameBus.addListener(ic2.neoforge.item.ChainsawItem::onBreakBlock);
         if (FMLEnvironment.getDist().isClient()) {

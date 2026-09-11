@@ -1,0 +1,17 @@
+{
+  "type": "ic2:shaped",
+  "pattern": [
+    "InI",
+    "RLR"
+  ],
+  "result": {
+    "id": "ic2:quantum_boots",
+    "count": 1
+  },
+  "key": {
+    "n": "ic2:nano_boots",
+    "I": "ic2:iridium",
+    "L": "ic2:lapotron_crystal",
+    "R": "ic2:rubber_boots"
+  }
+}

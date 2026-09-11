@@ -81,6 +81,12 @@ public final class RegistrationTests {
         FUNCTIONS.register("nano_energy_absorption", () -> NanoArmorTests::energyAbsorption);
         FUNCTIONS.register("nano_fall_absorption", () -> NanoArmorTests::fallAbsorption);
         FUNCTIONS.register("nano_night_vision", () -> NanoArmorTests::nightVisionToggleAndTick);
+        FUNCTIONS.register("quantum_spec_attributes", () -> QuantumArmorTests::specAndAttributes);
+        FUNCTIONS.register("quantum_damage_absorption", () -> QuantumArmorTests::damageAbsorption);
+        FUNCTIONS.register("quantum_helmet_life_support", () -> QuantumArmorTests::helmetLifeSupport);
+        FUNCTIONS.register("quantum_jetpack_flight", () -> QuantumArmorTests::jetpackFlight);
+        FUNCTIONS.register("quantum_jump_fall", () -> QuantumArmorTests::jumpAndFall);
+        FUNCTIONS.register("quantum_legs_speed", () -> QuantumArmorTests::legsSpeedBoost);
         FUNCTIONS.register("tool_interactions", () -> ToolTests::rotationAndInsulation);
         FUNCTIONS.register("tool_crafting", () -> ToolTests::crafting);
         FUNCTIONS.register("transformer_profiles", () -> EnergyDeviceTests::profiles);

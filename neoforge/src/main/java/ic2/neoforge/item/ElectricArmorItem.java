@@ -94,6 +94,11 @@ public class ElectricArmorItem extends ElectricItem {
         return ElectricItemEnergy.charge(stack) >= this.energyPerDamage;
     }
 
+    /** Legacy fall absorption; only the nano and quantum boots implement it. */
+    public boolean absorbFall(ItemStack stack, float distance) {
+        return false;
+    }
+
     @Override
     public ItemAttributeModifiers getDefaultAttributeModifiers(ItemStack stack) {
         return this.isCharged(stack) ? this.chargedModifiers : this.unchargedModifiers;

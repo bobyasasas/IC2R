@@ -6,6 +6,7 @@ import ic2.neoforge.item.ElectricItem;
 import ic2.neoforge.item.HazmatArmorItem;
 import ic2.neoforge.item.NanoSuitItem;
 import ic2.neoforge.item.NightVisionGogglesItem;
+import ic2.neoforge.item.QuantumSuitItem;
 
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.resources.Identifier;
@@ -153,6 +154,32 @@ public final class ModArmor {
                             Identifier.fromNamespaceAndPath(IndustrialCraft.MOD_ID, "ic2_nano")));
 
     /**
+     * Legacy Ic2ArmorMaterials.QUANTUM_SUIT: zero protection while uncharged; the charged
+     * protection values (3/6/8/3 per slot) come from ElectricArmorItem. Toughness 2.0.
+     */
+    private static final ArmorMaterial QUANTUM_SUIT =
+            new ArmorMaterial(
+                    0,
+                    Map.of(
+                            ArmorType.BOOTS,
+                            0,
+                            ArmorType.LEGGINGS,
+                            0,
+                            ArmorType.CHESTPLATE,
+                            0,
+                            ArmorType.HELMET,
+                            0),
+                    0,
+                    SoundEvents.ARMOR_EQUIP_IRON,
+                    2.0F,
+                    0.0F,
+                    NO_REPAIR,
+                    ResourceKey.create(
+                            EquipmentAssets.ROOT_ID,
+                            Identifier.fromNamespaceAndPath(
+                                    IndustrialCraft.MOD_ID, "ic2_quantum")));
+
+    /**
      * Legacy Ic2ArmorMaterials.NIGHT_VISION_GOGGLES: 3-point helmet, toughness 2.0 (the legacy
      * protection array {0,0,0,3} indexes [boots,legs,chest,helmet]).
      */
@@ -256,6 +283,66 @@ public final class ModArmor {
                                                             .build()),
                                     new ElectricItemSpec(200000, 200, 1, false)));
 
+    /** Legacy ItemArmorQuantumSuit: 10M EU, tier 4, 12000 EU/t, per-slot charged protection. */
+    public static final DeferredItem<QuantumSuitItem> QUANTUM_HELMET =
+            ITEMS.registerItem(
+                    "quantum_helmet",
+                    p ->
+                            new QuantumSuitItem(
+                                    quantum(p, ArmorType.HELMET, EquipmentSlot.HEAD),
+                                    quantumSpec(),
+                                    ArmorType.HELMET,
+                                    QUANTUM_SUIT,
+                                    3));
+    public static final DeferredItem<QuantumSuitItem> QUANTUM_CHESTPLATE =
+            ITEMS.registerItem(
+                    "quantum_chestplate",
+                    p ->
+                            new QuantumSuitItem(
+                                    quantum(p, ArmorType.CHESTPLATE, EquipmentSlot.CHEST),
+                                    quantumSpec(),
+                                    ArmorType.CHESTPLATE,
+                                    QUANTUM_SUIT,
+                                    8));
+    public static final DeferredItem<QuantumSuitItem> QUANTUM_LEGGINGS =
+            ITEMS.registerItem(
+                    "quantum_leggings",
+                    p ->
+                            new QuantumSuitItem(
+                                    quantum(p, ArmorType.LEGGINGS, EquipmentSlot.LEGS),
+                                    quantumSpec(),
+                                    ArmorType.LEGGINGS,
+                                    QUANTUM_SUIT,
+                                    6));
+    public static final DeferredItem<QuantumSuitItem> QUANTUM_BOOTS =
+            ITEMS.registerItem(
+                    "quantum_boots",
+                    p ->
+                            new QuantumSuitItem(
+                                    quantum(p, ArmorType.BOOTS, EquipmentSlot.FEET),
+                                    quantumSpec(),
+                                    ArmorType.BOOTS,
+                                    QUANTUM_SUIT,
+                                    3));
+
+    private static ElectricItemSpec quantumSpec() {
+        return new ElectricItemSpec(10000000, 12000, 4, false);
+    }
+
+    private static Item.Properties quantum(
+            Item.Properties properties, ArmorType type, EquipmentSlot slot) {
+        // No static ATTRIBUTE_MODIFIERS component: charged protection resolves dynamically in
+        // ElectricArmorItem.getDefaultAttributeModifiers, like the nano suit.
+        return properties
+                .rarity(Rarity.RARE)
+                .component(
+                        DataComponents.EQUIPPABLE,
+                        Equippable.builder(slot)
+                                .setEquipSound(QUANTUM_SUIT.equipSound())
+                                .setAsset(QUANTUM_SUIT.assetId())
+                                .build());
+    }
+
     private static UnaryOperator<Item.Properties> hazmat(ArmorType type, EquipmentSlot slot) {
         return properties ->
                 properties
@@ -286,6 +373,10 @@ public final class ModArmor {
             event.accept(ModArmor.NANO_LEGGINGS);
             event.accept(ModArmor.NANO_BOOTS);
             event.accept(ModArmor.NIGHT_VISION_GOGGLES);
+            event.accept(ModArmor.QUANTUM_HELMET);
+            event.accept(ModArmor.QUANTUM_CHESTPLATE);
+            event.accept(ModArmor.QUANTUM_LEGGINGS);
+            event.accept(ModArmor.QUANTUM_BOOTS);
         }
     }
 

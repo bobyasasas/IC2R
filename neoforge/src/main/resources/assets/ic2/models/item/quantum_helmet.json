@@ -1,0 +1,13 @@
+{
+  "parent": "ic2:item/default",
+  "textures": {
+    "layer0": "ic2:item/armor/quantum_helmet",
+    "layer1": "ic2:item/armor/quantum_helmet_overlay"
+  },
+  "tints": [
+    {
+      "type": "minecraft:dye",
+      "default": -1
+    }
+  ]
+}

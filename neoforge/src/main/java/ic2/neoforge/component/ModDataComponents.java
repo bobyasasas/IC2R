@@ -250,6 +250,30 @@ public final class ModDataComponents {
                     builder ->
                             builder.persistent(Codec.BOOL).networkSynchronized(ByteBufCodecs.BOOL));
 
+    // QuantumSuit per-piece NBT flags and the legs speed ticker, toggled with shift use
+    // (legacy read the client keyboard instead; the port has no client keybinds yet).
+    public static final Supplier<DataComponentType<Boolean>> JETPACK_ACTIVE =
+            TYPES.<Boolean>registerComponentType(
+                    "jetpack_active",
+                    builder ->
+                            builder.persistent(Codec.BOOL).networkSynchronized(ByteBufCodecs.BOOL));
+    public static final Supplier<DataComponentType<Boolean>> SPEED_ENABLED =
+            TYPES.<Boolean>registerComponentType(
+                    "speed_enabled",
+                    builder ->
+                            builder.persistent(Codec.BOOL).networkSynchronized(ByteBufCodecs.BOOL));
+    public static final Supplier<DataComponentType<Boolean>> JUMP_ENABLED =
+            TYPES.<Boolean>registerComponentType(
+                    "jump_enabled",
+                    builder ->
+                            builder.persistent(Codec.BOOL).networkSynchronized(ByteBufCodecs.BOOL));
+    public static final Supplier<DataComponentType<Integer>> SPEED_TICKER =
+            TYPES.<Integer>registerComponentType(
+                    "speed_ticker",
+                    builder ->
+                            builder.persistent(Codec.intRange(0, 9))
+                                    .networkSynchronized(ByteBufCodecs.VAR_INT));
+
     private ModDataComponents() {}
 
     private static double validCharge(double value) {

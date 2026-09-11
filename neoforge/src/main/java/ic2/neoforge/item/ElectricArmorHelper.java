@@ -56,14 +56,14 @@ public final class ElectricArmorHelper {
         event.setAmount(remainingDamage);
     }
 
-    /** Legacy EventHandler.onLivingFall nano branch (the rubber boots one is dead legacy code). */
+    /** Legacy EventHandler.onLivingFall nano/quantum branches (rubber boots one is dead code). */
     public static void onLivingFall(LivingFallEvent event) {
         LivingEntity entity = event.getEntity();
         if (entity.level().isClientSide()) return;
 
         ItemStack boots = entity.getItemBySlot(EquipmentSlot.FEET);
-        if (boots.getItem() instanceof NanoSuitItem nanoBoots
-                && nanoBoots.absorbFall(boots, (float) event.getDistance())) {
+        if (boots.getItem() instanceof ElectricArmorItem armor
+                && armor.absorbFall(boots, (float) event.getDistance())) {
             event.setCanceled(true);
         }
     }

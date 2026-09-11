@@ -44,6 +44,7 @@ public class NanoSuitItem extends ElectricArmorItem {
     }
 
     /** Legacy ItemArmorNanoSuit.absorbFall: cancel falls of up to seven damage points for EU. */
+    @Override
     public boolean absorbFall(ItemStack stack, float distance) {
         int fallDamage = Math.max((int) distance - 3, 0);
         if (fallDamage >= 8) {

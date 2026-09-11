@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:crafting_dye",
+  "target": "ic2:quantum_leggings",
+  "dye": "#minecraft:dyes",
+  "result": {
+    "id": "ic2:quantum_leggings"
+  }
+}
