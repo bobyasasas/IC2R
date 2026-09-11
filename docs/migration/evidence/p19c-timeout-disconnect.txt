@@ -1,0 +1,8 @@
+=== silent-drop (SIGSTOP) disconnect variant ===
+21:07:17 kill -STOP on client process group (client java frozen, TCP left open, no packets)
+[21:07:44] [Server thread/INFO] [minecraft/ServerGamePacketListenerImpl]: Dev lost connection: Disconnected
+[21:07:44] [Server thread/INFO] [minecraft/MinecraftServer]: Dev left the game
+[21:07:44] [Server thread/WARN] [minecraft/Connection]: handleDisconnection() called twice
+poll after disconnect: 'There are 0 of a max of 20 players online:'
+scanner/grid BE data intact after recovery (inventory elytra+crystal_memory, batbox 7969.0d)
+server-side ERROR count in whole log: 1 (kqueue log-appender noise, unrelated)

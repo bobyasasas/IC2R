@@ -1,0 +1,14 @@
+=== performance baseline: production server, 1 player (Dev), 16 generators + 16 copper cables + 16 batboxes (two rows of 8 triplets) ===
+charging 16 generators (8 then +8, 3990 EU each), /tick query DURING distribution:
+  avg 5.1ms P50 4.7 P95 7.9 P99 13.7 (8-triplet)
+  avg 5.8ms P50 4.9 P95 11.1 P99 14.0 (32 machines live)
+  avg 4.4ms P50 4.0 P95 6.8 P99 12.1 (16-triplet charge window)
+  idle after distribution: avg 4.5ms P99 9.3
+  [slice-1/2 reference: empty 0.3ms, 1 player 1.2ms, 2 players 1.1ms]
+TPS held 20.0 (tick query: 'The game is running normally')
+
+=== conservation ===
+injected this round: 16 x 3990 = 63840 EU; pre-existing row-A storage 31605 EU
+measured stored across 16 batboxes: 94829 EU
+cable loss = (31605+63840) - 94829 = 616 EU = 0.97% of transferred (16 copper cable columns, ~38.5 EU each)
+generator residuals after distribution: 0.0d (checked 12/15/19 y=90)

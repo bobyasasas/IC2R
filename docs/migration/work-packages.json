@@ -274,7 +274,7 @@
       "id": "P19",
       "parent": "M16",
       "title": "多人及性能",
-      "status": "in_progress",
+      "status": "done",
       "acceptance": "双人操作、断线、区块加载、重启、资源重载与性能基线。",
       "evidence": [
         "docs/migration/multiplayer-perf.md",
@@ -291,7 +291,11 @@
         "docs/migration/evidence/p19b-gui-open.png",
         "docs/migration/evidence/p19b-kick-screen.png",
         "docs/migration/evidence/p19b-client-a-dual-player.png",
-        "neoforge/build.gradle"
+        "neoforge/build.gradle",
+        "docs/migration/evidence/p19c-reload-and-release-server.txt",
+        "docs/migration/evidence/p19c-perf-baseline.txt",
+        "docs/migration/evidence/p19c-timeout-disconnect.txt",
+        "docs/migration/evidence/p19c-server-lifecycle.txt"
       ]
     },
     {

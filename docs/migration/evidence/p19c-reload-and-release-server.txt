@@ -1,0 +1,33 @@
+=== P19 slice 3: production published-jar dedicated server (installer layout, mods/ = ic2-neoforge-3.0.0-migration.1.jar only, no JEI/Jade) ===
+16:		IndustrialCraft 2: Refactored 3.0.0-migration.1 (ic2)
+23: - ic2 (jar(mods/ic2-neoforge-3.0.0-migration.1.jar))
+45:[20:49:11] [main/WARN] [minecraft/RecipeManager]: Recipe ic2:matter_fabricator/scrap_box_to_45000 can't be placed due to empty ingredients and will be ignored
+46:[20:49:11] [main/WARN] [minecraft/RecipeManager]: Recipe ic2:matter_fabricator/scrap_to_5000 can't be placed due to empty ingredients and will be ignored
+47:[20:49:11] [main/WARN] [minecraft/RecipeManager]: Recipe ic2:shaped/mox_2 can't be placed due to empty ingredients and will be ignored
+48:[20:49:11] [main/WARN] [minecraft/RecipeManager]: Recipe ic2:shaped/mox_4 can't be placed due to empty ingredients and will be ignored
+49:[20:49:11] [main/WARN] [minecraft/RecipeManager]: Recipe ic2:shaped/rtg_pellet_2 can't be placed due to empty ingredients and will be ignored
+50:[20:49:11] [main/WARN] [minecraft/RecipeManager]: Recipe ic2:shaped/rtg_pellet_vertical_2 can't be placed due to empty ingredients and will be ignored
+51:[20:49:11] [main/WARN] [minecraft/RecipeManager]: Recipe ic2:shapeless/lzh_condensator_lapis can't be placed due to empty ingredients and will be ignored
+52:[20:49:11] [main/WARN] [minecraft/RecipeManager]: Recipe ic2:shapeless/lzh_condensator_redstone can't be placed due to empty ingredients and will be ignored
+53:[20:49:11] [main/WARN] [minecraft/RecipeManager]: Recipe ic2:shapeless/rsh_condensator_redstone can't be placed due to empty ingredients and will be ignored
+59:2026-09-11T00:49:11.834788548Z Server thread ERROR An exception occurred processing Appender DebugFile
+119:[20:49:14] [Server thread/INFO] [minecraft/DedicatedServer]: Done (2.568s)! For help, type "help"
+241:[20:57:06] [Server thread/WARN] [minecraft/RecipeManager]: Recipe ic2:matter_fabricator/scrap_box_to_45000 can't be placed due to empty ingredients and will be ignored
+
+=== reload listener test (RCON probes; scanner ic2:uu_scanner at 5,90,5, player online) ===
+baseline /reload [-P no datapack]: elytra+2560EU -> energy stays 2560.0d (unvalued; FAILED path extracts nothing)
+/datapack list after /reload:
+  There are 3 data pack(s) enabled: [vanilla (built-in)], [mod_data], [file/p19reload (world)]
+post /reload with pack data/p19/uu_values/seeds.json = [{dirt:123},{elytra:5}]:
+  dirt   +2560EU -> 0.0d   (drained: valued)
+  diamond+2560EU -> 0.0d   (drained: still valued via mod world_scan.json 128-entry merge: minecraft:diamond=2879.3)
+  elytra +2560EU -> 0.0d   (drained: valued via world pack -- ADD direction flip)
+pack edited to [] + /reload:
+  elytra +2560EU -> 2560.0d (frozen: value retracted -- REMOVE direction flip)
+
+=== 26.1.2 pack.mcmeta finding ===
+com.google.gson.JsonParseException: Pack declares support for version newer than 81, but is missing mandatory fields min_format and max_format
+	at com.mojang.serialization.DataResult$Error.getOrThrow(DataResult.java:287) ~[datafixerupper-9.0.19.jar:?] {}
+
+=== player-gated ticking finding (0 players, forceloaded chunk) ===
+item entity Age frozen at 0s across 5s with no players; Age 356s->457s after player joins

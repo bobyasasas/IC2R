@@ -43,8 +43,13 @@ sourceSets {
 }
 configurations.gameTestImplementation.extendsFrom configurations.implementation
 
-configurations.matching { it.name == 'runtimeClasspath' }.configureEach {
-    extendsFrom configurations.devRunInterop
+// Real-client interop pass (M14/P17): pulls JEI+Jade full jars into every dev run.
+// -Pic2NoInterop boots a run without them (P19 slice 3: pair a clean client with the
+// published-jar production server, which has no interop mods installed).
+if (!project.hasProperty('ic2NoInterop')) {
+    configurations.matching { it.name == 'runtimeClasspath' }.configureEach {
+        extendsFrom configurations.devRunInterop
+    }
 }
 
 neoForge {

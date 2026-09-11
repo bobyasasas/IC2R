@@ -1,0 +1,13 @@
+=== production server lifecycle (installer layout) ===
+42:[20:49:11] [main/INFO] [minecraft/RecipeManager]: Loaded 2212 recipes
+129:[20:49:14] [Server thread/INFO] [minecraft/MinecraftServer]: ThreadedAnvilChunkStorage: All dimensions are saved
+173:[20:55:43] [Server thread/INFO] [minecraft/PlayerList]: Dev[/127.0.0.1:59710] logged in with entity id 32 at (-6.5, 90.0, 6.5)
+174:[20:55:43] [Server thread/INFO] [minecraft/MinecraftServer]: Dev joined the game
+237:[20:57:05] [Server thread/INFO] [minecraft/MinecraftServer]: [Rcon: Reloading!]
+238:[20:57:06] [Server thread/INFO] [minecraft/RecipeManager]: Loaded 2212 recipes
+349:[20:58:13] [Server thread/INFO] [minecraft/MinecraftServer]: [Rcon: Reloading!]
+350:[20:58:14] [Server thread/INFO] [minecraft/RecipeManager]: Loaded 2212 recipes
+374:[21:03:03] [Server thread/INFO] [minecraft/MinecraftServer]: [Rcon: Reloading!]
+375:[21:03:03] [Server thread/INFO] [minecraft/RecipeManager]: Loaded 2212 recipes
+1157:[21:07:44] [Server thread/INFO] [minecraft/ServerGamePacketListenerImpl]: Dev lost connection: Disconnected
+1168:[21:10:22] [Server thread/INFO] [minecraft/MinecraftServer]: [Rcon: Stopping the server]

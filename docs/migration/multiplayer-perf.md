@@ -1,6 +1,6 @@
 # M16／P19：多人及性能（切片一：生命周期/持久化/reload/单客户端/性能基线；切片二：双人并发/断线变体/chunk load-unload 专项）
 
-状态：切片一、切片二均已交付并验证（2026-09-10）。P19 验收面剩余：资源重载深化、满载性能扩展与发布 jar 口径、超时型断线（见第 9 节）。
+状态：切片一、二、三均已交付并验证（2026-09-11）。P19 验收面（双人操作、断线、区块加载、重启、资源重载与性能基线）全部覆盖；剩余仅 M14 视觉人工验收（保留人工）。剩余范围见第 10 节。
 
 ## 1. 环境与口径
 
@@ -64,21 +64,50 @@ TPS 实测：gametime 差 990 tick / 采样墙钟约 49.5s ≈ 20.0 TPS 满速�
 
 26.1.2 实录与结果（全部经 RCON 取证，`p19b-chunk-unload-poll.txt`）：
 
-1. **出生点恒载**：机器区在出生点 2 chunk 内，`forceload remove all` 后 0 玩家下仍持续可读 6 分钟+，batbox 恒 `5334.0d` 零漂移；`spawnChunkRadius` gamerule 已不存在。修正切片一"无玩家不加载"的结论：仅出生点以外成立。
+1. **出生点恒载**：机器区在出生点 2 chunk 内，`forceload remove all` 后 0 玩家下仍持续可读 6 分钟+，batbox 恒 `5334.0d` 零漂移；`spawnChunkRadius` gamerule 已不存在。修正切片一"无玩家不加载"的结论：仅出生点以外成立。**切片三再修正**：切片三的实体 Age 探针证明 0 玩家时 forceload/出生点区块只是 loaded（可 `data get`）但**不 entity/block-entity tick**（召唤物 Age 5s 不动；玩家加入后同一召唤物 356s→457s）——"零漂移"的主因是 ticking 玩家门控，非"无 demand 电量保持"这一单一解释；切片二 live 转移全部发生在玩家在线时，与该语义一致。
+
+## 8bis. reload 深化（切片三，发布 jar 专服上执行）
+
+UU 价值图是数据包驱动的（`UuValueReloadListener` 收集所有 `data/<ns>/uu_values/*.json`，跨包**按文件 Identifier 合并**；非空集合取代 Java 内置 seed 表；`applySeeds` 使惰性图失效，下次访问重建）。可观测点：`ic2:uu_scanner` 对输入物品查图，无值物品在扣电前即进入 FAILED（不抽电），有值物品以恒定 256 EU/t 抽电——**以"能量是否被抽干"作二值探针**（状态字段 progress/state 不持久化到 NBT，只能经电量观测）。
+
+| 阶段 | 世界数据包 `p19:uu_values/seeds.json` | elytra 探针（2560 EU） | 结论 |
+|---|---|---|---|
+| /reload 前 | 不存在 | 2560.0 不变 | 无值（FAILED 路径） |
+| /reload 后 | `[{dirt:123},{elytra:5}]` | →0.0 抽干 | **新值生效（ADD 方向翻转）** |
+| 改文件为 `[]` 再 /reload | `[]` | 2560.0 不变 | **值被撤回（REMOVE 方向翻转）** |
+
+- 世界数据包被 `/reload` 自动发现并启用（`/datapack list`: vanilla + mod_data + file/p19reload (world)）。
+- **勘误（第一次 reload 未生效的根因）**：`pack_format:100` 触发 26.1.2 新校验"Pack declares support for version newer than 81, but is missing mandatory fields min_format and max_format"→ 降级 fallback 加载（资源未进 manager）；`pack_format:81` 正常。另：mod 自带 `world_scan.json`（128 条，含 diamond=2879.3、dirt=14.86）与 world 包**合并**而非被取代——diamond 在 override 后仍抽干是该合并语义的正确结果，不是 reload 失效（elytra 双向翻转才是判据）。
+- 扫描器只对有限/无限二值敏感（抽电速率与数值大小无关），数值大小验证留给 replicator 链路。
+- 附带发现：`UuScannerBlockEntity.progress/state` 不持久化（重启丢进度）——记录为待办，不阻塞本切片。
+
+## 8ter. 发布 jar 专服口径 + 多机器满载性能基线（切片三）
+
+- **生产安装**：NeoForge 官方 installer（maven.neoforged.net 下载 26.1.2.107-installer.jar）`--installServer`；`mods/` 仅放发布产物 `ic2-neoforge-3.0.0-migration.1.jar`（core 类已内嵌单 jar）。JDK 25 须经 PATH 注入（run.sh 用 PATH 的 `java`，JAVA_HOME 单独 export 不够——首启 UnsupportedClassVersionError 后修正）。
+- **单 mod 口径确认**：启动清单仅 `IndustrialCraft 2: Refactored 3.0.0-migration.1 (ic2) (jar(mods/...jar))`，无 JEI/Jade（devRunInterop 只影响 dev run，发布 jar 与生产布局天然无 interop）；`Done (2.568s)`。
+- **与 dev 口径一致性**：9 条 "can't be placed due to empty ingredients" 配方警告与 dev 专服逐条相同（同一数据包行为，非打包缺失）。全日志唯一 ERROR=vanilla DebugFile appender 触碰 netty **kqueue**（BSD/macOS 传输）Native 的 NoClassDefFoundError——Linux 环境噪音，非 IC2。
+- **满载性能基线**（1 玩家在线 + 16 发电机/16 铜缆/16 batbox 两排三元组，merge 3990 EU/台同时放电）：分布窗口 avg 5.1–5.8ms（P50 4.6–4.9 / P95 7.9–11.1 / P99 8.6–14.0），分布结束后空闲 avg 4.5ms；全程 20 TPS（50ms 预算，余量 ~10 倍）。参照切片一/二：空服 0.3ms、1 玩家 1.2ms、2 玩家 1.1ms。
+- **守恒**：本轮注入 16×3990=63840 EU + 行 A 残余 31605 = 95445；16 batbox 实存 94829；差额 616 EU（0.97%）= 16 根铜缆的传输损耗（~38.5 EU/根），发电机残量 0.0d。三元组并非孤立列（同行机器互相邻接成单一网格），故以总和验证。
+
+## 8quater. 超时型断线（切片三，静默 drop）
+
+- `kill -STOP` 冻结客户端进程组（TCP 仍开、应用层完全静默，比 SIGKILL 硬断线更接近"断网"）→ **27s 后服务端回收**：`Dev lost connection: Disconnected` + `Dev left the game`（21:07:17→21:07:44），`list` 归零，机器 NBT 无损，全程零异常。
+- 26.1.2 实录：回收路径的 reason 字符串是泛化的 "Disconnected"（旧版 "Timed out" 文案未出现），伴随一条良性 `handleDisconnection() called twice` WARN（超时路径与 channel-inactive 路径竞态，vanilla 已知模式）。
+- 进程冻结下内核仍会 ACK，服务端 keepalive 写不失败——真实黑洞网络（iptables DROP）才能触发 30s keepalive 超时分支；本环境无 root 未做，如实记录。服务端对两种路径的清理行为一致（本切片证毕其一）。
+
+## 9. 剩余 P19 范围（后续切片）
+
+**无**——P19 验收面（双人操作、断线、区块加载、重启、资源重载与性能基线）已全部覆盖。遗留小项（不阻塞验收）：UuScanner progress/state 不持久化、复刻数值大小级验证（replicator 链路）、iptables 黑洞超时分支、M14 JEI/Jade 视觉人工验收（保留人工）。
 2. **远地构建**：Dev 传送至 `(2000,100,1996)`（玩家 ticket 加载）→ `setblock` 发电机/电缆/batbox 三件套 → merge 3990 → 10s 后 gen `0.0d` / bat `3990.0d` 精确守恒——EnergyNet 在玩家 ticket 区块远地重建成功。
 3. **卸载冻结**：kick Dev → **≤15s** 内 `data get` 变 `That position is not loaded`（最后读数 bat `3990.0d` 冻结）。
 4. **回归恢复**：rejoin → tp 回 → bat `3990.0d` / gen `0.0d` 与卸载前逐字一致——跨卸载/重载状态连续，chunk 扫描队列在 reload 路径无重复注入。
 5. **破坏重建**：`setblock air` 断电缆 → 发电机 merge 1000 → 10s 后保持 `1000.0d`（无路径零抽取，bat 不动）；重新放电缆 → 传输恢复；净守恒净测：merge 500 → bat `+500.0d` 精确。过程出现一次 `+32` 测量偏差，经复核为我方 setblock 与 merge 两条 RCON 命令之间约 3 tick 的残余放电竞争（10 EU/t × ~3.2 tick），非 IC2 异常，如实记录。
 6. 全程服务端唯一 ERROR 仍为 Jade registry 时机噪声，**零 IC2 错误**。
 
-## 9. 剩余 P19 范围（后续切片）
-
-1. **资源重载深化**：改动 IC2 数据包内容（如 uu_values world_scan.json）后 `/reload` 验证新值生效。
-2. **性能基线扩展**：多人多机器负载（电网满载、反应堆运转）下的 tick 基线；发布 jar（无 interop）专服口径。
-3. **超时型断线**：静默 drop（网络层不发 disconnect）的服务端超时回收验证。
-
 ## 10. 证据清单（docs/migration/evidence/）
 
 切片一：`p19-rcon-boot1-empty-server.txt`、`p19-rcon-boot1-machines-loaded.txt`、`p19-rcon-reload.txt`、`p19-rcon-player-online.txt`、`p19-rcon-tps-sample.txt`、`p19-rcon-boot2-persistence.txt`、`p19-rcon-disconnect-stop.txt`、`p19-server-lifecyle-lines.txt`（两次启动的 joined/left/lost connection/Saving chunks/Done 行）、`p19-client-in-server.png`（多人世界渲染截图）。
 
 切片二：`p19b-server-log-extract.txt`（boot/join/tp/kick/left/stop 全时间线）、`p19b-rcon-concurrent-start.txt`（双人在线+tick）、`p19b-rcon-grid-live.txt`（容量 clamp 实录）、`p19b-rcon-demand-sink.txt`（守恒转移）、`p19b-chunk-unload-poll.txt`（远地卸载轮询）、`p19b-client-a-dual-player.png`（双玩家同帧渲染）、`p19b-aim-jade.png`（Jade 读取发电机 EU）、`p19b-gui-open.png`（无头客户端机器 GUI）、`p19b-kick-screen.png`（kick 原因逐字渲染）。远地电网无截图证据（截图时玩家朝向背对机器，服务器已关闭无法重拍）——远地构建/守恒/卸载/恢复全部以 RCON `data get` 时间线为证（`p19b-chunk-unload-poll.txt` + `p19b-server-log-extract.txt`）。
+
+切片三：`p19c-reload-and-release-server.txt`（生产安装器单 mod 启动清单、reload 双向翻转探针、pack.mcmeta 81 校验勘误、玩家门控 tick 探针）、`p19c-perf-baseline.txt`（满载 tick 基线+守恒/损耗账目）、`p19c-timeout-disconnect.txt`（SIGSTOP 静默 drop 回收时间线）、`p19c-server-lifecycle.txt`（join/reload/stop 生命周期行）。生产服务器 world（IC2 Release Soak）与安装目录在仓库外 /tmp，不归档。
