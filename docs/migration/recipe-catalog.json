@@ -3717,8 +3717,8 @@
     {
       "source": "shaped/solar_distiller.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:solar_distiller"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/solar_distiller.json"
     },
     {
       "source": "shaped/solar_generator.json",

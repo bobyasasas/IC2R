@@ -1,0 +1,40 @@
+{
+  "variants": {
+    "facing=north,active=false": {
+      "model": "ic2:block/machine/fluid/solar_distiller"
+    },
+    "facing=north,active=true": {
+      "model": "ic2:block/machine/fluid/solar_distiller"
+    },
+    "facing=south,active=false": {
+      "model": "ic2:block/machine/fluid/solar_distiller"
+    },
+    "facing=south,active=true": {
+      "model": "ic2:block/machine/fluid/solar_distiller"
+    },
+    "facing=west,active=false": {
+      "model": "ic2:block/machine/fluid/solar_distiller"
+    },
+    "facing=west,active=true": {
+      "model": "ic2:block/machine/fluid/solar_distiller"
+    },
+    "facing=east,active=false": {
+      "model": "ic2:block/machine/fluid/solar_distiller"
+    },
+    "facing=east,active=true": {
+      "model": "ic2:block/machine/fluid/solar_distiller"
+    },
+    "facing=up,active=false": {
+      "model": "ic2:block/machine/fluid/solar_distiller"
+    },
+    "facing=up,active=true": {
+      "model": "ic2:block/machine/fluid/solar_distiller"
+    },
+    "facing=down,active=false": {
+      "model": "ic2:block/machine/fluid/solar_distiller"
+    },
+    "facing=down,active=true": {
+      "model": "ic2:block/machine/fluid/solar_distiller"
+    }
+  }
+}

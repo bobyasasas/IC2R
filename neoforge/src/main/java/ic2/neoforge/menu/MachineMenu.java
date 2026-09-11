@@ -390,6 +390,12 @@ public final class MachineMenu extends AbstractContainerMenu {
             addFluidContainerSlot(inventory, 2, 130, 17);
             addOutputSlot(inventory, 3, 130, 53);
             addOutputSlot(inventory, 4, 80, 53);
+        } else if (kind == MachineKind.SOLAR_DISTILLER) {
+            // Legacy ContainerSolarDistiller: water column left, distilled column right.
+            addFluidContainerSlot(inventory, 0, 17, 27);
+            addOutputSlot(inventory, 1, 17, 45);
+            addFluidContainerSlot(inventory, 2, 136, 64);
+            addOutputSlot(inventory, 3, 136, 82);
         } else if (kind == MachineKind.CROPMATRON) {
             // Legacy ContainerCropmatron: weed-ex row on top, water row below it,
             // seven fertilizer doses along the bottom; tanks render beside them.

@@ -1951,7 +1951,11 @@
       "factory": "register",
       "expression": "new ItemBlockIc2(Ic2Blocks.SOLAR_DISTILLER, new Properties())",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/solar-distiller.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/SolarDistillerTests.java"
+      ]
     },
     {
       "registry": "item",
@@ -8133,7 +8137,11 @@
       "factory": "register",
       "expression": "Ic2TileEntityBlock.create(Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).strength(2.0F, 10.0F).requiresCorrectToolForDrops().sound(SoundType.METAL), TileEntitySolarDistiller.class, false, Ic2TileEntityBlock.DefaultDrop.Machine, Util.noFacings, false)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/solar-distiller.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/SolarDistillerTests.java"
+      ]
     },
     {
       "registry": "block",
@@ -11305,7 +11313,11 @@
       "factory": "register",
       "expression": "TileEntitySolarDistiller::new",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/solar-distiller.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/SolarDistillerTests.java"
+      ]
     },
     {
       "registry": "block_entity",
@@ -12771,7 +12783,11 @@
       "factory": "registerManagedBe",
       "expression": "",
       "decision": "preserve",
-      "status": "pending"
+      "status": "partial",
+      "evidence": [
+        "docs/migration/solar-distiller.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/SolarDistillerTests.java"
+      ]
     },
     {
       "registry": "menu",

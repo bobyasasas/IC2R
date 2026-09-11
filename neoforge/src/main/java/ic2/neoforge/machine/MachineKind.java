@@ -24,6 +24,7 @@ public enum MachineKind implements StringRepresentable {
     TANK("tank", 0, 0, 0, 0),
     LIQUID_HEAT_EXCHANGER("liquid_heat_exchanger", 0, 14, 0, 0),
     FERMENTER("fermenter", 0, 5, 0, 0),
+    SOLAR_DISTILLER("solar_distiller", 0, 4, 0, 0),
     CANNER("canner", 800, 4, 200, 4),
     WATER_KINETIC_GENERATOR("water_kinetic_generator", 0, 1, 0, 0),
     WIND_KINETIC_GENERATOR("wind_kinetic_generator", 0, 1, 0, 0),
@@ -234,6 +235,7 @@ public enum MachineKind implements StringRepresentable {
         return this == LIQUID_HEAT_EXCHANGER
                         || this == FLUID_REGULATOR
                         || this == CONDENSER
+                        || this == SOLAR_DISTILLER
                         || this == STEAM_REPRESSURIZER
                         || this == RT_HEAT_GENERATOR
                         || this == RT_GENERATOR
@@ -264,6 +266,7 @@ public enum MachineKind implements StringRepresentable {
         if (this == CONDENSER || this == STEAM_KINETIC_GENERATOR || this == MINER) return 1;
         if (this == TANK) return 4;
         if (this == LIQUID_HEAT_EXCHANGER) return 3;
+        if (this == SOLAR_DISTILLER) return 2;
         return (this == INDUCTION_FURNACE || this == FERMENTER) ? 2 : euPerTick > 0 ? 4 : 0;
     }
 

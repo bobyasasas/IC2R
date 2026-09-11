@@ -1,0 +1,18 @@
+{
+  "type": "ic2:shaped",
+  "pattern": [
+    "GGG",
+    "G G",
+    "CMC"
+  ],
+  "consuming": true,
+  "result": {
+    "id": "ic2:solar_distiller",
+    "count": 1
+  },
+  "key": {
+    "C": "ic2:facade_cell",
+    "M": "ic2:machine",
+    "G": "minecraft:glass"
+  }
+}

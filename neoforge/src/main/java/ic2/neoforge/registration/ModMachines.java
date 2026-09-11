@@ -139,6 +139,8 @@ public final class ModMachines {
             case LIQUID_HEAT_EXCHANGER ->
                     new ic2.neoforge.machine.LiquidHeatExchangerBlockEntity(pos, state);
             case FERMENTER -> new ic2.neoforge.machine.FermenterBlockEntity(pos, state);
+            case SOLAR_DISTILLER ->
+                    new ic2.neoforge.machine.SolarDistillerBlockEntity(pos, state);
             case WATER_KINETIC_GENERATOR -> new WaterTurbineBlockEntity(pos, state);
             case WIND_KINETIC_GENERATOR -> new WindTurbineBlockEntity(pos, state);
             case MANUAL_KINETIC_GENERATOR -> new ManualKineticBlockEntity(pos, state);
@@ -295,6 +297,7 @@ public final class ModMachines {
                     || kind == MachineKind.ORE_WASHING_PLANT
                     || kind == MachineKind.FLUID_HEAT_GENERATOR
                     || kind == MachineKind.FERMENTER
+                    || kind == MachineKind.SOLAR_DISTILLER
                     || kind == MachineKind.LIQUID_HEAT_EXCHANGER
                     || kind == MachineKind.TANK
                     || kind == MachineKind.ELECTROLYZER

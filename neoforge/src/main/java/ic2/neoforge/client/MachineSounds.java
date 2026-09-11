@@ -127,6 +127,7 @@ final class MachineSounds {
                     TANK,
                     LIQUID_HEAT_EXCHANGER,
                     FERMENTER,
+                    SOLAR_DISTILLER,
                     WATER_KINETIC_GENERATOR,
                     WIND_KINETIC_GENERATOR,
                     MANUAL_KINETIC_GENERATOR,

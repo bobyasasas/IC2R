@@ -193,6 +193,9 @@ public final class RegistrationTests {
         FUNCTIONS.register("heat_blast_cancel", () -> HeatExplosionTests::cancellation);
         FUNCTIONS.register("condenser_power_chain", () -> CondenserTests::nativePowerChain);
         FUNCTIONS.register("condenser_passive_reload", () -> CondenserTests::passiveReload);
+        FUNCTIONS.register("solar_distiller_specs", () -> SolarDistillerTests::specs);
+        FUNCTIONS.register("solar_distiller_daylight", () -> SolarDistillerTests::daylight);
+        FUNCTIONS.register("solar_distiller_containers", () -> SolarDistillerTests::containers);
         FUNCTIONS.register(
                 "repressurizer_idle", () -> SteamRepressurizerTests::idleWithoutCandidate);
         FUNCTIONS.register(
