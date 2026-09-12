@@ -460,6 +460,25 @@ public final class RegistrationTests {
         FUNCTIONS.register("foam_cable_hardening", () -> EntityTickingTests.wrap(FoamCableTests::softFoamHardensDeterministically));
         FUNCTIONS.register("foam_cable_registry_matrix", () -> FoamCableTests::foamFamilyRegistryMirrorsCables);
         FUNCTIONS.register(
+                "detector_cable_activates",
+                () -> EntityTickingTests.wrap(DetectorCableTests::detectorActivatesOnFlow));
+        FUNCTIONS.register(
+                "detector_cable_comparator",
+                () -> EntityTickingTests.wrap(DetectorCableTests::detectorComparatorScalesWithPacket));
+        FUNCTIONS.register(
+                "detector_cable_deactivates",
+                () -> EntityTickingTests.wrap(DetectorCableTests::detectorDeactivatesWhenFlowStops));
+        FUNCTIONS.register(
+                "splitter_cable_gates",
+                () -> EntityTickingTests.wrap(DetectorCableTests::splitterGatesUntilPowered));
+        FUNCTIONS.register(
+                "splitter_cable_placement", () -> DetectorCableTests::splitterPlacementAdoptsSignal);
+        FUNCTIONS.register(
+                "detector_foam_cable_activates",
+                () -> EntityTickingTests.wrap(DetectorCableTests::foamDetectorDipsCarriesActivates));
+        FUNCTIONS.register(
+                "detector_splitter_family", () -> DetectorCableTests::detectorSplitterFamilyRegistry);
+        FUNCTIONS.register(
                 "obscurator_retextures_wall", () -> ObscuratorTests::obscuratorRetexturesWall);
         FUNCTIONS.register(
                 "obscurator_requires_energy", () -> ObscuratorTests::obscuratorRequiresEnergy);

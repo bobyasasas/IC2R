@@ -1,0 +1,20 @@
+{
+  "multipart": [
+    {
+      "apply": {
+        "model": "ic2:block/cf/foam"
+      },
+      "when": {
+        "foam": "soft"
+      }
+    },
+    {
+      "apply": {
+        "model": "ic2:block/cf/wall_light_gray"
+      },
+      "when": {
+        "foam": "hard"
+      }
+    }
+  ]
+}

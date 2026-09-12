@@ -1125,7 +1125,12 @@
       "factory": "register",
       "expression": "new ItemCable(Ic2Blocks.DETECTOR_CABLE, new Properties())",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/energy/DetectorCableBlock.java",
+        "neoforge/src/main/java/ic2/neoforge/registration/ModMachines.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/DetectorCableTests.java"
+      ]
     },
     {
       "registry": "item",
@@ -1135,7 +1140,12 @@
       "factory": "register",
       "expression": "new ItemCable(Ic2Blocks.SPLITTER_CABLE, new Properties())",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/energy/SplitterCableBlock.java",
+        "neoforge/src/main/java/ic2/neoforge/registration/ModMachines.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/DetectorCableTests.java"
+      ]
     },
     {
       "registry": "item",
@@ -10133,7 +10143,12 @@
       "factory": "register",
       "expression": "DetectorFoamCableBlock.create(cableSettings)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/energy/DetectorFoamCableBlock.java",
+        "neoforge/src/main/java/ic2/neoforge/registration/ModMachines.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/DetectorCableTests.java"
+      ]
     },
     {
       "registry": "block",
@@ -10143,7 +10158,12 @@
       "factory": "register",
       "expression": "DetectorCableBlock.create(cableSettings, DETECTOR_FOAM_CABLE)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/energy/DetectorCableBlock.java",
+        "neoforge/src/main/java/ic2/neoforge/registration/ModMachines.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/DetectorCableTests.java"
+      ]
     },
     {
       "registry": "block",
@@ -10153,7 +10173,12 @@
       "factory": "register",
       "expression": "SplitterFoamCableBlock.create(cableSettings)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/energy/SplitterFoamCableBlock.java",
+        "neoforge/src/main/java/ic2/neoforge/registration/ModMachines.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/DetectorCableTests.java"
+      ]
     },
     {
       "registry": "block",
@@ -10163,7 +10188,12 @@
       "factory": "register",
       "expression": "SplitterCableBlock.create(cableSettings, SPLITTER_FOAM_CABLE)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/energy/SplitterCableBlock.java",
+        "neoforge/src/main/java/ic2/neoforge/registration/ModMachines.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/DetectorCableTests.java"
+      ]
     },
     {
       "registry": "block",

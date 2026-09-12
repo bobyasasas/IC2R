@@ -16,6 +16,7 @@ import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
 import net.neoforged.neoforge.event.level.ChunkEvent;
 import net.neoforged.neoforge.event.level.LevelEvent;
@@ -89,11 +90,23 @@ public final class WorldEnergyNetworks {
         if (event.getLevel() instanceof ServerLevel level) invalidate(level);
     }
 
+    /**
+     * Energy packets that traversed this conductor during the latest distribution, read by the
+     * detector cables; legacy mirrors it with the per-tile NodeStats energy-in counter.
+     */
+    public static double conductorEnergyIn(ServerLevel level, BlockPos pos) {
+        Network network = NETWORKS.get(level);
+        Double energyIn = network == null ? null : network.lastConductorEnergyIn.get(grid(pos));
+        return energyIn == null ? 0 : energyIn;
+    }
+
     public static void tick(LevelTickEvent.Post event) {
         if (!(event.getLevel() instanceof ServerLevel level)) return;
         Network network = NETWORKS.get(level);
         if (network == null) return;
         if (network.dirty) network.rebuild(level);
+        // A skipped distribution must read as zero flow, never as a stale previous tick.
+        network.lastConductorEnergyIn = Map.of();
         if (network.machines.isEmpty()) return;
         Map<BlockPos, Double> previousEnergy = new HashMap<>();
         network.machines.forEach(
@@ -101,6 +114,7 @@ public final class WorldEnergyNetworks {
         var result =
                 new PacketDistributor(network.graph, EnergyConfig.ROUND_CLASSIC_LOSS.get())
                         .tick(EnergyConfig.MODE.get(), level.getGameTime());
+        network.lastConductorEnergyIn = result.conductorEnergyIn();
         network.machines.forEach(
                 (pos, machine) -> {
                     if (previousEnergy.get(pos) != machine.energy().stored()) machine.setChanged();
@@ -181,6 +195,7 @@ public final class WorldEnergyNetworks {
     private static final class Network {
         final Map<BlockPos, PoweredBlockEntity> machines = new HashMap<>();
         EnergyGraph graph = new EnergyGraph();
+        Map<GridPosition, Double> lastConductorEnergyIn = Map.of();
         boolean dirty = true;
 
         void rebuild(ServerLevel level) {
@@ -203,14 +218,15 @@ public final class WorldEnergyNetworks {
                 for (Direction side : Direction.values()) {
                     BlockPos neighbor = pos.relative(side);
                     if (!level.isLoaded(neighbor)) continue;
+                    BlockState neighborState = level.getBlockState(neighbor);
                     if (graph.node(grid(neighbor)) == null
-                            && level.getBlockState(neighbor).getBlock()
-                                    instanceof CableBlock cable) {
+                            && neighborState.getBlock() instanceof CableBlock cable
+                            && conducts(cable, neighborState)) {
                         graph.put(grid(neighbor), new EnergyNode.Conductor(cable.specification()));
                     }
                     if (graph.node(grid(neighbor)) == null
-                            && level.getBlockState(neighbor).getBlock()
-                                    instanceof FoamCableBlock foam) {
+                            && neighborState.getBlock() instanceof FoamCableBlock foam
+                            && conducts(foam, neighborState)) {
                         graph.put(grid(neighbor), new EnergyNode.Conductor(foam.specification()));
                     }
                     if (graph.node(grid(neighbor)) == null) {
@@ -238,6 +254,20 @@ public final class WorldEnergyNetworks {
                 }
             }
             dirty = false;
+        }
+
+        /**
+         * Legacy splitter gating: an unpowered splitter sits outside the grid, so no route can
+         * cross it — the BFS never reaches a node behind it, exactly like removeFromEnet.
+         */
+        private static boolean conducts(CableBlock cable, BlockState state) {
+            return !(cable instanceof SplitterCableBlock splitter)
+                    || splitter.isConducting(state);
+        }
+
+        private static boolean conducts(FoamCableBlock foam, BlockState state) {
+            return !(foam instanceof SplitterFoamCableBlock splitter)
+                    || splitter.isConducting(state);
         }
     }
 }

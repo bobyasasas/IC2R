@@ -39,8 +39,8 @@ import java.util.Locale;
  * shell which random-ticks into a protective hardened layer. Breaking it only strips the foam
  * back off, revealing the original cable again.
  */
-public final class FoamCableBlock extends Block {
-    private static final Codec<CableSpec.Material> MATERIAL_CODEC =
+public class FoamCableBlock extends Block {
+    static final Codec<CableSpec.Material> MATERIAL_CODEC =
             Codec.STRING.xmap(
                     name -> CableSpec.Material.valueOf(name.toUpperCase(Locale.ROOT)),
                     material -> material.name().toLowerCase(Locale.ROOT));
@@ -57,8 +57,8 @@ public final class FoamCableBlock extends Block {
                                             propertiesCodec())
                                     .apply(instance, FoamCableBlock::new));
     public static final EnumProperty<Foam> FOAM = EnumProperty.create("foam", Foam.class);
-    private final CableSpec.Material material;
-    private final int insulation;
+    final CableSpec.Material material;
+    final int insulation;
     private final CableSpec specification;
 
     public FoamCableBlock(CableSpec.Material material, int insulation, Properties properties) {
@@ -142,7 +142,7 @@ public final class FoamCableBlock extends Block {
     }
 
     /** One hardening probe per scheduled tick, with the legacy foam cure curve by light level. */
-    private void tickFoamHardening(
+    protected void tickFoamHardening(
             BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
         if (!state.getValue(FOAM).isSoft()) return;
         if (random.nextFloat() < FoamBlock.getHardenChance(level, pos, state, FoamBlock.FoamType.NORMAL)) {

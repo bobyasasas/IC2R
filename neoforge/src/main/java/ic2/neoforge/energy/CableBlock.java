@@ -32,8 +32,8 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import java.util.List;
 import java.util.Locale;
 
-public final class CableBlock extends Block {
-    private static final Codec<CableSpec.Material> MATERIAL_CODEC =
+public class CableBlock extends Block {
+    static final Codec<CableSpec.Material> MATERIAL_CODEC =
             Codec.STRING.xmap(
                     name -> CableSpec.Material.valueOf(name.toUpperCase(Locale.ROOT)),
                     material -> material.name().toLowerCase(Locale.ROOT));
@@ -49,8 +49,8 @@ public final class CableBlock extends Block {
                                                     .forGetter(block -> block.insulation),
                                             propertiesCodec())
                                     .apply(instance, CableBlock::new));
-    private final CableSpec.Material material;
-    private final int insulation;
+    final CableSpec.Material material;
+    final int insulation;
     private final CableSpec specification;
     private final VoxelShape[] shapes = new VoxelShape[64];
 

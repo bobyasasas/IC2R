@@ -353,8 +353,9 @@ final class FoamCableTests {
 
     static void foamFamilyRegistryMirrorsCables(GameTestHelper helper) {
         helper.assertTrue(
-                ModMachines.FOAM_CABLES.size() == 12,
-                "Twelve plain foam cables are registered");
+                ModMachines.FOAM_CABLES.size() == 14,
+                "Fourteen foam cables are registered: twelve insulation tiers plus detector"
+                    + " and splitter");
         for (var entry : ModMachines.FOAM_CABLES.entrySet()) {
             var foamBlock = entry.getValue().get();
             var counterpart = ModMachines.cableCounterpart(foamBlock);

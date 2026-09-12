@@ -29,11 +29,13 @@ public final class PacketDistributor {
             double dissipated,
             List<Fault> faults,
             List<RouteLoad> routeLoads,
-            Map<GridPosition, Integer> cableAmps) {
+            Map<GridPosition, Integer> cableAmps,
+            Map<GridPosition, Double> conductorEnergyIn) {
         public Result {
             faults = List.copyOf(faults);
             routeLoads = List.copyOf(routeLoads);
             cableAmps = Map.copyOf(cableAmps);
+            conductorEnergyIn = Map.copyOf(conductorEnergyIn);
         }
     }
 
@@ -93,7 +95,8 @@ public final class PacketDistributor {
                 state.drawn - state.delivered,
                 new ArrayList<>(state.faults.values()),
                 new ArrayList<>(state.routeLoads.values()),
-                state.cableAmps);
+                state.cableAmps,
+                state.conductorEnergyIn);
     }
 
     private double emitClassic(
@@ -111,6 +114,7 @@ public final class PacketDistributor {
         for (var position : route.conductors()) {
             var cable = ((EnergyNode.Conductor) graph.node(position)).specification();
             state.cableAmps.merge(position, 1, Integer::sum);
+            state.conductorEnergyIn.merge(position, drawn, Double::sum);
             // The recovered IC2 conductor threshold is capacity + 1, tested with strict >.
             if (drawn > cable.voltageLimit() + 1.0)
                 state.fault(position, FaultKind.CABLE_VOLTAGE, drawn);
@@ -157,6 +161,8 @@ public final class PacketDistributor {
         state.sinkAmps.merge(route.target(), 1, Integer::sum);
         state.drawn += voltage;
         state.delivered += accepted;
+        for (var position : traversed)
+            state.conductorEnergyIn.merge(position, (double) voltage, Double::sum);
         if (voltage > input.voltage()) state.fault(route.target(), FaultKind.SINK_VOLTAGE, voltage);
         state.routeLoad(route, voltage);
         return voltage;
@@ -165,6 +171,7 @@ public final class PacketDistributor {
     private static final class TickState {
         double drawn, delivered;
         final Map<GridPosition, Integer> cableAmps = new HashMap<>();
+        final Map<GridPosition, Double> conductorEnergyIn = new HashMap<>();
         final Map<GridPosition, Integer> sinkAmps = new HashMap<>();
         final Map<GridPosition, Fault> faults = new LinkedHashMap<>();
         final Map<GridPosition, RouteLoad> routeLoads = new LinkedHashMap<>();

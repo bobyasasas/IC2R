@@ -3,7 +3,11 @@ package ic2.neoforge.registration;
 import ic2.core.energy.grid.CableSpec;
 import ic2.neoforge.IndustrialCraft;
 import ic2.neoforge.energy.CableBlock;
+import ic2.neoforge.energy.DetectorCableBlock;
+import ic2.neoforge.energy.DetectorFoamCableBlock;
 import ic2.neoforge.energy.FoamCableBlock;
+import ic2.neoforge.energy.SplitterCableBlock;
+import ic2.neoforge.energy.SplitterFoamCableBlock;
 import ic2.neoforge.machine.*;
 import ic2.neoforge.machine.CannerBlockEntity;
 import ic2.neoforge.menu.MachineMenu;
@@ -29,6 +33,7 @@ import java.util.EnumMap;
 import java.util.LinkedHashMap;
 import java.util.Locale;
 import java.util.Map;
+import java.util.function.Function;
 
 public final class ModMachines {
     private static final DeferredRegister.Blocks BLOCKS =
@@ -228,6 +233,14 @@ public final class ModMachines {
                 cable(result, prefix + name, material, insulation);
             }
         }
+        specialCable(
+                result,
+                "detector_cable",
+                properties -> new DetectorCableBlock(CableSpec.Material.DETECTOR, 0, properties));
+        specialCable(
+                result,
+                "splitter_cable",
+                properties -> new SplitterCableBlock(CableSpec.Material.SPLITTER, 0, properties));
         return Collections.unmodifiableMap(result);
     }
 
@@ -281,7 +294,54 @@ public final class ModMachines {
                 foamCable(result, prefix + name, material, insulation);
             }
         }
+        specialFoamCable(
+                result,
+                "detector_foam_cable",
+                properties ->
+                        new DetectorFoamCableBlock(CableSpec.Material.DETECTOR, 0, properties));
+        specialFoamCable(
+                result,
+                "splitter_foam_cable",
+                properties ->
+                        new SplitterFoamCableBlock(CableSpec.Material.SPLITTER, 0, properties));
         return Collections.unmodifiableMap(result);
+    }
+
+    /** Detector/splitter specials join the plain pairing tables at insulation zero. */
+    private static void specialCable(
+            Map<String, DeferredBlock<CableBlock>> cables,
+            String id,
+            Function<BlockBehaviour.Properties, CableBlock> blockFactory) {
+        var block =
+                BLOCKS.registerBlock(
+                        id,
+                        properties ->
+                                blockFactory.apply(
+                                        properties
+                                                .mapColor(MapColor.METAL)
+                                                .strength(0.2f)
+                                                .sound(SoundType.WOOL)
+                                                .noOcclusion()));
+        ITEMS.registerSimpleBlockItem(block);
+        cables.put(id, block);
+    }
+
+    private static void specialFoamCable(
+            Map<String, DeferredBlock<FoamCableBlock>> cables,
+            String id,
+            Function<BlockBehaviour.Properties, FoamCableBlock> blockFactory) {
+        var block =
+                BLOCKS.registerBlock(
+                        id,
+                        properties ->
+                                blockFactory.apply(
+                                        properties
+                                                .mapColor(MapColor.METAL)
+                                                .strength(0.2f)
+                                                .sound(SoundType.WOOL)
+                                                .noOcclusion()
+                                                .randomTicks()));
+        cables.put(id, block);
     }
 
     private static void foamCable(
