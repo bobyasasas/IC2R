@@ -41,6 +41,11 @@ public abstract class TurbineBlockEntity extends MachineBlockEntity implements R
     private long lastWearTick = Long.MIN_VALUE;
     private boolean sampled;
 
+    /** Last environment sample, also read by the wind meter (legacy getActive/obstruction pair). */
+    public RotorOperation operation() {
+        return operation;
+    }
+
     protected TurbineBlockEntity(BlockPos pos, BlockState state) {
         super(ModMachines.entityType(((MachineBlock) state.getBlock()).kind()), pos, state, 1);
     }

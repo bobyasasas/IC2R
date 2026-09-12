@@ -20,6 +20,11 @@ public final class WindGeneratorBlockEntity extends RotorGeneratorBlockEntity {
     private boolean sampled;
     private double production, overload;
 
+    /** Rotor plane blockage count, read by the wind meter (legacy getObstructions). */
+    public int obstructions() {
+        return obstructions;
+    }
+
     public WindGeneratorBlockEntity(BlockPos pos, BlockState state) {
         super(pos, state);
         ticks = Math.floorMod(pos.hashCode(), 128);

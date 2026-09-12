@@ -3477,14 +3477,14 @@
     {
       "source": "shaped/refractory_bricks.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:refractory_bricks"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/refractory_bricks.json"
     },
     {
       "source": "shaped/reinforced_door.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:reinforced_door"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/reinforced_door.json"
     },
     {
       "source": "shaped/reinforced_glass.json",
@@ -4053,8 +4053,8 @@
     {
       "source": "shaped/wind_meter.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:wind_meter"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/wind_meter.json"
     },
     {
       "source": "shaped/wooden_rotor.json",

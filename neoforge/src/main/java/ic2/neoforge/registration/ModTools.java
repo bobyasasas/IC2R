@@ -188,6 +188,8 @@ public final class ModTools {
                                     new ElectricItemSpec(1000000, 512, 2, false),
                                     12,
                                     250));
+    public static final DeferredItem<WindMeterItem> WIND_METER =
+            ITEMS.registerItem("wind_meter", p -> new WindMeterItem(p.stacksTo(1)));
     public static final DeferredItem<MiningFilterCardItem> MINING_FILTER_CARD =
             ITEMS.registerItem("mining_filter_card", p -> new MiningFilterCardItem(p.stacksTo(1)));
     public static final DeferredItem<CuttingBladeItem> IRON_CUTTING_BLADE =
@@ -258,6 +260,7 @@ public final class ModTools {
             event.accept(SCANNER);
             event.accept(ADVANCED_SCANNER);
             event.accept(FREQUENCY_TRANSMITTER);
+            event.accept(WIND_METER);
             event.accept(CROP_ANALYZER);
             event.accept(MINING_FILTER_CARD);
             event.accept(PAINTER);

@@ -7,7 +7,9 @@ import ic2.neoforge.world.MiningPipeBlock;
 
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.DoorBlock;
 import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.block.state.properties.BlockSetType;
 import net.minecraft.world.level.material.MapColor;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
@@ -72,6 +74,24 @@ public final class ModMaterialBlocks {
             BLOCKS.registerBlock(
                     "wool_sheet",
                     properties -> new SheetBlock(properties.strength(0.8F, 0.8F)));
+    // Bare legacy BlockRefractoryBricks properties, no tool binding beyond correct-tool drops.
+    public static final DeferredBlock<Block> REFRACTORY_BRICKS =
+            BLOCKS.registerBlock(
+                    "refractory_bricks",
+                    properties ->
+                            new Block(
+                                    properties
+                                            .strength(2.0F, 10.0F)
+                                            .requiresCorrectToolForDrops()
+                                            .sound(SoundType.STONE)));
+    // Legacy uses the vanilla iron DoorBlock set; the anonymous subclass carries no overrides.
+    public static final DeferredBlock<DoorBlock> REINFORCED_DOOR =
+            BLOCKS.registerBlock(
+                    "reinforced_door",
+                    properties ->
+                            new DoorBlock(
+                                    BlockSetType.IRON,
+                                    properties.strength(50.0F, 150.0F).sound(SoundType.METAL)) {});
     public static final Map<String, DeferredBlock<Block>> MATERIALS = blocks();
 
     private static Map<String, DeferredBlock<Block>> blocks() {
@@ -81,6 +101,8 @@ public final class ModMaterialBlocks {
         ITEMS.registerSimpleBlockItem(RESIN_SHEET);
         ITEMS.registerSimpleBlockItem(RUBBER_SHEET);
         ITEMS.registerSimpleBlockItem(WOOL_SHEET);
+        ITEMS.registerSimpleBlockItem(REFRACTORY_BRICKS);
+        ITEMS.registerSimpleBlockItem(REINFORCED_DOOR);
         var result = new LinkedHashMap<String, DeferredBlock<Block>>();
         add(result, "bronze_block", 5, 10, SoundType.METAL, MapColor.NONE);
         add(result, "lead_block", 4, 10, SoundType.METAL, MapColor.NONE);
@@ -132,8 +154,10 @@ public final class ModMaterialBlocks {
             event.accept(RESIN_SHEET);
             event.accept(RUBBER_SHEET);
             event.accept(WOOL_SHEET);
+            event.accept(REFRACTORY_BRICKS);
         } else if (event.getTabKey().equals(CreativeModeTabs.INGREDIENTS)) {
             event.accept(MINING_PIPE);
+            event.accept(REINFORCED_DOOR);
         }
     }
 

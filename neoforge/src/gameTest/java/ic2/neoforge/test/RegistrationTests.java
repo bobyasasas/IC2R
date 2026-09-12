@@ -636,6 +636,12 @@ public final class RegistrationTests {
         FUNCTIONS.register("fluid_ingredient_shapeless", () -> EntityTickingTests.wrap(FluidIngredientTests::shapelessWaterCellCraftsAndDrains));
         FUNCTIONS.register("fluid_ingredient_shaped_coolant", () -> EntityTickingTests.wrap(FluidIngredientTests::shapedCoolantCellMatches));
         FUNCTIONS.register("fluid_ingredient_compressor", () -> EntityTickingTests.wrap(FluidIngredientTests::compressorWaterCellToSnow));
+        FUNCTIONS.register("wind_meter_bare_use", () -> EntityTickingTests.wrap(WindMeterTests::bareUseReadsWindAndPays));
+        FUNCTIONS.register("wind_meter_low_charge_passes", () -> EntityTickingTests.wrap(WindMeterTests::lowChargePasses));
+        FUNCTIONS.register("wind_meter_generator_reading", () -> EntityTickingTests.wrap(WindMeterTests::readsWindGeneratorEffectiveWind));
+        FUNCTIONS.register("wind_meter_stopped_turbine", () -> EntityTickingTests.wrap(WindMeterTests::readsStoppedTurbineWithoutDraining));
+        FUNCTIONS.register("refractory_bricks_drop", () -> EntityTickingTests.wrap(WindMeterTests::refractoryBricksDropThemselves));
+        FUNCTIONS.register("reinforced_door_half_semantics", () -> EntityTickingTests.wrap(WindMeterTests::reinforcedDoorHalfSemantics));
     }
 
     public RegistrationTests(IEventBus modBus) {
