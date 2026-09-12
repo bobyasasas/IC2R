@@ -5629,7 +5629,14 @@
       "factory": "register",
       "expression": "new ItemToolMiningLaser(new Properties().stacksTo(1))",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/item/MiningLaserItem.java",
+        "neoforge/src/main/java/ic2/neoforge/registration/ModTools.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/LaserTests.java",
+        "neoforge/src/main/resources/data/ic2/recipe/shaped/mining_laser.json"
+      ],
+      "note": "300000 EU/tier3/transfer 512,8 模式(1250/100/5000/0/2500/10000/5000/7500 EU)。legacy Alt+ModeSwitch 换挡→潜行+使用(port 无键位系统,既定范式);onItemUseFirst→useOn。legacy use() case 2 落空穿入 3/4/7 分支(远射程额外射一条熔炼光束)按原样保留并记录。"
     },
     {
       "registry": "item",
@@ -12734,7 +12741,13 @@
       "factory": "register",
       "expression": "Builder.<LaserBulletEntity>of(LaserBulletEntity::new, MobCategory.MISC).fireImmune().sized(0.8F, 0.8F).clientTrackingRange(8).updateInterval(8)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/entity/LaserBulletEntity.java",
+        "neoforge/src/main/java/ic2/neoforge/registration/ModEntities.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/LaserTests.java"
+      ],
+      "note": "零重力弹丸,功率驱动射程,穿透玻璃/被基岩挡停;爆炸模式 Ic2Explosion 5.0/0.85;熔炼模式掉落经熔炼配方原位置换(26.1.2 Explosion 已接口化,TNT 连爆内联 TntBlock.wasExploded 等价实现)。"
     },
     {
       "registry": "entity",

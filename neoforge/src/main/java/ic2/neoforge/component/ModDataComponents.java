@@ -308,6 +308,14 @@ public final class ModDataComponents {
                             builder.persistent(Codec.intRange(0, 9))
                                     .networkSynchronized(ByteBufCodecs.VAR_INT));
 
+    // Mirrors the legacy mining laser NBT int "laser_setting" (firing mode 0-7).
+    public static final Supplier<DataComponentType<Integer>> LASER_MODE =
+            TYPES.<Integer>registerComponentType(
+                    "laser_mode",
+                    builder ->
+                            builder.persistent(Codec.intRange(0, 7))
+                                    .networkSynchronized(ByteBufCodecs.VAR_INT));
+
     private ModDataComponents() {}
 
     private static double validCharge(double value) {

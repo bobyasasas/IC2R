@@ -2265,8 +2265,8 @@
     {
       "source": "shaped/centrifuge.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported item ic2:mining_laser"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/centrifuge.json"
     },
     {
       "source": "shaped/cesu.json",
@@ -3063,8 +3063,8 @@
     {
       "source": "shaped/mining_laser.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:mining_laser"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/mining_laser.json"
     },
     {
       "source": "shaped/mining_pipe.json",
@@ -3219,8 +3219,8 @@
     {
       "source": "shaped/pattern_storage.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported item ic2:mining_laser"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/pattern_storage.json"
     },
     {
       "source": "shaped/personal_chest.json",

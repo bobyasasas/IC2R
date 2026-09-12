@@ -8,6 +8,7 @@ import ic2.neoforge.item.ElectricItemEnergy;
 import ic2.neoforge.item.UpgradeItem;
 import ic2.neoforge.item.WrenchTool;
 import ic2.neoforge.machine.MachineKind;
+import ic2.neoforge.registration.ModEntities;
 import ic2.neoforge.registration.ModMachines;
 import ic2.neoforge.registration.ModRubberBuilding;
 import ic2.neoforge.registration.ModToolbox;
@@ -56,6 +57,11 @@ public final class IndustrialCraftClient {
                             event.registerBlockEntityRenderer(
                                     ModMachines.entityType(kind), RotorRenderer::new);
                 });
+        modBus.addListener(
+                (EntityRenderersEvent.RegisterRenderers event) ->
+                        event.registerEntityRenderer(
+                                ModEntities.LASER_BULLET.get(),
+                                LaserBulletRenderer::new));
         modBus.addListener(
                 (EntityRenderersEvent.RegisterRenderers event) ->
                         event.registerEntityRenderer(

@@ -131,6 +131,10 @@ public final class RegistrationTests {
         FUNCTIONS.register("boat_drops", () -> BoatTests::dropsMatchLegacySuppliers);
         FUNCTIONS.register("boat_lava", () -> BoatTests::lavaJudgesTheFamily);
         FUNCTIONS.register("boat_power_draw", () -> BoatTests::drivenBoatDrawsFromWornPack);
+        FUNCTIONS.register("laser_mining_shot", () -> LaserTests::miningShotBillsAndBreaks);
+        FUNCTIONS.register("laser_superheat", () -> LaserTests::superheatSmeltsSandToGlass);
+        FUNCTIONS.register("laser_mode_switch", () -> LaserTests::sneakUseCyclesTheModeFree);
+        FUNCTIONS.register("laser_explosive_shot", () -> LaserTests::explosiveShotDetonates);
         FUNCTIONS.register("bronze_tools", () -> BronzeKitTests::toolsCraftWithLegacyStats);
         FUNCTIONS.register(
                 "bronze_armor", () -> BronzeKitTests::armorCraftsAndCarriesLegacyDefence);

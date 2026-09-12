@@ -1,0 +1,19 @@
+{
+  "type": "ic2:shaped",
+  "pattern": [
+    "AAA",
+    "BCB",
+    "EDE"
+  ],
+  "result": {
+    "id": "ic2:pattern_storage",
+    "count": 1
+  },
+  "key": {
+    "A": "ic2:reinforced_stone",
+    "B": "ic2:crystal_memory",
+    "C": "ic2:advanced_machine",
+    "D": "ic2:advanced_circuit",
+    "E": "ic2:mining_laser"
+  }
+}

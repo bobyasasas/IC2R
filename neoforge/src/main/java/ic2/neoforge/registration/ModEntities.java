@@ -5,6 +5,7 @@ import ic2.neoforge.entity.CarbonBoatEntity;
 import ic2.neoforge.entity.DynamiteEntity;
 import ic2.neoforge.entity.ElectricBoatEntity;
 import ic2.neoforge.entity.ItntEntity;
+import ic2.neoforge.entity.LaserBulletEntity;
 import ic2.neoforge.entity.NukeEntity;
 import ic2.neoforge.entity.RubberBoatEntity;
 
@@ -102,6 +103,18 @@ public final class ModEntities {
                                     .sized(1.375F, 0.5625F)
                                     .clientTrackingRange(10)
                                     .build(key("electric_boat")));
+
+    public static final Supplier<EntityType<LaserBulletEntity>> LASER_BULLET =
+            TYPES.register(
+                    "laser_bullet",
+                    () ->
+                            EntityType.Builder.<LaserBulletEntity>of(
+                                            LaserBulletEntity::new, MobCategory.MISC)
+                                    .fireImmune()
+                                    .sized(0.8F, 0.8F)
+                                    .clientTrackingRange(8)
+                                    .updateInterval(8)
+                                    .build(key("laser_bullet")));
 
     public static void register(IEventBus bus) {
         TYPES.register(bus);
