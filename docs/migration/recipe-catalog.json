@@ -3465,14 +3465,14 @@
     {
       "source": "shaped/redstone_inverter_upgrade.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:redstone_inverter_upgrade"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/redstone_inverter_upgrade.json"
     },
     {
       "source": "shaped/redstone_inverter_upgrade_9.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:redstone_inverter_upgrade"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/redstone_inverter_upgrade_9.json"
     },
     {
       "source": "shaped/refractory_bricks.json",

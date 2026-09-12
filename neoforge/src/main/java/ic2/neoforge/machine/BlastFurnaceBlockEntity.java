@@ -1,6 +1,7 @@
 package ic2.neoforge.machine;
 
 import ic2.neoforge.fluid.FluidDefinition;
+import ic2.neoforge.item.UpgradeItem;
 import ic2.neoforge.recipe.BlastFurnaceRecipe;
 import ic2.neoforge.registration.ModFluids;
 import ic2.neoforge.registration.ModMachines;
@@ -149,7 +150,7 @@ public final class BlastFurnaceBlockEntity extends MachineBlockEntity {
         boolean wantsHeat =
                 !inventory.stack(INPUT).isEmpty()
                         || progress >= 1
-                        || level.hasNeighborSignal(worldPosition);
+                        || UpgradeItem.invertedSignal(kind(), inventory, level, worldPosition);
         if (!wantsHeat || heat > MAX_HEAT) {
             cool();
             return;

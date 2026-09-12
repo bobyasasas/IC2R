@@ -3,7 +3,7 @@
 import json
 from base import OLD, ASSETS, write, copy, model, item
 
-for name in ['overclocker', 'transformer', 'energy_storage', 'ejector', 'pulling', 'fluid_ejector', 'fluid_pulling']:
+for name in ['overclocker', 'transformer', 'energy_storage', 'ejector', 'pulling', 'fluid_ejector', 'fluid_pulling', 'redstone_inverter', 'remote_interface']:
     identifier = name + '_upgrade'
     path = ASSETS + 'models/item/' + identifier + '.json'
     data = json.loads((OLD / path).read_text())

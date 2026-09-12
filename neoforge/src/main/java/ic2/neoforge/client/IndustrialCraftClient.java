@@ -241,6 +241,17 @@ public final class IndustrialCraftClient {
                                 .add(
                                         Component.translatable(
                                                 "ic2.tooltip.upgrade.storage", 10000 * count));
+                case REDSTONE_INVERTER ->
+                        event.getToolTip()
+                                .add(
+                                        Component.translatable(
+                                                "ic2.tooltip.upgrade.redstone"));
+                case REMOTE_INTERFACE ->
+                        event.getToolTip()
+                                .add(
+                                        Component.translatable(
+                                                "ic2.tooltip.upgrade.remote_interface",
+                                                count));
                 default ->
                         event.getToolTip()
                                 .add(

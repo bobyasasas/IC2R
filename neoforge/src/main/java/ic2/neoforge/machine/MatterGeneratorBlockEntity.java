@@ -1,6 +1,7 @@
 package ic2.neoforge.machine;
 
 import ic2.core.energy.grid.EnergyNode;
+import ic2.neoforge.item.UpgradeItem;
 import ic2.neoforge.fluid.FluidDefinition;
 import ic2.neoforge.recipe.MatterFabricatorRecipe;
 import ic2.neoforge.registration.ModFluids;
@@ -84,7 +85,7 @@ public final class MatterGeneratorBlockEntity extends PoweredBlockEntity {
 
     @Override
     public void serverTick(ServerLevel level) {
-        if (level.hasNeighborSignal(worldPosition)) {
+        if (UpgradeItem.invertedSignal(kind(), inventory, level, worldPosition)) {
             lastStored = energy.stored();
             setActive(false);
             return;

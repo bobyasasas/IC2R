@@ -650,6 +650,9 @@ public final class RegistrationTests {
         FUNCTIONS.register("nuclear_resources_radiate", () -> EntityTickingTests.wrap(NuclearCycleTests::nuclearResourcesIrradiateCarriers));
         FUNCTIONS.register("depleting_rods_pulse", () -> EntityTickingTests.wrap(NuclearCycleTests::depletingRodsChargeAndSwap));
         FUNCTIONS.register("creative_generator_feeds", () -> EntityTickingTests.wrap(NuclearCycleTests::creativeGeneratorTopsUpForever));
+        FUNCTIONS.register("inverter_keeps_induction_warm", () -> EntityTickingTests.wrap(UpgradeInverterTests::inverterKeepsInductionWarm));
+        FUNCTIONS.register("inverter_suitability_matches_legacy", () -> EntityTickingTests.wrap(UpgradeInverterTests::suitabilityMatchesLegacyRedstoneSensitive));
+        FUNCTIONS.register("inverter_menu_insertion_gates", () -> EntityTickingTests.wrap(UpgradeInverterTests::menuInsertionGates));
     }
 
     public RegistrationTests(IEventBus modBus) {

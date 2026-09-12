@@ -566,6 +566,8 @@
   "ic2:shaped/reactor_redstone_port",
   "ic2:shaped/reactor_vessel",
   "ic2:shaped/recycler",
+  "ic2:shaped/redstone_inverter_upgrade",
+  "ic2:shaped/redstone_inverter_upgrade_9",
   "ic2:shaped/refractory_bricks",
   "ic2:shaped/reinforced_door",
   "ic2:shaped/reinforced_glass",

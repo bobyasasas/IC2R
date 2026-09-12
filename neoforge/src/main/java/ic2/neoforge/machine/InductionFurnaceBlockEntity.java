@@ -3,6 +3,7 @@ package ic2.neoforge.machine;
 import ic2.core.energy.grid.EnergyNode;
 import ic2.core.machine.InductionCycle;
 import ic2.neoforge.item.ElectricItemEnergy;
+import ic2.neoforge.item.UpgradeItem;
 import ic2.neoforge.registration.ModMachines;
 import ic2.neoforge.registration.ModSounds;
 import ic2.neoforge.transfer.ResourcePort;
@@ -132,7 +133,11 @@ public final class InductionFurnaceBlockEntity extends PoweredBlockEntity {
         boolean active;
         try (var transaction = Transaction.openRoot()) {
             journal.updateSnapshots(transaction);
-            active = cycle.tick(canProcess, level.hasNeighborSignal(worldPosition), energy);
+            active =
+                    cycle.tick(
+                            canProcess,
+                            UpgradeItem.invertedSignal(kind(), inventory, level, worldPosition),
+                            energy);
             transaction.commit();
         }
         if (before != comparator())

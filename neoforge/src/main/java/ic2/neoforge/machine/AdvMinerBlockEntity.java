@@ -3,6 +3,7 @@ package ic2.neoforge.machine;
 import ic2.neoforge.component.ModDataComponents;
 import ic2.neoforge.item.ElectricItemEnergy;
 import ic2.neoforge.item.ScannerItem;
+import ic2.neoforge.item.UpgradeItem;
 import ic2.neoforge.registration.ModMachines;
 import ic2.neoforge.registration.ModTools;
 
@@ -95,7 +96,7 @@ public final class AdvMinerBlockEntity extends PoweredBlockEntity {
 
     private boolean work(ServerLevel level) {
         if (energy.stored() < MINE_ENERGY) return false;
-        if (level.hasNeighborSignal(worldPosition)) return false;
+        if (UpgradeItem.invertedSignal(kind(), inventory, level, worldPosition)) return false;
         var scanner = inventory.stack(SCANNER_SLOT);
         if (scanner.isEmpty() || ElectricItemEnergy.charge(scanner) < SCAN_ENERGY) return false;
         if (++ticker != WORK_TICKS) return true;

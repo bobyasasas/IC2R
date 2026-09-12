@@ -2,13 +2,16 @@ package ic2.neoforge.item;
 
 import ic2.neoforge.component.ModDataComponents;
 import ic2.neoforge.machine.MachineKind;
+import ic2.neoforge.transfer.MachineInventory;
 
+import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.UseOnContext;
+import net.minecraft.world.level.Level;
 
 import org.jspecify.annotations.Nullable;
 
@@ -20,7 +23,9 @@ public final class UpgradeItem extends Item {
         EJECTOR,
         PULLING,
         FLUID_EJECTOR,
-        FLUID_PULLING;
+        FLUID_PULLING,
+        REDSTONE_INVERTER,
+        REMOTE_INTERFACE;
 
         public boolean directional() {
             return this == EJECTOR || this == PULLING || fluid();
@@ -35,6 +40,21 @@ public final class UpgradeItem extends Item {
         }
 
         public boolean suitable(MachineKind machine) {
+            // Legacy RedstoneSensitive machines (ItemUpgradeModule.isSuitableFor) — checked before
+            // the per-machine cases below, which only enumerate the directional kinds. The port
+            // magnetizer has no upgrade slots (pending parity), and the port replicator reads no
+            // redstone yet, mirroring legacy where TileEntityReplicator declares the property but
+            // wires no Redstone component, so the inverter is inert there in both codebases.
+            if (this == REDSTONE_INVERTER)
+                return machine == MachineKind.ADV_MINER
+                        || machine == MachineKind.BLAST_FURNACE
+                        || machine == MachineKind.CENTRIFUGE
+                        || machine == MachineKind.INDUCTION_FURNACE
+                        || machine == MachineKind.MATTER_GENERATOR
+                        || machine == MachineKind.REPLICATOR;
+            // Legacy has no RemotelyAccessible machine and InvSlotUpgrade.getRemoteRange has no
+            // caller: the remote interface is an inert item there, so it stays unsuitable here.
+            if (this == REMOTE_INTERFACE) return false;
             if (machine == MachineKind.STEAM_KINETIC_GENERATOR) return fluid() || this == PULLING;
             // Legacy cropmatron: transformer/energy storage/item consuming/fluid consuming.
             if (machine == MachineKind.CROPMATRON)
@@ -79,6 +99,22 @@ public final class UpgradeItem extends Item {
 
     public Kind kind() {
         return kind;
+    }
+
+    /**
+     * Legacy Redstone.update reads {@code getBestNeighborSignal}, passes it through the machine's
+     * upgrade modifiers ({@code 15 - external} for a redstone inverter) and every consumer then
+     * checks {@code > 0}; this reproduces that chain exactly, returning the effective boolean
+     * the machine's redstone gate consumes.
+     */
+    public static boolean invertedSignal(
+            MachineKind machine, MachineInventory inventory, Level level, BlockPos pos) {
+        int external = level.getBestNeighborSignal(pos);
+        for (int slot = machine.upgradeStart(); slot < inventory.size(); slot++) {
+            if (inventory.getResource(slot).getItem() instanceof UpgradeItem item
+                    && item.kind() == Kind.REDSTONE_INVERTER) return 15 - external > 0;
+        }
+        return external > 0;
     }
 
     public static @Nullable Direction direction(ItemStack stack) {

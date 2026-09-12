@@ -1,6 +1,7 @@
 package ic2.neoforge.machine;
 
 import ic2.core.machine.CentrifugeHeat;
+import ic2.neoforge.item.UpgradeItem;
 import ic2.neoforge.recipe.CentrifugeRecipe;
 import ic2.neoforge.registration.ModMachines;
 import ic2.neoforge.registration.ModProcessingRecipes;
@@ -76,7 +77,10 @@ public final class CentrifugeBlockEntity extends ProcessingBlockEntity {
                         : OptionalInt.empty();
         int before = heat.heat(), oldTarget = heat.target();
         double stored = energy.stored();
-        heat.tick(target, level.hasNeighborSignal(worldPosition), energy);
+        heat.tick(
+                target,
+                UpgradeItem.invertedSignal(kind(), inventory, level, worldPosition),
+                energy);
         if (before != heat.heat() || oldTarget != heat.target() || stored != energy.stored())
             setChanged();
     }
