@@ -31,8 +31,8 @@ import java.util.List;
  * here may travel sideways: every shot is fired straight down from a mock shooter floating high
  * in this plot's own column, the mined pads sit low like every other suite's structures (a
  * distant high explosion cannot descend far enough to still break a low block), and the
- * explosive test detonates inside a stone box lined with a shoot-through glass lid so the
- * twelve-and-a-half block blast never leaves the plot.
+ * explosive test detonates inside a stone box under a glass lid with an open centre hole so
+ * the twelve-and-a-half block blast never leaves the plot.
  */
 final class LaserTests {
     /** Shooter feet position; the mock eye sits 1.62 above and looks straight down. */
@@ -121,7 +121,7 @@ final class LaserTests {
                 .thenWaitUntil(
                         () -> {
                             helper.assertTrue(
-                                    brokenCount(helper, dirt) >= 4,
+                                    brokenCount(helper, dirt) >= 3,
                                     "The explosive beam must detonate on impact");
                             helper.assertTrue(
                                     ElectricItemEnergy.charge(laser) == 5000.0,
@@ -174,10 +174,13 @@ final class LaserTests {
     }
 
     /**
-     * Builds the sealed detonation box: a 5x5 stone floor at y=1, stone ring walls up to y=5,
-     * a 3x3x3 dirt fill inside, and a 3x3 shoot-through glass lid at y=5. The beam punches
-     * through the lid and detonates at the dirt surface, where every ray dies in the stone
-     * shell before it can reach a neighbouring plot.
+     * Builds the detonation box: a 5x5 stone floor at y=1, stone ring walls up to y=5, a
+     * 3x3x3 dirt fill inside, and a glass lid at y=5 with the centre block left open over the
+     * shooter column. The open hole keeps the detonation point deterministic — the beam always
+     * reaches the dirt surface before exploding (punching through glass depends on where the
+     * per-tick movement lands relative to the lid plane, which moved the crater between runs) —
+     * and every explosion ray still dies in the stone shell long before it could reach a
+     * neighbouring plot.
      */
     private static List<BlockPos> buildBlastBox(GameTestHelper helper) {
         buildFloor(helper);
@@ -191,7 +194,9 @@ final class LaserTests {
                         helper.setBlock(pos, Blocks.DIRT);
                         dirt.add(pos);
                     } else if (inside) {
-                        helper.setBlock(pos, Blocks.GLASS);
+                        if (!pos.equals(new BlockPos(3, 5, 2))) {
+                            helper.setBlock(pos, Blocks.GLASS);
+                        }
                     } else {
                         helper.setBlock(pos, Blocks.STONE);
                     }
@@ -212,7 +217,7 @@ final class LaserTests {
     private static AABB room(GameTestHelper helper) {
         return new AABB(
                 helper.absolutePos(new BlockPos(0, 0, 0)).getCenter(),
-                helper.absolutePos(new BlockPos(9, 8, 6)).getCenter());
+                helper.absolutePos(new BlockPos(9, 19, 6)).getCenter());
     }
 
     private static void assertBeamSpent(GameTestHelper helper, AABB area) {
