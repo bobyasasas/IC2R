@@ -3,7 +3,9 @@ package ic2.neoforge.registration;
 import ic2.core.energy.ElectricItemSpec;
 import ic2.neoforge.IndustrialCraft;
 import ic2.neoforge.item.BatteryItem;
+import ic2.neoforge.item.ChargingBatteryItem;
 import ic2.neoforge.item.JetpackAttachmentPlateItem;
+import ic2.neoforge.item.SingleUseBatteryItem;
 import ic2.neoforge.item.TinCanItem;
 import ic2.neoforge.item.tfbp.Chilling;
 import ic2.neoforge.item.tfbp.Cultivation;
@@ -64,6 +66,21 @@ public final class ModItems {
     public static final DeferredItem<BatteryItem> LAPOTRON_CRYSTAL =
             battery("lapotron_crystal", 10000000, 8092, 4, 16, Rarity.UNCOMMON);
 
+    /** Legacy ItemBatterySU: disposable 1200 EU cell handed out five per craft. */
+    public static final DeferredItem<SingleUseBatteryItem> SINGLE_USE_BATTERY =
+            ITEMS.registerItem(
+                    "single_use_battery", properties -> new SingleUseBatteryItem(properties));
+
+    /** Legacy ItemBatteryChargeHotbar family: wearable-charge batteries with a tri-state mode. */
+    public static final DeferredItem<ChargingBatteryItem> CHARGING_RE_BATTERY =
+            chargingBattery("charging_re_battery", 40000, 128, 1, Rarity.COMMON);
+    public static final DeferredItem<ChargingBatteryItem> ADVANCED_CHARGING_RE_BATTERY =
+            chargingBattery("advanced_charging_re_battery", 400000, 1024, 2, Rarity.COMMON);
+    public static final DeferredItem<ChargingBatteryItem> CHARGING_ENERGY_CRYSTAL =
+            chargingBattery("charging_energy_crystal", 4000000, 8192, 3, Rarity.COMMON);
+    public static final DeferredItem<ChargingBatteryItem> CHARGING_LAPOTRON_CRYSTAL =
+            chargingBattery("charging_lapotron_crystal", 40000000, 32768, 4, Rarity.UNCOMMON);
+
     /** Legacy Ic2Items boats: placeable via BoatItem like the vanilla boats. */
     public static final DeferredItem<BoatItem> RUBBER_BOAT =
             boat("rubber_boat", ModEntities.RUBBER_BOAT);
@@ -112,6 +129,16 @@ public final class ModItems {
                                 new ElectricItemSpec(capacity, limit, tier, true)));
     }
 
+    private static DeferredItem<ChargingBatteryItem> chargingBattery(
+            String id, double capacity, double limit, int tier, Rarity rarity) {
+        return ITEMS.registerItem(
+                id,
+                properties ->
+                        new ChargingBatteryItem(
+                                properties.stacksTo(16).rarity(rarity),
+                                new ElectricItemSpec(capacity, limit, tier, true)));
+    }
+
     private ModItems() {}
 
     public static void register(IEventBus modBus) {
@@ -128,6 +155,11 @@ public final class ModItems {
             event.accept(ADVANCED_RE_BATTERY);
             event.accept(ENERGY_CRYSTAL);
             event.accept(LAPOTRON_CRYSTAL);
+            event.accept(SINGLE_USE_BATTERY);
+            event.accept(CHARGING_RE_BATTERY);
+            event.accept(ADVANCED_CHARGING_RE_BATTERY);
+            event.accept(CHARGING_ENERGY_CRYSTAL);
+            event.accept(CHARGING_LAPOTRON_CRYSTAL);
         }
         if (event.getTabKey().equals(CreativeModeTabs.TOOLS_AND_UTILITIES)) {
             event.accept(RUBBER_BOAT);

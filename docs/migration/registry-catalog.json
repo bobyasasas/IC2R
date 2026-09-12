@@ -6124,7 +6124,15 @@
       "factory": "register",
       "expression": "new ItemBatterySU(new Properties(), 1200, 1)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/item/SingleUseBatteryItem.java",
+        "neoforge/src/main/java/ic2/neoforge/registration/ModItems.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/ChargingBatteryTests.java",
+        "neoforge/src/main/resources/data/ic2/recipe/shaped/single_use_battery.json",
+        "neoforge/src/main/resources/data/ic2/recipe/shaped/single_use_battery_2.json"
+      ],
+      "note": "ItemBatterySU 1200 EU/tier1 不可充电。右键把全部余量灌入快捷栏 0-8(跳过自身实例,ignoreTransferLimit=true),只要有成分被充入即自耗 1 个(1e-5 判等),否则 PASS 不消耗;输出 5 个/配方。"
     },
     {
       "registry": "item",
@@ -6134,7 +6142,14 @@
       "factory": "register",
       "expression": "new ItemBatteryChargeHotbar(new Properties().stacksTo(16), 40000.0, 128.0, 1)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/item/ChargingBatteryItem.java",
+        "neoforge/src/main/java/ic2/neoforge/registration/ModItems.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/ChargingBatteryTests.java",
+        "neoforge/src/main/resources/data/ic2/recipe/shaped/charging_re_battery.json"
+      ],
+      "note": "ItemBatteryChargeHotbar 40000 EU/128/tier1/stack 16。gameTime%10<tier 时给快捷栏充(先 simulate 目标接受量[尊重目标传输上限]→真放电自身→真充入目标),跳过空位/NOT_IN_HAND 时的手持位/其它 ChargingBatteryItem;右键三态循环 ENABLED→DISABLED→NOT_IN_HAND 并 chat 提示;模式存 ic2:battery_mode 组件(0/1/2,镜像 legacy NBT mode 字节)。"
     },
     {
       "registry": "item",
@@ -6144,7 +6159,14 @@
       "factory": "register",
       "expression": "new ItemBatteryChargeHotbar(new Properties().stacksTo(16), 400000.0, 1024.0, 2)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/item/ChargingBatteryItem.java",
+        "neoforge/src/main/java/ic2/neoforge/registration/ModItems.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/ChargingBatteryTests.java",
+        "neoforge/src/main/resources/data/ic2/recipe/shaped/advanced_charging_re_battery.json"
+      ],
+      "note": "ItemBatteryChargeHotbar 400000 EU/1024/tier2/stack 16,余同 charging_re_battery(tier2 每 10t 充 2 tick)。"
     },
     {
       "registry": "item",
@@ -6154,7 +6176,14 @@
       "factory": "register",
       "expression": "new ItemBatteryChargeHotbar(new Properties().stacksTo(16), 4000000.0, 8192.0, 3)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/item/ChargingBatteryItem.java",
+        "neoforge/src/main/java/ic2/neoforge/registration/ModItems.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/ChargingBatteryTests.java",
+        "neoforge/src/main/resources/data/ic2/recipe/shaped/charging_energy_crystal.json"
+      ],
+      "note": "ItemBatteryChargeHotbar 4000000 EU/8192/tier3/stack 16,余同 charging_re_battery(tier3 每 10t 充 3 tick)。"
     },
     {
       "registry": "item",
@@ -6164,7 +6193,14 @@
       "factory": "register",
       "expression": "new ItemBatteryChargeHotbar(new Properties().stacksTo(16).rarity(Rarity.UNCOMMON), 4.0E7, 32768.0, 4)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/item/ChargingBatteryItem.java",
+        "neoforge/src/main/java/ic2/neoforge/registration/ModItems.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/ChargingBatteryTests.java",
+        "neoforge/src/main/resources/data/ic2/recipe/shaped/charging_lapotron_crystal.json"
+      ],
+      "note": "ItemBatteryChargeHotbar 40000000 EU/32768/tier4/stack 16/UNCOMMON,余同 charging_re_battery(tier4 每 10t 充 4 tick)。平台分歧:legacy @NotClassic(经典 profile 隐藏)与 IBoxable.canBeStoredInToolbox(DISABLED 才可入工具箱)无 port 对应面——port 工具箱暂无 IBoxable 过滤系统,如实记录。"
     },
     {
       "registry": "item",

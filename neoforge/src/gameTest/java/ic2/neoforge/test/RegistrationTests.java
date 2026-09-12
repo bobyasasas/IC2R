@@ -621,6 +621,9 @@ public final class RegistrationTests {
         FUNCTIONS.register("saber_held_billing", () -> EntityTickingTests.wrap(NanoSaberTests::heldBillingDepletesAndShutsOff));
         FUNCTIONS.register("saber_attributes", () -> EntityTickingTests.wrap(NanoSaberTests::attributesFollowActivation));
         FUNCTIONS.register("saber_strike_armor_drain", () -> EntityTickingTests.wrap(NanoSaberTests::strikeDrainsNanoArmor));
+        FUNCTIONS.register("single_use_battery_charge", () -> EntityTickingTests.wrap(ChargingBatteryTests::singleUseChargesHotbarAndConsumes));
+        FUNCTIONS.register("charging_battery_tick_feed", () -> EntityTickingTests.wrap(ChargingBatteryTests::chargingBatteryTickChargesHotbar));
+        FUNCTIONS.register("charging_battery_mode_gate", () -> EntityTickingTests.wrap(ChargingBatteryTests::modeCycleGatesFeeding));
     }
 
     public RegistrationTests(IEventBus modBus) {

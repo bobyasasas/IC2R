@@ -2019,8 +2019,8 @@
     {
       "source": "shaped/advanced_charging_re_battery.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:advanced_charging_re_battery"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/advanced_charging_re_battery.json"
     },
     {
       "source": "shaped/advanced_circuit.json",
@@ -2307,20 +2307,20 @@
     {
       "source": "shaped/charging_energy_crystal.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:charging_energy_crystal"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/charging_energy_crystal.json"
     },
     {
       "source": "shaped/charging_lapotron_crystal.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:charging_lapotron_crystal"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/charging_lapotron_crystal.json"
     },
     {
       "source": "shaped/charging_re_battery.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:charging_re_battery"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/charging_re_battery.json"
     },
     {
       "source": "shaped/chilling_tfbp.json",
@@ -3687,14 +3687,14 @@
     {
       "source": "shaped/single_use_battery.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:single_use_battery"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/single_use_battery.json"
     },
     {
       "source": "shaped/single_use_battery_2.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:single_use_battery"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/single_use_battery_2.json"
     },
     {
       "source": "shaped/small_iron_dust.json",

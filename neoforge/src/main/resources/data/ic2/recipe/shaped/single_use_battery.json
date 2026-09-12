@@ -1,0 +1,17 @@
+{
+  "type": "ic2:shaped",
+  "pattern": [
+    "C",
+    "R",
+    "D"
+  ],
+  "result": {
+    "id": "ic2:single_use_battery",
+    "count": 5
+  },
+  "key": {
+    "D": "#c:dusts/coal",
+    "R": "minecraft:redstone",
+    "C": "ic2:insulated_copper_cable"
+  }
+}

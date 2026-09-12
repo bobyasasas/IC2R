@@ -259,6 +259,14 @@ public final class ModDataComponents {
                     builder ->
                             builder.persistent(Codec.BOOL).networkSynchronized(ByteBufCodecs.BOOL));
 
+    // Mirrors the legacy charging battery NBT mode byte: 0 enabled, 1 disabled, 2 not in hand.
+    public static final Supplier<DataComponentType<Integer>> BATTERY_MODE =
+            TYPES.<Integer>registerComponentType(
+                    "battery_mode",
+                    builder ->
+                            builder.persistent(Codec.intRange(0, 2))
+                                    .networkSynchronized(ByteBufCodecs.VAR_INT));
+
     // Mirrors the legacy static boots NBT x/z walk markers (Integer NBT on the stack).
     public static final Supplier<DataComponentType<Integer>> STATIC_BOOTS_X =
             TYPES.<Integer>registerComponentType(

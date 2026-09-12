@@ -1,0 +1,17 @@
+{
+  "type": "ic2:shaped",
+  "pattern": [
+    "ABA",
+    "BCB",
+    "ABA"
+  ],
+  "result": {
+    "id": "ic2:advanced_charging_re_battery",
+    "count": 1
+  },
+  "key": {
+    "A": "ic2:heat_exchanger",
+    "B": "ic2:advanced_re_battery",
+    "C": "ic2:charging_re_battery"
+  }
+}
