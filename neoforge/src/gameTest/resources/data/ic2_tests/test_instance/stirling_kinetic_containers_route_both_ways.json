@@ -1,0 +1,7 @@
+{
+  "type": "minecraft:function",
+  "function": "ic2_tests:stirling_kinetic_containers_route_both_ways",
+  "environment": "minecraft:default",
+  "structure": "ic2_tests:world_room",
+  "max_ticks": 60
+}

@@ -175,6 +175,8 @@ public final class IndustrialCraftClient {
                         event.register(registration.menu().get(), ItemBufferScreen::new);
                     else if (kind == MachineKind.ADV_MINER)
                         event.register(registration.menu().get(), AdvMinerScreen::new);
+                    else if (kind == MachineKind.STIRLING_KINETIC_GENERATOR)
+                        event.register(registration.menu().get(), StirlingKineticScreen::new);
                     else if (kind == MachineKind.STEAM_KINETIC_GENERATOR)
                         event.register(registration.menu().get(), SteamTurbineScreen::new);
                     else if (kind == MachineKind.STEAM_GENERATOR)

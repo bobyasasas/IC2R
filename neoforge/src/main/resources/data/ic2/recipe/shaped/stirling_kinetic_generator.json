@@ -1,0 +1,17 @@
+{
+  "type": "ic2:shaped",
+  "pattern": [
+    "GPG",
+    "GMG",
+    "GPG"
+  ],
+  "result": {
+    "id": "ic2:stirling_kinetic_generator",
+    "count": 1
+  },
+  "key": {
+    "G": "minecraft:glass_bottle",
+    "P": "minecraft:piston",
+    "M": "ic2:machine"
+  }
+}

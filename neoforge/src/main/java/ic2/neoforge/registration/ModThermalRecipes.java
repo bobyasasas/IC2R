@@ -4,6 +4,7 @@ import ic2.neoforge.IndustrialCraft;
 import ic2.neoforge.recipe.CoolingRecipe;
 import ic2.neoforge.recipe.ElectrolyzingRecipe;
 import ic2.neoforge.recipe.FermentingRecipe;
+import ic2.neoforge.recipe.HeatingRecipe;
 
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.item.crafting.RecipeSerializer;
@@ -52,6 +53,24 @@ public final class ModThermalRecipes {
                             () ->
                                     new RecipeSerializer<>(
                                             CoolingRecipe.CODEC, CoolingRecipe.STREAM_CODEC));
+
+    public static final DeferredHolder<RecipeType<?>, RecipeType<HeatingRecipe>> HEATING =
+            TYPES.register(
+                    "heating",
+                    () ->
+                            new RecipeType<>() {
+                                @Override
+                                public String toString() {
+                                    return "ic2:heating";
+                                }
+                            });
+    public static final DeferredHolder<RecipeSerializer<?>, RecipeSerializer<HeatingRecipe>>
+            HEATING_SERIALIZER =
+                    SERIALIZERS.register(
+                            "heating",
+                            () ->
+                                    new RecipeSerializer<>(
+                                            HeatingRecipe.CODEC, HeatingRecipe.STREAM_CODEC));
 
     public static final DeferredHolder<RecipeType<?>, RecipeType<ElectrolyzingRecipe>>
             ELECTROLYZING =

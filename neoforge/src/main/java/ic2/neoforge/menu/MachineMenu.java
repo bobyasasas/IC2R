@@ -399,6 +399,12 @@ public final class MachineMenu extends AbstractContainerMenu {
                     ModItems.MATERIALS.get(MaterialDefinition.HEAT_CONDUCTOR).get(),
                     45,
                     17);
+        } else if (kind == MachineKind.STIRLING_KINETIC_GENERATOR) {
+            // Legacy ContainerStirlingKineticGenerator: cold containers left, hot right.
+            addFluidContainerSlot(inventory, 0, 8, 65);
+            addOutputSlot(inventory, 1, 26, 65);
+            addFluidContainerSlot(inventory, 2, 134, 65);
+            addOutputSlot(inventory, 3, 152, 65);
         } else if (kind == MachineKind.FERMENTER) {
             addFluidContainerSlot(inventory, 0, 28, 17);
             addOutputSlot(inventory, 1, 28, 53);
@@ -774,7 +780,9 @@ public final class MachineMenu extends AbstractContainerMenu {
         if (kind == MachineKind.LIQUID_HEAT_EXCHANGER
                 && stack.is(ModItems.MATERIALS.get(MaterialDefinition.HEAT_CONDUCTOR).get()))
             return 4;
-        if (kind == MachineKind.FERMENTER || kind == MachineKind.LIQUID_HEAT_EXCHANGER) {
+        if (kind == MachineKind.FERMENTER
+                || kind == MachineKind.LIQUID_HEAT_EXCHANGER
+                || kind == MachineKind.STIRLING_KINETIC_GENERATOR) {
             var fluid = ItemAccess.forStack(stack.copy()).getCapability(Capabilities.Fluid.ITEM);
             if (fluid == null) return -1;
             for (int i = 0; i < fluid.size(); i++) if (fluid.getAmountAsLong(i) > 0) return 0;

@@ -656,6 +656,9 @@ public final class RegistrationTests {
         FUNCTIONS.register("containment_box_accepts_nuclear_only", () -> EntityTickingTests.wrap(ContainmentBoxTests::acceptsOnlyNuclearItems));
         FUNCTIONS.register("containment_box_menu_persists_contents", () -> EntityTickingTests.wrap(ContainmentBoxTests::menuPersistsContentsInStack));
         FUNCTIONS.register("containment_box_shift_click_rejects_plain_items", () -> EntityTickingTests.wrap(ContainmentBoxTests::shiftClickRejectsPlainItems));
+        FUNCTIONS.register("stirling_kinetic_heats_fluids_and_banks_ku", () -> EntityTickingTests.wrap(StirlingKineticTests::heatsFluidsAndBanksKu));
+        FUNCTIONS.register("stirling_kinetic_containers_route_both_ways", () -> EntityTickingTests.wrap(StirlingKineticTests::containersRouteBothWays));
+        FUNCTIONS.register("stirling_kinetic_chain_charges_batbox", () -> EntityTickingTests.wrap(StirlingKineticTests::chainChargesBatbox));
     }
 
     public RegistrationTests(IEventBus modBus) {

@@ -137,6 +137,7 @@ final class MachineSounds {
                     ELECTRIC_HEAT_GENERATOR,
                     ELECTRIC_KINETIC_GENERATOR,
                     STIRLING_GENERATOR,
+                    STIRLING_KINETIC_GENERATOR,
                     KINETIC_GENERATOR,
                     CENTRIFUGE,
                     ORE_WASHING_PLANT,

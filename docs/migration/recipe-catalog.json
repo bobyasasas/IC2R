@@ -3873,8 +3873,8 @@
     {
       "source": "shaped/stirling_kinetic_generator.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:stirling_kinetic_generator"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/stirling_kinetic_generator.json"
     },
     {
       "source": "shaped/stripped_rubber_wood.json",

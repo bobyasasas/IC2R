@@ -163,6 +163,8 @@ public final class ModMachines {
             case ELECTRIC_HEAT_GENERATOR, ELECTRIC_KINETIC_GENERATOR ->
                     new ElectricWorkBlockEntity(pos, state);
             case STIRLING_GENERATOR, KINETIC_GENERATOR -> new WorkConversionBlockEntity(pos, state);
+            case STIRLING_KINETIC_GENERATOR ->
+                    new ic2.neoforge.machine.StirlingKineticGeneratorBlockEntity(pos, state);
             case WIND_GENERATOR -> new WindGeneratorBlockEntity(pos, state);
             case WATER_GENERATOR -> new WaterGeneratorBlockEntity(pos, state);
             case SOLAR_GENERATOR -> new SolarGeneratorBlockEntity(pos, state);
@@ -297,6 +299,12 @@ public final class ModMachines {
                 ic2.neoforge.api.WorkCapabilities.HEAT,
                 entityType(MachineKind.ELECTRIC_HEAT_GENERATOR),
                 (machine, side) -> ((ElectricWorkBlockEntity) machine).output(side));
+        event.registerBlockEntity(
+                ic2.neoforge.api.WorkCapabilities.KINETIC,
+                entityType(MachineKind.STIRLING_KINETIC_GENERATOR),
+                (machine, side) ->
+                        ((ic2.neoforge.machine.StirlingKineticGeneratorBlockEntity) machine)
+                                .output(side));
         event.registerBlockEntity(
                 net.neoforged.neoforge.capabilities.Capabilities.Fluid.BLOCK,
                 entityType(MachineKind.REACTOR_FLUID_PORT),

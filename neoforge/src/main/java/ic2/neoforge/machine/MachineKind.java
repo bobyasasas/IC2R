@@ -68,6 +68,7 @@ public enum MachineKind implements StringRepresentable {
     ELECTRIC_KINETIC_GENERATOR("electric_kinetic_generator", 10000, 11, 0, 0),
     STIRLING_GENERATOR("stirling_generator", 16384, 0, 0, 0),
     KINETIC_GENERATOR("kinetic_generator", 16384, 0, 0, 0),
+    STIRLING_KINETIC_GENERATOR("stirling_kinetic_generator", 0, 4, 0, 0),
     WIND_GENERATOR("wind_generator", 32, 1, 0, 0),
     WATER_GENERATOR("water_generator", 4, 2, 0, 0),
     SOLAR_GENERATOR("solar_generator", 32, 1, 0, 0),
@@ -116,6 +117,7 @@ public enum MachineKind implements StringRepresentable {
                 || workConversion()
                 || fuelHeat()
                 || this == MANUAL_KINETIC_GENERATOR
+                || this == STIRLING_KINETIC_GENERATOR
                 || this == FERMENTER
                 || this == LIQUID_HEAT_EXCHANGER
                 || this == FLUID_REGULATOR
@@ -249,6 +251,7 @@ public enum MachineKind implements StringRepresentable {
                         || this == STEAM_REPRESSURIZER
                         || this == RT_HEAT_GENERATOR
                         || this == RT_GENERATOR
+                        || this == STIRLING_KINETIC_GENERATOR
                         || this == STEAM_KINETIC_GENERATOR
                 ? 184
                 : 166;
@@ -276,7 +279,7 @@ public enum MachineKind implements StringRepresentable {
         if (this == CONDENSER || this == STEAM_KINETIC_GENERATOR || this == MINER) return 1;
         if (this == ENERGY_O_MAT) return 1;
         if (this == TANK) return 4;
-        if (this == LIQUID_HEAT_EXCHANGER) return 3;
+        if (this == LIQUID_HEAT_EXCHANGER || this == STIRLING_KINETIC_GENERATOR) return 3;
         if (this == SOLAR_DISTILLER) return 2;
         if (this == REPLICATOR) return 4;
         return (this == INDUCTION_FURNACE || this == FERMENTER) ? 2 : euPerTick > 0 ? 4 : 0;

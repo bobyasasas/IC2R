@@ -1,0 +1,7 @@
+{
+  "type": "minecraft:function",
+  "function": "ic2_tests:stirling_kinetic_heats_fluids_and_banks_ku",
+  "environment": "minecraft:default",
+  "structure": "ic2_tests:world_room",
+  "max_ticks": 60
+}

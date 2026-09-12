@@ -1814,7 +1814,12 @@
       "factory": "register",
       "expression": "new ItemBlockIc2(Ic2Blocks.STIRLING_KINETIC_GENERATOR, new Properties())",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "docs/migration/stirling-kinetic-generator.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/StirlingKineticTests.java"
+      ],
+      "note": "斯特林动能发电机:从除朝向外五面拉取 HU 缓冲(上限1000),4 HU 记账为一批次转 12 kU,整 mB 流体按 heating 配方热量(20 HU/mB)在液热累计满额后一次性转移,双罐各 2000 mB 数据驱动(water→hot_water、coolant→hot_coolant);kU 仅从朝向面输出(bandwidth 2000),保留 legacy 单 tick批次可超 2000 缓冲的溢出语义;3 升级槽按 legacy consuming/producing 四类 directional 放行;GameTest 覆盖 HU 拉取记账/kU 存储持久化、冷热容器双向路由与升级槽门控、热-斯特林-动能转换-BatBox 全链路,IC2/GT 双模式 460 例全绿。item/block/block_entity/menu 四条目同轮翻转。"
     },
     {
       "registry": "item",
@@ -8494,7 +8499,12 @@
       "factory": "register",
       "expression": "Ic2TileEntityBlock.create(Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).strength(2.0F, 10.0F).requiresCorrectToolForDrops().sound(SoundType.METAL), TileEntityStirlingKineticGenerator.class, true, Ic2TileEntityBlock.DefaultDrop.Self, Util.allFacings, true)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "docs/migration/stirling-kinetic-generator.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/StirlingKineticTests.java"
+      ],
+      "note": "斯特林动能发电机:从除朝向外五面拉取 HU 缓冲(上限1000),4 HU 记账为一批次转 12 kU,整 mB 流体按 heating 配方热量(20 HU/mB)在液热累计满额后一次性转移,双罐各 2000 mB 数据驱动(water→hot_water、coolant→hot_coolant);kU 仅从朝向面输出(bandwidth 2000),保留 legacy 单 tick批次可超 2000 缓冲的溢出语义;3 升级槽按 legacy consuming/producing 四类 directional 放行;GameTest 覆盖 HU 拉取记账/kU 存储持久化、冷热容器双向路由与升级槽门控、热-斯特林-动能转换-BatBox 全链路,IC2/GT 双模式 460 例全绿。item/block/block_entity/menu 四条目同轮翻转。"
     },
     {
       "registry": "block",
@@ -11576,7 +11586,12 @@
       "factory": "register",
       "expression": "TileEntityStirlingKineticGenerator::new",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "docs/migration/stirling-kinetic-generator.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/StirlingKineticTests.java"
+      ],
+      "note": "斯特林动能发电机:从除朝向外五面拉取 HU 缓冲(上限1000),4 HU 记账为一批次转 12 kU,整 mB 流体按 heating 配方热量(20 HU/mB)在液热累计满额后一次性转移,双罐各 2000 mB 数据驱动(water→hot_water、coolant→hot_coolant);kU 仅从朝向面输出(bandwidth 2000),保留 legacy 单 tick批次可超 2000 缓冲的溢出语义;3 升级槽按 legacy consuming/producing 四类 directional 放行;GameTest 覆盖 HU 拉取记账/kU 存储持久化、冷热容器双向路由与升级槽门控、热-斯特林-动能转换-BatBox 全链路,IC2/GT 双模式 460 例全绿。item/block/block_entity/menu 四条目同轮翻转。"
     },
     {
       "registry": "block_entity",
@@ -13328,7 +13343,12 @@
       "factory": "registerManagedBe",
       "expression": "",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "docs/migration/stirling-kinetic-generator.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/StirlingKineticTests.java"
+      ],
+      "note": "斯特林动能发电机:从除朝向外五面拉取 HU 缓冲(上限1000),4 HU 记账为一批次转 12 kU,整 mB 流体按 heating 配方热量(20 HU/mB)在液热累计满额后一次性转移,双罐各 2000 mB 数据驱动(water→hot_water、coolant→hot_coolant);kU 仅从朝向面输出(bandwidth 2000),保留 legacy 单 tick批次可超 2000 缓冲的溢出语义;3 升级槽按 legacy consuming/producing 四类 directional 放行;GameTest 覆盖 HU 拉取记账/kU 存储持久化、冷热容器双向路由与升级槽门控、热-斯特林-动能转换-BatBox 全链路,IC2/GT 双模式 460 例全绿。item/block/block_entity/menu 四条目同轮翻转。"
     },
     {
       "registry": "menu",

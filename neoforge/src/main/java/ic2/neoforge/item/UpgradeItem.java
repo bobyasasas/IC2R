@@ -71,8 +71,9 @@ public final class UpgradeItem extends Item {
             if (machine == MachineKind.CONDENSER) return directional() || this == TRANSFORMER;
             if (machine == MachineKind.ELECTROLYZER) return this == FLUID_PULLING;
             if (machine == MachineKind.TANK) return fluid();
-            if (machine == MachineKind.FERMENTER || machine == MachineKind.LIQUID_HEAT_EXCHANGER)
-                return directional();
+            if (machine == MachineKind.FERMENTER
+                    || machine == MachineKind.LIQUID_HEAT_EXCHANGER
+                    || machine == MachineKind.STIRLING_KINETIC_GENERATOR) return directional();
             if (machine == MachineKind.INDUCTION_FURNACE) return this == EJECTOR || this == PULLING;
             // Legacy replicator: processing/transformer/storage/item consuming/item producing/
             // fluid consuming — no fluid ejector (no fluid producing property).
