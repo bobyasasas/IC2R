@@ -316,6 +316,22 @@ public final class ModDataComponents {
                             builder.persistent(Codec.intRange(0, 7))
                                     .networkSynchronized(ByteBufCodecs.VAR_INT));
 
+    /** Legacy nano saber NBT "active": only set while the blade is switched on. */
+    public static final Supplier<DataComponentType<Boolean>> SABER_ACTIVE =
+            TYPES.<Boolean>registerComponentType(
+                    "saber_active",
+                    builder ->
+                            builder.persistent(Codec.BOOL)
+                                    .networkSynchronized(ByteBufCodecs.BOOL));
+
+    /**
+     * Legacy nano saber per-stack energyTick counter — a transient capability field there, so
+     * no persistent codec: the billing phase deliberately resets when the stack is reloaded.
+     */
+    public static final Supplier<DataComponentType<Integer>> SABER_TICK =
+            TYPES.<Integer>registerComponentType(
+                    "saber_tick", builder -> builder.networkSynchronized(ByteBufCodecs.VAR_INT));
+
     private ModDataComponents() {}
 
     private static double validCharge(double value) {

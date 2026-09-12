@@ -6847,7 +6847,14 @@
       "factory": "register",
       "expression": "new ItemNanoSaber(new Properties().stacksTo(1))",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/item/NanoSaberItem.java",
+        "neoforge/src/main/java/ic2/neoforge/registration/ModTools.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/NanoSaberTests.java",
+        "neoforge/src/main/resources/data/ic2/recipe/shaped/nano_saber.json"
+      ],
+      "note": "160000 EU/tier3/transfer 500。右键切换(需>=16 EU,切换免费)持久组件 ic2:saber_active;激活时每16t手持耗64 EU/背包耗16 EU(每64t),耗尽自动熄灭;攻击 20 伤/满速(需>=400 EU)否则 4 伤/-3 速(getDefaultAttributeModifiers 按 stack 动态切换,ElectricArmorItem 同范式);命中耗 400 EU,反装甲每甲槽耗 2000 EU 并把 NanoSuit 48000/Quantum 300000 EU 经甲自身 consumeEnergy 抽干后移除(掉落同 legacy? 存疑:legacy setItemSlot 移除即消失);挖掘 active:蛛网 50/其它 4。平台分歧:legacy canAttackBlock(创造模式持剑拒拆方块)26.1.2 已移除→NeoForge BreakBlockEvent 预取消门控等价移植;inventoryTick 新签名无 int slot→MAINHAND/OFFHAND=手持、其它=背包(legacy 是 hotbar<9);legacy 客户端 idle 循环音效→单次 POWER_UP/IDLE。fall-through 类比:同 ElectricTool 系(chainsaw/drill)先例。"
     },
     {
       "registry": "item",

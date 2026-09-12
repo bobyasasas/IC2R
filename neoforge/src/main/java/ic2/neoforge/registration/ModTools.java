@@ -154,6 +154,13 @@ public final class ModTools {
                             new MiningLaserItem(
                                     p.stacksTo(1).rarity(Rarity.UNCOMMON),
                                     new ElectricItemSpec(300000, 512, 3, false)));
+    public static final DeferredItem<NanoSaberItem> NANO_SABER =
+            ITEMS.registerItem(
+                    "nano_saber",
+                    p ->
+                            new NanoSaberItem(
+                                    p.stacksTo(1).rarity(Rarity.UNCOMMON),
+                                    new ElectricItemSpec(160000, 500, 3, false)));
     public static final DeferredItem<ScannerItem> SCANNER =
             ITEMS.registerItem(
                     "scanner",
@@ -247,6 +254,7 @@ public final class ModTools {
             event.accept(IRIDIUM_DRILL);
             event.accept(CHAINSAW);
             event.accept(MINING_LASER);
+            event.accept(NANO_SABER);
             event.accept(SCANNER);
             event.accept(ADVANCED_SCANNER);
             event.accept(FREQUENCY_TRANSMITTER);

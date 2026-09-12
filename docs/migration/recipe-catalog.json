@@ -3141,8 +3141,8 @@
     {
       "source": "shaped/nano_saber.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:nano_saber"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/nano_saber.json"
     },
     {
       "source": "shaped/neutron_reflector.json",

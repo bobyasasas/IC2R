@@ -617,6 +617,10 @@ public final class RegistrationTests {
         FUNCTIONS.register("ae2_bridge_feeds", () -> Ae2BridgeTests::bridgeFeedsAcceptorOverCable);
         FUNCTIONS.register("ae2_bridge_ratio", () -> Ae2BridgeTests::bridgeChargesTwoAePerEuExactly);
         FUNCTIONS.register("ae2_bridge_no_path", () -> Ae2BridgeTests::bridgeWithoutPathDrawsNothing);
+        FUNCTIONS.register("saber_use_toggle", () -> NanoSaberTests::useTogglesActiveFree);
+        FUNCTIONS.register("saber_held_billing", () -> NanoSaberTests::heldBillingDepletesAndShutsOff);
+        FUNCTIONS.register("saber_attributes", () -> NanoSaberTests::attributesFollowActivation);
+        FUNCTIONS.register("saber_strike_armor_drain", () -> NanoSaberTests::strikeDrainsNanoArmor);
     }
 
     public RegistrationTests(IEventBus modBus) {

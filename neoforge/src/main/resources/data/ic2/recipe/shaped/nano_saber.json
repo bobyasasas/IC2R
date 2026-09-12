@@ -1,0 +1,18 @@
+{
+  "type": "ic2:shaped",
+  "pattern": [
+    "GA ",
+    "GA ",
+    "CcC"
+  ],
+  "result": {
+    "id": "ic2:nano_saber",
+    "count": 1
+  },
+  "key": {
+    "C": "ic2:carbon_plate",
+    "c": "ic2:energy_crystal",
+    "G": "minecraft:glowstone_dust",
+    "A": "ic2:alloy"
+  }
+}

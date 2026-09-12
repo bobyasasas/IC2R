@@ -91,6 +91,7 @@ public final class IndustrialCraft {
         gameBus.addListener(ic2.neoforge.item.JetpackAttachmentHelper::onIncomingDamage);
         gameBus.addListener(ic2.neoforge.item.JetpackAttachmentHelper::onRightClick);
         gameBus.addListener(ic2.neoforge.item.ChainsawItem::onBreakBlock);
+        gameBus.addListener(ic2.neoforge.item.NanoSaberItem::onBreakBlock);
         if (FMLEnvironment.getDist().isClient()) {
             gameBus.addListener(ic2.neoforge.client.interop.jei.ClientRecipeCache::onRecipesReceived);
         }
