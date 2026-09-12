@@ -1,6 +1,7 @@
 package ic2.neoforge.item;
 
 import ic2.neoforge.component.ModDataComponents;
+import ic2.neoforge.registration.ModCells;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
@@ -8,7 +9,9 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemInstance;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.ItemStackTemplate;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.Level;
@@ -32,6 +35,14 @@ public final class FluidCellItem extends Item {
 
     public Fluid fixedFluid() {
         return fluid.get();
+    }
+
+    // Legacy ItemClassicCell: a drained cell comes back as the empty cell. An already-empty
+    // cell (facade_cell without contents) is consumed as itself, so it stays a plain ingredient.
+    @Override
+    public ItemStackTemplate getCraftingRemainder(ItemInstance stack) {
+        boolean empty = fixedFluid() == Fluids.EMPTY && stack.get(ModDataComponents.FLUID) == null;
+        return empty ? null : new ItemStackTemplate(ModCells.EMPTY.get());
     }
 
     @Override

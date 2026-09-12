@@ -633,6 +633,9 @@ public final class RegistrationTests {
         FUNCTIONS.register("sheet_rubber_trampoline", () -> EntityTickingTests.wrap(SheetTests::rubberSheetBouncesItems));
         FUNCTIONS.register("sheet_rubber_weight_break", () -> EntityTickingTests.wrap(SheetTests::rubberSheetBreaksUnderLivingWeight));
         FUNCTIONS.register("sheet_wool_collision", () -> EntityTickingTests.wrap(SheetTests::woolSheetCollisionSemantics));
+        FUNCTIONS.register("fluid_ingredient_shapeless", () -> EntityTickingTests.wrap(FluidIngredientTests::shapelessWaterCellCraftsAndDrains));
+        FUNCTIONS.register("fluid_ingredient_shaped_coolant", () -> EntityTickingTests.wrap(FluidIngredientTests::shapedCoolantCellMatches));
+        FUNCTIONS.register("fluid_ingredient_compressor", () -> EntityTickingTests.wrap(FluidIngredientTests::compressorWaterCellToSnow));
     }
 
     public RegistrationTests(IEventBus modBus) {

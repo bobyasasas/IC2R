@@ -41,6 +41,11 @@ def ingredient(value):
         component_key = 'ic2:reactor_use'
         return {'neoforge:ingredient_type': 'neoforge:components', 'items': value['item'],
                 'components': {component_key: 0}}
+    if 'fluid' in value:
+        # Legacy RecipeInputFluidContainer: matches any item whose fluid handler exposes at
+        # least `amount` mB of `fluid` (port: ic2:fluid custom ingredient + whole-cell cells).
+        return {'neoforge:ingredient_type': 'ic2:fluid', 'fluid': value['fluid'],
+                'amount': value.get('amount', 1000)}
     if set(value) - {'item', 'tag', 'count', 'data'}:
         raise ValueError('ingredient requires component/fluid conversion: ' + repr(value))
     if 'item' in value:

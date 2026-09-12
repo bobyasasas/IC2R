@@ -2,6 +2,7 @@ package ic2.neoforge.registration;
 
 import ic2.neoforge.IndustrialCraft;
 import ic2.neoforge.recipe.ElectricCraftingRecipe;
+import ic2.neoforge.recipe.FluidItemIngredient;
 import ic2.neoforge.recipe.JetpackAttachmentRecipe;
 
 import com.mojang.serialization.MapCodec;
@@ -13,12 +14,20 @@ import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.ShapedRecipe;
 import net.minecraft.world.item.crafting.ShapelessRecipe;
 import net.neoforged.bus.api.IEventBus;
+import net.neoforged.neoforge.common.crafting.IngredientType;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
+import net.neoforged.neoforge.registries.NeoForgeRegistries;
 
 public final class ModCraftingRecipes {
     private static final DeferredRegister<RecipeSerializer<?>> SERIALIZERS =
             DeferredRegister.create(Registries.RECIPE_SERIALIZER, IndustrialCraft.MOD_ID);
+    private static final DeferredRegister<IngredientType<?>> INGREDIENT_TYPES =
+            DeferredRegister.create(
+                    NeoForgeRegistries.Keys.INGREDIENT_TYPES, IndustrialCraft.MOD_ID);
+    public static final DeferredHolder<IngredientType<?>, IngredientType<FluidItemIngredient>>
+            FLUID_ITEM_INGREDIENT =
+                    INGREDIENT_TYPES.register("fluid", () -> FluidItemIngredient.TYPE);
     public static final DeferredHolder<
                     RecipeSerializer<?>, RecipeSerializer<ElectricCraftingRecipe>>
             SHAPED =
@@ -57,6 +66,7 @@ public final class ModCraftingRecipes {
 
     public static void register(IEventBus bus) {
         SERIALIZERS.register(bus);
+        INGREDIENT_TYPES.register(bus);
     }
 
     private ModCraftingRecipes() {}

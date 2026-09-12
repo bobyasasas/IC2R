@@ -3,6 +3,7 @@ package ic2.neoforge.machine;
 import ic2.core.energy.grid.EnergyMode;
 import ic2.core.machine.WaterMill;
 import ic2.neoforge.energy.EnergyConfig;
+import ic2.neoforge.item.FluidCellItem;
 import ic2.neoforge.transfer.ResourcePort;
 
 import net.minecraft.core.BlockPos;
@@ -90,7 +91,14 @@ public final class WaterGeneratorBlockEntity extends RotorGeneratorBlockEntity {
         try (var transaction = Transaction.openRoot()) {
             journal.updateSnapshots(transaction);
             if (mill.canAcceptContainer() && containsWater(ItemResource.of(input))) {
-                var remainder = input.getItem().getCraftingRemainder(input);
+                // Legacy TileEntityWaterGenerator branches on the recipe remainder: buckets keep
+                // theirs at one EU per tick, while classic water cells have no container item and
+                // are consumed outright at two EU per tick. A cell's fluid crafting remainder
+                // (FluidCellItem) belongs to crafting only and must not reroute the mill.
+                var remainder =
+                        input.getItem() instanceof FluidCellItem
+                                ? null
+                                : input.getItem().getCraftingRemainder(input);
                 if ((remainder == null || input.getCount() == 1)
                         && inventory.extract(0, ItemResource.of(input), 1, transaction) == 1) {
                     if (remainder != null

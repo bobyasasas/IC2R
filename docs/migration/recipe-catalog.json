@@ -933,8 +933,8 @@
     {
       "source": "compressor/water_to_snow_block.json",
       "type": "ic2:compressor",
-      "status": "pending",
-      "reason": "ingredient requires component/fluid conversion: {'fluid': 'minecraft:water', 'amount': 1000}"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/compressor/water_to_snow_block.json"
     },
     {
       "source": "extractor/air_cell_to_facade_cell.json",
@@ -2361,8 +2361,8 @@
     {
       "source": "shaped/coal_fuel_dust.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "ingredient requires component/fluid conversion: {'fluid': 'minecraft:water', 'amount': 1000}"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/coal_fuel_dust.json"
     },
     {
       "source": "shaped/coil.json",
@@ -3417,8 +3417,8 @@
     {
       "source": "shaped/reactor_coolant_cell.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "ingredient requires component/fluid conversion: {'fluid': 'ic2:coolant', 'amount': 1000}"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/reactor_coolant_cell.json"
     },
     {
       "source": "shaped/reactor_fluid_port.json",
@@ -4137,8 +4137,8 @@
     {
       "source": "shapeless/coal_fuel_dust.json",
       "type": "ic2:shapeless",
-      "status": "pending",
-      "reason": "ingredient requires component/fluid conversion: {'fluid': 'minecraft:water', 'amount': 1000}"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shapeless/coal_fuel_dust.json"
     },
     {
       "source": "shapeless/coffee_mug.json",
@@ -4173,8 +4173,8 @@
     {
       "source": "shapeless/cold_coffee_mug.json",
       "type": "ic2:shapeless",
-      "status": "pending",
-      "reason": "ingredient requires component/fluid conversion: {'fluid': 'minecraft:water', 'amount': 1000}"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shapeless/cold_coffee_mug.json"
     },
     {
       "source": "shapeless/containment_reactor_plating.json",
@@ -4293,8 +4293,8 @@
     {
       "source": "shapeless/hydrated_tin_dust.json",
       "type": "ic2:shapeless",
-      "status": "pending",
-      "reason": "ingredient requires component/fluid conversion: {'fluid': 'minecraft:water', 'amount': 1000}"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shapeless/hydrated_tin_dust.json"
     },
     {
       "source": "shapeless/insulated_copper_cable.json",
@@ -4401,8 +4401,8 @@
     {
       "source": "shapeless/obsidian.json",
       "type": "ic2:shapeless",
-      "status": "pending",
-      "reason": "ingredient requires component/fluid conversion: {'fluid': 'minecraft:water', 'amount': 1000}"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shapeless/obsidian.json"
     },
     {
       "source": "shapeless/orange_painter.json",

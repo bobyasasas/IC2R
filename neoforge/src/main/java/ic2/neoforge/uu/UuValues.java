@@ -74,11 +74,12 @@ public final class UuValues {
             for (var holder : recipeMap.byType(type)) {
                 var recipe = holder.value();
                 var alternatives = new ArrayList<List<String>>();
-                for (var itemHolder : recipe.ingredient().getValues()) {
-                    var group = new ArrayList<String>(1);
-                    group.add(ic2.neoforge.util.ItemKeys.id(itemHolder.value()));
-                    alternatives.add(group);
-                }
+                // items() also resolves custom ingredients (e.g. ic2:fluid); getValues() throws.
+                recipe.ingredient()
+                        .items()
+                        .forEach(itemHolder ->
+                                alternatives.add(List.of(
+                                        ic2.neoforge.util.ItemKeys.id(itemHolder.value()))));
                 var outputs = new ArrayList<String>();
                 for (var output : recipe.outputs()) {
                     outputs.add(ic2.neoforge.util.ItemKeys.id(

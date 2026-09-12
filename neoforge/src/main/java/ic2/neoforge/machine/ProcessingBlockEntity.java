@@ -73,7 +73,23 @@ public abstract class ProcessingBlockEntity extends UpgradeableBlockEntity {
     protected void afterProcessing(ServerLevel level) {}
 
     protected boolean consumeInputs(Job job, ItemResource input, Transaction transaction) {
-        return inventory.extract(INPUT, input, job.inputCount(), transaction) == job.inputCount();
+        if (inventory.extract(INPUT, input, job.inputCount(), transaction) != job.inputCount()) {
+            return false;
+        }
+        // Drained fluid cells return the empty cell (legacy ItemClassicCell), so the remainder
+        // goes back into the input slot. A remainder that no longer fits rolls the whole
+        // transaction back, matching the legacy exact-count recipes.
+        ItemStackTemplate remainder = input.toStack(1).getCraftingRemainder();
+        if (remainder != null
+                && inventory.insert(
+                                INPUT,
+                                ItemResource.of(remainder),
+                                remainder.count(),
+                                transaction)
+                        != remainder.count()) {
+            return false;
+        }
+        return true;
     }
 
     protected boolean readyToProcess(Job job) {

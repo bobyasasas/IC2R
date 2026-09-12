@@ -1,0 +1,20 @@
+{
+  "type": "ic2:shaped",
+  "pattern": [
+    "CCC",
+    "CWC",
+    "CCC"
+  ],
+  "result": {
+    "id": "ic2:coal_fuel_dust",
+    "count": 8
+  },
+  "key": {
+    "C": "#c:dusts/coal",
+    "W": {
+      "neoforge:ingredient_type": "ic2:fluid",
+      "fluid": "minecraft:water",
+      "amount": 1000
+    }
+  }
+}
