@@ -2397,8 +2397,8 @@
     {
       "source": "shaped/containment_box.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:containment_box"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/containment_box.json"
     },
     {
       "source": "shaped/copper_boiler.json",

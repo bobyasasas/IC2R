@@ -1,0 +1,16 @@
+{
+  "type": "ic2:shaped",
+  "pattern": [
+    "III",
+    "ICI",
+    "III"
+  ],
+  "result": {
+    "id": "ic2:containment_box",
+    "count": 1
+  },
+  "key": {
+    "C": "#c:chests/wooden",
+    "I": "ic2:lead_casing"
+  }
+}

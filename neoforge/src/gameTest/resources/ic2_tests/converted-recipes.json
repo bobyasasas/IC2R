@@ -396,6 +396,7 @@
   "ic2:shaped/component_heat_vent",
   "ic2:shaped/compressor",
   "ic2:shaped/condenser",
+  "ic2:shaped/containment_box",
   "ic2:shaped/copper_boiler",
   "ic2:shaped/copper_dust",
   "ic2:shaped/crop_analyzer",

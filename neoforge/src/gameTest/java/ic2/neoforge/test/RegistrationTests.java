@@ -653,6 +653,9 @@ public final class RegistrationTests {
         FUNCTIONS.register("inverter_keeps_induction_warm", () -> EntityTickingTests.wrap(UpgradeInverterTests::inverterKeepsInductionWarm));
         FUNCTIONS.register("inverter_suitability_matches_legacy", () -> EntityTickingTests.wrap(UpgradeInverterTests::suitabilityMatchesLegacyRedstoneSensitive));
         FUNCTIONS.register("inverter_menu_insertion_gates", () -> EntityTickingTests.wrap(UpgradeInverterTests::menuInsertionGates));
+        FUNCTIONS.register("containment_box_accepts_nuclear_only", () -> EntityTickingTests.wrap(ContainmentBoxTests::acceptsOnlyNuclearItems));
+        FUNCTIONS.register("containment_box_menu_persists_contents", () -> EntityTickingTests.wrap(ContainmentBoxTests::menuPersistsContentsInStack));
+        FUNCTIONS.register("containment_box_shift_click_rejects_plain_items", () -> EntityTickingTests.wrap(ContainmentBoxTests::shiftClickRejectsPlainItems));
     }
 
     public RegistrationTests(IEventBus modBus) {

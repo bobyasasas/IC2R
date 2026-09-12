@@ -5505,7 +5505,12 @@
       "factory": "register",
       "expression": "new ItemContainmentbox(new Properties().stacksTo(1))",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "docs/migration/containment-box.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/ContainmentBoxTests.java"
+      ],
+      "note": "铅封盒 1:1:12 格手持核料容器(DataComponent 持久+重开恢复),门控映射 legacy canPlaceItem 三类(NuclearResourceItem/FuelRodItem 含 MOX 子类/DepletingRodItem),玩家 shift-click 先尝试进箱再落背包,铁锭等普通物品拒绝;菜单条目+物品条目同轮翻转。"
     },
     {
       "registry": "item",
@@ -13896,7 +13901,12 @@
       "factory": "registerManagedItem",
       "expression": "",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "docs/migration/containment-box.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/ContainmentBoxTests.java"
+      ],
+      "note": "铅封盒 1:1:12 格手持核料容器(DataComponent 持久+重开恢复),门控映射 legacy canPlaceItem 三类(NuclearResourceItem/FuelRodItem 含 MOX 子类/DepletingRodItem),玩家 shift-click 先尝试进箱再落背包,铁锭等普通物品拒绝;菜单条目+物品条目同轮翻转。"
     },
     {
       "registry": "menu",

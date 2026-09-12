@@ -156,6 +156,25 @@ public final class ModDataComponents {
                     builder ->
                             builder.persistent(Codec.BOOL).networkSynchronized(ByteBufCodecs.BOOL));
 
+    // The containment box's twelve nuclear-only slots; absence means empty.
+    public static final Supplier<DataComponentType<ItemContainerContents>> CONTAINMENT_BOX_ITEMS =
+            TYPES.<ItemContainerContents>registerComponentType(
+                    "containment_box_items",
+                    builder ->
+                            builder.persistent(
+                                            ItemContainerContents.CODEC.validate(
+                                                    contents ->
+                                                            contents.getSlots() <= 12
+                                                                    ? DataResult.success(contents)
+                                                                    : DataResult.error(
+                                                                            () ->
+                                                                                    "Containment"
+                                                                                        + " box"
+                                                                                        + " exceeds"
+                                                                                        + " twelve"
+                                                                                        + " slots")))
+                                    .networkSynchronized(ItemContainerContents.STREAM_CODEC));
+
     private static ItemContainerContents validFilter(ItemContainerContents contents) {
         if (contents.getSlots() > 45)
             throw new IllegalArgumentException("Mining filter card exceeds 45 entries");

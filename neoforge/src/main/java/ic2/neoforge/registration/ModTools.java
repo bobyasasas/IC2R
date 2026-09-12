@@ -192,6 +192,10 @@ public final class ModTools {
             ITEMS.registerItem("wind_meter", p -> new WindMeterItem(p.stacksTo(1)));
     public static final DeferredItem<MiningFilterCardItem> MINING_FILTER_CARD =
             ITEMS.registerItem("mining_filter_card", p -> new MiningFilterCardItem(p.stacksTo(1)));
+    public static final DeferredItem<ContainmentBoxItem> CONTAINMENT_BOX =
+            ITEMS.registerItem(
+                    "containment_box",
+                    p -> new ContainmentBoxItem(p.stacksTo(1).rarity(Rarity.UNCOMMON)));
     public static final DeferredItem<CuttingBladeItem> IRON_CUTTING_BLADE =
             ITEMS.registerItem(
                     "iron_cutting_blade",
@@ -222,6 +226,14 @@ public final class ModTools {
                             IMenuTypeExtension.create(
                                     (id, inventory, data) ->
                                             new CropAnalyzerMenu(
+                                                    id, inventory, data.readVarInt(), true)));
+    public static final DeferredHolder<MenuType<?>, MenuType<ic2.neoforge.menu.ContainmentBoxMenu>> CONTAINMENT_BOX_MENU =
+            MENUS.register(
+                    "containment_box",
+                    () ->
+                            IMenuTypeExtension.create(
+                                    (id, inventory, data) ->
+                                            new ic2.neoforge.menu.ContainmentBoxMenu(
                                                     id, inventory, data.readVarInt(), true)));
 
     private static Item.Properties tool(Item.Properties properties, int damage) {
@@ -263,6 +275,7 @@ public final class ModTools {
             event.accept(WIND_METER);
             event.accept(CROP_ANALYZER);
             event.accept(MINING_FILTER_CARD);
+            event.accept(CONTAINMENT_BOX);
             event.accept(PAINTER);
             for (DyeColor color : DyeColor.values()) {
                 event.accept(PAINTERS.get(color));
