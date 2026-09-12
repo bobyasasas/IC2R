@@ -1,0 +1,17 @@
+{
+  "type": "ic2:shaped",
+  "pattern": [
+    " R ",
+    "ILI",
+    " R "
+  ],
+  "result": {
+    "id": "ic2:splitter_cable",
+    "count": 1
+  },
+  "key": {
+    "I": "ic2:triple_insulated_iron_cable",
+    "L": "minecraft:lever",
+    "R": "minecraft:redstone"
+  }
+}

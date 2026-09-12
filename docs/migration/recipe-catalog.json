@@ -2457,8 +2457,8 @@
     {
       "source": "shaped/detector_cable.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:detector_cable"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/detector_cable.json"
     },
     {
       "source": "shaped/diamond_cutting_blade.json",
@@ -3765,8 +3765,8 @@
     {
       "source": "shaped/splitter_cable.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:splitter_cable"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/splitter_cable.json"
     },
     {
       "source": "shaped/static_boots.json",

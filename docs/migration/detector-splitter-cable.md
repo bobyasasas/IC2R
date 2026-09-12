@@ -100,3 +100,9 @@ legacy 基线:`ic2/core/block/wiring/AbstractDetectorCableBlock.java`、
 - 隔离 IC2/GT 各 5+2 绿;全量 479×2(IC2 首轮既有相位型 flaky
   sheet_resin_cushion 失败、隔离复证绿,GT 一次全绿);
   `:core:test` 绿(PacketDistributor 新组件)。
+- **连带配方解锁 2 条**:detector/splitter 电缆 2 条 recipe-catalog
+  pending 的 reason 是"unported result"——本轮 result 注册后即转可转换:
+  shaped(三重绝缘铁缆+红石±电路/拉杆)2 JSON 落盘
+  (`data/ic2/recipe/shaped/`)+catalog 翻转 pending→converted,
+  783/796、pending 15→13;`loaded_recipes` 清单仅覆盖机器族配方
+  (shaped 不在其列),双模式全量复跑 479×2 确认数据包加载零解析错误。
