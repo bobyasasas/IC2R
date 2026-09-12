@@ -624,6 +624,9 @@ public final class RegistrationTests {
         FUNCTIONS.register("single_use_battery_charge", () -> EntityTickingTests.wrap(ChargingBatteryTests::singleUseChargesHotbarAndConsumes));
         FUNCTIONS.register("charging_battery_tick_feed", () -> EntityTickingTests.wrap(ChargingBatteryTests::chargingBatteryTickChargesHotbar));
         FUNCTIONS.register("charging_battery_mode_gate", () -> EntityTickingTests.wrap(ChargingBatteryTests::modeCycleGatesFeeding));
+        FUNCTIONS.register("mug_drink_effects", () -> EntityTickingTests.wrap(MugTests::mugDrinkAppliesEffectsAndReturnsEmpty));
+        FUNCTIONS.register("mug_use_flow", () -> EntityTickingTests.wrap(MugTests::mugUseDurationAndAnimation));
+        FUNCTIONS.register("mug_overdrink_backfire", () -> EntityTickingTests.wrap(MugTests::mugOverdrinkBackfire));
     }
 
     public RegistrationTests(IEventBus modBus) {

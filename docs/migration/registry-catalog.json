@@ -5067,7 +5067,14 @@
       "factory": "register",
       "expression": "new ItemMug(new Properties().stacksTo(1), MugType.empty)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/item/MugItem.java",
+        "neoforge/src/main/java/ic2/neoforge/registration/ModItems.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/MugTests.java",
+        "neoforge/src/main/resources/data/ic2/recipe/shaped/empty_mug.json"
+      ],
+      "note": "ItemMug(MugType.empty) 不可饮用:无使用时长/无动画/use 走原版 PASS;是全部咖啡饮的容器基底(合成+喝完返还)。"
     },
     {
       "registry": "item",
@@ -5077,7 +5084,14 @@
       "factory": "register",
       "expression": "new ItemMug(new Properties().stacksTo(1), MugType.coffee)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/item/MugItem.java",
+        "neoforge/src/main/java/ic2/neoforge/registration/ModItems.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/MugTests.java",
+        "neoforge/src/main/resources/data/ic2/recipe/shapeless/coffee_mug.json"
+      ],
+      "note": "ItemMug(MugType.coffee) maxAmplifier=6/每口 +1200t:同 dark 叠层但结算时 highest-=2(更温和);喝完返还空杯。配方:shapeless dark_coffee_mug+糖+奶桶(奶桶不返还,legacy 同)。"
     },
     {
       "registry": "item",
@@ -5087,7 +5101,14 @@
       "factory": "register",
       "expression": "new ItemMug(new Properties().stacksTo(1), MugType.cold_coffee)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/item/MugItem.java",
+        "neoforge/src/main/java/ic2/neoforge/registration/ModItems.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/MugTests.java",
+        "docs/migration/coffee-mugs.md"
+      ],
+      "note": "ItemMug(MugType.cold_coffee) maxAmplifier=1/每口 +600t:加速/急迫各 +1 级封顶且时长累加(首口 300t),叠层<3 无反噬;喝完返还 ic2:empty_mug。配方:shapeless 空杯+咖啡粉+水 1000mB(fluid 成分,转换器挂起属流体转换桶)。"
     },
     {
       "registry": "item",
@@ -5097,7 +5118,14 @@
       "factory": "register",
       "expression": "new ItemMug(new Properties().stacksTo(1), MugType.dark_coffee)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/item/MugItem.java",
+        "neoforge/src/main/java/ic2/neoforge/registration/ModItems.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/MugTests.java",
+        "neoforge/src/main/resources/data/ic2/recipe/smelting/dark_coffee_mug.json"
+      ],
+      "note": "ItemMug(MugType.dark_coffee) maxAmplifier=5/每口 +1200t:加速/急迫叠层,叠层≥3 反噬反胃(级-2)*200t,≥4 再加瞬间伤害(级-3);喝完返还空杯。配方:cold_coffee_mug 熔炼 200t/0.1xp。"
     },
     {
       "registry": "item",

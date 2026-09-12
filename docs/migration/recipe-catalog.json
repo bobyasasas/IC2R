@@ -2553,8 +2553,8 @@
     {
       "source": "shaped/empty_mug.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:empty_mug"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/empty_mug.json"
     },
     {
       "source": "shaped/energium_dust.json",
@@ -4143,8 +4143,8 @@
     {
       "source": "shapeless/coffee_mug.json",
       "type": "ic2:shapeless",
-      "status": "pending",
-      "reason": "unported result ic2:coffee_mug"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shapeless/coffee_mug.json"
     },
     {
       "source": "shapeless/coffee_powder.json",
@@ -4174,7 +4174,7 @@
       "source": "shapeless/cold_coffee_mug.json",
       "type": "ic2:shapeless",
       "status": "pending",
-      "reason": "unported result ic2:cold_coffee_mug"
+      "reason": "ingredient requires component/fluid conversion: {'fluid': 'minecraft:water', 'amount': 1000}"
     },
     {
       "source": "shapeless/containment_reactor_plating.json",
@@ -4605,8 +4605,8 @@
     {
       "source": "smelting/dark_coffee_mug.json",
       "type": "minecraft:smelting",
-      "status": "pending",
-      "reason": "unported result ic2:dark_coffee_mug"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/smelting/dark_coffee_mug.json"
     },
     {
       "source": "smelting/gold_ingot_from_crushed_gold.json",

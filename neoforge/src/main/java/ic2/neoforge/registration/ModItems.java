@@ -5,6 +5,7 @@ import ic2.neoforge.IndustrialCraft;
 import ic2.neoforge.item.BatteryItem;
 import ic2.neoforge.item.ChargingBatteryItem;
 import ic2.neoforge.item.JetpackAttachmentPlateItem;
+import ic2.neoforge.item.MugItem;
 import ic2.neoforge.item.SingleUseBatteryItem;
 import ic2.neoforge.item.TinCanItem;
 import ic2.neoforge.item.tfbp.Chilling;
@@ -65,6 +66,16 @@ public final class ModItems {
             battery("energy_crystal", 1000000, 2048, 3, 16, Rarity.COMMON);
     public static final DeferredItem<BatteryItem> LAPOTRON_CRYSTAL =
             battery("lapotron_crystal", 10000000, 8092, 4, 16, Rarity.UNCOMMON);
+
+    /** Legacy ItemMug family: stone drink mugs; every sip hands back an empty mug. */
+    public static final DeferredItem<MugItem> EMPTY_MUG =
+            mug("empty_mug", MugItem.MugType.EMPTY);
+    public static final DeferredItem<MugItem> COLD_COFFEE_MUG =
+            mug("cold_coffee_mug", MugItem.MugType.COLD_COFFEE);
+    public static final DeferredItem<MugItem> DARK_COFFEE_MUG =
+            mug("dark_coffee_mug", MugItem.MugType.DARK_COFFEE);
+    public static final DeferredItem<MugItem> COFFEE_MUG =
+            mug("coffee_mug", MugItem.MugType.COFFEE);
 
     /** Legacy ItemBatterySU: disposable 1200 EU cell handed out five per craft. */
     public static final DeferredItem<SingleUseBatteryItem> SINGLE_USE_BATTERY =
@@ -129,6 +140,10 @@ public final class ModItems {
                                 new ElectricItemSpec(capacity, limit, tier, true)));
     }
 
+    private static DeferredItem<MugItem> mug(String id, MugItem.MugType type) {
+        return ITEMS.registerItem(id, properties -> new MugItem(properties.stacksTo(1), type));
+    }
+
     private static DeferredItem<ChargingBatteryItem> chargingBattery(
             String id, double capacity, double limit, int tier, Rarity rarity) {
         return ITEMS.registerItem(
@@ -151,6 +166,10 @@ public final class ModItems {
             MATERIALS.values().forEach(event::accept);
             event.accept(JETPACK_ATTACHMENT_PLATE);
             event.accept(FILLED_TIN_CAN);
+            event.accept(EMPTY_MUG);
+            event.accept(COLD_COFFEE_MUG);
+            event.accept(DARK_COFFEE_MUG);
+            event.accept(COFFEE_MUG);
             event.accept(RE_BATTERY);
             event.accept(ADVANCED_RE_BATTERY);
             event.accept(ENERGY_CRYSTAL);
