@@ -136,6 +136,10 @@ final class LuminatorTests {
     }
 
     static void igniteMonsters(GameTestHelper helper) {
+        // The bare empty structure sits under open sky; at dawn the sun crosses the zombie's
+        // burn threshold mid-test depending on how much world time earlier batches burned, so
+        // pin night to keep the unlit-lamp assertion about the lamp and not about daylight.
+        helper.setTime(18000);
         var lamp = lamp(helper, LAMP, Direction.UP);
         lamp.energy().insert(LuminatorBlockEntity.CAPACITY);
         var zombie = helper.spawnWithNoFreeWill(EntityType.ZOMBIE, LAMP);

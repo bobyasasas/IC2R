@@ -75,8 +75,10 @@ ingredient 未注册而 pending），recipes.py 745→748 converted（pending 51
 
 - 完整链：build → GT IC2 模式 418（×3）→ GT 默认模式 418（×2）→ :core:test →
   verify_artifact → progress 跑+--check → git diff --check 全绿。
-- 既有 flaky（与本切片无关，复跑即绿）：luminator_ignite（火焰随机 tick）、
-  boat_lava（骑手着火计时偶发）。
+- 2026-09-12 补记：本套件当年的"偶发"（laser 三例与 boat_lava/luminator_ignite）
+  已根治，根因与修复见 nano-saber 清收切片与待测试.md §89——GameTestServer 把网格
+  放在 ±1500 万格随机坐标，地块 chunk 晋升实体 ticking 级存在异步竞态（实体驱动断言
+  随机冻结）；luminator 例另有日出日光燃烧阈值漂移。修复后 IC2×10+GT×10 连续全绿。
 
 ## 待人工验收（视觉/UX，保留人工）
 

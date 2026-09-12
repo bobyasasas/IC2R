@@ -4912,7 +4912,14 @@
       "factory": "register",
       "expression": "new ItemReactorHeatpack(new Properties(), 1000, 1)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/item/HeatpackItem.java",
+        "neoforge/src/main/java/ic2/neoforge/registration/ModReactorItems.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/ReactorHeatEffectTests.java",
+        "neoforge/src/main/resources/data/ic2/recipe/shaped/heatpack.json"
+      ],
+      "note": "反应堆部件(legacy ItemReactorHeatpack):heatRun 时从堆芯取热给正交四邻储热件加热(maxPer×堆叠/heatPer×堆叠,堆芯低于阈值才动作),非可穿戴取暖;HeatpackItem 实现 ReactorComponent,ReactorHeatEffectTests 覆盖。"
     },
     {
       "registry": "item",
@@ -5589,7 +5596,15 @@
       "factory": "register",
       "expression": "new ItemElectricToolChainsaw(new Properties().stacksTo(1))",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/item/ChainsawItem.java",
+        "neoforge/src/main/java/ic2/neoforge/registration/ModTools.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/ChainsawItemTests.java",
+        "neoforge/src/main/resources/data/ic2/recipe/shaped/chainsaw.json",
+        "neoforge/src/main/resources/data/ic2/recipe/shaped/chainsaw_from_steel.json"
+      ],
+      "note": "斧速伐木+剪切植被/生物(潜行+使用切换剪切模式,legacy 键位分歧);采掘/蛛网/剪切正确工具判定与 12 速;破坏免费、剪切/攻击各耗 100 EU;legacy onBlockStartBreak→NeoForge BreakBlockEvent 等价移植;原版剪切走 IShearable+spawnShearedDrop。"
     },
     {
       "registry": "item",
@@ -7054,7 +7069,13 @@
       "factory": "register",
       "expression": "new ItemArmorBatpack()",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModArmor.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/EquipmentPackTests.java",
+        "neoforge/src/main/resources/data/ic2/recipe/shaped/batpack.json"
+      ],
+      "note": "60000 EU/100/t1、外部可放电(externalOutput 对应 legacy canProvideEnergy),胸甲 8 点静态属性,持于背包为电力工具充电;EquipmentPackTests 覆盖。"
     },
     {
       "registry": "item",
@@ -7064,7 +7085,13 @@
       "factory": "register",
       "expression": "new ItemArmorAdvBatpack()",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModArmor.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/EquipmentPackTests.java",
+        "neoforge/src/main/resources/data/ic2/recipe/shaped/advanced_batpack.json"
+      ],
+      "note": "600000 EU/1000/t2、外放,胸甲 8 点;EquipmentPackTests 覆盖。"
     },
     {
       "registry": "item",
@@ -7074,7 +7101,13 @@
       "factory": "register",
       "expression": "new ItemArmorEnergypack()",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModArmor.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/EquipmentPackTests.java",
+        "neoforge/src/main/resources/data/ic2/recipe/shaped/energy_pack.json"
+      ],
+      "note": "2000000 EU/1000/t3、外放;EquipmentPackTests 覆盖。"
     },
     {
       "registry": "item",
@@ -7084,7 +7117,13 @@
       "factory": "register",
       "expression": "new ItemArmorLappack()",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModArmor.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/EquipmentPackTests.java",
+        "neoforge/src/main/resources/data/ic2/recipe/shaped/lappack.json"
+      ],
+      "note": "20000000 EU/2500/t4、外部可放电(externalOutput 对应 legacy canProvideEnergy),胸甲 8 点;EquipmentPackTests 覆盖。"
     },
     {
       "registry": "item",
@@ -7094,7 +7133,14 @@
       "factory": "register",
       "expression": "new ItemArmorNanoSuit(Ic2ArmorMaterials.NANO_SUIT, EquipmentSlot.FEET, new Properties().rarity(Rarity.UNCOMMON))",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/item/NanoSuitItem.java",
+        "neoforge/src/main/java/ic2/neoforge/registration/ModArmor.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/NanoArmorTests.java",
+        "neoforge/src/main/resources/data/ic2/recipe/shaped/nano_boots.json"
+      ],
+      "note": "纳米服四件之一(NanoSuitItem extends ElectricArmorItem,1000000/1600/t3):5000 EU/伤害点、吸收比 0.9、靴摔落吸收 max((int)距离−3,0)×5000 且七点上限、充能动态属性 CHARGED_PROTECTION、头盔夜视开关;NanoArmorTests 覆盖。"
     },
     {
       "registry": "item",
@@ -7104,7 +7150,14 @@
       "factory": "register",
       "expression": "new ItemArmorNanoSuit(Ic2ArmorMaterials.NANO_SUIT, EquipmentSlot.CHEST, new Properties().rarity(Rarity.UNCOMMON))",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/item/NanoSuitItem.java",
+        "neoforge/src/main/java/ic2/neoforge/registration/ModArmor.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/NanoArmorTests.java",
+        "neoforge/src/main/resources/data/ic2/recipe/shaped/nano_chestplate.json"
+      ],
+      "note": "纳米服四件之一(NanoSuitItem extends ElectricArmorItem,1000000/1600/t3):5000 EU/伤害点、吸收比 0.9、靴摔落吸收 max((int)距离−3,0)×5000 且七点上限、充能动态属性 CHARGED_PROTECTION、头盔夜视开关;NanoArmorTests 覆盖。"
     },
     {
       "registry": "item",
@@ -7114,7 +7167,14 @@
       "factory": "register",
       "expression": "new ItemArmorNanoSuit(Ic2ArmorMaterials.NANO_SUIT, EquipmentSlot.HEAD, new Properties().rarity(Rarity.UNCOMMON))",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/item/NanoSuitItem.java",
+        "neoforge/src/main/java/ic2/neoforge/registration/ModArmor.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/NanoArmorTests.java",
+        "neoforge/src/main/resources/data/ic2/recipe/shaped/nano_helmet.json"
+      ],
+      "note": "纳米服四件之一(NanoSuitItem extends ElectricArmorItem,1000000/1600/t3):5000 EU/伤害点、吸收比 0.9、靴摔落吸收 max((int)距离−3,0)×5000 且七点上限、充能动态属性 CHARGED_PROTECTION、头盔夜视开关;NanoArmorTests 覆盖。"
     },
     {
       "registry": "item",
@@ -7124,7 +7184,14 @@
       "factory": "register",
       "expression": "new ItemArmorNanoSuit(Ic2ArmorMaterials.NANO_SUIT, EquipmentSlot.LEGS, new Properties().rarity(Rarity.UNCOMMON))",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/item/NanoSuitItem.java",
+        "neoforge/src/main/java/ic2/neoforge/registration/ModArmor.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/NanoArmorTests.java",
+        "neoforge/src/main/resources/data/ic2/recipe/shaped/nano_leggings.json"
+      ],
+      "note": "纳米服四件之一(NanoSuitItem extends ElectricArmorItem,1000000/1600/t3):5000 EU/伤害点、吸收比 0.9、靴摔落吸收 max((int)距离−3,0)×5000 且七点上限、充能动态属性 CHARGED_PROTECTION、头盔夜视开关;NanoArmorTests 覆盖。"
     },
     {
       "registry": "item",
@@ -7134,7 +7201,15 @@
       "factory": "register",
       "expression": "new ItemArmorQuantumSuit(Ic2ArmorMaterials.QUANTUM_SUIT, EquipmentSlot.FEET, new Properties().rarity(Rarity.UNCOMMON))",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/item/QuantumSuitItem.java",
+        "neoforge/src/main/java/ic2/neoforge/item/QuantumArmorHelper.java",
+        "neoforge/src/main/java/ic2/neoforge/registration/ModArmor.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/QuantumArmorTests.java",
+        "neoforge/src/main/resources/data/ic2/recipe/shaped/quantum_boots.json"
+      ],
+      "note": "量子服四件之一(QuantumSuitItem,10000000/12000/t4 RARE):20000 EU/伤害点、胸 1.2 其余 1.0 吸收比、摔落 max((int)距离−10,0)×20000 无上限、充能门控 hazmat 组合、QuantumArmorHelper 生命维持/喷气/疾速/超级跳、数据驱动染色;QuantumArmorTests 覆盖。"
     },
     {
       "registry": "item",
@@ -7144,7 +7219,15 @@
       "factory": "register",
       "expression": "new ItemArmorQuantumSuit(Ic2ArmorMaterials.QUANTUM_SUIT, EquipmentSlot.CHEST, new Properties().rarity(Rarity.UNCOMMON))",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/item/QuantumSuitItem.java",
+        "neoforge/src/main/java/ic2/neoforge/item/QuantumArmorHelper.java",
+        "neoforge/src/main/java/ic2/neoforge/registration/ModArmor.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/QuantumArmorTests.java",
+        "neoforge/src/main/resources/data/ic2/recipe/shaped/quantum_chestplate.json"
+      ],
+      "note": "量子服四件之一(QuantumSuitItem,10000000/12000/t4 RARE):20000 EU/伤害点、胸 1.2 其余 1.0 吸收比、摔落 max((int)距离−10,0)×20000 无上限、充能门控 hazmat 组合、QuantumArmorHelper 生命维持/喷气/疾速/超级跳、数据驱动染色;QuantumArmorTests 覆盖。"
     },
     {
       "registry": "item",
@@ -7154,7 +7237,15 @@
       "factory": "register",
       "expression": "new ItemArmorQuantumSuit(Ic2ArmorMaterials.QUANTUM_SUIT, EquipmentSlot.HEAD, new Properties().rarity(Rarity.UNCOMMON))",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/item/QuantumSuitItem.java",
+        "neoforge/src/main/java/ic2/neoforge/item/QuantumArmorHelper.java",
+        "neoforge/src/main/java/ic2/neoforge/registration/ModArmor.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/QuantumArmorTests.java",
+        "neoforge/src/main/resources/data/ic2/recipe/shaped/quantum_helmet.json"
+      ],
+      "note": "量子服四件之一(QuantumSuitItem,10000000/12000/t4 RARE):20000 EU/伤害点、胸 1.2 其余 1.0 吸收比、摔落 max((int)距离−10,0)×20000 无上限、充能门控 hazmat 组合、QuantumArmorHelper 生命维持/喷气/疾速/超级跳、数据驱动染色;QuantumArmorTests 覆盖。"
     },
     {
       "registry": "item",
@@ -7164,7 +7255,15 @@
       "factory": "register",
       "expression": "new ItemArmorQuantumSuit(Ic2ArmorMaterials.QUANTUM_SUIT, EquipmentSlot.LEGS, new Properties().rarity(Rarity.UNCOMMON))",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/item/QuantumSuitItem.java",
+        "neoforge/src/main/java/ic2/neoforge/item/QuantumArmorHelper.java",
+        "neoforge/src/main/java/ic2/neoforge/registration/ModArmor.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/QuantumArmorTests.java",
+        "neoforge/src/main/resources/data/ic2/recipe/shaped/quantum_leggings.json"
+      ],
+      "note": "量子服四件之一(QuantumSuitItem,10000000/12000/t4 RARE):20000 EU/伤害点、胸 1.2 其余 1.0 吸收比、摔落 max((int)距离−10,0)×20000 无上限、充能门控 hazmat 组合、QuantumArmorHelper 生命维持/喷气/疾速/超级跳、数据驱动染色;QuantumArmorTests 覆盖。"
     },
     {
       "registry": "item",
@@ -7190,7 +7289,14 @@
       "factory": "register",
       "expression": "new ItemArmorNightVisionGoggles(new Properties().durability(27))",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/item/NightVisionGogglesItem.java",
+        "neoforge/src/main/java/ic2/neoforge/registration/ModArmor.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/NanoArmorTests.java",
+        "neoforge/src/main/resources/data/ic2/recipe/shaped/night_vision_goggles.json"
+      ],
+      "note": "夜视开关(NightVisionHelper,潜行+use 降级 legacy Alt 键位),充能门控,tooltip 提示。"
     },
     {
       "registry": "item",
@@ -7200,7 +7306,16 @@
       "factory": "register",
       "expression": "new ItemArmorSolarHelmet(new Properties())",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/item/SolarHelmetItem.java",
+        "neoforge/src/main/java/ic2/neoforge/item/UtilityArmorHelper.java",
+        "neoforge/src/main/java/ic2/neoforge/registration/ModArmor.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/EquipmentPackTests.java",
+        "neoforge/src/main/resources/data/ic2/recipe/shaped/solar_helmet.json",
+        "neoforge/src/main/resources/data/ic2/recipe/shaped/solar_helmet_from_helmet.json"
+      ],
+      "note": "UtilityArmorHelper 每 tick 以 SolarGeneration.brightness(天空光/15×太阳角×(1−雨×5/16)×(1−雷×5/16))给胸甲槽任意电动物品充电(满正午 1 EU/t),盔 3 点静态属性;sandy 分支按切片勘误恒 false。"
     },
     {
       "registry": "item",
@@ -7210,7 +7325,16 @@
       "factory": "register",
       "expression": "new ItemArmorStaticBoots(new Properties())",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/item/StaticBootsItem.java",
+        "neoforge/src/main/java/ic2/neoforge/item/UtilityArmorHelper.java",
+        "neoforge/src/main/java/ic2/neoforge/registration/ModArmor.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/EquipmentPackTests.java",
+        "neoforge/src/main/resources/data/ic2/recipe/shaped/static_boots.json",
+        "neoforge/src/main/resources/data/ic2/recipe/shaped/static_boots_from_boots.json"
+      ],
+      "note": "水平位移≥5 格充 min(3,距离/5) EU,骑乘/水中冻结标记,static_boots_x/z 组件镜像 legacy NBT;靴 3 点。"
     },
     {
       "registry": "block",
