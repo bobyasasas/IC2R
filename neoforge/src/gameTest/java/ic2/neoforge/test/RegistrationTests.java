@@ -452,6 +452,13 @@ public final class RegistrationTests {
         FUNCTIONS.register(
                 "cable_shock_gold_meltdown",
                 () -> CableShockTests::overloadedGoldCableMeltsDownAndShocks);
+        FUNCTIONS.register("foam_cable_spray_dips", () -> EntityTickingTests.wrap(FoamCableTests::sprayDipsCableInFoam));
+        FUNCTIONS.register("foam_cable_network_spread", () -> EntityTickingTests.wrap(FoamCableTests::spraySpreadsAlongCableNetwork));
+        FUNCTIONS.register("foam_cable_carries_power", () -> EntityTickingTests.wrap(FoamCableTests::foamCableCarriesPower));
+        FUNCTIONS.register("foam_cable_break_reveals", () -> EntityTickingTests.wrap(FoamCableTests::breakingFoamRevealsCable));
+        FUNCTIONS.register("foam_cable_cutter_strips", () -> EntityTickingTests.wrap(FoamCableTests::cutterStripsFoam));
+        FUNCTIONS.register("foam_cable_hardening", () -> EntityTickingTests.wrap(FoamCableTests::softFoamHardensDeterministically));
+        FUNCTIONS.register("foam_cable_registry_matrix", () -> FoamCableTests::foamFamilyRegistryMirrorsCables);
         FUNCTIONS.register(
                 "obscurator_retextures_wall", () -> ObscuratorTests::obscuratorRetexturesWall);
         FUNCTIONS.register(

@@ -1,0 +1,6 @@
+{
+  "variants": {
+    "foam=soft": { "model": "ic2:block/cf/foam" },
+    "foam=hard": { "model": "ic2:block/cf/wall_light_gray" }
+  }
+}

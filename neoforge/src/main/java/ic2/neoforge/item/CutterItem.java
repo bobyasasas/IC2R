@@ -1,6 +1,7 @@
 package ic2.neoforge.item;
 
 import ic2.neoforge.energy.CableBlock;
+import ic2.neoforge.energy.FoamCableBlock;
 import ic2.neoforge.registration.MaterialDefinition;
 import ic2.neoforge.registration.ModItems;
 import ic2.neoforge.registration.ModMachines;
@@ -75,14 +76,39 @@ public final class CutterItem extends CraftingToolItem {
     public static void strip(Player player, Level level, BlockPos pos, BlockState state) {
         if (level.isClientSide()
                 || !level.mayInteract(player, pos)
-                || !(state.getBlock() instanceof CableBlock cable)
                 || !(player.getMainHandItem().getItem() instanceof CutterItem)) return;
-        var replacement = variant(cable, -1);
-        if (replacement == null
-                || !level.setBlockAndUpdate(pos, replacement.withPropertiesOf(state))) return;
+        if (state.getBlock() instanceof CableBlock cable) {
+            var replacement = variant(cable, -1);
+            if (replacement == null
+                    || !level.setBlockAndUpdate(pos, replacement.withPropertiesOf(state))) return;
+        } else if (state.getBlock() instanceof FoamCableBlock foam) {
+            // Hardened foam shields the insulation and a bare foam cable has no layer to cut.
+            if (!state.getValue(FoamCableBlock.FOAM).isSoft()
+                    || foam.specification().insulation() <= 0) return;
+            // Legacy routed the cut through the plain-cable types table, so the shell is lost
+            // along with one insulation layer instead of revealing the same insulated cable.
+            var replacement = variant(foam, -1);
+            if (replacement == null
+                    || !level.setBlockAndUpdate(
+                            pos, CableBlock.connectedState(replacement, level, pos))) return;
+        } else {
+            return;
+        }
         player.getMainHandItem().hurtAndBreak(3, player, EquipmentSlot.MAINHAND);
         Block.popResource(
                 level, pos, new ItemStack(ModItems.MATERIALS.get(MaterialDefinition.RUBBER).get()));
         level.playSound(null, pos, ModSounds.ITEM_CUTTER_USE.get(), SoundSource.BLOCKS, 1, 1);
+    }
+
+    private static CableBlock variant(FoamCableBlock foam, int delta) {
+        return ModMachines.CABLES.values().stream()
+                .map(holder -> holder.get())
+                .filter(
+                        other ->
+                                other.material() == foam.material()
+                                        && other.specification().insulation()
+                                                == foam.specification().insulation() + delta)
+                .findFirst()
+                .orElse(null);
     }
 }

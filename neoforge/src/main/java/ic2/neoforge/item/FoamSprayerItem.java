@@ -1,9 +1,11 @@
 package ic2.neoforge.item;
 
 import ic2.neoforge.component.ModDataComponents;
+import ic2.neoforge.energy.CableBlock;
 import ic2.neoforge.fluid.FluidDefinition;
 import ic2.neoforge.registration.ModFluids;
 import ic2.neoforge.registration.ModFoam;
+import ic2.neoforge.registration.ModMachines;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -115,23 +117,36 @@ public class FoamSprayerItem extends Item {
 
         BlockPos pos = context.getClickedPos();
         BlockState state = level.getBlockState(pos);
-        // Spraying scaffolding covers the scaffold itself and spreads across the scaffold network;
-        // every other target spreads through replaceable space in front of the clicked face.
-        boolean replaceInPlace = state.is(Blocks.SCAFFOLDING);
+        // Spraying a plain cable dips that cable network in foam in place; scaffolding covers the
+        // scaffold network; every other target spreads through replaceable space in front of the
+        // clicked face. Foam-covered cables are no longer CableBlocks, so re-spraying one behaves
+        // like the plain-face branch, exactly as in legacy.
+        boolean onCable = state.getBlock() instanceof CableBlock;
+        boolean replaceInPlace = onCable || state.is(Blocks.SCAFFOLDING);
         if (!replaceInPlace) {
             pos = pos.relative(context.getClickedFace());
         }
         Predicate<BlockPos> foamable =
-                replaceInPlace
-                        ? p -> level.getBlockState(p).is(Blocks.SCAFFOLDING)
-                        : p -> level.getBlockState(p).canBeReplaced();
+                onCable
+                        ? p -> level.getBlockState(p).getBlock() instanceof CableBlock
+                        : replaceInPlace
+                                ? p -> level.getBlockState(p).is(Blocks.SCAFFOLDING)
+                                : p -> level.getBlockState(p).canBeReplaced();
 
         // Foam must not flow back onto the face the player stands behind.
         Direction excludedDir = player.getDirection().getOpposite();
         Set<BlockPos> positions = collectFoamArea(level, pos, excludedDir, maxFoamBlocks, foamable);
         int placed = 0;
         for (BlockPos targetPos : positions) {
-            if (replaceInPlace) {
+            if (onCable) {
+                var cable = (CableBlock) level.getBlockState(targetPos).getBlock();
+                var foam = ModMachines.foamCounterpart(cable);
+                if (foam != null
+                        && level.setBlockAndUpdate(
+                                targetPos, foam.get().defaultBlockState())) {
+                    placed++;
+                }
+            } else if (state.is(Blocks.SCAFFOLDING)) {
                 level.destroyBlock(targetPos, true);
                 level.setBlockAndUpdate(targetPos, ModFoam.FOAM.get().defaultBlockState());
                 placed++;

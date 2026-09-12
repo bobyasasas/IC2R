@@ -9243,7 +9243,12 @@
       "factory": "register",
       "expression": "FoamCableBlock.create(Properties.of().strength(0.5F, 5.0F).sound(SoundType.GLASS), CableType.glass, 0)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/energy/FoamCableBlock.java",
+        "neoforge/src/main/java/ic2/neoforge/registration/ModMachines.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/FoamCableTests.java"
+      ]
     },
     {
       "registry": "block",
@@ -10012,7 +10017,12 @@
       "factory": "register",
       "expression": "FoamCableBlock.create(cableSettings, CableType.copper, 0)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/energy/FoamCableBlock.java",
+        "neoforge/src/main/java/ic2/neoforge/registration/ModMachines.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/FoamCableTests.java"
+      ]
     },
     {
       "registry": "block",
@@ -10036,7 +10046,12 @@
       "factory": "register",
       "expression": "FoamCableBlock.create(cableSettings, CableType.gold, 0)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/energy/FoamCableBlock.java",
+        "neoforge/src/main/java/ic2/neoforge/registration/ModMachines.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/FoamCableTests.java"
+      ]
     },
     {
       "registry": "block",
@@ -10060,7 +10075,12 @@
       "factory": "register",
       "expression": "FoamCableBlock.create(cableSettings, CableType.iron, 0)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/energy/FoamCableBlock.java",
+        "neoforge/src/main/java/ic2/neoforge/registration/ModMachines.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/FoamCableTests.java"
+      ]
     },
     {
       "registry": "block",
@@ -10084,7 +10104,12 @@
       "factory": "register",
       "expression": "FoamCableBlock.create(cableSettings, CableType.tin, 0)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/energy/FoamCableBlock.java",
+        "neoforge/src/main/java/ic2/neoforge/registration/ModMachines.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/FoamCableTests.java"
+      ]
     },
     {
       "registry": "block",
@@ -10148,7 +10173,12 @@
       "factory": "register",
       "expression": "FoamCableBlock.create(insulatedCableSettings, CableType.copper, 1)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/energy/FoamCableBlock.java",
+        "neoforge/src/main/java/ic2/neoforge/registration/ModMachines.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/FoamCableTests.java"
+      ]
     },
     {
       "registry": "block",
@@ -10172,7 +10202,12 @@
       "factory": "register",
       "expression": "FoamCableBlock.create(insulatedCableSettings, CableType.gold, 1)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/energy/FoamCableBlock.java",
+        "neoforge/src/main/java/ic2/neoforge/registration/ModMachines.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/FoamCableTests.java"
+      ]
     },
     {
       "registry": "block",
@@ -10196,7 +10231,12 @@
       "factory": "register",
       "expression": "FoamCableBlock.create(insulatedCableSettings, CableType.gold, 2)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/energy/FoamCableBlock.java",
+        "neoforge/src/main/java/ic2/neoforge/registration/ModMachines.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/FoamCableTests.java"
+      ]
     },
     {
       "registry": "block",
@@ -10220,7 +10260,12 @@
       "factory": "register",
       "expression": "FoamCableBlock.create(insulatedCableSettings, CableType.iron, 1)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/energy/FoamCableBlock.java",
+        "neoforge/src/main/java/ic2/neoforge/registration/ModMachines.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/FoamCableTests.java"
+      ]
     },
     {
       "registry": "block",
@@ -10244,7 +10289,12 @@
       "factory": "register",
       "expression": "FoamCableBlock.create(insulatedCableSettings, CableType.iron, 2)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/energy/FoamCableBlock.java",
+        "neoforge/src/main/java/ic2/neoforge/registration/ModMachines.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/FoamCableTests.java"
+      ]
     },
     {
       "registry": "block",
@@ -10268,7 +10318,12 @@
       "factory": "register",
       "expression": "FoamCableBlock.create(insulatedCableSettings, CableType.iron, 3)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/energy/FoamCableBlock.java",
+        "neoforge/src/main/java/ic2/neoforge/registration/ModMachines.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/FoamCableTests.java"
+      ]
     },
     {
       "registry": "block",
@@ -10292,7 +10347,12 @@
       "factory": "register",
       "expression": "FoamCableBlock.create(insulatedCableSettings, CableType.tin, 1)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/energy/FoamCableBlock.java",
+        "neoforge/src/main/java/ic2/neoforge/registration/ModMachines.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/FoamCableTests.java"
+      ]
     },
     {
       "registry": "block",

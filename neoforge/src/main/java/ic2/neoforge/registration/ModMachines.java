@@ -3,6 +3,7 @@ package ic2.neoforge.registration;
 import ic2.core.energy.grid.CableSpec;
 import ic2.neoforge.IndustrialCraft;
 import ic2.neoforge.energy.CableBlock;
+import ic2.neoforge.energy.FoamCableBlock;
 import ic2.neoforge.machine.*;
 import ic2.neoforge.machine.CannerBlockEntity;
 import ic2.neoforge.menu.MachineMenu;
@@ -50,6 +51,7 @@ public final class ModMachines {
     public static final DeferredBlock<MachineBlock> ELECTRIC_FURNACE =
             MACHINES.get(MachineKind.ELECTRIC_FURNACE).block();
     public static final Map<String, DeferredBlock<CableBlock>> CABLES = cables();
+    public static final Map<String, DeferredBlock<FoamCableBlock>> FOAM_CABLES = foamCables();
 
     private static Map<MachineKind, Registration> machines() {
         var result = new EnumMap<MachineKind, Registration>(MachineKind.class);
@@ -248,6 +250,83 @@ public final class ModMachines {
                                                 .noOcclusion()));
         ITEMS.registerSimpleBlockItem(block);
         cables.put(id, block);
+    }
+
+    /** Legacy FoamCableBlock pairing: one foam shell block per plain cable, no item form. */
+    private static Map<String, DeferredBlock<FoamCableBlock>> foamCables() {
+        var result = new LinkedHashMap<String, DeferredBlock<FoamCableBlock>>();
+        foamCable(result, "glass_fibre_cable", CableSpec.Material.GLASS, 0);
+        for (var material :
+                new CableSpec.Material[] {
+                    CableSpec.Material.COPPER,
+                    CableSpec.Material.GOLD,
+                    CableSpec.Material.IRON,
+                    CableSpec.Material.TIN
+                }) {
+            String name = material.name().toLowerCase(Locale.ROOT) + "_cable";
+            int max =
+                    switch (material) {
+                        case GOLD -> 2;
+                        case IRON -> 3;
+                        default -> 1;
+                    };
+            for (int insulation = 0; insulation <= max; insulation++) {
+                String prefix =
+                        switch (insulation) {
+                            case 0 -> "";
+                            case 1 -> "insulated_";
+                            case 2 -> "double_insulated_";
+                            default -> "triple_insulated_";
+                        };
+                foamCable(result, prefix + name, material, insulation);
+            }
+        }
+        return Collections.unmodifiableMap(result);
+    }
+
+    private static void foamCable(
+            Map<String, DeferredBlock<FoamCableBlock>> cables,
+            String cableId,
+            CableSpec.Material material,
+            int insulation) {
+        String id =
+                cableId.substring(0, cableId.length() - "_cable".length()) + "_foam_cable";
+        var block =
+                BLOCKS.registerBlock(
+                        id,
+                        properties ->
+                                new FoamCableBlock(
+                                        material,
+                                        insulation,
+                                        properties
+                                                .mapColor(MapColor.METAL)
+                                                .strength(0.2f)
+                                                .sound(SoundType.WOOL)
+                                                .noOcclusion()
+                                                .randomTicks()));
+        cables.put(id, block);
+    }
+
+    public static DeferredBlock<CableBlock> cableCounterpart(FoamCableBlock foam) {
+        return CABLES.values().stream()
+                .filter(
+                        holder ->
+                                holder.get().material() == foam.material()
+                                        && holder.get().specification().insulation()
+                                                == foam.specification().insulation())
+                .findFirst()
+                .orElse(null);
+    }
+
+    public static DeferredBlock<FoamCableBlock> foamCounterpart(CableBlock cable) {
+        return FOAM_CABLES.values().stream()
+                .filter(
+                        holder ->
+                                holder.get().material() == cable.material()
+                                        && holder.get().specification().insulation()
+                                                == cable.specification().insulation())
+                .findFirst()
+                .orElse(null);
     }
 
     public static MenuType<MachineMenu> menuType(MachineKind kind) {

@@ -13,6 +13,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -23,10 +24,12 @@ import net.minecraft.world.level.block.PipeBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
+import net.minecraft.world.level.storage.loot.LootParams;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
+import java.util.List;
 import java.util.Locale;
 
 public final class CableBlock extends Block {
@@ -115,12 +118,17 @@ public final class CableBlock extends Block {
 
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext context) {
-        BlockState state = defaultBlockState();
+        return connectedState(this, context.getLevel(), context.getClickedPos());
+    }
+
+    /** Rebuilds the six-way connection mask; shared with the cutter and the foam counterpart. */
+    public static BlockState connectedState(CableBlock cable, LevelReader level, BlockPos pos) {
+        BlockState state = cable.defaultBlockState();
         for (Direction side : Direction.values())
             state =
                     state.setValue(
                             PipeBlock.PROPERTY_BY_DIRECTION.get(side),
-                            connects(context.getLevel(), context.getClickedPos().relative(side)));
+                            connects(level, pos.relative(side)));
         return state;
     }
 
@@ -138,8 +146,9 @@ public final class CableBlock extends Block {
                 PipeBlock.PROPERTY_BY_DIRECTION.get(side), connects(level, neighborPos));
     }
 
-    private static boolean connects(LevelReader level, BlockPos pos) {
+    static boolean connects(LevelReader level, BlockPos pos) {
         return level.getBlockState(pos).getBlock() instanceof CableBlock
+                || level.getBlockState(pos).getBlock() instanceof FoamCableBlock
                 || level.getBlockState(pos).getBlock() instanceof MachineBlock machine
                         && machine.kind().capacity() > 0;
     }
@@ -156,5 +165,18 @@ public final class CableBlock extends Block {
             BlockState state, ServerLevel level, BlockPos pos, boolean moved) {
         super.affectNeighborsAfterRemoval(state, level, pos, moved);
         WorldEnergyNetworks.invalidate(level);
+    }
+
+    /** Widened so the foam-covered counterpart can delegate its drops to the plain cable. */
+    @Override
+    public List<ItemStack> getDrops(BlockState state, LootParams.Builder params) {
+        return super.getDrops(state, params);
+    }
+
+    /** Widened so the foam-covered counterpart can delegate pick-block to the plain cable. */
+    @Override
+    public ItemStack getCloneItemStack(
+            LevelReader level, BlockPos pos, BlockState state, boolean includeData) {
+        return super.getCloneItemStack(level, pos, state, includeData);
     }
 }

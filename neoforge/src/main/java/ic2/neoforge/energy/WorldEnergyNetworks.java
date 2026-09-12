@@ -208,6 +208,11 @@ public final class WorldEnergyNetworks {
                                     instanceof CableBlock cable) {
                         graph.put(grid(neighbor), new EnergyNode.Conductor(cable.specification()));
                     }
+                    if (graph.node(grid(neighbor)) == null
+                            && level.getBlockState(neighbor).getBlock()
+                                    instanceof FoamCableBlock foam) {
+                        graph.put(grid(neighbor), new EnergyNode.Conductor(foam.specification()));
+                    }
                     if (graph.node(grid(neighbor)) == null) {
                         ExternalTerminals externals = externalTerminals;
                         if (externals != null) {
