@@ -36,7 +36,7 @@
 | block | 147 | 106 | 264 |
 | block_entity | 70 | 76 | 157 |
 | entity | 8 | 0 | 8 |
-| menu | 7 | 26 | 55 |
+| menu | 10 | 34 | 55 |
 | sound | 62 | 0 | 62 |
 | recipe_serializer | 1 | 16 | 17 |
 | recipe_type | 0 | 12 | 13 |

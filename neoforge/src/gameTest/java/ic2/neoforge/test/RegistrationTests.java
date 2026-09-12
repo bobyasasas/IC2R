@@ -700,6 +700,8 @@ public final class RegistrationTests {
         FUNCTIONS.register("stirling_kinetic_heats_fluids_and_banks_ku", () -> EntityTickingTests.wrap(StirlingKineticTests::heatsFluidsAndBanksKu));
         FUNCTIONS.register("stirling_kinetic_containers_route_both_ways", () -> EntityTickingTests.wrap(StirlingKineticTests::containersRouteBothWays));
         FUNCTIONS.register("stirling_kinetic_chain_charges_batbox", () -> EntityTickingTests.wrap(StirlingKineticTests::chainChargesBatbox));
+        FUNCTIONS.register("menu_audit_slots", () -> MenuAuditTests::everyMachineMenuBindsInventorySlotsExactlyOnce);
+        FUNCTIONS.register("menu_audit_chunk_loader", () -> EntityTickingTests.wrap(MenuAuditTests::chunkLoaderMenuMatchesSingleDischargeLayout));
     }
 
     public RegistrationTests(IEventBus modBus) {

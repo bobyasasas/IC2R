@@ -38,7 +38,7 @@ public enum MachineKind implements StringRepresentable {
     IRON_STORAGE_BOX("iron_storage_box", 0, 45, 0, 0),
     STEEL_STORAGE_BOX("steel_storage_box", 0, 63, 0, 0),
     IRIDIUM_STORAGE_BOX("iridium_storage_box", 0, 126, 0, 0),
-    MAGNETIZER("magnetizer", 100, 4, 0, 0),
+    MAGNETIZER("magnetizer", 100, 1, 0, 0),
     PUMP("pump", 20, 2, 20, 1),
     MINER("miner", 1000, 18, 0, 0),
     ADV_MINER("advanced_miner", 4000000, 17, 0, 0),
@@ -56,8 +56,8 @@ public enum MachineKind implements StringRepresentable {
     REACTOR_FLUID_PORT("reactor_fluid_port", 0, 0, 0, 0),
     REACTOR_ACCESS_HATCH("reactor_access_hatch", 0, 0, 0, 0),
     REACTOR_REDSTONE_PORT("reactor_redstone_port", 0, 0, 0, 0),
-    RCI_RSH("rci_rsh", 48000, 13, 0, 0),
-    RCI_LZH("rci_lzh", 48000, 13, 0, 0),
+    RCI_RSH("rci_rsh", 48000, 9, 0, 0),
+    RCI_LZH("rci_lzh", 48000, 9, 0, 0),
     REPLICATOR("replicator", 2000000, 3, 0, 0),
     UU_SCANNER("uu_scanner", 512000, 2, 0, 0),
     PATTERN_STORAGE("pattern_storage", 0, 1, 0, 0),
@@ -275,7 +275,7 @@ public enum MachineKind implements StringRepresentable {
     }
 
     public int upgradeSlots() {
-        if (this == CROPMATRON || this == CHUNK_LOADER) return 4;
+        if (this == CROPMATRON || this == CHUNK_LOADER || this == MAGNETIZER) return 4;
         if (this == CROP_HARVESTER) return 4;
         if (this == ADV_MINER) return 4;
         if (this == ITEM_BUFFER || this == BLAST_FURNACE) return 2;

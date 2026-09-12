@@ -99,12 +99,20 @@ public final class MachineMenu extends AbstractContainerMenu {
             addFluidContainerSlot(inventory, 0, 56, 35);
             addOutputSlot(inventory, 1, 116, 35);
         } else if (kind == MachineKind.SORTING_MACHINE) {
-            var sorting = (SortingMachineBlockEntity) machine;
+            // The client-side menu has no live BE and binds a placeholder filter grid.
+            var filters =
+                    machine instanceof SortingMachineBlockEntity sorting
+                            ? sorting.filters()
+                            : new MachineInventory(
+                                    6 * SortingMachineBlockEntity.FILTERS_PER_FACE,
+                                    () -> {},
+                                    (slot, resource) -> true,
+                                    slot -> 1);
             for (int slot = 0; slot < 42; slot++)
                 addSlot(
                         new ResourceHandlerSlot(
-                                sorting.filters(),
-                                sorting.filters()::set,
+                                filters,
+                                filters::set,
                                 slot,
                                 8 + (slot % 7) * 18,
                                 18 + (slot / 7) * 18) {
@@ -388,6 +396,22 @@ public final class MachineMenu extends AbstractContainerMenu {
             addBatterySlot(inventory, 0, 50, 53);
         } else if (kind == MachineKind.TANK) {
             // Tanks contain only the four upgrade slots added below.
+        } else if (kind == MachineKind.CHUNK_LOADER) {
+            // Legacy ContainerChunkLoader: one discharge slot; the map canvas stays deferred.
+            addBatterySlot(inventory, 0, 8, 143);
+        } else if (kind == MachineKind.TELEPORTER || kind == MachineKind.CREATIVE_GENERATOR) {
+            // Legacy teleporters and the creative generator have no GUI and no inventory.
+        } else if (kind == MachineKind.PATTERN_STORAGE) {
+            // Legacy ContainerPatternStorage: one disk slot.
+            addSlot(new ResourceHandlerSlot(inventory, inventory::set, 0, 18, 20));
+        } else if (kind == MachineKind.MAGNETIZER) {
+            // Legacy ContainerMagnetizer: a discharge slot plus four upgrades, no IO.
+            addBatterySlot(inventory, 0, 8, 44);
+        } else if (kind == MachineKind.REACTOR_FLUID_PORT
+                || kind == MachineKind.REACTOR_REDSTONE_PORT
+                || kind == MachineKind.REACTOR_CHAMBER
+                || kind == MachineKind.REACTOR_ACCESS_HATCH) {
+            // Proxy blocks expose the reactor menu instead; keep the menu buildable.
         } else if (kind == MachineKind.COKE_KILN) {
             addOutputSlot(inventory, 0, 111, 30);
         } else if (kind == MachineKind.COKE_KILN_HATCH) {
@@ -573,11 +597,6 @@ public final class MachineMenu extends AbstractContainerMenu {
         }
         if (kind == MachineKind.CANNER)
             addSlot(new ResourceHandlerSlot(inventory, inventory::set, 3, 92, 17));
-        if (kind == MachineKind.REACTOR_FLUID_PORT
-                || kind == MachineKind.REACTOR_REDSTONE_PORT
-                || kind == MachineKind.REACTOR_CHAMBER) {
-            // Proxy blocks expose the reactor menu instead; keep the menu buildable.
-        }
         if (kind == MachineKind.BLOCK_CUTTER)
             addSlot(
                     new ResourceHandlerSlot(inventory, inventory::set, 3, 38, 17) {
