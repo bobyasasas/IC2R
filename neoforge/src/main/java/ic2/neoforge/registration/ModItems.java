@@ -14,6 +14,9 @@ import ic2.neoforge.item.tfbp.Mushroom;
 import ic2.neoforge.item.tfbp.TerraformingBlueprintItem;
 import ic2.neoforge.item.tfbp.TerraformerProgram;
 
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.vehicle.boat.AbstractBoat;
+import net.minecraft.world.item.BoatItem;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Rarity;
@@ -27,6 +30,7 @@ import org.jspecify.annotations.Nullable;
 import java.util.Collections;
 import java.util.EnumMap;
 import java.util.Map;
+import java.util.function.Supplier;
 
 public final class ModItems {
     private static final DeferredRegister.Items ITEMS =
@@ -60,8 +64,22 @@ public final class ModItems {
     public static final DeferredItem<BatteryItem> LAPOTRON_CRYSTAL =
             battery("lapotron_crystal", 10000000, 8092, 4, 16, Rarity.UNCOMMON);
 
+    /** Legacy Ic2Items boats: placeable via BoatItem like the vanilla boats. */
+    public static final DeferredItem<BoatItem> RUBBER_BOAT =
+            boat("rubber_boat", ModEntities.RUBBER_BOAT);
+    public static final DeferredItem<BoatItem> CARBON_BOAT =
+            boat("carbon_boat", ModEntities.CARBON_BOAT);
+    public static final DeferredItem<BoatItem> ELECTRIC_BOAT =
+            boat("electric_boat", ModEntities.ELECTRIC_BOAT);
+
     public static final DeferredItem<TerraformingBlueprintItem> BLANK_TFBP =
             tfbp("blank_tfbp", 0.0, 0, null);
+
+    private static <T extends AbstractBoat> DeferredItem<BoatItem> boat(
+            String id, Supplier<EntityType<T>> type) {
+        return ITEMS.registerItem(
+                id, properties -> new BoatItem(type.get(), properties.stacksTo(1)));
+    }
     public static final DeferredItem<TerraformingBlueprintItem> CHILLING_TFBP =
             tfbp("chilling_tfbp", 2000.0, 50, new Chilling());
     public static final DeferredItem<TerraformingBlueprintItem> CULTIVATION_TFBP =
@@ -110,6 +128,11 @@ public final class ModItems {
             event.accept(ADVANCED_RE_BATTERY);
             event.accept(ENERGY_CRYSTAL);
             event.accept(LAPOTRON_CRYSTAL);
+        }
+        if (event.getTabKey().equals(CreativeModeTabs.TOOLS_AND_UTILITIES)) {
+            event.accept(RUBBER_BOAT);
+            event.accept(CARBON_BOAT);
+            event.accept(ELECTRIC_BOAT);
         }
     }
 }

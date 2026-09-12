@@ -5994,8 +5994,15 @@
       "factory": "register",
       "expression": "new BoatItem(RubberBoatEntity.class, Ic2Entities.RUBBER_BOAT, new Properties().stacksTo(1))",
       "decision": "preserve",
-      "status": "pending",
-      "note": "物品本体与 RubberBoatEntity 均未移植（boat 家族待切片）；此前误标 implemented 且证据文件中无该物品，2026-09-11 配方清收审计纠正，两条 rubber_boat 配方随之退回 pending。"
+      "status": "implemented",
+      "note": "legacy RubberBoatEntity 语义保留：掉落 broken_rubber_boat、1.05× 方块速度因子、岩浆即死；1.20.1 的船摔落破坏（brokenByFalling=true，>3 格落地毁船）在 26.1.2 已被移除，于 checkFallDamage 中自行实现。",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModItems.java",
+        "neoforge/src/main/java/ic2/neoforge/entity/RubberBoatEntity.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/BoatTests.java",
+        "neoforge/src/main/resources/data/ic2/recipe/shaped/rubber_boat.json",
+        "neoforge/src/main/resources/data/ic2/recipe/shapeless/rubber_boat.json"
+      ]
     },
     {
       "registry": "item",
@@ -6005,7 +6012,14 @@
       "factory": "register",
       "expression": "new BoatItem(ElectricBoatEntity.class, Ic2Entities.ELECTRIC_BOAT, new Properties().stacksTo(1))",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModItems.java",
+        "neoforge/src/main/java/ic2/neoforge/entity/ElectricBoatEntity.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/BoatTests.java",
+        "neoforge/src/main/resources/data/ic2/recipe/shaped/electric_boat.json"
+      ],
+      "note": "legacy ElectricBoatEntity 语义保留：掉落自身、火免（fireImmune/isOnFire=false）、骑手时每 tick 从穿戴电力盔甲抽 4 EU（先 simulate 后真实 discharge）、有电 1.5×/无电 0.25× 方块速度因子、岩浆中船无损但骑手着火 5 秒。"
     },
     {
       "registry": "item",
@@ -6015,7 +6029,14 @@
       "factory": "register",
       "expression": "new BoatItem(CarbonBoatEntity.class, Ic2Entities.CARBON_BOAT, new Properties().stacksTo(1))",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModItems.java",
+        "neoforge/src/main/java/ic2/neoforge/entity/CarbonBoatEntity.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/BoatTests.java",
+        "neoforge/src/main/resources/data/ic2/recipe/shaped/carbon_boat.json"
+      ],
+      "note": "legacy CarbonBoatEntity 语义保留：掉落自身、1.15× 方块速度因子、摔落不毁（brokenByFalling=false）、岩浆即死。"
     },
     {
       "registry": "item",
@@ -12740,7 +12761,13 @@
       "factory": "register",
       "expression": "Builder.<RubberBoatEntity>of(RubberBoatEntity::new, MobCategory.MISC).sized(1.375F, 0.5625F).clientTrackingRange(10)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModEntities.java",
+        "neoforge/src/main/java/ic2/neoforge/entity/RubberBoatEntity.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/BoatTests.java"
+      ],
+      "note": "legacy Ic2Entities 尺寸 1.375×0.5625、clientTrackingRange 10 原样；实体类 RubberBoatEntity extends 26.1.2 Boat（drop 经 Supplier<Item> 传入）。"
     },
     {
       "registry": "entity",
@@ -12766,7 +12793,13 @@
       "factory": "register",
       "expression": "Builder.<ElectricBoatEntity>of(ElectricBoatEntity::new, MobCategory.MISC).sized(1.375F, 0.5625F).clientTrackingRange(10)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModEntities.java",
+        "neoforge/src/main/java/ic2/neoforge/entity/ElectricBoatEntity.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/BoatTests.java"
+      ],
+      "note": "legacy Ic2Entities 尺寸 1.375×0.5625、clientTrackingRange 10 原样；fireImmune 在实体类覆写（26.1.2 builder 无此标志）。"
     },
     {
       "registry": "entity",
@@ -12776,7 +12809,13 @@
       "factory": "register",
       "expression": "Builder.<CarbonBoatEntity>of(CarbonBoatEntity::new, MobCategory.MISC).sized(1.375F, 0.5625F).clientTrackingRange(10)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModEntities.java",
+        "neoforge/src/main/java/ic2/neoforge/entity/CarbonBoatEntity.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/BoatTests.java"
+      ],
+      "note": "legacy Ic2Entities 尺寸 1.375×0.5625、clientTrackingRange 10 原样。"
     },
     {
       "registry": "entity",

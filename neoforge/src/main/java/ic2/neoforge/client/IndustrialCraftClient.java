@@ -76,6 +76,36 @@ public final class IndustrialCraftClient {
                         event.registerEntityRenderer(
                                 ic2.neoforge.registration.ModEntities.STICKY_DYNAMITE.get(),
                                 net.minecraft.client.renderer.entity.ThrownItemRenderer::new));
+        modBus.addListener(
+                (EntityRenderersEvent.RegisterRenderers event) -> {
+                    var rubber = ic2.neoforge.registration.ModEntities.RUBBER_BOAT.get();
+                    var carbon = ic2.neoforge.registration.ModEntities.CARBON_BOAT.get();
+                    var electric = ic2.neoforge.registration.ModEntities.ELECTRIC_BOAT.get();
+                    event.registerEntityRenderer(
+                            rubber,
+                            context ->
+                                    new Ic2BoatRenderer(
+                                            context,
+                                            Identifier.fromNamespaceAndPath(
+                                                    "ic2",
+                                                    "textures/entity/boat/boat_rubber.png")));
+                    event.registerEntityRenderer(
+                            carbon,
+                            context ->
+                                    new Ic2BoatRenderer(
+                                            context,
+                                            Identifier.fromNamespaceAndPath(
+                                                    "ic2",
+                                                    "textures/entity/boat/boat_carbon.png")));
+                    event.registerEntityRenderer(
+                            electric,
+                            context ->
+                                    new Ic2BoatRenderer(
+                                            context,
+                                            Identifier.fromNamespaceAndPath(
+                                                    "ic2",
+                                                    "textures/entity/boat/boat_electric.png")));
+                });
         modBus.addListener(FluidModels::register);
         modBus.addListener(ObscuratorClient::registerModels);
         ObscuratorClient.register();

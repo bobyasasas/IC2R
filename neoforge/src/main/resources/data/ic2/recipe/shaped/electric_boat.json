@@ -1,0 +1,18 @@
+{
+  "type": "ic2:shaped",
+  "pattern": [
+    "AAA",
+    "RBR",
+    "RMR"
+  ],
+  "result": {
+    "id": "ic2:electric_boat",
+    "count": 1
+  },
+  "key": {
+    "A": "ic2:insulated_copper_cable",
+    "R": "ic2:iron_plate",
+    "B": "ic2:electric_motor",
+    "M": "ic2:iron_rotor"
+  }
+}

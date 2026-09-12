@@ -1,9 +1,12 @@
 package ic2.neoforge.registration;
 
 import ic2.neoforge.IndustrialCraft;
+import ic2.neoforge.entity.CarbonBoatEntity;
 import ic2.neoforge.entity.DynamiteEntity;
+import ic2.neoforge.entity.ElectricBoatEntity;
 import ic2.neoforge.entity.ItntEntity;
 import ic2.neoforge.entity.NukeEntity;
+import ic2.neoforge.entity.RubberBoatEntity;
 
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.Identifier;
@@ -69,6 +72,36 @@ public final class ModEntities {
                                     .clientTrackingRange(10)
                                     .updateInterval(10)
                                     .build(key("nuke")));
+
+    public static final Supplier<EntityType<RubberBoatEntity>> RUBBER_BOAT =
+            TYPES.register(
+                    "rubber_boat",
+                    () ->
+                            EntityType.Builder.<RubberBoatEntity>of(
+                                            RubberBoatEntity::new, MobCategory.MISC)
+                                    .sized(1.375F, 0.5625F)
+                                    .clientTrackingRange(10)
+                                    .build(key("rubber_boat")));
+
+    public static final Supplier<EntityType<CarbonBoatEntity>> CARBON_BOAT =
+            TYPES.register(
+                    "carbon_boat",
+                    () ->
+                            EntityType.Builder.<CarbonBoatEntity>of(
+                                            CarbonBoatEntity::new, MobCategory.MISC)
+                                    .sized(1.375F, 0.5625F)
+                                    .clientTrackingRange(10)
+                                    .build(key("carbon_boat")));
+
+    public static final Supplier<EntityType<ElectricBoatEntity>> ELECTRIC_BOAT =
+            TYPES.register(
+                    "electric_boat",
+                    () ->
+                            EntityType.Builder.<ElectricBoatEntity>of(
+                                            ElectricBoatEntity::new, MobCategory.MISC)
+                                    .sized(1.375F, 0.5625F)
+                                    .clientTrackingRange(10)
+                                    .build(key("electric_boat")));
 
     public static void register(IEventBus bus) {
         TYPES.register(bus);

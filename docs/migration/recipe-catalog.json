@@ -2241,8 +2241,8 @@
     {
       "source": "shaped/carbon_boat.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:carbon_boat"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/carbon_boat.json"
     },
     {
       "source": "shaped/carbon_fibre.json",
@@ -2511,8 +2511,8 @@
     {
       "source": "shaped/electric_boat.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:electric_boat"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/electric_boat.json"
     },
     {
       "source": "shaped/electric_furnace.json",
@@ -3573,8 +3573,8 @@
     {
       "source": "shaped/rubber_boat.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:rubber_boat"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/rubber_boat.json"
     },
     {
       "source": "shaped/rubber_boots.json",
@@ -4461,8 +4461,8 @@
     {
       "source": "shapeless/rubber_boat.json",
       "type": "ic2:shapeless",
-      "status": "pending",
-      "reason": "unported result ic2:rubber_boat"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shapeless/rubber_boat.json"
     },
     {
       "source": "shapeless/rubber_button.json",
