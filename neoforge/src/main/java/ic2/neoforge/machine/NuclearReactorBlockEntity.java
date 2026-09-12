@@ -92,7 +92,8 @@ public final class NuclearReactorBlockEntity extends PoweredBlockEntity implemen
 
     @Override
     protected boolean acceptsInventorySlot(int slot, ItemResource resource) {
-        return resource.getItem() instanceof ic2.neoforge.item.ReactorComponent;
+        return resource.getItem() instanceof ic2.neoforge.item.ReactorComponent component
+                && component.canBePlacedIn(resource.toStack(), this);
     }
 
     @Override

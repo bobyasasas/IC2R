@@ -647,6 +647,9 @@ public final class RegistrationTests {
         FUNCTIONS.register("chunk_loader_tickets_follow_power", () -> EntityTickingTests.wrap(ChunkLoaderTests::ticketsFollowPower));
         FUNCTIONS.register("chunk_loader_breaking_releases", () -> EntityTickingTests.wrap(ChunkLoaderTests::breakingReleasesTickets));
         FUNCTIONS.register("chunk_loader_nbt_round_trip", () -> EntityTickingTests.wrap(ChunkLoaderTests::nbtRoundTripKeepsChunks));
+        FUNCTIONS.register("nuclear_resources_radiate", () -> EntityTickingTests.wrap(NuclearCycleTests::nuclearResourcesIrradiateCarriers));
+        FUNCTIONS.register("depleting_rods_pulse", () -> EntityTickingTests.wrap(NuclearCycleTests::depletingRodsChargeAndSwap));
+        FUNCTIONS.register("creative_generator_feeds", () -> EntityTickingTests.wrap(NuclearCycleTests::creativeGeneratorTopsUpForever));
     }
 
     public RegistrationTests(IEventBus modBus) {

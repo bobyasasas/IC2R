@@ -1,6 +1,39 @@
 {
   "variants": {
-    "": {
+    "facing=north,active=true": {
+      "model": "ic2:block/machine/fluid/tank"
+    },
+    "facing=north,active=false": {
+      "model": "ic2:block/machine/fluid/tank"
+    },
+    "facing=east,active=true": {
+      "model": "ic2:block/machine/fluid/tank"
+    },
+    "facing=east,active=false": {
+      "model": "ic2:block/machine/fluid/tank"
+    },
+    "facing=south,active=true": {
+      "model": "ic2:block/machine/fluid/tank"
+    },
+    "facing=south,active=false": {
+      "model": "ic2:block/machine/fluid/tank"
+    },
+    "facing=west,active=true": {
+      "model": "ic2:block/machine/fluid/tank"
+    },
+    "facing=west,active=false": {
+      "model": "ic2:block/machine/fluid/tank"
+    },
+    "facing=up,active=true": {
+      "model": "ic2:block/machine/fluid/tank"
+    },
+    "facing=up,active=false": {
+      "model": "ic2:block/machine/fluid/tank"
+    },
+    "facing=down,active=true": {
+      "model": "ic2:block/machine/fluid/tank"
+    },
+    "facing=down,active=false": {
       "model": "ic2:block/machine/fluid/tank"
     }
   }

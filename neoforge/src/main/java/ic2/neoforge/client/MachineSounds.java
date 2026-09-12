@@ -144,6 +144,7 @@ final class MachineSounds {
                     CROPMATRON,
                     CROP_HARVESTER,
                     CHUNK_LOADER,
+                    CREATIVE_GENERATOR,
                     TESLA_COIL,
                     SOLAR_GENERATOR,
                     LUMINATOR ->

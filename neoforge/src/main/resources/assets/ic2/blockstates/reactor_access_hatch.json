@@ -1,6 +1,39 @@
 {
   "variants": {
-    "": {
+    "facing=north,active=true": {
+      "model": "ic2:block/generator/reactor/reactor_access_hatch"
+    },
+    "facing=north,active=false": {
+      "model": "ic2:block/generator/reactor/reactor_access_hatch"
+    },
+    "facing=east,active=true": {
+      "model": "ic2:block/generator/reactor/reactor_access_hatch"
+    },
+    "facing=east,active=false": {
+      "model": "ic2:block/generator/reactor/reactor_access_hatch"
+    },
+    "facing=south,active=true": {
+      "model": "ic2:block/generator/reactor/reactor_access_hatch"
+    },
+    "facing=south,active=false": {
+      "model": "ic2:block/generator/reactor/reactor_access_hatch"
+    },
+    "facing=west,active=true": {
+      "model": "ic2:block/generator/reactor/reactor_access_hatch"
+    },
+    "facing=west,active=false": {
+      "model": "ic2:block/generator/reactor/reactor_access_hatch"
+    },
+    "facing=up,active=true": {
+      "model": "ic2:block/generator/reactor/reactor_access_hatch"
+    },
+    "facing=up,active=false": {
+      "model": "ic2:block/generator/reactor/reactor_access_hatch"
+    },
+    "facing=down,active=true": {
+      "model": "ic2:block/generator/reactor/reactor_access_hatch"
+    },
+    "facing=down,active=false": {
       "model": "ic2:block/generator/reactor/reactor_access_hatch"
     }
   }

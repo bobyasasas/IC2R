@@ -1,6 +1,39 @@
 {
   "variants": {
-    "": {
+    "facing=north,active=true": {
+      "model": "ic2:block/steel_storage_box"
+    },
+    "facing=north,active=false": {
+      "model": "ic2:block/steel_storage_box"
+    },
+    "facing=east,active=true": {
+      "model": "ic2:block/steel_storage_box"
+    },
+    "facing=east,active=false": {
+      "model": "ic2:block/steel_storage_box"
+    },
+    "facing=south,active=true": {
+      "model": "ic2:block/steel_storage_box"
+    },
+    "facing=south,active=false": {
+      "model": "ic2:block/steel_storage_box"
+    },
+    "facing=west,active=true": {
+      "model": "ic2:block/steel_storage_box"
+    },
+    "facing=west,active=false": {
+      "model": "ic2:block/steel_storage_box"
+    },
+    "facing=up,active=true": {
+      "model": "ic2:block/steel_storage_box"
+    },
+    "facing=up,active=false": {
+      "model": "ic2:block/steel_storage_box"
+    },
+    "facing=down,active=true": {
+      "model": "ic2:block/steel_storage_box"
+    },
+    "facing=down,active=false": {
       "model": "ic2:block/steel_storage_box"
     }
   }

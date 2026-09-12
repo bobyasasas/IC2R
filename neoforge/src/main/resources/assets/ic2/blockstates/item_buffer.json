@@ -1,6 +1,39 @@
 {
   "variants": {
-    "": {
+    "facing=north,active=true": {
+      "model": "ic2:block/machine/misc/item_buffer"
+    },
+    "facing=north,active=false": {
+      "model": "ic2:block/machine/misc/item_buffer"
+    },
+    "facing=east,active=true": {
+      "model": "ic2:block/machine/misc/item_buffer"
+    },
+    "facing=east,active=false": {
+      "model": "ic2:block/machine/misc/item_buffer"
+    },
+    "facing=south,active=true": {
+      "model": "ic2:block/machine/misc/item_buffer"
+    },
+    "facing=south,active=false": {
+      "model": "ic2:block/machine/misc/item_buffer"
+    },
+    "facing=west,active=true": {
+      "model": "ic2:block/machine/misc/item_buffer"
+    },
+    "facing=west,active=false": {
+      "model": "ic2:block/machine/misc/item_buffer"
+    },
+    "facing=up,active=true": {
+      "model": "ic2:block/machine/misc/item_buffer"
+    },
+    "facing=up,active=false": {
+      "model": "ic2:block/machine/misc/item_buffer"
+    },
+    "facing=down,active=true": {
+      "model": "ic2:block/machine/misc/item_buffer"
+    },
+    "facing=down,active=false": {
       "model": "ic2:block/machine/misc/item_buffer"
     }
   }

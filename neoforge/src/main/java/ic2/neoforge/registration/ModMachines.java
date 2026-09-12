@@ -89,6 +89,10 @@ public final class ModMachines {
             MachineKind kind, BlockBehaviour.Properties properties) {
         properties.mapColor(MapColor.METAL).strength(2, 10).requiresCorrectToolForDrops()
                 .sound(SoundType.METAL);
+        if (kind == MachineKind.CREATIVE_GENERATOR) {
+            // Legacy: strength(-1, Infinity) — unbreakable, no correct-tool requirement.
+            properties.strength(-1.0F, Float.POSITIVE_INFINITY);
+        }
         if (kind == MachineKind.LUMINATOR) {
             properties.mapColor(MapColor.COLOR_LIGHT_GRAY).strength(5.0F, 10.0F);
             properties.noOcclusion().noCollision().lightLevel(
@@ -169,6 +173,8 @@ public final class ModMachines {
             case INDUCTION_FURNACE -> new InductionFurnaceBlockEntity(pos, state);
             case RECYCLER -> new RecyclerBlockEntity(pos, state);
             case CHUNK_LOADER -> new ic2.neoforge.machine.ChunkLoaderBlockEntity(pos, state);
+            case CREATIVE_GENERATOR ->
+                    new ic2.neoforge.machine.CreativeGeneratorBlockEntity(pos, state);
             case CENTRIFUGE -> new CentrifugeBlockEntity(pos, state);
             case METAL_FORMER -> new MetalFormerBlockEntity(pos, state);
             case MACERATOR, EXTRACTOR, COMPRESSOR -> new SingleInputBlockEntity(pos, state);

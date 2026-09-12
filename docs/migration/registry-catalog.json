@@ -1693,7 +1693,14 @@
    "factory": "register",
    "expression": "new ItemBlockIc2(Ic2Blocks.CREATIVE_GENERATOR, new Properties())",
    "decision": "preserve",
-   "status": "pending"
+   "status": "implemented",
+   "evidence": [
+    "neoforge/src/main/java/ic2/neoforge/machine/CreativeGeneratorBlockEntity.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/MachineKind.java",
+    "neoforge/src/gameTest/java/ic2/neoforge/test/NuclearCycleTests.java",
+    "docs/migration/nuclear-cycle.md"
+   ],
+   "note": "MachineKind.CREATIVE_GENERATOR 经 ModMachines 自动注册；LV 源每 tick forceAdd(capacity) 等价 legacy ∞ 源；strength(-1,∞) 不可破坏 + DefaultDrop.None 仅扳手可拆（machines.py loot 新增 None 分支）；legacy 无 GUI，port MenuType 自动注册无对应条目。"
   },
   {
    "registry": "item",
@@ -3905,7 +3912,14 @@
    "factory": "register",
    "expression": "new ItemNuclearResource(new Properties(), 15, 100)",
    "decision": "preserve",
-   "status": "pending"
+   "status": "implemented",
+   "evidence": [
+    "neoforge/src/main/java/ic2/neoforge/item/NuclearResourceItem.java",
+    "neoforge/src/main/java/ic2/neoforge/registration/ModReactorItems.java",
+    "neoforge/src/gameTest/java/ic2/neoforge/test/NuclearCycleTests.java",
+    "docs/migration/nuclear-cycle.md"
+   ],
+   "note": "辐照资源：携带者无完整防化服即得 RADIATION（15s、amp 100，legacy ItemNuclearResource 同位）；canBePlacedIn=false 拒绝入堆（本恢复 legacy IBaseReactorComponent 通道）。无 legacy 配方，centrifuge 链既有配方覆盖。"
   },
   {
    "registry": "item",
@@ -3915,7 +3929,14 @@
    "factory": "register",
    "expression": "new ItemNuclearResource(new Properties(), 30, 100)",
    "decision": "preserve",
-   "status": "pending"
+   "status": "implemented",
+   "evidence": [
+    "neoforge/src/main/java/ic2/neoforge/item/NuclearResourceItem.java",
+    "neoforge/src/main/java/ic2/neoforge/registration/ModReactorItems.java",
+    "neoforge/src/gameTest/java/ic2/neoforge/test/NuclearCycleTests.java",
+    "docs/migration/nuclear-cycle.md"
+   ],
+   "note": "辐照资源（30s、amp 100）；depleted isotope 满额产物；防化服豁免与拒绝入堆同 near_depleted_uranium。"
   },
   {
    "registry": "item",
@@ -5079,7 +5100,14 @@
    "factory": "register",
    "expression": "new ItemReactorLithiumCell(new Properties())",
    "decision": "preserve",
-   "status": "pending"
+   "status": "implemented",
+   "evidence": [
+    "neoforge/src/main/java/ic2/neoforge/item/DepletingRodItem.java",
+    "neoforge/src/main/java/ic2/neoforge/registration/ModReactorItems.java",
+    "neoforge/src/gameTest/java/ic2/neoforge/test/NuclearCycleTests.java",
+    "docs/migration/nuclear-cycle.md"
+   ],
+   "note": "DepletingRodItem：heatRun 分支 use + reactor.heat/3000（extraUse 0，靠堆芯吸热），满额 10000 换 tritium_fuel_rod；耐久条按 legacy 子类反转语义报满度。无 legacy 配方。"
   },
   {
    "registry": "item",
@@ -5103,7 +5131,14 @@
    "factory": "register",
    "expression": "new ItemReactorDepletedUranium(new Properties())",
    "decision": "preserve",
-   "status": "pending"
+   "status": "implemented",
+   "evidence": [
+    "neoforge/src/main/java/ic2/neoforge/item/DepletingRodItem.java",
+    "neoforge/src/main/java/ic2/neoforge/registration/ModReactorItems.java",
+    "neoforge/src/gameTest/java/ic2/neoforge/test/NuclearCycleTests.java",
+    "docs/migration/nuclear-cycle.md"
+   ],
+   "note": "DepletingRodItem：extraUse 1 无热自增，满额换 re_enriched_uranium；其余同 lithium_fuel_rod。无 legacy 配方。"
   },
   {
    "registry": "item",
@@ -5645,7 +5680,8 @@
    "factory": "register",
    "expression": "new ItemToolCrowbar(Tiers.IRON, new Properties().durability(250))",
    "decision": "preserve",
-   "status": "pending"
+   "status": "pending",
+   "note": "唯一功能是 ICoverHolder 电缆盖板拆除（legacy ItemToolCrowbar 124 行），port 无 cover 系统（grep 零命中），移植即空壳——维持 pending，待 cover 基建轮或明确降级决策后再处理。"
   },
   {
    "registry": "item",
@@ -9415,7 +9451,14 @@
    "factory": "register",
    "expression": "Ic2TileEntityBlock.create(Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).strength(-1.0F, Float.POSITIVE_INFINITY).sound(SoundType.METAL), TileEntityCreativeGenerator.class, true, Ic2TileEntityBlock.DefaultDrop.None, Util.noFacings, false)",
    "decision": "preserve",
-   "status": "pending"
+   "status": "implemented",
+   "evidence": [
+    "neoforge/src/main/java/ic2/neoforge/machine/CreativeGeneratorBlockEntity.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/MachineKind.java",
+    "neoforge/src/gameTest/java/ic2/neoforge/test/NuclearCycleTests.java",
+    "docs/migration/nuclear-cycle.md"
+   ],
+   "note": "MachineKind.CREATIVE_GENERATOR 经 ModMachines 自动注册；LV 源每 tick forceAdd(capacity) 等价 legacy ∞ 源；strength(-1,∞) 不可破坏 + DefaultDrop.None 仅扳手可拆（machines.py loot 新增 None 分支）；legacy 无 GUI，port MenuType 自动注册无对应条目。"
   },
   {
    "registry": "block",
@@ -12808,7 +12851,14 @@
    "factory": "register",
    "expression": "TileEntityCreativeGenerator::new",
    "decision": "preserve",
-   "status": "pending"
+   "status": "implemented",
+   "evidence": [
+    "neoforge/src/main/java/ic2/neoforge/machine/CreativeGeneratorBlockEntity.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/MachineKind.java",
+    "neoforge/src/gameTest/java/ic2/neoforge/test/NuclearCycleTests.java",
+    "docs/migration/nuclear-cycle.md"
+   ],
+   "note": "MachineKind.CREATIVE_GENERATOR 经 ModMachines 自动注册；LV 源每 tick forceAdd(capacity) 等价 legacy ∞ 源；strength(-1,∞) 不可破坏 + DefaultDrop.None 仅扳手可拆（machines.py loot 新增 None 分支）；legacy 无 GUI，port MenuType 自动注册无对应条目。"
   },
   {
    "registry": "block_entity",

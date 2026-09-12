@@ -78,6 +78,7 @@ public enum MachineKind implements StringRepresentable {
     INDUCTION_FURNACE("induction_furnace", 10000, 5, 4000, 0),
     RECYCLER("recycler", 45, 3, 45, 1),
     CHUNK_LOADER("chunk_loader", 2500, 1, 0, 0),
+    CREATIVE_GENERATOR("creative_generator", 32000, 0, 0, 0),
     CENTRIFUGE("centrifuge", 24000, 5, 500, 48),
     ORE_WASHING_PLANT("ore_washing_plant", 8000, 7, 500, 16),
     METAL_FORMER("metal_former", 2000, 3, 200, 10),

@@ -4,7 +4,7 @@ import json
 import re
 from base import ROOT, OLD, NEW, ASSETS, write, copy, model, item
 
-machines = ['steam_kinetic_generator', 'sorting_machine', 'magnetizer', 'trade_o_mat', 'item_buffer', 'blast_furnace', 'matter_generator', 'nuclear_reactor', 'reactor_chamber', 'reactor_fluid_port', 'reactor_access_hatch', 'reactor_redstone_port', 'rci_rsh', 'rci_lzh', 'uu_scanner', 'pattern_storage', 'replicator', 'teleporter', 'pump', 'miner', 'advanced_miner', 'personal_chest', 'wooden_storage_box', 'bronze_storage_box', 'iron_storage_box', 'steel_storage_box', 'iridium_storage_box', 'steam_generator', 'steam_repressurizer', 'rt_heat_generator', 'rt_generator', 'batbox_chargepad', 'cesu_chargepad', 'mfe_chargepad', 'mfsu_chargepad', 'condenser', 'fluid_regulator', 'electrolyzer', 'tank', 'liquid_heat_exchanger', 'fermenter', 'water_kinetic_generator', 'wind_kinetic_generator', 'manual_kinetic_generator', 'solid_heat_generator', 'fluid_heat_generator', 'electric_heat_generator', 'electric_kinetic_generator', 'stirling_generator', 'kinetic_generator', 'metal_former', 'ore_washing_plant', 'centrifuge', 'recycler', 'chunk_loader', 'induction_furnace', 'water_generator', 'wind_generator', 'solar_generator', 'geo_generator', 'semifluid_generator', 'batbox', 'cesu', 'mfe', 'mfsu', 'lv_transformer', 'mv_transformer', 'hv_transformer', 'ev_transformer', 'canner', 'iron_furnace', 'generator', 'electric_furnace', 'macerator', 'extractor', 'compressor', 'block_cutter']
+machines = ['steam_kinetic_generator', 'sorting_machine', 'magnetizer', 'trade_o_mat', 'item_buffer', 'blast_furnace', 'matter_generator', 'nuclear_reactor', 'reactor_chamber', 'reactor_fluid_port', 'reactor_access_hatch', 'reactor_redstone_port', 'rci_rsh', 'rci_lzh', 'uu_scanner', 'pattern_storage', 'replicator', 'teleporter', 'pump', 'miner', 'advanced_miner', 'personal_chest', 'wooden_storage_box', 'bronze_storage_box', 'iron_storage_box', 'steel_storage_box', 'iridium_storage_box', 'steam_generator', 'steam_repressurizer', 'rt_heat_generator', 'rt_generator', 'batbox_chargepad', 'cesu_chargepad', 'mfe_chargepad', 'mfsu_chargepad', 'condenser', 'fluid_regulator', 'electrolyzer', 'tank', 'liquid_heat_exchanger', 'fermenter', 'water_kinetic_generator', 'wind_kinetic_generator', 'manual_kinetic_generator', 'solid_heat_generator', 'fluid_heat_generator', 'electric_heat_generator', 'electric_kinetic_generator', 'stirling_generator', 'kinetic_generator', 'metal_former', 'ore_washing_plant', 'centrifuge', 'recycler', 'chunk_loader', 'creative_generator', 'induction_furnace', 'water_generator', 'wind_generator', 'solar_generator', 'geo_generator', 'semifluid_generator', 'batbox', 'cesu', 'mfe', 'mfsu', 'lv_transformer', 'mv_transformer', 'hv_transformer', 'ev_transformer', 'canner', 'iron_furnace', 'generator', 'electric_furnace', 'macerator', 'extractor', 'compressor', 'block_cutter']
 for identifier in machines:
     item(identifier)
     path = ASSETS + 'blockstates/' + identifier + '.json'
@@ -14,6 +14,16 @@ for identifier in machines:
         for axis in ['x', 'y']:
             if axis in variant: variant[axis] %= 360
         model(variant['model'])
+    # A legacy blockstate with a single "" variant (creative_generator) carries no facing or
+    # active variants, but this port's MachineBlock always registers six facings plus the
+    # active flag; expand the one model across all twelve combinations, unrotated.
+    if list(data['variants'].keys()) == ['']:
+        lone = data['variants']['']
+        data['variants'] = {
+            f'facing={side},active={state}': dict(lone)
+            for side in ['north', 'east', 'south', 'west', 'up', 'down']
+            for state in ['true', 'false']
+        }
     # Every MachineBlock now uses six directions; supply any old horizontal-only variants.
     for key, variant in list(data['variants'].items()):
         properties = dict(pair.split('=') for pair in key.split(',') if pair)
@@ -59,9 +69,14 @@ for identifier in machines + [entry[0] for entry in cables]:
     if identifier in machines:
         declaration = re.search(r'public static final (?:Block|Ic2TileEntityBlock) ' + identifier.upper() + r'\s*=(.*?);', legacy_blocks, re.S).group(1)
         default_drop = re.search(r'DefaultDrop\.(\w+)', declaration).group(1)
-        drop = {'Self': identifier, 'Machine': 'machine', 'AdvMachine': 'advanced_machine', 'Generator': 'generator'}[default_drop]
+        drop = {'Self': identifier, 'Machine': 'machine', 'AdvMachine': 'advanced_machine',
+                'Generator': 'generator', 'None': None}[default_drop]
     entry = {'type': 'minecraft:item', 'name': 'ic2:' + identifier}
-    if drop != identifier:
+    if drop is None:
+        # DefaultDrop.None (creative_generator): survival breaking drops nothing; the wrench
+        # shortcut above still returns the block itself, so keep only the wrench arm.
+        entry = {**entry, 'conditions': [{'condition': 'minecraft:match_tool', 'predicate': {'items': '#ic2:wrenches'}}]}
+    elif drop != identifier:
         entry = {'type': 'minecraft:alternatives', 'children': [
             {**entry, 'conditions': [{'condition': 'minecraft:match_tool', 'predicate': {'items': '#ic2:wrenches'}}]},
             {'type': 'minecraft:item', 'name': 'ic2:' + drop}]}

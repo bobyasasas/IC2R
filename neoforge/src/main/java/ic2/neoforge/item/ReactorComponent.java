@@ -8,6 +8,11 @@ import net.minecraft.world.item.ItemStack;
  * generated heat to neighbouring acceptors.
  */
 public interface ReactorComponent {
+    /** Legacy IBaseReactorComponent.canBePlacedIn: irradiating resources refuse the grid. */
+    default boolean canBePlacedIn(ItemStack stack, ReactorHost reactor) {
+        return true;
+    }
+
     default void processChamber(
             ItemStack stack, ReactorHost reactor, int x, int y, boolean heatRun) {}
 

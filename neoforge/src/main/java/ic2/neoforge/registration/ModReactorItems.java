@@ -129,6 +129,24 @@ public final class ModReactorItems {
     public static final DeferredItem<Item> DEPLETED_QUAD_MOX_FUEL_ROD =
             nuclear("depleted_quad_mox_fuel_rod");
 
+    public static final DeferredItem<ic2.neoforge.item.DepletingRodItem> LITHIUM_FUEL_ROD =
+            ITEMS.registerItem("lithium_fuel_rod", ic2.neoforge.item.DepletingRodItem::lithium);
+    public static final DeferredItem<ic2.neoforge.item.DepletingRodItem>
+            DEPLETED_ISOTOPE_FUEL_ROD =
+                    ITEMS.registerItem(
+                            "depleted_isotope_fuel_rod",
+                            ic2.neoforge.item.DepletingRodItem::depletedIsotope);
+
+    /** Legacy ItemNuclearResource pair: irradiate an unprotected carrier, refuse the grid. */
+    public static final DeferredItem<ic2.neoforge.item.NuclearResourceItem> NEAR_DEPLETED_URANIUM =
+            ITEMS.registerItem(
+                    "near_depleted_uranium",
+                    properties -> new ic2.neoforge.item.NuclearResourceItem(properties, 15, 100));
+    public static final DeferredItem<ic2.neoforge.item.NuclearResourceItem> RE_ENRICHED_URANIUM =
+            ITEMS.registerItem(
+                    "re_enriched_uranium",
+                    properties -> new ic2.neoforge.item.NuclearResourceItem(properties, 30, 100));
+
     private static DeferredItem<HeatStorageComponent> coolantCell(String name, int capacity) {
         return ITEMS.registerItem(
                 name, properties -> new HeatStorageComponent(properties, capacity));
@@ -214,6 +232,10 @@ public final class ModReactorItems {
             event.accept(DEPLETED_MOX_FUEL_ROD);
             event.accept(DEPLETED_DUAL_MOX_FUEL_ROD);
             event.accept(DEPLETED_QUAD_MOX_FUEL_ROD);
+            event.accept(LITHIUM_FUEL_ROD);
+            event.accept(DEPLETED_ISOTOPE_FUEL_ROD);
+            event.accept(NEAR_DEPLETED_URANIUM);
+            event.accept(RE_ENRICHED_URANIUM);
             event.accept(REACTOR_HEAT_VENT);
             event.accept(OVERCLOCKED_HEAT_VENT);
             event.accept(ADVANCED_HEAT_VENT);

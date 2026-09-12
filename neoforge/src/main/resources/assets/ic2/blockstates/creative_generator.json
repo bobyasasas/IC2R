@@ -1,0 +1,40 @@
+{
+  "variants": {
+    "facing=north,active=true": {
+      "model": "ic2:block/generator/electric/creative_generator"
+    },
+    "facing=north,active=false": {
+      "model": "ic2:block/generator/electric/creative_generator"
+    },
+    "facing=east,active=true": {
+      "model": "ic2:block/generator/electric/creative_generator"
+    },
+    "facing=east,active=false": {
+      "model": "ic2:block/generator/electric/creative_generator"
+    },
+    "facing=south,active=true": {
+      "model": "ic2:block/generator/electric/creative_generator"
+    },
+    "facing=south,active=false": {
+      "model": "ic2:block/generator/electric/creative_generator"
+    },
+    "facing=west,active=true": {
+      "model": "ic2:block/generator/electric/creative_generator"
+    },
+    "facing=west,active=false": {
+      "model": "ic2:block/generator/electric/creative_generator"
+    },
+    "facing=up,active=true": {
+      "model": "ic2:block/generator/electric/creative_generator"
+    },
+    "facing=up,active=false": {
+      "model": "ic2:block/generator/electric/creative_generator"
+    },
+    "facing=down,active=true": {
+      "model": "ic2:block/generator/electric/creative_generator"
+    },
+    "facing=down,active=false": {
+      "model": "ic2:block/generator/electric/creative_generator"
+    }
+  }
+}

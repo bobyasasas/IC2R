@@ -1,6 +1,39 @@
 {
   "variants": {
-    "": {
+    "facing=north,active=true": {
+      "model": "ic2:block/generator/reactor/reactor_chamber"
+    },
+    "facing=north,active=false": {
+      "model": "ic2:block/generator/reactor/reactor_chamber"
+    },
+    "facing=east,active=true": {
+      "model": "ic2:block/generator/reactor/reactor_chamber"
+    },
+    "facing=east,active=false": {
+      "model": "ic2:block/generator/reactor/reactor_chamber"
+    },
+    "facing=south,active=true": {
+      "model": "ic2:block/generator/reactor/reactor_chamber"
+    },
+    "facing=south,active=false": {
+      "model": "ic2:block/generator/reactor/reactor_chamber"
+    },
+    "facing=west,active=true": {
+      "model": "ic2:block/generator/reactor/reactor_chamber"
+    },
+    "facing=west,active=false": {
+      "model": "ic2:block/generator/reactor/reactor_chamber"
+    },
+    "facing=up,active=true": {
+      "model": "ic2:block/generator/reactor/reactor_chamber"
+    },
+    "facing=up,active=false": {
+      "model": "ic2:block/generator/reactor/reactor_chamber"
+    },
+    "facing=down,active=true": {
+      "model": "ic2:block/generator/reactor/reactor_chamber"
+    },
+    "facing=down,active=false": {
       "model": "ic2:block/generator/reactor/reactor_chamber"
     }
   }
