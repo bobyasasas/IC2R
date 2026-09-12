@@ -1,0 +1,17 @@
+{
+  "type": "ic2:shaped",
+  "pattern": [
+    "A A",
+    "AIA",
+    "ALA"
+  ],
+  "result": {
+    "id": "ic2:alloy_chestplate",
+    "count": 1
+  },
+  "key": {
+    "L": "minecraft:leather_chestplate",
+    "I": "minecraft:iron_chestplate",
+    "A": "ic2:alloy"
+  }
+}

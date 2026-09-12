@@ -2,6 +2,7 @@ package ic2.neoforge.registration;
 
 import ic2.core.energy.ElectricItemSpec;
 import ic2.neoforge.IndustrialCraft;
+import ic2.neoforge.item.AlloyArmorItem;
 import ic2.neoforge.item.BronzeArmorItem;
 import ic2.neoforge.item.ElectricItem;
 import ic2.neoforge.item.HazmatArmorItem;
@@ -101,6 +102,44 @@ public final class ModArmor {
 
     private static final DeferredRegister.Items ITEMS =
             DeferredRegister.createItems(IndustrialCraft.MOD_ID);
+
+    private static final TagKey<Item> ALLOY_REPAIR =
+            ItemTags.create(
+                    Identifier.fromNamespaceAndPath(IndustrialCraft.MOD_ID, "repairs_alloy_armor"));
+
+    /**
+     * Legacy Ic2ArmorMaterials.ALLOY: 50× per-piece durability, defence 4/7/9/4
+     * (boots/legs/chest/head), 12 enchantability, 2.0 toughness, iron equip sound,
+     * repaired with the alloy ingot.
+     */
+    private static final ArmorMaterial ALLOY =
+            new ArmorMaterial(
+                    50,
+                    Map.of(
+                            ArmorType.BOOTS,
+                            4,
+                            ArmorType.LEGGINGS,
+                            7,
+                            ArmorType.CHESTPLATE,
+                            9,
+                            ArmorType.HELMET,
+                            4),
+                    12,
+                    SoundEvents.ARMOR_EQUIP_IRON,
+                    2.0F,
+                    0.0F,
+                    ALLOY_REPAIR,
+                    ResourceKey.create(
+                            EquipmentAssets.ROOT_ID,
+                            Identifier.fromNamespaceAndPath(IndustrialCraft.MOD_ID, "ic2_alloy")));
+
+    /** Legacy ALLOY_CHESTPLATE: the single alloy armor piece the material ships with. */
+    public static final DeferredItem<AlloyArmorItem> ALLOY_CHESTPLATE =
+            ITEMS.registerItem(
+                    "alloy_chestplate",
+                    AlloyArmorItem::new,
+                    p -> p.humanoidArmor(ALLOY, ArmorType.CHESTPLATE));
+
 
     public static final DeferredItem<HazmatArmorItem> HAZMAT_HELMET =
             ITEMS.registerItem(
@@ -534,6 +573,7 @@ public final class ModArmor {
             event.accept(ModArmor.BRONZE_CHESTPLATE);
             event.accept(ModArmor.BRONZE_LEGGINGS);
             event.accept(ModArmor.BRONZE_BOOTS);
+            event.accept(ModArmor.ALLOY_CHESTPLATE);
             event.accept(ModArmor.BATPACK);
             event.accept(ModArmor.ADVANCED_BATPACK);
             event.accept(ModArmor.NANO_HELMET);

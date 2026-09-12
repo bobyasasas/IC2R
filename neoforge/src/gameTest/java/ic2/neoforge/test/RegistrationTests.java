@@ -642,6 +642,8 @@ public final class RegistrationTests {
         FUNCTIONS.register("wind_meter_stopped_turbine", () -> EntityTickingTests.wrap(WindMeterTests::readsStoppedTurbineWithoutDraining));
         FUNCTIONS.register("refractory_bricks_drop", () -> EntityTickingTests.wrap(WindMeterTests::refractoryBricksDropThemselves));
         FUNCTIONS.register("reinforced_door_half_semantics", () -> EntityTickingTests.wrap(WindMeterTests::reinforcedDoorHalfSemantics));
+        FUNCTIONS.register("alloy_chestplate_stats", () -> EntityTickingTests.wrap(AlloyChestplateTests::materialStatsAndRepair));
+        FUNCTIONS.register("alloy_chestplate_wear", () -> EntityTickingTests.wrap(AlloyChestplateTests::wearAddsArmor));
     }
 
     public RegistrationTests(IEventBus modBus) {

@@ -6988,7 +6988,14 @@
    "factory": "register",
    "expression": "new ItemArmorIC2(Ic2ArmorMaterials.ALLOY, EquipmentSlot.CHEST, new Properties())",
    "decision": "preserve",
-   "status": "pending"
+   "status": "implemented",
+   "evidence": [
+    "neoforge/src/main/java/ic2/neoforge/item/AlloyArmorItem.java",
+    "neoforge/src/main/java/ic2/neoforge/registration/ModArmor.java",
+    "neoforge/src/gameTest/java/ic2/neoforge/test/AlloyChestplateTests.java",
+    "docs/migration/alloy-chestplate.md"
+   ],
+   "note": "legacy ItemArmorIC2 ALLOY 胸甲单件：材质 50×耐久/防 4/7/9/4/附魔 12/韧性 2.0/铁装备音/合金锭修复；两条同 result 排布配方均解锁；创造页 COMBAT 与 legacy 一致；护甲层贴图 alloy 仅 layer_1（无腿甲件，humanoid_leggings 资产复用同贴图仅防缺文件）。"
   },
   {
    "registry": "item",
