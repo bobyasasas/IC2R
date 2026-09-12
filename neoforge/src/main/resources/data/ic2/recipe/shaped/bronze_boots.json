@@ -1,0 +1,14 @@
+{
+  "type": "ic2:shaped",
+  "pattern": [
+    "B B",
+    "B B"
+  ],
+  "result": {
+    "id": "ic2:bronze_boots",
+    "count": 1
+  },
+  "key": {
+    "B": "#c:ingots/bronze"
+  }
+}

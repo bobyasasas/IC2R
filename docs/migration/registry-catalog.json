@@ -5438,7 +5438,13 @@
       "factory": "register",
       "expression": "new Ic2Axe(Ic2ToolMaterials.BRONZE, 6.0F, -3.1F, new Properties())",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModTools.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/BronzeKitTests.java",
+        "neoforge/src/main/resources/data/ic2/recipe/shaped/bronze_axe.json"
+      ],
+      "note": "Ic2ToolMaterials.BRONZE：等级 2/350 耐久/6.0 速度/2.0 伤害加成/14 附魔 affinity，修复物 bronze_ingot（#ic2:repairs_bronze_tool）；legacy Ic2Pickaxe/Ic2Hoe/Ic2Axe 为原版类直通，26.1.2 用 Properties.pickaxe/sword 与 AxeItem/ShovelItem/HoeItem 同参照搬。"
     },
     {
       "registry": "item",
@@ -5448,7 +5454,13 @@
       "factory": "register",
       "expression": "new Ic2Hoe(Ic2ToolMaterials.BRONZE, -2, -1.0F, new Properties())",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModTools.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/BronzeKitTests.java",
+        "neoforge/src/main/resources/data/ic2/recipe/shaped/bronze_hoe.json"
+      ],
+      "note": "Ic2ToolMaterials.BRONZE：等级 2/350 耐久/6.0 速度/2.0 伤害加成/14 附魔 affinity，修复物 bronze_ingot（#ic2:repairs_bronze_tool）；legacy Ic2Pickaxe/Ic2Hoe/Ic2Axe 为原版类直通，26.1.2 用 Properties.pickaxe/sword 与 AxeItem/ShovelItem/HoeItem 同参照搬。"
     },
     {
       "registry": "item",
@@ -5458,7 +5470,13 @@
       "factory": "register",
       "expression": "new SwordItem(Ic2ToolMaterials.BRONZE, 3, -2.4F, new Properties())",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModTools.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/BronzeKitTests.java",
+        "neoforge/src/main/resources/data/ic2/recipe/shaped/bronze_sword.json"
+      ],
+      "note": "Ic2ToolMaterials.BRONZE：等级 2/350 耐久/6.0 速度/2.0 伤害加成/14 附魔 affinity，修复物 bronze_ingot（#ic2:repairs_bronze_tool）；legacy Ic2Pickaxe/Ic2Hoe/Ic2Axe 为原版类直通，26.1.2 用 Properties.pickaxe/sword 与 AxeItem/ShovelItem/HoeItem 同参照搬。"
     },
     {
       "registry": "item",
@@ -5468,7 +5486,13 @@
       "factory": "register",
       "expression": "new ShovelItem(Ic2ToolMaterials.BRONZE, 1.5F, -3.0F, new Properties())",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModTools.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/BronzeKitTests.java",
+        "neoforge/src/main/resources/data/ic2/recipe/shaped/bronze_shovel.json"
+      ],
+      "note": "Ic2ToolMaterials.BRONZE：等级 2/350 耐久/6.0 速度/2.0 伤害加成/14 附魔 affinity，修复物 bronze_ingot（#ic2:repairs_bronze_tool）；legacy Ic2Pickaxe/Ic2Hoe/Ic2Axe 为原版类直通，26.1.2 用 Properties.pickaxe/sword 与 AxeItem/ShovelItem/HoeItem 同参照搬。"
     },
     {
       "registry": "item",
@@ -5478,7 +5502,13 @@
       "factory": "register",
       "expression": "new Ic2Pickaxe(Ic2ToolMaterials.BRONZE, 1, -2.8F, new Properties())",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModTools.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/BronzeKitTests.java",
+        "neoforge/src/main/resources/data/ic2/recipe/shaped/bronze_pickaxe.json"
+      ],
+      "note": "Ic2ToolMaterials.BRONZE：等级 2/350 耐久/6.0 速度/2.0 伤害加成/14 附魔 affinity，修复物 bronze_ingot（#ic2:repairs_bronze_tool）；legacy Ic2Pickaxe/Ic2Hoe/Ic2Axe 为原版类直通，26.1.2 用 Properties.pickaxe/sword 与 AxeItem/ShovelItem/HoeItem 同参照搬。"
     },
     {
       "registry": "item",
@@ -6809,7 +6839,14 @@
       "factory": "register",
       "expression": "new ItemArmorIC2(Ic2ArmorMaterials.BRONZE, EquipmentSlot.FEET, new Properties())",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModArmor.java",
+        "neoforge/src/main/java/ic2/neoforge/item/BronzeArmorItem.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/BronzeKitTests.java",
+        "neoforge/src/main/resources/data/ic2/recipe/shaped/bronze_boots.json"
+      ],
+      "note": "Ic2ArmorMaterials.BRONZE：15×耐久、防御 2/5/6/2、附魔 9、铁装音效、0 韧性，修复物 bronze_ingot（#ic2:repairs_bronze_armor）；ItemArmorIC2 isMetalArmor=true 以 MetalArmorLike 标记保留（eating plant 豁免）。"
     },
     {
       "registry": "item",
@@ -6819,7 +6856,14 @@
       "factory": "register",
       "expression": "new ItemArmorIC2(Ic2ArmorMaterials.BRONZE, EquipmentSlot.CHEST, new Properties())",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModArmor.java",
+        "neoforge/src/main/java/ic2/neoforge/item/BronzeArmorItem.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/BronzeKitTests.java",
+        "neoforge/src/main/resources/data/ic2/recipe/shaped/bronze_chestplate.json"
+      ],
+      "note": "Ic2ArmorMaterials.BRONZE：15×耐久、防御 2/5/6/2、附魔 9、铁装音效、0 韧性，修复物 bronze_ingot（#ic2:repairs_bronze_armor）；ItemArmorIC2 isMetalArmor=true 以 MetalArmorLike 标记保留（eating plant 豁免）。"
     },
     {
       "registry": "item",
@@ -6829,7 +6873,14 @@
       "factory": "register",
       "expression": "new ItemArmorIC2(Ic2ArmorMaterials.BRONZE, EquipmentSlot.HEAD, new Properties())",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModArmor.java",
+        "neoforge/src/main/java/ic2/neoforge/item/BronzeArmorItem.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/BronzeKitTests.java",
+        "neoforge/src/main/resources/data/ic2/recipe/shaped/bronze_helmet.json"
+      ],
+      "note": "Ic2ArmorMaterials.BRONZE：15×耐久、防御 2/5/6/2、附魔 9、铁装音效、0 韧性，修复物 bronze_ingot（#ic2:repairs_bronze_armor）；ItemArmorIC2 isMetalArmor=true 以 MetalArmorLike 标记保留（eating plant 豁免）。"
     },
     {
       "registry": "item",
@@ -6839,7 +6890,14 @@
       "factory": "register",
       "expression": "new ItemArmorIC2(Ic2ArmorMaterials.BRONZE, EquipmentSlot.LEGS, new Properties())",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/registration/ModArmor.java",
+        "neoforge/src/main/java/ic2/neoforge/item/BronzeArmorItem.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/BronzeKitTests.java",
+        "neoforge/src/main/resources/data/ic2/recipe/shaped/bronze_leggings.json"
+      ],
+      "note": "Ic2ArmorMaterials.BRONZE：15×耐久、防御 2/5/6/2、附魔 9、铁装音效、0 韧性，修复物 bronze_ingot（#ic2:repairs_bronze_armor）；ItemArmorIC2 isMetalArmor=true 以 MetalArmorLike 标记保留（eating plant 豁免）。"
     },
     {
       "registry": "item",

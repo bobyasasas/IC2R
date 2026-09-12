@@ -2133,8 +2133,8 @@
     {
       "source": "shaped/bronze_axe.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:bronze_axe"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/bronze_axe.json"
     },
     {
       "source": "shaped/bronze_block.json",
@@ -2145,14 +2145,14 @@
     {
       "source": "shaped/bronze_boots.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:bronze_boots"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/bronze_boots.json"
     },
     {
       "source": "shaped/bronze_chestplate.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:bronze_chestplate"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/bronze_chestplate.json"
     },
     {
       "source": "shaped/bronze_dust.json",
@@ -2163,14 +2163,14 @@
     {
       "source": "shaped/bronze_helmet.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:bronze_helmet"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/bronze_helmet.json"
     },
     {
       "source": "shaped/bronze_hoe.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:bronze_hoe"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/bronze_hoe.json"
     },
     {
       "source": "shaped/bronze_ingot.json",
@@ -2181,14 +2181,14 @@
     {
       "source": "shaped/bronze_leggings.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:bronze_leggings"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/bronze_leggings.json"
     },
     {
       "source": "shaped/bronze_pickaxe.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:bronze_pickaxe"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/bronze_pickaxe.json"
     },
     {
       "source": "shaped/bronze_rotor.json",
@@ -2205,8 +2205,8 @@
     {
       "source": "shaped/bronze_shovel.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:bronze_shovel"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/bronze_shovel.json"
     },
     {
       "source": "shaped/bronze_storage_box.json",
@@ -2217,8 +2217,8 @@
     {
       "source": "shaped/bronze_sword.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:bronze_sword"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/bronze_sword.json"
     },
     {
       "source": "shaped/bronze_tank.json",

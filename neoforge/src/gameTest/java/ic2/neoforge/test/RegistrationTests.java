@@ -128,6 +128,9 @@ public final class RegistrationTests {
         FUNCTIONS.register(
                 "crafting_chainsaw_routes", () -> CraftingTests::chainsawCraftsFromBothRoutes);
         FUNCTIONS.register("crafting_utility", () -> CraftingTests::utilityItemsCraft);
+        FUNCTIONS.register("bronze_tools", () -> BronzeKitTests::toolsCraftWithLegacyStats);
+        FUNCTIONS.register(
+                "bronze_armor", () -> BronzeKitTests::armorCraftsAndCarriesLegacyDefence);
 
         FUNCTIONS.register("toolbox_storage", () -> ToolboxTests::storage);
         FUNCTIONS.register("toolbox_menu_binding", () -> ToolboxTests::menuBinding);

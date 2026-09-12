@@ -13,12 +13,17 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.Identifier;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.inventory.MenuType;
+import net.minecraft.world.item.AxeItem;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.DyeColor;
+import net.minecraft.world.item.HoeItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Rarity;
+import net.minecraft.world.item.ShovelItem;
+import net.minecraft.world.item.ToolMaterial;
 import net.minecraft.world.item.component.Tool;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.bus.api.IEventBus;
@@ -38,6 +43,9 @@ public final class ModTools {
     public static final TagKey<Block> WRENCH_TARGETS =
             TagKey.create(
                     Registries.BLOCK, Identifier.fromNamespaceAndPath("ic2", "mineable/wrench"));
+    private static final TagKey<Item> TOOL_REPAIRS =
+            ItemTags.create(
+                    Identifier.fromNamespaceAndPath(IndustrialCraft.MOD_ID, "repairs_bronze_tool"));
     public static final DeferredItem<WrenchItem> WRENCH =
             ITEMS.registerItem("wrench", p -> new WrenchItem(tool(p.durability(120), 1)));
     public static final DeferredItem<ElectricWrenchItem> ELECTRIC_WRENCH =
@@ -52,6 +60,25 @@ public final class ModTools {
             ITEMS.registerItem("treetap", p -> new TreetapItem(p.durability(16)));
     public static final DeferredItem<ElectricTreetapItem> ELECTRIC_TREETAP =
             ITEMS.registerItem("electric_treetap", p -> new ElectricTreetapItem(p.stacksTo(1)));
+
+    /** Legacy Ic2ToolMaterials.BRONZE: level 2, 350 uses, 6.0 speed, 2.0 damage bonus, enchantability 14. */
+    public static final ToolMaterial BRONZE_TOOL_MATERIAL = new ToolMaterial(
+            BlockTags.INCORRECT_FOR_IRON_TOOL, 350, 6.0F, 2.0F, 14, TOOL_REPAIRS);
+    public static final DeferredItem<Item> BRONZE_PICKAXE =
+            ITEMS.registerItem(
+                    "bronze_pickaxe", p -> new Item(p.pickaxe(BRONZE_TOOL_MATERIAL, 1.0F, -2.8F)));
+    public static final DeferredItem<Item> BRONZE_AXE =
+            ITEMS.registerItem(
+                    "bronze_axe", p -> new AxeItem(BRONZE_TOOL_MATERIAL, 6.0F, -3.1F, p));
+    public static final DeferredItem<Item> BRONZE_SHOVEL =
+            ITEMS.registerItem(
+                    "bronze_shovel", p -> new ShovelItem(BRONZE_TOOL_MATERIAL, 1.5F, -3.0F, p));
+    public static final DeferredItem<Item> BRONZE_HOE =
+            ITEMS.registerItem(
+                    "bronze_hoe", p -> new HoeItem(BRONZE_TOOL_MATERIAL, -2.0F, -1.0F, p));
+    public static final DeferredItem<Item> BRONZE_SWORD =
+            ITEMS.registerItem(
+                    "bronze_sword", p -> new Item(p.sword(BRONZE_TOOL_MATERIAL, 3.0F, -2.4F)));
 
     public static final DeferredItem<PainterItem> PAINTER =
             ITEMS.registerItem("painter", p -> new PainterItem(p.durability(32), null));
@@ -204,6 +231,10 @@ public final class ModTools {
             event.accept(CUTTER);
             event.accept(TREETAP);
             event.accept(ELECTRIC_TREETAP);
+            event.accept(BRONZE_PICKAXE);
+            event.accept(BRONZE_AXE);
+            event.accept(BRONZE_SHOVEL);
+            event.accept(BRONZE_HOE);
             event.accept(DRILL);
             event.accept(DIAMOND_DRILL);
             event.accept(IRIDIUM_DRILL);
@@ -234,6 +265,9 @@ public final class ModTools {
             event.accept(ModItems.FLATIFICATION_TFBP);
             event.accept(ModItems.IRRIGATION_TFBP);
             event.accept(ModItems.MUSHROOM_TFBP);
+        }
+        if (event.getTabKey().equals(CreativeModeTabs.COMBAT)) {
+            event.accept(BRONZE_SWORD);
         }
     }
 

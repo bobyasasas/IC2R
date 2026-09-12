@@ -2,6 +2,7 @@ package ic2.neoforge.registration;
 
 import ic2.core.energy.ElectricItemSpec;
 import ic2.neoforge.IndustrialCraft;
+import ic2.neoforge.item.BronzeArmorItem;
 import ic2.neoforge.item.ElectricItem;
 import ic2.neoforge.item.HazmatArmorItem;
 import ic2.neoforge.item.NanoSuitItem;
@@ -68,6 +69,36 @@ public final class ModArmor {
                             EquipmentAssets.ROOT_ID,
                             Identifier.fromNamespaceAndPath(IndustrialCraft.MOD_ID, "ic2_hazmat")));
 
+    private static final TagKey<Item> BRONZE_REPAIR =
+            ItemTags.create(
+                    Identifier.fromNamespaceAndPath(IndustrialCraft.MOD_ID, "repairs_bronze_armor"));
+
+    /**
+     * Legacy Ic2ArmorMaterials.BRONZE: 15× per-piece durability, defence 2/5/6/2
+     * (boots/legs/chest/head), 9 enchantability, iron equip sound, no toughness.
+     */
+    private static final ArmorMaterial BRONZE =
+            new ArmorMaterial(
+                    15,
+                    Map.of(
+                            ArmorType.BOOTS,
+                            2,
+                            ArmorType.LEGGINGS,
+                            5,
+                            ArmorType.CHESTPLATE,
+                            6,
+                            ArmorType.HELMET,
+                            2),
+                    9,
+                    SoundEvents.ARMOR_EQUIP_IRON,
+                    0.0F,
+                    0.0F,
+                    BRONZE_REPAIR,
+                    ResourceKey.create(
+                            EquipmentAssets.ROOT_ID,
+                            Identifier.fromNamespaceAndPath(IndustrialCraft.MOD_ID, "ic2_bronze")));
+
+
     private static final DeferredRegister.Items ITEMS =
             DeferredRegister.createItems(IndustrialCraft.MOD_ID);
 
@@ -91,6 +122,29 @@ public final class ModArmor {
                     "rubber_boots",
                     HazmatArmorItem::new,
                     hazmat(ArmorType.BOOTS, EquipmentSlot.FEET));
+
+    /** Legacy ItemArmorIC2 set: plain metal armor, IMetalArmor via the MetalArmorLike marker. */
+    public static final DeferredItem<BronzeArmorItem> BRONZE_HELMET =
+            ITEMS.registerItem(
+                    "bronze_helmet",
+                    BronzeArmorItem::new,
+                    p -> p.humanoidArmor(BRONZE, ArmorType.HELMET));
+    public static final DeferredItem<BronzeArmorItem> BRONZE_CHESTPLATE =
+            ITEMS.registerItem(
+                    "bronze_chestplate",
+                    BronzeArmorItem::new,
+                    p -> p.humanoidArmor(BRONZE, ArmorType.CHESTPLATE));
+    public static final DeferredItem<BronzeArmorItem> BRONZE_LEGGINGS =
+            ITEMS.registerItem(
+                    "bronze_leggings",
+                    BronzeArmorItem::new,
+                    p -> p.humanoidArmor(BRONZE, ArmorType.LEGGINGS));
+    public static final DeferredItem<BronzeArmorItem> BRONZE_BOOTS =
+            ITEMS.registerItem(
+                    "bronze_boots",
+                    BronzeArmorItem::new,
+                    p -> p.humanoidArmor(BRONZE, ArmorType.BOOTS));
+
 
     /**
      * The legacy wearable batteries: chest slot, no protection outside the material's 8-point
@@ -476,6 +530,10 @@ public final class ModArmor {
             event.accept(ModArmor.HAZMAT_CHESTPLATE);
             event.accept(ModArmor.HAZMAT_LEGGINGS);
             event.accept(ModArmor.RUBBER_BOOTS);
+            event.accept(ModArmor.BRONZE_HELMET);
+            event.accept(ModArmor.BRONZE_CHESTPLATE);
+            event.accept(ModArmor.BRONZE_LEGGINGS);
+            event.accept(ModArmor.BRONZE_BOOTS);
             event.accept(ModArmor.BATPACK);
             event.accept(ModArmor.ADVANCED_BATPACK);
             event.accept(ModArmor.NANO_HELMET);
