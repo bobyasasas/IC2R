@@ -5555,7 +5555,12 @@
       "factory": "register",
       "expression": "new ItemToolMeter(new Properties().stacksTo(1))",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/item/MeterItem.java",
+        "neoforge/src/main/java/ic2/neoforge/menu/MeterMenu.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/MeterTests.java"
+      ]
     },
     {
       "registry": "item",
@@ -14360,7 +14365,12 @@
       "factory": "registerManagedItem",
       "expression": "",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/item/MeterItem.java",
+        "neoforge/src/main/java/ic2/neoforge/menu/MeterMenu.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/MeterTests.java"
+      ]
     },
     {
       "registry": "menu",

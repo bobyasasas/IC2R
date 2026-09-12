@@ -1,0 +1,7 @@
+{
+  "type": "minecraft:function",
+  "function": "ic2_tests:meter_menu_closes_on_lost_target",
+  "environment": "minecraft:default",
+  "structure": "ic2_tests:heat_room",
+  "max_ticks": 140
+}

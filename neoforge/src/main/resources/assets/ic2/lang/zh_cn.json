@@ -870,6 +870,7 @@
   "ic2.meter.mode.Voltage": "电压",
   "ic2.meter.mode.reset": "重置",
   "ic2.meter.mode.switch": "转换为:",
+  "ic2.meter.info.not_energy_net": "不是能量网络方块",
   "ic2.name": "工业时代2：重构",
   "ic2.night_vision.mode.disabled": "已关闭夜视",
   "ic2.night_vision.mode.enabled": "已开启夜视",

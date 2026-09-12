@@ -95,9 +95,15 @@ public final class WorldEnergyNetworks {
      * detector cables; legacy mirrors it with the per-tile NodeStats energy-in counter.
      */
     public static double conductorEnergyIn(ServerLevel level, BlockPos pos) {
+        PacketDistributor.NodeStats stats = nodeStats(level, pos);
+        return stats == null ? 0 : stats.energyIn();
+    }
+
+    /** Per-node flow statistics of the latest distribution, read by the EU-Reader. */
+    @javax.annotation.Nullable
+    public static PacketDistributor.NodeStats nodeStats(ServerLevel level, BlockPos pos) {
         Network network = NETWORKS.get(level);
-        Double energyIn = network == null ? null : network.lastConductorEnergyIn.get(grid(pos));
-        return energyIn == null ? 0 : energyIn;
+        return network == null ? null : network.lastNodeStats.get(grid(pos));
     }
 
     public static void tick(LevelTickEvent.Post event) {
@@ -106,7 +112,7 @@ public final class WorldEnergyNetworks {
         if (network == null) return;
         if (network.dirty) network.rebuild(level);
         // A skipped distribution must read as zero flow, never as a stale previous tick.
-        network.lastConductorEnergyIn = Map.of();
+        network.lastNodeStats = Map.of();
         if (network.machines.isEmpty()) return;
         Map<BlockPos, Double> previousEnergy = new HashMap<>();
         network.machines.forEach(
@@ -114,7 +120,11 @@ public final class WorldEnergyNetworks {
         var result =
                 new PacketDistributor(network.graph, EnergyConfig.ROUND_CLASSIC_LOSS.get())
                         .tick(EnergyConfig.MODE.get(), level.getGameTime());
-        network.lastConductorEnergyIn = result.conductorEnergyIn();
+        // Nodes without traffic this tick still read as zero flow, like legacy registered tiles.
+        var stats = new HashMap<GridPosition, PacketDistributor.NodeStats>();
+        network.graph.nodes().keySet().forEach(position -> stats.put(position, PacketDistributor.NodeStats.ZERO));
+        stats.putAll(result.nodeStats());
+        network.lastNodeStats = stats;
         network.machines.forEach(
                 (pos, machine) -> {
                     if (previousEnergy.get(pos) != machine.energy().stored()) machine.setChanged();
@@ -195,7 +205,7 @@ public final class WorldEnergyNetworks {
     private static final class Network {
         final Map<BlockPos, PoweredBlockEntity> machines = new HashMap<>();
         EnergyGraph graph = new EnergyGraph();
-        Map<GridPosition, Double> lastConductorEnergyIn = Map.of();
+        Map<GridPosition, PacketDistributor.NodeStats> lastNodeStats = Map.of();
         boolean dirty = true;
 
         void rebuild(ServerLevel level) {

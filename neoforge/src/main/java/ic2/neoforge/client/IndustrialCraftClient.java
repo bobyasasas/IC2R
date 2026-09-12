@@ -132,6 +132,7 @@ public final class IndustrialCraftClient {
         event.register(ic2.neoforge.registration.ModNuke.NUKE_MENU.get(), NukeScreen::new);
         event.register(ModTools.MINING_FILTER_MENU.get(), MiningFilterScreen::new);
         event.register(ModTools.CONTAINMENT_BOX_MENU.get(), ContainmentBoxScreen::new);
+        event.register(ModTools.METER_MENU.get(), MeterScreen::new);
         event.register(ModTools.CROP_ANALYZER_MENU.get(), CropAnalyzerScreen::new);
         ModMachines.MACHINES.forEach(
                 (kind, registration) -> {

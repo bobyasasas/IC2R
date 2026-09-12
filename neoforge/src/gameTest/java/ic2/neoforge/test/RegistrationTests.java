@@ -479,6 +479,16 @@ public final class RegistrationTests {
         FUNCTIONS.register(
                 "detector_splitter_family", () -> DetectorCableTests::detectorSplitterFamilyRegistry);
         FUNCTIONS.register(
+                "meter_node_stats_flow", () -> EntityTickingTests.wrap(MeterTests::nodeStatsTrackFlowAcrossTheLine));
+        FUNCTIONS.register(
+                "meter_idle_nodes_zero", () -> EntityTickingTests.wrap(MeterTests::idleNodesStillReportZeroFlow));
+        FUNCTIONS.register(
+                "meter_menu_samples", () -> EntityTickingTests.wrap(MeterTests::menuSamplesModesAndResets));
+        FUNCTIONS.register(
+                "meter_menu_closes_on_lost_target", () -> EntityTickingTests.wrap(MeterTests::menuClosesWhenTargetLeavesTheGrid));
+        FUNCTIONS.register(
+                "meter_item_targets", () -> EntityTickingTests.wrap(MeterTests::itemUsageDistinguishesEnergyNodes));
+        FUNCTIONS.register(
                 "obscurator_retextures_wall", () -> ObscuratorTests::obscuratorRetexturesWall);
         FUNCTIONS.register(
                 "obscurator_requires_energy", () -> ObscuratorTests::obscuratorRequiresEnergy);

@@ -870,6 +870,7 @@
   "ic2.meter.mode.Voltage": "Voltage",
   "ic2.meter.mode.reset": "Reset",
   "ic2.meter.mode.switch": "Switch to:",
+  "ic2.meter.info.not_energy_net": "Not an energy net tile",
   "ic2.name": "IndustrialCraft2: Refactored",
   "ic2.night_vision.mode.disabled": "Night vision disabled",
   "ic2.night_vision.mode.enabled": "Night vision enabled",

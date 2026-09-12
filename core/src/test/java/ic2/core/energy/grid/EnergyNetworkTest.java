@@ -42,6 +42,15 @@ class EnergyNetworkTest {
         assertEquals(31, result.delivered());
         assertEquals(1, result.dissipated());
         assertEquals(1000, gt.source.stored() + gt.sink.stored() + result.dissipated());
+
+        // Per-node statistics: source out, conductor pass-through, sink arrival after loss.
+        assertEquals(0, result.nodeStats().get(p(0)).energyIn());
+        assertEquals(32, result.nodeStats().get(p(0)).energyOut());
+        assertEquals(32, result.nodeStats().get(p(1)).energyIn());
+        assertEquals(32, result.nodeStats().get(p(1)).energyOut());
+        assertEquals(1, result.nodeStats().get(p(1)).amperage());
+        assertEquals(31, result.nodeStats().get(p(2)).energyIn());
+        assertEquals(31, result.nodeStats().get(p(2)).voltage()); // the arriving packet, after loss
     }
 
     @Test

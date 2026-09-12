@@ -6,6 +6,7 @@ import ic2.neoforge.item.*;
 import ic2.neoforge.item.ElectricTreetapItem;
 import ic2.neoforge.item.TreetapItem;
 import ic2.neoforge.menu.CropAnalyzerMenu;
+import ic2.neoforge.menu.MeterMenu;
 import ic2.neoforge.menu.MiningFilterMenu;
 
 import net.minecraft.core.component.DataComponents;
@@ -190,6 +191,8 @@ public final class ModTools {
                                     250));
     public static final DeferredItem<WindMeterItem> WIND_METER =
             ITEMS.registerItem("wind_meter", p -> new WindMeterItem(p.stacksTo(1)));
+    public static final DeferredItem<MeterItem> METER =
+            ITEMS.registerItem("meter", p -> new MeterItem(p.stacksTo(1)));
     public static final DeferredItem<MiningFilterCardItem> MINING_FILTER_CARD =
             ITEMS.registerItem("mining_filter_card", p -> new MiningFilterCardItem(p.stacksTo(1)));
     public static final DeferredItem<ContainmentBoxItem> CONTAINMENT_BOX =
@@ -227,6 +230,14 @@ public final class ModTools {
                                     (id, inventory, data) ->
                                             new CropAnalyzerMenu(
                                                     id, inventory, data.readVarInt(), true)));
+    public static final DeferredHolder<MenuType<?>, MenuType<MeterMenu>> METER_MENU =
+            MENUS.register(
+                    "meter",
+                    () ->
+                            IMenuTypeExtension.create(
+                                    (id, inventory, data) ->
+                                            new MeterMenu(
+                                                    id, inventory, data.readBlockPos(), true)));
     public static final DeferredHolder<MenuType<?>, MenuType<ic2.neoforge.menu.ContainmentBoxMenu>> CONTAINMENT_BOX_MENU =
             MENUS.register(
                     "containment_box",
@@ -273,6 +284,7 @@ public final class ModTools {
             event.accept(ADVANCED_SCANNER);
             event.accept(FREQUENCY_TRANSMITTER);
             event.accept(WIND_METER);
+            event.accept(METER);
             event.accept(CROP_ANALYZER);
             event.accept(MINING_FILTER_CARD);
             event.accept(CONTAINMENT_BOX);
