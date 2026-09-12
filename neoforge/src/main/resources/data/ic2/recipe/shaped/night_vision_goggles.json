@@ -6,7 +6,8 @@
     "EFE"
   ],
   "result": {
-    "id": "ic2:night_vision_goggles"
+    "id": "ic2:night_vision_goggles",
+    "count": 1
   },
   "key": {
     "A": "ic2:advanced_heat_exchanger",

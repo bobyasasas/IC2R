@@ -2013,8 +2013,8 @@
     {
       "source": "shaped/advanced_batpack.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:advanced_batpack"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/advanced_batpack.json"
     },
     {
       "source": "shaped/advanced_charging_re_battery.json",
@@ -2109,8 +2109,8 @@
     {
       "source": "shaped/batpack.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:batpack"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/batpack.json"
     },
     {
       "source": "shaped/blank_tfbp.json",
@@ -2295,14 +2295,14 @@
     {
       "source": "shaped/chainsaw.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:chainsaw"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/chainsaw.json"
     },
     {
       "source": "shaped/chainsaw_from_steel.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:chainsaw"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/chainsaw_from_steel.json"
     },
     {
       "source": "shaped/charging_energy_crystal.json",
@@ -2571,8 +2571,8 @@
     {
       "source": "shaped/energy_pack.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:energy_pack"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/energy_pack.json"
     },
     {
       "source": "shaped/energy_storage_upgrade.json",
@@ -2943,8 +2943,8 @@
     {
       "source": "shaped/lappack.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:lappack"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/lappack.json"
     },
     {
       "source": "shaped/lead_block.json",
@@ -3117,26 +3117,26 @@
     {
       "source": "shaped/nano_boots.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:nano_boots"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/nano_boots.json"
     },
     {
       "source": "shaped/nano_chestplate.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:nano_chestplate"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/nano_chestplate.json"
     },
     {
       "source": "shaped/nano_helmet.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:nano_helmet"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/nano_helmet.json"
     },
     {
       "source": "shaped/nano_leggings.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:nano_leggings"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/nano_leggings.json"
     },
     {
       "source": "shaped/nano_saber.json",
@@ -3165,8 +3165,8 @@
     {
       "source": "shaped/nuke.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:nuke"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/nuke.json"
     },
     {
       "source": "shaped/obscurator.json",
@@ -3333,14 +3333,14 @@
     {
       "source": "shaped/quantum_boots.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:quantum_boots"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/quantum_boots.json"
     },
     {
       "source": "shaped/quantum_chestplate.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:quantum_chestplate"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/quantum_chestplate.json"
     },
     {
       "source": "shaped/quantum_helmet.json",
@@ -3351,8 +3351,8 @@
     {
       "source": "shaped/quantum_leggings.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:quantum_leggings"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/quantum_leggings.json"
     },
     {
       "source": "shaped/rail.json",
@@ -3729,14 +3729,14 @@
     {
       "source": "shaped/solar_helmet.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:solar_helmet"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/solar_helmet.json"
     },
     {
       "source": "shaped/solar_helmet_from_helmet.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:solar_helmet"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/solar_helmet_from_helmet.json"
     },
     {
       "source": "shaped/solid_canner.json",
@@ -3771,14 +3771,14 @@
     {
       "source": "shaped/static_boots.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:static_boots"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/static_boots.json"
     },
     {
       "source": "shaped/static_boots_from_boots.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:static_boots"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/static_boots_from_boots.json"
     },
     {
       "source": "shaped/steam_generator.json",

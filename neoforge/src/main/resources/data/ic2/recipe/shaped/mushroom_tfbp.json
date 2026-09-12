@@ -5,13 +5,13 @@
     "M#M",
     "mMm"
   ],
+  "result": {
+    "id": "ic2:mushroom_tfbp",
+    "count": 1
+  },
   "key": {
     "#": "ic2:blank_tfbp",
     "M": "minecraft:brown_mushroom",
     "m": "minecraft:mycelium"
-  },
-  "result": {
-    "id": "ic2:mushroom_tfbp",
-    "count": 1
   }
 }

@@ -11,7 +11,7 @@
   },
   "key": {
     "A": "ic2:circuit",
-    "B": "#c:chests/wooden",
+    "B": "minecraft:chest",
     "C": "minecraft:shears",
     "D": "ic2:machine",
     "E": "ic2:crop_stick"

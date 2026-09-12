@@ -4,13 +4,20 @@ import json
 from pathlib import Path
 from base import ROOT, OLD, NEW, write
 
+# Items with client definitions plus every item the registry catalog records as implemented in
+# code (machine block items and late slices that ship no items/*.json of their own).
 registered = {'ic2:' + p.stem for p in (NEW / 'assets/ic2/items').glob('*.json')}
+registered |= {entry['id'] for entry in json.loads(
+    (ROOT / 'docs/migration/registry-catalog.json').read_text())['entries']
+    if entry.get('registry') == 'item' and entry.get('status') == 'implemented'}
 recipe_root = OLD / 'data/ic2/recipes'
 ledger = []
 ledger_path = ROOT / 'docs/migration/recipe-catalog.json'
 previous = json.loads(ledger_path.read_text())['entries'] if ledger_path.exists() else []
 processing_types = {'ic2:macerator', 'ic2:extractor', 'ic2:compressor', 'ic2:metal_former_extruding', 'ic2:metal_former_rolling', 'ic2:metal_former_cutting', 'ic2:block_cutter'}
-supported = processing_types | {'ic2:centrifuge', 'ic2:ore_washer', 'ic2:canner_bottle', 'ic2:canner_enrich', 'ic2:blast_furnace', 'ic2:gradual', 'ic2:matter_fabricator', 'ic2:shaped', 'ic2:shapeless', 'minecraft:crafting_shaped', 'minecraft:crafting_shapeless', 'minecraft:smelting', 'minecraft:blasting', 'ic2:macerator', 'ic2:extractor', 'ic2:compressor'}
+# ic2:jetpack_attachment recipes are built in port code; the legacy JSON carries only the type and
+# the generic branch below reproduces that marker verbatim.
+supported = processing_types | {'ic2:centrifuge', 'ic2:ore_washer', 'ic2:canner_bottle', 'ic2:canner_enrich', 'ic2:blast_furnace', 'ic2:gradual', 'ic2:matter_fabricator', 'ic2:jetpack_attachment', 'ic2:shaped', 'ic2:shapeless', 'minecraft:crafting_shaped', 'minecraft:crafting_shapeless', 'minecraft:smelting', 'minecraft:blasting', 'ic2:macerator', 'ic2:extractor', 'ic2:compressor'}
 
 
 def common_tag(tag):
@@ -119,13 +126,17 @@ for file in sorted(recipe_root.rglob('*.json')):
                 new['hardness'] = old['hardness']
         else:
             new = {key: value for key, value in old.items() if key not in {'result', 'ingredient', 'ingredients', 'key'}}
-            new['result'] = stack(old['result'])
+            # Runtime families (e.g. ic2:jetpack_attachment) carry no payload, only the type.
+            if 'result' in old: new['result'] = stack(old['result'])
             if 'ingredient' in old: new['ingredient'] = ingredient(old['ingredient'])
             if 'ingredients' in old: new['ingredients'] = [ingredient(value) for value in old['ingredients']]
             if 'key' in old: new['key'] = {key: ingredient(value) for key, value in old['key'].items()}
-        write('data/ic2/recipe/' + relative, new)
+        # Runtime families are looked up by their bare id (tests reference ic2:jetpack_attachment),
+        # so they keep the root recipe directory instead of their legacy subfolder.
+        target = relative if old.get('type') not in {'ic2:jetpack_attachment'} else relative.rsplit('/', 1)[-1]
+        write('data/ic2/recipe/' + target, new)
         record['status'] = 'converted'
-        record['target'] = 'neoforge/src/main/resources/data/ic2/recipe/' + relative
+        record['target'] = 'neoforge/src/main/resources/data/ic2/recipe/' + target
     except ValueError as error:
         record['reason'] = str(error)
 
@@ -163,4 +174,8 @@ print(Counter(entry['type'] for entry in ledger if entry['status'] == 'converted
 
 manifest = ROOT / 'neoforge/src/gameTest/resources/ic2_tests/converted-recipes.json'
 manifest.parent.mkdir(parents=True, exist_ok=True)
-manifest.write_text(json.dumps(['ic2:' + entry['source'].removesuffix('.json') for entry in ledger if entry['status'] == 'converted'], indent=2) + '\n')
+# Recipe ids follow the file path under data/ic2/recipe, which for runtime families is the bare
+# root target rather than the legacy source subfolder.
+manifest.write_text(json.dumps(
+    ['ic2:' + entry['target'].split('data/ic2/recipe/')[1].removesuffix('.json')
+     for entry in ledger if entry['status'] == 'converted'], indent=2) + '\n')

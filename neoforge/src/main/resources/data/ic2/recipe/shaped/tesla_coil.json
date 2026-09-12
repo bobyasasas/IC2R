@@ -5,14 +5,14 @@
     "RMR",
     "ICI"
   ],
-  "key": {
-    "R": "minecraft:redstone",
-    "M": "ic2:mv_transformer",
-    "C": "ic2:circuit",
-    "I": "ic2:iron_casing"
-  },
   "result": {
     "id": "ic2:tesla_coil",
     "count": 1
+  },
+  "key": {
+    "M": "ic2:mv_transformer",
+    "R": "minecraft:redstone",
+    "C": "ic2:circuit",
+    "I": "ic2:iron_casing"
   }
 }

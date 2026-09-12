@@ -10,7 +10,7 @@
     "count": 1
   },
   "key": {
-    "I": "minecraft:iron_ingot",
+    "I": "#c:ingots/iron",
     "S": "#minecraft:wool",
     "C": "ic2:insulated_copper_cable"
   }

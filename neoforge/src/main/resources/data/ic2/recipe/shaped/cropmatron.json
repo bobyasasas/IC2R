@@ -5,6 +5,7 @@
     "UMU",
     "CCC"
   ],
+  "consuming": true,
   "result": {
     "id": "ic2:cropmatron",
     "count": 1

@@ -5,12 +5,12 @@
     "S#S",
     " S "
   ],
-  "key": {
-    "#": "ic2:blank_tfbp",
-    "S": "minecraft:wheat_seeds"
-  },
   "result": {
     "id": "ic2:cultivation_tfbp",
     "count": 1
+  },
+  "key": {
+    "#": "ic2:blank_tfbp",
+    "S": "minecraft:wheat_seeds"
   }
 }

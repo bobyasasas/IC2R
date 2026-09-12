@@ -6,12 +6,13 @@
     "VFV"
   ],
   "result": {
-    "id": "ic2:replicator"
+    "id": "ic2:replicator",
+    "count": 1
   },
   "key": {
+    "T": "ic2:teleporter",
     "S": "ic2:reinforced_stone",
     "G": "ic2:reinforced_glass",
-    "T": "ic2:teleporter",
     "F": "ic2:mfe",
     "V": "ic2:hv_transformer"
   }

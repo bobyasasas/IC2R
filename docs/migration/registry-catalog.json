@@ -5964,11 +5964,8 @@
       "factory": "register",
       "expression": "new BoatItem(RubberBoatEntity.class, Ic2Entities.RUBBER_BOAT, new Properties().stacksTo(1))",
       "decision": "preserve",
-      "status": "implemented",
-      "evidence": [
-        "neoforge/src/main/java/ic2/neoforge/registration/ModItems.java",
-        "neoforge/src/gameTest/java/ic2/neoforge/test/ComponentTests.java"
-      ]
+      "status": "pending",
+      "note": "物品本体与 RubberBoatEntity 均未移植（boat 家族待切片）；此前误标 implemented 且证据文件中无该物品，2026-09-11 配方清收审计纠正，两条 rubber_boat 配方随之退回 pending。"
     },
     {
       "registry": "item",

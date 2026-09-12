@@ -5,6 +5,7 @@
     "IFI",
     "R R"
   ],
+  "consuming": true,
   "result": {
     "id": "ic2:jetpack",
     "count": 1

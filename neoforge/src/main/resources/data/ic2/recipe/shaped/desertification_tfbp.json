@@ -5,12 +5,12 @@
     "S#S",
     " S "
   ],
-  "key": {
-    "#": "ic2:blank_tfbp",
-    "S": "minecraft:sand"
-  },
   "result": {
     "id": "ic2:desertification_tfbp",
     "count": 1
+  },
+  "key": {
+    "#": "ic2:blank_tfbp",
+    "S": "minecraft:sand"
   }
 }

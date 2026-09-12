@@ -4,14 +4,14 @@
     "RBR",
     "CMC"
   ],
-  "key": {
-    "R": "minecraft:redstone",
-    "B": "ic2:re_battery",
-    "C": "ic2:insulated_copper_cable",
-    "M": "ic2:machine"
-  },
   "result": {
     "id": "ic2:energy_o_mat",
     "count": 1
+  },
+  "key": {
+    "R": "minecraft:redstone",
+    "C": "ic2:insulated_copper_cable",
+    "M": "ic2:machine",
+    "B": "ic2:re_battery"
   }
 }

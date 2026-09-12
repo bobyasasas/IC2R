@@ -5,12 +5,12 @@
     "W#W",
     " W "
   ],
-  "key": {
-    "#": "ic2:blank_tfbp",
-    "W": "minecraft:water_bucket"
-  },
   "result": {
     "id": "ic2:irrigation_tfbp",
     "count": 1
+  },
+  "key": {
+    "#": "ic2:blank_tfbp",
+    "W": "minecraft:water_bucket"
   }
 }

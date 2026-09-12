@@ -5,6 +5,7 @@
     "RMR",
     "RCR"
   ],
+  "hidden": true,
   "result": {
     "id": "ic2:nuke",
     "count": 1

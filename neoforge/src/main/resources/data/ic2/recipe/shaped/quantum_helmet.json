@@ -6,14 +6,15 @@
     "CNC"
   ],
   "result": {
-    "id": "ic2:quantum_helmet"
+    "id": "ic2:quantum_helmet",
+    "count": 1
   },
   "key": {
-    "G": "ic2:reinforced_glass",
-    "n": "ic2:nano_helmet",
     "N": "ic2:hazmat_helmet",
+    "n": "ic2:nano_helmet",
     "I": "ic2:iridium",
     "L": "ic2:lapotron_crystal",
+    "G": "ic2:reinforced_glass",
     "C": "ic2:advanced_circuit"
   }
 }

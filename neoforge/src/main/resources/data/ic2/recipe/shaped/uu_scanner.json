@@ -6,7 +6,8 @@
     "EFE"
   ],
   "result": {
-    "id": "ic2:uu_scanner"
+    "id": "ic2:uu_scanner",
+    "count": 1
   },
   "key": {
     "A": "ic2:iron_plate",

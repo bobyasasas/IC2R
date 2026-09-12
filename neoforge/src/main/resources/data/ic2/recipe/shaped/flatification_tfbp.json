@@ -5,12 +5,12 @@
     "D#D",
     " D "
   ],
-  "key": {
-    "#": "ic2:blank_tfbp",
-    "D": "minecraft:dirt"
-  },
   "result": {
     "id": "ic2:flatification_tfbp",
     "count": 1
+  },
+  "key": {
+    "#": "ic2:blank_tfbp",
+    "D": "minecraft:dirt"
   }
 }

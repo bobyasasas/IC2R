@@ -123,6 +123,11 @@ public final class RegistrationTests {
         FUNCTIONS.register("iron_furnace", () -> MachineTests::ironFurnace);
         FUNCTIONS.register("crafting_charge", () -> CraftingTests::charge);
         FUNCTIONS.register("crafting_remainders", () -> CraftingTests::remainder);
+        FUNCTIONS.register("crafting_power_armor", () -> CraftingTests::powerArmorLine);
+        FUNCTIONS.register("crafting_packs", () -> CraftingTests::packsCraftTheirStorageIn);
+        FUNCTIONS.register(
+                "crafting_chainsaw_routes", () -> CraftingTests::chainsawCraftsFromBothRoutes);
+        FUNCTIONS.register("crafting_utility", () -> CraftingTests::utilityItemsCraft);
 
         FUNCTIONS.register("toolbox_storage", () -> ToolboxTests::storage);
         FUNCTIONS.register("toolbox_menu_binding", () -> ToolboxTests::menuBinding);

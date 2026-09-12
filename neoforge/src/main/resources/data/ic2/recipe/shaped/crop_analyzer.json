@@ -12,7 +12,7 @@
   "key": {
     "A": "ic2:insulated_copper_cable",
     "B": "minecraft:redstone",
-    "C": "#c:glass",
+    "C": "#c:glass_blocks",
     "D": "ic2:circuit"
   }
 }

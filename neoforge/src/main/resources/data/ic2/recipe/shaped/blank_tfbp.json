@@ -5,13 +5,13 @@
     " A ",
     "R R"
   ],
+  "result": {
+    "id": "ic2:blank_tfbp",
+    "count": 1
+  },
   "key": {
     "C": "ic2:circuit",
     "A": "ic2:advanced_circuit",
     "R": "minecraft:redstone"
-  },
-  "result": {
-    "id": "ic2:blank_tfbp",
-    "count": 1
   }
 }
