@@ -627,6 +627,12 @@ public final class RegistrationTests {
         FUNCTIONS.register("mug_drink_effects", () -> EntityTickingTests.wrap(MugTests::mugDrinkAppliesEffectsAndReturnsEmpty));
         FUNCTIONS.register("mug_use_flow", () -> EntityTickingTests.wrap(MugTests::mugUseDurationAndAnimation));
         FUNCTIONS.register("mug_overdrink_backfire", () -> EntityTickingTests.wrap(MugTests::mugOverdrinkBackfire));
+        FUNCTIONS.register("sheet_placement_rules", () -> EntityTickingTests.wrap(SheetTests::placementRules));
+        FUNCTIONS.register("sheet_support_break", () -> EntityTickingTests.wrap(SheetTests::supportBreakAndWoolPersists));
+        FUNCTIONS.register("sheet_resin_cushion", () -> EntityTickingTests.wrap(SheetTests::resinSheetCushionsFalls));
+        FUNCTIONS.register("sheet_rubber_trampoline", () -> EntityTickingTests.wrap(SheetTests::rubberSheetBouncesItems));
+        FUNCTIONS.register("sheet_rubber_weight_break", () -> EntityTickingTests.wrap(SheetTests::rubberSheetBreaksUnderLivingWeight));
+        FUNCTIONS.register("sheet_wool_collision", () -> EntityTickingTests.wrap(SheetTests::woolSheetCollisionSemantics));
     }
 
     public RegistrationTests(IEventBus modBus) {

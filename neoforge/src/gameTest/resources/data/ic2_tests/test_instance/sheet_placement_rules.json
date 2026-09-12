@@ -1,0 +1,7 @@
+{
+  "type": "minecraft:function",
+  "environment": "minecraft:default",
+  "structure": "ic2_tests:empty",
+  "max_ticks": 60,
+  "function": "ic2_tests:sheet_placement_rules"
+}

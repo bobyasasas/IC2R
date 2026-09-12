@@ -2,6 +2,7 @@ package ic2.neoforge.registration;
 
 import ic2.neoforge.IndustrialCraft;
 import ic2.neoforge.block.ReinforcedGlassBlock;
+import ic2.neoforge.block.SheetBlock;
 import ic2.neoforge.world.MiningPipeBlock;
 
 import net.minecraft.world.item.CreativeModeTabs;
@@ -58,12 +59,28 @@ public final class ModMaterialBlocks {
                                             .strength(6.0F, 10.0F)
                                             .requiresCorrectToolForDrops()
                                             .sound(SoundType.METAL)));
+    // Sheets keep the bare legacy properties (no sound/mapColor overrides) for a 1:1 port.
+    public static final DeferredBlock<SheetBlock> RESIN_SHEET =
+            BLOCKS.registerBlock(
+                    "resin_sheet",
+                    properties -> new SheetBlock(properties.strength(1.6F, 0.5F)));
+    public static final DeferredBlock<SheetBlock> RUBBER_SHEET =
+            BLOCKS.registerBlock(
+                    "rubber_sheet",
+                    properties -> new SheetBlock(properties.strength(0.8F, 2.0F)));
+    public static final DeferredBlock<SheetBlock> WOOL_SHEET =
+            BLOCKS.registerBlock(
+                    "wool_sheet",
+                    properties -> new SheetBlock(properties.strength(0.8F, 0.8F)));
     public static final Map<String, DeferredBlock<Block>> MATERIALS = blocks();
 
     private static Map<String, DeferredBlock<Block>> blocks() {
         ITEMS.registerSimpleBlockItem(IRON_FENCE);
         ITEMS.registerSimpleBlockItem(MINING_PIPE);
         ITEMS.registerSimpleBlockItem(REINFORCED_GLASS);
+        ITEMS.registerSimpleBlockItem(RESIN_SHEET);
+        ITEMS.registerSimpleBlockItem(RUBBER_SHEET);
+        ITEMS.registerSimpleBlockItem(WOOL_SHEET);
         var result = new LinkedHashMap<String, DeferredBlock<Block>>();
         add(result, "bronze_block", 5, 10, SoundType.METAL, MapColor.NONE);
         add(result, "lead_block", 4, 10, SoundType.METAL, MapColor.NONE);
@@ -112,6 +129,9 @@ public final class ModMaterialBlocks {
             MATERIALS.values().forEach(event::accept);
             event.accept(IRON_FENCE);
             event.accept(REINFORCED_GLASS);
+            event.accept(RESIN_SHEET);
+            event.accept(RUBBER_SHEET);
+            event.accept(WOOL_SHEET);
         } else if (event.getTabKey().equals(CreativeModeTabs.INGREDIENTS)) {
             event.accept(MINING_PIPE);
         }

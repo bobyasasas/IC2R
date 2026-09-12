@@ -546,7 +546,16 @@
       "factory": "register",
       "expression": "new ItemBlockIc2(Ic2Blocks.RESIN_SHEET, new Properties())",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/block/SheetBlock.java",
+        "neoforge/src/main/java/ic2/neoforge/registration/ModMaterialBlocks.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/SheetTests.java",
+        "neoforge/src/main/resources/data/ic2/recipe/shaped/resin_sheet.json",
+        "neoforge/src/main/resources/data/ic2/loot_table/blocks/resin_sheet.json",
+        "neoforge/src/main/resources/assets/ic2/blockstates/resin_sheet.json"
+      ],
+      "note": "Legacy Ic2SheetBlock 1:1 移植为 ic2.neoforge.block.SheetBlock（三类共享单类按方块身份区分，薄片 0..0.125 碰撞盒；树脂无碰撞+entityInside 缓降 fallDistance×0.75/速度×(0.6,0.85,0.6)+仅满块下方可放置；橡胶蹦床 vy<=-0.4 反弹 fallDistance 清零/水平×1.1/潜行×-0.1/其余×-0.8+canSupportWeight 十六格承重链断裂 1:1 保留怪异控制流（-1 方向失败即 break 跳下一轴、dir==1 才 return true，故须单轴双侧锚点）+水平满块/橡胶链或满块下方可放置；羊毛恒可放置永不破坏+潜行玩家或脚低于顶面减步高的实体碰撞为空。平台分歧：legacy 蹦床跳跃键×-1.3 分支读 IC2.keyboard 客户端键位同步层，port 未建该网络层（Jetpack 降级同范式），跳跃玩家落入默认×-0.8；legacy wool fallDistance×0.95 分支嵌套在橡胶 else-if 内不可达，按不可达原样保留注记；26.1.2 neighborChanged 增 Orientation 参数、entityInside 增 InsideBlockEffectApplier/isPrecise、isCollisionShapeFullBlock 改走 BlockStateBase 公开缓存入口。GameTest sheet_placement_rules/support_break/resin_cushion/rubber_trampoline/rubber_weight_break/wool_collision 双模式 IC2×434+GT×434 全绿；战利品表树脂掉 ic2:resin 80%/橡胶羊毛掉自身 1:1。"
     },
     {
       "registry": "item",
@@ -556,7 +565,16 @@
       "factory": "register",
       "expression": "new ItemBlockIc2(Ic2Blocks.RUBBER_SHEET, new Properties())",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/block/SheetBlock.java",
+        "neoforge/src/main/java/ic2/neoforge/registration/ModMaterialBlocks.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/SheetTests.java",
+        "neoforge/src/main/resources/data/ic2/recipe/shaped/rubber_sheet.json",
+        "neoforge/src/main/resources/data/ic2/loot_table/blocks/rubber_sheet.json",
+        "neoforge/src/main/resources/assets/ic2/blockstates/rubber_sheet.json"
+      ],
+      "note": "Legacy Ic2SheetBlock 1:1 移植为 ic2.neoforge.block.SheetBlock（三类共享单类按方块身份区分，薄片 0..0.125 碰撞盒；树脂无碰撞+entityInside 缓降 fallDistance×0.75/速度×(0.6,0.85,0.6)+仅满块下方可放置；橡胶蹦床 vy<=-0.4 反弹 fallDistance 清零/水平×1.1/潜行×-0.1/其余×-0.8+canSupportWeight 十六格承重链断裂 1:1 保留怪异控制流（-1 方向失败即 break 跳下一轴、dir==1 才 return true，故须单轴双侧锚点）+水平满块/橡胶链或满块下方可放置；羊毛恒可放置永不破坏+潜行玩家或脚低于顶面减步高的实体碰撞为空。平台分歧：legacy 蹦床跳跃键×-1.3 分支读 IC2.keyboard 客户端键位同步层，port 未建该网络层（Jetpack 降级同范式），跳跃玩家落入默认×-0.8；legacy wool fallDistance×0.95 分支嵌套在橡胶 else-if 内不可达，按不可达原样保留注记；26.1.2 neighborChanged 增 Orientation 参数、entityInside 增 InsideBlockEffectApplier/isPrecise、isCollisionShapeFullBlock 改走 BlockStateBase 公开缓存入口。GameTest sheet_placement_rules/support_break/resin_cushion/rubber_trampoline/rubber_weight_break/wool_collision 双模式 IC2×434+GT×434 全绿；战利品表树脂掉 ic2:resin 80%/橡胶羊毛掉自身 1:1。"
     },
     {
       "registry": "item",
@@ -566,7 +584,16 @@
       "factory": "register",
       "expression": "new ItemBlockIc2(Ic2Blocks.WOOL_SHEET, new Properties())",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/block/SheetBlock.java",
+        "neoforge/src/main/java/ic2/neoforge/registration/ModMaterialBlocks.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/SheetTests.java",
+        "neoforge/src/main/resources/data/ic2/recipe/shaped/wool_sheet.json",
+        "neoforge/src/main/resources/data/ic2/loot_table/blocks/wool_sheet.json",
+        "neoforge/src/main/resources/assets/ic2/blockstates/wool_sheet.json"
+      ],
+      "note": "Legacy Ic2SheetBlock 1:1 移植为 ic2.neoforge.block.SheetBlock（三类共享单类按方块身份区分，薄片 0..0.125 碰撞盒；树脂无碰撞+entityInside 缓降 fallDistance×0.75/速度×(0.6,0.85,0.6)+仅满块下方可放置；橡胶蹦床 vy<=-0.4 反弹 fallDistance 清零/水平×1.1/潜行×-0.1/其余×-0.8+canSupportWeight 十六格承重链断裂 1:1 保留怪异控制流（-1 方向失败即 break 跳下一轴、dir==1 才 return true，故须单轴双侧锚点）+水平满块/橡胶链或满块下方可放置；羊毛恒可放置永不破坏+潜行玩家或脚低于顶面减步高的实体碰撞为空。平台分歧：legacy 蹦床跳跃键×-1.3 分支读 IC2.keyboard 客户端键位同步层，port 未建该网络层（Jetpack 降级同范式），跳跃玩家落入默认×-0.8；legacy wool fallDistance×0.95 分支嵌套在橡胶 else-if 内不可达，按不可达原样保留注记；26.1.2 neighborChanged 增 Orientation 参数、entityInside 增 InsideBlockEffectApplier/isPrecise、isCollisionShapeFullBlock 改走 BlockStateBase 公开缓存入口。GameTest sheet_placement_rules/support_break/resin_cushion/rubber_trampoline/rubber_weight_break/wool_collision 双模式 IC2×434+GT×434 全绿；战利品表树脂掉 ic2:resin 80%/橡胶羊毛掉自身 1:1。"
     },
     {
       "registry": "item",
@@ -7960,7 +7987,16 @@
       "factory": "register",
       "expression": "new Ic2SheetBlock(Properties.of().strength(1.6F, 0.5F))",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/block/SheetBlock.java",
+        "neoforge/src/main/java/ic2/neoforge/registration/ModMaterialBlocks.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/SheetTests.java",
+        "neoforge/src/main/resources/data/ic2/recipe/shaped/resin_sheet.json",
+        "neoforge/src/main/resources/data/ic2/loot_table/blocks/resin_sheet.json",
+        "neoforge/src/main/resources/assets/ic2/blockstates/resin_sheet.json"
+      ],
+      "note": "Legacy Ic2SheetBlock 1:1 移植为 ic2.neoforge.block.SheetBlock（三类共享单类按方块身份区分，薄片 0..0.125 碰撞盒；树脂无碰撞+entityInside 缓降 fallDistance×0.75/速度×(0.6,0.85,0.6)+仅满块下方可放置；橡胶蹦床 vy<=-0.4 反弹 fallDistance 清零/水平×1.1/潜行×-0.1/其余×-0.8+canSupportWeight 十六格承重链断裂 1:1 保留怪异控制流（-1 方向失败即 break 跳下一轴、dir==1 才 return true，故须单轴双侧锚点）+水平满块/橡胶链或满块下方可放置；羊毛恒可放置永不破坏+潜行玩家或脚低于顶面减步高的实体碰撞为空。平台分歧：legacy 蹦床跳跃键×-1.3 分支读 IC2.keyboard 客户端键位同步层，port 未建该网络层（Jetpack 降级同范式），跳跃玩家落入默认×-0.8；legacy wool fallDistance×0.95 分支嵌套在橡胶 else-if 内不可达，按不可达原样保留注记；26.1.2 neighborChanged 增 Orientation 参数、entityInside 增 InsideBlockEffectApplier/isPrecise、isCollisionShapeFullBlock 改走 BlockStateBase 公开缓存入口。GameTest sheet_placement_rules/support_break/resin_cushion/rubber_trampoline/rubber_weight_break/wool_collision 双模式 IC2×434+GT×434 全绿；战利品表树脂掉 ic2:resin 80%/橡胶羊毛掉自身 1:1。"
     },
     {
       "registry": "block",
@@ -7970,7 +8006,16 @@
       "factory": "register",
       "expression": "new Ic2SheetBlock(Properties.of().strength(0.8F, 2.0F))",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/block/SheetBlock.java",
+        "neoforge/src/main/java/ic2/neoforge/registration/ModMaterialBlocks.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/SheetTests.java",
+        "neoforge/src/main/resources/data/ic2/recipe/shaped/rubber_sheet.json",
+        "neoforge/src/main/resources/data/ic2/loot_table/blocks/rubber_sheet.json",
+        "neoforge/src/main/resources/assets/ic2/blockstates/rubber_sheet.json"
+      ],
+      "note": "Legacy Ic2SheetBlock 1:1 移植为 ic2.neoforge.block.SheetBlock（三类共享单类按方块身份区分，薄片 0..0.125 碰撞盒；树脂无碰撞+entityInside 缓降 fallDistance×0.75/速度×(0.6,0.85,0.6)+仅满块下方可放置；橡胶蹦床 vy<=-0.4 反弹 fallDistance 清零/水平×1.1/潜行×-0.1/其余×-0.8+canSupportWeight 十六格承重链断裂 1:1 保留怪异控制流（-1 方向失败即 break 跳下一轴、dir==1 才 return true，故须单轴双侧锚点）+水平满块/橡胶链或满块下方可放置；羊毛恒可放置永不破坏+潜行玩家或脚低于顶面减步高的实体碰撞为空。平台分歧：legacy 蹦床跳跃键×-1.3 分支读 IC2.keyboard 客户端键位同步层，port 未建该网络层（Jetpack 降级同范式），跳跃玩家落入默认×-0.8；legacy wool fallDistance×0.95 分支嵌套在橡胶 else-if 内不可达，按不可达原样保留注记；26.1.2 neighborChanged 增 Orientation 参数、entityInside 增 InsideBlockEffectApplier/isPrecise、isCollisionShapeFullBlock 改走 BlockStateBase 公开缓存入口。GameTest sheet_placement_rules/support_break/resin_cushion/rubber_trampoline/rubber_weight_break/wool_collision 双模式 IC2×434+GT×434 全绿；战利品表树脂掉 ic2:resin 80%/橡胶羊毛掉自身 1:1。"
     },
     {
       "registry": "block",
@@ -7980,7 +8025,16 @@
       "factory": "register",
       "expression": "new Ic2SheetBlock(Properties.of().strength(0.8F, 0.8F))",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/block/SheetBlock.java",
+        "neoforge/src/main/java/ic2/neoforge/registration/ModMaterialBlocks.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/SheetTests.java",
+        "neoforge/src/main/resources/data/ic2/recipe/shaped/wool_sheet.json",
+        "neoforge/src/main/resources/data/ic2/loot_table/blocks/wool_sheet.json",
+        "neoforge/src/main/resources/assets/ic2/blockstates/wool_sheet.json"
+      ],
+      "note": "Legacy Ic2SheetBlock 1:1 移植为 ic2.neoforge.block.SheetBlock（三类共享单类按方块身份区分，薄片 0..0.125 碰撞盒；树脂无碰撞+entityInside 缓降 fallDistance×0.75/速度×(0.6,0.85,0.6)+仅满块下方可放置；橡胶蹦床 vy<=-0.4 反弹 fallDistance 清零/水平×1.1/潜行×-0.1/其余×-0.8+canSupportWeight 十六格承重链断裂 1:1 保留怪异控制流（-1 方向失败即 break 跳下一轴、dir==1 才 return true，故须单轴双侧锚点）+水平满块/橡胶链或满块下方可放置；羊毛恒可放置永不破坏+潜行玩家或脚低于顶面减步高的实体碰撞为空。平台分歧：legacy 蹦床跳跃键×-1.3 分支读 IC2.keyboard 客户端键位同步层，port 未建该网络层（Jetpack 降级同范式），跳跃玩家落入默认×-0.8；legacy wool fallDistance×0.95 分支嵌套在橡胶 else-if 内不可达，按不可达原样保留注记；26.1.2 neighborChanged 增 Orientation 参数、entityInside 增 InsideBlockEffectApplier/isPrecise、isCollisionShapeFullBlock 改走 BlockStateBase 公开缓存入口。GameTest sheet_placement_rules/support_break/resin_cushion/rubber_trampoline/rubber_weight_break/wool_collision 双模式 IC2×434+GT×434 全绿；战利品表树脂掉 ic2:resin 80%/橡胶羊毛掉自身 1:1。"
     },
     {
       "registry": "block",

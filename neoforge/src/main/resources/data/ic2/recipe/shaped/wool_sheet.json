@@ -1,0 +1,14 @@
+{
+  "type": "ic2:shaped",
+  "pattern": [
+    "WRW"
+  ],
+  "result": {
+    "id": "ic2:wool_sheet",
+    "count": 1
+  },
+  "key": {
+    "W": "#minecraft:wool_carpets",
+    "R": "ic2:resin_sheet"
+  }
+}

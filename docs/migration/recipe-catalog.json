@@ -3525,8 +3525,8 @@
     {
       "source": "shaped/resin_sheet.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:resin_sheet"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/resin_sheet.json"
     },
     {
       "source": "shaped/rsh_condensator.json",
@@ -3609,8 +3609,8 @@
     {
       "source": "shaped/rubber_sheet.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:rubber_sheet"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/rubber_sheet.json"
     },
     {
       "source": "shaped/rubber_sign.json",
@@ -4077,8 +4077,8 @@
     {
       "source": "shaped/wool_sheet.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:wool_sheet"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/wool_sheet.json"
     },
     {
       "source": "shaped/wrench.json",
