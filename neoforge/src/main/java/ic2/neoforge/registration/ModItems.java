@@ -58,6 +58,9 @@ public final class ModItems {
     public static final DeferredItem<TinCanItem> FILLED_TIN_CAN =
             ITEMS.registerItem("filled_tin_can", TinCanItem::new);
 
+    /** Legacy Ic2Items.COKE: kiln-charred coal, a 3200-tick furnace fuel. */
+    public static final DeferredItem<Item> COKE = ITEMS.registerSimpleItem("coke");
+
     public static final DeferredItem<BatteryItem> RE_BATTERY =
             battery("re_battery", 10000, 100, 1, 64, Rarity.COMMON);
     public static final DeferredItem<BatteryItem> ADVANCED_RE_BATTERY =
@@ -166,6 +169,7 @@ public final class ModItems {
             MATERIALS.values().forEach(event::accept);
             event.accept(JETPACK_ATTACHMENT_PLATE);
             event.accept(FILLED_TIN_CAN);
+            event.accept(COKE);
             event.accept(EMPTY_MUG);
             event.accept(COLD_COFFEE_MUG);
             event.accept(DARK_COFFEE_MUG);

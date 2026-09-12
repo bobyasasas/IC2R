@@ -98,6 +98,12 @@ public final class ModMachines {
             properties.noOcclusion().noCollision().lightLevel(
                     state -> state.getValue(MachineBlock.ACTIVE) ? 15 : 0);
         }
+        if (kind == MachineKind.COKE_KILN
+                || kind == MachineKind.COKE_KILN_HATCH
+                || kind == MachineKind.COKE_KILN_GRATE) {
+            // Legacy steam-age blocks keep the stone shell of the coke oven lineage.
+            properties.mapColor(MapColor.COLOR_LIGHT_GRAY).sound(SoundType.STONE);
+        }
         return properties;
     }
 
@@ -117,6 +123,9 @@ public final class ModMachines {
             case ENERGY_O_MAT -> new EnergyOMatBlockEntity(pos, state);
             case ITEM_BUFFER -> new ic2.neoforge.machine.ItemBufferBlockEntity(pos, state);
             case BLAST_FURNACE -> new ic2.neoforge.machine.BlastFurnaceBlockEntity(pos, state);
+            case COKE_KILN -> new ic2.neoforge.machine.CokeKilnBlockEntity(pos, state);
+            case COKE_KILN_HATCH -> new ic2.neoforge.machine.CokeKilnHatchBlockEntity(pos, state);
+            case COKE_KILN_GRATE -> new ic2.neoforge.machine.CokeKilnGrateBlockEntity(pos, state);
             case MATTER_GENERATOR ->
                     new ic2.neoforge.machine.MatterGeneratorBlockEntity(pos, state);
             case NUCLEAR_REACTOR -> new ic2.neoforge.machine.NuclearReactorBlockEntity(pos, state);
@@ -319,6 +328,12 @@ public final class ModMachines {
                 Capabilities.Fluid.BLOCK,
                 entityType(MachineKind.CANNER),
                 (machine, side) -> ((CannerBlockEntity) machine).fluidAutomation(side));
+        event.registerBlockEntity(
+                Capabilities.Fluid.BLOCK,
+                entityType(MachineKind.COKE_KILN_GRATE),
+                (machine, side) ->
+                        ((ic2.neoforge.machine.CokeKilnGrateBlockEntity) machine)
+                                .fluidAutomation(side));
         for (var kind : MachineKind.values())
             if (kind.fluidGenerator()
                     || kind == MachineKind.ORE_WASHING_PLANT

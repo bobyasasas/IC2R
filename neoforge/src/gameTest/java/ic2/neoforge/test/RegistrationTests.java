@@ -304,6 +304,11 @@ public final class RegistrationTests {
                 "block_cutter_weak_blade",
                 () -> BlockCutterTests::weakBladeStallsAndDiamondResumes);
         FUNCTIONS.register("block_cutter_no_blade", () -> EntityTickingTests.wrap(BlockCutterTests::missingBladeStalls));
+        FUNCTIONS.register("coke_kiln_coal", () -> EntityTickingTests.wrap(CokeKilnTests::charsCoalIntoCoke));
+        FUNCTIONS.register("coke_kiln_logs", () -> EntityTickingTests.wrap(CokeKilnTests::charsLogsIntoCharcoal));
+        FUNCTIONS.register("coke_kiln_structure", () -> EntityTickingTests.wrap(CokeKilnTests::structureAndPortGates));
+        FUNCTIONS.register("coke_kiln_grate_fluid", () -> EntityTickingTests.wrap(CokeKilnTests::grateTankAndAutomation));
+        FUNCTIONS.register("coke_kiln_persistence", () -> EntityTickingTests.wrap(CokeKilnTests::persistence));
         FUNCTIONS.register("blast_furnace_steel", () -> EntityTickingTests.wrap(BlastFurnaceTests::smeltsIronIntoSteel));
         FUNCTIONS.register("blast_furnace_cold", () -> EntityTickingTests.wrap(BlastFurnaceTests::staysColdWithoutHeat));
         FUNCTIONS.register("blast_furnace_air_cells", () -> EntityTickingTests.wrap(BlastFurnaceTests::airCellsFillTank));

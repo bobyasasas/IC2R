@@ -1,0 +1,8 @@
+{
+  "replace": false,
+  "values": {
+    "ic2:coke": {
+      "burn_time": 3200
+    }
+  }
+}

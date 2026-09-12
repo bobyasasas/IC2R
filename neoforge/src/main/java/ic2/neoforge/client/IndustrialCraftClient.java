@@ -201,6 +201,12 @@ public final class IndustrialCraftClient {
                         event.register(registration.menu().get(), ElectrolyzerScreen::new);
                     else if (kind == MachineKind.TANK)
                         event.register(registration.menu().get(), TankScreen::new);
+                    else if (kind == MachineKind.COKE_KILN)
+                        event.register(registration.menu().get(), CokeKilnScreen::new);
+                    else if (kind == MachineKind.COKE_KILN_HATCH)
+                        event.register(registration.menu().get(), CokeKilnHatchScreen::new);
+                    else if (kind == MachineKind.COKE_KILN_GRATE)
+                        event.register(registration.menu().get(), CokeKilnGrateScreen::new);
                     else if (kind == MachineKind.LIQUID_HEAT_EXCHANGER)
                         event.register(registration.menu().get(), LiquidHeatExchangerScreen::new);
                     else if (kind == MachineKind.FERMENTER)
@@ -218,6 +224,17 @@ public final class IndustrialCraftClient {
     private static void addTooltip(ItemTooltipEvent event) {
         var stack = event.getItemStack();
         ic2.neoforge.item.JetpackAttachmentHelper.addTooltip(event);
+        if (stack.is(ModMachines.block(MachineKind.COKE_KILN).asItem())) {
+            // Legacy TileEntityCokeKiln.appendItemTooltip: the layout guide, verbatim spacing.
+            event.getToolTip().add(Component.empty());
+            event.getToolTip().add(Component.translatable("ic2.tooltip.coke_kiln.multiblock"));
+            event.getToolTip().add(Component.empty());
+            event.getToolTip().add(Component.translatable("ic2.tooltip.coke_kiln.bottom"));
+            event.getToolTip().add(Component.empty());
+            event.getToolTip().add(Component.translatable("ic2.tooltip.coke_kiln.middle"));
+            event.getToolTip().add(Component.empty());
+            event.getToolTip().add(Component.translatable("ic2.tooltip.coke_kiln.top"));
+        }
         if (stack.getItem() instanceof UpgradeItem item) {
             int count = stack.getCount();
             var format = new java.text.DecimalFormat("0.##");

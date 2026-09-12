@@ -4,7 +4,7 @@ import json
 import re
 from base import ROOT, OLD, NEW, ASSETS, write, copy, model, item
 
-machines = ['steam_kinetic_generator', 'sorting_machine', 'magnetizer', 'trade_o_mat', 'item_buffer', 'blast_furnace', 'matter_generator', 'nuclear_reactor', 'reactor_chamber', 'reactor_fluid_port', 'reactor_access_hatch', 'reactor_redstone_port', 'rci_rsh', 'rci_lzh', 'uu_scanner', 'pattern_storage', 'replicator', 'teleporter', 'pump', 'miner', 'advanced_miner', 'personal_chest', 'wooden_storage_box', 'bronze_storage_box', 'iron_storage_box', 'steel_storage_box', 'iridium_storage_box', 'steam_generator', 'steam_repressurizer', 'rt_heat_generator', 'rt_generator', 'batbox_chargepad', 'cesu_chargepad', 'mfe_chargepad', 'mfsu_chargepad', 'condenser', 'fluid_regulator', 'electrolyzer', 'tank', 'liquid_heat_exchanger', 'fermenter', 'water_kinetic_generator', 'wind_kinetic_generator', 'manual_kinetic_generator', 'solid_heat_generator', 'fluid_heat_generator', 'electric_heat_generator', 'electric_kinetic_generator', 'stirling_generator', 'kinetic_generator', 'stirling_kinetic_generator', 'metal_former', 'ore_washing_plant', 'centrifuge', 'recycler', 'chunk_loader', 'creative_generator', 'induction_furnace', 'water_generator', 'wind_generator', 'solar_generator', 'geo_generator', 'semifluid_generator', 'batbox', 'cesu', 'mfe', 'mfsu', 'lv_transformer', 'mv_transformer', 'hv_transformer', 'ev_transformer', 'canner', 'iron_furnace', 'generator', 'electric_furnace', 'macerator', 'extractor', 'compressor', 'block_cutter']
+machines = ['steam_kinetic_generator', 'sorting_machine', 'magnetizer', 'trade_o_mat', 'item_buffer', 'blast_furnace', 'coke_kiln', 'coke_kiln_hatch', 'coke_kiln_grate', 'matter_generator', 'nuclear_reactor', 'reactor_chamber', 'reactor_fluid_port', 'reactor_access_hatch', 'reactor_redstone_port', 'rci_rsh', 'rci_lzh', 'uu_scanner', 'pattern_storage', 'replicator', 'teleporter', 'pump', 'miner', 'advanced_miner', 'personal_chest', 'wooden_storage_box', 'bronze_storage_box', 'iron_storage_box', 'steel_storage_box', 'iridium_storage_box', 'steam_generator', 'steam_repressurizer', 'rt_heat_generator', 'rt_generator', 'batbox_chargepad', 'cesu_chargepad', 'mfe_chargepad', 'mfsu_chargepad', 'condenser', 'fluid_regulator', 'electrolyzer', 'tank', 'liquid_heat_exchanger', 'fermenter', 'water_kinetic_generator', 'wind_kinetic_generator', 'manual_kinetic_generator', 'solid_heat_generator', 'fluid_heat_generator', 'electric_heat_generator', 'electric_kinetic_generator', 'stirling_generator', 'kinetic_generator', 'stirling_kinetic_generator', 'metal_former', 'ore_washing_plant', 'centrifuge', 'recycler', 'chunk_loader', 'creative_generator', 'induction_furnace', 'water_generator', 'wind_generator', 'solar_generator', 'geo_generator', 'semifluid_generator', 'batbox', 'cesu', 'mfe', 'mfsu', 'lv_transformer', 'mv_transformer', 'hv_transformer', 'ev_transformer', 'canner', 'iron_furnace', 'generator', 'electric_furnace', 'macerator', 'extractor', 'compressor', 'block_cutter']
 for identifier in machines:
     item(identifier)
     path = ASSETS + 'blockstates/' + identifier + '.json'
@@ -23,6 +23,15 @@ for identifier in machines:
             f'facing={side},active={state}': dict(lone)
             for side in ['north', 'east', 'south', 'west', 'up', 'down']
             for state in ['true', 'false']
+        }
+    # The coke kiln hatch and grate ship facing-only variants; this port's MachineBlock always
+    # carries the active flag, so every facing model must serve both active states. Machines
+    # already shipped with facing-only blockstates keep them byte-for-byte.
+    if identifier in ['coke_kiln_hatch', 'coke_kiln_grate']:
+        data['variants'] = {
+            key + ',active=' + state: variant
+            for state in ['false', 'true']
+            for key, variant in data['variants'].items()
         }
     # Every MachineBlock now uses six directions; supply any old horizontal-only variants.
     for key, variant in list(data['variants'].items()):
@@ -133,3 +142,26 @@ for language, labels in [('en_us', {'ic2.manual.added': '+%s KU (%s / 1000)', 'i
     data = json.loads((NEW / path).read_text())
     data.update(labels)
     write(path, data)
+
+# Coke item plus the kiln's legacy multiblock tooltip, phrased for both languages.
+item('coke')
+tooltips = {
+    'en_us': {
+        'ic2.tooltip.coke_kiln.multiblock': 'MultiBlock Structure:',
+        'ic2.tooltip.coke_kiln.bottom': ' Bottom Layer - 3x3 of Refractory Blocks with a Coke Kiln Grate in the centre',
+        'ic2.tooltip.coke_kiln.middle': ' Middle Layer - 3x3 of Refractory Blocks with a hollow centre and this block in the middle of one of the sides',
+        'ic2.tooltip.coke_kiln.top': ' Top Layer - 3x3 of Refractory Blocks with a Coke Kiln Hatch in the centre',
+    },
+    'zh_cn': {
+        'ic2.tooltip.coke_kiln.multiblock': '多方块结构：',
+        'ic2.tooltip.coke_kiln.bottom': ' 底层 - 3×3 耐火砖，中心为焦炭炉篦',
+        'ic2.tooltip.coke_kiln.middle': ' 中层 - 3×3 耐火砖，中心留空，本方块位于其中一条边的中央',
+        'ic2.tooltip.coke_kiln.top': ' 顶层 - 3×3 耐火砖，中心为焦炭窑投放口',
+    },
+}
+for language in ['en_us', 'zh_cn']:
+    path = ASSETS + 'lang/' + language + '.json'
+    current, old = json.loads((NEW / path).read_text()), json.loads((OLD / path).read_text())
+    current['item.ic2.coke'] = old['item.ic2.coke']
+    current.update(tooltips[language])
+    write(path, current)

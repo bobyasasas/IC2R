@@ -1476,5 +1476,9 @@
   "subtitle.ic2.machine.recycler.operate": "回收机：回收",
   "subtitle.ic2.machine.teleporter.charge": "传送机：充能",
   "subtitle.ic2.machine.teleporter.use": "传送机：使用",
-  "subtitle.ic2.machine.terraformer.loop": "地形转换机：工作"
+  "subtitle.ic2.machine.terraformer.loop": "地形转换机：工作",
+  "ic2.tooltip.coke_kiln.multiblock": "多方块结构：",
+  "ic2.tooltip.coke_kiln.bottom": " 底层 - 3×3 耐火砖，中心为焦炭炉篦",
+  "ic2.tooltip.coke_kiln.middle": " 中层 - 3×3 耐火砖，中心留空，本方块位于其中一条边的中央",
+  "ic2.tooltip.coke_kiln.top": " 顶层 - 3×3 耐火砖，中心为焦炭窑投放口"
 }

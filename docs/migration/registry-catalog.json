@@ -1530,7 +1530,12 @@
       "factory": "register",
       "expression": "new ItemBlockIc2(Ic2Blocks.COKE_KILN, new Properties())",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/gameTest/java/ic2/neoforge/test/CokeKilnTests.java",
+        "docs/migration/coke-kiln.md"
+      ],
+      "note": "焦炭窑 3×3×3 多方块（控制器+投放口+炉篦）：结构校验与 20 刻相位工作、煤→焦炭+500mB 木馏油、原木→木炭+250mB、断结构重置、持久化与自动化端口经 GameTest CokeKilnTests IC2/GT 双模式验证。"
     },
     {
       "registry": "item",
@@ -1540,7 +1545,12 @@
       "factory": "register",
       "expression": "new ItemBlockIc2(Ic2Blocks.COKE_KILN_HATCH, new Properties())",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/gameTest/java/ic2/neoforge/test/CokeKilnTests.java",
+        "docs/migration/coke-kiln.md"
+      ],
+      "note": "焦炭窑 3×3×3 多方块（控制器+投放口+炉篦）：结构校验与 20 刻相位工作、煤→焦炭+500mB 木馏油、原木→木炭+250mB、断结构重置、持久化与自动化端口经 GameTest CokeKilnTests IC2/GT 双模式验证。"
     },
     {
       "registry": "item",
@@ -1550,7 +1560,12 @@
       "factory": "register",
       "expression": "new ItemBlockIc2(Ic2Blocks.COKE_KILN_GRATE, new Properties())",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/gameTest/java/ic2/neoforge/test/CokeKilnTests.java",
+        "docs/migration/coke-kiln.md"
+      ],
+      "note": "焦炭窑 3×3×3 多方块（控制器+投放口+炉篦）：结构校验与 20 刻相位工作、煤→焦炭+500mB 木馏油、原木→木炭+250mB、断结构重置、持久化与自动化端口经 GameTest CokeKilnTests IC2/GT 双模式验证。"
     },
     {
       "registry": "item",
@@ -4021,7 +4036,12 @@
       "factory": "register",
       "expression": "new ItemCoke()",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/gameTest/java/ic2/neoforge/test/CokeKilnTests.java",
+        "docs/migration/coke-kiln.md"
+      ],
+      "note": "焦炭作为熔炉燃料 3200 tick 经 neoforge:furnace_fuels data map 生效并经 GameTest 验证。"
     },
     {
       "registry": "item",
@@ -9691,7 +9711,12 @@
       "factory": "register",
       "expression": "Ic2TileEntityBlock.create(Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).strength(2.0F, 10.0F).requiresCorrectToolForDrops().sound(SoundType.STONE), TileEntityCokeKiln.class, true, Ic2TileEntityBlock.DefaultDrop.Self, Util.horizontalFacings, true)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/gameTest/java/ic2/neoforge/test/CokeKilnTests.java",
+        "docs/migration/coke-kiln.md"
+      ],
+      "note": "焦炭窑 3×3×3 多方块（控制器+投放口+炉篦）：结构校验与 20 刻相位工作、煤→焦炭+500mB 木馏油、原木→木炭+250mB、断结构重置、持久化与自动化端口经 GameTest CokeKilnTests IC2/GT 双模式验证。"
     },
     {
       "registry": "block",
@@ -9701,7 +9726,12 @@
       "factory": "register",
       "expression": "Ic2TileEntityBlock.create(Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).strength(2.0F, 10.0F).requiresCorrectToolForDrops().sound(SoundType.STONE), TileEntityCokeKilnHatch.class, false, Ic2TileEntityBlock.DefaultDrop.Self, Util.allFacings, true)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/gameTest/java/ic2/neoforge/test/CokeKilnTests.java",
+        "docs/migration/coke-kiln.md"
+      ],
+      "note": "焦炭窑 3×3×3 多方块（控制器+投放口+炉篦）：结构校验与 20 刻相位工作、煤→焦炭+500mB 木馏油、原木→木炭+250mB、断结构重置、持久化与自动化端口经 GameTest CokeKilnTests IC2/GT 双模式验证。"
     },
     {
       "registry": "block",
@@ -9711,7 +9741,12 @@
       "factory": "register",
       "expression": "Ic2TileEntityBlock.create(Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).strength(2.0F, 10.0F).requiresCorrectToolForDrops().sound(SoundType.STONE), TileEntityCokeKilnGrate.class, false, Ic2TileEntityBlock.DefaultDrop.Self, Util.allFacings, true)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/gameTest/java/ic2/neoforge/test/CokeKilnTests.java",
+        "docs/migration/coke-kiln.md"
+      ],
+      "note": "焦炭窑 3×3×3 多方块（控制器+投放口+炉篦）：结构校验与 20 刻相位工作、煤→焦炭+500mB 木馏油、原木→木炭+250mB、断结构重置、持久化与自动化端口经 GameTest CokeKilnTests IC2/GT 双模式验证。"
     },
     {
       "registry": "block",
@@ -13420,7 +13455,12 @@
       "factory": "register",
       "expression": "TileEntityCokeKiln::new",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/gameTest/java/ic2/neoforge/test/CokeKilnTests.java",
+        "docs/migration/coke-kiln.md"
+      ],
+      "note": "焦炭窑 3×3×3 多方块（控制器+投放口+炉篦）：结构校验与 20 刻相位工作、煤→焦炭+500mB 木馏油、原木→木炭+250mB、断结构重置、持久化与自动化端口经 GameTest CokeKilnTests IC2/GT 双模式验证。"
     },
     {
       "registry": "block_entity",
@@ -13430,7 +13470,12 @@
       "factory": "register",
       "expression": "TileEntityCokeKilnHatch::new",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/gameTest/java/ic2/neoforge/test/CokeKilnTests.java",
+        "docs/migration/coke-kiln.md"
+      ],
+      "note": "焦炭窑 3×3×3 多方块（控制器+投放口+炉篦）：结构校验与 20 刻相位工作、煤→焦炭+500mB 木馏油、原木→木炭+250mB、断结构重置、持久化与自动化端口经 GameTest CokeKilnTests IC2/GT 双模式验证。"
     },
     {
       "registry": "block_entity",
@@ -13440,7 +13485,12 @@
       "factory": "register",
       "expression": "TileEntityCokeKilnGrate::new",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/gameTest/java/ic2/neoforge/test/CokeKilnTests.java",
+        "docs/migration/coke-kiln.md"
+      ],
+      "note": "焦炭窑 3×3×3 多方块（控制器+投放口+炉篦）：结构校验与 20 刻相位工作、煤→焦炭+500mB 木馏油、原木→木炭+250mB、断结构重置、持久化与自动化端口经 GameTest CokeKilnTests IC2/GT 双模式验证。"
     },
     {
       "registry": "entity",

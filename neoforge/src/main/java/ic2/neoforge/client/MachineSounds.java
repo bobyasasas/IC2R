@@ -9,6 +9,7 @@ import ic2.neoforge.registration.ModSounds;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.sounds.AbstractTickableSoundInstance;
 import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
 import net.neoforged.neoforge.client.event.ClientTickEvent;
@@ -148,7 +149,9 @@ final class MachineSounds {
                     CREATIVE_GENERATOR,
                     TESLA_COIL,
                     SOLAR_GENERATOR,
-                    LUMINATOR ->
+                    LUMINATOR,
+                    COKE_KILN_HATCH,
+                    COKE_KILN_GRATE ->
                     null;
             case ELECTROLYZER -> ModSounds.MACHINE_ELECTROLYZER_LOOP.get();
             case TERRAFORMER -> ModSounds.MACHINE_TERRAFORMER_LOOP.get();
@@ -172,6 +175,7 @@ final class MachineSounds {
                     HV_TRANSFORMER,
                     EV_TRANSFORMER ->
                     null;
+            case COKE_KILN -> SoundEvents.FURNACE_FIRE_CRACKLE;
             case CANNER ->
                     switch (((CannerBlockEntity) machine).mode()) {
                         case BOTTLE_SOLID, BOTTLE_LIQUID -> ModSounds.MACHINE_CANNER_OPERATE.get();

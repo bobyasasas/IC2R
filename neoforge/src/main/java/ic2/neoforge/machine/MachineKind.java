@@ -47,6 +47,9 @@ public enum MachineKind implements StringRepresentable {
     ENERGY_O_MAT("energy_o_mat", 10000, 3, 0, 0),
     ITEM_BUFFER("item_buffer", 0, 48, 0, 0),
     BLAST_FURNACE("blast_furnace", 0, 5, 0, 0),
+    COKE_KILN("coke_kiln", 0, 1, 0, 0),
+    COKE_KILN_HATCH("coke_kiln_hatch", 0, 1, 0, 0),
+    COKE_KILN_GRATE("coke_kiln_grate", 0, 0, 0, 0),
     MATTER_GENERATOR("matter_generator", 1000000, 3, 0, 0),
     NUCLEAR_REACTOR("nuclear_reactor", 100000, 54, 0, 0),
     REACTOR_CHAMBER("reactor_chamber", 0, 0, 0, 0),
@@ -121,7 +124,9 @@ public enum MachineKind implements StringRepresentable {
                 || this == FERMENTER
                 || this == LIQUID_HEAT_EXCHANGER
                 || this == FLUID_REGULATOR
-                || this == LUMINATOR;
+                || this == LUMINATOR
+                || this == COKE_KILN_HATCH
+                || this == COKE_KILN_GRATE;
     }
 
     public boolean turbine() {

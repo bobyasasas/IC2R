@@ -4155,20 +4155,20 @@
     {
       "source": "shapeless/coke_kiln.json",
       "type": "ic2:shapeless",
-      "status": "pending",
-      "reason": "unported result ic2:coke_kiln"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shapeless/coke_kiln.json"
     },
     {
       "source": "shapeless/coke_kiln_grate.json",
       "type": "ic2:shapeless",
-      "status": "pending",
-      "reason": "unported result ic2:coke_kiln_grate"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shapeless/coke_kiln_grate.json"
     },
     {
       "source": "shapeless/coke_kiln_hatch.json",
       "type": "ic2:shapeless",
-      "status": "pending",
-      "reason": "unported result ic2:coke_kiln_hatch"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shapeless/coke_kiln_hatch.json"
     },
     {
       "source": "shapeless/cold_coffee_mug.json",

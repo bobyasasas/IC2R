@@ -388,6 +388,12 @@ public final class MachineMenu extends AbstractContainerMenu {
             addBatterySlot(inventory, 0, 50, 53);
         } else if (kind == MachineKind.TANK) {
             // Tanks contain only the four upgrade slots added below.
+        } else if (kind == MachineKind.COKE_KILN) {
+            addOutputSlot(inventory, 0, 111, 30);
+        } else if (kind == MachineKind.COKE_KILN_HATCH) {
+            addSlot(new ResourceHandlerSlot(inventory, inventory::set, 0, 79, 35));
+        } else if (kind == MachineKind.COKE_KILN_GRATE) {
+            // The grate is a fluid tank only; contents move via fluid clicks and pipes.
         } else if (kind == MachineKind.LIQUID_HEAT_EXCHANGER) {
             addFluidContainerSlot(inventory, 0, 8, 65);
             addOutputSlot(inventory, 1, 26, 65);
@@ -724,6 +730,8 @@ public final class MachineMenu extends AbstractContainerMenu {
         if (player.containerMenu != this || !stillValid(player) || machine == null) return false;
         if (machine instanceof ic2.neoforge.machine.TankBlockEntity tank)
             return (id == 0 || id == 1) && tank.transferCursor(player, this, id == 1);
+        if (machine instanceof ic2.neoforge.machine.CokeKilnGrateBlockEntity grate)
+            return (id == 0 || id == 1) && grate.transferCursor(player, this, id == 1);
         return machine.menuAction(id);
     }
 
@@ -777,6 +785,8 @@ public final class MachineMenu extends AbstractContainerMenu {
         if (kind == MachineKind.ENERGY_O_MAT)
             return stack.getItem() instanceof ElectricItem ? 2 : 1;
         if (kind == MachineKind.TANK) return -1;
+        if (kind == MachineKind.COKE_KILN_GRATE) return -1;
+        if (kind == MachineKind.COKE_KILN_HATCH) return 0;
         if (kind == MachineKind.LIQUID_HEAT_EXCHANGER
                 && stack.is(ModItems.MATERIALS.get(MaterialDefinition.HEAT_CONDUCTOR).get()))
             return 4;
