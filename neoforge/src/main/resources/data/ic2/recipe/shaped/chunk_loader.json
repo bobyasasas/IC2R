@@ -1,0 +1,19 @@
+{
+  "type": "ic2:shaped",
+  "pattern": [
+    "TET",
+    "LML",
+    "TCT"
+  ],
+  "result": {
+    "id": "ic2:chunk_loader",
+    "count": 1
+  },
+  "key": {
+    "T": "#c:plates/tin",
+    "E": "minecraft:ender_pearl",
+    "L": "minecraft:lapis_lazuli",
+    "M": "ic2:machine",
+    "C": "ic2:circuit"
+  }
+}

@@ -39,6 +39,9 @@ public final class UpgradeItem extends Item {
             // Legacy cropmatron: transformer/energy storage/item consuming/fluid consuming.
             if (machine == MachineKind.CROPMATRON)
                 return this == TRANSFORMER || this == ENERGY_STORAGE || pulling();
+            // Legacy chunk loader properties: energy storage/transformer only (no processing).
+            if (machine == MachineKind.CHUNK_LOADER)
+                return this == TRANSFORMER || this == ENERGY_STORAGE;
             // Legacy crop harvester: transformer/energy storage/item producing.
             if (machine == MachineKind.CROP_HARVESTER)
                 return this == TRANSFORMER || this == ENERGY_STORAGE || this == EJECTOR;

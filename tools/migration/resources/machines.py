@@ -4,7 +4,7 @@ import json
 import re
 from base import ROOT, OLD, NEW, ASSETS, write, copy, model, item
 
-machines = ['steam_kinetic_generator', 'sorting_machine', 'magnetizer', 'trade_o_mat', 'item_buffer', 'blast_furnace', 'matter_generator', 'nuclear_reactor', 'reactor_chamber', 'reactor_fluid_port', 'reactor_access_hatch', 'reactor_redstone_port', 'rci_rsh', 'rci_lzh', 'uu_scanner', 'pattern_storage', 'replicator', 'teleporter', 'pump', 'miner', 'advanced_miner', 'personal_chest', 'wooden_storage_box', 'bronze_storage_box', 'iron_storage_box', 'steel_storage_box', 'iridium_storage_box', 'steam_generator', 'steam_repressurizer', 'rt_heat_generator', 'rt_generator', 'batbox_chargepad', 'cesu_chargepad', 'mfe_chargepad', 'mfsu_chargepad', 'condenser', 'fluid_regulator', 'electrolyzer', 'tank', 'liquid_heat_exchanger', 'fermenter', 'water_kinetic_generator', 'wind_kinetic_generator', 'manual_kinetic_generator', 'solid_heat_generator', 'fluid_heat_generator', 'electric_heat_generator', 'electric_kinetic_generator', 'stirling_generator', 'kinetic_generator', 'metal_former', 'ore_washing_plant', 'centrifuge', 'recycler', 'induction_furnace', 'water_generator', 'wind_generator', 'solar_generator', 'geo_generator', 'semifluid_generator', 'batbox', 'cesu', 'mfe', 'mfsu', 'lv_transformer', 'mv_transformer', 'hv_transformer', 'ev_transformer', 'canner', 'iron_furnace', 'generator', 'electric_furnace', 'macerator', 'extractor', 'compressor', 'block_cutter']
+machines = ['steam_kinetic_generator', 'sorting_machine', 'magnetizer', 'trade_o_mat', 'item_buffer', 'blast_furnace', 'matter_generator', 'nuclear_reactor', 'reactor_chamber', 'reactor_fluid_port', 'reactor_access_hatch', 'reactor_redstone_port', 'rci_rsh', 'rci_lzh', 'uu_scanner', 'pattern_storage', 'replicator', 'teleporter', 'pump', 'miner', 'advanced_miner', 'personal_chest', 'wooden_storage_box', 'bronze_storage_box', 'iron_storage_box', 'steel_storage_box', 'iridium_storage_box', 'steam_generator', 'steam_repressurizer', 'rt_heat_generator', 'rt_generator', 'batbox_chargepad', 'cesu_chargepad', 'mfe_chargepad', 'mfsu_chargepad', 'condenser', 'fluid_regulator', 'electrolyzer', 'tank', 'liquid_heat_exchanger', 'fermenter', 'water_kinetic_generator', 'wind_kinetic_generator', 'manual_kinetic_generator', 'solid_heat_generator', 'fluid_heat_generator', 'electric_heat_generator', 'electric_kinetic_generator', 'stirling_generator', 'kinetic_generator', 'metal_former', 'ore_washing_plant', 'centrifuge', 'recycler', 'chunk_loader', 'induction_furnace', 'water_generator', 'wind_generator', 'solar_generator', 'geo_generator', 'semifluid_generator', 'batbox', 'cesu', 'mfe', 'mfsu', 'lv_transformer', 'mv_transformer', 'hv_transformer', 'ev_transformer', 'canner', 'iron_furnace', 'generator', 'electric_furnace', 'macerator', 'extractor', 'compressor', 'block_cutter']
 for identifier in machines:
     item(identifier)
     path = ASSETS + 'blockstates/' + identifier + '.json'
@@ -66,7 +66,15 @@ for identifier in machines + [entry[0] for entry in cables]:
             {**entry, 'conditions': [{'condition': 'minecraft:match_tool', 'predicate': {'items': '#ic2:wrenches'}}]},
             {'type': 'minecraft:item', 'name': 'ic2:' + drop}]}
     write(f'data/ic2/loot_table/blocks/{identifier}.json', {'type': 'minecraft:block', 'pools': [{'rolls': 1, 'entries': [entry], 'conditions': [{'condition': 'minecraft:survives_explosion'}]}]})
-write('data/minecraft/tags/block/mineable/pickaxe.json', {'replace': False, 'values': ['ic2:' + identifier for identifier in machines]})
+# Legacy gates machines behind the ic2:machine / ic2:advanced_machine parent blocks that
+# this port does not have, so every machine must be listed directly. chunk_loader is a
+# standalone legacy block and is absent from the legacy pickaxe tag (wrench-only removal),
+# so it must not be pulled in by the machine list. Merge instead of overwrite: the
+# material_blocks.py tag pipeline owns the other ic2 members of this file.
+mineable = [identifier for identifier in machines if identifier != 'chunk_loader']
+pickaxe_path = 'data/minecraft/tags/block/mineable/pickaxe.json'
+pickaxe = json.loads((NEW / pickaxe_path).read_text()) if (NEW / pickaxe_path).exists() else {'values': []}
+write(pickaxe_path, {'replace': False, 'values': sorted(set(pickaxe['values']) | {'ic2:' + identifier for identifier in mineable})})
 for locale in ['en_us', 'zh_cn']:
     path = ASSETS + 'lang/' + locale + '.json'
     current, old = json.loads((NEW / path).read_text()), json.loads((OLD / path).read_text())

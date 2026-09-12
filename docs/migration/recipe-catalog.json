@@ -2331,8 +2331,8 @@
     {
       "source": "shaped/chunk_loader.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:chunk_loader"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/chunk_loader.json"
     },
     {
       "source": "shaped/circuit.json",

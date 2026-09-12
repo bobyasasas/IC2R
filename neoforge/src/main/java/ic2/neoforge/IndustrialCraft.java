@@ -36,6 +36,7 @@ public final class IndustrialCraft {
 
     public IndustrialCraft(IEventBus modBus, ModContainer container) {
         ModDataComponents.register(modBus);
+        ic2.neoforge.machine.ChunkLoaderTickets.register(modBus);
         ModItems.register(modBus);
         ModGameEvents.register(modBus);
         ModWorldContent.register(modBus);

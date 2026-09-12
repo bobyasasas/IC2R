@@ -644,6 +644,9 @@ public final class RegistrationTests {
         FUNCTIONS.register("reinforced_door_half_semantics", () -> EntityTickingTests.wrap(WindMeterTests::reinforcedDoorHalfSemantics));
         FUNCTIONS.register("alloy_chestplate_stats", () -> EntityTickingTests.wrap(AlloyChestplateTests::materialStatsAndRepair));
         FUNCTIONS.register("alloy_chestplate_wear", () -> EntityTickingTests.wrap(AlloyChestplateTests::wearAddsArmor));
+        FUNCTIONS.register("chunk_loader_tickets_follow_power", () -> EntityTickingTests.wrap(ChunkLoaderTests::ticketsFollowPower));
+        FUNCTIONS.register("chunk_loader_breaking_releases", () -> EntityTickingTests.wrap(ChunkLoaderTests::breakingReleasesTickets));
+        FUNCTIONS.register("chunk_loader_nbt_round_trip", () -> EntityTickingTests.wrap(ChunkLoaderTests::nbtRoundTripKeepsChunks));
     }
 
     public RegistrationTests(IEventBus modBus) {

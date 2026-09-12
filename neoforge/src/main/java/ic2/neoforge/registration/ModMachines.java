@@ -168,6 +168,7 @@ public final class ModMachines {
             case ORE_WASHING_PLANT -> new OreWashingBlockEntity(pos, state);
             case INDUCTION_FURNACE -> new InductionFurnaceBlockEntity(pos, state);
             case RECYCLER -> new RecyclerBlockEntity(pos, state);
+            case CHUNK_LOADER -> new ic2.neoforge.machine.ChunkLoaderBlockEntity(pos, state);
             case CENTRIFUGE -> new CentrifugeBlockEntity(pos, state);
             case METAL_FORMER -> new MetalFormerBlockEntity(pos, state);
             case MACERATOR, EXTRACTOR, COMPRESSOR -> new SingleInputBlockEntity(pos, state);

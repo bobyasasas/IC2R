@@ -2156,7 +2156,14 @@
    "factory": "register",
    "expression": "new ItemBlockIc2(Ic2Blocks.CHUNK_LOADER, new Properties().rarity(Rarity.UNCOMMON))",
    "decision": "preserve",
-   "status": "pending"
+   "status": "implemented",
+   "evidence": [
+    "neoforge/src/main/java/ic2/neoforge/machine/MachineKind.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/ChunkLoaderBlockEntity.java",
+    "neoforge/src/gameTest/java/ic2/neoforge/test/ChunkLoaderTests.java",
+    "docs/migration/chunk-loader.md"
+   ],
+   "note": "区块加载机：2500 EU/t1 sink、discharge+4 升级槽（仅变压器/储能适用，legacy UpgradableProperty 无 Processing）、每区块每 tick 1 EU（legacy euPerChunk 默认 1.0，port 无 balance config 族记档）；配方 4 锡板+末影珍珠+青金石+机器+电路解锁。"
   },
   {
    "registry": "item",
@@ -9391,7 +9398,14 @@
    "factory": "register",
    "expression": "Ic2TileEntityBlock.create(Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).strength(2.0F, 10.0F).requiresCorrectToolForDrops().sound(SoundType.METAL), TileEntityChunkLoader.class, true, Ic2TileEntityBlock.DefaultDrop.Self, Util.horizontalFacings, true)",
    "decision": "preserve",
-   "status": "pending"
+   "status": "implemented",
+   "evidence": [
+    "neoforge/src/main/java/ic2/neoforge/machine/MachineKind.java",
+    "neoforge/src/main/java/ic2/neoforge/registration/ModMachines.java",
+    "neoforge/src/gameTest/java/ic2/neoforge/test/ChunkLoaderTests.java",
+    "docs/migration/chunk-loader.md"
+   ],
+   "note": "随 MachineKind.CHUNK_LOADER 经 ModMachines 自动注册（block/BlockItem/BE/menu）；legacy @NotClassic 标注在 port 无 profile 系统对应（charging 轮同款分歧记档）。"
   },
   {
    "registry": "block",
@@ -12777,7 +12791,14 @@
    "factory": "register",
    "expression": "TileEntityChunkLoader::new",
    "decision": "preserve",
-   "status": "pending"
+   "status": "implemented",
+   "evidence": [
+    "neoforge/src/main/java/ic2/neoforge/machine/ChunkLoaderBlockEntity.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/ChunkLoaderTickets.java",
+    "neoforge/src/gameTest/java/ic2/neoforge/test/ChunkLoaderTests.java",
+    "docs/migration/chunk-loader.md"
+   ],
+   "note": "电力跟随票管理：加电激活即对 loadedChunks 全集 addTicketWithRadius(ic2:chunk_loader, radius 2)，断电/拆除释放，onLoad 补挂缺失票；loadedChunks NBT 往返测试绿。结构分歧记档：legacy 自管 SavedState+WorldData 恢复链在 26.1.2 由 FLAG_PERSIST 票的 vanilla TicketStorage 持久化替代。"
   },
   {
    "registry": "block_entity",
@@ -13691,7 +13712,8 @@
    "factory": "registerManagedBe",
    "expression": "",
    "decision": "preserve",
-   "status": "pending"
+   "status": "pending",
+   "note": "MenuType 已随 ModMachines 自动注册，但机器专属 GUI 画布（legacy ContainerChunkLoader 的 9x9 区块选择网格）未做，与手持 GUI 基建同批后续切片；维持 pending。"
   },
   {
    "registry": "menu",

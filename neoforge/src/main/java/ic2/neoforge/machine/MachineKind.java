@@ -77,6 +77,7 @@ public enum MachineKind implements StringRepresentable {
     ELECTRIC_FURNACE("electric_furnace", 300, 3, 100, 3),
     INDUCTION_FURNACE("induction_furnace", 10000, 5, 4000, 0),
     RECYCLER("recycler", 45, 3, 45, 1),
+    CHUNK_LOADER("chunk_loader", 2500, 1, 0, 0),
     CENTRIFUGE("centrifuge", 24000, 5, 500, 48),
     ORE_WASHING_PLANT("ore_washing_plant", 8000, 7, 500, 16),
     METAL_FORMER("metal_former", 2000, 3, 200, 10),
@@ -265,7 +266,7 @@ public enum MachineKind implements StringRepresentable {
     }
 
     public int upgradeSlots() {
-        if (this == CROPMATRON) return 4;
+        if (this == CROPMATRON || this == CHUNK_LOADER) return 4;
         if (this == CROP_HARVESTER) return 4;
         if (this == ADV_MINER) return 4;
         if (this == ITEM_BUFFER || this == BLAST_FURNACE) return 2;
