@@ -33,9 +33,14 @@ final class PatternStorageTests {
             scanner.serverTick(helper.getLevel());
         }
         helper.assertTrue(
+                "COMPLETED".equals(scanner.state()),
+                "The scan finishes with a pattern storage adjacent");
+        helper.assertTrue(
+                scanner.menuAction(1), "The record button saves into the adjacent storage");
+        helper.assertTrue(
                 storage.getPatterns().size() == 1
                         && storage.getPatterns().get(0).is(Items.IRON_INGOT),
-                "Without a disk the scanned pattern lands in the adjacent storage");
+                "Without a disk the recorded pattern lands in the adjacent storage");
         helper.assertTrue(scanner.inventory().stack(0).isEmpty(), "The scanned item is consumed");
         helper.succeed();
     }

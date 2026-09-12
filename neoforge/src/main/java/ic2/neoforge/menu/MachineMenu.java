@@ -721,6 +721,11 @@ public final class MachineMenu extends AbstractContainerMenu {
         return machine.menuAction(id);
     }
 
+    /** The server-side machine behind this menu, for screens that render machine state. */
+    public MachineBlockEntity machine() {
+        return machine;
+    }
+
     public float familyFloat(int index) {
         return Float.intBitsToFloat(familyValue(index));
     }

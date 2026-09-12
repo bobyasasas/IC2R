@@ -56,6 +56,15 @@ public final class ModDataComponents {
                     builder ->
                             builder.persistent(Direction.CODEC)
                                     .networkSynchronized(Direction.STREAM_CODEC));
+
+    // UU-matter value of the recorded crystal-memory pattern in buckets, snapshotted when the
+    // pattern was recorded (legacy shows the live graph value; the port graph is server-only).
+    public static final Supplier<DataComponentType<Double>> CRYSTAL_MEMORY_VALUE =
+            TYPES.<Double>registerComponentType(
+                    "crystal_memory_value",
+                    builder ->
+                            builder.persistent(Codec.DOUBLE)
+                                    .networkSynchronized(ByteBufCodecs.DOUBLE));
     public static final Supplier<DataComponentType<BlockPos>> FREQUENCY_POS =
             TYPES.<BlockPos>registerComponentType(
                     "frequency_pos",

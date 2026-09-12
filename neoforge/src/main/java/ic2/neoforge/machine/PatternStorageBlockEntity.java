@@ -70,6 +70,18 @@ public final class PatternStorageBlockEntity extends MachineBlockEntity {
                     var memory = inventory.stack(DISK_SLOT);
                     if (memory.getItem() instanceof CrystalMemoryItem crystal) {
                         crystal.writePattern(memory, selectedPattern().copy());
+                        // Snapshot the UU value with the pattern (legacy tooltips read the live
+                        // graph; the port bakes the value in because the graph is server-only).
+                        if (getLevel() instanceof net.minecraft.server.level.ServerLevel level) {
+                            double value =
+                                    ic2.neoforge.uu.UuValues.graph(level)
+                                            .get(
+                                                    net.minecraft.core.registries.BuiltInRegistries
+                                                            .ITEM
+                                                            .getKey(selectedPattern().getItem())
+                                                            .toString()) * 1.0E-5;
+                            crystal.writeValue(memory, value);
+                        }
                         setChanged();
                         return true;
                     }

@@ -51,6 +51,15 @@ public final class UpgradeItem extends Item {
             if (machine == MachineKind.FERMENTER || machine == MachineKind.LIQUID_HEAT_EXCHANGER)
                 return directional();
             if (machine == MachineKind.INDUCTION_FURNACE) return this == EJECTOR || this == PULLING;
+            // Legacy replicator: processing/transformer/storage/item consuming/item producing/
+            // fluid consuming — no fluid ejector (no fluid producing property).
+            if (machine == MachineKind.REPLICATOR)
+                return this == OVERCLOCKER
+                        || this == TRANSFORMER
+                        || this == ENERGY_STORAGE
+                        || this == EJECTOR
+                        || this == PULLING
+                        || this == FLUID_PULLING;
             return machine.upgradable()
                     && (!fluid()
                             || machine == MachineKind.CANNER

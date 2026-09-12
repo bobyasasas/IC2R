@@ -122,8 +122,70 @@ legacy `ItemCrystalMemory`(内嵌 ItemStack 的模式存储盘)及其空白晶�
   的未知物品由钻石(已入 world-scan)改为下界之星;
 - IC2 与 GT 双模式 `runGameTestServer` 299 项全绿。
 
+## 切片六:UU 链收尾——两段式扫描、复制机升级与价值快照(2026-09-11)
+
+- **扫描机两段式忠实化**(legacy `TileEntityScanner`):扫描完成(3300
+  tick)只消耗输入并在内存保留 pattern,须经 GUI record 按钮
+  (legacy network event 1)写入盘槽水晶盘或相邻 pattern_storage;落点
+  不可用(无盘且无库/库拒收)→ `TRANSFER_ERROR` 卡住保留成品
+  (event 0 删除重置)。菜单 id 0=删除、1=保存。
+- **ALREADY_RECORDED 预检**:盘或相邻库已有同物品 → 不开扫即
+  `ALREADY_RECORDED` 重置,零耗电(对比输入物品判定)。
+- **失败双分支**:图不认识的物品(下界之星)首 tick `FAILED` 零耗电;
+  图认识但值∞的物品烧满 3300 tick 后 `FAILED` 卡住(legacy 怪癖保留,
+  输入变更或 reset 才恢复)。
+- **tier 勘误**:初版 port 用 256V,legacy `Energy.asBasicSink(512000, 4)`
+  tier 4 = 512V,已改 `sink(energy, 512, 1)`。
+- **持久化**:progress/currentStack/pattern/state 经
+  ValueInput/ValueOutput 存取(GameTest `BlockEntity.loadStatic` 往返)。
+- **复制机超频/升级**(legacy `InvSlotUpgrade`):4 升级槽
+  (`MachineKind.REPLICATOR` upgradeSlots=4);超频器 uu/tick ÷0.7ⁿ、
+  EU/tick ×1.6ⁿ;变压器 sink tier min(4+n,5);储能 +10000 EU 容量
+  (`EnergyStore.resize` + 存读往返 `forceAdd` 补回,luminator 先例)。
+  升级白名单按 legacy `UpgradableProperties`(无 FluidProducing,排除
+  流体喷射器)。
+- **复制机按钮 legacy 化**:0/1=浏览(仅停止态)、3=停止(清进度)、
+  4=单次、5=连续(替换初版 2/3/4);选中图案变更(ItemStack 同物品同
+  组件比较)→ 进度清零+停机(legacy `refreshInfo`)。
+- **∞ 值图案勘误(切片五)**:"∞ 值模式跳过不运行(防御性停止)"至此
+  按legacy 忠实化——移除 isFinite 门,∞ 值图案永续烧 UU 永不完成
+  (GameTest 钉死该怪癖)。银行扣减失败回补(切片五修复)保留。
+- **持久化**:uuProcessed/extraUuStored(银行)/index/mode/pattern
+  (选中图案)+ **UU 罐序列化**(初版遗漏,对齐冷凝器
+  `tank.serialize/child("tank")` 范式)。
+- **水晶盘价值快照**:26.1.2 tooltip 仅客户端、port 价值图仅服务端 →
+  记录时(scanner record / pattern_storage 写盘)把 buckets 值烘焙进
+  `CRYSTAL_MEMORY_VALUE` 组件;tooltip 用 core `SiString`
+  (legacy `Util.toSiString` 逐字移植,含 NaN/∞/SI 前缀表/进位/去尾零)
+  显示 "UU-Matter: %sB"。**文档化偏差**:legacy tooltip 显示活图值,
+  port 显示记录时快照。清空图案连带清值(legacy 单 NBT 键)。
+- **客户端**:UuScannerScreen 增删除/保存按钮、ReplicatorScreen 重写
+  (last/Stop/single/repeat 五按钮 + 图案 x/y 索引显示),按钮经
+  `handleInventoryButtonClick`(EnergyOMat 先例)。
+
+## 测试证据(切片六)
+
+- `uu_scanner_scan` 强化两段式:完成时盘仍空、输入已耗 → record 后落盘
+  + 价值快照≈图值×1e-5;`uu_scanner_unknown` 强化首 tick 零耗电;
+  `uu_scanner_already_recorded`、`uu_scanner_persistence`(100 tick 进度
+  往返后续扫完成)、`uu_scanner_input_change`、
+  `uu_scanner_record_failure`(TRANSFER_ERROR 保持)。
+- `replicator_single/value_uu/no_uu` 菜单 id 对齐(4/5/3);
+  `replicator_overclock`(恰耗 819.2 EU/tick + 储能扩容)、
+  `replicator_persistence`(进度 1.0 mB/罐/银行往返 + 续跑)、
+  `replicator_browse_stop`(运行中拒浏览、停止清进度、换图案重置)、
+  `replicator_valueless`(∞ 图案 20 tick 恰排 2 mB 永不完成)。
+- `crystal_memory_value` 快照组件往返;core `SiStringTest` 7 组断言
+  (退化值/前缀缩放/E±n 兜底/进位/去尾零/0.999→"999 m" 怪癖)。
+- `pattern_storage_transfer` 补 record 步骤对齐两段式。
+- IC2 与 GT 双模式 `runGameTestServer` **405 项全绿**;`:core:test`
+  全绿(含 SiStringTest);verify_artifact/progress --check/git
+  diff --check 全过。
+
 ## 未验收 / 后续
 
-- 水晶盘 tooltip 的 UU 价值显示(价值图目前仅服务端构建,客户端展示
-  需同步方案)。
-- 客户端外观随实机测试(待测试.md 第 30/49 节)。
+- ~~水晶盘 tooltip 的 UU 价值显示~~:切片六以记录时快照方案落地
+  (偏差见上);**tooltip 渲染与屏幕按钮实机观感留人工验收**
+  (待测试.md 新增节)。
+- 扫描机/复制机屏幕布局对 legacy GUI 的还原度(人工比对)。
+

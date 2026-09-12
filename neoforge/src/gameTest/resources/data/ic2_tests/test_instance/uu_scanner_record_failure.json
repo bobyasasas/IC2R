@@ -1,0 +1,7 @@
+{
+  "type": "minecraft:function",
+  "function": "ic2_tests:uu_scanner_record_failure",
+  "environment": "minecraft:default",
+  "structure": "ic2_tests:machine_room",
+  "max_ticks": 300
+}

@@ -276,6 +276,7 @@ public enum MachineKind implements StringRepresentable {
         if (this == TANK) return 4;
         if (this == LIQUID_HEAT_EXCHANGER) return 3;
         if (this == SOLAR_DISTILLER) return 2;
+        if (this == REPLICATOR) return 4;
         return (this == INDUCTION_FURNACE || this == FERMENTER) ? 2 : euPerTick > 0 ? 4 : 0;
     }
 

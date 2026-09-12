@@ -82,4 +82,12 @@ public final class UuValueGraph {
         Node node = nodes.get(itemKey);
         return node == null ? Double.POSITIVE_INFINITY : node.value;
     }
+
+    /**
+     * Whether the graph holds a node for the item at all (legacy UuGraph.find returning a stack).
+     * A known-but-infinite item still scans and only fails once completed, like legacy.
+     */
+    public boolean knows(String itemKey) {
+        return nodes.containsKey(itemKey);
+    }
 }

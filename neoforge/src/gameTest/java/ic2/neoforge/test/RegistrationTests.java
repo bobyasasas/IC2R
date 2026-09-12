@@ -339,6 +339,14 @@ public final class RegistrationTests {
         FUNCTIONS.register(
                 "replicator_value_uu", () -> ReplicatorTests::replicatorChargesValueDerivedUu);
         FUNCTIONS.register(
+                "replicator_overclock", () -> ReplicatorTests::overclockScalesRates);
+        FUNCTIONS.register(
+                "replicator_persistence", () -> ReplicatorTests::persistenceCarriesRunState);
+        FUNCTIONS.register(
+                "replicator_browse_stop", () -> ReplicatorTests::browseStopAndPatternReset);
+        FUNCTIONS.register(
+                "replicator_valueless", () -> ReplicatorTests::valuelessPatternDrainsForever);
+        FUNCTIONS.register(
                 "reactor_fluid_mode",
                 () -> ReactorFluidModeTests::fluidModeConvertsHeatToHotCoolant);
         FUNCTIONS.register(
@@ -453,6 +461,8 @@ public final class RegistrationTests {
         FUNCTIONS.register("reactor_vessel_place", () -> ReactorVesselTests::vesselPlaces);
         FUNCTIONS.register(
                 "crystal_memory_roundtrip", () -> CrystalMemoryTests::recordsAndReadsPattern);
+        FUNCTIONS.register(
+                "crystal_memory_value", () -> CrystalMemoryTests::valueSnapshotRoundTrips);
         FUNCTIONS.register("remote_detonate", () -> RemoteTests::remoteDetonatesLinkedDynamite);
         FUNCTIONS.register("uu_scanner_scan", () -> UuScannerTests::scansSeededItemOntoMemory);
         FUNCTIONS.register("crop_seed_bag_roundtrip", () -> CropTests::cropSeedBagRoundtrip);
@@ -531,6 +541,14 @@ public final class RegistrationTests {
         FUNCTIONS.register("uu_values_datapack", () -> UuScannerTests::datapackSeedsDriveGraph);
         FUNCTIONS.register("uu_scanner_unknown", () -> UuScannerTests::unknownItemFails);
         FUNCTIONS.register("uu_scanner_seed_coverage", () -> UuScannerTests::expandedSeedCoverage);
+        FUNCTIONS.register(
+                "uu_scanner_already_recorded", () -> UuScannerTests::alreadyRecordedSkipsRescan);
+        FUNCTIONS.register(
+                "uu_scanner_persistence", () -> UuScannerTests::persistenceCarriesScanProgress);
+        FUNCTIONS.register(
+                "uu_scanner_input_change", () -> UuScannerTests::inputChangeRestartsScan);
+        FUNCTIONS.register(
+                "uu_scanner_record_failure", () -> UuScannerTests::recordFailureHoldsPattern);
         FUNCTIONS.register(
                 "reactor_redstone_port", () -> ReactorAccessHatchTests::redstonePortPowersCore);
         FUNCTIONS.register("reactor_hatch_grid", () -> ReactorAccessHatchTests::hatchExposesGrid);

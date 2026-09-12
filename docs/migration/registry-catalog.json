@@ -2424,7 +2424,7 @@
         "docs/migration/uu-scanner.md",
         "neoforge/src/gameTest/java/ic2/neoforge/test/PatternStorageTests.java"
       ],
-      "note": "模式列表持久化、水晶盘写回与去重经 GameTest 验证;浏览按钮/客户端外观随实机测试。"
+      "note": "模式列表持久化、水晶盘写回(同步 UU 价值快照)与去重经 GameTest 验证;浏览按钮/客户端外观随实机测试。"
     },
     {
       "registry": "item",
@@ -2439,7 +2439,7 @@
         "docs/migration/uu-scanner.md",
         "neoforge/src/gameTest/java/ic2/neoforge/test/ReplicatorTests.java"
       ],
-      "note": "UU 罐/单元链、模式复制与单次模式经 GameTest 验证;连续模式与超频联动、UuGraph 全量价值表随后续切片。"
+      "note": "UU 罐/单元链、单次/连续模式、legacy 按钮 id(0/1 浏览仅停止态、3 停止清进度、4 单次、5 连续)、4 升级槽(超频 0.7ⁿ 速度/1.6ⁿ 耗电、变压器提 tier、储能 +10000 EU)、进度/UU 银行/罐/模式/选中图案持久化、图案变更重置(legacy refreshInfo)、∞值图案永续烧 UU(legacy 怪癖)均经 GameTest 验证;屏幕按钮实机观感留人工验收。"
     },
     {
       "registry": "item",
@@ -2454,7 +2454,7 @@
         "docs/migration/uu-scanner.md",
         "neoforge/src/gameTest/java/ic2/neoforge/test/UuScannerTests.java"
       ],
-      "note": "扫描机本体(256 EU/tick、3300 tick、水晶盘记录、未知物品失败)经 GameTest 验证;UuGraph 全量配方图与 pattern_storage/replicator 链接随后续切片。 价值图:已接入 UuValues(矿物种子+处理族配方图,core UuValueGraph)。"
+      "note": "扫描机两段式完整语义:3300 tick 扫描→GUI record 落盘(水晶盘/相邻模式库,失败 TRANSFER_ERROR 保持)、ALREADY_RECORDED 预检不烧电、未知物品零耗电即败、已知∞值烧满 3300 tick 后失败卡住(legacy 怪癖)、tier 4=512V、进度/快照/状态持久化;价值快照组件(CRYSTAL_MEMORY_VALUE)记录时烘焙。均经 GameTest 验证;屏幕按钮/tooltip 实机观感留人工验收。"
     },
     {
       "registry": "item",
@@ -4427,8 +4427,11 @@
       "status": "implemented",
       "evidence": [
         "neoforge/src/main/java/ic2/neoforge/registration/ModItems.java",
-        "neoforge/src/gameTest/java/ic2/neoforge/test/ComponentTests.java"
-      ]
+        "neoforge/src/gameTest/java/ic2/neoforge/test/ComponentTests.java",
+        "docs/migration/uu-scanner.md",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/CrystalMemoryTests.java"
+      ],
+      "note": "图案+UU 价值快照组件(CRYSTAL_MEMORY_VALUE)与 tooltip SI 格式化(SiString)经 GameTest 验证;tooltip 渲染留人工验收。"
     },
     {
       "registry": "item",
@@ -8699,7 +8702,7 @@
         "docs/migration/uu-scanner.md",
         "neoforge/src/gameTest/java/ic2/neoforge/test/PatternStorageTests.java"
       ],
-      "note": "模式列表持久化、水晶盘写回与去重经 GameTest 验证;浏览按钮/客户端外观随实机测试。"
+      "note": "模式列表持久化、水晶盘写回(同步 UU 价值快照)与去重经 GameTest 验证;浏览按钮/客户端外观随实机测试。"
     },
     {
       "registry": "block",
@@ -8714,7 +8717,7 @@
         "docs/migration/uu-scanner.md",
         "neoforge/src/gameTest/java/ic2/neoforge/test/ReplicatorTests.java"
       ],
-      "note": "UU 罐/单元链、模式复制与单次模式经 GameTest 验证;连续模式与超频联动、UuGraph 全量价值表随后续切片。"
+      "note": "UU 罐/单元链、单次/连续模式、legacy 按钮 id(0/1 浏览仅停止态、3 停止清进度、4 单次、5 连续)、4 升级槽(超频 0.7ⁿ 速度/1.6ⁿ 耗电、变压器提 tier、储能 +10000 EU)、进度/UU 银行/罐/模式/选中图案持久化、图案变更重置(legacy refreshInfo)、∞值图案永续烧 UU(legacy 怪癖)均经 GameTest 验证;屏幕按钮实机观感留人工验收。"
     },
     {
       "registry": "block",
@@ -8729,7 +8732,7 @@
         "docs/migration/uu-scanner.md",
         "neoforge/src/gameTest/java/ic2/neoforge/test/UuScannerTests.java"
       ],
-      "note": "扫描机本体(256 EU/tick、3300 tick、水晶盘记录、未知物品失败)经 GameTest 验证;UuGraph 全量配方图与 pattern_storage/replicator 链接随后续切片。 价值图:已接入 UuValues(矿物种子+处理族配方图,core UuValueGraph)。"
+      "note": "扫描机两段式完整语义:3300 tick 扫描→GUI record 落盘(水晶盘/相邻模式库,失败 TRANSFER_ERROR 保持)、ALREADY_RECORDED 预检不烧电、未知物品零耗电即败、已知∞值烧满 3300 tick 后失败卡住(legacy 怪癖)、tier 4=512V、进度/快照/状态持久化;价值快照组件(CRYSTAL_MEMORY_VALUE)记录时烘焙。均经 GameTest 验证;屏幕按钮/tooltip 实机观感留人工验收。"
     },
     {
       "registry": "block",
@@ -12108,7 +12111,7 @@
         "docs/migration/uu-scanner.md",
         "neoforge/src/gameTest/java/ic2/neoforge/test/PatternStorageTests.java"
       ],
-      "note": "模式列表持久化、水晶盘写回与去重经 GameTest 验证;浏览按钮/客户端外观随实机测试。"
+      "note": "模式列表持久化、水晶盘写回(同步 UU 价值快照)与去重经 GameTest 验证;浏览按钮/客户端外观随实机测试。"
     },
     {
       "registry": "block_entity",
@@ -12123,7 +12126,7 @@
         "docs/migration/uu-scanner.md",
         "neoforge/src/gameTest/java/ic2/neoforge/test/ReplicatorTests.java"
       ],
-      "note": "UU 罐/单元链、模式复制与单次模式经 GameTest 验证;连续模式与超频联动、UuGraph 全量价值表随后续切片。"
+      "note": "UU 罐/单元链、单次/连续模式、legacy 按钮 id(0/1 浏览仅停止态、3 停止清进度、4 单次、5 连续)、4 升级槽(超频 0.7ⁿ 速度/1.6ⁿ 耗电、变压器提 tier、储能 +10000 EU)、进度/UU 银行/罐/模式/选中图案持久化、图案变更重置(legacy refreshInfo)、∞值图案永续烧 UU(legacy 怪癖)均经 GameTest 验证;屏幕按钮实机观感留人工验收。"
     },
     {
       "registry": "block_entity",
@@ -12138,7 +12141,7 @@
         "docs/migration/uu-scanner.md",
         "neoforge/src/gameTest/java/ic2/neoforge/test/UuScannerTests.java"
       ],
-      "note": "扫描机本体(256 EU/tick、3300 tick、水晶盘记录、未知物品失败)经 GameTest 验证;UuGraph 全量配方图与 pattern_storage/replicator 链接随后续切片。 价值图:已接入 UuValues(矿物种子+处理族配方图,core UuValueGraph)。"
+      "note": "扫描机两段式完整语义:3300 tick 扫描→GUI record 落盘(水晶盘/相邻模式库,失败 TRANSFER_ERROR 保持)、ALREADY_RECORDED 预检不烧电、未知物品零耗电即败、已知∞值烧满 3300 tick 后失败卡住(legacy 怪癖)、tier 4=512V、进度/快照/状态持久化;价值快照组件(CRYSTAL_MEMORY_VALUE)记录时烘焙。均经 GameTest 验证;屏幕按钮/tooltip 实机观感留人工验收。"
     },
     {
       "registry": "block_entity",
@@ -13170,7 +13173,7 @@
         "docs/migration/uu-scanner.md",
         "neoforge/src/gameTest/java/ic2/neoforge/test/PatternStorageTests.java"
       ],
-      "note": "模式列表持久化、水晶盘写回与去重经 GameTest 验证;浏览按钮/客户端外观随实机测试。"
+      "note": "模式列表持久化、水晶盘写回(同步 UU 价值快照)与去重经 GameTest 验证;浏览按钮/客户端外观随实机测试。"
     },
     {
       "registry": "menu",
@@ -13185,7 +13188,7 @@
         "docs/migration/uu-scanner.md",
         "neoforge/src/gameTest/java/ic2/neoforge/test/ReplicatorTests.java"
       ],
-      "note": "UU 罐/单元链、模式复制与单次模式经 GameTest 验证;连续模式与超频联动、UuGraph 全量价值表随后续切片。"
+      "note": "UU 罐/单元链、单次/连续模式、legacy 按钮 id(0/1 浏览仅停止态、3 停止清进度、4 单次、5 连续)、4 升级槽(超频 0.7ⁿ 速度/1.6ⁿ 耗电、变压器提 tier、储能 +10000 EU)、进度/UU 银行/罐/模式/选中图案持久化、图案变更重置(legacy refreshInfo)、∞值图案永续烧 UU(legacy 怪癖)均经 GameTest 验证;屏幕按钮实机观感留人工验收。"
     },
     {
       "registry": "menu",
@@ -13200,7 +13203,7 @@
         "docs/migration/uu-scanner.md",
         "neoforge/src/gameTest/java/ic2/neoforge/test/UuScannerTests.java"
       ],
-      "note": "扫描机本体(256 EU/tick、3300 tick、水晶盘记录、未知物品失败)经 GameTest 验证;UuGraph 全量配方图与 pattern_storage/replicator 链接随后续切片。 价值图:已接入 UuValues(矿物种子+处理族配方图,core UuValueGraph)。"
+      "note": "扫描机两段式完整语义:3300 tick 扫描→GUI record 落盘(水晶盘/相邻模式库,失败 TRANSFER_ERROR 保持)、ALREADY_RECORDED 预检不烧电、未知物品零耗电即败、已知∞值烧满 3300 tick 后失败卡住(legacy 怪癖)、tier 4=512V、进度/快照/状态持久化;价值快照组件(CRYSTAL_MEMORY_VALUE)记录时烘焙。均经 GameTest 验证;屏幕按钮/tooltip 实机观感留人工验收。"
     },
     {
       "registry": "menu",

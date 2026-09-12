@@ -133,7 +133,7 @@ public final class IndustrialCraftClient {
                     else if (kind == MachineKind.UU_SCANNER)
                         event.register(registration.menu().get(), UuScannerScreen::new);
                     else if (kind == MachineKind.REPLICATOR)
-                        event.register(registration.menu().get(), MachineScreen::new);
+                        event.register(registration.menu().get(), ReplicatorScreen::new);
                     else if (kind == MachineKind.ITEM_BUFFER)
                         event.register(registration.menu().get(), ItemBufferScreen::new);
                     else if (kind == MachineKind.ADV_MINER)
