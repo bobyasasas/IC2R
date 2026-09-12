@@ -15,7 +15,6 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.GameType;
-import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.phys.AABB;
 
@@ -27,71 +26,70 @@ import java.util.List;
  * super-heat shot bills 2500 EU and smelts the mined block in place (sand to glass) without a
  * drop, sneak + use cycles the eight modes free of charge, and the explosive shot bills 5000 EU
  * and detonates on impact.
+ *
+ * <p>The runner spaces plots only six blocks apart and runs every test in parallel, so nothing
+ * here may travel sideways: every shot is fired straight down from a mock shooter floating high
+ * in this plot's own column, the mined pads sit low like every other suite's structures (a
+ * distant high explosion cannot descend far enough to still break a low block), and the
+ * explosive test detonates inside a stone box lined with a shoot-through glass lid so the
+ * twelve-and-a-half block blast never leaves the plot.
  */
 final class LaserTests {
-    private static final BlockPos SHOOTER = new BlockPos(2, 2, 2);
-    private static final int WALL_X = 6;
+    /** Shooter feet position; the mock eye sits 1.62 above and looks straight down. */
+    private static final BlockPos SHOOTER = new BlockPos(3, 16, 2);
 
     static void miningShotBillsAndBreaks(GameTestHelper helper) {
         ItemStack laser = charged(2000.0, 0);
-        Player shooter = aimDownRange(helper, laser, SHOOTER);
-        List<BlockPos> wall = buildWall(helper, WALL_X, 3, 1, 2, Blocks.STONE);
-        helper.assertTrue(
-                ElectricItemEnergy.charge(laser) == 2000.0, "The laser holds the test charge");
+        Player shooter = aimDown(helper, laser);
+        buildFloor(helper);
+        List<BlockPos> pad = buildPad(helper, 2, Blocks.STONE);
         fire(helper, shooter);
         helper.startSequence()
                 .thenWaitUntil(
                         () -> {
                             helper.assertTrue(
-                                    brokenCount(helper, wall) >= 1,
-                                    "The mining beam must break a wall block");
-                            assertSingleDrop(helper, room(helper, WALL_X), Items.COBBLESTONE);
+                                    brokenCount(helper, pad) >= 1,
+                                    "The mining beam must break a pad block");
+                            assertSingleDrop(helper, room(helper), Items.COBBLESTONE);
                             helper.assertTrue(
                                     ElectricItemEnergy.charge(laser) == 750.0,
                                     "The mining shot bills 1250 EU");
-                            assertBeamSpent(helper, room(helper, WALL_X));
+                            assertBeamSpent(helper, room(helper));
                         })
                 .thenSucceed();
     }
 
     static void superheatSmeltsSandToGlass(GameTestHelper helper) {
         ItemStack laser = charged(4000.0, 4);
-        Player shooter = aimDownRange(helper, laser, SHOOTER);
-        // Sand obeys gravity: a stone pedestal keeps the wall where the beam expects it.
-        for (int z = 1; z <= 3; z++) {
-            helper.setBlock(new BlockPos(WALL_X, 1, z), Blocks.STONE);
-            helper.setBlock(new BlockPos(WALL_X, 2, z), Blocks.STONE);
-        }
-        List<BlockPos> wall = buildWall(helper, WALL_X, 3, 1, 2, Blocks.SAND);
+        Player shooter = aimDown(helper, laser);
+        buildFloor(helper);
+        List<BlockPos> sandPad = buildPad(helper, 2, Blocks.SAND);
         fire(helper, shooter);
         helper.startSequence()
                 .thenWaitUntil(
                         () -> {
                             long glass =
-                                    wall.stream()
-                                            .filter(
-                                                    pos ->
-                                                            helper.getBlockState(pos)
-                                                                    .is(Blocks.GLASS))
+                                    sandPad.stream()
+                                            .filter(pos -> helper.getBlockState(pos).is(Blocks.GLASS))
                                             .count();
                             helper.assertTrue(
                                     glass == 1,
                                     "The super-heat beam must smelt exactly one sand block in "
                                             + "place");
                             long sand =
-                                    wall.stream()
+                                    sandPad.stream()
                                             .filter(pos -> helper.getBlockState(pos).is(Blocks.SAND))
                                             .count();
                             helper.assertTrue(
-                                    sand == wall.size() - 1,
-                                    "The super-heat beam must consume exactly one wall block");
+                                    sand == sandPad.size() - 1,
+                                    "The super-heat beam must consume exactly one sand block");
                             helper.assertTrue(
-                                    dropsIn(helper, room(helper, WALL_X), Items.SAND).isEmpty(),
+                                    dropsIn(helper, room(helper), Items.SAND).isEmpty(),
                                     "The smelted block must not drop");
                             helper.assertTrue(
                                     ElectricItemEnergy.charge(laser) == 1500.0,
                                     "The super-heat shot bills 2500 EU");
-                            assertBeamSpent(helper, room(helper, WALL_X));
+                            assertBeamSpent(helper, room(helper));
                         })
                 .thenSucceed();
     }
@@ -115,28 +113,20 @@ final class LaserTests {
     }
 
     static void explosiveShotDetonates(GameTestHelper helper) {
-        // Deep placement mirrors the proven itnt isolation so the crater stays inside the
-        // runner's test plot.
-        BlockPos shooterPos = new BlockPos(12, 2, 13);
         ItemStack laser = charged(10000.0, 6);
-        Player shooter = aimDownRange(helper, laser, shooterPos);
-        // Dirt absorbs 1.85 ray power per block against stone's 3.5, so the fixed five-power
-        // blast carves a real crater instead of stopping at the first block. Two layers deep
-        // keep the crater well above the assert floor wherever the scattered beam lands.
-        List<BlockPos> wall =
-                new ArrayList<>(buildWall(helper, 16, 3, 13, 3, Blocks.DIRT));
-        wall.addAll(buildWall(helper, 17, 3, 13, 3, Blocks.DIRT));
+        Player shooter = aimDown(helper, laser);
+        List<BlockPos> dirt = buildBlastBox(helper);
         fire(helper, shooter);
         helper.startSequence()
                 .thenWaitUntil(
                         () -> {
                             helper.assertTrue(
-                                    brokenCount(helper, wall) >= 4,
+                                    brokenCount(helper, dirt) >= 4,
                                     "The explosive beam must detonate on impact");
                             helper.assertTrue(
                                     ElectricItemEnergy.charge(laser) == 5000.0,
                                     "The explosive shot bills 5000 EU");
-                            assertBeamSpent(helper, room(helper, 16));
+                            assertBeamSpent(helper, room(helper));
                         })
                 .thenSucceed();
     }
@@ -150,52 +140,84 @@ final class LaserTests {
         return laser;
     }
 
-    /** Places a mock shooter at {@code feet} looking down +X with its eye mid block row. */
-    private static Player aimDownRange(
-            GameTestHelper helper, ItemStack laser, BlockPos feet) {
+    /** Places a mock shooter high over the pad looking straight down. */
+    private static Player aimDown(GameTestHelper helper, ItemStack laser) {
         Player shooter = helper.makeMockPlayer(GameType.SURVIVAL);
         shooter.setItemInHand(InteractionHand.MAIN_HAND, laser);
-        BlockPos absolute = helper.absolutePos(feet);
+        BlockPos absolute = helper.absolutePos(SHOOTER);
         shooter.setPos(absolute.getX() + 0.5, absolute.getY(), absolute.getZ() + 0.5);
-        shooter.setYRot(-90.0F);
-        shooter.setXRot(0.0F);
+        shooter.setXRot(90.0F);
+        shooter.setYRot(0.0F);
         return shooter;
     }
 
-    private static List<BlockPos> buildWall(
-            GameTestHelper helper, int x, int yBase, int zBase, int height, Block block) {
-        List<BlockPos> wall = new ArrayList<>();
-        for (int y = yBase; y < yBase + height; y++) {
-            for (int z = zBase; z <= zBase + 2; z++) {
-                BlockPos pos = new BlockPos(x, y, z);
-                helper.setBlock(pos, block);
-                wall.add(pos);
+    /** Catches the mined drop: 5x5 stone under every pad so the drop rests inside the room. */
+    private static void buildFloor(GameTestHelper helper) {
+        for (int x = 1; x <= 5; x++) {
+            for (int z = 0; z <= 4; z++) {
+                helper.setBlock(new BlockPos(x, 1, z), Blocks.STONE);
             }
         }
-        return wall;
+    }
+
+    /** Builds a 3x3 pad centred under the shooter on layer {@code y}. */
+    private static List<BlockPos> buildPad(GameTestHelper helper, int y, net.minecraft.world.level.block.Block block) {
+        List<BlockPos> pad = new ArrayList<>();
+        for (int x = 2; x <= 4; x++) {
+            for (int z = 1; z <= 3; z++) {
+                BlockPos pos = new BlockPos(x, y, z);
+                helper.setBlock(pos, block);
+                pad.add(pos);
+            }
+        }
+        return pad;
+    }
+
+    /**
+     * Builds the sealed detonation box: a 5x5 stone floor at y=1, stone ring walls up to y=5,
+     * a 3x3x3 dirt fill inside, and a 3x3 shoot-through glass lid at y=5. The beam punches
+     * through the lid and detonates at the dirt surface, where every ray dies in the stone
+     * shell before it can reach a neighbouring plot.
+     */
+    private static List<BlockPos> buildBlastBox(GameTestHelper helper) {
+        buildFloor(helper);
+        List<BlockPos> dirt = new ArrayList<>();
+        for (int y = 2; y <= 5; y++) {
+            for (int x = 1; x <= 5; x++) {
+                for (int z = 0; z <= 4; z++) {
+                    boolean inside = x >= 2 && x <= 4 && z >= 1 && z <= 3;
+                    BlockPos pos = new BlockPos(x, y, z);
+                    if (inside && y <= 4) {
+                        helper.setBlock(pos, Blocks.DIRT);
+                        dirt.add(pos);
+                    } else if (inside) {
+                        helper.setBlock(pos, Blocks.GLASS);
+                    } else {
+                        helper.setBlock(pos, Blocks.STONE);
+                    }
+                }
+            }
+        }
+        return dirt;
     }
 
     private static void fire(GameTestHelper helper, Player shooter) {
-        ModTools.MINING_LASER
-                .get()
-                .use(helper.getLevel(), shooter, InteractionHand.MAIN_HAND);
+        ModTools.MINING_LASER.get().use(helper.getLevel(), shooter, InteractionHand.MAIN_HAND);
     }
 
-    private static long brokenCount(GameTestHelper helper, List<BlockPos> wall) {
-        return wall.stream().filter(pos -> helper.getBlockState(pos).isAir()).count();
+    private static long brokenCount(GameTestHelper helper, List<BlockPos> pad) {
+        return pad.stream().filter(pos -> helper.getBlockState(pos).isAir()).count();
     }
 
-    private static AABB room(GameTestHelper helper, int maxX) {
+    private static AABB room(GameTestHelper helper) {
         return new AABB(
-                helper.absolutePos(new BlockPos(-3, 0, -3)).getCenter(),
-                helper.absolutePos(new BlockPos(maxX + 3, 7, 20)).getCenter());
+                helper.absolutePos(new BlockPos(0, 0, 0)).getCenter(),
+                helper.absolutePos(new BlockPos(9, 8, 6)).getCenter());
     }
 
     private static void assertBeamSpent(GameTestHelper helper, AABB area) {
         helper.assertTrue(
-                helper.getLevel()
-                        .getEntitiesOfClass(LaserBulletEntity.class, area)
-                        .isEmpty(),
+                helper.getLevel().getEntitiesOfClass(LaserBulletEntity.class, area).isEmpty(),
                 "The beam must be spent after its impact");
     }
 

@@ -41,25 +41,39 @@ ingredient 未注册而 pending），recipes.py 745→748 converted（pending 51
 
 ## GameTest（LaserTests 4 例，双模式 418=414+4 全绿）
 
-- `laser_mining_shot`：2000 EU 开采模式打石墙——恰破 1 块、恰掉 1 圆石、恰扣 1250 EU、
-  光束用尽（无存活弹丸）。
-- `laser_superheat_smelts_sand_to_glass`：4000 EU 超热模式打沙墙（石基座防沙落）——
+隔离设计（关键）：StructureGridSpawner 源码证实地块间距仅 结构尺寸+5（empty 结构
+1×1×1 → 横向 6 格、行距 7 格），且所有测试并行跑在同一世界。早期横向 3 层土墙版
+（墙在 x=15..17，已越界进邻居地块）失败在 4 例间轮换、还污染 boat_lava——结构性
+跨测试污染，非实现缺陷。终版原则：弹道只允许竖直、爆炸必须自封闭——
+
+- mock shooter 悬在自家地块上空 (3,16,2)、xRot=90° 俯视，4 例全部竖直开火，
+  光束永不横穿邻居地块；
+- 采掘垫低置（y=1 石地板 + y=2 垫块，与其它测试的结构同高带）：远处高空爆炸的
+  射线下坠 13 格空气即被 0.5/格吸收耗尽，够不到低结构（这也是 itnt 高空引爆
+  不伤邻居的几何原因）；石地板兼作接drop盘，圆石掉落物不会坠出断言房间；
+- 爆炸例：弹丸穿过 y=5 玻璃顶盖（玻璃是激光穿透方块）在箱内土芯表面起爆——
+  5×5 石壳（侧壁 y=2..5）把 12.5 格半径的 Ic2Explosion 全部封死在地块内
+  （玻璃吸收 ~1.8/块 + 石头 3.5/块 > 5 功率，箱内泥土 27 块供弹坑 ≥4 断言）。
+
+- `laser_mining_shot`：2000 EU 开采模式俯射石垫——恰破 1 块、恰掉 1 圆石、
+  恰扣 1250 EU、光束用尽（无存活弹丸）。
+- `laser_superheat_smelts_sand_to_glass`：4000 EU 超热模式俯射沙垫（石地板防沙落）——
   恰 1 块 sand→glass 原位置换、无掉落、恰扣 2500 EU。
 - `laser_mode_switch`：潜行+使用循环 0→1→…→7→0，全程不耗电。
-- `laser_explosive_shot`：10000 EU 爆炸模式打 3×3×2 土墙（18 块）——Ic2Explosion
-  炸出弹坑 ≥4 块、恰扣 5000 EU、光束用尽。土墙而非石墙：IC2 射线爆炸中石头吸收
-  3.5/块（0.5+(6+4)×0.3），5 功率只啃 1 块；泥土 1.85/块能形成真实弹坑。
+- `laser_explosive_shot`：10000 EU 爆炸模式俯射封爆箱——箱内炸出弹坑 ≥4 块、
+  恰扣 5000 EU、光束用尽。
 
-调试记录：NeoForge `FakePlayer` 不可骑乘之外，GameTest 里 `makeMockPlayer` 不入世界
-不 tick，但其 pos/yaw/xRot 直接可用——`Item.use(level, player, hand)` 可在测试中直接
-调用复刻玩家开火。弹着点散布来自 shoot(…, inaccuracy 1.0)，目标需留一倍余量。
+调试记录：GameTest 里 `makeMockPlayer` 不入世界不 tick，但 pos/yaw/xRot 直接可用
+——`Item.use(level, player, hand)` 可在测试中直接调用复刻玩家开火；空结构 1×1×1
+意味着地块尺寸不约束方块摆放（相对坐标可超界），但邻居就在 6 格外，摆放越界即
+等于把测试断言押在别人的地块上。
 
 ## 验证
 
-- 完整链：build → GT IC2 模式 418 → GT 默认模式 418 → :core:test → verify_artifact →
-  progress 跑+--check → git diff --check 全绿。
+- 完整链：build → GT IC2 模式 418（×3）→ GT 默认模式 418（×2）→ :core:test →
+  verify_artifact → progress 跑+--check → git diff --check 全绿。
 - 既有 flaky（与本切片无关，复跑即绿）：luminator_ignite（火焰随机 tick）、
-  boat_lava（骑手着火计时偶发）、laser_explosive_shot 加厚土墙后稳定。
+  boat_lava（骑手着火计时偶发）。
 
 ## 待人工验收（视觉/UX，保留人工）
 
