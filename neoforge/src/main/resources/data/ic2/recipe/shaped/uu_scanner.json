@@ -1,0 +1,19 @@
+{
+  "type": "ic2:shaped",
+  "pattern": [
+    "ABA",
+    "CDC",
+    "EFE"
+  ],
+  "result": {
+    "id": "ic2:uu_scanner"
+  },
+  "key": {
+    "A": "ic2:iron_plate",
+    "B": "ic2:reinforced_glass",
+    "C": "ic2:electric_motor",
+    "D": "ic2:luminator",
+    "E": "ic2:advanced_circuit",
+    "F": "ic2:advanced_machine"
+  }
+}

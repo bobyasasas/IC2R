@@ -1,0 +1,19 @@
+{
+  "type": "ic2:shaped",
+  "pattern": [
+    "ABA",
+    "CDC",
+    "EFE"
+  ],
+  "result": {
+    "id": "ic2:night_vision_goggles"
+  },
+  "key": {
+    "A": "ic2:advanced_heat_exchanger",
+    "B": "ic2:advanced_re_battery",
+    "C": "ic2:luminator",
+    "D": "ic2:reinforced_glass",
+    "E": "ic2:rubber",
+    "F": "ic2:advanced_circuit"
+  }
+}

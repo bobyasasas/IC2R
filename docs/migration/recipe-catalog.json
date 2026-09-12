@@ -2979,8 +2979,8 @@
     {
       "source": "shaped/luminator.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:luminator"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/luminator.json"
     },
     {
       "source": "shaped/lv_transformer.json",
@@ -3153,8 +3153,8 @@
     {
       "source": "shaped/night_vision_goggles.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:night_vision_goggles"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/night_vision_goggles.json"
     },
     {
       "source": "shaped/nuclear_reactor.json",
@@ -3345,8 +3345,8 @@
     {
       "source": "shaped/quantum_helmet.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:quantum_helmet"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/quantum_helmet.json"
     },
     {
       "source": "shaped/quantum_leggings.json",
@@ -3489,14 +3489,14 @@
     {
       "source": "shaped/reinforced_glass.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:reinforced_glass"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/reinforced_glass.json"
     },
     {
       "source": "shaped/reinforced_glass_2.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:reinforced_glass"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/reinforced_glass_2.json"
     },
     {
       "source": "shaped/reinforced_stone.json",
@@ -3519,8 +3519,8 @@
     {
       "source": "shaped/replicator.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported item ic2:reinforced_glass"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/replicator.json"
     },
     {
       "source": "shaped/resin_sheet.json",
@@ -4005,8 +4005,8 @@
     {
       "source": "shaped/uu_scanner.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported item ic2:reinforced_glass"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/uu_scanner.json"
     },
     {
       "source": "shaped/water_generator.json",

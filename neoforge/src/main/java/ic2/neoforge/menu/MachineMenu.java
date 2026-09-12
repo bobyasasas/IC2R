@@ -90,8 +90,11 @@ public final class MachineMenu extends AbstractContainerMenu {
                     });
         } else if (kind == MachineKind.STEAM_GENERATOR) {
             // The boiler has valves and fluid ports, but no internal item slots.
-        } else if (kind == MachineKind.TERRAFORMER || kind == MachineKind.TESLA_COIL) {
-            // The terraformer is hand-loaded and the coil is wired only; both are slotless.
+        } else if (kind == MachineKind.TERRAFORMER
+                || kind == MachineKind.TESLA_COIL
+                || kind == MachineKind.LUMINATOR) {
+            // The terraformer is hand-loaded, the coil is wired only and the luminator is
+            // right-clicked; all three are slotless.
         } else if (kind == MachineKind.PUMP) {
             addFluidContainerSlot(inventory, 0, 56, 35);
             addOutputSlot(inventory, 1, 116, 35);

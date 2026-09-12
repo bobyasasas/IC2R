@@ -1,0 +1,7 @@
+{
+  "type": "minecraft:function",
+  "function": "ic2_tests:luminator_ignite",
+  "environment": "minecraft:default",
+  "structure": "ic2_tests:empty",
+  "max_ticks": 120
+}

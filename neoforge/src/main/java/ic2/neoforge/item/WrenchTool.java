@@ -1,7 +1,9 @@
 package ic2.neoforge.item;
 
 import ic2.core.geometry.FaceSelection;
+import ic2.neoforge.machine.LuminatorBlockEntity;
 import ic2.neoforge.machine.MachineBlock;
+import ic2.neoforge.machine.MachineKind;
 import ic2.neoforge.registration.ModSounds;
 
 import net.minecraft.core.Direction;
@@ -24,6 +26,17 @@ public interface WrenchTool {
         if (!level.mayInteract(player, pos)
                 || !player.mayUseItemAt(pos, context.getClickedFace(), context.getItemInHand()))
             return InteractionResult.FAIL;
+        // Legacy luminator setFacingWrench: a wrench never rotates the lamp, it flips the
+        // redstone inversion instead (and, unlike other machines, cannot dismantle it).
+        if (((MachineBlock) state.getBlock()).kind() == MachineKind.LUMINATOR) {
+            if (!level.isClientSide()) {
+                if (level.getBlockEntity(pos) instanceof LuminatorBlockEntity luminator)
+                    luminator.toggleInvert();
+                level.playSound(
+                        null, pos, ModSounds.ITEM_WRENCH_USE.get(), SoundSource.BLOCKS, 1, 1);
+            }
+            return InteractionResult.SUCCESS;
+        }
         var hit = context.getClickLocation().subtract(pos.getX(), pos.getY(), pos.getZ());
         var selected =
                 FaceSelection.select(

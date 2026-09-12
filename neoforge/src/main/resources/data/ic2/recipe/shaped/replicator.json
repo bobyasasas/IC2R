@@ -1,0 +1,18 @@
+{
+  "type": "ic2:shaped",
+  "pattern": [
+    "SGS",
+    "TTT",
+    "VFV"
+  ],
+  "result": {
+    "id": "ic2:replicator"
+  },
+  "key": {
+    "S": "ic2:reinforced_stone",
+    "G": "ic2:reinforced_glass",
+    "T": "ic2:teleporter",
+    "F": "ic2:mfe",
+    "V": "ic2:hv_transformer"
+  }
+}

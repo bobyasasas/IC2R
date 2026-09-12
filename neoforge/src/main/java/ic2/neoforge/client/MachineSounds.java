@@ -144,7 +144,8 @@ final class MachineSounds {
                     CROPMATRON,
                     CROP_HARVESTER,
                     TESLA_COIL,
-                    SOLAR_GENERATOR ->
+                    SOLAR_GENERATOR,
+                    LUMINATOR ->
                     null;
             case ELECTROLYZER -> ModSounds.MACHINE_ELECTROLYZER_LOOP.get();
             case TERRAFORMER -> ModSounds.MACHINE_TERRAFORMER_LOOP.get();

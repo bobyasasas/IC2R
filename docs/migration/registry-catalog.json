@@ -576,7 +576,14 @@
       "factory": "register",
       "expression": "new ItemBlockIc2(Ic2Blocks.REINFORCED_GLASS, new Properties())",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/block/ReinforcedGlassBlock.java",
+        "neoforge/src/main/java/ic2/neoforge/registration/ModMaterialBlocks.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/LuminatorTests.java",
+        "docs/migration/luminator.md"
+      ],
+      "note": "强化玻璃方块/物品交付：Legacy Ic2GlassBlock 全量属性（强度 5/180、isValidSpawn false、getBlockSupportShape 空）+配方×2+GameTest（luminator_craft/support）。"
     },
     {
       "registry": "item",
@@ -1832,7 +1839,13 @@
       "factory": "register",
       "expression": "new ItemBlockIc2(Ic2Blocks.REACTOR_CHAMBER, new Properties().rarity(Rarity.UNCOMMON))",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/machine/ReactorChamberBlockEntity.java",
+        "neoforge/src/main/java/ic2/neoforge/registration/ModMachines.java",
+        "docs/migration/luminator.md"
+      ],
+      "note": "历史交付补记：MachineKind.REACTOR_CHAMBER+ReactorChamberBlockEntity 随 P12 反应堆切片已交付并在全量 GameTest/CI 验证，本轮补记翻转。"
     },
     {
       "registry": "item",
@@ -2072,7 +2085,14 @@
       "factory": "register",
       "expression": "new ItemBlockIc2(Ic2Blocks.LUMINATOR_FLAT, new Properties())",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/machine/LuminatorBlockEntity.java",
+        "neoforge/src/main/java/ic2/neoforge/machine/MachineBlock.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/LuminatorTests.java",
+        "docs/migration/luminator.md"
+      ],
+      "note": "泛光灯方块/BE/物品交付：0.25 EU/t 点亮、红石 XOR 反转、10000 EU 手放电怪癖（含存读往返）、点燃怪（亡灵 20t）、支撑校验（电缆/能源终端可挂）+6 GameTest。"
     },
     {
       "registry": "item",
@@ -2444,7 +2464,7 @@
       "factory": "register",
       "expression": "new ItemBlockIc2(Ic2Blocks.ENERGY_O_MAT, new Properties())",
       "decision": "preserve",
-            "status": "implemented",
+      "status": "implemented",
       "evidence": [
         "neoforge/src/main/java/ic2/neoforge/machine/MachineKind.java",
         "neoforge/src/main/java/ic2/neoforge/machine/EnergyOMatBlockEntity.java",
@@ -7689,7 +7709,14 @@
       "factory": "register",
       "expression": "new Ic2GlassBlock(Properties.of().noOcclusion().strength(5.0F, 180.0F).sound(SoundType.GLASS).isValidSpawn((state,world,pos,type)->false))",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/block/ReinforcedGlassBlock.java",
+        "neoforge/src/main/java/ic2/neoforge/registration/ModMaterialBlocks.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/LuminatorTests.java",
+        "docs/migration/luminator.md"
+      ],
+      "note": "强化玻璃方块/物品交付：Legacy Ic2GlassBlock 全量属性（强度 5/180、isValidSpawn false、getBlockSupportShape 空）+配方×2+GameTest（luminator_craft/support）。"
     },
     {
       "registry": "block",
@@ -8110,7 +8137,13 @@
       "factory": "register",
       "expression": "Ic2TileEntityBlock.create(Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).strength(2.0F, 10.0F).requiresCorrectToolForDrops().sound(SoundType.METAL), TileEntityReactorChamberElectric.class, false, Ic2TileEntityBlock.DefaultDrop.Machine, Util.onlyNorth, true)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/machine/ReactorChamberBlockEntity.java",
+        "neoforge/src/main/java/ic2/neoforge/registration/ModMachines.java",
+        "docs/migration/luminator.md"
+      ],
+      "note": "历史交付补记：MachineKind.REACTOR_CHAMBER+ReactorChamberBlockEntity 随 P12 反应堆切片已交付并在全量 GameTest/CI 验证，本轮补记翻转。"
     },
     {
       "registry": "block",
@@ -8352,7 +8385,14 @@
       "factory": "register",
       "expression": "Ic2TileEntityBlock.create(Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).strength(5.0F, 10.0F).requiresCorrectToolForDrops().sound(SoundType.METAL).noOcclusion().noCollission().lightLevel((state)->state.getValue(Ic2TileEntityBlock.ACTIVE) ? 15 : 0), TileEntityLuminator.class, true, Ic2TileEntityBlock.DefaultDrop.Self, Util.allFacings, false)",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/machine/LuminatorBlockEntity.java",
+        "neoforge/src/main/java/ic2/neoforge/machine/MachineBlock.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/LuminatorTests.java",
+        "docs/migration/luminator.md"
+      ],
+      "note": "泛光灯方块/BE/物品交付：0.25 EU/t 点亮、红石 XOR 反转、10000 EU 手放电怪癖（含存读往返）、点燃怪（亡灵 20t）、支撑校验（电缆/能源终端可挂）+6 GameTest。"
     },
     {
       "registry": "block",
@@ -8699,7 +8739,7 @@
       "factory": "register",
       "expression": "Ic2TileEntityBlock.create(Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).strength(-1.0F, 3600000.0F).requiresCorrectToolForDrops().sound(SoundType.METAL), TileEntityEnergyOMat.class, false, Ic2TileEntityBlock.DefaultDrop.Self, Util.allFacings, false)",
       "decision": "preserve",
-            "status": "implemented",
+      "status": "implemented",
       "evidence": [
         "neoforge/src/main/java/ic2/neoforge/registration/ModMachines.java",
         "neoforge/src/gameTest/java/ic2/neoforge/test/EnergyOMatTests.java",
@@ -11215,7 +11255,13 @@
       "factory": "register",
       "expression": "TileEntityReactorChamberElectric::new",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/machine/ReactorChamberBlockEntity.java",
+        "neoforge/src/main/java/ic2/neoforge/registration/ModMachines.java",
+        "docs/migration/luminator.md"
+      ],
+      "note": "历史交付补记：MachineKind.REACTOR_CHAMBER+ReactorChamberBlockEntity 随 P12 反应堆切片已交付并在全量 GameTest/CI 验证，本轮补记翻转。"
     },
     {
       "registry": "block_entity",
@@ -11628,7 +11674,14 @@
       "factory": "register",
       "expression": "TileEntityLuminator::new",
       "decision": "preserve",
-      "status": "pending"
+      "status": "implemented",
+      "evidence": [
+        "neoforge/src/main/java/ic2/neoforge/machine/LuminatorBlockEntity.java",
+        "neoforge/src/main/java/ic2/neoforge/machine/MachineBlock.java",
+        "neoforge/src/gameTest/java/ic2/neoforge/test/LuminatorTests.java",
+        "docs/migration/luminator.md"
+      ],
+      "note": "泛光灯方块/BE/物品交付：0.25 EU/t 点亮、红石 XOR 反转、10000 EU 手放电怪癖（含存读往返）、点燃怪（亡灵 20t）、支撑校验（电缆/能源终端可挂）+6 GameTest。"
     },
     {
       "registry": "block_entity",
@@ -12095,7 +12148,7 @@
       "factory": "register",
       "expression": "TileEntityEnergyOMat::new",
       "decision": "preserve",
-            "status": "implemented",
+      "status": "implemented",
       "evidence": [
         "neoforge/src/main/java/ic2/neoforge/machine/MachineKind.java",
         "neoforge/src/main/java/ic2/neoforge/machine/EnergyOMatBlockEntity.java",

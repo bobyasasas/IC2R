@@ -87,7 +87,8 @@ public enum MachineKind implements StringRepresentable {
     CROPMATRON("cropmatron", 10000, 11, 0, 0),
     CROP_HARVESTER("crop_harvester", 10000, 15, 0, 0),
     TESLA_COIL("tesla_coil", 10000, 0, 0, 0),
-    TERRAFORMER("terraformer", 100000, 0, 0, 0);
+    TERRAFORMER("terraformer", 100000, 0, 0, 0),
+    LUMINATOR("luminator", 5, 0, 0, 0);
 
     public static final Codec<MachineKind> CODEC =
             StringRepresentable.fromEnum(MachineKind::values);
@@ -115,7 +116,8 @@ public enum MachineKind implements StringRepresentable {
                 || this == MANUAL_KINETIC_GENERATOR
                 || this == FERMENTER
                 || this == LIQUID_HEAT_EXCHANGER
-                || this == FLUID_REGULATOR;
+                || this == FLUID_REGULATOR
+                || this == LUMINATOR;
     }
 
     public boolean turbine() {

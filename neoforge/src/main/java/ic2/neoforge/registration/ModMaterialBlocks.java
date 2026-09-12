@@ -1,6 +1,7 @@
 package ic2.neoforge.registration;
 
 import ic2.neoforge.IndustrialCraft;
+import ic2.neoforge.block.ReinforcedGlassBlock;
 import ic2.neoforge.world.MiningPipeBlock;
 
 import net.minecraft.world.item.CreativeModeTabs;
@@ -28,6 +29,16 @@ public final class ModMaterialBlocks {
                     properties ->
                             new ic2.neoforge.world.IronFenceBlock(
                                     properties.strength(5.0F, 10.0F).sound(SoundType.METAL)));
+    public static final DeferredBlock<ReinforcedGlassBlock> REINFORCED_GLASS =
+            BLOCKS.registerBlock(
+                    "reinforced_glass",
+                    properties ->
+                            new ReinforcedGlassBlock(
+                                    properties
+                                            .noOcclusion()
+                                            .strength(5.0F, 180.0F)
+                                            .sound(SoundType.GLASS)
+                                            .isValidSpawn((state, world, pos, type) -> false)));
     public static final DeferredBlock<MiningPipeBlock> MINING_PIPE =
             BLOCKS.registerBlock(
                     "mining_pipe",
@@ -52,6 +63,7 @@ public final class ModMaterialBlocks {
     private static Map<String, DeferredBlock<Block>> blocks() {
         ITEMS.registerSimpleBlockItem(IRON_FENCE);
         ITEMS.registerSimpleBlockItem(MINING_PIPE);
+        ITEMS.registerSimpleBlockItem(REINFORCED_GLASS);
         var result = new LinkedHashMap<String, DeferredBlock<Block>>();
         add(result, "bronze_block", 5, 10, SoundType.METAL, MapColor.NONE);
         add(result, "lead_block", 4, 10, SoundType.METAL, MapColor.NONE);
@@ -99,6 +111,7 @@ public final class ModMaterialBlocks {
         if (event.getTabKey().equals(CreativeModeTabs.BUILDING_BLOCKS)) {
             MATERIALS.values().forEach(event::accept);
             event.accept(IRON_FENCE);
+            event.accept(REINFORCED_GLASS);
         } else if (event.getTabKey().equals(CreativeModeTabs.INGREDIENTS)) {
             event.accept(MINING_PIPE);
         }

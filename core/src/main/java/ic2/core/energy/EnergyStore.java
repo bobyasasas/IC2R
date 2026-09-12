@@ -58,6 +58,16 @@ public final class EnergyStore {
         return true;
     }
 
+    /**
+     * Legacy forceAddEnergy: deposits past the capacity cap. Only the luminator hand-discharge
+     * quirk uses this — the grid can never push a sink above capacity because it goes through
+     * {@link #insert}, but a discharged electric item may top the store up to 10000 EU.
+     */
+    public void forceAdd(double amount) {
+        checkAmount(amount);
+        stored += amount;
+    }
+
     private static void checkAmount(double amount) {
         if (!Double.isFinite(amount) || amount < 0)
             throw new IllegalArgumentException("Invalid transfer amount");

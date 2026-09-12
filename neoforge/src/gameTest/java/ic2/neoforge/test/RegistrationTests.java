@@ -99,6 +99,12 @@ public final class RegistrationTests {
         FUNCTIONS.register("tesla_coil_shock", () -> TeslaCoilTests::shockAndLedger);
         FUNCTIONS.register("tesla_coil_gate", () -> TeslaCoilTests::redstoneGateAndEmptyTank);
         FUNCTIONS.register("tesla_coil_hazmat", () -> TeslaCoilTests::hazmatImmunityAndSplit);
+        FUNCTIONS.register("luminator_ledger", () -> LuminatorTests::redstoneLedger);
+        FUNCTIONS.register("luminator_invert", () -> LuminatorTests::invertToggle);
+        FUNCTIONS.register("luminator_discharge", () -> LuminatorTests::handDischargeQuirk);
+        FUNCTIONS.register("luminator_ignite", () -> LuminatorTests::igniteMonsters);
+        FUNCTIONS.register("luminator_support", () -> LuminatorTests::supportCheck);
+        FUNCTIONS.register("luminator_craft", () -> LuminatorTests::crafting);
         FUNCTIONS.register("tool_interactions", () -> ToolTests::rotationAndInsulation);
         FUNCTIONS.register("tool_crafting", () -> ToolTests::crafting);
         FUNCTIONS.register("transformer_profiles", () -> EnergyDeviceTests::profiles);

@@ -13,6 +13,7 @@ import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.MapColor;
 import net.neoforged.bus.api.IEventBus;
@@ -58,13 +59,7 @@ public final class ModMachines {
                     BLOCKS.registerBlock(
                             id,
                             properties ->
-                                    new MachineBlock(
-                                            kind,
-                                            properties
-                                                    .mapColor(MapColor.METAL)
-                                                    .strength(2, 10)
-                                                    .requiresCorrectToolForDrops()
-                                                    .sound(SoundType.METAL)));
+                                    new MachineBlock(kind, machineProperties(kind, properties)));
             ITEMS.registerSimpleBlockItem(block);
             DeferredHolder<BlockEntityType<?>, BlockEntityType<MachineBlockEntity>> entity =
                     ENTITIES.register(
@@ -87,6 +82,19 @@ public final class ModMachines {
             result.put(kind, new Registration(block, entity, menu));
         }
         return Collections.unmodifiableMap(result);
+    }
+
+    /** Shared machine shell properties; the luminator keeps its legacy lamp spec. */
+    private static BlockBehaviour.Properties machineProperties(
+            MachineKind kind, BlockBehaviour.Properties properties) {
+        properties.mapColor(MapColor.METAL).strength(2, 10).requiresCorrectToolForDrops()
+                .sound(SoundType.METAL);
+        if (kind == MachineKind.LUMINATOR) {
+            properties.mapColor(MapColor.COLOR_LIGHT_GRAY).strength(5.0F, 10.0F);
+            properties.noOcclusion().noCollision().lightLevel(
+                    state -> state.getValue(MachineBlock.ACTIVE) ? 15 : 0);
+        }
+        return properties;
     }
 
     public static MachineBlockEntity createEntity(
@@ -168,6 +176,7 @@ public final class ModMachines {
             case CROP_HARVESTER -> new ic2.neoforge.machine.CropHarvesterBlockEntity(pos, state);
             case TESLA_COIL -> new ic2.neoforge.machine.TeslaCoilBlockEntity(pos, state);
             case TERRAFORMER -> new ic2.neoforge.machine.TerraformerBlockEntity(pos, state);
+            case LUMINATOR -> new ic2.neoforge.machine.LuminatorBlockEntity(pos, state);
         };
     }
 
