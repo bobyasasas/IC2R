@@ -354,6 +354,10 @@ public final class RegistrationTests {
                 "reactor_adjacent_rods", () -> NuclearReactorTests::adjacentRodMultipliesHeat);
         FUNCTIONS.register("reactor_vent_absorb", () -> EntityTickingTests.wrap(NuclearReactorTests::ventAbsorbsRodHeat));
         FUNCTIONS.register("reactor_meltdown", () -> EntityTickingTests.wrap(NuclearReactorTests::meltDownExplodesCore));
+        FUNCTIONS.register(
+                "reactor_coolant_overflow", () -> EntityTickingTests.wrap(NuclearReactorTests::coolantCellDestroysOnOverflow));
+        FUNCTIONS.register(
+                "reactor_vent_overflow", () -> EntityTickingTests.wrap(NuclearReactorTests::heatVentDestroysOnOverflow));
         FUNCTIONS.register("reactor_chamber_widen", () -> EntityTickingTests.wrap(ReactorChamberTests::chamberWidensGrid));
         FUNCTIONS.register(
                 "reactor_chamber_shrink", () -> ReactorChamberTests::brokenChamberEjectsColumn);

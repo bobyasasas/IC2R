@@ -348,9 +348,11 @@ public final class NuclearReactorBlockEntity extends PoweredBlockEntity implemen
                         continue;
                     component.processChamber(stack, this, x, y, heatRun);
                     var current = getItemAt(x, y);
-                    // setItemAt replaced the slot (depleted swap): keep it. Otherwise persist the
+                    // setItemAt replaced the slot (depleted swap): keep it. A consumed component
+                    // (heat-storage overflow) leaves the slot empty. Otherwise persist the
                     // component's mutation (depletion ticks) on the stored stack.
-                    if (current.getItem() == stack.getItem()
+                    if (current != null
+                            && current.getItem() == stack.getItem()
                             && !net.minecraft.world.item.ItemStack.matches(current, stack))
                         setItemAt(x, y, stack);
                 }
@@ -537,7 +539,9 @@ public final class NuclearReactorBlockEntity extends PoweredBlockEntity implemen
     @Override
     public void setItemAt(int x, int y, ItemStack stack) {
         if (x >= 0 && x < columns() && y >= 0 && y < GRID_ROWS) {
-            if (stack.isEmpty()) inventory.set(x + y * GRID_COLUMNS, ItemResource.EMPTY, 0);
+            // Legacy passes null to consume a component (heat-storage overflow).
+            if (stack == null || stack.isEmpty())
+                inventory.set(x + y * GRID_COLUMNS, ItemResource.EMPTY, 0);
             else inventory.set(x + y * GRID_COLUMNS, ItemResource.of(stack), stack.getCount());
         }
     }

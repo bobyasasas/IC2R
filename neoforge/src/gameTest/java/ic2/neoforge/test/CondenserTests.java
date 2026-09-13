@@ -251,14 +251,21 @@ final class CondenserTests {
         var item = ModReactorItems.HEAT_VENT.get();
         var stack = new ItemStack(item);
         item.exchangeHeat(stack, 999);
+        // Legacy ItemReactorHeatStorage: an overflowing push consumes the component and books
+        // max - next + 1; 999 + 5 = 1004 against a 1000 capacity books -3, negative on purpose.
         helper.assertValueEqual(
-                item.exchangeHeat(stack, 2), 1, "Overflow returns positive unaccepted heat");
+                item.exchangeHeat(stack, 5), -3, "Overflow consumes the vent, books negative heat");
+        helper.assertTrue(
+                !stack.has(ModDataComponents.REACTOR_HEAT),
+                "The consumed vent no longer carries stored heat");
+        var fresh = new ItemStack(item);
+        item.exchangeHeat(fresh, 999);
         helper.assertValueEqual(
-                item.dissipate(stack), 6, "Ordinary vent dissipates six actual heat per pass");
+                item.dissipate(fresh), 6, "Ordinary vent dissipates six actual heat per pass");
         var ops = helper.getLevel().registryAccess().createSerializationContext(JsonOps.INSTANCE);
         var restored =
                 ItemStack.CODEC
-                        .parse(ops, ItemStack.CODEC.encodeStart(ops, stack).getOrThrow())
+                        .parse(ops, ItemStack.CODEC.encodeStart(ops, fresh).getOrThrow())
                         .getOrThrow();
         var buffer =
                 new RegistryFriendlyByteBuf(Unpooled.buffer(), helper.getLevel().registryAccess());
@@ -266,18 +273,18 @@ final class CondenserTests {
             ItemStack.STREAM_CODEC.encode(buffer, restored);
             var received = ItemStack.STREAM_CODEC.decode(buffer);
             helper.assertTrue(
-                    ItemStack.matches(stack, received) && item.heat(received).stored() == 994,
+                    ItemStack.matches(fresh, received) && item.heat(received).stored() == 993,
                     "Component heat survives save and network codecs");
         } finally {
             buffer.release();
         }
-        item.exchangeHeat(stack, -993);
+        item.exchangeHeat(fresh, -993);
         helper.assertValueEqual(
-                item.dissipate(stack), 1, "Vent cannot emit more heat than it holds");
+                item.dissipate(fresh), 0, "Vent cannot emit more heat than it holds");
         helper.assertTrue(
-                !stack.has(ModDataComponents.REACTOR_HEAT)
-                        && !stack.isDamageableItem()
-                        && stack.getMaxStackSize() == 1,
+                !fresh.has(ModDataComponents.REACTOR_HEAT)
+                        && !fresh.isDamageableItem()
+                        && fresh.getMaxStackSize() == 1,
                 "Empty heat is canonical, cannot be repaired away and cannot stack");
         helper.assertTrue(
                 ModDataComponents.REACTOR_HEAT

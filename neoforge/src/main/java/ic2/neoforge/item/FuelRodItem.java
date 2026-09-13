@@ -72,8 +72,10 @@ public class FuelRodItem extends Item implements ReactorComponent {
                     int ay = acceptorYs.remove(acceptorYs.size() - 1);
                     share = acceptorComponent(acceptor).alterHeat(acceptor, reactor, ax, ay, share);
                     heat += share;
-                    // The acceptor stack is a working copy; store its absorbed heat back.
-                    reactor.setItemAt(ax, ay, acceptor);
+                    // The acceptor stack is a working copy; store its absorbed heat back unless
+                    // the exchange consumed the component (its grid slot reads empty).
+                    var grid = reactor.getItemAt(ax, ay);
+                    if (grid == null || !grid.isEmpty()) reactor.setItemAt(ax, ay, acceptor);
                 }
                 if (heat > 0) reactor.addHeat(heat);
             }

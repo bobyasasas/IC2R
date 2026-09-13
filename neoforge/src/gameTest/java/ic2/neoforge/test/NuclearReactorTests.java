@@ -92,6 +92,50 @@ final class NuclearReactorTests {
         helper.succeed();
     }
 
+    static void coolantCellDestroysOnOverflow(GameTestHelper helper) {
+        var reactor = reactor(helper);
+        reactor.inventory()
+                .set(
+                        9,
+                        ItemResource.of(
+                                ModReactorItems.URANIUM_FUEL_ROD.get().getDefaultInstance()),
+                        1);
+        var cell = (ic2.neoforge.item.HeatStorageComponent) ModReactorItems.REACTOR_COOLANT_CELL.get();
+        var charged = cell.getDefaultInstance();
+        charged.set(ic2.neoforge.component.ModDataComponents.REACTOR_HEAT, cell.capacity() - 1);
+        reactor.inventory().set(10, ItemResource.of(charged), 1);
+        cycles(reactor, helper, 1);
+        var cellRemains = reactor.getItemAt(1, 1);
+        helper.assertTrue(
+                cellRemains == null || cellRemains.isEmpty(),
+                "A heat push past capacity consumes the coolant cell");
+        helper.assertTrue(
+                reactor.getHeat() == 0,
+                "The legacy overflow books negatively, so the core gains no heat");
+        helper.succeed();
+    }
+
+    static void heatVentDestroysOnOverflow(GameTestHelper helper) {
+        var reactor = reactor(helper);
+        reactor.inventory()
+                .set(
+                        9,
+                        ItemResource.of(
+                                ModReactorItems.URANIUM_FUEL_ROD.get().getDefaultInstance()),
+                        1);
+        var vent = ModReactorItems.HEAT_VENT.get();
+        var charged = vent.getDefaultInstance();
+        charged.set(ic2.neoforge.component.ModDataComponents.REACTOR_HEAT, vent.capacity() - 1);
+        reactor.inventory().set(10, ItemResource.of(charged), 1);
+        cycles(reactor, helper, 1);
+        var ventRemains = reactor.getItemAt(1, 1);
+        helper.assertTrue(
+                ventRemains == null || ventRemains.isEmpty(),
+                "Vents share the legacy consume-on-overflow rule");
+        helper.assertTrue(reactor.getHeat() == 0, "The vent overflow never reaches the core");
+        helper.succeed();
+    }
+
     static void meltDownExplodesCore(GameTestHelper helper) {
         var reactor = reactor(helper);
         for (int slot = 9; slot <= 11; slot++)

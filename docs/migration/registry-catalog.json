@@ -1909,12 +1909,15 @@
    "factory": "register",
    "expression": "new ItemBlockIc2(Ic2Blocks.NUCLEAR_REACTOR, new Properties().rarity(Rarity.UNCOMMON))",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
-    "docs/migration/nuclear-reactor.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/NuclearReactorTests.java"
+    "neoforge/src/main/java/ic2/neoforge/machine/NuclearReactorBlockEntity.java",
+    "neoforge/src/gameTest/java/ic2/neoforge/test/NuclearReactorTests.java",
+    "neoforge/src/gameTest/java/ic2/neoforge/test/ReactorChamberTests.java",
+    "neoforge/src/gameTest/java/ic2/neoforge/test/ReactorFluidModeTests.java",
+    "neoforge/src/gameTest/java/ic2/neoforge/test/ReactorComponentTests.java"
    ],
-   "note": "EU 模式 3×6 网格、铀棒脉冲/耗损/热分配、熔毁爆炸经 GameTest 验证;chamber 扩列/流体模式/接口件/反射与开关件交互随后续切片。"
+   "note": "EU 模式 3×6 网格、铀棒脉冲/耗损/热分配、冷却元件满热销毁(legacy 负余量回流)、熔毁爆炸、chamber 扩列、流体模式、反射与开关件交互全链经 514 项双模式 GameTest 验证;实机外观与专用 GUI 布局留人工验收(menu 走通用 MachineMenu 记档)。"
   },
   {
    "registry": "item",
@@ -1924,12 +1927,12 @@
    "factory": "register",
    "expression": "new ItemBlockIc2(Ic2Blocks.REACTOR_ACCESS_HATCH, new Properties().rarity(Rarity.UNCOMMON))",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
-    "docs/migration/nuclear-reactor.md",
+    "neoforge/src/main/java/ic2/neoforge/machine/ReactorAccessHatchBlockEntity.java",
     "neoforge/src/gameTest/java/ic2/neoforge/test/ReactorAccessHatchTests.java"
    ],
-   "note": "方块、代理行为(网格访问/红石口/RCI 回充)经 GameTest 验证;客户端外观随实机测试。 切片五:RCI 输出加成(每台 10 点)与满尺寸校验已接入。"
+   "note": "方块/实体、网格访问代理、RCI 回充与输出加成(每台 10 点)、满尺寸校验经 GameTest 验证;实机外观留人工验收。"
   },
   {
    "registry": "item",
@@ -1955,12 +1958,12 @@
    "factory": "register",
    "expression": "new ItemBlockIc2(Ic2Blocks.REACTOR_FLUID_PORT, new Properties().rarity(Rarity.UNCOMMON))",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
-    "docs/migration/nuclear-reactor.md",
+    "neoforge/src/main/java/ic2/neoforge/machine/ReactorFluidPortBlockEntity.java",
     "neoforge/src/gameTest/java/ic2/neoforge/test/ReactorFluidModeTests.java"
    ],
-   "note": "流体口代理冷却罐、流体模式切换与热冷却液产出经 GameTest 验证;访问仓/红石口/RCI/反应堆外壳随后续切片。"
+   "note": "流体口代理冷却罐、流体模式切换门控、热冷却液产出与提取经 GameTest 验证;实机外观留人工验收。"
   },
   {
    "registry": "item",
@@ -1970,12 +1973,12 @@
    "factory": "register",
    "expression": "new ItemBlockIc2(Ic2Blocks.REACTOR_REDSTONE_PORT, new Properties().rarity(Rarity.UNCOMMON))",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
-    "docs/migration/nuclear-reactor.md",
+    "neoforge/src/main/java/ic2/neoforge/machine/ReactorRedstonePortBlockEntity.java",
     "neoforge/src/gameTest/java/ic2/neoforge/test/ReactorAccessHatchTests.java"
    ],
-   "note": "方块、代理行为(网格访问/红石口/RCI 回充)经 GameTest 验证;客户端外观随实机测试。 切片五:RCI 输出加成(每台 10 点)与满尺寸校验已接入。"
+   "note": "方块/实体、红石口代理与网格访问经 GameTest 验证;实机外观留人工验收。"
   },
   {
    "registry": "item",
@@ -4745,12 +4748,13 @@
    "factory": "register",
    "expression": "new ItemReactorHeatStorage(new Properties(), 10000)",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
-    "docs/migration/nuclear-reactor.md",
+    "neoforge/src/main/java/ic2/neoforge/item/HeatStorageComponent.java",
+    "neoforge/src/gameTest/java/ic2/neoforge/test/NuclearReactorTests.java",
     "neoforge/src/gameTest/java/ic2/neoforge/test/ReactorComponentTests.java"
    ],
-   "note": "物品、堆内组件行为与合成配方经 GameTest 验证;客户端外观随实机测试。"
+   "note": "10k 容量冷却元件、堆内吸热与 legacy 满热销毁(负余量回流、格子清除)经双模式 GameTest 验证;实机外观与耐久条留人工验收。"
   },
   {
    "registry": "item",
@@ -4760,12 +4764,13 @@
    "factory": "register",
    "expression": "new ItemReactorHeatStorage(new Properties(), 30000)",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
-    "docs/migration/nuclear-reactor.md",
+    "neoforge/src/main/java/ic2/neoforge/item/HeatStorageComponent.java",
+    "neoforge/src/gameTest/java/ic2/neoforge/test/NuclearReactorTests.java",
     "neoforge/src/gameTest/java/ic2/neoforge/test/ReactorComponentTests.java"
    ],
-   "note": "物品、堆内组件行为与合成配方经 GameTest 验证;客户端外观随实机测试。"
+   "note": "30k 容量三联冷却元件、堆内吸热与 legacy 满热销毁经双模式 GameTest 验证;实机外观与耐久条留人工验收。"
   },
   {
    "registry": "item",
@@ -4775,12 +4780,13 @@
    "factory": "register",
    "expression": "new ItemReactorHeatStorage(new Properties(), 60000)",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
-    "docs/migration/nuclear-reactor.md",
+    "neoforge/src/main/java/ic2/neoforge/item/HeatStorageComponent.java",
+    "neoforge/src/gameTest/java/ic2/neoforge/test/NuclearReactorTests.java",
     "neoforge/src/gameTest/java/ic2/neoforge/test/ReactorComponentTests.java"
    ],
-   "note": "物品、堆内组件行为与合成配方经 GameTest 验证;客户端外观随实机测试。"
+   "note": "60k 容量六联冷却元件、堆内吸热与 legacy 满热销毁经双模式 GameTest 验证;实机外观与耐久条留人工验收。"
   },
   {
    "registry": "item",
@@ -4835,12 +4841,13 @@
    "factory": "register",
    "expression": "new ItemReactorHeatSwitch(new Properties(), 2500, 12, 4)",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
-    "docs/migration/nuclear-reactor.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/ReactorComponentTests.java"
+    "neoforge/src/main/java/ic2/neoforge/item/HeatSwitchItem.java",
+    "neoforge/src/gameTest/java/ic2/neoforge/test/ReactorComponentTests.java",
+    "neoforge/src/gameTest/java/ic2/neoforge/test/NuclearReactorTests.java"
    ],
-   "note": "物品、堆内组件行为与合成配方经 GameTest 验证;客户端外观随实机测试。"
+   "note": "2.5k 容量换热器、核心吸附 12/向侧 distribute 4、legacy 媒介百分比配速与满热销毁经 GameTest 验证;实机外观留人工验收。"
   },
   {
    "registry": "item",
@@ -4850,12 +4857,13 @@
    "factory": "register",
    "expression": "new ItemReactorHeatSwitch(new Properties(), 5000, 0, 72)",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
-    "docs/migration/nuclear-reactor.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/ReactorComponentTests.java"
+    "neoforge/src/main/java/ic2/neoforge/item/HeatSwitchItem.java",
+    "neoforge/src/gameTest/java/ic2/neoforge/test/ReactorComponentTests.java",
+    "neoforge/src/gameTest/java/ic2/neoforge/test/NuclearReactorTests.java"
    ],
-   "note": "物品、堆内组件行为与合成配方经 GameTest 验证;客户端外观随实机测试。"
+   "note": "5k 容量反应堆换热器、核心吸附 72/周期、legacy 媒介百分比配速与满热销毁经 GameTest 验证;实机外观留人工验收。"
   },
   {
    "registry": "item",
@@ -4895,12 +4903,14 @@
    "factory": "register",
    "expression": "new ItemReactorVent(new Properties(), 1000, 6, 0)",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
-    "docs/migration/condenser.md",
+    "neoforge/src/main/java/ic2/neoforge/item/ReactorVentItem.java",
+    "neoforge/src/gameTest/java/ic2/neoforge/test/NuclearReactorTests.java",
+    "neoforge/src/gameTest/java/ic2/neoforge/test/ReactorComponentTests.java",
     "neoforge/src/gameTest/java/ic2/neoforge/test/CondenserTests.java"
    ],
-   "note": "冷凝事务、批次余额、缺电、变压器、容器与端口已接入；蒸汽生产链、多人验收和散热片在完整反应堆中的热效应待迁移。"
+   "note": "1k 容量、自排 6/周期散热片、堆内吸热与 legacy 满热销毁(负余量回流)经双模式 GameTest 验证;实机外观留人工验收。"
   },
   {
    "registry": "item",
@@ -4910,12 +4920,13 @@
    "factory": "register",
    "expression": "new ItemReactorVent(new Properties(), 1000, 5, 5)",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
-    "docs/migration/nuclear-reactor.md",
+    "neoforge/src/main/java/ic2/neoforge/item/ReactorVentItem.java",
+    "neoforge/src/gameTest/java/ic2/neoforge/test/NuclearReactorTests.java",
     "neoforge/src/gameTest/java/ic2/neoforge/test/ReactorComponentTests.java"
    ],
-   "note": "物品、堆内组件行为与合成配方经 GameTest 验证;客户端外观随实机测试。"
+   "note": "1k 容量、自排 5/周期并吸核心 5 热的反应堆散热片、满热销毁经 GameTest 验证;实机外观留人工验收。"
   },
   {
    "registry": "item",
@@ -4925,12 +4936,13 @@
    "factory": "register",
    "expression": "new ItemReactorVent(new Properties(), 1000, 20, 36)",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
-    "docs/migration/nuclear-reactor.md",
+    "neoforge/src/main/java/ic2/neoforge/item/ReactorVentItem.java",
+    "neoforge/src/gameTest/java/ic2/neoforge/test/NuclearReactorTests.java",
     "neoforge/src/gameTest/java/ic2/neoforge/test/ReactorComponentTests.java"
    ],
-   "note": "物品、堆内组件行为与合成配方经 GameTest 验证;客户端外观随实机测试。"
+   "note": "1k 容量、自排 20/周期并吸核心 36 热的超频散热片、满热销毁经 GameTest 验证;实机外观留人工验收。"
   },
   {
    "registry": "item",
@@ -4955,12 +4967,13 @@
    "factory": "register",
    "expression": "new ItemReactorVent(new Properties(), 1000, 12, 0)",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
-    "docs/migration/nuclear-reactor.md",
+    "neoforge/src/main/java/ic2/neoforge/item/ReactorVentItem.java",
+    "neoforge/src/gameTest/java/ic2/neoforge/test/NuclearReactorTests.java",
     "neoforge/src/gameTest/java/ic2/neoforge/test/ReactorComponentTests.java"
    ],
-   "note": "物品、堆内组件行为与合成配方经 GameTest 验证;客户端外观随实机测试。"
+   "note": "1k 容量、自排 12/周期的高级散热片、满热销毁经 GameTest 验证;实机外观留人工验收。"
   },
   {
    "registry": "item",
@@ -8635,12 +8648,15 @@
    "factory": "register",
    "expression": "Ic2TileEntityBlock.create(Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).strength(2.0F, 10.0F).requiresCorrectToolForDrops().sound(SoundType.METAL), TileEntityNuclearReactorElectric.class, true, Ic2TileEntityBlock.DefaultDrop.Generator, Util.horizontalFacings, true)",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
-    "docs/migration/nuclear-reactor.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/NuclearReactorTests.java"
+    "neoforge/src/main/java/ic2/neoforge/machine/NuclearReactorBlockEntity.java",
+    "neoforge/src/gameTest/java/ic2/neoforge/test/NuclearReactorTests.java",
+    "neoforge/src/gameTest/java/ic2/neoforge/test/ReactorChamberTests.java",
+    "neoforge/src/gameTest/java/ic2/neoforge/test/ReactorFluidModeTests.java",
+    "neoforge/src/gameTest/java/ic2/neoforge/test/ReactorComponentTests.java"
    ],
-   "note": "EU 模式 3×6 网格、铀棒脉冲/耗损/热分配、熔毁爆炸经 GameTest 验证;chamber 扩列/流体模式/接口件/反射与开关件交互随后续切片。"
+   "note": "EU 模式 3×6 网格、铀棒脉冲/耗损/热分配、冷却元件满热销毁(legacy 负余量回流)、熔毁爆炸、chamber 扩列、流体模式、反射与开关件交互全链经 514 项双模式 GameTest 验证;实机外观与专用 GUI 布局留人工验收。"
   },
   {
    "registry": "block",
@@ -8650,12 +8666,12 @@
    "factory": "register",
    "expression": "Ic2TileEntityBlock.create(Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).strength(40.0F, 90.0F).requiresCorrectToolForDrops().sound(SoundType.METAL), TileEntityReactorAccessHatch.class, false, Ic2TileEntityBlock.DefaultDrop.Self, Util.onlyNorth, false)",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
-    "docs/migration/nuclear-reactor.md",
+    "neoforge/src/main/java/ic2/neoforge/machine/ReactorAccessHatchBlockEntity.java",
     "neoforge/src/gameTest/java/ic2/neoforge/test/ReactorAccessHatchTests.java"
    ],
-   "note": "方块、代理行为(网格访问/红石口/RCI 回充)经 GameTest 验证;客户端外观随实机测试。 切片五:RCI 输出加成(每台 10 点)与满尺寸校验已接入。"
+   "note": "方块/实体、网格访问代理、RCI 回充与输出加成(每台 10 点)、满尺寸校验经 GameTest 验证;实机外观留人工验收。"
   },
   {
    "registry": "block",
@@ -8681,12 +8697,12 @@
    "factory": "register",
    "expression": "Ic2TileEntityBlock.create(Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).strength(40.0F, 90.0F).requiresCorrectToolForDrops().sound(SoundType.METAL), TileEntityReactorFluidPort.class, false, Ic2TileEntityBlock.DefaultDrop.Self, Util.onlyNorth, false)",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
-    "docs/migration/nuclear-reactor.md",
+    "neoforge/src/main/java/ic2/neoforge/machine/ReactorFluidPortBlockEntity.java",
     "neoforge/src/gameTest/java/ic2/neoforge/test/ReactorFluidModeTests.java"
    ],
-   "note": "流体口代理冷却罐、流体模式切换与热冷却液产出经 GameTest 验证;访问仓/红石口/RCI/反应堆外壳随后续切片。"
+   "note": "流体口代理冷却罐、流体模式切换门控、热冷却液产出与提取经 GameTest 验证;实机外观留人工验收。"
   },
   {
    "registry": "block",
@@ -8696,12 +8712,12 @@
    "factory": "register",
    "expression": "Ic2TileEntityBlock.create(Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).strength(40.0F, 90.0F).requiresCorrectToolForDrops().sound(SoundType.METAL), TileEntityReactorRedstonePort.class, false, Ic2TileEntityBlock.DefaultDrop.Self, Util.onlyNorth, false)",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
-    "docs/migration/nuclear-reactor.md",
+    "neoforge/src/main/java/ic2/neoforge/machine/ReactorRedstonePortBlockEntity.java",
     "neoforge/src/gameTest/java/ic2/neoforge/test/ReactorAccessHatchTests.java"
    ],
-   "note": "方块、代理行为(网格访问/红石口/RCI 回充)经 GameTest 验证;客户端外观随实机测试。 切片五:RCI 输出加成(每台 10 点)与满尺寸校验已接入。"
+   "note": "方块/实体、红石口代理与网格访问经 GameTest 验证;实机外观留人工验收。"
   },
   {
    "registry": "block",
@@ -12017,12 +12033,15 @@
    "factory": "register",
    "expression": "TileEntityNuclearReactorElectric::new",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
-    "docs/migration/nuclear-reactor.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/NuclearReactorTests.java"
+    "neoforge/src/main/java/ic2/neoforge/machine/NuclearReactorBlockEntity.java",
+    "neoforge/src/gameTest/java/ic2/neoforge/test/NuclearReactorTests.java",
+    "neoforge/src/gameTest/java/ic2/neoforge/test/ReactorChamberTests.java",
+    "neoforge/src/gameTest/java/ic2/neoforge/test/ReactorFluidModeTests.java",
+    "neoforge/src/gameTest/java/ic2/neoforge/test/ReactorComponentTests.java"
    ],
-   "note": "EU 模式 3×6 网格、铀棒脉冲/耗损/热分配、熔毁爆炸经 GameTest 验证;chamber 扩列/流体模式/接口件/反射与开关件交互随后续切片。"
+   "note": "EU 模式 3×6 网格、铀棒脉冲/耗损/热分配、冷却元件满热销毁(legacy 负余量回流)、熔毁爆炸、chamber 扩列、流体模式、反射与开关件交互全链经 514 项双模式 GameTest 验证;实机外观与专用 GUI 布局留人工验收。"
   },
   {
    "registry": "block_entity",
@@ -12048,12 +12067,12 @@
    "factory": "register",
    "expression": "TileEntityReactorAccessHatch::new",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
-    "docs/migration/nuclear-reactor.md",
+    "neoforge/src/main/java/ic2/neoforge/machine/ReactorAccessHatchBlockEntity.java",
     "neoforge/src/gameTest/java/ic2/neoforge/test/ReactorAccessHatchTests.java"
    ],
-   "note": "方块、代理行为(网格访问/红石口/RCI 回充)经 GameTest 验证;客户端外观随实机测试。 切片五:RCI 输出加成(每台 10 点)与满尺寸校验已接入。"
+   "note": "方块/实体、网格访问代理、RCI 回充与输出加成(每台 10 点)、满尺寸校验经 GameTest 验证;实机外观留人工验收。"
   },
   {
    "registry": "block_entity",
@@ -12111,12 +12130,12 @@
    "factory": "register",
    "expression": "TileEntityReactorFluidPort::new",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
-    "docs/migration/nuclear-reactor.md",
+    "neoforge/src/main/java/ic2/neoforge/machine/ReactorFluidPortBlockEntity.java",
     "neoforge/src/gameTest/java/ic2/neoforge/test/ReactorFluidModeTests.java"
    ],
-   "note": "流体口代理冷却罐、流体模式切换与热冷却液产出经 GameTest 验证;访问仓/红石口/RCI/反应堆外壳随后续切片。"
+   "note": "流体口代理冷却罐、流体模式切换门控、热冷却液产出与提取经 GameTest 验证;实机外观留人工验收。"
   },
   {
    "registry": "block_entity",
@@ -12142,12 +12161,12 @@
    "factory": "register",
    "expression": "TileEntityReactorRedstonePort::new",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
-    "docs/migration/nuclear-reactor.md",
+    "neoforge/src/main/java/ic2/neoforge/machine/ReactorRedstonePortBlockEntity.java",
     "neoforge/src/gameTest/java/ic2/neoforge/test/ReactorAccessHatchTests.java"
    ],
-   "note": "方块、代理行为(网格访问/红石口/RCI 回充)经 GameTest 验证;客户端外观随实机测试。 切片五:RCI 输出加成(每台 10 点)与满尺寸校验已接入。"
+   "note": "方块/实体、红石口代理与网格访问经 GameTest 验证;实机外观留人工验收。"
   },
   {
    "registry": "block_entity",

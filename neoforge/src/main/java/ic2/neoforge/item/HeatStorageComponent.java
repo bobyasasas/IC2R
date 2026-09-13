@@ -57,11 +57,23 @@ public class HeatStorageComponent extends Item implements ReactorComponent {
 
     @Override
     public int alterHeat(ItemStack stack, ReactorHost reactor, int x, int y, int heat) {
-        int current = currentHeat(stack);
-        int next = Math.clamp(current + heat, 0, capacity);
+        int next = currentHeat(stack) + heat;
+        if (next > capacity) {
+            // Legacy heat-storage components (coolant cells, vents, switches) are consumed by an
+            // overflowing push, and the overflow books as capacity - next + 1 (a negative on
+            // purpose). A host-less exchange only accounts the remainder.
+            stack.remove(ModDataComponents.REACTOR_HEAT);
+            if (reactor != null) reactor.setItemAt(x, y, null);
+            return capacity - next + 1;
+        }
+        if (next < 0) {
+            // Legacy stores the clamped value and returns the unabsorbed discharge.
+            stack.remove(ModDataComponents.REACTOR_HEAT);
+            return next;
+        }
         if (next == 0) stack.remove(ModDataComponents.REACTOR_HEAT);
         else stack.set(ModDataComponents.REACTOR_HEAT, next);
-        return heat - (next - current);
+        return 0;
     }
 
     @Override

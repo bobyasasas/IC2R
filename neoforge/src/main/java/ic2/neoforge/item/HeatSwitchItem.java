@@ -48,7 +48,9 @@ public class HeatSwitchItem extends HeatStorageComponent {
                 myHeat -= add;
                 int remainder = component.alterHeat(acceptor, reactor, ax, ay, add);
                 myHeat += remainder;
-                reactor.setItemAt(ax, ay, acceptor);
+                // Skip the write-back when the exchange consumed the acceptor (empty grid slot).
+                var grid = reactor.getItemAt(ax, ay);
+                if (grid == null || !grid.isEmpty()) reactor.setItemAt(ax, ay, acceptor);
             }
         }
         if (switchReactor > 0) {
