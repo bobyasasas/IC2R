@@ -57,3 +57,14 @@ M11/P08 辅助机器链新增能源交易机。勘误记录：TradeOMat giveBack
 不同（`min(remaining,present)` 仅适用于取出）；RE 电池 100 EU/t 传输限制使单 tick 充电
 断言必须多 tick 化。待人工：实机 GUI 键盘布局与价格文本渲染。M14 人工验收保留人工，
 P20 待清单全部验收后再启动。
+
+
+## 2026-09-12 第 57 轮审计
+
+registry-catalog `menu ic2:energy_o_mat_closed` / `ic2:energy_o_mat_open` 勘误翻
+implemented:legacy closed/open 双菜单语义由 port 单一 `ic2:energy_o_mat` 菜单承载
+(crop 家族"单一注册承载多 legacy id"先例);原跟踪项"升级槽未移植"过时——
+`EnergyOMatBlockEntity.refreshUpgrades` + `kind().upgradeStart()` 已接入升级槽
+(储能扩容/变压器提 tier);付账、门控与计价键盘(−100/−100000/+1000)经
+`EnergyOMatTests` 四项(tradePaysForCredit/unpaidGate/creditPaysForCharge/priceKeypad)
+验证。真实客户端观感留人工。当前套件 549 项双模式全绿。

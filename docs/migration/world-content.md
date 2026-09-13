@@ -38,3 +38,13 @@
 ![自然生成树保存重载](images/natural-tree-reload.png)
 
 [橡胶木建筑部件](rubber-building.md) 已补齐；船只和作物继续由其他工作包迁移。
+
+
+## 2026-09-12 第 57 轮审计
+
+registry-catalog `foliage_placer_type ic2:rubber_tree` 勘误翻 implemented:
+`registration/ModWorldContent.java` 以 `FoliagePlacerType`(id `ic2:rubber_tree`,
+`RubberFoliagePlacer.CODEC`)注册,`configured_feature/rubber_tree.json` 的
+`"type": "ic2:rubber_tree"` 引用该注册,森林/沼泽/丛林三个 placed_feature 挂载经
+`WorldContentTests` 断言(rubber_forest/rubber_swamp 生物群系修饰器实际附加
+橡胶树)。自然树实机观感(见上文存档验收)已留人工。当前套件 549 项双模式全绿。

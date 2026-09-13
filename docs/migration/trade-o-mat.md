@@ -44,3 +44,14 @@
   留人工;
 - legacy ∞ 按钮在专用服务器上因客户端取不到 server 而不显示的怪癖,端口改用
   同步权限集后在专用服务器同样可见(现代化差异,记录不回删)。
+
+
+## 2026-09-12 第 57 轮审计
+
+registry-catalog `menu ic2:trade_o_mat_closed` / `ic2:trade_o_mat_open` 勘误翻
+implemented:legacy closed/open 双菜单语义由 port 单一 `ic2:trade_o_mat` 菜单承载
+(第 54 轮所有者界面交付:首触认领、owner/OP 门控、访客模板槽只读、∞ 切换
+`toggleInfinite` 经权限集同步);原跟踪项"∞ 按钮 UI 不可达且 owner 校验缺失"过时。
+`TradeOMatTests` 四项(infiniteTrade/suppliedTrade/ownerAndVisitorMenus/
+toggleNeedsOperator)覆盖两条菜单路径。真实客户端观感与 OP 实机翻转留人工。
+当前套件 549 项双模式全绿。

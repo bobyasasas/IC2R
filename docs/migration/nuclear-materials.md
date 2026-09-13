@@ -36,3 +36,16 @@
 ## 未验收范围
 
 - 辐射行为(P16)、燃料棒与装罐(P12)、铁栅栏与磁化机(随 P08)、多人验收(M16)。
+
+
+## 2026-09-12 第 57 轮审计
+
+registry-catalog 四条核材料 item 条目(钚 / 小撮钚 / MOX / RTG 燃料丸,原 note 为空)
+勘误翻 implemented:物品均注册于 `registration/ModReactorItems.java`
+(PLUTONIUM/SMALL_PLUTONIUM 150/100、MOX 300/100、RTG_PELLET stack size 1),
+全部进入创造页;配方链完整落盘——`shaped/rtg_pellet`×4(平/竖排×1/2)、
+`centrifuge/rtg_pellet_to_plutonium`、`shapeless/small_plutonium`、
+`shaped/mox_1..4` 与六条废燃料棒离心副产 `centrifuge/depleted_*_to_small_plutonium`。
+GameTest:`NuclearTests` 断言废丸产 3 钚,`FuelRodTests` 验证废 MOX 丸离心链,
+`RtGeneratorTests` 验证 RTG 丸发电(第 56 轮)。实机观感留人工。
+当前套件 549 项双模式全绿。
