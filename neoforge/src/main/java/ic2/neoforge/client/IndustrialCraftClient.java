@@ -198,6 +198,8 @@ public final class IndustrialCraftClient {
                         event.register(registration.menu().get(), CondenserScreen::new);
                     else if (kind == MachineKind.FLUID_REGULATOR)
                         event.register(registration.menu().get(), FluidRegulatorScreen::new);
+                    else if (kind == MachineKind.CHUNK_LOADER)
+                        event.register(registration.menu().get(), ChunkLoaderScreen::new);
                     else if (kind == MachineKind.ELECTROLYZER)
                         event.register(registration.menu().get(), ElectrolyzerScreen::new);
                     else if (kind == MachineKind.TANK)

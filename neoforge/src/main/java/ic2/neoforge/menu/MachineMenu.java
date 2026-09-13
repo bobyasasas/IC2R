@@ -471,8 +471,8 @@ public final class MachineMenu extends AbstractContainerMenu {
         } else if (kind == MachineKind.TANK) {
             // Tanks contain only the four upgrade slots added below.
         } else if (kind == MachineKind.CHUNK_LOADER) {
-            // Legacy ContainerChunkLoader: one discharge slot; the map canvas stays deferred.
-            addBatterySlot(inventory, 0, 8, 143);
+            // Legacy ContainerChunkLoader: one discharge slot beside the nine-by-nine canvas.
+            addBatterySlot(inventory, 0, 162, 143);
         } else if (kind == MachineKind.TELEPORTER || kind == MachineKind.CREATIVE_GENERATOR) {
             // Legacy teleporters and the creative generator have no GUI and no inventory.
         } else if (kind == MachineKind.PATTERN_STORAGE) {

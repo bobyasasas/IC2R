@@ -14421,8 +14421,13 @@
    "factory": "registerManagedBe",
    "expression": "",
    "decision": "preserve",
-   "status": "pending",
-   "note": "本轮修复槽位缺陷：1 discharge+4 upgrade 绑定经 menu_audit_chunk_loader 验证（此前 discharge 槽与升级槽重叠越界）；legacy 9x9 区块选择画布仍未做；维持 pending。"
+   "status": "implemented",
+   "note": "9x9 选择画布经 menuAction(0..80 toggle)+menuValue(3x27bit 位图+count/max) 移植，ChunkLoaderScreen 遮罩/计数/悬停提示与 legacy 同语义；现代化取舍（MapColor 均值色块替代 DynamicTexture 地形缩略图、客户端 BE 事件改菜单按钮 id、布局适配 202 宽槽位范式）记档于 chunk-loader.md，画布观感属人工视觉验收留用户。",
+   "evidence": [
+    "neoforge/src/main/java/ic2/neoforge/client/ChunkLoaderScreen.java",
+    "neoforge/src/gameTest/java/ic2/neoforge/test/ChunkLoaderTests.java",
+    "docs/migration/chunk-loader.md"
+   ]
   },
   {
    "registry": "menu",
@@ -15896,7 +15901,14 @@
    "factory": "register",
    "expression": "",
    "decision": "preserve",
-   "status": "pending"
+   "status": "implemented",
+   "evidence": [
+    "neoforge/src/main/java/ic2/neoforge/registration/ModProcessingRecipes.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/OreWashingBlockEntity.java",
+    "neoforge/src/main/resources/data/ic2/recipe/ore_washer/gravel_to_stone_dust.json",
+    "docs/migration/ore-washing.md"
+   ],
+   "note": "命名现代化分歧记档：legacy ic2:ore_washing 移植为 ic2:ore_washer（ModProcessingRecipes TYPES+SERIALIZER 注册），data/ic2/recipe/ore_washer/ 8 条配方（7 矿石+砂砾）经 OreWashingBlockEntity 消费，WashingTests 与全量 GameTest 覆盖。"
   },
   {
    "registry": "recipe_type",

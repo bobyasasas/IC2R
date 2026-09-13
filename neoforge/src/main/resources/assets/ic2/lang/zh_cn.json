@@ -881,6 +881,8 @@
   "ic2.reactoritem.durability": "耐久：%s/%s",
   "ic2.reactoritem.heatwarning.line1": "无法在流体冷却模式下使用",
   "ic2.reactoritem.heatwarning.line2": "请在EU模式下使用",
+  "ic2.chunkloader.selected": "已加载",
+  "ic2.chunkloader.unselected": "未选择",
   "ic2.regulator.second": "每秒",
   "ic2.regulator.tick": "每刻",
   "ic2.remote.cannot_unlink": "该炸药未连接到此引爆器，无法解除连接。",

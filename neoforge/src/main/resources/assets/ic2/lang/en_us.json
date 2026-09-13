@@ -881,6 +881,8 @@
   "ic2.reactoritem.durability": "Durability: %s/%s",
   "ic2.reactoritem.heatwarning.line1": "Cannot be used in Fluid Cooling mode",
   "ic2.reactoritem.heatwarning.line2": "Use in EU mode",
+  "ic2.chunkloader.selected": "Selected",
+  "ic2.chunkloader.unselected": "Not selected",
   "ic2.regulator.second": "Per second",
   "ic2.regulator.tick": "Per tick",
   "ic2.remote.cannot_unlink": "This dynamite stick is not linked to this remote, cannot unlink.",

@@ -36,10 +36,10 @@
 | block | 152 | 106 | 264 |
 | block_entity | 75 | 76 | 157 |
 | entity | 8 | 0 | 8 |
-| menu | 15 | 34 | 55 |
+| menu | 16 | 34 | 55 |
 | sound | 62 | 0 | 62 |
 | recipe_serializer | 1 | 16 | 17 |
-| recipe_type | 0 | 12 | 13 |
+| recipe_type | 1 | 12 | 13 |
 | fluid_family | 1 | 16 | 17 |
 | game_event | 5 | 0 | 5 |
 | fluid_type | 17 | 0 | 17 |

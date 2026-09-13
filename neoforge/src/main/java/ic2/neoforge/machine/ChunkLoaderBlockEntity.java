@@ -77,6 +77,41 @@ public final class ChunkLoaderBlockEntity extends PoweredBlockEntity {
         return loadedChunks;
     }
 
+    /** Legacy GuiChunkLoader: a nine-by-nine pickable canvas, encoded as three 27-bit words. */
+    public static final int CANVAS = 9, MAX_CHUNKS = 9, CANVAS_WORDS = 3, WORD_BITS = 27;
+
+    private static int canvasIndex(int dx, int dz) {
+        return (dz + 4) * CANVAS + (dx + 4);
+    }
+
+    /** Action 0..80 toggles the canvas cell (dx = id % 9 - 4, dz = id / 9 - 4). */
+    @Override
+    public boolean menuAction(int id) {
+        if (id < 0 || id >= CANVAS * CANVAS) return false;
+        ChunkPos main = ownChunk();
+        var chunk = new ChunkPos(main.x() + id % CANVAS - 4, main.z() + id / CANVAS - 4);
+        if (loadedChunks.contains(chunk.pack())) return removeChunk(chunk);
+        return addChunk(chunk);
+    }
+
+    @Override
+    public int menuValue(int index) {
+        return switch (index) {
+            case 0, 1, 2 -> {
+                int word = 0;
+                for (long packed : loadedChunks) {
+                    var chunk = ChunkPos.unpack(packed);
+                    int cell = canvasIndex(chunk.x() - ownChunk().x(), chunk.z() - ownChunk().z());
+                    if (cell / WORD_BITS == index) word |= 1 << cell % WORD_BITS;
+                }
+                yield word;
+            }
+            case 3 -> loadedChunks.size();
+            case 4 -> MAX_CHUNKS;
+            default -> 0;
+        };
+    }
+
     /** Legacy isChunkInRange: the pickable nine-by-nine window around the machine. */
     public boolean isChunkInRange(ChunkPos chunk) {
         ChunkPos main = ownChunk();

@@ -252,6 +252,7 @@ public enum MachineKind implements StringRepresentable {
         if (this == INDUSTRIAL_WORKBENCH) return 228;
         if (this == BATCH_CRAFTER) return 206;
         if (this == WEIGHTED_FLUID_DISTRIBUTOR || this == WEIGHTED_ITEM_DISTRIBUTOR) return 211;
+        if (this == CHUNK_LOADER) return 252;
         if (this == STEAM_GENERATOR) return 238;
         if (this == ENERGY_O_MAT) return 184;
         if (this == PERSONAL_CHEST) return 222;
