@@ -303,6 +303,8 @@ public final class RegistrationTests {
         FUNCTIONS.register("pump_progress_reload", () -> EntityTickingTests.wrap(PumpTests::survivesReload));
         FUNCTIONS.register("personal_chest_claim", () -> EntityTickingTests.wrap(PersonalChestTests::claimAndDeny));
         FUNCTIONS.register("personal_chest_automation", () -> EntityTickingTests.wrap(PersonalChestTests::blocksAutomation));
+        FUNCTIONS.register(
+                "personal_chest_blast_spared", () -> PersonalChestTests::blastSparesTheSafe);
         FUNCTIONS.register("mining_pipe_shape", () -> EntityTickingTests.wrap(MiningPipeTests::pipeShapeAndTools));
         FUNCTIONS.register("mining_pipe_tip", () -> EntityTickingTests.wrap(MiningPipeTests::tipIsPlaceOnly));
         FUNCTIONS.register("mining_pipe_no_drops", () -> EntityTickingTests.wrap(MiningPipeTests::breakingDropsNothing));

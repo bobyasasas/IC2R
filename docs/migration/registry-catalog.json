@@ -2450,12 +2450,13 @@
    "factory": "register",
    "expression": "new ItemBlockIc2(Ic2Blocks.BLOCK_CUTTER, new Properties())",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/block-cutter.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/BlockCutterTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/BlockCutterTests.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/BlockCutterBlockEntity.java"
    ],
-   "note": "方块、4 EU/t×450t 切割、刀片硬度门控与 17 条配方经 GameTest 验证;真实客户端界面随实机测试。"
+   "note": "Blade-hardness gating, 4 EU/t over 450 ticks and the plate recipes are verified by GameTest; the live client screen stays on manual acceptance."
   },
   {
    "registry": "item",
@@ -2684,11 +2685,14 @@
    "factory": "register",
    "expression": "new ItemBlockIc2(Ic2Blocks.PERSONAL_CHEST, new Properties().rarity(Rarity.UNCOMMON))",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/personal-chest.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/PersonalChestTests.java"
-   ]
+    "neoforge/src/gameTest/java/ic2/neoforge/test/PersonalChestTests.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/PersonalChestBlockEntity.java",
+    "neoforge/src/main/java/ic2/neoforge/world/PointExplosion.java"
+   ],
+   "note": "54-slot safe with first-open claiming, the operator bypass, stranger denial, break protection and blast immunity verified by GameTest; lid animation and sounds stay on manual acceptance."
   },
   {
    "registry": "item",
@@ -9220,12 +9224,13 @@
    "factory": "register",
    "expression": "Ic2TileEntityBlock.create(Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).strength(2.0F, 10.0F).requiresCorrectToolForDrops().sound(SoundType.METAL), TileEntityBlockCutter.class, true, Ic2TileEntityBlock.DefaultDrop.AdvMachine, Util.horizontalFacings, true)",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/block-cutter.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/BlockCutterTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/BlockCutterTests.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/BlockCutterBlockEntity.java"
    ],
-   "note": "方块、4 EU/t×450t 切割、刀片硬度门控与 17 条配方经 GameTest 验证;真实客户端界面随实机测试。"
+   "note": "Blade-hardness gating, 4 EU/t over 450 ticks and the plate recipes are verified by GameTest; the live client screen stays on manual acceptance."
   },
   {
    "registry": "block",
@@ -9453,12 +9458,14 @@
    "factory": "register",
    "expression": "Ic2TileEntityBlock.create(Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).strength(-1.0F, 3600000.0F).requiresCorrectToolForDrops().sound(SoundType.METAL), TileEntityPersonalChest.class, false, Ic2TileEntityBlock.DefaultDrop.Self, Util.horizontalFacings, false)",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/personal-chest.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/PersonalChestTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/PersonalChestTests.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/PersonalChestBlockEntity.java",
+    "neoforge/src/main/java/ic2/neoforge/world/PointExplosion.java"
    ],
-   "note": "54 格安全箱、首开认领、非所有者拒绝与拆除保护已接入；箱盖动画/音效待客户端验收。"
+   "note": "54-slot safe with first-open claiming, the operator bypass, stranger denial, break protection and blast immunity verified by GameTest; lid animation and sounds stay on manual acceptance."
   },
   {
    "registry": "block",
@@ -13144,12 +13151,13 @@
    "factory": "register",
    "expression": "TileEntityBlockCutter::new",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/block-cutter.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/BlockCutterTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/BlockCutterTests.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/BlockCutterBlockEntity.java"
    ],
-   "note": "方块、4 EU/t×450t 切割、刀片硬度门控与 17 条配方经 GameTest 验证;真实客户端界面随实机测试。"
+   "note": "Blade-hardness gating, 4 EU/t over 450 ticks and the plate recipes are verified by GameTest; the live client screen stays on manual acceptance."
   },
   {
    "registry": "block_entity",
@@ -13410,12 +13418,14 @@
    "factory": "register",
    "expression": "TileEntityPersonalChest::new",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/personal-chest.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/PersonalChestTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/PersonalChestTests.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/PersonalChestBlockEntity.java",
+    "neoforge/src/main/java/ic2/neoforge/world/PointExplosion.java"
    ],
-   "note": "54 格安全箱、首开认领、非所有者拒绝与拆除保护已接入；箱盖动画/音效待客户端验收。"
+   "note": "54-slot safe with first-open claiming, the operator bypass, stranger denial, break protection and blast immunity verified by GameTest; lid animation and sounds stay on manual acceptance."
   },
   {
    "registry": "block_entity",
@@ -15979,12 +15989,13 @@
    "factory": "register",
    "expression": "new BasicMachineRecipeSerializer(Ic2RecipeTypes.BLOCK_CUTTER, intMeta(\"hardness\"))",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/block-cutter.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/BlockCutterTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/BlockCutterTests.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/BlockCutterBlockEntity.java"
    ],
-   "note": "方块、4 EU/t×450t 切割、刀片硬度门控与 17 条配方经 GameTest 验证;真实客户端界面随实机测试。"
+   "note": "Blade-hardness gating, 4 EU/t over 450 ticks and the plate recipes are verified by GameTest; the live client screen stays on manual acceptance."
   },
   {
    "registry": "recipe_serializer",
@@ -16181,12 +16192,13 @@
    "factory": "register",
    "expression": "",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/block-cutter.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/BlockCutterTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/BlockCutterTests.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/BlockCutterBlockEntity.java"
    ],
-   "note": "方块、4 EU/t×450t 切割、刀片硬度门控与 17 条配方经 GameTest 验证;真实客户端界面随实机测试。"
+   "note": "Blade-hardness gating, 4 EU/t over 450 ticks and the plate recipes are verified by GameTest; the live client screen stays on manual acceptance."
   },
   {
    "registry": "recipe_type",

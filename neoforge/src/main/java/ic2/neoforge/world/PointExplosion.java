@@ -88,7 +88,8 @@ public final class PointExplosion implements Explosion {
                     BlockPos pos = new BlockPos(x, y, z);
                     BlockState state = this.level.getBlockState(pos);
                     if (state.isAir()
-                            || state.getBlock().getExplosionResistance() >= this.power * 10.0F) {
+                            || state.getBlock().getExplosionResistance() >= this.power * 10.0F
+                            || blastProof(state)) {
                         continue;
                     }
                     state.onExplosionHit(
@@ -99,6 +100,12 @@ public final class PointExplosion implements Explosion {
                 }
             }
         }
+    }
+
+    /** Legacy canEntityDestroy=false blocks, e.g. the personal chest, shrug off IC2 blasts. */
+    private static boolean blastProof(BlockState state) {
+        return state.getBlock() instanceof ic2.neoforge.machine.MachineBlock machine
+                && machine.kind() == ic2.neoforge.machine.MachineKind.PERSONAL_CHEST;
     }
 
     private void hurtEntities() {

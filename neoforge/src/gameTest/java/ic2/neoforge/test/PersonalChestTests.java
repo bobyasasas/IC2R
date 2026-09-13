@@ -3,10 +3,12 @@ package ic2.neoforge.test;
 import ic2.neoforge.machine.MachineKind;
 import ic2.neoforge.machine.PersonalChestBlockEntity;
 import ic2.neoforge.registration.ModMachines;
+import ic2.neoforge.world.PointExplosion;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.gametest.framework.GameTestHelper;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.GameType;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -68,6 +70,34 @@ final class PersonalChestTests {
             chest.inventory().insert(0, ItemResource.of(Items.DIAMOND), 1, transaction);
             transaction.commit();
         }
+        helper.succeed();
+    }
+
+    static void blastSparesTheSafe(GameTestHelper helper) {
+        var chest = chest(helper);
+        try (var transaction = Transaction.openRoot()) {
+            chest.inventory().insert(0, ItemResource.of(Items.DIAMOND), 3, transaction);
+            transaction.commit();
+        }
+        var center = helper.absolutePos(POSITION);
+        new PointExplosion(
+                        (ServerLevel) helper.getLevel(),
+                        null,
+                        null,
+                        center.getX() + 0.5,
+                        center.getY() + 0.5,
+                        center.getZ() + 0.5,
+                        1.0F,
+                        5)
+                .doExplosion();
+        helper.assertTrue(
+                helper.getBlockState(POSITION).getBlock()
+                        == ModMachines.block(MachineKind.PERSONAL_CHEST),
+                "The dynamite blast leaves the safe standing");
+        helper.assertValueEqual(
+                chest.inventory().getAmountAsInt(0),
+                3,
+                "The stored diamonds survive the blast");
         helper.succeed();
     }
 

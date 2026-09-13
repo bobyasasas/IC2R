@@ -39,7 +39,11 @@ public final class PersonalChestBlockEntity extends MachineBlockEntity {
         return ownerName;
     }
 
-    /** The first player to open the safe claims it; afterwards only they may use it. */
+    /**
+     * The first player to open the safe claims it; afterwards only they — or a server operator,
+     * matching the legacy isOp bypass — may use it. An operator opening someone else's safe does
+     * not claim it.
+     */
     public boolean permits(Player player) {
         if (owner == null) {
             owner = player.getUUID();
@@ -47,7 +51,12 @@ public final class PersonalChestBlockEntity extends MachineBlockEntity {
             setChanged();
             return true;
         }
+        if (isOperator(player)) return true;
         return owner.equals(player.getUUID());
+    }
+
+    private static boolean isOperator(Player player) {
+        return player.level().getServer().getPlayerList().isOp(player.nameAndId());
     }
 
     public boolean permitsBreak(Player player, boolean holdingContents) {
