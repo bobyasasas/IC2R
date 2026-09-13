@@ -8,6 +8,7 @@ import ic2.neoforge.energy.DetectorFoamCableBlock;
 import ic2.neoforge.energy.FoamCableBlock;
 import ic2.neoforge.energy.SplitterCableBlock;
 import ic2.neoforge.energy.SplitterFoamCableBlock;
+import ic2.neoforge.item.CableItem;
 import ic2.neoforge.machine.*;
 import ic2.neoforge.machine.CannerBlockEntity;
 import ic2.neoforge.menu.MachineMenu;
@@ -16,6 +17,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.item.CreativeModeTabs;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
@@ -285,7 +287,8 @@ public final class ModMachines {
                                                 .strength(0.2f)
                                                 .sound(SoundType.WOOL)
                                                 .noOcclusion()));
-        ITEMS.registerSimpleBlockItem(block);
+        // Legacy ItemCable: BlockItem with the voltage/loss tooltip instead of a plain one.
+        ITEMS.registerItem(id, props -> new CableItem(block.get(), props), Item.Properties::new);
         cables.put(id, block);
     }
 

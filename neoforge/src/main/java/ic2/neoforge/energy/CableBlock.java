@@ -21,9 +21,13 @@ import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.ScheduledTickAccess;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.PipeBlock;
+import net.minecraft.world.level.block.SimpleWaterloggedBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
+import net.minecraft.world.level.material.FluidState;
+import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.level.storage.loot.LootParams;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
@@ -32,7 +36,7 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import java.util.List;
 import java.util.Locale;
 
-public class CableBlock extends Block {
+public class CableBlock extends Block implements SimpleWaterloggedBlock {
     static final Codec<CableSpec.Material> MATERIAL_CODEC =
             Codec.STRING.xmap(
                     name -> CableSpec.Material.valueOf(name.toUpperCase(Locale.ROOT)),
@@ -62,6 +66,7 @@ public class CableBlock extends Block {
         BlockState state = stateDefinition.any();
         for (BooleanProperty property : PipeBlock.PROPERTY_BY_DIRECTION.values())
             state = state.setValue(property, false);
+        state = state.setValue(BlockStateProperties.WATERLOGGED, false);
         registerDefaultState(state);
         double low = (1 - specification.diameter()) * 8, high = 16 - low;
         for (int mask = 0; mask < shapes.length; mask++) {
@@ -104,6 +109,7 @@ public class CableBlock extends Block {
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         PipeBlock.PROPERTY_BY_DIRECTION.values().forEach(builder::add);
+        builder.add(BlockStateProperties.WATERLOGGED);
     }
 
     @Override
@@ -118,7 +124,12 @@ public class CableBlock extends Block {
 
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext context) {
-        return connectedState(this, context.getLevel(), context.getClickedPos());
+        var level = context.getLevel();
+        var pos = context.getClickedPos();
+        return connectedState(this, level, pos)
+                .setValue(
+                        BlockStateProperties.WATERLOGGED,
+                        level.getFluidState(pos).getType() == Fluids.WATER);
     }
 
     /** Rebuilds the six-way connection mask; shared with the cutter and the foam counterpart. */
@@ -142,8 +153,17 @@ public class CableBlock extends Block {
             BlockPos neighborPos,
             BlockState neighbor,
             RandomSource random) {
+        if (state.getValue(BlockStateProperties.WATERLOGGED))
+            ticks.scheduleTick(pos, Fluids.WATER, Fluids.WATER.getTickDelay(level));
         return state.setValue(
                 PipeBlock.PROPERTY_BY_DIRECTION.get(side), connects(level, neighborPos));
+    }
+
+    @Override
+    protected FluidState getFluidState(BlockState state) {
+        return state.getValue(BlockStateProperties.WATERLOGGED)
+                ? Fluids.WATER.getSource(false)
+                : super.getFluidState(state);
     }
 
     static boolean connects(LevelReader level, BlockPos pos) {
