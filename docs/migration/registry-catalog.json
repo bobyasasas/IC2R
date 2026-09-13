@@ -1440,11 +1440,14 @@
    "factory": "register",
    "expression": "new ItemBlockIc2(Ic2Blocks.STEAM_REPRESSURIZER, new Properties())",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/steam-repressurizer.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/SteamRepressurizerTests.java"
-   ]
+    "neoforge/src/gameTest/java/ic2/neoforge/test/SteamRepressurizerTests.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/SteamRepressurizerBlockEntity.java",
+    "neoforge/src/main/java/ic2/neoforge/client/SteamRepressurizerScreen.java"
+   ],
+   "note": "输入输出槽、c:steam 候选解析与保持、有界热储备事务、取热差额修复、零倍率停机与保存重载已接入;第56轮勘误:6 条 GameTest+SteamRepressurizerScreen 已交付,双端联机验收由 M16 切片覆盖;ic2:iron_tank 备选配方随该 pending 条目迁移转换;实机界面细节留人工。"
   },
   {
    "registry": "item",
@@ -1767,11 +1770,14 @@
    "factory": "register",
    "expression": "new ItemBlockIc2(Ic2Blocks.RT_GENERATOR, new Properties())",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/isotopic-heat.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/RtGeneratorTests.java"
-   ]
+    "neoforge/src/gameTest/java/ic2/neoforge/test/RtGeneratorTests.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/RtGeneratorBlockEntity.java",
+    "neoforge/src/main/java/ic2/neoforge/registration/ModReactorItems.java"
+   ],
+   "note": "EU 型同位素发电机:六槽 RTG 燃料丸(永不消耗)、2^(n-1) 指数输出、20000 缓冲、LV 供电与电池充电已接入;第56轮勘误:钚物品已交付(ModReactorItems PLUTONIUM)且 RTG 配方已全部转换(rt_generator/rtg_pellet×4/离心副产),legacy RT 机器无辐射语义(辐射系统已随 P16 交付于反应堆与防化面);实机观感与长时运行回归留人工。"
   },
   {
    "registry": "item",
@@ -2188,11 +2194,14 @@
    "factory": "register",
    "expression": "new ItemBlockIc2(Ic2Blocks.PUMP, new Properties())",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/pump.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/PumpTests.java"
-   ]
+    "neoforge/src/gameTest/java/ic2/neoforge/test/PumpTests.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/MinerBlockEntity.java",
+    "neoforge/src/gameTest/java/ic2/neoforge/test/MinerTests.java"
+   ],
+   "note": "面向水源抽取、BFS 源搜索、罐与自动装桶、进度持久化已接入;第56轮勘误:矿机供液联动已随矿机切片交付(MinerBlockEntity pumpMode/handToPump+miner_pump_mode 测试);升级槽速率(UpgradeItem PUMP 适用)与真实多人取水留人工,BFS 极端地形行为差异为观察项。"
   },
   {
    "registry": "item",
@@ -8618,12 +8627,14 @@
    "factory": "register",
    "expression": "Ic2TileEntityBlock.create(Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).strength(2.0F, 10.0F).requiresCorrectToolForDrops().sound(SoundType.METAL), TileEntityRTGenerator.class, true, Ic2TileEntityBlock.DefaultDrop.Generator, Util.noFacings, false)",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/isotopic-heat.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/RtGeneratorTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/RtGeneratorTests.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/RtGeneratorBlockEntity.java",
+    "neoforge/src/main/java/ic2/neoforge/registration/ModReactorItems.java"
    ],
-   "note": "六槽同位素燃料、指数输出曲线、单面热输出、热缓冲持久化与 LV 供电/电池充电已接入；配方前置（钚、反应堆室）随 P09/P12 迁移，辐射行为随 P16。"
+   "note": "EU 型同位素发电机:六槽 RTG 燃料丸(永不消耗)、2^(n-1) 指数输出、20000 缓冲、LV 供电与电池充电已接入;第56轮勘误:钚物品已交付(ModReactorItems PLUTONIUM)且 RTG 配方已全部转换(rt_generator/rtg_pellet×4/离心副产),legacy RT 机器无辐射语义(辐射系统已随 P16 交付于反应堆与防化面);实机观感与长时运行回归留人工。"
   },
   {
    "registry": "block",
@@ -9023,12 +9034,14 @@
    "factory": "register",
    "expression": "Ic2TileEntityBlock.create(Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).strength(2.0F, 10.0F).requiresCorrectToolForDrops().sound(SoundType.METAL), TileEntityPump.class, true, Ic2TileEntityBlock.DefaultDrop.Machine, Util.allFacings, true)",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/pump.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/PumpTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/PumpTests.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/MinerBlockEntity.java",
+    "neoforge/src/gameTest/java/ic2/neoforge/test/MinerTests.java"
    ],
-   "note": "面向水源抽取、BFS 源搜索、罐与自动装桶、进度持久化已接入；矿机联动随矿机切片。"
+   "note": "面向水源抽取、BFS 源搜索、罐与自动装桶、进度持久化已接入;第56轮勘误:矿机供液联动已随矿机切片交付(MinerBlockEntity pumpMode/handToPump+miner_pump_mode 测试);升级槽速率(UpgradeItem PUMP 适用)与真实多人取水留人工,BFS 极端地形行为差异为观察项。"
   },
   {
    "registry": "block",
@@ -9896,12 +9909,14 @@
    "factory": "register",
    "expression": "Ic2TileEntityBlock.create(Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).strength(2.0F, 10.0F).requiresCorrectToolForDrops().sound(SoundType.METAL), TileEntitySteamRepressurizer.class, true, Ic2TileEntityBlock.DefaultDrop.Machine, Util.noFacings, true)",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/steam-repressurizer.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/SteamRepressurizerTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/SteamRepressurizerTests.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/SteamRepressurizerBlockEntity.java",
+    "neoforge/src/main/java/ic2/neoforge/client/SteamRepressurizerScreen.java"
    ],
-   "note": "输入输出槽、c:steam 候选解析与保持、有界热储备事务、取热差额修复、零倍率停机与保存重载已接入；真实双人与界面细节验收持续。"
+   "note": "输入输出槽、c:steam 候选解析与保持、有界热储备事务、取热差额修复、零倍率停机与保存重载已接入;第56轮勘误:6 条 GameTest+SteamRepressurizerScreen 已交付,双端联机验收由 M16 切片覆盖;ic2:iron_tank 备选配方随该 pending 条目迁移转换;实机界面细节留人工。"
   },
   {
    "registry": "block",
@@ -11892,12 +11907,14 @@
    "factory": "register",
    "expression": "TileEntityRTGenerator::new",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/isotopic-heat.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/RtGeneratorTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/RtGeneratorTests.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/RtGeneratorBlockEntity.java",
+    "neoforge/src/main/java/ic2/neoforge/registration/ModReactorItems.java"
    ],
-   "note": "六槽同位素燃料、指数输出曲线、单面热输出、热缓冲持久化与 LV 供电/电池充电已接入；配方前置（钚、反应堆室）随 P09/P12 迁移，辐射行为随 P16。"
+   "note": "EU 型同位素发电机:六槽 RTG 燃料丸(永不消耗)、2^(n-1) 指数输出、20000 缓冲、LV 供电与电池充电已接入;第56轮勘误:钚物品已交付(ModReactorItems PLUTONIUM)且 RTG 配方已全部转换(rt_generator/rtg_pellet×4/离心副产),legacy RT 机器无辐射语义(辐射系统已随 P16 交付于反应堆与防化面);实机观感与长时运行回归留人工。"
   },
   {
    "registry": "block_entity",
@@ -12713,12 +12730,14 @@
    "factory": "register",
    "expression": "TileEntityPump::new",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/pump.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/PumpTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/PumpTests.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/MinerBlockEntity.java",
+    "neoforge/src/gameTest/java/ic2/neoforge/test/MinerTests.java"
    ],
-   "note": "面向水源抽取、BFS 源搜索、罐与自动装桶、进度持久化已接入；矿机联动随矿机切片。"
+   "note": "面向水源抽取、BFS 源搜索、罐与自动装桶、进度持久化已接入;第56轮勘误:矿机供液联动已随矿机切片交付(MinerBlockEntity pumpMode/handToPump+miner_pump_mode 测试);升级槽速率(UpgradeItem PUMP 适用)与真实多人取水留人工,BFS 极端地形行为差异为观察项。"
   },
   {
    "registry": "block_entity",
@@ -13895,12 +13914,14 @@
    "factory": "register",
    "expression": "TileEntitySteamRepressurizer::new",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/steam-repressurizer.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/SteamRepressurizerTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/SteamRepressurizerTests.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/SteamRepressurizerBlockEntity.java",
+    "neoforge/src/main/java/ic2/neoforge/client/SteamRepressurizerScreen.java"
    ],
-   "note": "输入输出槽、c:steam 候选解析与保持、有界热储备事务、取热差额修复、零倍率停机与保存重载已接入；真实双人与界面细节验收持续。"
+   "note": "输入输出槽、c:steam 候选解析与保持、有界热储备事务、取热差额修复、零倍率停机与保存重载已接入;第56轮勘误:6 条 GameTest+SteamRepressurizerScreen 已交付,双端联机验收由 M16 切片覆盖;ic2:iron_tank 备选配方随该 pending 条目迁移转换;实机界面细节留人工。"
   },
   {
    "registry": "block_entity",
