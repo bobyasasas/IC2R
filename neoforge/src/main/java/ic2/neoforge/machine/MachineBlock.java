@@ -10,6 +10,8 @@ import ic2.neoforge.registration.ModMachines;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.NonNullList;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
@@ -19,6 +21,7 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.component.ItemContainerContents;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -39,6 +42,8 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.neoforged.neoforge.capabilities.Capabilities;
+import net.neoforged.neoforge.transfer.item.ItemResource;
+import net.neoforged.neoforge.transfer.transaction.Transaction;
 import net.neoforged.neoforge.transfer.access.ItemAccess;
 import net.neoforged.neoforge.transfer.fluid.FluidUtil;
 
@@ -229,6 +234,10 @@ public final class MachineBlock extends BaseEntityBlock {
                 double retained =
                         storage.energy().stored() * EnergyConfig.STORAGE_DROP_RETENTION.get();
                 if (retained > 0) drop.set(ModDataComponents.STORED_ENERGY, retained);
+            } else if (drop.is(asItem()) && entity instanceof StorageBoxBlockEntity box) {
+                drop.set(
+                        DataComponents.CONTAINER,
+                        ItemContainerContents.fromItems(box.inventory().copyToList()));
             }
         }
         return drops;
@@ -244,6 +253,25 @@ public final class MachineBlock extends BaseEntityBlock {
             if (Double.isFinite(stored) && stored > 0) {
                 storage.energy().restore(Math.min(stored, storage.energy().capacity()));
                 storage.setChanged();
+            }
+        }
+        if (!level.isClientSide()
+                && level.getBlockEntity(pos) instanceof StorageBoxBlockEntity box) {
+            var contents = stack.get(DataComponents.CONTAINER);
+            if (contents != null && contents != ItemContainerContents.EMPTY) {
+                var restored =
+                        NonNullList.withSize(box.inventory().size(), ItemStack.EMPTY);
+                contents.copyInto(restored);
+                try (var transaction = Transaction.openRoot()) {
+                    for (int slot = 0; slot < restored.size(); slot++) {
+                        var content = restored.get(slot);
+                        if (!content.isEmpty())
+                            box.inventory()
+                                    .insert(slot, ItemResource.of(content), content.getCount(), transaction);
+                    }
+                    transaction.commit();
+                }
+                box.setChanged();
             }
         }
     }

@@ -275,6 +275,12 @@ public final class RegistrationTests {
         FUNCTIONS.register(
                 "storage_box_wooden", () -> StorageBoxTests::woodenCapacityAndAutomation);
         FUNCTIONS.register("storage_box_iridium", () -> EntityTickingTests.wrap(StorageBoxTests::iridiumHolds126Slots));
+        FUNCTIONS.register(
+                "storage_box_contents_ride_the_drop",
+                () -> StorageBoxTests::contentsRideTheDrop);
+        FUNCTIONS.register(
+                "storage_box_tier_capacities",
+                () -> StorageBoxTests::tierCapacitiesMatchLegacy);
         FUNCTIONS.register("sorting_machine_filter", () -> EntityTickingTests.wrap(SortingMachineTests::filterRouting));
         FUNCTIONS.register(
                 "sorting_machine_default", () -> SortingMachineTests::defaultRouteFallback);

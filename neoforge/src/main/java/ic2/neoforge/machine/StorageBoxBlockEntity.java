@@ -28,6 +28,11 @@ public final class StorageBoxBlockEntity extends MachineBlockEntity {
     @Override
     public void serverTick(ServerLevel level) {}
 
+    /** Contents ride the dropped block item instead of scattering; legacy adjustDrop. The
+     * vanilla default scatters Container inventories here, so this deliberately skips super. */
+    @Override
+    public void preRemoveSideEffects(BlockPos pos, BlockState state) {}
+
     @Override
     public int progress() {
         return 0;
