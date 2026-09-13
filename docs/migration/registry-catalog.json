@@ -16565,12 +16565,14 @@
    "factory": "create",
    "expression": "3000",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
-    "neoforge/src/main/java/ic2/neoforge/registration/ModFluids.java",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/FluidBlockTests.java",
+    "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java",
+    "neoforge/src/main/java/ic2/neoforge/fluid/UUMatterFluidBlock.java",
+    "neoforge/src/main/java/ic2/neoforge/registration/ModFluids.java"
    ],
-   "note": "已注册流体、桶和渲染；特殊流体方块行为仍待迁移。"
+   "note": "已注册流体、桶和渲染；第58轮勘误：legacy UUMatterBlock 特殊行为已随 UUMatterFluidBlock 交付——实体再生 II、玻璃瓶装水（POTION_CONTENTS is WATER）、邻近异种流体湮灭（熔岩源→黑曜石，其余源→空气；26.1 无 neighborPos 改遍历六邻等效触发，超集差异记录不回删），fluid_uu_matter_bottles/fluid_uu_matter_annihilates 覆盖。"
   },
   {
    "registry": "fluid_family",
@@ -16625,12 +16627,14 @@
    "factory": "create",
    "expression": "1000",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
-    "neoforge/src/main/java/ic2/neoforge/registration/ModFluids.java",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/FluidBlockTests.java",
+    "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java",
+    "neoforge/src/main/java/ic2/neoforge/fluid/HotCoolantFluidBlock.java",
+    "neoforge/src/main/java/ic2/neoforge/registration/ModFluids.java"
    ],
-   "note": "已注册流体、桶和渲染；特殊流体方块行为仍待迁移。"
+   "note": "已注册流体、桶和渲染；第58轮勘误：legacy HotCoolantBlock 特殊行为已随 HotCoolantFluidBlock 交付——实体入内点燃 30 秒，fluid_hot_coolant_ignites 覆盖。"
   },
   {
    "registry": "fluid_family",
@@ -16640,12 +16644,14 @@
    "factory": "create",
    "expression": "50000",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
-    "neoforge/src/main/java/ic2/neoforge/registration/ModFluids.java",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/FluidBlockTests.java",
+    "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java",
+    "neoforge/src/main/java/ic2/neoforge/fluid/PahoehoeLavaFluidBlock.java",
+    "neoforge/src/main/java/ic2/neoforge/registration/ModFluids.java"
    ],
-   "note": "已注册流体、桶和渲染；特殊流体方块行为仍待迁移。"
+   "note": "已注册流体、桶和渲染；第58轮勘误：legacy PahoehoeLavaBlock 特殊行为已随 PahoehoeLavaFluidBlock 交付——实体入内熔岩伤 4.0+点燃 30 秒、360 tick 冷却为玄武岩、触水直接变玄武岩，fluid_pahoehoe_burns/fluid_pahoehoe_basalt 覆盖。"
   },
   {
    "registry": "fluid_family",
@@ -16700,12 +16706,14 @@
    "factory": "create",
    "expression": "-3000",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
-    "neoforge/src/main/java/ic2/neoforge/registration/ModFluids.java",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/FluidBlockTests.java",
+    "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java",
+    "neoforge/src/main/java/ic2/neoforge/fluid/SteamFluidBlock.java",
+    "neoforge/src/main/java/ic2/neoforge/registration/ModFluids.java"
    ],
-   "note": "已注册流体、桶和渲染；特殊流体方块行为仍待迁移。"
+   "note": "已注册流体、桶和渲染；第58轮勘误：legacy SteamBlock 特殊行为已随 SteamFluidBlock 交付——实体入内失明 300 tick，steam 与 superheated_steam 共用一类（同 legacy），fluid_steam_blinds 测试覆盖；蒸汽实机观感留人工。"
   },
   {
    "registry": "fluid_family",
@@ -16715,12 +16723,14 @@
    "factory": "create",
    "expression": "-800",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
-    "neoforge/src/main/java/ic2/neoforge/registration/ModFluids.java",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/FluidBlockTests.java",
+    "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java",
+    "neoforge/src/main/java/ic2/neoforge/fluid/SteamFluidBlock.java",
+    "neoforge/src/main/java/ic2/neoforge/registration/ModFluids.java"
    ],
-   "note": "已注册流体、桶和渲染；特殊流体方块行为仍待迁移。"
+   "note": "已注册流体、桶和渲染；第58轮勘误：legacy SteamBlock 特殊行为已随 SteamFluidBlock 交付——实体入内失明 300 tick，steam 与 superheated_steam 共用一类（同 legacy），fluid_steam_blinds 测试覆盖；蒸汽实机观感留人工。"
   },
   {
    "registry": "fluid_family",
@@ -16730,12 +16740,14 @@
    "factory": "create",
    "expression": "1000",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
-    "neoforge/src/main/java/ic2/neoforge/registration/ModFluids.java",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/FluidBlockTests.java",
+    "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java",
+    "neoforge/src/main/java/ic2/neoforge/fluid/HotWaterFluidBlock.java",
+    "neoforge/src/main/java/ic2/neoforge/registration/ModFluids.java"
    ],
-   "note": "已注册流体、桶和渲染；特殊流体方块行为仍待迁移。"
+   "note": "已注册流体、桶和渲染；第58轮勘误：legacy HotWaterBlock 特殊行为已随 HotWaterFluidBlock 交付——实体入内再生 II 且接触源就地冷却为普通水、放置后 360 tick 自动冷却，fluid_hot_water_cools 覆盖。"
   },
   {
    "registry": "fluid_family",
@@ -16935,12 +16947,15 @@
    "factory": "dynamic fluid registration",
    "expression": "ic2:uu_matter",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
-    "neoforge/src/main/java/ic2/neoforge/registration/ModFluids.java",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/FluidBlockTests.java",
+    "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java",
+    "neoforge/src/main/java/ic2/neoforge/fluid/UUMatterFluidBlock.java",
+    "neoforge/src/main/java/ic2/neoforge/registration/ModFluids.java"
    ],
-   "derived_from": "ic2:uu_matter"
+   "derived_from": "ic2:uu_matter",
+   "note": "第58轮交付：UUMatterFluidBlock（legacy UUMatterBlock 镜像：实体再生 II、玻璃瓶装水、六邻异种流体湮灭），fluid_uu_matter_bottles/fluid_uu_matter_annihilates 覆盖。"
   },
   {
    "registry": "item",
@@ -17236,12 +17251,15 @@
    "factory": "dynamic fluid registration",
    "expression": "ic2:hot_coolant",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
-    "neoforge/src/main/java/ic2/neoforge/registration/ModFluids.java",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/FluidBlockTests.java",
+    "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java",
+    "neoforge/src/main/java/ic2/neoforge/fluid/HotCoolantFluidBlock.java",
+    "neoforge/src/main/java/ic2/neoforge/registration/ModFluids.java"
    ],
-   "derived_from": "ic2:hot_coolant"
+   "derived_from": "ic2:hot_coolant",
+   "note": "第58轮交付：HotCoolantFluidBlock（legacy HotCoolantBlock 镜像：实体入内点燃 30 秒），fluid_hot_coolant_ignites 覆盖。"
   },
   {
    "registry": "item",
@@ -17311,12 +17329,15 @@
    "factory": "dynamic fluid registration",
    "expression": "ic2:pahoehoe_lava",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
-    "neoforge/src/main/java/ic2/neoforge/registration/ModFluids.java",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/FluidBlockTests.java",
+    "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java",
+    "neoforge/src/main/java/ic2/neoforge/fluid/PahoehoeLavaFluidBlock.java",
+    "neoforge/src/main/java/ic2/neoforge/registration/ModFluids.java"
    ],
-   "derived_from": "ic2:pahoehoe_lava"
+   "derived_from": "ic2:pahoehoe_lava",
+   "note": "第58轮交付：PahoehoeLavaFluidBlock（legacy PahoehoeLavaBlock 镜像：熔岩伤+点燃、360 tick 冷却玄武岩、触水即玄武岩），fluid_pahoehoe_burns/fluid_pahoehoe_basalt 覆盖。"
   },
   {
    "registry": "item",
@@ -17611,12 +17632,15 @@
    "factory": "dynamic fluid registration",
    "expression": "ic2:superheated_steam",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
-    "neoforge/src/main/java/ic2/neoforge/registration/ModFluids.java",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/FluidBlockTests.java",
+    "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java",
+    "neoforge/src/main/java/ic2/neoforge/fluid/SteamFluidBlock.java",
+    "neoforge/src/main/java/ic2/neoforge/registration/ModFluids.java"
    ],
-   "derived_from": "ic2:superheated_steam"
+   "derived_from": "ic2:superheated_steam",
+   "note": "第58轮交付：SteamFluidBlock（legacy SteamBlock 镜像：实体入内失明 300 tick；steam/superheated_steam 共用一类），ModFluids.blockFor 分发，fluid_steam_blinds 覆盖；实机观感留人工。"
   },
   {
    "registry": "item",
@@ -17686,12 +17710,15 @@
    "factory": "dynamic fluid registration",
    "expression": "ic2:steam",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
-    "neoforge/src/main/java/ic2/neoforge/registration/ModFluids.java",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/FluidBlockTests.java",
+    "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java",
+    "neoforge/src/main/java/ic2/neoforge/fluid/SteamFluidBlock.java",
+    "neoforge/src/main/java/ic2/neoforge/registration/ModFluids.java"
    ],
-   "derived_from": "ic2:steam"
+   "derived_from": "ic2:steam",
+   "note": "第58轮交付：SteamFluidBlock（legacy SteamBlock 镜像：实体入内失明 300 tick；steam/superheated_steam 共用一类），ModFluids.blockFor 分发，fluid_steam_blinds 覆盖；实机观感留人工。"
   },
   {
    "registry": "item",
@@ -17761,12 +17788,15 @@
    "factory": "dynamic fluid registration",
    "expression": "ic2:hot_water",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
-    "neoforge/src/main/java/ic2/neoforge/registration/ModFluids.java",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/FluidBlockTests.java",
+    "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java",
+    "neoforge/src/main/java/ic2/neoforge/fluid/HotWaterFluidBlock.java",
+    "neoforge/src/main/java/ic2/neoforge/registration/ModFluids.java"
    ],
-   "derived_from": "ic2:hot_water"
+   "derived_from": "ic2:hot_water",
+   "note": "第58轮交付：HotWaterFluidBlock（legacy HotWaterBlock 镜像：实体再生+接触源冷却为普通水、360 tick 自动冷却），fluid_hot_water_cools 覆盖。"
   },
   {
    "registry": "item",

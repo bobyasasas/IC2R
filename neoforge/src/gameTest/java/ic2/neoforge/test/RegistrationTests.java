@@ -140,6 +140,20 @@ public final class RegistrationTests {
         FUNCTIONS.register("fluid_world", () -> EntityTickingTests.wrap(FluidTests::worldInteraction));
         FUNCTIONS.register("fluid_families", () -> EntityTickingTests.wrap(FluidTests::families));
         FUNCTIONS.register("fluid_cells", () -> EntityTickingTests.wrap(FluidTests::cells));
+        FUNCTIONS.register("fluid_steam_blinds", () -> EntityTickingTests.wrap(FluidBlockTests::steamBlindsEntities));
+        FUNCTIONS.register(
+                "fluid_uu_matter_bottles", () -> EntityTickingTests.wrap(FluidBlockTests::uuMatterRegeneratesAndBottles));
+        FUNCTIONS.register(
+                "fluid_uu_matter_annihilates",
+                () -> EntityTickingTests.wrap(FluidBlockTests::uuMatterAnnihilatesNeighborFluids));
+        FUNCTIONS.register(
+                "fluid_hot_water_cools", () -> EntityTickingTests.wrap(FluidBlockTests::hotWaterHealsThenCools));
+        FUNCTIONS.register(
+                "fluid_hot_coolant_ignites", () -> EntityTickingTests.wrap(FluidBlockTests::hotCoolantIgnitesEntities));
+        FUNCTIONS.register(
+                "fluid_pahoehoe_burns", () -> EntityTickingTests.wrap(FluidBlockTests::pahoehoeBurnsEntities));
+        FUNCTIONS.register(
+                "fluid_pahoehoe_basalt", () -> EntityTickingTests.wrap(FluidBlockTests::pahoehoeSolidifiesToBasalt));
         FUNCTIONS.register("iron_furnace", () -> EntityTickingTests.wrap(MachineTests::ironFurnace));
         FUNCTIONS.register("crafting_charge", () -> EntityTickingTests.wrap(CraftingTests::charge));
         FUNCTIONS.register("crafting_remainders", () -> EntityTickingTests.wrap(CraftingTests::remainder));

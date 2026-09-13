@@ -62,11 +62,7 @@ public final class ModFluids {
             var block =
                     BLOCKS.registerBlock(
                             "fluid_block_" + id,
-                            p ->
-                                    definition == FluidDefinition.CONSTRUCTION_FOAM
-                                            ? new ic2.neoforge.world.ConstructionFoamBlock(
-                                                    source.get(), p)
-                                            : new LiquidBlock(source.get(), p),
+                            p -> blockFor(definition, source.get(), p),
                             () -> BlockBehaviour.Properties.ofFullCopy(Blocks.WATER).noLootTable());
             var bucket =
                     ITEMS.registerItem(
@@ -78,6 +74,21 @@ public final class ModFluids {
             result.put(definition, new Family(type, source, flowing, block, bucket));
         }
         return Collections.unmodifiableMap(result);
+    }
+
+    /** Legacy createFluidBlock: six families carry special world behaviour, the rest stay plain. */
+    private static LiquidBlock blockFor(
+            FluidDefinition definition, net.minecraft.world.level.material.FlowingFluid fluid,
+            BlockBehaviour.Properties p) {
+        return switch (definition) {
+            case STEAM, SUPERHEATED_STEAM -> new ic2.neoforge.fluid.SteamFluidBlock(fluid, p);
+            case UU_MATTER -> new ic2.neoforge.fluid.UUMatterFluidBlock(fluid, p);
+            case HOT_WATER -> new ic2.neoforge.fluid.HotWaterFluidBlock(fluid, p);
+            case HOT_COOLANT -> new ic2.neoforge.fluid.HotCoolantFluidBlock(fluid, p);
+            case PAHOEHOE_LAVA -> new ic2.neoforge.fluid.PahoehoeLavaFluidBlock(fluid, p);
+            case CONSTRUCTION_FOAM -> new ic2.neoforge.world.ConstructionFoamBlock(fluid, p);
+            default -> new LiquidBlock(fluid, p);
+        };
     }
 
     private static BaseFlowingFluid.Properties properties(FluidDefinition definition) {
