@@ -69,3 +69,12 @@
 - RTG 燃料丸辐射行为(P16 防化服)。
 - 全部 RTG 配方的真实可合成性(P09 钚、P12 反应堆室迁移后转换剩余 pending 配方)。
 - 真实双人与长时运行回归(M16)。
+
+
+2026-09-12 第 56 轮审计:registry-catalog ic2:rt_generator 3 条目勘误翻 implemented——
+"配方前置(钚、反应堆室)"已落地(钚物品见 `ModReactorItems` PLUTONIUM/SMALL_PLUTONIUM;
+RTG 配方全部转换:`shaped/rt_generator`、`shaped/rtg_pellet`×4、离心 `rtg_pellet_to_plutonium`);
+legacy TileEntityRTGenerator/TileEntityRTHeatGenerator 均无辐射语义(辐射系统已随 P16
+交付于反应堆辐射源与 HazmatHelper 防化面),原"辐射行为随 P16"跟踪项就此关闭。
+实机观感与长时运行回归保持人工,记录于 `/home/codex/minecraft/待测试.md`。
+当前套件 549 项双模式全绿。

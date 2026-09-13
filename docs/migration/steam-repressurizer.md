@@ -57,3 +57,13 @@
 - 真实专服双端界面与同步验收归 M16。
 - `steam_repressurizer_from_iron_tank` 配方随 `ic2:iron_tank` 迁移转换。
 - 配方前置链(铜锅炉、导热件等)的获取可达性随 P09 核材料与前置配方整体验收。
+
+
+## 2026-09-12 第 56 轮审计
+
+- registry-catalog ic2:steam_repressurizer 3 条目勘误翻 implemented:
+  "真实专服双端界面与同步验收归 M16"已由 M16 联机切片覆盖(真实客户端联机、
+  双人并发、机器 GUI 无头客户端打开);配方前置链(铜锅炉、导热件)物品均已交付;
+- `steam_repressurizer_from_iron_tank` 仍随 pending 条目 `ic2:iron_tank`
+  迁移转换,不以占位物品提前"修复"(维持原判);
+- 实机界面细节(双流体读数、倍率按钮观感)保持人工验收。

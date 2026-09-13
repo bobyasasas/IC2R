@@ -28,7 +28,13 @@
   - `pump_progress_reload`:进行中的进度经真实方块实体保存/替换后保留并继续。
 - IC2 与 GT 两种能量模式 171 项 GameTest 全部通过(2026-09-09)。
 
+## 2026-09-12 第 56 轮审计
+
+- registry-catalog 3 条目勘误翻 implemented:矿机供液联动已随矿机切片交付
+  (`MinerBlockEntity` pumpMode/handToPump,`miner_pump_mode` 测试覆盖);
+- 升级槽速率(`UpgradeItem` PUMP 适用)与真实多人取水保持实机人工验收;
+  BFS 与旧版追踪在极端地形的差异为行为观察项。
+
 ## 未验收范围
 
-- 与矿机的供液联动(随矿机切片)、升级槽速率(升级系统统一验收 P09)、BFS 与旧版
-  追踪在极端地形的差异、真实多人取水(M16)。
+- 真实多人取水与升级速率实机回归(M16 联机切片已交付,观感留人工)。
