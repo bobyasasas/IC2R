@@ -22,4 +22,14 @@
 
 ![定向升级组件](images/upgrade-direction.png)
 
-剩余：高级弹出／抽入的过滤菜单，红石反相与远程接口在适用机器上的行为，以及其余机器族的升级支持。P04 继续保持进行中。
+## 高级弹出／抽入升级（三屏配置 GUI）
+
+新增 `ic2:advanced_ejector_upgrade` 与 `ic2:advanced_pulling_upgrade`。配置全部存在数据组件上：九格过滤条目（`ic2:advanced_filter_items`）、物品元数据开关（`ic2:advanced_meta`）、电量比较（`ic2:advanced_energy`，`AdvancedFilterSettings`：active+比较类型+上下界与算子）与 NBT 模式（`ic2:advanced_nbt_mode`：0 忽略、非 0 要求物品与组件完全一致——legacy 的模糊／精确两种 NBT 比较在组件模型下塌缩为同一语义，legacy 从未写入该模式字节，记档）。
+
+过滤语义逐条对齐 legacy `UpgradeSettings`：无任何配置时完全惰性；DIRECT 且 active 但过滤条目为空仍惰性（与 legacy fallback 相同，仅在要求能量比较时放行）；电量比较 active 加 DIRECT 时只搬运电量与阈值条目一致（误差 1e-5 内）的电器件；COMPARISON／RANGE 加 active 时门控所有移动，过滤条目非空还须同时命中。RANGE 默认算子（小于、小于）形成 `normalBound < 电量 < extraBound` 的开区间窗口。`pulling()` 类别为抽入、高级抽入、流体抽入三者共用，流体分支据此决定方向。
+
+手持升级右键打开主编辑屏：九格过滤条目以幽灵物品编辑，方向、物品元数据、电量比较与矿物过滤四类子屏经菜单按钮路由；legacy 在生产环境下禁止进入数值比较屏，端口保留该判定（FML 11 中 `isProduction()` 已改为 `FMLLoader.getCurrent().isProduction()` 实例方法）。比较设置屏用上下步进器替代 legacy 的文本输入框，legacy 空文本框的降级链因此没有可达状态；矿物过滤屏在 legacy 里只向标准输出打印占位列表，端口保留过滤行与返回按钮，不移植死占位。legacy 没有这两种升级的合成配方（创造获取），端口保持一致。两个升级的双语名称与全部 GUI 文案均为端口新增（legacy 按钮无文本键，记档为现代化项）。
+
+新增 `AdvancedUpgradeTests` 五件套：注册与右键行为、菜单编辑（幽灵条目、子屏路由、生产判定）、过滤选择（可烧原料二选一、惰性对照）、电量比较（单元级四型 + 双电炉端到端同电量筛选）与比较设置屏交互，IC2／GT 双模式各 504 项全绿。验证计数 725 类／511 物品定义／1154 模型。
+
+剩余：红石反相与远程接口在适用机器上的行为，以及其余机器族的升级支持。P04 继续保持进行中。

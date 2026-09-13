@@ -259,6 +259,34 @@ public final class ModTools {
                                     (id, inventory, data) ->
                                             new ScannerMenu(
                                                     id, inventory, data.readVarInt(), true)));
+    public static final DeferredHolder<MenuType<?>, MenuType<ic2.neoforge.menu.AdvancedUpgradeMenu>> ADVANCED_UPGRADE_MENU =
+            MENUS.register(
+                    "advanced_upgrade",
+                    () ->
+                            IMenuTypeExtension.create(
+                                    (id, inventory, data) ->
+                                            new ic2.neoforge.menu.AdvancedUpgradeMenu(
+                                                    id, inventory, data.readVarInt(), true)));
+    public static final DeferredHolder<MenuType<?>, MenuType<ic2.neoforge.menu.AdvancedValueConfigMenu>> ADVANCED_VALUE_CONFIG_MENU =
+            MENUS.register(
+                    "advanced_value_config",
+                    () ->
+                            IMenuTypeExtension.create(
+                                    (id, inventory, data) ->
+                                            new ic2.neoforge.menu.AdvancedValueConfigMenu(
+                                                    id,
+                                                    inventory,
+                                                    data.readVarInt(),
+                                                    data.readByte(),
+                                                    true)));
+    public static final DeferredHolder<MenuType<?>, MenuType<ic2.neoforge.menu.AdvancedEditOreMenu>> ADVANCED_EDIT_ORE_MENU =
+            MENUS.register(
+                    "advanced_edit_ore",
+                    () ->
+                            IMenuTypeExtension.create(
+                                    (id, inventory, data) ->
+                                            new ic2.neoforge.menu.AdvancedEditOreMenu(
+                                                    id, inventory, data.readVarInt(), true)));
 
     private static Item.Properties tool(Item.Properties properties, int damage) {
         var blocks =

@@ -6886,7 +6886,15 @@
    "factory": "register",
    "expression": "new ItemUpgradeModule(new Properties(), UpgradeType.advanced_ejector)",
    "decision": "preserve",
-   "status": "pending"
+   "status": "implemented",
+   "evidence": [
+    "neoforge/src/main/java/ic2/neoforge/item/UpgradeItem.java",
+    "neoforge/src/main/java/ic2/neoforge/component/AdvancedFilterSettings.java",
+    "neoforge/src/main/java/ic2/neoforge/transfer/AdvancedUpgradeFilter.java",
+    "neoforge/src/main/java/ic2/neoforge/transfer/UpgradeTransfers.java",
+    "neoforge/src/gameTest/java/ic2/neoforge/test/AdvancedUpgradeTests.java"
+   ],
+   "note": "高级弹出升级:物品过滤+NBT/电量比较门控,数据组件持久化;legacy 无合成配方(创造获取),port 同;三屏 GUI 随 menu 条目。"
   },
   {
    "registry": "item",
@@ -6911,7 +6919,15 @@
    "factory": "register",
    "expression": "new ItemUpgradeModule(new Properties(), UpgradeType.advanced_pulling)",
    "decision": "preserve",
-   "status": "pending"
+   "status": "implemented",
+   "evidence": [
+    "neoforge/src/main/java/ic2/neoforge/item/UpgradeItem.java",
+    "neoforge/src/main/java/ic2/neoforge/component/AdvancedFilterSettings.java",
+    "neoforge/src/main/java/ic2/neoforge/transfer/AdvancedUpgradeFilter.java",
+    "neoforge/src/main/java/ic2/neoforge/transfer/UpgradeTransfers.java",
+    "neoforge/src/gameTest/java/ic2/neoforge/test/AdvancedUpgradeTests.java"
+   ],
+   "note": "高级抽入升级:同弹出升级过滤语义,方向性拉取;legacy 无合成配方(创造获取),port 同;三屏 GUI 随 menu 条目。"
   },
   {
    "registry": "item",
@@ -14520,8 +14536,13 @@
    "factory": "registerManagedItem",
    "expression": "",
    "decision": "preserve",
-   "status": "pending",
-   "note": "advanced_upgrade 三屏配置 GUI（主面板）未移植。"
+   "status": "implemented",
+   "note": "手持高级升级主编辑屏:过滤条目 ghost 编辑/方向/META/ENERGY/ORE 子屏路由;production 下 META_CONFIG 进 comparison 屏(legacy dev-only quirk 保留)。",
+   "evidence": [
+    "neoforge/src/main/java/ic2/neoforge/menu/AdvancedUpgradeMenu.java",
+    "neoforge/src/main/java/ic2/neoforge/client/AdvancedUpgradeScreen.java",
+    "neoforge/src/gameTest/java/ic2/neoforge/test/AdvancedUpgradeTests.java"
+   ]
   },
   {
    "registry": "menu",
@@ -14531,8 +14552,13 @@
    "factory": "registerManagedItem",
    "expression": "",
    "decision": "preserve",
-   "status": "pending",
-   "note": "edit_ore 配置屏未移植。"
+   "status": "implemented",
+   "note": "legacy GuiEditOre 为 stdout 占位屏,port 仅保留过滤行+返回按钮,死占位列表不移植(记档)。",
+   "evidence": [
+    "neoforge/src/main/java/ic2/neoforge/menu/AdvancedEditOreMenu.java",
+    "neoforge/src/main/java/ic2/neoforge/client/AdvancedEditOreScreen.java",
+    "neoforge/src/gameTest/java/ic2/neoforge/test/AdvancedUpgradeTests.java"
+   ]
   },
   {
    "registry": "menu",
@@ -14542,8 +14568,13 @@
    "factory": "registerManagedItem",
    "expression": "",
    "decision": "preserve",
-   "status": "pending",
-   "note": "value_config 配置屏未移植。"
+   "status": "implemented",
+   "note": "电量比较配置屏:比较类型/算子/阈值;步进器替代 legacy 文本框,空框降级链无可达态;BACK 接受写入组件。",
+   "evidence": [
+    "neoforge/src/main/java/ic2/neoforge/menu/AdvancedValueConfigMenu.java",
+    "neoforge/src/main/java/ic2/neoforge/client/AdvancedValueConfigScreen.java",
+    "neoforge/src/gameTest/java/ic2/neoforge/test/AdvancedUpgradeTests.java"
+   ]
   },
   {
    "registry": "menu",

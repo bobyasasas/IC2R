@@ -7,7 +7,10 @@ import ic2.neoforge.transfer.MachineInventory;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.UseOnContext;
@@ -21,14 +24,25 @@ public final class UpgradeItem extends Item {
         TRANSFORMER,
         ENERGY_STORAGE,
         EJECTOR,
+        ADVANCED_EJECTOR,
         PULLING,
+        ADVANCED_PULLING,
         FLUID_EJECTOR,
         FLUID_PULLING,
         REDSTONE_INVERTER,
         REMOTE_INTERFACE;
 
         public boolean directional() {
-            return this == EJECTOR || this == PULLING || fluid();
+            return ejector() || pulling() || fluid();
+        }
+
+        /** Legacy UpgradeType couples the advanced ejector with the plain one everywhere. */
+        public boolean ejector() {
+            return this == EJECTOR || this == ADVANCED_EJECTOR;
+        }
+
+        public boolean advanced() {
+            return this == ADVANCED_EJECTOR || this == ADVANCED_PULLING;
         }
 
         public boolean fluid() {
@@ -36,7 +50,7 @@ public final class UpgradeItem extends Item {
         }
 
         public boolean pulling() {
-            return this == PULLING || this == FLUID_PULLING;
+            return this == PULLING || this == ADVANCED_PULLING || this == FLUID_PULLING;
         }
 
         public boolean suitable(MachineKind machine) {
@@ -55,7 +69,7 @@ public final class UpgradeItem extends Item {
             // Legacy has no RemotelyAccessible machine and InvSlotUpgrade.getRemoteRange has no
             // caller: the remote interface is an inert item there, so it stays unsuitable here.
             if (this == REMOTE_INTERFACE) return false;
-            if (machine == MachineKind.STEAM_KINETIC_GENERATOR) return fluid() || this == PULLING;
+            if (machine == MachineKind.STEAM_KINETIC_GENERATOR) return fluid() || pulling();
             // Legacy cropmatron: transformer/energy storage/item consuming/fluid consuming.
             if (machine == MachineKind.CROPMATRON)
                 return this == TRANSFORMER || this == ENERGY_STORAGE || pulling();
@@ -64,7 +78,7 @@ public final class UpgradeItem extends Item {
                 return this == TRANSFORMER || this == ENERGY_STORAGE;
             // Legacy crop harvester: transformer/energy storage/item producing.
             if (machine == MachineKind.CROP_HARVESTER)
-                return this == TRANSFORMER || this == ENERGY_STORAGE || this == EJECTOR;
+                return this == TRANSFORMER || this == ENERGY_STORAGE || ejector();
             if (machine == MachineKind.ITEM_BUFFER) return directional() && !fluid();
             if (machine == MachineKind.BLAST_FURNACE) return directional() && !fluid();
             if (machine == MachineKind.MATTER_GENERATOR) return directional() && !fluid();
@@ -74,15 +88,15 @@ public final class UpgradeItem extends Item {
             if (machine == MachineKind.FERMENTER
                     || machine == MachineKind.LIQUID_HEAT_EXCHANGER
                     || machine == MachineKind.STIRLING_KINETIC_GENERATOR) return directional();
-            if (machine == MachineKind.INDUCTION_FURNACE) return this == EJECTOR || this == PULLING;
+            if (machine == MachineKind.INDUCTION_FURNACE) return ejector() || pulling();
             // Legacy replicator: processing/transformer/storage/item consuming/item producing/
             // fluid consuming — no fluid ejector (no fluid producing property).
             if (machine == MachineKind.REPLICATOR)
                 return this == OVERCLOCKER
                         || this == TRANSFORMER
                         || this == ENERGY_STORAGE
-                        || this == EJECTOR
-                        || this == PULLING
+                        || ejector()
+                        || pulling()
                         || this == FLUID_PULLING;
             return machine.upgradable()
                     && (!fluid()
@@ -154,5 +168,27 @@ public final class UpgradeItem extends Item {
                             directionName(stack)));
         }
         return InteractionResult.SUCCESS;
+    }
+
+    /**
+     * Legacy ItemUpgradeModule.use: right-clicking in the air opens the advanced upgrade editor;
+     * plain upgrades keep doing nothing here.
+     */
+    @Override
+    public InteractionResult use(Level level, Player player, InteractionHand hand) {
+        if (!kind.advanced()) return InteractionResult.PASS;
+        if (player instanceof ServerPlayer server) {
+            ic2.neoforge.menu.AdvancedMenus.openMain(server, hand);
+        }
+        return InteractionResult.SUCCESS;
+    }
+
+    /** Legacy onDroppedByPlayer: dropping the upgrade closes its open editor. */
+    @Override
+    public boolean onDroppedByPlayer(ItemStack stack, Player player) {
+        if (player.containerMenu instanceof ic2.neoforge.menu.AdvancedMenus.Bound bound
+                && player.getInventory().getItem(bound.slotIndex()) == stack)
+            player.closeContainer();
+        return true;
     }
 }

@@ -359,6 +359,60 @@ public final class ModDataComponents {
             TYPES.<Integer>registerComponentType(
                     "saber_tick", builder -> builder.networkSynchronized(ByteBufCodecs.VAR_INT));
 
+    // Advanced ejector/pulling upgrade: the nine-slot filter list edited in its GUI
+    // (legacy NBT "Items" on the upgrade stack).
+    public static final Supplier<DataComponentType<ItemContainerContents>> ADVANCED_FILTER_ITEMS =
+            TYPES.<ItemContainerContents>registerComponentType(
+                    "advanced_filter_items",
+                    builder ->
+                            builder.persistent(
+                                            ItemContainerContents.CODEC.validate(
+                                                    contents ->
+                                                            contents.getSlots() <= 9
+                                                                    ? DataResult.success(contents)
+                                                                    : DataResult.error(
+                                                                            () ->
+                                                                                    "Advanced"
+                                                                                        + " upgrade"
+                                                                                        + " filter"
+                                                                                        + " exceeds"
+                                                                                        + " nine"
+                                                                                        + " entries")))
+                                    .networkSynchronized(
+                                            ItemContainerContents.STREAM_CODEC.map(
+                                                    ModDataComponents::validAdvancedFilter,
+                                                    ModDataComponents::validAdvancedFilter)));
+
+    private static ItemContainerContents validAdvancedFilter(ItemContainerContents contents) {
+        if (contents.getSlots() > 9)
+            throw new IllegalArgumentException("Advanced upgrade filter exceeds nine entries");
+        return contents;
+    }
+
+    // Legacy "metaSettings"/"energySettings" tags: active flag plus the dev-only numeric
+    // comparison configuration.
+    public static final Supplier<DataComponentType<AdvancedFilterSettings>> ADVANCED_META =
+            TYPES.<AdvancedFilterSettings>registerComponentType(
+                    "advanced_meta",
+                    builder ->
+                            builder.persistent(AdvancedFilterSettings.CODEC)
+                                    .networkSynchronized(AdvancedFilterSettings.STREAM_CODEC));
+    public static final Supplier<DataComponentType<AdvancedFilterSettings>> ADVANCED_ENERGY =
+            TYPES.<AdvancedFilterSettings>registerComponentType(
+                    "advanced_energy",
+                    builder ->
+                            builder.persistent(AdvancedFilterSettings.CODEC)
+                                    .networkSynchronized(AdvancedFilterSettings.STREAM_CODEC));
+
+    // Legacy "nbtSettings" type byte: 0 ignored, 1 fuzzy, 2 exact. No GUI writes it in legacy
+    // either — the port keeps the state and honors it in the filter, faithfully inert.
+    public static final Supplier<DataComponentType<Integer>> ADVANCED_NBT_MODE =
+            TYPES.<Integer>registerComponentType(
+                    "advanced_nbt_mode",
+                    builder ->
+                            builder.persistent(Codec.intRange(0, 2))
+                                    .networkSynchronized(ByteBufCodecs.VAR_INT));
+
     private ModDataComponents() {}
 
     private static double validCharge(double value) {

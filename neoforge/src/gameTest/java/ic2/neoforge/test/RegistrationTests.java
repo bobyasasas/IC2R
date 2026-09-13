@@ -726,6 +726,11 @@ public final class RegistrationTests {
         FUNCTIONS.register("stirling_kinetic_chain_charges_batbox", () -> EntityTickingTests.wrap(StirlingKineticTests::chainChargesBatbox));
         FUNCTIONS.register("menu_audit_slots", () -> MenuAuditTests::everyMachineMenuBindsInventorySlotsExactlyOnce);
         FUNCTIONS.register("menu_audit_chunk_loader", () -> EntityTickingTests.wrap(MenuAuditTests::chunkLoaderMenuMatchesSingleDischargeLayout));
+        FUNCTIONS.register("advanced_upgrade_registration", () -> EntityTickingTests.wrap(AdvancedUpgradeTests::registration));
+        FUNCTIONS.register("advanced_upgrade_menu", () -> EntityTickingTests.wrap(AdvancedUpgradeTests::menu));
+        FUNCTIONS.register("advanced_upgrade_filter", () -> EntityTickingTests.wrap(AdvancedUpgradeTests::filter));
+        FUNCTIONS.register("advanced_upgrade_energy", () -> EntityTickingTests.wrap(AdvancedUpgradeTests::energy));
+        FUNCTIONS.register("advanced_upgrade_value_config", () -> EntityTickingTests.wrap(AdvancedUpgradeTests::valueConfig));
     }
 
     public RegistrationTests(IEventBus modBus) {

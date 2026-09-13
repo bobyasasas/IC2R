@@ -135,6 +135,9 @@ public final class IndustrialCraftClient {
         event.register(ModTools.METER_MENU.get(), MeterScreen::new);
         event.register(ModTools.CROP_ANALYZER_MENU.get(), CropAnalyzerScreen::new);
         event.register(ModTools.SCANNER_MENU.get(), ScannerScreen::new);
+        event.register(ModTools.ADVANCED_UPGRADE_MENU.get(), AdvancedUpgradeScreen::new);
+        event.register(ModTools.ADVANCED_VALUE_CONFIG_MENU.get(), AdvancedValueConfigScreen::new);
+        event.register(ModTools.ADVANCED_EDIT_ORE_MENU.get(), AdvancedEditOreScreen::new);
         ModMachines.MACHINES.forEach(
                 (kind, registration) -> {
                     if (kind.energyDevice())

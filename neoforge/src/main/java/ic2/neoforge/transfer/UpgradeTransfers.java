@@ -8,6 +8,9 @@ import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.transfer.ResourceHandlerUtil;
+import net.neoforged.neoforge.transfer.item.ItemResource;
+
+import java.util.function.Predicate;
 
 /** Uses the same sided ports as external automation, with native transfer rollback. */
 public final class UpgradeTransfers {
@@ -20,6 +23,11 @@ public final class UpgradeTransfers {
                     || !item.kind().suitable(machine.kind())) continue;
             var configured = UpgradeItem.direction(stack);
             int rate = 1 << (2 * Math.min(4, stack.getCount() - 1));
+            // Advanced upgrades gate every move through their filter; plain ones take anything.
+            Predicate<ItemResource> accepts =
+                    item.kind().advanced()
+                            ? AdvancedUpgradeFilter.of(stack)
+                            : resource -> true;
             for (var side : Direction.values()) {
                 if (configured != null && configured != side) continue;
                 var target = machine.getBlockPos().relative(side);
@@ -44,7 +52,7 @@ public final class UpgradeTransfers {
                     ResourceHandlerUtil.moveStacking(
                             item.kind().pulling() ? adjacent : local,
                             item.kind().pulling() ? local : adjacent,
-                            resource -> true,
+                            accepts,
                             rate,
                             null);
                 }
