@@ -21,3 +21,9 @@
 ![换热器元件与热缓冲](images/heat-exchanger-menu.png)
 
 ![换热驱动发酵机](images/exchanger-fermentation.png)
+
+
+2026-09-12 第 55 轮审计:registry-catalog 4 条目勘误翻 implemented——"完整热循环"已由
+`cooling_stirling_chain`(128 mB→2,560 HU→斯特林→电网 1,280 EU)等 5 条 GameTest
+验证,`LiquidHeatExchangerScreen` 已注册;多人性能验收保持人工,记录于
+`/home/codex/minecraft/待测试.md`。当前套件 549 项双模式全绿。

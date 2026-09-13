@@ -64,3 +64,12 @@
 
 - 客户端实机:热量/空气表读数、单元槽交互、与固体/流体/电热源的贴面链、
   弹出/拉入升级、外观。记录于 `/home/codex/minecraft/待测试.md` 第 20 节。
+
+## 2026-09-12 第 55 轮审计
+
+- 上表"真实客户端界面随实机测试"系迁移期保守措辞:`BlastFurnaceScreen`
+  (热量/空气双条+legacy 键 tooltip)与 `MachineMenu` 五槽布局当时已交付,
+  registry-catalog 5 条目本轮勘误翻 implemented;
+- 实机观感(热量/空气表读数、单元槽交互、贴面热链)保持人工验收,
+  记录于 `/home/codex/minecraft/待测试.md`;
+- 当前套件 549 项双模式全绿(`blast_furnace_steel/_cold/_air_cells` 在列)。

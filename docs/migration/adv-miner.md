@@ -1,6 +1,6 @@
 # 高级采矿机(P07)
 
-更新日期:2026-09-09。
+更新日期:2026-09-12。
 
 ## 旧行为依据
 
@@ -28,22 +28,30 @@
 - 菜单:`MachineMenu` ADV_MINER 分支(扫描器 8,26 + 5×3 过滤格 36,44);
   `client/AdvMinerScreen` 三按钮(Restart / Switch Mode / Switch Silk Touch,
   既有语言键,黑/白名单文案随状态刷新)。
-- **采矿过滤器卡片(`ic2:mining_filter_card`)未随本切片迁移**:其卡槽与
-  手持编辑 GUI(`HandHeldMiningFilter`)随手持物品容器整合切片另行迁移;
-  矿机内置 15 格过滤已覆盖全部玩法,配方链不依赖卡片(已核对)。
+- 采矿过滤器卡片(`ic2:mining_filter_card`,后置切片交付):`MiningFilterCardItem`
+  手持右键开 `MiningFilterMenu`/`MiningFilterScreen` 编辑黑/白名单;矿机卡槽
+  仅收卡片,插卡后卡片组件优先于内置 15 格过滤(等价 legacy 卡 NBT 判定);
+- 比较器(2026-09-12 第 55 轮补齐):legacy `TileEntityElectricMachine` 基类把
+  电量接入红石比较器(`min(storage*15/capacity, 15)`);port 以
+  `comparator()` 同式实现,`serverTick` 差分 `updateNeighbourForOutputSignal`,
+  `MachineBlock` 把 `ADV_MINER` 加入 `hasAnalogOutputSignal` 与
+  `getAnalogOutputSignal` 分发;
 - 资源:`machines.py` 生成 blockstate/十二态模型/纹理/掉落表;
   `recipes.py` 解锁配方(575/796)。
 
 ## 测试证据
 
-- GameTest `AdvMinerTests`(IC2/GT 双模式 188 项):
+- GameTest `AdvMinerTests`(IC2/GT 双模式 549 项全绿):
   - `adv_miner_sweep`:OD 扫描器供电后游标建立,逐层扫过并采掉
     石头/煤矿/铁矿,掉落(煤等)出现在机器上方,游标存活;
   - `adv_miner_whitelist`:切白名单(仅煤)后煤矿被采、石头保留;
   - `adv_miner_silk_reset`:精准采集开关使钻石矿掉本体;重置按钮清空游标;
+  - `adv_miner_comparator`(第 55 轮):空缓冲读 0,半充 7(经方块
+    `getAnalogOutputSignal` 链),充满 15,`hasAnalogOutputSignal` 门控为真;
+  - `MiningFilterCardTests` 三条:未编辑卡片让位于机器过滤/卡片覆盖/手持菜单;
   - 扫描器充电写回、槽位限制由断言覆盖。
 
 ## 未验收范围
 
-- 采矿过滤器卡片(物品、卡槽、手持 GUI)随后续切片;
-- 真实客户端按钮操作与外观随实机测试;多人随 M16。
+- 真实客户端按钮操作与外观(含卡片编辑 GUI 与创造页/配方)随实机测试;多人随 M16;
+- 旧版 augmentation(强化升级)在新升级体系中无对应,未迁移并记录(超集差异待裁决)。
