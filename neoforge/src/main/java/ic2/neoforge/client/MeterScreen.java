@@ -95,7 +95,7 @@ public final class MeterScreen extends ContainerScreenBase<MeterMenu> {
     }
 
     /** Legacy Util.toSiString: six significant digits with the k/M/G/T engineering prefix. */
-    private static String toSiString(double value, int digits) {
+    static String toSiString(double value, int digits) {
         if (value == 0.0) return "0 ";
         if (Double.isNaN(value)) return "NaN ";
         String ret = "";

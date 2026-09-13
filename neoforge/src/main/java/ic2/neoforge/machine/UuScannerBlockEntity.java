@@ -224,10 +224,41 @@ public final class UuScannerBlockEntity extends PoweredBlockEntity {
 
     @Override
     public int menuValue(int index) {
+        // 0 completed flag; 1 state ordinal for the legacy status line; 3/4 resolved pattern UU
+        // buckets and replication EU as float bits (legacy patternUu/patternEu networked fields).
         return switch (index) {
             case 0 -> state.equals("COMPLETED") ? 1 : 0;
+            case 1 -> stateOrdinal();
+            case 3 -> Float.floatToIntBits((float) patternUu());
+            case 4 -> Float.floatToIntBits((float) patternEu());
             default -> 0;
         };
+    }
+
+    /** Client-facing state ordinal: legacy TileEntityScanner.State order. */
+    private int stateOrdinal() {
+        return switch (state) {
+            case "NO_STORAGE" -> 1;
+            case "SCANNING" -> 2;
+            case "NO_ENERGY" -> 3;
+            case "ALREADY_RECORDED" -> 4;
+            case "FAILED" -> 5;
+            case "COMPLETED" -> 6;
+            case "TRANSFER_ERROR" -> 7;
+            default -> 0;
+        };
+    }
+
+    /** Legacy patternUu = UuIndex.getInBuckets on the held pattern. */
+    private double patternUu() {
+        if (pattern.isEmpty() || !(getLevel() instanceof ServerLevel level)) return 0;
+        return valueOf(level, pattern);
+    }
+
+    /** Legacy patternEu = UuIndex.getReplicationEu on the held pattern (raw graph value). */
+    private double patternEu() {
+        if (pattern.isEmpty() || !(getLevel() instanceof ServerLevel level)) return 0;
+        return UuValues.graph(level).get(key(pattern));
     }
 
     @Override

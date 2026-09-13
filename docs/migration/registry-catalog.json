@@ -2687,12 +2687,14 @@
    "factory": "register",
    "expression": "new ItemBlockIc2(Ic2Blocks.PATTERN_STORAGE, new Properties())",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/uu-scanner.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/PatternStorageTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/PatternStorageTests.java",
+    "neoforge/src/main/java/ic2/neoforge/client/PatternStorageScreen.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/PatternStorageBlockEntity.java"
    ],
-   "note": "模式列表持久化、水晶盘写回(同步 UU 价值快照)与去重经 GameTest 验证;浏览按钮/客户端外观随实机测试。"
+   "note": "GUI 链路收尾：legacy 事件 3（水晶盘读回 addPattern，空白/重复拒）补齐；PatternStorageScreen 专属屏（last/next/export/import 四钮+索引 N/M+Name/UU-Matter/Energy 行，legacy GuiPatternStorage 对位，SI 格式复用 MeterScreen.toSiString）；menuValue 扩展 item id/UU 桶/复刻能耗 float bits 同步（legacy pattern/patternUu/patternEu 网络字段）。经 PatternStorageTests 导入/menuValue 断言。屏幕实机观感留人工。"
   },
   {
    "registry": "item",
@@ -2717,12 +2719,14 @@
    "factory": "register",
    "expression": "new ItemBlockIc2(Ic2Blocks.UU_SCANNER, new Properties().rarity(Rarity.UNCOMMON))",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/uu-scanner.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/UuScannerTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/UuScannerTests.java",
+    "neoforge/src/main/java/ic2/neoforge/client/UuScannerScreen.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/UuScannerBlockEntity.java"
    ],
-   "note": "扫描机两段式完整语义:3300 tick 扫描→GUI record 落盘(水晶盘/相邻模式库,失败 TRANSFER_ERROR 保持)、ALREADY_RECORDED 预检不烧电、未知物品零耗电即败、已知∞值烧满 3300 tick 后失败卡住(legacy 怪癖)、tier 4=512V、进度/快照/状态持久化;价值快照组件(CRYSTAL_MEMORY_VALUE)记录时烘焙。均经 GameTest 验证;屏幕按钮/tooltip 实机观感留人工验收。"
+   "note": "状态显示收尾：menuValue 状态序数+解析物 UU 桶/复刻能耗 float bits 同步；UuScannerScreen 按译文键渲染八态状态行+扫描百分比+完成/传输错误 UU/EU 值+delete/save 按钮按状态门控（legacy enable handler），移除单机直读 BE 的渲染捷径。两段式扫描语义此前已 GameTest 验证。屏幕实机观感留人工。"
   },
   {
    "registry": "item",
@@ -9477,12 +9481,14 @@
    "factory": "register",
    "expression": "Ic2TileEntityBlock.create(Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).strength(2.0F, 10.0F).requiresCorrectToolForDrops().sound(SoundType.METAL), TileEntityPatternStorage.class, false, Ic2TileEntityBlock.DefaultDrop.AdvMachine, Util.horizontalFacings, true)",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/uu-scanner.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/PatternStorageTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/PatternStorageTests.java",
+    "neoforge/src/main/java/ic2/neoforge/client/PatternStorageScreen.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/PatternStorageBlockEntity.java"
    ],
-   "note": "模式列表持久化、水晶盘写回(同步 UU 价值快照)与去重经 GameTest 验证;浏览按钮/客户端外观随实机测试。"
+   "note": "GUI 链路收尾：legacy 事件 3（水晶盘读回 addPattern，空白/重复拒）补齐；PatternStorageScreen 专属屏（last/next/export/import 四钮+索引 N/M+Name/UU-Matter/Energy 行，legacy GuiPatternStorage 对位，SI 格式复用 MeterScreen.toSiString）；menuValue 扩展 item id/UU 桶/复刻能耗 float bits 同步（legacy pattern/patternUu/patternEu 网络字段）。经 PatternStorageTests 导入/menuValue 断言。屏幕实机观感留人工。"
   },
   {
    "registry": "block",
@@ -9507,12 +9513,14 @@
    "factory": "register",
    "expression": "Ic2TileEntityBlock.create(Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).strength(2.0F, 10.0F).requiresCorrectToolForDrops().sound(SoundType.METAL), TileEntityScanner.class, true, Ic2TileEntityBlock.DefaultDrop.AdvMachine, Util.horizontalFacings, true)",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/uu-scanner.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/UuScannerTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/UuScannerTests.java",
+    "neoforge/src/main/java/ic2/neoforge/client/UuScannerScreen.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/UuScannerBlockEntity.java"
    ],
-   "note": "扫描机两段式完整语义:3300 tick 扫描→GUI record 落盘(水晶盘/相邻模式库,失败 TRANSFER_ERROR 保持)、ALREADY_RECORDED 预检不烧电、未知物品零耗电即败、已知∞值烧满 3300 tick 后失败卡住(legacy 怪癖)、tier 4=512V、进度/快照/状态持久化;价值快照组件(CRYSTAL_MEMORY_VALUE)记录时烘焙。均经 GameTest 验证;屏幕按钮/tooltip 实机观感留人工验收。"
+   "note": "状态显示收尾：menuValue 状态序数+解析物 UU 桶/复刻能耗 float bits 同步；UuScannerScreen 按译文键渲染八态状态行+扫描百分比+完成/传输错误 UU/EU 值+delete/save 按钮按状态门控（legacy enable handler），移除单机直读 BE 的渲染捷径。两段式扫描语义此前已 GameTest 验证。屏幕实机观感留人工。"
   },
   {
    "registry": "block",
@@ -13497,12 +13505,14 @@
    "factory": "register",
    "expression": "TileEntityPatternStorage::new",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/uu-scanner.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/PatternStorageTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/PatternStorageTests.java",
+    "neoforge/src/main/java/ic2/neoforge/client/PatternStorageScreen.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/PatternStorageBlockEntity.java"
    ],
-   "note": "模式列表持久化、水晶盘写回(同步 UU 价值快照)与去重经 GameTest 验证;浏览按钮/客户端外观随实机测试。"
+   "note": "GUI 链路收尾：legacy 事件 3（水晶盘读回 addPattern，空白/重复拒）补齐；PatternStorageScreen 专属屏（last/next/export/import 四钮+索引 N/M+Name/UU-Matter/Energy 行，legacy GuiPatternStorage 对位，SI 格式复用 MeterScreen.toSiString）；menuValue 扩展 item id/UU 桶/复刻能耗 float bits 同步（legacy pattern/patternUu/patternEu 网络字段）。经 PatternStorageTests 导入/menuValue 断言。屏幕实机观感留人工。"
   },
   {
    "registry": "block_entity",
@@ -13527,12 +13537,14 @@
    "factory": "register",
    "expression": "TileEntityScanner::new",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/uu-scanner.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/UuScannerTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/UuScannerTests.java",
+    "neoforge/src/main/java/ic2/neoforge/client/UuScannerScreen.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/UuScannerBlockEntity.java"
    ],
-   "note": "扫描机两段式完整语义:3300 tick 扫描→GUI record 落盘(水晶盘/相邻模式库,失败 TRANSFER_ERROR 保持)、ALREADY_RECORDED 预检不烧电、未知物品零耗电即败、已知∞值烧满 3300 tick 后失败卡住(legacy 怪癖)、tier 4=512V、进度/快照/状态持久化;价值快照组件(CRYSTAL_MEMORY_VALUE)记录时烘焙。均经 GameTest 验证;屏幕按钮/tooltip 实机观感留人工验收。"
+   "note": "状态显示收尾：menuValue 状态序数+解析物 UU 桶/复刻能耗 float bits 同步；UuScannerScreen 按译文键渲染八态状态行+扫描百分比+完成/传输错误 UU/EU 值+delete/save 按钮按状态门控（legacy enable handler），移除单机直读 BE 的渲染捷径。两段式扫描语义此前已 GameTest 验证。屏幕实机观感留人工。"
   },
   {
    "registry": "block_entity",
@@ -14722,12 +14734,14 @@
    "factory": "registerManagedBe",
    "expression": "",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/uu-scanner.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/PatternStorageTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/PatternStorageTests.java",
+    "neoforge/src/main/java/ic2/neoforge/client/PatternStorageScreen.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/PatternStorageBlockEntity.java"
    ],
-   "note": "模式列表持久化、水晶盘写回(同步 UU 价值快照)与去重经 GameTest 验证;浏览按钮/客户端外观随实机测试。"
+   "note": "GUI 链路收尾：legacy 事件 3（水晶盘读回 addPattern，空白/重复拒）补齐；PatternStorageScreen 专属屏（last/next/export/import 四钮+索引 N/M+Name/UU-Matter/Energy 行，legacy GuiPatternStorage 对位，SI 格式复用 MeterScreen.toSiString）；menuValue 扩展 item id/UU 桶/复刻能耗 float bits 同步（legacy pattern/patternUu/patternEu 网络字段）。经 PatternStorageTests 导入/menuValue 断言。屏幕实机观感留人工。"
   },
   {
    "registry": "menu",
@@ -14752,12 +14766,14 @@
    "factory": "registerManagedBe",
    "expression": "",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/uu-scanner.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/UuScannerTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/UuScannerTests.java",
+    "neoforge/src/main/java/ic2/neoforge/client/UuScannerScreen.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/UuScannerBlockEntity.java"
    ],
-   "note": "扫描机两段式完整语义:3300 tick 扫描→GUI record 落盘(水晶盘/相邻模式库,失败 TRANSFER_ERROR 保持)、ALREADY_RECORDED 预检不烧电、未知物品零耗电即败、已知∞值烧满 3300 tick 后失败卡住(legacy 怪癖)、tier 4=512V、进度/快照/状态持久化;价值快照组件(CRYSTAL_MEMORY_VALUE)记录时烘焙。均经 GameTest 验证;屏幕按钮/tooltip 实机观感留人工验收。"
+   "note": "状态显示收尾：menuValue 状态序数+解析物 UU 桶/复刻能耗 float bits 同步；UuScannerScreen 按译文键渲染八态状态行+扫描百分比+完成/传输错误 UU/EU 值+delete/save 按钮按状态门控（legacy enable handler），移除单机直读 BE 的渲染捷径。两段式扫描语义此前已 GameTest 验证。屏幕实机观感留人工。"
   },
   {
    "registry": "menu",

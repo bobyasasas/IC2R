@@ -53,7 +53,7 @@ public final class PatternStorageBlockEntity extends MachineBlockEntity {
         return patterns.get(i);
     }
 
-    /** Legacy onNetworkEvent: 0/1 browse, 2 write the selected pattern onto the disk. */
+    /** Legacy onNetworkEvent: 0/1 browse, 2 write the selected pattern onto the disk, 3 import. */
     @Override
     public boolean menuAction(int action) {
         switch (action) {
@@ -88,6 +88,17 @@ public final class PatternStorageBlockEntity extends MachineBlockEntity {
                 }
                 return false;
             }
+            case 3 -> {
+                // Legacy event 3: read the crystal memory record back into the pattern list.
+                if (!inventory.stack(DISK_SLOT).isEmpty()) {
+                    var memory = inventory.stack(DISK_SLOT);
+                    if (memory.getItem() instanceof CrystalMemoryItem crystal) {
+                        ItemStack record = crystal.readPattern(memory);
+                        if (!record.isEmpty()) return addPattern(record);
+                    }
+                }
+                return false;
+            }
             default -> {
                 return false;
             }
@@ -96,11 +107,38 @@ public final class PatternStorageBlockEntity extends MachineBlockEntity {
 
     @Override
     public int menuValue(int index) {
+        // 0/1 index+size; 2 pattern item raw id; 3/4 uu buckets and replication EU as float bits
+        // (legacy networked fields pattern/patternUu/patternEu).
         return switch (index) {
             case 0 -> patterns.isEmpty() ? -1 : index();
             case 1 -> patterns.size();
+            case 2 -> patterns.isEmpty()
+                    ? -1
+                    : net.minecraft.core.registries.BuiltInRegistries.ITEM.getId(
+                            selectedPattern().getItem());
+            case 3 -> Float.floatToIntBits((float) selectedUu());
+            case 4 -> Float.floatToIntBits((float) selectedEu());
             default -> 0;
         };
+    }
+
+    private double selectedUu() {
+        if (patterns.isEmpty() || !(getLevel() instanceof ServerLevel level)) return 0;
+        return ic2.neoforge.uu.UuValues.graph(level)
+                        .get(
+                                net.minecraft.core.registries.BuiltInRegistries.ITEM
+                                        .getKey(selectedPattern().getItem())
+                                        .toString()) * 1.0E-5;
+    }
+
+    private double selectedEu() {
+        if (patterns.isEmpty() || !(getLevel() instanceof ServerLevel level)) return 0;
+        // Legacy UuIndex.getReplicationEu is the raw graph value.
+        return ic2.neoforge.uu.UuValues.graph(level)
+                .get(
+                        net.minecraft.core.registries.BuiltInRegistries.ITEM
+                                .getKey(selectedPattern().getItem())
+                                .toString());
     }
 
     private int index() {

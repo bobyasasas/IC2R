@@ -413,6 +413,13 @@ public final class RegistrationTests {
         FUNCTIONS.register(
                 "pattern_storage_disk", () -> PatternStorageTests::writesPatternBackToDisk);
         FUNCTIONS.register(
+                "pattern_storage_import", () -> PatternStorageTests::importsPatternFromDisk);
+        FUNCTIONS.register(
+                "pattern_storage_menu_values",
+                () -> PatternStorageTests::menuValuesMirrorLegacyFields);
+        FUNCTIONS.register(
+                "uu_scanner_state_sync", () -> PatternStorageTests::scannerStateSyncsAsOrdinal);
+        FUNCTIONS.register(
                 "replicator_single", () -> ReplicatorTests::replicatesPatternFromStorage);
         FUNCTIONS.register("replicator_no_uu", () -> EntityTickingTests.wrap(ReplicatorTests::modeStopsWithoutUu));
         FUNCTIONS.register(

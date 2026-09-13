@@ -174,6 +174,8 @@ public final class IndustrialCraftClient {
                         event.register(ModMachines.NUCLEAR_REACTOR_MENU.get(), NuclearReactorScreen::new);
                     else if (kind == MachineKind.UU_SCANNER)
                         event.register(registration.menu().get(), UuScannerScreen::new);
+                    else if (kind == MachineKind.PATTERN_STORAGE)
+                        event.register(registration.menu().get(), PatternStorageScreen::new);
                     else if (kind == MachineKind.REPLICATOR)
                         event.register(registration.menu().get(), ReplicatorScreen::new);
                     else if (kind == MachineKind.ITEM_BUFFER)
