@@ -180,6 +180,8 @@ public final class RegistrationTests {
         FUNCTIONS.register("induction_blocked_row", () -> EntityTickingTests.wrap(InductionTests::blockedRow));
         FUNCTIONS.register("induction_menu_upgrades", () -> EntityTickingTests.wrap(InductionTests::menuAndUpgrades));
         FUNCTIONS.register(
+                "induction_redstone_warm", () -> EntityTickingTests.wrap(InductionTests::redstoneKeepWarm));
+        FUNCTIONS.register(
                 "water_bucket_persistence", () -> WaterGenerationTests::bucketPersistence);
         FUNCTIONS.register("water_cell_automation", () -> EntityTickingTests.wrap(WaterGenerationTests::cellAndAutomation));
         FUNCTIONS.register("water_ambient_rotor", () -> EntityTickingTests.wrap(WaterGenerationTests::ambientAndRotor));

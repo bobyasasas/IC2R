@@ -11,6 +11,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.gametest.framework.GameTestHelper;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.GameType;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.neoforged.neoforge.transfer.item.ItemResource;
 
@@ -96,6 +97,25 @@ final class InductionTests {
                         && !UpgradeItem.Kind.TRANSFORMER.suitable(machine.kind())
                         && !UpgradeItem.Kind.ENERGY_STORAGE.suitable(machine.kind()),
                 "Unsupported upgrades must not change induction heat, storage or voltage");
+        helper.succeed();
+    }
+
+    /** Legacy TileEntityInduction: a raw redstone input also pays the 1 EU keep-warm upkeep. */
+    static void redstoneKeepWarm(GameTestHelper helper) {
+        var pos = new BlockPos(3, 1, 3);
+        helper.setBlock(pos, ModMachines.block(MachineKind.INDUCTION_FURNACE));
+        var machine = helper.getBlockEntity(pos, InductionFurnaceBlockEntity.class);
+        machine.energy().insert(100);
+        helper.setBlock(pos.above(), Blocks.REDSTONE_BLOCK);
+        machine.serverTick(helper.getLevel());
+        helper.assertTrue(
+                machine.energy().stored() == 99 && machine.heat() == 1,
+                "A raw redstone input must keep the idle furnace warm for the legacy 1 EU upkeep");
+        helper.setBlock(pos.above(), Blocks.AIR);
+        machine.serverTick(helper.getLevel());
+        helper.assertTrue(
+                machine.energy().stored() == 99 && machine.heat() == 0,
+                "Without signal the upkeep stops and the stored heat decays by 4");
         helper.succeed();
     }
 

@@ -2562,12 +2562,12 @@
    "factory": "register",
    "expression": "new ItemBlockIc2(Ic2Blocks.INDUCTION_FURNACE, new Properties().rarity(Rarity.UNCOMMON))",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/induction-furnace.md",
     "neoforge/src/gameTest/java/ic2/neoforge/test/InductionTests.java"
    ],
-   "note": "双路熔炼、温度、电量与进度重载已验证；红石升级及多人整体验收待完成。"
+   "note": "第 53 轮审计收尾:红石保温已实现——InductionCycle.tick 的 (canProcess||redstone)&&consume(1) 对位 legacy TileEntityInduction 的 (canOperate||redstone.hasRedstoneInput())&&useEnergy(1),直连红石与 inverter 反相两路径均有测试(induction_redstone_warm/inverterKeepsInductionWarm),原 note「红石升级待完成」过时;双路熔炼/共享热/比较器 heat*15/10000/重载/经验已验;多人整体实机验收留人工。"
   },
   {
    "registry": "item",
@@ -5969,12 +5969,13 @@
    "factory": "register",
    "expression": "new ItemScannerAdv(new Properties().stacksTo(1))",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/scanners.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/ScannerItemTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/ScannerItemTests.java",
+    "neoforge/src/main/java/ic2/neoforge/item/ScannerItem.java"
    ],
-   "note": "层扫描脉冲（矿机联动）与能耗语义验证通过；手持扫描结果界面（HandHeldScanner）与扫描音效待后续切片。"
+   "note": "第 53 轮审计收尾:与 scanner 同链(OV 档 1M EU/512/t2 级,手持 250 EU/半径 12,层扫 250 EU/半径 6 均已测),原 note「手持界面待后续切片」过时;扫描音效随 use() 同批补齐;屏幕观感留人工。"
   },
   {
    "registry": "item",
@@ -6110,12 +6111,13 @@
    "factory": "register",
    "expression": "new ItemScanner(new Properties().stacksTo(1), 100000.0, 128.0, 1)",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/scanners.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/ScannerItemTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/ScannerItemTests.java",
+    "neoforge/src/main/java/ic2/neoforge/item/ScannerItem.java"
    ],
-   "note": "层扫描脉冲（矿机联动）与能耗语义验证通过；手持扫描结果界面（HandHeldScanner）与扫描音效待后续切片。"
+   "note": "第 53 轮审计收尾:手持扫描 GUI 链(ScannerItem.use 扣电开菜单/ScannerMenu 扫描聚合/ScannerScreen 结果行+图标/onDroppedByPlayer 关菜单)此前切片已落地,原 note「手持界面待后续切片」过时;本轮补 use() 扫描音效 item.scanner.use(资源与 SoundEvent 早已预存),仅使用者本人可闻,对位 legacy 客户端本地播放;屏幕观感与音效实机可闻留人工。"
   },
   {
    "registry": "item",
@@ -9356,12 +9358,12 @@
    "factory": "register",
    "expression": "Ic2TileEntityBlock.create(Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).strength(2.0F, 10.0F).requiresCorrectToolForDrops().sound(SoundType.METAL), TileEntityInduction.class, true, Ic2TileEntityBlock.DefaultDrop.AdvMachine, Util.horizontalFacings, true)",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/induction-furnace.md",
     "neoforge/src/gameTest/java/ic2/neoforge/test/InductionTests.java"
    ],
-   "note": "双路熔炼、温度、电量与进度重载已验证；红石升级及多人整体验收待完成。"
+   "note": "第 53 轮审计收尾:红石保温已实现——InductionCycle.tick 的 (canProcess||redstone)&&consume(1) 对位 legacy TileEntityInduction 的 (canOperate||redstone.hasRedstoneInput())&&useEnergy(1),直连红石与 inverter 反相两路径均有测试(induction_redstone_warm/inverterKeepsInductionWarm),原 note「红石升级待完成」过时;双路熔炼/共享热/比较器 heat*15/10000/重载/经验已验;多人整体实机验收留人工。"
   },
   {
    "registry": "block",
@@ -13380,12 +13382,14 @@
    "factory": "register",
    "expression": "TileEntityInduction::new",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/induction-furnace.md",
+    "neoforge/src/gameTest/java/ic2/neoforge/test/InductionTests.java",
+    "core/src/main/java/ic2/core/machine/InductionCycle.java",
     "neoforge/src/gameTest/java/ic2/neoforge/test/InductionTests.java"
    ],
-   "note": "双路熔炼、温度、电量与进度重载已验证；红石升级及多人整体验收待完成。"
+   "note": "第 53 轮审计收尾:红石保温已实现——InductionCycle.tick 的 (canProcess||redstone)&&consume(1) 对位 legacy TileEntityInduction 的 (canOperate||redstone.hasRedstoneInput())&&useEnergy(1),直连红石与 inverter 反相两路径均有测试(induction_redstone_warm/inverterKeepsInductionWarm),原 note「红石升级待完成」过时;双路熔炼/共享热/比较器 heat*15/10000/重载/经验已验;多人整体实机验收留人工。"
   },
   {
    "registry": "block_entity",

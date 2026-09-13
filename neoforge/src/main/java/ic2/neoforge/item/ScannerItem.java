@@ -2,7 +2,9 @@ package ic2.neoforge.item;
 
 import ic2.core.energy.ElectricItemSpec;
 import ic2.neoforge.menu.ScannerMenu;
+import ic2.neoforge.registration.ModSounds;
 
+import net.minecraft.network.protocol.game.ClientboundSoundEntityPacket;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -61,6 +63,14 @@ public class ScannerItem extends ElectricItem {
         if (player instanceof ServerPlayer server) {
             ElectricItemEnergy.discharge(
                     stack, layerScanCost, specification().tier(), true, false, false);
+            server.connection.send(
+                    new ClientboundSoundEntityPacket(
+                            ModSounds.ITEM_SCANNER_USE,
+                            server.getSoundSource(),
+                            server,
+                            1.0F,
+                            1.0F,
+                            level.getRandom().nextLong()));
             int slot =
                     hand == InteractionHand.MAIN_HAND
                             ? player.getInventory().getSelectedSlot()
