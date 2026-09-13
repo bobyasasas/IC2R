@@ -27,7 +27,10 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.material.Fluids;
+import net.neoforged.neoforge.transfer.fluid.FluidResource;
 import net.neoforged.neoforge.transfer.item.ItemResource;
+import net.neoforged.neoforge.transfer.transaction.Transaction;
 
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -129,6 +132,67 @@ final class ProcessingTests {
         helper.assertTrue(
                 extractor.inventory().stack(1).is(Items.STICK),
                 "Extractor must load and execute its own recipe family");
+        helper.succeed();
+    }
+
+    /** Legacy compressor pump recipe: adjacent pumps feed 1000 mB water, one snowball out. */
+    static void compressorPumpSnowball(GameTestHelper helper) {
+        var compressorPos = new BlockPos(1, 1, 1);
+        var pumpPos = new BlockPos(2, 1, 1);
+        helper.setBlock(
+                compressorPos, ModMachines.block(MachineKind.COMPRESSOR).defaultBlockState());
+        helper.setBlock(pumpPos, ModMachines.block(MachineKind.PUMP).defaultBlockState());
+        var compressor =
+                helper.getBlockEntity(compressorPos, ic2.neoforge.machine.CompressorBlockEntity.class);
+        var pump =
+                helper.getBlockEntity(pumpPos, ic2.neoforge.machine.PumpBlockEntity.class);
+        try (var transaction = Transaction.openRoot()) {
+            pump.tank()
+                    .insert(
+                            0,
+                            FluidResource.of(Fluids.WATER),
+                            1400,
+                            transaction);
+            transaction.commit();
+        }
+        compressor.energy().insert(600);
+        for (int tick = 0; tick < 300; tick++) compressor.serverTick(helper.getLevel());
+        helper.assertTrue(
+                compressor.inventory().stack(1).is(Items.SNOWBALL)
+                        && compressor.inventory().stack(1).getCount() == 1,
+                "The pump water freezes into one snowball");
+        helper.assertTrue(
+                pump.tank().getAmountAsInt(0) == 400,
+                "Snowballing draws exactly 1000 mB from the adjacent pump");
+        helper.assertTrue(
+                compressor.energy().stored() == 0,
+                "The pump recipe costs the standard 600 EU");
+        for (int tick = 0; tick < 300; tick++) compressor.serverTick(helper.getLevel());
+        helper.assertTrue(
+                compressor.inventory().stack(1).getCount() == 1,
+                "Water short of 1000 mB mints no second snowball");
+        // A real recipe on the input takes precedence and leaves the pump water alone.
+        compressor.inventory().set(1, ItemResource.EMPTY, 0);
+        compressor.inventory().set(0, ItemResource.of(Items.ICE), 3);
+        compressor.energy().insert(600);
+        try (var transaction = Transaction.openRoot()) {
+            pump.tank()
+                    .insert(0, FluidResource.of(Fluids.WATER), 1000, transaction);
+            transaction.commit();
+        }
+        for (int tick = 0; tick < 300; tick++) compressor.serverTick(helper.getLevel());
+        helper.assertTrue(
+                compressor.inventory().stack(1).is(Items.PACKED_ICE),
+                "A real input recipe takes precedence over the pump snowball (input="
+                        + compressor.inventory().stack(0)
+                        + " output="
+                        + compressor.inventory().stack(1)
+                        + " pump="
+                        + pump.tank().getAmountAsInt(0)
+                        + ")");
+        helper.assertTrue(
+                pump.tank().getAmountAsInt(0) == 1400,
+                "The standard recipe leaves the pump tank untouched");
         helper.succeed();
     }
 

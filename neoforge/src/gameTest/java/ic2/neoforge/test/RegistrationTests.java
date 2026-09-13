@@ -703,6 +703,7 @@ public final class RegistrationTests {
         FUNCTIONS.register("loaded_recipes", () -> EntityTickingTests.wrap(ProcessingTests::loadedRecipes));
         FUNCTIONS.register("processing_machines", () -> EntityTickingTests.wrap(ProcessingTests::processing));
         FUNCTIONS.register("weighted_persistence", () -> EntityTickingTests.wrap(ProcessingTests::weightedPersistence));
+        FUNCTIONS.register("compressor_pump_snowball", () -> EntityTickingTests.wrap(ProcessingTests::compressorPumpSnowball));
         FUNCTIONS.register("processing_recipe_codec", () -> EntityTickingTests.wrap(ProcessingTests::recipeCodec));
         FUNCTIONS.register("jei_categories_non_empty", () -> EntityTickingTests.wrap(ProcessingTests::jeiCategoriesNonEmpty));
 

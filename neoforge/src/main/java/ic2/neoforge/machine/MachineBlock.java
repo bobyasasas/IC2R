@@ -10,6 +10,7 @@ import ic2.neoforge.registration.ModMachines;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -137,12 +138,33 @@ public final class MachineBlock extends BaseEntityBlock {
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(
             Level level, BlockState state, BlockEntityType<T> type) {
-        return level.isClientSide() || type != ModMachines.entityType(kind)
-                ? null
-                : (world, pos, blockState, entity) -> {
-                    if (entity instanceof MachineBlockEntity machine)
-                        machine.serverTick((ServerLevel) world);
-                };
+        if (type != ModMachines.entityType(kind)) return null;
+        if (level.isClientSide()) {
+            // The legacy macerator puffs smoke from its top while running (one roll in eight
+            // per client tick, four particles around the block centre).
+            return kind == MachineKind.MACERATOR
+                    ? (world, pos, blockState, entity) -> {
+                        if (blockState.getValue(ACTIVE)
+                                && world.getRandom().nextInt(8) == 0) {
+                            var random = world.getRandom();
+                            for (int particle = 0; particle < 4; particle++) {
+                                world.addParticle(
+                                        ParticleTypes.SMOKE,
+                                        pos.getX() + 0.5 + random.nextFloat() * 0.6 - 0.3,
+                                        pos.getY() + 1 + random.nextFloat() * 0.2 - 0.1,
+                                        pos.getZ() + 0.5 + random.nextFloat() * 0.6 - 0.3,
+                                        0.0,
+                                        0.0,
+                                        0.0);
+                            }
+                        }
+                    }
+                    : null;
+        }
+        return (world, pos, blockState, entity) -> {
+            if (entity instanceof MachineBlockEntity machine)
+                machine.serverTick((ServerLevel) world);
+        };
     }
 
     @Override

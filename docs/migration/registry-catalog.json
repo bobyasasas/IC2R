@@ -2259,11 +2259,12 @@
    "factory": "register",
    "expression": "new ItemBlockIc2(Ic2Blocks.COMPRESSOR, new Properties())",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "neoforge/src/main/java/ic2/neoforge/registration/ModMachines.java",
     "neoforge/src/gameTest/java/ic2/neoforge/test/ProcessingTests.java"
-   ]
+   ],
+   "note": "三基础机器族审计:物品注册与 block 绑定经 ProcessingTests/进阶机器族既有覆盖,legacy 特异行为(compressor 泵雪球/macerator 烟雾/三族音效)本轮落地,翻 implemented。"
   },
   {
    "registry": "item",
@@ -2287,11 +2288,12 @@
    "factory": "register",
    "expression": "new ItemBlockIc2(Ic2Blocks.EXTRACTOR, new Properties())",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "neoforge/src/main/java/ic2/neoforge/registration/ModMachines.java",
     "neoforge/src/gameTest/java/ic2/neoforge/test/ProcessingTests.java"
-   ]
+   ],
+   "note": "三基础机器族审计:物品注册与 block 绑定经 ProcessingTests/进阶机器族既有覆盖,legacy 特异行为(compressor 泵雪球/macerator 烟雾/三族音效)本轮落地,翻 implemented。"
   },
   {
    "registry": "item",
@@ -2315,11 +2317,12 @@
    "factory": "register",
    "expression": "new ItemBlockIc2(Ic2Blocks.MACERATOR, new Properties())",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "neoforge/src/main/java/ic2/neoforge/registration/ModMachines.java",
     "neoforge/src/gameTest/java/ic2/neoforge/test/ProcessingTests.java"
-   ]
+   ],
+   "note": "三基础机器族审计:物品注册与 block 绑定经 ProcessingTests/进阶机器族既有覆盖,legacy 特异行为(compressor 泵雪球/macerator 烟雾/三族音效)本轮落地,翻 implemented。"
   },
   {
    "registry": "item",
@@ -8992,11 +8995,12 @@
    "factory": "register",
    "expression": "Ic2TileEntityBlock.create(Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).strength(2.0F, 10.0F).requiresCorrectToolForDrops().sound(SoundType.METAL), TileEntityCompressor.class, true, Ic2TileEntityBlock.DefaultDrop.Machine, Util.horizontalFacings, true)",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
-    "neoforge/src/main/java/ic2/neoforge/registration/ModMachines.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/MachineBlock.java",
     "neoforge/src/gameTest/java/ic2/neoforge/test/ProcessingTests.java"
-   ]
+   ],
+   "note": "三基础机器族审计:block/ACTIVE 状态+client ticker(macerator 1/8 概率 4 SMOKE 烟雾粒子)+serverTick 处理循环与 legacy TileEntityStandardMachine(2,300,1) 对齐,翻 implemented。"
   },
   {
    "registry": "block",
@@ -9020,11 +9024,12 @@
    "factory": "register",
    "expression": "Ic2TileEntityBlock.create(Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).strength(2.0F, 10.0F).requiresCorrectToolForDrops().sound(SoundType.METAL), TileEntityExtractor.class, true, Ic2TileEntityBlock.DefaultDrop.Machine, Util.horizontalFacings, true)",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
-    "neoforge/src/main/java/ic2/neoforge/registration/ModMachines.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/MachineBlock.java",
     "neoforge/src/gameTest/java/ic2/neoforge/test/ProcessingTests.java"
-   ]
+   ],
+   "note": "三基础机器族审计:block/ACTIVE 状态+client ticker(macerator 1/8 概率 4 SMOKE 烟雾粒子)+serverTick 处理循环与 legacy TileEntityStandardMachine(2,300,1) 对齐,翻 implemented。"
   },
   {
    "registry": "block",
@@ -9048,11 +9053,12 @@
    "factory": "register",
    "expression": "Ic2TileEntityBlock.create(Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).strength(2.0F, 10.0F).requiresCorrectToolForDrops().sound(SoundType.METAL), TileEntityMacerator.class, true, Ic2TileEntityBlock.DefaultDrop.Machine, Util.horizontalFacings, true)",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
-    "neoforge/src/main/java/ic2/neoforge/registration/ModMachines.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/MachineBlock.java",
     "neoforge/src/gameTest/java/ic2/neoforge/test/ProcessingTests.java"
-   ]
+   ],
+   "note": "三基础机器族审计:block/ACTIVE 状态+client ticker(macerator 1/8 概率 4 SMOKE 烟雾粒子)+serverTick 处理循环与 legacy TileEntityStandardMachine(2,300,1) 对齐,翻 implemented。"
   },
   {
    "registry": "block",
@@ -12714,11 +12720,13 @@
    "factory": "register",
    "expression": "TileEntityCompressor::new",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
-    "neoforge/src/main/java/ic2/neoforge/registration/ModMachines.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/SingleInputBlockEntity.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/CompressorBlockEntity.java",
     "neoforge/src/gameTest/java/ic2/neoforge/test/ProcessingTests.java"
-   ]
+   ],
+   "note": "三基础机器族审计:SingleInputBlockEntity 统一三族(加权输出一次选定含输出阻塞持久化),CompressorBlockEntity 补 legacy 泵雪球配方(六面相邻泵抽水 1000→1 雪球、空输入限定、真实配方优先、600 EU),compressor_pump_snowball GameTest 双模式验证,翻 implemented。"
   },
   {
    "registry": "block_entity",
@@ -12774,11 +12782,13 @@
    "factory": "register",
    "expression": "TileEntityExtractor::new",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
-    "neoforge/src/main/java/ic2/neoforge/registration/ModMachines.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/SingleInputBlockEntity.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/CompressorBlockEntity.java",
     "neoforge/src/gameTest/java/ic2/neoforge/test/ProcessingTests.java"
-   ]
+   ],
+   "note": "三基础机器族审计:SingleInputBlockEntity 统一三族(加权输出一次选定含输出阻塞持久化),CompressorBlockEntity 补 legacy 泵雪球配方(六面相邻泵抽水 1000→1 雪球、空输入限定、真实配方优先、600 EU),compressor_pump_snowball GameTest 双模式验证,翻 implemented。"
   },
   {
    "registry": "block_entity",
@@ -12834,11 +12844,13 @@
    "factory": "register",
    "expression": "TileEntityMacerator::new",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
-    "neoforge/src/main/java/ic2/neoforge/registration/ModMachines.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/SingleInputBlockEntity.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/CompressorBlockEntity.java",
     "neoforge/src/gameTest/java/ic2/neoforge/test/ProcessingTests.java"
-   ]
+   ],
+   "note": "三基础机器族审计:SingleInputBlockEntity 统一三族(加权输出一次选定含输出阻塞持久化),CompressorBlockEntity 补 legacy 泵雪球配方(六面相邻泵抽水 1000→1 雪球、空输入限定、真实配方优先、600 EU),compressor_pump_snowball GameTest 双模式验证,翻 implemented。"
   },
   {
    "registry": "block_entity",
@@ -15665,12 +15677,13 @@
    "factory": "register",
    "expression": "new WeightedMachineRecipeSerializer(Ic2RecipeTypes.MACERATOR, null)",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/recipe-catalog.json",
     "neoforge/src/gameTest/java/ic2/neoforge/test/ProcessingTests.java",
     "neoforge/src/gameTest/java/ic2/neoforge/test/CraftingTests.java"
-   ]
+   ],
+   "note": "三基础机器族审计:ProcessingRecipe serializer 三族加载经 loadedRecipes+recipe_codec 测试覆盖,翻 implemented。"
   },
   {
    "registry": "recipe_serializer",
@@ -15680,12 +15693,13 @@
    "factory": "register",
    "expression": "new BasicMachineRecipeSerializer(Ic2RecipeTypes.EXTRACTOR, null)",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/recipe-catalog.json",
     "neoforge/src/gameTest/java/ic2/neoforge/test/ProcessingTests.java",
     "neoforge/src/gameTest/java/ic2/neoforge/test/CraftingTests.java"
-   ]
+   ],
+   "note": "三基础机器族审计:ProcessingRecipe serializer 三族加载经 loadedRecipes+recipe_codec 测试覆盖,翻 implemented。"
   },
   {
    "registry": "recipe_serializer",
@@ -15695,12 +15709,13 @@
    "factory": "register",
    "expression": "new BasicMachineRecipeSerializer(Ic2RecipeTypes.COMPRESSOR, null)",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/recipe-catalog.json",
     "neoforge/src/gameTest/java/ic2/neoforge/test/ProcessingTests.java",
     "neoforge/src/gameTest/java/ic2/neoforge/test/CraftingTests.java"
-   ]
+   ],
+   "note": "三基础机器族审计:ProcessingRecipe serializer 三族加载经 loadedRecipes+recipe_codec 测试覆盖,翻 implemented。"
   },
   {
    "registry": "recipe_serializer",
@@ -15860,12 +15875,13 @@
    "factory": "register",
    "expression": "",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/recipe-catalog.json",
     "neoforge/src/gameTest/java/ic2/neoforge/test/ProcessingTests.java",
     "neoforge/src/gameTest/java/ic2/neoforge/test/CraftingTests.java"
-   ]
+   ],
+   "note": "三基础机器族审计:recipe_type 三族经 jeiCategoriesNonEmpty(非空)+processing(执行)测试覆盖,翻 implemented。"
   },
   {
    "registry": "recipe_type",
@@ -15875,12 +15891,13 @@
    "factory": "register",
    "expression": "",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/recipe-catalog.json",
     "neoforge/src/gameTest/java/ic2/neoforge/test/ProcessingTests.java",
     "neoforge/src/gameTest/java/ic2/neoforge/test/CraftingTests.java"
-   ]
+   ],
+   "note": "三基础机器族审计:recipe_type 三族经 jeiCategoriesNonEmpty(非空)+processing(执行)测试覆盖,翻 implemented。"
   },
   {
    "registry": "recipe_type",
@@ -15890,12 +15907,13 @@
    "factory": "register",
    "expression": "",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/recipe-catalog.json",
     "neoforge/src/gameTest/java/ic2/neoforge/test/ProcessingTests.java",
     "neoforge/src/gameTest/java/ic2/neoforge/test/CraftingTests.java"
-   ]
+   ],
+   "note": "三基础机器族审计:recipe_type 三族经 jeiCategoriesNonEmpty(非空)+processing(执行)测试覆盖,翻 implemented。"
   },
   {
    "registry": "recipe_type",

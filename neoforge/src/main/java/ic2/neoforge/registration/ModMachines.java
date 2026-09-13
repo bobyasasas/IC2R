@@ -209,7 +209,8 @@ public final class ModMachines {
                     new ic2.neoforge.machine.CreativeGeneratorBlockEntity(pos, state);
             case CENTRIFUGE -> new CentrifugeBlockEntity(pos, state);
             case METAL_FORMER -> new MetalFormerBlockEntity(pos, state);
-            case MACERATOR, EXTRACTOR, COMPRESSOR -> new SingleInputBlockEntity(pos, state);
+            case MACERATOR, EXTRACTOR -> new SingleInputBlockEntity(pos, state);
+            case COMPRESSOR -> new ic2.neoforge.machine.CompressorBlockEntity(pos, state);
             case BLOCK_CUTTER -> new ic2.neoforge.machine.BlockCutterBlockEntity(pos, state);
             case CROPMATRON -> new ic2.neoforge.machine.CropmatronBlockEntity(pos, state);
             case CROP_HARVESTER -> new ic2.neoforge.machine.CropHarvesterBlockEntity(pos, state);

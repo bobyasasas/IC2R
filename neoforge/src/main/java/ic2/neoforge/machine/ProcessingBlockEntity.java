@@ -32,8 +32,10 @@ public abstract class ProcessingBlockEntity extends UpgradeableBlockEntity {
     protected record Job(
             String recipe, int inputCount, List<ItemStackTemplate> outputs, double experience) {
         protected Job {
+            // inputCount 0 is the legacy compressor pump recipe: no item input, water drawn from
+            // adjacent pumps instead.
             if (recipe.isBlank()
-                    || inputCount < 1
+                    || inputCount < 0
                     || !Double.isFinite(experience)
                     || experience < 0) throw new IllegalArgumentException("Invalid processing job");
             outputs = List.copyOf(outputs);
