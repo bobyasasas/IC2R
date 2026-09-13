@@ -1,6 +1,9 @@
 package ic2.neoforge.machine;
 
+import ic2.core.energy.VoltageTier;
 import ic2.core.energy.grid.EnergyNode;
+import ic2.neoforge.energy.WorldEnergyNetworks;
+import ic2.neoforge.item.UpgradeItem;
 import ic2.neoforge.registration.ModMachines;
 import ic2.neoforge.transfer.MachineInventory;
 import ic2.neoforge.transfer.ResourcePort;
@@ -30,8 +33,10 @@ public final class SortingMachineBlockEntity extends PoweredBlockEntity {
     private final ResourceHandler<ItemResource> filterPort =
             new ResourcePort<>(filters, slot -> false, slot -> false, (slot, resource) -> true);
     private Direction defaultRoute = Direction.DOWN;
+    private int transformers = -1;
 
     public SortingMachineBlockEntity(BlockPos pos, BlockState state) {
+        // 11 buffer slots plus the 3 upgrade slots; kind().slots() is unreachable before super.
         super(ModMachines.entityType(MachineKind.SORTING_MACHINE), pos, state, 15000, 14);
     }
 
@@ -39,8 +44,28 @@ public final class SortingMachineBlockEntity extends PoweredBlockEntity {
     public EnergyNode.Terminal energyNode() {
         return EnergyNode.Terminal.sink(
                 energy,
-                ic2.core.energy.VoltageTier.fromIcTier(kind().electricalTier()).getVoltage(),
+                VoltageTier.fromIcTier(
+                                Math.min(5, kind().electricalTier() + Math.max(0, transformers)))
+                        .getVoltage(),
                 1);
+    }
+
+    /**
+     * Legacy {@code InvSlotUpgrade.getTier(2)}: transformer upgrades in the three upgrade slots
+     * raise the sink tier by one each, capped at tier five.
+     */
+    private void refreshTier() {
+        int count = 0;
+        for (int slot = kind().upgradeStart(); slot < inventory.size(); slot++) {
+            var resource = inventory.getResource(slot);
+            if (resource.getItem() instanceof UpgradeItem item
+                    && item.kind() == UpgradeItem.Kind.TRANSFORMER)
+                count += Math.min(64, inventory.getAmountAsInt(slot));
+        }
+        if (count == transformers) return;
+        transformers = count;
+        if (level instanceof ServerLevel server) WorldEnergyNetworks.invalidate(server);
+        setChanged();
     }
 
     public MachineInventory filters() {
@@ -92,6 +117,7 @@ public final class SortingMachineBlockEntity extends PoweredBlockEntity {
 
     @Override
     public void serverTick(ServerLevel level) {
+        refreshTier();
         if (energy.stored() < EU_PER_ITEM) return;
         boolean moved = false;
         for (int slot = 0; slot < BUFFER_SLOTS; slot++) {
@@ -191,6 +217,7 @@ public final class SortingMachineBlockEntity extends PoweredBlockEntity {
         filters.deserialize(input.childOrEmpty("filters"));
         int route = input.getIntOr("route", Direction.DOWN.ordinal());
         if (route >= 0 && route < 6) defaultRoute = Direction.values()[route];
+        refreshTier();
     }
 
     @Override

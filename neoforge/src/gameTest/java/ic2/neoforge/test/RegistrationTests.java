@@ -271,6 +271,7 @@ public final class RegistrationTests {
         FUNCTIONS.register("sorting_machine_filter", () -> EntityTickingTests.wrap(SortingMachineTests::filterRouting));
         FUNCTIONS.register(
                 "sorting_machine_default", () -> SortingMachineTests::defaultRouteFallback);
+        FUNCTIONS.register("sorting_machine_upgrade", () -> SortingMachineTests::transformerRaisesSinkTier);
         FUNCTIONS.register("magnetizer_lift", () -> EntityTickingTests.wrap(MagnetizerTests::poweredLift));
         FUNCTIONS.register("magnetizer_unpowered", () -> EntityTickingTests.wrap(MagnetizerTests::unpoweredStays));
         FUNCTIONS.register("trade_o_mat_infinite", () -> EntityTickingTests.wrap(TradeOMatTests::infiniteTrade));

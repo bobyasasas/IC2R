@@ -2154,11 +2154,12 @@
    "factory": "register",
    "expression": "new ItemBlockIc2(Ic2Blocks.SORTING_MACHINE, new Properties())",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
-    "docs/migration/sorting-machine.md",
+    "neoforge/src/main/java/ic2/neoforge/registration/ModMachines.java",
     "neoforge/src/gameTest/java/ic2/neoforge/test/SortingMachineTests.java"
-   ]
+   ],
+   "note": "Filter routing, default-face fallback, EU billing and three transformer upgrade slots raising the sink tier are live and GameTest covered."
   },
   {
    "registry": "item",
@@ -2235,12 +2236,12 @@
    "factory": "register",
    "expression": "new ItemBlockIc2(Ic2Blocks.ELECTROLYZER, new Properties())",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
-    "docs/migration/electrolyzer.md",
+    "neoforge/src/main/java/ic2/neoforge/registration/ModMachines.java",
     "neoforge/src/gameTest/java/ic2/neoforge/test/ElectrolyzerTests.java"
    ],
-   "note": "多方向数据包配方、MV原生电网、全部输出事务、输入持久化与配方签名已接入；客户端及多人性能验收持续验证。"
+   "note": "Multifacing datapack recipes, native MV grid, transactional outputs, input persistence, recipe signatures and menu are live and GameTest covered; client rendering stays a manual acceptance item."
   },
   {
    "registry": "item",
@@ -2267,12 +2268,12 @@
    "factory": "register",
    "expression": "new ItemBlockIc2(Ic2Blocks.CANNER, new Properties())",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
-    "neoforge/src/main/java/ic2/neoforge/machine/CannerBlockEntity.java",
+    "neoforge/src/main/java/ic2/neoforge/registration/ModMachines.java",
     "neoforge/src/gameTest/java/ic2/neoforge/test/CannerTests.java"
    ],
-   "note": "四模式、事务、储罐、菜单及循环声已迁移；升级和燃料棒配方仍待迁移。"
+   "note": "Four modes, transactions, tank, menu, loop sounds, fuel-rod datapack recipes and upgrades are live and GameTest covered."
   },
   {
    "registry": "item",
@@ -8953,12 +8954,12 @@
    "factory": "register",
    "expression": "Ic2TileEntityBlock.create(Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).strength(2.0F, 10.0F).requiresCorrectToolForDrops().sound(SoundType.METAL), TileEntitySortingMachine.class, false, Ic2TileEntityBlock.DefaultDrop.Machine, Util.onlyNorth, false)",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
-    "docs/migration/sorting-machine.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/SortingMachineTests.java"
+    "neoforge/src/main/java/ic2/neoforge/machine/MachineBlock.java",
+    "neoforge/src/main/java/ic2/neoforge/registration/ModMachines.java"
    ],
-   "note": "过滤路由、默认面回退与 EU 计费已接入；升级与红石行为待验收。"
+   "note": "Filter routing, default-face fallback, EU billing and three transformer upgrade slots raising the sink tier are live and GameTest covered."
   },
   {
    "registry": "block",
@@ -9035,12 +9036,12 @@
    "factory": "register",
    "expression": "Ic2TileEntityBlock.create(Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).strength(2.0F, 10.0F).requiresCorrectToolForDrops().sound(SoundType.METAL), TileEntityCanner.class, true, Ic2TileEntityBlock.DefaultDrop.Machine, Util.horizontalFacings, true)",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
-    "neoforge/src/main/java/ic2/neoforge/machine/CannerBlockEntity.java",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/CannerTests.java"
+    "neoforge/src/main/java/ic2/neoforge/machine/MachineBlock.java",
+    "neoforge/src/main/java/ic2/neoforge/registration/ModMachines.java"
    ],
-   "note": "四模式、事务、储罐、菜单及循环声已迁移；升级和燃料棒配方仍待迁移。"
+   "note": "Four modes, transactions, tank, menu, loop sounds, fuel-rod datapack recipes and upgrades are live and GameTest covered."
   },
   {
    "registry": "block",
@@ -9580,12 +9581,12 @@
    "factory": "register",
    "expression": "Ic2TileEntityBlock.create(Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).strength(2.0F, 10.0F).requiresCorrectToolForDrops().sound(SoundType.METAL), TileEntityElectrolyzer.class, true, Ic2TileEntityBlock.DefaultDrop.Machine, Util.horizontalFacings, true)",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
-    "docs/migration/electrolyzer.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/ElectrolyzerTests.java"
+    "neoforge/src/main/java/ic2/neoforge/machine/MachineBlock.java",
+    "neoforge/src/main/java/ic2/neoforge/registration/ModMachines.java"
    ],
-   "note": "多方向数据包配方、MV原生电网、全部输出事务、输入持久化与配方签名已接入；客户端及多人性能验收持续验证。"
+   "note": "Multifacing datapack recipes, native MV grid, transactional outputs, input persistence, recipe signatures and menu are live and GameTest covered; client rendering stays a manual acceptance item."
   },
   {
    "registry": "block",
@@ -12613,12 +12614,12 @@
    "factory": "register",
    "expression": "TileEntitySortingMachine::new",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
-    "docs/migration/sorting-machine.md",
+    "neoforge/src/main/java/ic2/neoforge/machine/SortingMachineBlockEntity.java",
     "neoforge/src/gameTest/java/ic2/neoforge/test/SortingMachineTests.java"
    ],
-   "note": "过滤路由、默认面回退与 EU 计费已接入；升级与红石行为待验收。"
+   "note": "Filter routing, default-face fallback, EU billing and three transformer upgrade slots raising the sink tier are live and GameTest covered."
   },
   {
    "registry": "block_entity",
@@ -12776,12 +12777,12 @@
    "factory": "register",
    "expression": "TileEntityCanner::new",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "neoforge/src/main/java/ic2/neoforge/machine/CannerBlockEntity.java",
     "neoforge/src/gameTest/java/ic2/neoforge/test/CannerTests.java"
    ],
-   "note": "四模式、事务、储罐、菜单及循环声已迁移；升级和燃料棒配方仍待迁移。"
+   "note": "Four modes, transactions, tank, menu, loop sounds, fuel-rod datapack recipes and upgrades are live and GameTest covered."
   },
   {
    "registry": "block_entity",
@@ -13472,12 +13473,12 @@
    "factory": "register",
    "expression": "TileEntityElectrolyzer::new",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
-    "docs/migration/electrolyzer.md",
+    "neoforge/src/main/java/ic2/neoforge/machine/ElectrolyzerBlockEntity.java",
     "neoforge/src/gameTest/java/ic2/neoforge/test/ElectrolyzerTests.java"
    ],
-   "note": "多方向数据包配方、MV原生电网、全部输出事务、输入持久化与配方签名已接入；客户端及多人性能验收持续验证。"
+   "note": "Multifacing datapack recipes, native MV grid, transactional outputs, input persistence, recipe signatures and menu are live and GameTest covered; client rendering stays a manual acceptance item."
   },
   {
    "registry": "block_entity",
@@ -14305,12 +14306,13 @@
    "factory": "registerManagedBe",
    "expression": "",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
-    "docs/migration/sorting-machine.md",
+    "neoforge/src/main/java/ic2/neoforge/menu/MachineMenu.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/SortingMachineBlockEntity.java",
     "neoforge/src/gameTest/java/ic2/neoforge/test/SortingMachineTests.java"
    ],
-   "note": "过滤路由、默认面回退与 EU 计费已接入；升级与红石行为待验收。"
+   "note": "Filter routing, default-face fallback, EU billing and three transformer upgrade slots raising the sink tier are live and GameTest covered."
   },
   {
    "registry": "menu",
@@ -14320,12 +14322,13 @@
    "factory": "registerManagedBe",
    "expression": "",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
+    "neoforge/src/main/java/ic2/neoforge/menu/MachineMenu.java",
     "neoforge/src/main/java/ic2/neoforge/machine/CannerBlockEntity.java",
     "neoforge/src/gameTest/java/ic2/neoforge/test/CannerTests.java"
    ],
-   "note": "四模式、事务、储罐、菜单及循环声已迁移；升级和燃料棒配方仍待迁移。"
+   "note": "Four modes, transactions, tank, menu, loop sounds, fuel-rod datapack recipes and upgrades are live and GameTest covered."
   },
   {
    "registry": "menu",
@@ -14585,12 +14588,13 @@
    "factory": "registerManagedBe",
    "expression": "",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
-    "docs/migration/electrolyzer.md",
+    "neoforge/src/main/java/ic2/neoforge/menu/MachineMenu.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/ElectrolyzerBlockEntity.java",
     "neoforge/src/gameTest/java/ic2/neoforge/test/ElectrolyzerTests.java"
    ],
-   "note": "多方向数据包配方、MV原生电网、全部输出事务、输入持久化与配方签名已接入；客户端及多人性能验收持续验证。"
+   "note": "Multifacing datapack recipes, native MV grid, transactional outputs, input persistence, recipe signatures and menu are live and GameTest covered; client rendering stays a manual acceptance item."
   },
   {
    "registry": "menu",

@@ -19,8 +19,8 @@ final class MenuAuditTests {
     /** Menu slot totals that diverge from kind.slots(); each divergence is a recorded gap. */
     private static int auditedMachineSlots(MachineKind kind) {
         return switch (kind) {
-            // Legacy adds 3 upgrade slots, but the port BE consumes no upgrades yet.
-            case SORTING_MACHINE -> 6 * 7 + 11;
+            // The filter grid (42 editor slots) sits beside the machine inventory.
+            case SORTING_MACHINE -> 6 * 7 + kind.slots();
             // Three computed crafting previews beside the 31 real slots.
             case INDUSTRIAL_WORKBENCH -> 34;
             // Nine hologram templates live outside the machine inventory.

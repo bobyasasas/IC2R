@@ -1,9 +1,12 @@
 package ic2.neoforge.test;
 
+import ic2.core.energy.VoltageTier;
 import ic2.neoforge.machine.MachineKind;
 import ic2.neoforge.machine.SortingMachineBlockEntity;
 import ic2.neoforge.machine.StorageBoxBlockEntity;
+import ic2.neoforge.item.UpgradeItem;
 import ic2.neoforge.registration.ModMachines;
+import ic2.neoforge.registration.ModUpgrades;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -58,6 +61,35 @@ final class SortingMachineTests {
                 1,
                 "An unfiltered item leaves through the default face");
         helper.assertValueEqual(machine.storedEnergy(), 80.0, "One item costs twenty EU");
+        helper.succeed();
+    }
+
+    static void transformerRaisesSinkTier(GameTestHelper helper) {
+        var machine = machine(helper);
+        helper.assertValueEqual(
+                machine.energyNode().input().orElseThrow().voltage(),
+                VoltageTier.fromIcTier(2).getVoltage(),
+                "The sorting machine sinks at tier two by default");
+        try (var transaction = Transaction.openRoot()) {
+            helper.assertValueEqual(
+                    machine.inventory()
+                            .insert(
+                                    SortingMachineBlockEntity.BUFFER_SLOTS,
+                                    ItemResource.of(
+                                            ModUpgrades.ALL
+                                                    .get(UpgradeItem.Kind.TRANSFORMER)
+                                                    .get()),
+                                    1,
+                                    transaction),
+                    1,
+                    "Test sets a transformer upgrade");
+            transaction.commit();
+        }
+        machine.serverTick(helper.getLevel());
+        helper.assertValueEqual(
+                machine.energyNode().input().orElseThrow().voltage(),
+                VoltageTier.fromIcTier(3).getVoltage(),
+                "A transformer upgrade raises the sink tier to three");
         helper.succeed();
     }
 

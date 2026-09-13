@@ -42,7 +42,7 @@ public enum MachineKind implements StringRepresentable {
     PUMP("pump", 20, 2, 20, 1),
     MINER("miner", 1000, 18, 0, 0),
     ADV_MINER("advanced_miner", 4000000, 17, 0, 0),
-    SORTING_MACHINE("sorting_machine", 15000, 14, 0, 0),
+    SORTING_MACHINE("sorting_machine", 15000, 11, 0, 0),
     TRADE_O_MAT("trade_o_mat", 0, 4, 0, 0),
     ENERGY_O_MAT("energy_o_mat", 10000, 3, 0, 0),
     ITEM_BUFFER("item_buffer", 0, 48, 0, 0),
@@ -290,6 +290,7 @@ public enum MachineKind implements StringRepresentable {
         if (this == CROP_HARVESTER) return 4;
         if (this == ADV_MINER) return 4;
         if (this == ITEM_BUFFER || this == BLAST_FURNACE) return 2;
+        if (this == SORTING_MACHINE) return 3;
         if (this == MATTER_GENERATOR) return 4;
         if (this == RCI_RSH || this == RCI_LZH) return 4;
         if (this == CONDENSER || this == STEAM_KINETIC_GENERATOR || this == MINER) return 1;
