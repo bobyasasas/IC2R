@@ -1211,12 +1211,15 @@
    "factory": "register",
    "expression": "new BlockItemEnergyStorage(Ic2Blocks.BATBOX, new Properties(), 40000)",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
+    "neoforge/src/main/java/ic2/neoforge/machine/EnergyStorageBlockEntity.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/MachineKind.java",
     "neoforge/src/gameTest/java/ic2/neoforge/test/EnergyDeviceTests.java",
+    "neoforge/src/gameTest/resources/data/ic2_tests/test_instance/storage_overvoltage_blast.json",
     "docs/migration/energy-devices.md"
    ],
-   "note": "方向、红石、菜单、保存及扳手拆卸已验证；完整 IC2 爆炸和多人持续验收仍待完成。"
+   "note": "Direction gating, redstone modes, menu, save/load and wrench removal verified; the legacy overvoltage blast is covered by storage_overvoltage_blast in both energy modes. Sustained multiplayer acceptance stays a manual item."
   },
   {
    "registry": "item",
@@ -1226,12 +1229,15 @@
    "factory": "register",
    "expression": "new BlockItemEnergyStorage(Ic2Blocks.CESU, new Properties(), 300000)",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
+    "neoforge/src/main/java/ic2/neoforge/machine/EnergyStorageBlockEntity.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/MachineKind.java",
     "neoforge/src/gameTest/java/ic2/neoforge/test/EnergyDeviceTests.java",
+    "neoforge/src/gameTest/resources/data/ic2_tests/test_instance/storage_overvoltage_blast.json",
     "docs/migration/energy-devices.md"
    ],
-   "note": "方向、红石、菜单、保存及扳手拆卸已验证；完整 IC2 爆炸和多人持续验收仍待完成。"
+   "note": "Direction gating, redstone modes, menu, save/load and wrench removal verified; the legacy overvoltage blast is covered by storage_overvoltage_blast in both energy modes. Sustained multiplayer acceptance stays a manual item."
   },
   {
    "registry": "item",
@@ -1241,12 +1247,15 @@
    "factory": "register",
    "expression": "new BlockItemEnergyStorage(Ic2Blocks.MFE, new Properties(), 4000000)",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
+    "neoforge/src/main/java/ic2/neoforge/machine/EnergyStorageBlockEntity.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/MachineKind.java",
     "neoforge/src/gameTest/java/ic2/neoforge/test/EnergyDeviceTests.java",
+    "neoforge/src/gameTest/resources/data/ic2_tests/test_instance/storage_overvoltage_blast.json",
     "docs/migration/energy-devices.md"
    ],
-   "note": "方向、红石、菜单、保存及扳手拆卸已验证；完整 IC2 爆炸和多人持续验收仍待完成。"
+   "note": "Direction gating, redstone modes, menu, save/load and wrench removal verified; the legacy overvoltage blast is covered by storage_overvoltage_blast in both energy modes. Sustained multiplayer acceptance stays a manual item."
   },
   {
    "registry": "item",
@@ -1256,12 +1265,15 @@
    "factory": "register",
    "expression": "new BlockItemEnergyStorage(Ic2Blocks.MFSU, new Properties().rarity(Rarity.UNCOMMON), 40000000)",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
+    "neoforge/src/main/java/ic2/neoforge/machine/EnergyStorageBlockEntity.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/MachineKind.java",
     "neoforge/src/gameTest/java/ic2/neoforge/test/EnergyDeviceTests.java",
+    "neoforge/src/gameTest/resources/data/ic2_tests/test_instance/storage_overvoltage_blast.json",
     "docs/migration/energy-devices.md"
    ],
-   "note": "方向、红石、菜单、保存及扳手拆卸已验证；完整 IC2 爆炸和多人持续验收仍待完成。"
+   "note": "Direction gating, redstone modes, menu, save/load and wrench removal verified; the legacy overvoltage blast is covered by storage_overvoltage_blast in both energy modes. Sustained multiplayer acceptance stays a manual item."
   },
   {
    "registry": "item",
@@ -9525,12 +9537,15 @@
    "factory": "register",
    "expression": "Ic2TileEntityBlock.create(Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).strength(2.0F, 10.0F).requiresCorrectToolForDrops().sound(SoundType.METAL), TileEntityElectricBatBox.class, false, Ic2TileEntityBlock.DefaultDrop.Self, Util.allFacings, true)",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
+    "neoforge/src/main/java/ic2/neoforge/machine/EnergyStorageBlockEntity.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/MachineKind.java",
     "neoforge/src/gameTest/java/ic2/neoforge/test/EnergyDeviceTests.java",
+    "neoforge/src/gameTest/resources/data/ic2_tests/test_instance/storage_overvoltage_blast.json",
     "docs/migration/energy-devices.md"
    ],
-   "note": "方向、红石、菜单、保存及扳手拆卸已验证；完整 IC2 爆炸和多人持续验收仍待完成。"
+   "note": "Direction gating, redstone modes, menu, save/load and wrench removal verified; the legacy overvoltage blast is covered by storage_overvoltage_blast in both energy modes. Sustained multiplayer acceptance stays a manual item."
   },
   {
    "registry": "block",
@@ -9540,12 +9555,15 @@
    "factory": "register",
    "expression": "Ic2TileEntityBlock.create(Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).strength(2.0F, 10.0F).requiresCorrectToolForDrops().sound(SoundType.METAL), TileEntityElectricCESU.class, false, Ic2TileEntityBlock.DefaultDrop.Self, Util.allFacings, true)",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
+    "neoforge/src/main/java/ic2/neoforge/machine/EnergyStorageBlockEntity.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/MachineKind.java",
     "neoforge/src/gameTest/java/ic2/neoforge/test/EnergyDeviceTests.java",
+    "neoforge/src/gameTest/resources/data/ic2_tests/test_instance/storage_overvoltage_blast.json",
     "docs/migration/energy-devices.md"
    ],
-   "note": "方向、红石、菜单、保存及扳手拆卸已验证；完整 IC2 爆炸和多人持续验收仍待完成。"
+   "note": "Direction gating, redstone modes, menu, save/load and wrench removal verified; the legacy overvoltage blast is covered by storage_overvoltage_blast in both energy modes. Sustained multiplayer acceptance stays a manual item."
   },
   {
    "registry": "block",
@@ -9555,12 +9573,15 @@
    "factory": "register",
    "expression": "Ic2TileEntityBlock.create(Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).strength(2.0F, 10.0F).requiresCorrectToolForDrops().sound(SoundType.METAL), TileEntityElectricMFE.class, false, Ic2TileEntityBlock.DefaultDrop.Machine, Util.allFacings, true)",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
+    "neoforge/src/main/java/ic2/neoforge/machine/EnergyStorageBlockEntity.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/MachineKind.java",
     "neoforge/src/gameTest/java/ic2/neoforge/test/EnergyDeviceTests.java",
+    "neoforge/src/gameTest/resources/data/ic2_tests/test_instance/storage_overvoltage_blast.json",
     "docs/migration/energy-devices.md"
    ],
-   "note": "方向、红石、菜单、保存及扳手拆卸已验证；完整 IC2 爆炸和多人持续验收仍待完成。"
+   "note": "Direction gating, redstone modes, menu, save/load and wrench removal verified; the legacy overvoltage blast is covered by storage_overvoltage_blast in both energy modes. Sustained multiplayer acceptance stays a manual item."
   },
   {
    "registry": "block",
@@ -9570,12 +9591,15 @@
    "factory": "register",
    "expression": "Ic2TileEntityBlock.create(Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).strength(2.0F, 10.0F).requiresCorrectToolForDrops().sound(SoundType.METAL), TileEntityElectricMFSU.class, false, Ic2TileEntityBlock.DefaultDrop.AdvMachine, Util.allFacings, true)",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
+    "neoforge/src/main/java/ic2/neoforge/machine/EnergyStorageBlockEntity.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/MachineKind.java",
     "neoforge/src/gameTest/java/ic2/neoforge/test/EnergyDeviceTests.java",
+    "neoforge/src/gameTest/resources/data/ic2_tests/test_instance/storage_overvoltage_blast.json",
     "docs/migration/energy-devices.md"
    ],
-   "note": "方向、红石、菜单、保存及扳手拆卸已验证；完整 IC2 爆炸和多人持续验收仍待完成。"
+   "note": "Direction gating, redstone modes, menu, save/load and wrench removal verified; the legacy overvoltage blast is covered by storage_overvoltage_blast in both energy modes. Sustained multiplayer acceptance stays a manual item."
   },
   {
    "registry": "block",
@@ -13417,12 +13441,15 @@
    "factory": "register",
    "expression": "TileEntityElectricBatBox::new",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
+    "neoforge/src/main/java/ic2/neoforge/machine/EnergyStorageBlockEntity.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/MachineKind.java",
     "neoforge/src/gameTest/java/ic2/neoforge/test/EnergyDeviceTests.java",
+    "neoforge/src/gameTest/resources/data/ic2_tests/test_instance/storage_overvoltage_blast.json",
     "docs/migration/energy-devices.md"
    ],
-   "note": "方向、红石、菜单、保存及扳手拆卸已验证；完整 IC2 爆炸和多人持续验收仍待完成。"
+   "note": "Direction gating, redstone modes, menu, save/load and wrench removal verified; the legacy overvoltage blast is covered by storage_overvoltage_blast in both energy modes. Sustained multiplayer acceptance stays a manual item."
   },
   {
    "registry": "block_entity",
@@ -13432,12 +13459,15 @@
    "factory": "register",
    "expression": "TileEntityElectricCESU::new",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
+    "neoforge/src/main/java/ic2/neoforge/machine/EnergyStorageBlockEntity.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/MachineKind.java",
     "neoforge/src/gameTest/java/ic2/neoforge/test/EnergyDeviceTests.java",
+    "neoforge/src/gameTest/resources/data/ic2_tests/test_instance/storage_overvoltage_blast.json",
     "docs/migration/energy-devices.md"
    ],
-   "note": "方向、红石、菜单、保存及扳手拆卸已验证；完整 IC2 爆炸和多人持续验收仍待完成。"
+   "note": "Direction gating, redstone modes, menu, save/load and wrench removal verified; the legacy overvoltage blast is covered by storage_overvoltage_blast in both energy modes. Sustained multiplayer acceptance stays a manual item."
   },
   {
    "registry": "block_entity",
@@ -13447,12 +13477,15 @@
    "factory": "register",
    "expression": "TileEntityElectricMFE::new",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
+    "neoforge/src/main/java/ic2/neoforge/machine/EnergyStorageBlockEntity.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/MachineKind.java",
     "neoforge/src/gameTest/java/ic2/neoforge/test/EnergyDeviceTests.java",
+    "neoforge/src/gameTest/resources/data/ic2_tests/test_instance/storage_overvoltage_blast.json",
     "docs/migration/energy-devices.md"
    ],
-   "note": "方向、红石、菜单、保存及扳手拆卸已验证；完整 IC2 爆炸和多人持续验收仍待完成。"
+   "note": "Direction gating, redstone modes, menu, save/load and wrench removal verified; the legacy overvoltage blast is covered by storage_overvoltage_blast in both energy modes. Sustained multiplayer acceptance stays a manual item."
   },
   {
    "registry": "block_entity",
@@ -13462,12 +13495,15 @@
    "factory": "register",
    "expression": "TileEntityElectricMFSU::new",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
+    "neoforge/src/main/java/ic2/neoforge/machine/EnergyStorageBlockEntity.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/MachineKind.java",
     "neoforge/src/gameTest/java/ic2/neoforge/test/EnergyDeviceTests.java",
+    "neoforge/src/gameTest/resources/data/ic2_tests/test_instance/storage_overvoltage_blast.json",
     "docs/migration/energy-devices.md"
    ],
-   "note": "方向、红石、菜单、保存及扳手拆卸已验证；完整 IC2 爆炸和多人持续验收仍待完成。"
+   "note": "Direction gating, redstone modes, menu, save/load and wrench removal verified; the legacy overvoltage blast is covered by storage_overvoltage_blast in both energy modes. Sustained multiplayer acceptance stays a manual item."
   },
   {
    "registry": "block_entity",

@@ -234,6 +234,21 @@ final class EnergyDeviceTests {
         helper.succeed();
     }
 
+    /** Legacy overvoltage rule: a HV feed blasts an undersized LV storage sink. */
+    static void overvoltageBlast(GameTestHelper helper) {
+        place(helper, LEFT, MachineKind.MFSU, Direction.EAST);
+        place(helper, MID, MachineKind.BATBOX, Direction.EAST);
+        helper.getBlockEntity(LEFT, EnergyStorageBlockEntity.class).energy().restore(100000);
+        helper.runAtTickTime(
+                10,
+                () -> {
+                    helper.assertTrue(
+                            helper.getBlockState(MID).isAir(),
+                            "An HV source must blast an undersized LV storage sink");
+                    helper.succeed();
+                });
+    }
+
     /** Legacy semantics: a charged GT mode flip faults; the classic net toggles freely. */
     static void chargedModeSwitch(GameTestHelper helper) {
         place(helper, MID, MachineKind.LV_TRANSFORMER, Direction.NORTH);
