@@ -342,6 +342,8 @@ public final class RegistrationTests {
         FUNCTIONS.register("item_buffer_eject", () -> EntityTickingTests.wrap(ItemBufferTests::ejectorSendsSidesOut));
         FUNCTIONS.register("item_buffer_pull", () -> EntityTickingTests.wrap(ItemBufferTests::pullingTakesFromAbove));
         FUNCTIONS.register("item_buffer_ports", () -> EntityTickingTests.wrap(ItemBufferTests::portsAndUpgradeSlots));
+        FUNCTIONS.register(
+                "item_buffer_comparator", () -> ItemBufferTests::comparatorTracksFullness);
         FUNCTIONS.register("block_cutter_plates", () -> EntityTickingTests.wrap(BlockCutterTests::cutsBlockIntoPlates));
         FUNCTIONS.register(
                 "block_cutter_weak_blade",

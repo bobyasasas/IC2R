@@ -145,5 +145,31 @@ final class ItemBufferTests {
         helper.succeed();
     }
 
+    static void comparatorTracksFullness(GameTestHelper helper) {
+        var buf = buffer(helper);
+        helper.assertValueEqual(
+                buf.comparator(), 0, "An empty buffer emits no comparator signal");
+        insert(buf.inventory(), 0, new ItemStack(Items.STICK, 64));
+        helper.assertValueEqual(
+                buf.comparator(), 1, "One full stack barely lifts the signal above zero");
+        for (int slot = 1; slot < 4; slot++)
+            insert(buf.inventory(), slot, new ItemStack(Items.STICK, 64));
+        helper.assertValueEqual(
+                buf.comparator(), 2, "Four full stacks reach the second comparator step");
+        insert(buf.inventory(), 5, new ItemStack(Items.BUCKET, 16));
+        helper.assertValueEqual(
+                buf.comparator(),
+                2,
+                "Stacks fold by max stack size: 16 buckets equal one 64 stack");
+        for (int slot = 0; slot < 48; slot++)
+            insert(buf.inventory(), slot, new ItemStack(Items.STICK, 64));
+        helper.assertValueEqual(
+                buf.comparator(), 15, "A completely full buffer emits the maximum signal");
+        helper.assertTrue(
+                helper.getBlockState(POSITION).hasAnalogOutputSignal(),
+                "The buffer block advertises an analog output");
+        helper.succeed();
+    }
+
     private ItemBufferTests() {}
 }

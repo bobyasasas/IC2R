@@ -22,6 +22,11 @@ public final class ItemBufferBlockEntity extends MachineBlockEntity {
     public static final int SIDE_START = 24;
     public static final int GROUP_SIZE = 24;
 
+    /** Legacy InvSlot default stack-size limit feeding the comparator math. */
+    private static final int STACK_LIMIT = 64;
+
+    private int previousComparator;
+
     public ItemBufferBlockEntity(BlockPos pos, BlockState state) {
         super(
                 ModMachines.entityType(((MachineBlock) state.getBlock()).kind()),
@@ -41,6 +46,36 @@ public final class ItemBufferBlockEntity extends MachineBlockEntity {
     @Override
     public void serverTick(ServerLevel level) {
         UpgradeTransfers.tick(level, this);
+    }
+
+    /** Legacy calcRedstoneFromInvSlots over both groups: fullness in 1..15, empty is 0.
+     * Upgrade slots are excluded, matching the legacy InvSlotUpgrade skip. */
+    public int comparator() {
+        int upgradeStart = kind().upgradable() ? kind().upgradeStart() : inventory.size();
+        int space = 0, used = 0;
+        for (int slot = 0; slot < inventory.size(); slot++) {
+            if (slot >= upgradeStart) continue;
+            space += STACK_LIMIT;
+            var stack = inventory.stack(slot);
+            if (!stack.isEmpty())
+                used +=
+                        Math.min(
+                                STACK_LIMIT,
+                                stack.getCount() * STACK_LIMIT / stack.getMaxStackSize());
+        }
+        return used == 0 ? 0 : 1 + used * 14 / space;
+    }
+
+    @Override
+    public void setChanged() {
+        super.setChanged();
+        if (level instanceof ServerLevel server) {
+            int signal = comparator();
+            if (signal != previousComparator) {
+                previousComparator = signal;
+                server.updateNeighbourForOutputSignal(worldPosition, getBlockState().getBlock());
+            }
+        }
     }
 
     @Override

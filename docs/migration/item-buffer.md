@@ -1,7 +1,7 @@
 # 物品缓冲机(item_buffer)
 
-2026-09-09 切片。迁移 legacy `TileEntityItemBuffer` / `ContainerItemBuffer` /
-`GuiItemBuffer`(被动物流机器,无能量)。
+2026-09-09 切片;2026-09-12 第 46 轮补比较器输出。迁移 legacy `TileEntityItemBuffer` /
+`ContainerItemBuffer` / `GuiItemBuffer`(被动物流机器,无能量)。
 
 ## 旧行为依据
 
@@ -34,7 +34,13 @@
 - 配方解锁:`shaped/item_buffer.json`(机器 + `c:chests/wooden` ×2 +
   铁外壳 ×6)与 **`shapeless/mining_filter.json`(采矿过滤器卡片)**,
   转换数 575 → 577;`rci_rsh`/`rci_lzh` 仍因其余前置 pending。
-- 比较器输出未迁移(与传送机/矿机一致,列入待测试),机器无循环音效。
+- 比较器输出(2026-09-12 第 46 轮补齐):`ItemBufferBlockEntity.comparator()` 按
+  legacy `calcRedstoneFromInvSlots` 语义——48 内容槽每槽 64 单位 space、非空槽按
+  `count×64/maxStackSize` 折算 used、`used==0 → 0` 否则 `1+used×14/space`;
+  **升级槽排除**(legacy 跳过 `InvSlotUpgrade`,经 GameTest 抓出全满差一档后修正);
+  `setChanged()` 覆写在比较器值变化时 `updateNeighbourForOutputSignal`(内容变化
+  经 `MachineInventory` changed 回调即时驱动);`MachineBlock` 的
+  `hasAnalogOutputSignal`/`getAnalogOutputSignal` 加 ITEM_BUFFER 分支。机器无循环音效。
 
 ## 测试证据
 
@@ -44,11 +50,14 @@
   右组保持空。
 - `ItemBufferTests.portsAndUpgradeSlots`:北面端口拒左组/收右组、顶面端口相反
   (后端端口级验证);升级槽拒绝超频器。
-- IC2 与 GT 双模式 `runGameTestServer` 194 项全绿;配方链经 recipes.py 转换并
+- `ItemBufferTests.comparatorTracksFullness`(2026-09-12):空→0、1 满堆→1、
+  4 满堆→2、16 桶(maxStack 16)按 maxStackSize 折算仍 2、48 内容槽全满→15
+  (升级槽不计入)、方块 `hasAnalogOutputSignal` 为真。
+- IC2 与 GT 双模式 `runGameTestServer` 532 项全绿;配方链经 recipes.py 转换并
   进入 converted-recipes 加载清单。
 
 ## 未验收 / 后续
 
-- 客户端实机:双网格 GUI、升级槽放置、与真实管道/漏斗的配合、比较器(未实现)。
-  记录于 `/home/codex/minecraft/待测试.md` 第 18 节。
+- 客户端实机:双网格 GUI、升级槽放置、与真实管道/漏斗的配合、比较器红石线实机
+  读数。记录于 `/home/codex/minecraft/待测试.md` 第 18/132 节。
 - 采矿过滤器卡片的合成实机验证(配方已解锁,随卡片实机测试一并做)。

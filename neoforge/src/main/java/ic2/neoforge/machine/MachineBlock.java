@@ -334,6 +334,7 @@ public final class MachineBlock extends BaseEntityBlock {
     protected boolean hasAnalogOutputSignal(BlockState state) {
         return kind.storage()
                 || kind == MachineKind.INDUCTION_FURNACE
+                || kind == MachineKind.ITEM_BUFFER
                 || kind == MachineKind.TANK
                 || kind == MachineKind.LUMINATOR
                 || kind == MachineKind.TELEPORTER;
@@ -344,6 +345,7 @@ public final class MachineBlock extends BaseEntityBlock {
             BlockState state, Level level, BlockPos pos, Direction side) {
         var machine = level.getBlockEntity(pos);
         if (machine instanceof EnergyStorageBlockEntity storage) return storage.comparator();
+        if (machine instanceof ItemBufferBlockEntity buffer) return buffer.comparator();
         if (machine instanceof TankBlockEntity tank) return tank.comparator();
         if (machine instanceof InductionFurnaceBlockEntity furnace) return furnace.comparator();
         if (machine instanceof LuminatorBlockEntity luminator) return luminator.comparator();

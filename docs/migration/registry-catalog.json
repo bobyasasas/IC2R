@@ -2172,12 +2172,14 @@
    "factory": "register",
    "expression": "new ItemBlockIc2(Ic2Blocks.ITEM_BUFFER, new Properties())",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/item-buffer.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/ItemBufferTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/ItemBufferTests.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/ItemBufferBlockEntity.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/MachineBlock.java"
    ],
-   "note": "方块、双 24 格分组端口、弹出/拉入升级与配方链已验证;比较器输出与真实客户端界面随实机测试。"
+   "note": "Dual 24-slot grouped ports, ejector/pulling upgrades, the recipe chain and the comparator output (legacy calcRedstoneFromInvSlots over the 48 content slots, upgrade slots excluded, signal refresh on change) are verified by GameTest. Live redstone reading and the real client GUI stay manual items."
   },
   {
    "registry": "item",
@@ -8971,12 +8973,14 @@
    "factory": "register",
    "expression": "Ic2TileEntityBlock.create(Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).strength(2.0F, 10.0F).requiresCorrectToolForDrops().sound(SoundType.METAL), TileEntityItemBuffer.class, false, Ic2TileEntityBlock.DefaultDrop.Machine, Util.noFacings, false)",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/item-buffer.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/ItemBufferTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/ItemBufferTests.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/ItemBufferBlockEntity.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/MachineBlock.java"
    ],
-   "note": "方块、双 24 格分组端口、弹出/拉入升级与配方链已验证;比较器输出与真实客户端界面随实机测试。"
+   "note": "Dual 24-slot grouped ports, ejector/pulling upgrades, the recipe chain and the comparator output (legacy calcRedstoneFromInvSlots over the 48 content slots, upgrade slots excluded, signal refresh on change) are verified by GameTest. Live redstone reading and the real client GUI stay manual items."
   },
   {
    "registry": "block",
@@ -12633,12 +12637,14 @@
    "factory": "register",
    "expression": "TileEntityItemBuffer::new",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/item-buffer.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/ItemBufferTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/ItemBufferTests.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/ItemBufferBlockEntity.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/MachineBlock.java"
    ],
-   "note": "方块、双 24 格分组端口、弹出/拉入升级与配方链已验证;比较器输出与真实客户端界面随实机测试。"
+   "note": "Dual 24-slot grouped ports, ejector/pulling upgrades, the recipe chain and the comparator output (legacy calcRedstoneFromInvSlots over the 48 content slots, upgrade slots excluded, signal refresh on change) are verified by GameTest. Live redstone reading and the real client GUI stay manual items."
   },
   {
    "registry": "block_entity",
@@ -14391,12 +14397,14 @@
    "factory": "registerManagedBe",
    "expression": "",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/item-buffer.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/ItemBufferTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/ItemBufferTests.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/ItemBufferBlockEntity.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/MachineBlock.java"
    ],
-   "note": "方块、双 24 格分组端口、弹出/拉入升级与配方链已验证;比较器输出与真实客户端界面随实机测试。"
+   "note": "Dual 24-slot grouped ports, ejector/pulling upgrades, the recipe chain and the comparator output (legacy calcRedstoneFromInvSlots over the 48 content slots, upgrade slots excluded, signal refresh on change) are verified by GameTest. Live redstone reading and the real client GUI stay manual items."
   },
   {
    "registry": "menu",
