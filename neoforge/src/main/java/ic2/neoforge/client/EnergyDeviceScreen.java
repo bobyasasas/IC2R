@@ -98,6 +98,16 @@ public final class EnergyDeviceScreen extends MachineScreen {
                     topPos + 43,
                     0xff404040,
                     false);
+            if (menu.kind().storage()) {
+                // Legacy GuiElectricBlock labels the worn-armor row above the player slots.
+                graphics.text(
+                        font,
+                        Component.translatable("ic2.EUStorage.gui.info.armor"),
+                        leftPos + 8,
+                        topPos + 74,
+                        0xff404040,
+                        false);
+            }
         }
     }
 }

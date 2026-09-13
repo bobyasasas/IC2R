@@ -28,6 +28,7 @@ import net.neoforged.neoforge.transfer.item.ItemResource;
  */
 public final class ChargepadBlockEntity extends PoweredBlockEntity {
     private static final AABB PAD = new AABB(0, 0, 0, 1, 0.9375, 1);
+    public static final int CHARGE = 0, DISCHARGE = 1;
     private int cycle, redstoneMode, signal;
 
     public ChargepadBlockEntity(BlockPos pos, BlockState state) {
@@ -36,7 +37,7 @@ public final class ChargepadBlockEntity extends PoweredBlockEntity {
                 pos,
                 state,
                 ((MachineBlock) state.getBlock()).kind().capacity(),
-                0);
+                2);
     }
 
     public int padOutput() {
@@ -74,6 +75,26 @@ public final class ChargepadBlockEntity extends PoweredBlockEntity {
 
     @Override
     public void serverTick(ServerLevel level) {
+        // Legacy Energy.addManagedSlot charges/drains the pad's own slots every tick,
+        // outside the two-tick player-charging gate.
+        var charged = inventory.stack(CHARGE);
+        double used =
+                ElectricItemEnergy.charge(
+                        charged, energy.stored(), kind().electricalTier(), false, false);
+        if (used > 0) {
+            energy.extract(used);
+            inventory.set(CHARGE, ItemResource.of(charged), charged.getCount());
+            setChanged();
+        }
+        var discharged = inventory.stack(DISCHARGE);
+        double gained =
+                ElectricItemEnergy.discharge(
+                        discharged, energy.free(), kind().electricalTier(), false, true, false);
+        if (gained > 0) {
+            energy.insert(gained);
+            inventory.set(DISCHARGE, ItemResource.of(discharged), discharged.getCount());
+            setChanged();
+        }
         if (cycle++ % 2 != 0) return;
         var players =
                 level.getEntitiesOfClass(

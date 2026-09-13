@@ -420,6 +420,10 @@ public final class RegistrationTests {
         FUNCTIONS.register(
                 "uu_scanner_state_sync", () -> PatternStorageTests::scannerStateSyncsAsOrdinal);
         FUNCTIONS.register(
+                "energy_device_armor_slots", () -> EnergyDeviceTests::armorSlotsShowWornArmor);
+        FUNCTIONS.register(
+                "chargepad_item_slots", () -> ChargepadTests::itemSlotsChargeAndDischarge);
+        FUNCTIONS.register(
                 "replicator_single", () -> ReplicatorTests::replicatesPatternFromStorage);
         FUNCTIONS.register("replicator_no_uu", () -> EntityTickingTests.wrap(ReplicatorTests::modeStopsWithoutUu));
         FUNCTIONS.register(

@@ -16,6 +16,7 @@ import net.minecraft.gametest.framework.GameTestHelper;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.GameType;
 import net.minecraft.world.level.block.entity.BlockEntity;
+import net.neoforged.neoforge.transfer.item.ItemResource;
 
 final class ChargepadTests {
     private static final BlockPos POSITION = new BlockPos(2, 1, 2);
@@ -192,6 +193,39 @@ final class ChargepadTests {
         helper.assertTrue(
                 pad.storedEnergy() == 1000.0,
                 "Charging a debug item must not drain the pad");
+        helper.succeed();
+    }
+
+    /** Legacy ContainerChargepadBlock: the pad charges and drains its own item slots. */
+    static void itemSlotsChargeAndDischarge(GameTestHelper helper) {
+        var pad = pad(helper);
+        pad.energy().insert(1000);
+        var battery = new ItemStack(ModItems.RE_BATTERY.get());
+        pad.inventory().set(ChargepadBlockEntity.CHARGE, ItemResource.of(battery), 1);
+        pad.serverTick(helper.getLevel());
+        double charged =
+                ElectricItemEnergy.charge(pad.inventory().stack(ChargepadBlockEntity.CHARGE));
+        helper.assertTrue(
+                charged > 0 && pad.storedEnergy() == 1000.0 - charged,
+                "The pad must charge a battery in its charge slot from its storage");
+        var filled = pad.inventory().stack(ChargepadBlockEntity.CHARGE);
+        pad.inventory()
+                .set(ChargepadBlockEntity.DISCHARGE, ItemResource.of(filled), filled.getCount());
+        pad.inventory().set(ChargepadBlockEntity.CHARGE, ItemResource.EMPTY, 0);
+        pad.serverTick(helper.getLevel());
+        double remaining =
+                ElectricItemEnergy.charge(pad.inventory().stack(ChargepadBlockEntity.DISCHARGE));
+        helper.assertTrue(
+                remaining < charged && pad.storedEnergy() == 1000.0 - remaining,
+                "The pad must drain a battery in its discharge slot back into storage");
+        var player = helper.makeMockPlayer(GameType.SURVIVAL);
+        var menu = new MachineMenu(1, player.getInventory(), pad);
+        helper.assertTrue(
+                menu.slots.size() == 38
+                        && menu.slots.get(0).mayPlace(new ItemStack(ModItems.RE_BATTERY.get()))
+                        && !menu.slots.get(0)
+                                .mayPlace(new ItemStack(net.minecraft.world.item.Items.STONE)),
+                "The pad menu must expose the two legacy battery slots");
         helper.succeed();
     }
 

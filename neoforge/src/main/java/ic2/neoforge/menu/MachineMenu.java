@@ -417,7 +417,9 @@ public final class MachineMenu extends AbstractContainerMenu {
                 || kind == MachineKind.CESU_CHARGEPAD
                 || kind == MachineKind.MFE_CHARGEPAD
                 || kind == MachineKind.MFSU_CHARGEPAD) {
-            // The pad charges the player standing on it; it has no slots of its own.
+            // Legacy ContainerChargepadBlock: charge and discharge slots like the storages.
+            addBatterySlot(inventory, ChargepadBlockEntity.CHARGE, 56, 17);
+            addBatterySlot(inventory, ChargepadBlockEntity.DISCHARGE, 56, 53);
         } else if (kind == MachineKind.STEAM_REPRESSURIZER) {
             addFluidContainerSlot(inventory, 0, 130, 72);
             addOutputSlot(inventory, 1, 152, 72);
@@ -481,6 +483,8 @@ public final class MachineMenu extends AbstractContainerMenu {
         } else if (kind == MachineKind.MAGNETIZER) {
             // Legacy ContainerMagnetizer: a discharge slot plus four upgrades, no IO.
             addBatterySlot(inventory, 0, 8, 44);
+            addSlot(new PlayerArmorSlot(
+                    playerInventory, net.minecraft.world.entity.EquipmentSlot.FEET, 45, 26));
         } else if (kind == MachineKind.REACTOR_FLUID_PORT
                 || kind == MachineKind.REACTOR_REDSTONE_PORT
                 || kind == MachineKind.REACTOR_CHAMBER
@@ -595,6 +599,8 @@ public final class MachineMenu extends AbstractContainerMenu {
         } else if (kind.storage()) {
             addBatterySlot(inventory, 0, 56, 17);
             addBatterySlot(inventory, 1, 56, 53);
+            // Legacy ContainerElectricBlock row: the worn armor, shown above the player slots.
+            addArmorSlots(playerInventory, 8, 84);
         } else if (kind.transformer()) {
             // Transformers have no inventory.
         } else if (kind == MachineKind.GENERATOR || kind == MachineKind.WATER_GENERATOR) {
@@ -802,6 +808,18 @@ public final class MachineMenu extends AbstractContainerMenu {
                 });
     }
 
+    /** Legacy ContainerElectricBlock armor row: four slots bound to the player's worn armor. */
+    private void addArmorSlots(Inventory playerInventory, int x, int y) {
+        var armorSlots = net.minecraft.world.entity.EquipmentSlot.values();
+        int column = 0;
+        for (var type : armorSlots) {
+            if (type.getType()
+                    != net.minecraft.world.entity.EquipmentSlot.Type.HUMANOID_ARMOR) continue;
+            addSlot(new PlayerArmorSlot(playerInventory, type, x + column * 18, y));
+            column++;
+        }
+    }
+
     private void addBatterySlot(MachineInventory inventory, int slot, int x, int y) {
         addSlot(
                 new ResourceHandlerSlot(inventory, inventory::set, slot, x, y) {
@@ -965,7 +983,7 @@ public final class MachineMenu extends AbstractContainerMenu {
         if ((kind == MachineKind.SOLAR_GENERATOR || kind == MachineKind.WIND_GENERATOR))
             return stack.getItem() instanceof ElectricItem ? 0 : -1;
         if (kind.transformer()) return -1;
-        if (kind.storage())
+        if (kind.storage() || kind.chargepad())
             return stack.getItem() instanceof ElectricItem
                     ? (ElectricItemEnergy.charge(stack) > 0 ? 1 : 0)
                     : -1;
@@ -1048,5 +1066,32 @@ public final class MachineMenu extends AbstractContainerMenu {
         slot.setByPlayer(stack);
         slot.onTake(player, original.copyWithCount(original.getCount() - stack.getCount()));
         return original;
+    }
+
+    /** Legacy SlotArmor: one worn-armor piece, bound to the shared player inventory slot. */
+    private static final class PlayerArmorSlot extends Slot {
+        private final net.minecraft.world.entity.EquipmentSlot type;
+
+        PlayerArmorSlot(
+                Inventory inventory, net.minecraft.world.entity.EquipmentSlot type, int x, int y) {
+            super(inventory, 36 + type.getIndex(), x, y);
+            this.type = type;
+        }
+
+        @Override
+        public boolean mayPlace(ItemStack stack) {
+            var equippable = stack.get(net.minecraft.core.component.DataComponents.EQUIPPABLE);
+            return equippable != null && equippable.slot() == type;
+        }
+
+        @Override
+        public int getMaxStackSize() {
+            return 1;
+        }
+
+        @Override
+        public int getMaxStackSize(ItemStack stack) {
+            return 1;
+        }
     }
 }

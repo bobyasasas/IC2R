@@ -178,7 +178,7 @@ final class EnergyDeviceTests {
                 !menu.clickMenuButton(player, 5), "Actions from a non-current menu must fail");
         player.containerMenu = menu;
         helper.assertTrue(
-                menu.slots.size() == 38
+                menu.slots.size() == 42
                         && menu.clickMenuButton(player, 5)
                         && storage.mode() == StorageRedstoneMode.STOP_WHEN_POWERED
                         && !menu.clickMenuButton(player, 7),
@@ -190,6 +190,39 @@ final class EnergyDeviceTests {
         helper.assertTrue(
                 client.energy() == 40000000,
                 "Container properties must preserve values beyond 16 bits");
+        helper.succeed();
+    }
+
+    /** Legacy ContainerElectricBlock row: the four worn-armor slots ride on the player inventory. */
+    static void armorSlotsShowWornArmor(GameTestHelper helper) {
+        place(helper, MID, MachineKind.MFSU, Direction.UP);
+        var storage = helper.getBlockEntity(MID, EnergyStorageBlockEntity.class);
+        var player = helper.makeMockPlayer(GameType.SURVIVAL);
+        var menu = new MachineMenu(1, player.getInventory(), storage);
+        helper.assertTrue(
+                menu.slots.size() == 42,
+                "Storage menu must pair the two battery slots with the four armor slots");
+        var boots = new ItemStack(net.minecraft.world.item.Items.IRON_BOOTS);
+        var helmet = new ItemStack(net.minecraft.world.item.Items.IRON_HELMET);
+        var battery = new ItemStack(ModItems.RE_BATTERY.get());
+        helper.assertTrue(
+                menu.slots.get(2).mayPlace(boots)
+                        && !menu.slots.get(2).mayPlace(helmet)
+                        && !menu.slots.get(2).mayPlace(battery)
+                        && menu.slots.get(5).mayPlace(helmet),
+                "Armor slots must accept only their own armor piece");
+        player.getInventory().setItem(38, new ItemStack(net.minecraft.world.item.Items.IRON_CHESTPLATE));
+        helper.assertTrue(
+                ItemStack.matches(
+                        menu.slots.get(4).getItem(),
+                        new ItemStack(net.minecraft.world.item.Items.IRON_CHESTPLATE)),
+                "Armor slots must show the player's worn armor");
+        helper.assertTrue(
+                menu.slots.get(2).x == 8
+                        && menu.slots.get(2).y == 84
+                        && menu.slots.get(5).x == 62
+                        && menu.slots.get(5).y == 84,
+                "Armor slots must sit in the legacy row above the player inventory");
         helper.succeed();
     }
 

@@ -29,10 +29,10 @@ public enum MachineKind implements StringRepresentable {
     WATER_KINETIC_GENERATOR("water_kinetic_generator", 0, 1, 0, 0),
     WIND_KINETIC_GENERATOR("wind_kinetic_generator", 0, 1, 0, 0),
     MANUAL_KINETIC_GENERATOR("manual_kinetic_generator", 0, 0, 0, 0),
-    BATBOX_CHARGEPAD("batbox_chargepad", 40000, 0, 0, 0),
-    CESU_CHARGEPAD("cesu_chargepad", 300000, 0, 0, 0),
-    MFE_CHARGEPAD("mfe_chargepad", 4000000, 0, 0, 0),
-    MFSU_CHARGEPAD("mfsu_chargepad", 40000000, 0, 0, 0),
+    BATBOX_CHARGEPAD("batbox_chargepad", 40000, 2, 0, 0),
+    CESU_CHARGEPAD("cesu_chargepad", 300000, 2, 0, 0),
+    MFE_CHARGEPAD("mfe_chargepad", 4000000, 2, 0, 0),
+    MFSU_CHARGEPAD("mfsu_chargepad", 40000000, 2, 0, 0),
     WOODEN_STORAGE_BOX("wooden_storage_box", 0, 27, 0, 0),
     BRONZE_STORAGE_BOX("bronze_storage_box", 0, 45, 0, 0),
     IRON_STORAGE_BOX("iron_storage_box", 0, 45, 0, 0),
@@ -266,6 +266,8 @@ public enum MachineKind implements StringRepresentable {
         if (this == ITEM_BUFFER) return 232;
         if (this == NUCLEAR_REACTOR) return 232;
         if (storageBox()) return 124 + slots() / 9 * 18;
+        // Legacy ContainerElectricBlock height: room for the worn-armor row at y 84.
+        if (storage()) return 196;
         return this == LIQUID_HEAT_EXCHANGER
                         || this == FLUID_REGULATOR
                         || this == FLUID_DISTRIBUTOR

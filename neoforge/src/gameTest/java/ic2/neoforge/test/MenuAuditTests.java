@@ -25,6 +25,10 @@ final class MenuAuditTests {
             case INDUSTRIAL_WORKBENCH -> 34;
             // Nine hologram templates live outside the machine inventory.
             case BATCH_CRAFTER -> 33;
+            // Legacy ContainerElectricBlock row: the four worn-armor slots.
+            case BATBOX, CESU, MFE, MFSU -> kind.slots() + 4;
+            // Legacy ContainerMagnetizer shows the worn feet slot beside the discharge slot.
+            case MAGNETIZER -> kind.slots() + 1;
             default -> kind.slots();
         };
     }

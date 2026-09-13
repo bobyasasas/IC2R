@@ -14847,12 +14847,12 @@
    "factory": "registerManagedBe",
    "expression": "",
    "decision": "preserve",
-   "status": "partial",
-   "note": "MenuType 已注册、槽位绑定经全 kind 审计验证；legacy ContainerChargePad 的物品槽与 redstoneMode 控件未移植。",
+   "status": "implemented",
+   "note": "第 52 轮补齐 legacy ContainerChargepadBlock 的 charge(56,17)/discharge(56,53) 物品槽:BE inventory 0→2 格,serverTick 每 tick 从缓存充 CHARGE 槽/把 DISCHARGE 槽放回缓存(与 EnergyStorageBlockEntity 同款,在玩家充双 tick 门控之外);MachineMenu 充能台分支挂两电池槽,kind.slots 0→2,shift-click 复用 storage 规则;redstoneMode 控件此前已由 EnergyDeviceScreen 双模式轮换提供(原 note 过时),双状态红石/网络馈电维持原实现。",
    "evidence": [
-    "docs/migration/menu-audit.md",
+    "neoforge/src/main/java/ic2/neoforge/machine/ChargepadBlockEntity.java",
     "neoforge/src/main/java/ic2/neoforge/menu/MachineMenu.java",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/MenuAuditTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/ChargepadTests.java"
    ]
   },
   {
@@ -14863,12 +14863,12 @@
    "factory": "registerManagedBe",
    "expression": "",
    "decision": "preserve",
-   "status": "partial",
-   "note": "MenuType 已注册、槽位绑定经全 kind 审计验证；legacy ContainerElectricBlock 的 4 个护甲充电槽未移植（护甲槽整族缺口，与 magnetizer 同批记档）。",
+   "status": "implemented",
+   "note": "第 52 轮补齐 legacy ContainerElectricBlock 的 4 个护甲槽(玩家已穿护甲,菜单槽索引 36-39,x=8+col*18/y=84,仅接受同部位装备):PlayerArmorSlot 复刻 legacy SlotArmor,storage 菜单高度 166→196(legacy 196),EnergyDeviceScreen 增 ic2.EUStorage.gui.info.armor 标签(8,74);磁化机 FEET 护甲槽(45,26)同批补齐闭合护甲槽整族;护甲槽为 UI 展示/取穿,机器侧充放仍走 charge/discharge 电池槽。",
    "evidence": [
-    "docs/migration/menu-audit.md",
     "neoforge/src/main/java/ic2/neoforge/menu/MachineMenu.java",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/MenuAuditTests.java"
+    "neoforge/src/main/java/ic2/neoforge/client/EnergyDeviceScreen.java",
+    "neoforge/src/gameTest/java/ic2/neoforge/test/EnergyDeviceTests.java"
    ]
   },
   {
