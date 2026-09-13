@@ -251,6 +251,18 @@ public final class IndustrialCraftClient {
             event.getToolTip().add(Component.empty());
             event.getToolTip().add(Component.translatable("ic2.tooltip.coke_kiln.top"));
         }
+        if (stack.is(ModMachines.block(MachineKind.KINETIC_GENERATOR).asItem())) {
+            // Legacy TileEntityKineticGenerator.appendItemTooltip: HV output cap.
+            var tier = ic2.core.energy.VoltageTier.HV;
+            event.getToolTip()
+                    .add(
+                            Component.translatable(
+                                    "ic2.KineticGenerator.tooltip.max_output_voltage",
+                                    Component.translatable(tier.getTranslationKey()).getString()
+                                            + " ("
+                                            + tier.getVoltage()
+                                            + " V)"));
+        }
         if (stack.getItem() instanceof UpgradeItem item) {
             int count = stack.getCount();
             var format = new java.text.DecimalFormat("0.##");

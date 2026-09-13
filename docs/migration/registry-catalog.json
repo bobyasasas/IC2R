@@ -1638,12 +1638,13 @@
    "factory": "register",
    "expression": "new ItemBlockIc2(Ic2Blocks.KINETIC_GENERATOR, new Properties())",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/work-energy.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/WorkEnergyTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/WorkEnergyTests.java",
+    "neoforge/src/main/java/ic2/neoforge/client/IndustrialCraftClient.java"
    ],
-   "note": "原生事务热能／动能接口、方向、安装件、缓冲、重载及双模式转换链已接入；其余源设备和多人随 P10/M16 验收。"
+   "note": "动能发电机:正面相邻动能源按 0.25×kineticConversion 倍率转入有界 EU 缓冲,容量容纳一个电包+一个转换单位,电压按源带宽动态选择且上限 HV(512 EU/t),变更时网络缓存失效,短暂断供保留已存电量电压;六面输出、正面不收 EU;kU 抽取整单位向上取整遵循 legacy;KU/EU/电压随存档保存;本轮补齐 legacy TileEntityKineticGenerator.appendItemTooltip 的物品最大输出电压行(IndustrialCraftClient.addTooltip,lang 键两语言已有);IC2/GT 双模式 522 例全绿，本轮审计后 item/block/block_entity(/menu) 全部条目同轮翻转。"
   },
   {
    "registry": "item",
@@ -1697,12 +1698,12 @@
    "factory": "register",
    "expression": "new ItemBlockIc2(Ic2Blocks.STIRLING_GENERATOR, new Properties())",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/work-energy.md",
     "neoforge/src/gameTest/java/ic2/neoforge/test/WorkEnergyTests.java"
    ],
-   "note": "原生事务热能／动能接口、方向、安装件、缓冲、重载及双模式转换链已接入；其余源设备和多人随 P10/M16 验收。"
+   "note": "斯特林发电机:正面相邻热源按 0.5×stirlingConversion 倍率 HU→EU,与动能发电机共用 WorkConversionBlockEntity 转换框架(有界缓冲/动态电压/容量上限 8192),六面输出、正面不收 EU,断供保留电压,缓冲与电压一并保存;IC2/GT 双模式 522 例全绿，本轮审计后 item/block/block_entity(/menu) 全部条目同轮翻转。"
   },
   {
    "registry": "item",
@@ -1818,12 +1819,12 @@
    "factory": "register",
    "expression": "new ItemBlockIc2(Ic2Blocks.ELECTRIC_KINETIC_GENERATOR, new Properties())",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/work-energy.md",
     "neoforge/src/gameTest/java/ic2/neoforge/test/WorkEnergyTests.java"
    ],
-   "note": "原生事务热能／动能接口、方向、安装件、缓冲、重载及双模式转换链已接入；其余源设备和多人随 P10/M16 验收。"
+   "note": "电动动能机:EU 输入 10000/2048V,10 个电机单件槽每电机 100 kU 带宽,4×electricKinetic 倍率充入 1000 kU 缓冲,输出面不收 EU;电池槽保留手动管理、物品自动化不开放(同 legacy);kU 含小数余量与当刻输出预算随存档保存(修复 legacy 未写盘);菜单支持 Shift 点击逐槽安装与带宽读数;IC2/GT 双模式 522 例全绿，本轮审计后 item/block/block_entity(/menu) 全部条目同轮翻转。"
   },
   {
    "registry": "item",
@@ -1833,12 +1834,12 @@
    "factory": "register",
    "expression": "new ItemBlockIc2(Ic2Blocks.MANUAL_KINETIC_GENERATOR, new Properties())",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/manual-kinetic.md",
     "neoforge/src/gameTest/java/ic2/neoforge/test/ManualKineticTests.java"
    ],
-   "note": "原生右键、体力、模拟玩家、点击限额、事务能力、重载及双模式转电链已接入；多人随 M16 验收。"
+   "note": "手动动能机:右键产出真人 400/模拟玩家 20 kU×倍率,储量上限 1000,每刻全局 10 次,饥饿>6 且每次消耗 0.25 饥饿消耗值,满储量仍计次耗体力;修正 legacy 倍率先取整(0.5 倍仍全量)与 kU/点击刻/点击计数不写盘;kU 能力六面共享同一储量/同刻带宽/事务回滚,不开库存菜单;IC2/GT 双模式 522 例全绿，本轮审计后 item/block/block_entity(/menu) 全部条目同轮翻转。"
   },
   {
    "registry": "item",
@@ -1848,12 +1849,13 @@
    "factory": "register",
    "expression": "new ItemBlockIc2(Ic2Blocks.STEAM_KINETIC_GENERATOR, new Properties())",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/steam-turbine.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/SteamTurbineTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/SteamTurbineTests.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/TurbineBlockEntity.java"
    ],
-   "note": "蒸汽分级做功、有限动能批次、凝水记账、事务、重载、升级和双级水循环已接入；多人交互待 M16 验收。"
+   "note": "蒸汽动能机:21000 mB 蒸汽+1000 mB 凝水双罐、汽轮机安装槽与升级槽;普通蒸汽 2 kU/mB、过热 4 kU/mB 乘配置倍率与(1-水槽量/1000);过热级排汽交相邻汽轮机或冷凝器、普通级仅冷凝器防循环发电;每 100 凝水额度换 1 mB 蒸馏水(有界 long 记账,余量跨重载完成出水),保留 10% 热泄压;kU 以 WorkBuffer 批次发布,事务回滚/重载/消费者先行均不重复计费;界面显示 kU/t、待凝水与缺件/满水/排汽/降速状态;IC2/GT 双模式 522 例全绿，本轮审计后 item/block/block_entity(/menu) 全部条目同轮翻转。"
   },
   {
    "registry": "item",
@@ -1878,12 +1880,13 @@
    "factory": "register",
    "expression": "new ItemBlockIc2(Ic2Blocks.WATER_KINETIC_GENERATOR, new Properties())",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/water-turbine.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/WaterTurbineTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/WaterTurbineTests.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/TurbineBlockEntity.java"
    ],
-   "note": "河流、海洋、深海流量，兼容转子、空间、磨损、重载和转电链已接入；多人及性能验收由 M16 跟踪。"
+   "note": "水力动能机:河流/海洋/深海群系标签水流,河流岸距 20-50 钳制、海洋潮汐×岸距/100×平方遮挡,修复 legacy 深海分支丢失与 getRotationSpeed 返回未衰减潮汐;转子平面全原生水+轴向前后 3×直径通道与同类干扰;每 20 刻按位置错峰采样,保留整数截断×转子效率×0.2×倍率;河流扰动由种子+位置派生不推进全局随机;退潮反向输出仍为正;kU WorkRate 每刻预算+回滚+重载保留;IC2/GT 双模式 522 例全绿，本轮审计后 item/block/block_entity(/menu) 全部条目同轮翻转。"
   },
   {
    "registry": "item",
@@ -1893,13 +1896,14 @@
    "factory": "register",
    "expression": "new ItemBlockIc2(Ic2Blocks.WIND_KINETIC_GENERATOR, new Properties())",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/wind-turbine.md",
     "neoforge/src/gameTest/java/ic2/neoforge/test/WindTurbineTests.java",
-    "docs/migration/water-turbine.md"
+    "docs/migration/water-turbine.md",
+    "neoforge/src/main/java/ic2/neoforge/machine/TurbineBlockEntity.java"
    ],
-   "note": "转子规格、耐久、风场与水域、空间、产能预算、重载及转电链已接入；多人和性能验收由 M16 跟踪。"
+   "note": "风力动能机:五转子(木质/青铜/铁/钢/碳纤维)风力范围/效率/耐久表,正面转子平面空间+轴向前后 3×直径平方遮挡衰减与同类干扰;产能=有效风力×效率×10×倍率,低于最低风力停转;正常每 32 刻磨损 1、超速磨损 4,采样与磨损按世界时间错峰防重载复用或重置;kU WorkRate 每刻预算+回滚+重档保留;客户端仅同步材质/直径/角速度,库存与磨损菜单同步;IC2/GT 双模式 522 例全绿，本轮审计后 item/block/block_entity(/menu) 全部条目同轮翻转。"
   },
   {
    "registry": "item",
@@ -8418,12 +8422,13 @@
    "factory": "register",
    "expression": "Ic2TileEntityBlock.create(Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).strength(2.0F, 10.0F).requiresCorrectToolForDrops().sound(SoundType.METAL), TileEntityKineticGenerator.class, true, Ic2TileEntityBlock.DefaultDrop.Generator, Util.allFacings, true)",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/work-energy.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/WorkEnergyTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/WorkEnergyTests.java",
+    "neoforge/src/main/java/ic2/neoforge/client/IndustrialCraftClient.java"
    ],
-   "note": "原生事务热能／动能接口、方向、安装件、缓冲、重载及双模式转换链已接入；其余源设备和多人随 P10/M16 验收。"
+   "note": "动能发电机:正面相邻动能源按 0.25×kineticConversion 倍率转入有界 EU 缓冲,容量容纳一个电包+一个转换单位,电压按源带宽动态选择且上限 HV(512 EU/t),变更时网络缓存失效,短暂断供保留已存电量电压;六面输出、正面不收 EU;kU 抽取整单位向上取整遵循 legacy;KU/EU/电压随存档保存;本轮补齐 legacy TileEntityKineticGenerator.appendItemTooltip 的物品最大输出电压行(IndustrialCraftClient.addTooltip,lang 键两语言已有);IC2/GT 双模式 522 例全绿，本轮审计后 item/block/block_entity(/menu) 全部条目同轮翻转。"
   },
   {
    "registry": "block",
@@ -8478,12 +8483,12 @@
    "factory": "register",
    "expression": "Ic2TileEntityBlock.create(Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).strength(2.0F, 10.0F).requiresCorrectToolForDrops().sound(SoundType.METAL), TileEntityStirlingGenerator.class, true, Ic2TileEntityBlock.DefaultDrop.Generator, Util.allFacings, true)",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/work-energy.md",
     "neoforge/src/gameTest/java/ic2/neoforge/test/WorkEnergyTests.java"
    ],
-   "note": "原生事务热能／动能接口、方向、安装件、缓冲、重载及双模式转换链已接入；其余源设备和多人随 P10/M16 验收。"
+   "note": "斯特林发电机:正面相邻热源按 0.5×stirlingConversion 倍率 HU→EU,与动能发电机共用 WorkConversionBlockEntity 转换框架(有界缓冲/动态电压/容量上限 8192),六面输出、正面不收 EU,断供保留电压,缓冲与电压一并保存;IC2/GT 双模式 522 例全绿，本轮审计后 item/block/block_entity(/menu) 全部条目同轮翻转。"
   },
   {
    "registry": "block",
@@ -8583,12 +8588,12 @@
    "factory": "register",
    "expression": "Ic2TileEntityBlock.create(Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).strength(2.0F, 10.0F).requiresCorrectToolForDrops().sound(SoundType.METAL), TileEntityElectricKineticGenerator.class, true, Ic2TileEntityBlock.DefaultDrop.Self, Util.allFacings, true)",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/work-energy.md",
     "neoforge/src/gameTest/java/ic2/neoforge/test/WorkEnergyTests.java"
    ],
-   "note": "原生事务热能／动能接口、方向、安装件、缓冲、重载及双模式转换链已接入；其余源设备和多人随 P10/M16 验收。"
+   "note": "电动动能机:EU 输入 10000/2048V,10 个电机单件槽每电机 100 kU 带宽,4×electricKinetic 倍率充入 1000 kU 缓冲,输出面不收 EU;电池槽保留手动管理、物品自动化不开放(同 legacy);kU 含小数余量与当刻输出预算随存档保存(修复 legacy 未写盘);菜单支持 Shift 点击逐槽安装与带宽读数;IC2/GT 双模式 522 例全绿，本轮审计后 item/block/block_entity(/menu) 全部条目同轮翻转。"
   },
   {
    "registry": "block",
@@ -8598,12 +8603,12 @@
    "factory": "register",
    "expression": "Ic2TileEntityBlock.create(Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).strength(2.0F, 10.0F).requiresCorrectToolForDrops().sound(SoundType.METAL), TileEntityManualKineticGenerator.class, false, Ic2TileEntityBlock.DefaultDrop.Self, Util.allFacings, true)",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/manual-kinetic.md",
     "neoforge/src/gameTest/java/ic2/neoforge/test/ManualKineticTests.java"
    ],
-   "note": "原生右键、体力、模拟玩家、点击限额、事务能力、重载及双模式转电链已接入；多人随 M16 验收。"
+   "note": "手动动能机:右键产出真人 400/模拟玩家 20 kU×倍率,储量上限 1000,每刻全局 10 次,饥饿>6 且每次消耗 0.25 饥饿消耗值,满储量仍计次耗体力;修正 legacy 倍率先取整(0.5 倍仍全量)与 kU/点击刻/点击计数不写盘;kU 能力六面共享同一储量/同刻带宽/事务回滚,不开库存菜单;IC2/GT 双模式 522 例全绿，本轮审计后 item/block/block_entity(/menu) 全部条目同轮翻转。"
   },
   {
    "registry": "block",
@@ -8613,12 +8618,13 @@
    "factory": "register",
    "expression": "Ic2TileEntityBlock.create(Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).strength(2.0F, 10.0F).requiresCorrectToolForDrops().sound(SoundType.METAL), TileEntitySteamKineticGenerator.class, true, Ic2TileEntityBlock.DefaultDrop.Self, Util.allFacings, true)",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/steam-turbine.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/SteamTurbineTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/SteamTurbineTests.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/TurbineBlockEntity.java"
    ],
-   "note": "蒸汽分级做功、有限动能批次、凝水记账、事务、重载、升级和双级水循环已接入；多人交互待 M16 验收。"
+   "note": "蒸汽动能机:21000 mB 蒸汽+1000 mB 凝水双罐、汽轮机安装槽与升级槽;普通蒸汽 2 kU/mB、过热 4 kU/mB 乘配置倍率与(1-水槽量/1000);过热级排汽交相邻汽轮机或冷凝器、普通级仅冷凝器防循环发电;每 100 凝水额度换 1 mB 蒸馏水(有界 long 记账,余量跨重载完成出水),保留 10% 热泄压;kU 以 WorkBuffer 批次发布,事务回滚/重载/消费者先行均不重复计费;界面显示 kU/t、待凝水与缺件/满水/排汽/降速状态;IC2/GT 双模式 522 例全绿，本轮审计后 item/block/block_entity(/menu) 全部条目同轮翻转。"
   },
   {
    "registry": "block",
@@ -8643,12 +8649,13 @@
    "factory": "register",
    "expression": "Ic2TileEntityBlock.create(Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).strength(2.0F, 10.0F).requiresCorrectToolForDrops().sound(SoundType.METAL), TileEntityWaterKineticGenerator.class, true, Ic2TileEntityBlock.DefaultDrop.Self, Util.horizontalFacings, true)",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/water-turbine.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/WaterTurbineTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/WaterTurbineTests.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/TurbineBlockEntity.java"
    ],
-   "note": "河流、海洋、深海流量，兼容转子、空间、磨损、重载和转电链已接入；多人及性能验收由 M16 跟踪。"
+   "note": "水力动能机:河流/海洋/深海群系标签水流,河流岸距 20-50 钳制、海洋潮汐×岸距/100×平方遮挡,修复 legacy 深海分支丢失与 getRotationSpeed 返回未衰减潮汐;转子平面全原生水+轴向前后 3×直径通道与同类干扰;每 20 刻按位置错峰采样,保留整数截断×转子效率×0.2×倍率;河流扰动由种子+位置派生不推进全局随机;退潮反向输出仍为正;kU WorkRate 每刻预算+回滚+重载保留;IC2/GT 双模式 522 例全绿，本轮审计后 item/block/block_entity(/menu) 全部条目同轮翻转。"
   },
   {
    "registry": "block",
@@ -8658,13 +8665,14 @@
    "factory": "register",
    "expression": "Ic2TileEntityBlock.create(Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).strength(2.0F, 10.0F).requiresCorrectToolForDrops().sound(SoundType.METAL), TileEntityWindKineticGenerator.class, true, Ic2TileEntityBlock.DefaultDrop.Self, Util.horizontalFacings, true)",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/wind-turbine.md",
     "neoforge/src/gameTest/java/ic2/neoforge/test/WindTurbineTests.java",
-    "docs/migration/water-turbine.md"
+    "docs/migration/water-turbine.md",
+    "neoforge/src/main/java/ic2/neoforge/machine/TurbineBlockEntity.java"
    ],
-   "note": "转子规格、耐久、风场与水域、空间、产能预算、重载及转电链已接入；多人和性能验收由 M16 跟踪。"
+   "note": "风力动能机:五转子(木质/青铜/铁/钢/碳纤维)风力范围/效率/耐久表,正面转子平面空间+轴向前后 3×直径平方遮挡衰减与同类干扰;产能=有效风力×效率×10×倍率,低于最低风力停转;正常每 32 刻磨损 1、超速磨损 4,采样与磨损按世界时间错峰防重载复用或重置;kU WorkRate 每刻预算+回滚+重档保留;客户端仅同步材质/直径/角速度,库存与磨损菜单同步;IC2/GT 双模式 522 例全绿，本轮审计后 item/block/block_entity(/menu) 全部条目同轮翻转。"
   },
   {
    "registry": "block",
@@ -11534,12 +11542,13 @@
    "factory": "register",
    "expression": "TileEntityKineticGenerator::new",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/work-energy.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/WorkEnergyTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/WorkEnergyTests.java",
+    "neoforge/src/main/java/ic2/neoforge/client/IndustrialCraftClient.java"
    ],
-   "note": "原生事务热能／动能接口、方向、安装件、缓冲、重载及双模式转换链已接入；其余源设备和多人随 P10/M16 验收。"
+   "note": "动能发电机:正面相邻动能源按 0.25×kineticConversion 倍率转入有界 EU 缓冲,容量容纳一个电包+一个转换单位,电压按源带宽动态选择且上限 HV(512 EU/t),变更时网络缓存失效,短暂断供保留已存电量电压;六面输出、正面不收 EU;kU 抽取整单位向上取整遵循 legacy;KU/EU/电压随存档保存;本轮补齐 legacy TileEntityKineticGenerator.appendItemTooltip 的物品最大输出电压行(IndustrialCraftClient.addTooltip,lang 键两语言已有);IC2/GT 双模式 522 例全绿，本轮审计后 item/block/block_entity(/menu) 全部条目同轮翻转。"
   },
   {
    "registry": "block_entity",
@@ -11658,12 +11667,12 @@
    "factory": "register",
    "expression": "TileEntityStirlingGenerator::new",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/work-energy.md",
     "neoforge/src/gameTest/java/ic2/neoforge/test/WorkEnergyTests.java"
    ],
-   "note": "原生事务热能／动能接口、方向、安装件、缓冲、重载及双模式转换链已接入；其余源设备和多人随 P10/M16 验收。"
+   "note": "斯特林发电机:正面相邻热源按 0.5×stirlingConversion 倍率 HU→EU,与动能发电机共用 WorkConversionBlockEntity 转换框架(有界缓冲/动态电压/容量上限 8192),六面输出、正面不收 EU,断供保留电压,缓冲与电压一并保存;IC2/GT 双模式 522 例全绿，本轮审计后 item/block/block_entity(/menu) 全部条目同轮翻转。"
   },
   {
    "registry": "block_entity",
@@ -11875,12 +11884,12 @@
    "factory": "register",
    "expression": "TileEntityElectricKineticGenerator::new",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/work-energy.md",
     "neoforge/src/gameTest/java/ic2/neoforge/test/WorkEnergyTests.java"
    ],
-   "note": "原生事务热能／动能接口、方向、安装件、缓冲、重载及双模式转换链已接入；其余源设备和多人随 P10/M16 验收。"
+   "note": "电动动能机:EU 输入 10000/2048V,10 个电机单件槽每电机 100 kU 带宽,4×electricKinetic 倍率充入 1000 kU 缓冲,输出面不收 EU;电池槽保留手动管理、物品自动化不开放(同 legacy);kU 含小数余量与当刻输出预算随存档保存(修复 legacy 未写盘);菜单支持 Shift 点击逐槽安装与带宽读数;IC2/GT 双模式 522 例全绿，本轮审计后 item/block/block_entity(/menu) 全部条目同轮翻转。"
   },
   {
    "registry": "block_entity",
@@ -11906,12 +11915,12 @@
    "factory": "register",
    "expression": "TileEntityManualKineticGenerator::new",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/manual-kinetic.md",
     "neoforge/src/gameTest/java/ic2/neoforge/test/ManualKineticTests.java"
    ],
-   "note": "原生右键、体力、模拟玩家、点击限额、事务能力、重载及双模式转电链已接入；多人随 M16 验收。"
+   "note": "手动动能机:右键产出真人 400/模拟玩家 20 kU×倍率,储量上限 1000,每刻全局 10 次,饥饿>6 且每次消耗 0.25 饥饿消耗值,满储量仍计次耗体力;修正 legacy 倍率先取整(0.5 倍仍全量)与 kU/点击刻/点击计数不写盘;kU 能力六面共享同一储量/同刻带宽/事务回滚,不开库存菜单;IC2/GT 双模式 522 例全绿，本轮审计后 item/block/block_entity(/menu) 全部条目同轮翻转。"
   },
   {
    "registry": "block_entity",
@@ -11937,12 +11946,13 @@
    "factory": "register",
    "expression": "TileEntitySteamKineticGenerator::new",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/steam-turbine.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/SteamTurbineTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/SteamTurbineTests.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/TurbineBlockEntity.java"
    ],
-   "note": "蒸汽分级做功、有限动能批次、凝水记账、事务、重载、升级和双级水循环已接入；多人交互待 M16 验收。"
+   "note": "蒸汽动能机:21000 mB 蒸汽+1000 mB 凝水双罐、汽轮机安装槽与升级槽;普通蒸汽 2 kU/mB、过热 4 kU/mB 乘配置倍率与(1-水槽量/1000);过热级排汽交相邻汽轮机或冷凝器、普通级仅冷凝器防循环发电;每 100 凝水额度换 1 mB 蒸馏水(有界 long 记账,余量跨重载完成出水),保留 10% 热泄压;kU 以 WorkBuffer 批次发布,事务回滚/重载/消费者先行均不重复计费;界面显示 kU/t、待凝水与缺件/满水/排汽/降速状态;IC2/GT 双模式 522 例全绿，本轮审计后 item/block/block_entity(/menu) 全部条目同轮翻转。"
   },
   {
    "registry": "block_entity",
@@ -11999,12 +12009,13 @@
    "factory": "register",
    "expression": "TileEntityWaterKineticGenerator::new",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/water-turbine.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/WaterTurbineTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/WaterTurbineTests.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/TurbineBlockEntity.java"
    ],
-   "note": "河流、海洋、深海流量，兼容转子、空间、磨损、重载和转电链已接入；多人及性能验收由 M16 跟踪。"
+   "note": "水力动能机:河流/海洋/深海群系标签水流,河流岸距 20-50 钳制、海洋潮汐×岸距/100×平方遮挡,修复 legacy 深海分支丢失与 getRotationSpeed 返回未衰减潮汐;转子平面全原生水+轴向前后 3×直径通道与同类干扰;每 20 刻按位置错峰采样,保留整数截断×转子效率×0.2×倍率;河流扰动由种子+位置派生不推进全局随机;退潮反向输出仍为正;kU WorkRate 每刻预算+回滚+重载保留;IC2/GT 双模式 522 例全绿，本轮审计后 item/block/block_entity(/menu) 全部条目同轮翻转。"
   },
   {
    "registry": "block_entity",
@@ -12030,13 +12041,14 @@
    "factory": "register",
    "expression": "TileEntityWindKineticGenerator::new",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/wind-turbine.md",
     "neoforge/src/gameTest/java/ic2/neoforge/test/WindTurbineTests.java",
-    "docs/migration/water-turbine.md"
+    "docs/migration/water-turbine.md",
+    "neoforge/src/main/java/ic2/neoforge/machine/TurbineBlockEntity.java"
    ],
-   "note": "转子规格、耐久、风场与水域、空间、产能预算、重载及转电链已接入；多人和性能验收由 M16 跟踪。"
+   "note": "风力动能机:五转子(木质/青铜/铁/钢/碳纤维)风力范围/效率/耐久表,正面转子平面空间+轴向前后 3×直径平方遮挡衰减与同类干扰;产能=有效风力×效率×10×倍率,低于最低风力停转;正常每 32 刻磨损 1、超速磨损 4,采样与磨损按世界时间错峰防重载复用或重置;kU WorkRate 每刻预算+回滚+重档保留;客户端仅同步材质/直径/角速度,库存与磨损菜单同步;IC2/GT 双模式 522 例全绿，本轮审计后 item/block/block_entity(/menu) 全部条目同轮翻转。"
   },
   {
    "registry": "block_entity",
@@ -13973,12 +13985,12 @@
    "factory": "registerManagedBe",
    "expression": "",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/work-energy.md",
     "neoforge/src/gameTest/java/ic2/neoforge/test/WorkEnergyTests.java"
    ],
-   "note": "原生事务热能／动能接口、方向、安装件、缓冲、重载及双模式转换链已接入；其余源设备和多人随 P10/M16 验收。"
+   "note": "电动动能机:EU 输入 10000/2048V,10 个电机单件槽每电机 100 kU 带宽,4×electricKinetic 倍率充入 1000 kU 缓冲,输出面不收 EU;电池槽保留手动管理、物品自动化不开放(同 legacy);kU 含小数余量与当刻输出预算随存档保存(修复 legacy 未写盘);菜单支持 Shift 点击逐槽安装与带宽读数;IC2/GT 双模式 522 例全绿，本轮审计后 item/block/block_entity(/menu) 全部条目同轮翻转。"
   },
   {
    "registry": "menu",
@@ -13988,12 +14000,13 @@
    "factory": "registerManagedBe",
    "expression": "",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/steam-turbine.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/SteamTurbineTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/SteamTurbineTests.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/TurbineBlockEntity.java"
    ],
-   "note": "蒸汽分级做功、有限动能批次、凝水记账、事务、重载、升级和双级水循环已接入；多人交互待 M16 验收。"
+   "note": "蒸汽动能机:21000 mB 蒸汽+1000 mB 凝水双罐、汽轮机安装槽与升级槽;普通蒸汽 2 kU/mB、过热 4 kU/mB 乘配置倍率与(1-水槽量/1000);过热级排汽交相邻汽轮机或冷凝器、普通级仅冷凝器防循环发电;每 100 凝水额度换 1 mB 蒸馏水(有界 long 记账,余量跨重载完成出水),保留 10% 热泄压;kU 以 WorkBuffer 批次发布,事务回滚/重载/消费者先行均不重复计费;界面显示 kU/t、待凝水与缺件/满水/排汽/降速状态;IC2/GT 双模式 522 例全绿，本轮审计后 item/block/block_entity(/menu) 全部条目同轮翻转。"
   },
   {
    "registry": "menu",
@@ -14018,12 +14031,13 @@
    "factory": "registerManagedBe",
    "expression": "",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/water-turbine.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/WaterTurbineTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/WaterTurbineTests.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/TurbineBlockEntity.java"
    ],
-   "note": "河流、海洋、深海流量，兼容转子、空间、磨损、重载和转电链已接入；多人及性能验收由 M16 跟踪。"
+   "note": "水力动能机:河流/海洋/深海群系标签水流,河流岸距 20-50 钳制、海洋潮汐×岸距/100×平方遮挡,修复 legacy 深海分支丢失与 getRotationSpeed 返回未衰减潮汐;转子平面全原生水+轴向前后 3×直径通道与同类干扰;每 20 刻按位置错峰采样,保留整数截断×转子效率×0.2×倍率;河流扰动由种子+位置派生不推进全局随机;退潮反向输出仍为正;kU WorkRate 每刻预算+回滚+重载保留;IC2/GT 双模式 522 例全绿，本轮审计后 item/block/block_entity(/menu) 全部条目同轮翻转。"
   },
   {
    "registry": "menu",
@@ -14033,13 +14047,14 @@
    "factory": "registerManagedBe",
    "expression": "",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/wind-turbine.md",
     "neoforge/src/gameTest/java/ic2/neoforge/test/WindTurbineTests.java",
-    "docs/migration/water-turbine.md"
+    "docs/migration/water-turbine.md",
+    "neoforge/src/main/java/ic2/neoforge/machine/TurbineBlockEntity.java"
    ],
-   "note": "转子规格、耐久、风场与水域、空间、产能预算、重载及转电链已接入；多人和性能验收由 M16 跟踪。"
+   "note": "风力动能机:五转子(木质/青铜/铁/钢/碳纤维)风力范围/效率/耐久表,正面转子平面空间+轴向前后 3×直径平方遮挡衰减与同类干扰;产能=有效风力×效率×10×倍率,低于最低风力停转;正常每 32 刻磨损 1、超速磨损 4,采样与磨损按世界时间错峰防重载复用或重置;kU WorkRate 每刻预算+回滚+重档保留;客户端仅同步材质/直径/角速度,库存与磨损菜单同步;IC2/GT 双模式 522 例全绿，本轮审计后 item/block/block_entity(/menu) 全部条目同轮翻转。"
   },
   {
    "registry": "menu",
