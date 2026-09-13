@@ -14037,12 +14037,14 @@
    "factory": "registerManagedBe",
    "expression": "",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/nuclear-reactor.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/NuclearReactorTests.java"
+    "neoforge/src/main/java/ic2/neoforge/menu/NuclearReactorMenu.java",
+    "neoforge/src/main/java/ic2/neoforge/client/NuclearReactorScreen.java",
+    "neoforge/src/gameTest/java/ic2/neoforge/test/NuclearReactorMenuTests.java"
    ],
-   "note": "EU 模式 3×6 网格、铀棒脉冲/耗损/热分配、熔毁爆炸经 GameTest 验证;chamber 扩列/流体模式/接口件/反射与开关件交互随后续切片。"
+   "note": "专用 NuclearReactorMenu/Screen 忠实移植 legacy ContainerNuclearReactor/GuiNuclearReactor:212x243、(26,25) 9 列网格、四流体槽 legacy 坐标、8 数据槽同步热/罐量/模式/EU 出力;BE 增四流体槽与 processFluidSlots 排空/装填(整细胞语义),菜单槽序按 port 惯例机器槽在前(与 legacy 追加顺序中 hot 出入对调不同),原始 9 列网格由屏幕暗化非活跃列;布局/排空/装填 3 条 GameTest 双模式验证,实机 GUI 视觉(热条/罐窗/暗列)留人工验收。"
   },
   {
    "registry": "menu",

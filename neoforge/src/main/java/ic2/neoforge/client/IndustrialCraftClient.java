@@ -171,7 +171,7 @@ public final class IndustrialCraftClient {
                     else if (kind == MachineKind.MATTER_GENERATOR)
                         event.register(registration.menu().get(), MatterGeneratorScreen::new);
                     else if (kind == MachineKind.NUCLEAR_REACTOR)
-                        event.register(registration.menu().get(), NuclearReactorScreen::new);
+                        event.register(ModMachines.NUCLEAR_REACTOR_MENU.get(), NuclearReactorScreen::new);
                     else if (kind == MachineKind.UU_SCANNER)
                         event.register(registration.menu().get(), UuScannerScreen::new);
                     else if (kind == MachineKind.REPLICATOR)

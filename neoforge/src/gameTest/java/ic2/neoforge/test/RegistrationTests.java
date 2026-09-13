@@ -416,6 +416,15 @@ public final class RegistrationTests {
                 "reactor_fluid_port_extract",
                 () -> ReactorFluidModeTests::hotCoolantExtractsThroughPort);
         FUNCTIONS.register(
+                "reactor_menu_layout",
+                () -> NuclearReactorMenuTests::dedicatedMenuMirrorsLegacyLayout);
+        FUNCTIONS.register(
+                "reactor_menu_coolant_drain",
+                () -> NuclearReactorMenuTests::menuDrainsCoolantContainersIntoTheTank);
+        FUNCTIONS.register(
+                "reactor_menu_hot_fill",
+                () -> NuclearReactorMenuTests::menuFillsHotCoolantContainersFromTheTank);
+        FUNCTIONS.register(
                 "reactor_heatpack_warm", () -> ReactorHeatEffectTests::heatpackWarmsVentStorage);
         FUNCTIONS.register("dynamite_placement", () -> EntityTickingTests.wrap(DynamiteTests::placesWithFacingAndSupport));
         FUNCTIONS.register("itnt_redstone_prime", () -> EntityTickingTests.wrap(ItntTests::redstonePrimesFusedCharge));

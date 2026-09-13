@@ -12,6 +12,9 @@ import ic2.neoforge.transfer.ResourcePort;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
@@ -36,6 +39,13 @@ public final class NuclearReactorBlockEntity extends PoweredBlockEntity implemen
     public static final int GRID_ROWS = 6;
     public static final int CYCLE_TICKS = 20;
     private static final int BASE_MAX_HEAT = 10000;
+
+    /** Legacy container fluid slots appended after the 9x6 component grid (raw indices 54-57). */
+    public static final int COOLANT_INPUT = 54;
+    public static final int COOLANT_OUTPUT = 55;
+    public static final int HOT_COOLANT_INPUT = 56;
+    public static final int HOT_COOLANT_OUTPUT = 57;
+    public static final int FLUID_SLOTS = 58;
 
     public static final int COOLANT_TANK_CAPACITY = 10000;
 
@@ -81,7 +91,8 @@ public final class NuclearReactorBlockEntity extends PoweredBlockEntity implemen
                 pos,
                 state,
                 100000,
-                54);
+                // 54 component cells plus the four legacy container slots.
+                FLUID_SLOTS);
     }
 
     @Override
@@ -92,13 +103,32 @@ public final class NuclearReactorBlockEntity extends PoweredBlockEntity implemen
 
     @Override
     protected boolean acceptsInventorySlot(int slot, ItemResource resource) {
+        if (slot == COOLANT_INPUT)
+            return ic2.neoforge.menu.NuclearReactorMenu.holdsFluid(resource, coolant().getFluid());
+        if (slot == HOT_COOLANT_INPUT)
+            return ic2.neoforge.menu.NuclearReactorMenu.takesFluid(
+                    resource, hotCoolant().getFluid());
+        // The container outputs are legacy InvSlotOutput: any item may land there through the
+        // internal exchange or automation; hand insertion stays blocked by the menu slot rule.
+        if (slot == COOLANT_OUTPUT || slot == HOT_COOLANT_OUTPUT) return true;
         return resource.getItem() instanceof ic2.neoforge.item.ReactorComponent component
                 && component.canBePlacedIn(resource.toStack(), this);
     }
 
     @Override
     public ResourceHandler<ItemResource> automation(Direction side) {
-        return new ResourcePort<>(inventory, slot -> true, slot -> true);
+        // Legacy slot access: the component grid is IO, the drain/fill inputs are insert-only
+        // and the container outputs are extract-only.
+        return new ResourcePort<>(
+                inventory,
+                slot ->
+                        slot < COOLANT_INPUT
+                                || slot == COOLANT_OUTPUT
+                                || slot == HOT_COOLANT_OUTPUT,
+                slot ->
+                        slot < COOLANT_INPUT
+                                || slot == COOLANT_INPUT
+                                || slot == HOT_COOLANT_INPUT);
     }
 
     @Override
@@ -112,12 +142,35 @@ public final class NuclearReactorBlockEntity extends PoweredBlockEntity implemen
         if (meltDown(level)) return;
         producing = heat >= 1000 || output > 0.0F;
         if (fluidCooled) {
+            processFluidSlots();
             convertEmitHeatToHotCoolant();
             producing = heat >= 1000;
         } else if (output > 0) {
             energy.insert(output * CYCLE_TICKS);
         }
         setActive(producing);
+    }
+
+    /**
+     * Legacy processFluidsSlots: coolant containers drain into the coolant tank and come back as
+     * empties in the coolant output; containers in the hot coolant input fill from the hot tank
+     * and move filled into the hot output.
+     */
+    private void processFluidSlots() {
+        net.neoforged.neoforge.transfer.ResourceHandlerUtil.move(
+                ic2.neoforge.transfer.FluidContainerPort.of(
+                        inventory, COOLANT_INPUT, COOLANT_OUTPUT),
+                coolantTank,
+                resource -> resource.is(coolant().getFluid()),
+                COOLANT_TANK_CAPACITY,
+                null);
+        net.neoforged.neoforge.transfer.ResourceHandlerUtil.move(
+                hotCoolantTank,
+                ic2.neoforge.transfer.FluidContainerPort.of(
+                        inventory, HOT_COOLANT_INPUT, HOT_COOLANT_OUTPUT),
+                resource -> resource.is(hotCoolant().getFluid()),
+                COOLANT_TANK_CAPACITY,
+                null);
     }
 
     /**
@@ -243,6 +296,20 @@ public final class NuclearReactorBlockEntity extends PoweredBlockEntity implemen
 
     public int hotCoolantAmount() {
         return hotCoolantTank.getAmountAsInt(0);
+    }
+
+    /**
+     * Direct hot coolant tank access for tests and tooling; in play the tank only fills through
+     * heat conversion, the fluid ports see it as extract-only via {@link #coolantTanks()}.
+     */
+    public MachineFluidTank hotCoolantTankHandler() {
+        return hotCoolantTank;
+    }
+
+    /** The legacy reactor opens its own screen handler, not the shared machine menu. */
+    @Override
+    public AbstractContainerMenu createMenu(int id, Inventory playerInventory, Player player) {
+        return new ic2.neoforge.menu.NuclearReactorMenu(id, playerInventory, this);
     }
 
     /**

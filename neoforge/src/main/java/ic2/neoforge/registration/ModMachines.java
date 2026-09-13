@@ -51,6 +51,20 @@ public final class ModMachines {
             DeferredHolder<MenuType<?>, MenuType<MachineMenu>> menu) {}
 
     public static final Map<MachineKind, Registration> MACHINES = machines();
+
+    /** The dedicated legacy reactor GUI, the one machine menu outside the shared MachineMenu. */
+    public static final DeferredHolder<MenuType<?>, MenuType<ic2.neoforge.menu.NuclearReactorMenu>>
+            NUCLEAR_REACTOR_MENU =
+                    MENUS.register(
+                            "nuclear_reactor_menu",
+                            () ->
+                                    IMenuTypeExtension.create(
+                                            (containerId, inventory, data) ->
+                                                    new ic2.neoforge.menu.NuclearReactorMenu(
+                                                            containerId,
+                                                            inventory,
+                                                            data.readBlockPos())));
+
     public static final DeferredBlock<MachineBlock> GENERATOR =
             MACHINES.get(MachineKind.GENERATOR).block();
     public static final DeferredBlock<MachineBlock> ELECTRIC_FURNACE =
