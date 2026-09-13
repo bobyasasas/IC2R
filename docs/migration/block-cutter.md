@@ -57,3 +57,6 @@
   operationsPerTick)、外观。记录于 `/home/codex/minecraft/待测试.md` 第 19 节。
 - 切割配方依赖 `ic2:steel_plate`/钢块(已存在)——钢锭本身的量产来自
   `ic2:blast_furnace` 家族(5 条,仍 pending),是下一个待迁移机器。
+- 2026-09-12 审计:两端对照(`TileEntityBlockCutter` vs
+  `BlockCutterBlockEntity`)确认 4 EU/t×450t、刀片槽门控、`bladeTooWeak`
+  状态与无刀片停机均已对齐,无服务端缺口;catalog 家族 5 条随本轮翻转。
