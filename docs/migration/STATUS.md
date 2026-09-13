@@ -32,13 +32,13 @@
 
 | 注册类别 | 已实现 | 部分实现 | 基线总数 |
 |---|---:|---:|---:|
-| item | 469 | 52 | 528 |
+| item | 473 | 48 | 528 |
 | block | 235 | 23 | 264 |
 | block_entity | 145 | 6 | 157 |
 | entity | 8 | 0 | 8 |
-| menu | 45 | 9 | 55 |
+| menu | 49 | 5 | 55 |
 | sound | 62 | 0 | 62 |
-| recipe_serializer | 10 | 7 | 17 |
+| recipe_serializer | 12 | 5 | 17 |
 | recipe_type | 10 | 3 | 13 |
 | fluid_family | 1 | 16 | 17 |
 | game_event | 5 | 0 | 5 |
@@ -47,7 +47,7 @@
 | configured_feature | 7 | 0 | 7 |
 | placed_feature | 10 | 0 | 10 |
 | biome_modifier | 4 | 0 | 4 |
-| foliage_placer_type | 0 | 1 | 1 |
+| foliage_placer_type | 1 | 0 | 1 |
 
 清单包含 17 个流体族及其动态生成的 85 个实际注册 ID；另含 22 个世界生成注册项；流体族行是分组，不另算功能。完整状态见 [注册清单](registry-catalog.json)。
 

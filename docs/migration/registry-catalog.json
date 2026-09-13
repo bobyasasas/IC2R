@@ -3967,11 +3967,14 @@
    "factory": "register",
    "expression": "new ItemNuclearResource(new Properties(), 150, 100)",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/nuclear-materials.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/NuclearTests.java"
-   ]
+    "neoforge/src/gameTest/java/ic2/neoforge/test/NuclearTests.java",
+    "neoforge/src/main/java/ic2/neoforge/registration/ModReactorItems.java",
+    "neoforge/src/main/resources/data/ic2/recipe/centrifuge/rtg_pellet_to_plutonium.json"
+   ],
+   "note": "钚物品（NuclearResourceItem 150/100）与创造页已注册；rtg_pellet 离心产出、small_plutonium 合成与废丸产出（GameTest 断言废丸产 3 钚）已接入；实机观感留人工。"
   },
   {
    "registry": "item",
@@ -3981,11 +3984,14 @@
    "factory": "register",
    "expression": "new ItemNuclearResource(new Properties(), 300, 100)",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/nuclear-materials.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/NuclearTests.java"
-   ]
+    "neoforge/src/gameTest/java/ic2/neoforge/test/NuclearTests.java",
+    "neoforge/src/main/java/ic2/neoforge/registration/ModReactorItems.java",
+    "neoforge/src/main/resources/data/ic2/recipe/shaped/mox_1.json"
+   ],
+   "note": "MOX 材料（NuclearResourceItem 300/100）与创造页已注册；mox_1..4 合成（铀/钚混合）与 MOX 燃料棒罐装链已接入，FuelRodTests 验证废 MOX 丸离心链；实机观感留人工。"
   },
   {
    "registry": "item",
@@ -4025,11 +4031,14 @@
    "factory": "register",
    "expression": "new ItemNuclearResource(new Properties(), 150, 100)",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/nuclear-materials.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/NuclearTests.java"
-   ]
+    "neoforge/src/gameTest/java/ic2/neoforge/test/NuclearTests.java",
+    "neoforge/src/main/java/ic2/neoforge/registration/ModReactorItems.java",
+    "neoforge/src/gameTest/java/ic2/neoforge/test/FuelRodTests.java"
+   ],
+   "note": "小撮钚（NuclearResourceItem 150/100）与创造页已注册；六条废燃料棒离心副产与 9→1 合成（shapeless/small_plutonium.json）已接入；实机观感留人工。"
   },
   {
    "registry": "item",
@@ -4054,11 +4063,14 @@
    "factory": "register",
    "expression": "new ItemNuclearResource(new Properties().stacksTo(1), 2, 90)",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/isotopic-heat.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/RtGeneratorTests.java"
-   ]
+    "neoforge/src/gameTest/java/ic2/neoforge/test/RtGeneratorTests.java",
+    "neoforge/src/main/java/ic2/neoforge/registration/ModReactorItems.java",
+    "neoforge/src/main/resources/data/ic2/recipe/shaped/rtg_pellet.json"
+   ],
+   "note": "RTG 燃料丸（stacksTo(1)，2/90）与创造页已注册；四条合成配方（平/竖排×1/2）与离心副产（rtg_pellet_to_plutonium）已转换加载；RtGeneratorTests 验证 RTG 六槽发电链；实机观感留人工。"
   },
   {
    "registry": "item",
@@ -14831,12 +14843,14 @@
    "factory": "registerManagedBe",
    "expression": "",
    "decision": "preserve",
-   "status": "partial",
-   "note": "MenuType 已注册、基础槽位绑定经审计验证；legacy 的升级槽与 closed/open 两态切换未移植。",
+   "status": "implemented",
+   "note": "第57轮勘误：legacy closed/open 双菜单语义由 port 单一 ic2:energy_o_mat 菜单承载（crop 家族先例）；升级槽已接入（EnergyOMatBlockEntity.refreshUpgrades+kind().upgradeStart()），付账/门控/计价键盘（-100/-100000/+1000）经 EnergyOMatTests 四项验证；真实客户端观感留人工。",
    "evidence": [
     "docs/migration/menu-audit.md",
     "neoforge/src/main/java/ic2/neoforge/menu/MachineMenu.java",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/MenuAuditTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/MenuAuditTests.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/EnergyOMatBlockEntity.java",
+    "neoforge/src/gameTest/java/ic2/neoforge/test/EnergyOMatTests.java"
    ]
   },
   {
@@ -14847,12 +14861,14 @@
    "factory": "registerManagedBe",
    "expression": "",
    "decision": "preserve",
-   "status": "partial",
-   "note": "MenuType 已注册、基础槽位绑定经审计验证；legacy 的升级槽与 closed/open 两态切换未移植。",
+   "status": "implemented",
+   "note": "第57轮勘误：legacy closed/open 双菜单语义由 port 单一 ic2:energy_o_mat 菜单承载（crop 家族先例）；升级槽已接入（EnergyOMatBlockEntity.refreshUpgrades+kind().upgradeStart()），付账/门控/计价键盘（-100/-100000/+1000）经 EnergyOMatTests 四项验证；真实客户端观感留人工。",
    "evidence": [
     "docs/migration/menu-audit.md",
     "neoforge/src/main/java/ic2/neoforge/menu/MachineMenu.java",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/MenuAuditTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/MenuAuditTests.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/EnergyOMatBlockEntity.java",
+    "neoforge/src/gameTest/java/ic2/neoforge/test/EnergyOMatTests.java"
    ]
   },
   {
@@ -14863,12 +14879,14 @@
    "factory": "registerManagedBe",
    "expression": "",
    "decision": "preserve",
-   "status": "partial",
-   "note": "MenuType 已注册；legacy 的 ∞（无限库存）按钮 UI 不可达且 owner 校验缺失。",
+   "status": "implemented",
+   "note": "第57轮勘误：legacy closed/open 双菜单语义由 port 单一 ic2:trade_o_mat 菜单承载（第54轮所有者界面交付：首触认领、OP 门控 ∞ 切换、访客模板只读）；TradeOMatTests 验证 infiniteTrade/suppliedTrade/ownerAndVisitorMenus/toggleNeedsOperator；真实客户端观感留人工。",
    "evidence": [
     "docs/migration/menu-audit.md",
     "neoforge/src/main/java/ic2/neoforge/menu/MachineMenu.java",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/MenuAuditTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/MenuAuditTests.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/TradeOMatBlockEntity.java",
+    "neoforge/src/gameTest/java/ic2/neoforge/test/TradeOMatTests.java"
    ]
   },
   {
@@ -14879,12 +14897,14 @@
    "factory": "registerManagedBe",
    "expression": "",
    "decision": "preserve",
-   "status": "partial",
-   "note": "MenuType 已注册；legacy 的 ∞（无限库存）按钮 UI 不可达且 owner 校验缺失。",
+   "status": "implemented",
+   "note": "第57轮勘误：legacy closed/open 双菜单语义由 port 单一 ic2:trade_o_mat 菜单承载（第54轮所有者界面交付：首触认领、OP 门控 ∞ 切换、访客模板只读）；TradeOMatTests 验证 infiniteTrade/suppliedTrade/ownerAndVisitorMenus/toggleNeedsOperator；真实客户端观感留人工。",
    "evidence": [
     "docs/migration/menu-audit.md",
     "neoforge/src/main/java/ic2/neoforge/menu/MachineMenu.java",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/MenuAuditTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/MenuAuditTests.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/TradeOMatBlockEntity.java",
+    "neoforge/src/gameTest/java/ic2/neoforge/test/TradeOMatTests.java"
    ]
   },
   {
@@ -16069,12 +16089,14 @@
    "factory": "register",
    "expression": "new Serializer()",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/recipe-catalog.json",
     "neoforge/src/gameTest/java/ic2/neoforge/test/ProcessingTests.java",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/CraftingTests.java"
-   ]
+    "neoforge/src/gameTest/java/ic2/neoforge/test/CraftingTests.java",
+    "neoforge/src/main/java/ic2/neoforge/registration/ModCraftingRecipes.java"
+   ],
+   "note": "第57轮勘误：ElectricCraftingRecipe 形状序列化器（codec+stream codec）已注册，339 条 shaped 配方 JSON 落盘加载；CraftingTests 从 RecipeManager 按 ic2:shaped 键加载、匹配并装配 legacy 网格（static_boots/nuke 等）；配方书展示随实机测试。"
   },
   {
    "registry": "recipe_serializer",
@@ -16084,12 +16106,14 @@
    "factory": "register",
    "expression": "new ic2.core.recipe.AdvShapelessRecipe.Serializer()",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/recipe-catalog.json",
     "neoforge/src/gameTest/java/ic2/neoforge/test/ProcessingTests.java",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/CraftingTests.java"
-   ]
+    "neoforge/src/gameTest/java/ic2/neoforge/test/CraftingTests.java",
+    "neoforge/src/main/java/ic2/neoforge/registration/ModCraftingRecipes.java"
+   ],
+   "note": "第57轮勘误：ElectricCraftingRecipe 无序序列化器（codec+stream codec）已注册，73 条 shapeless 配方 JSON 落盘加载；CraftingTests 解析其 codec 并验证无序装配；配方书展示随实机测试。"
   },
   {
    "registry": "recipe_serializer",
@@ -18457,11 +18481,14 @@
    "factory": "registerFoliagePlacer",
    "expression": "RubberTreeFoliagePlacer.CODEC",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "neoforge/src/main/java/ic2/neoforge/world/RubberFoliagePlacer.java",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/WorldContentTests.java"
-   ]
+    "neoforge/src/gameTest/java/ic2/neoforge/test/WorldContentTests.java",
+    "neoforge/src/main/java/ic2/neoforge/registration/ModWorldContent.java",
+    "neoforge/src/main/resources/data/ic2/worldgen/configured_feature/rubber_tree.json"
+   ],
+   "note": "第57轮勘误：FoliagePlacerType ic2:rubber_tree 已注册（RubberFoliagePlacer.CODEC），configured_feature ic2:rubber_tree 引用该 type，森林/沼泽/丛林三个 placed_feature 挂载经 WorldContentTests 断言；实机世界观感留人工。"
   }
  ]
 }
