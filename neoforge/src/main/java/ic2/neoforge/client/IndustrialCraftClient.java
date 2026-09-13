@@ -218,6 +218,11 @@ public final class IndustrialCraftClient {
                         event.register(registration.menu().get(), EnergyOMatScreen::new);
                     else if (kind == MachineKind.CANNER)
                         event.register(registration.menu().get(), CannerScreen::new);
+                    else if (kind == MachineKind.FLUID_DISTRIBUTOR)
+                        event.register(registration.menu().get(), FluidDistributorScreen::new);
+                    else if (kind == MachineKind.WEIGHTED_FLUID_DISTRIBUTOR
+                            || kind == MachineKind.WEIGHTED_ITEM_DISTRIBUTOR)
+                        event.register(registration.menu().get(), WeightedDistributorScreen::new);
                     else if (kind == MachineKind.BATCH_CRAFTER)
                         event.register(registration.menu().get(), BatchCrafterScreen::new);
                     else if (kind == MachineKind.INDUSTRIAL_WORKBENCH)

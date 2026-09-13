@@ -2619,8 +2619,8 @@
     {
       "source": "shaped/fluid_distributor.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:fluid_distributor"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/fluid_distributor.json"
     },
     {
       "source": "shaped/fluid_ejector_upgrade.json",
@@ -4029,14 +4029,14 @@
     {
       "source": "shaped/weighted_fluid_distributor.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:weighted_fluid_distributor"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/weighted_fluid_distributor.json"
     },
     {
       "source": "shaped/weighted_item_distributor.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:weighted_item_distributor"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/weighted_item_distributor.json"
     },
     {
       "source": "shaped/wind_generator.json",

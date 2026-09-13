@@ -136,6 +136,18 @@ public final class MachineMenu extends AbstractContainerMenu {
                 addOutputSlot(
                         inventory, BatchCrafterBlockEntity.CONTAINERS + slot, 8 + slot * 18, 102);
             addBatterySlot(inventory, BatchCrafterBlockEntity.BATTERY, 8, 62);
+        } else if (kind == MachineKind.FLUID_DISTRIBUTOR
+                || kind == MachineKind.WEIGHTED_FLUID_DISTRIBUTOR) {
+            // Legacy ContainerFluidDistributor front pair, offset per container family.
+            boolean weighted = kind == MachineKind.WEIGHTED_FLUID_DISTRIBUTOR;
+            addFluidContainerSlot(inventory, 0, weighted ? 8 : 9, weighted ? 108 : 54);
+            addOutputSlot(inventory, 1, weighted ? 152 : 9, weighted ? 108 : 72);
+        } else if (kind == MachineKind.WEIGHTED_ITEM_DISTRIBUTOR) {
+            // Legacy ContainerWeightedItemDistributor: one nine slot buffer row.
+            for (int slot = 0; slot < WeightedItemDistributorBlockEntity.BUFFER_END; slot++)
+                addSlot(
+                        new ResourceHandlerSlot(
+                                inventory, inventory::set, slot, 8 + slot * 18, 108));
         } else if (kind == MachineKind.STEAM_KINETIC_GENERATOR) {
             addSlot(
                     new ResourceHandlerSlot(inventory, inventory::set, 0, 80, 18) {

@@ -205,6 +205,12 @@ public final class ModMachines {
             case INDUSTRIAL_WORKBENCH ->
                     new ic2.neoforge.machine.IndustrialWorkbenchBlockEntity(pos, state);
             case BATCH_CRAFTER -> new ic2.neoforge.machine.BatchCrafterBlockEntity(pos, state);
+            case FLUID_DISTRIBUTOR ->
+                    new ic2.neoforge.machine.FluidDistributorBlockEntity(pos, state);
+            case WEIGHTED_FLUID_DISTRIBUTOR ->
+                    new ic2.neoforge.machine.WeightedFluidDistributorBlockEntity(pos, state);
+            case WEIGHTED_ITEM_DISTRIBUTOR ->
+                    new ic2.neoforge.machine.WeightedItemDistributorBlockEntity(pos, state);
         };
     }
 

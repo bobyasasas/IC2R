@@ -118,6 +118,21 @@ public final class RegistrationTests {
         FUNCTIONS.register("canner_state_buttons", () -> EntityTickingTests.wrap(CannerTests::stateAndButtons));
         FUNCTIONS.register("crafter_workbench", () -> EntityTickingTests.wrap(CrafterTests::workbench));
         FUNCTIONS.register("crafter_batch", () -> EntityTickingTests.wrap(CrafterTests::batch));
+        FUNCTIONS.register(
+                "distributor_fluid_push", () -> EntityTickingTests.wrap(DistributorTests::fluidActivePushesFront));
+        FUNCTIONS.register(
+                "distributor_fluid_balance", () -> EntityTickingTests.wrap(DistributorTests::fluidIdleBalancesSides));
+        FUNCTIONS.register(
+                "distributor_fluid_ports", () -> EntityTickingTests.wrap(DistributorTests::fluidPortsFollowMode));
+        FUNCTIONS.register(
+                "distributor_weighted_fluid",
+                () -> EntityTickingTests.wrap(DistributorTests::weightedFluidFollowsPriority));
+        FUNCTIONS.register(
+                "distributor_weighted_item",
+                () -> EntityTickingTests.wrap(DistributorTests::weightedItemFollowsPriority));
+        FUNCTIONS.register(
+                "distributor_priority_reload",
+                () -> EntityTickingTests.wrap(DistributorTests::priorityPersistsAcrossReload));
 
         FUNCTIONS.register("fluid_world", () -> EntityTickingTests.wrap(FluidTests::worldInteraction));
         FUNCTIONS.register("fluid_families", () -> EntityTickingTests.wrap(FluidTests::families));

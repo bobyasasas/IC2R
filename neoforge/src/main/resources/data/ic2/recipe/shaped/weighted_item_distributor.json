@@ -1,0 +1,18 @@
+{
+  "type": "ic2:shaped",
+  "pattern": [
+    "CUC",
+    "UMU",
+    "CIC"
+  ],
+  "result": {
+    "id": "ic2:weighted_item_distributor",
+    "count": 1
+  },
+  "key": {
+    "M": "ic2:machine",
+    "C": "minecraft:chest",
+    "U": "ic2:ejector_upgrade",
+    "I": "ic2:pulling_upgrade"
+  }
+}

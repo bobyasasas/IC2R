@@ -1360,7 +1360,13 @@
    "factory": "register",
    "expression": "new ItemBlockIc2(Ic2Blocks.WEIGHTED_FLUID_DISTRIBUTOR, new Properties())",
    "decision": "preserve",
-   "status": "pending"
+   "status": "implemented",
+   "note": "流体分配机（active 为持久模式：active 推正面单出/除正面全部接受流入，idle 仅正面流入+向其余面均衡分配）与加权流体/物品分配机（≤5 方向有序优先级持久化不含正面，正面进、按序推送直至罐空/缓冲逐方向搬空即停）经 GameTest DistributorTests 六用例 IC2/GT 双模式验证（正面推送+桶填充输出、800mB 均衡 400+400、端口随模式翻转/加权恒正面、优先级顺序与移除与拒绝 facing、物品缓冲顺序分发、存档往返）+MenuAuditTests 槽位审计；加权 GUI 以 6 向 toggle 按钮替代 legacy 5×6 权重矩阵、模式切换以菜单按钮替代 legacy 红石事件（现代化取舍，视觉/UX 留人工验收）。",
+   "evidence": [
+    "neoforge/src/gameTest/java/ic2/neoforge/test/DistributorTests.java",
+    "neoforge/src/gameTest/java/ic2/neoforge/test/MenuAuditTests.java",
+    "docs/migration/distributors.md"
+   ]
   },
   {
    "registry": "item",
@@ -1370,7 +1376,13 @@
    "factory": "register",
    "expression": "new ItemBlockIc2(Ic2Blocks.WEIGHTED_ITEM_DISTRIBUTOR, new Properties())",
    "decision": "preserve",
-   "status": "pending"
+   "status": "implemented",
+   "note": "流体分配机（active 为持久模式：active 推正面单出/除正面全部接受流入，idle 仅正面流入+向其余面均衡分配）与加权流体/物品分配机（≤5 方向有序优先级持久化不含正面，正面进、按序推送直至罐空/缓冲逐方向搬空即停）经 GameTest DistributorTests 六用例 IC2/GT 双模式验证（正面推送+桶填充输出、800mB 均衡 400+400、端口随模式翻转/加权恒正面、优先级顺序与移除与拒绝 facing、物品缓冲顺序分发、存档往返）+MenuAuditTests 槽位审计；加权 GUI 以 6 向 toggle 按钮替代 legacy 5×6 权重矩阵、模式切换以菜单按钮替代 legacy 红石事件（现代化取舍，视觉/UX 留人工验收）。",
+   "evidence": [
+    "neoforge/src/gameTest/java/ic2/neoforge/test/DistributorTests.java",
+    "neoforge/src/gameTest/java/ic2/neoforge/test/MenuAuditTests.java",
+    "docs/migration/distributors.md"
+   ]
   },
   {
    "registry": "item",
@@ -1998,7 +2010,13 @@
    "factory": "register",
    "expression": "new ItemBlockIc2(Ic2Blocks.FLUID_DISTRIBUTOR, new Properties())",
    "decision": "preserve",
-   "status": "pending"
+   "status": "implemented",
+   "note": "流体分配机（active 为持久模式：active 推正面单出/除正面全部接受流入，idle 仅正面流入+向其余面均衡分配）与加权流体/物品分配机（≤5 方向有序优先级持久化不含正面，正面进、按序推送直至罐空/缓冲逐方向搬空即停）经 GameTest DistributorTests 六用例 IC2/GT 双模式验证（正面推送+桶填充输出、800mB 均衡 400+400、端口随模式翻转/加权恒正面、优先级顺序与移除与拒绝 facing、物品缓冲顺序分发、存档往返）+MenuAuditTests 槽位审计；加权 GUI 以 6 向 toggle 按钮替代 legacy 5×6 权重矩阵、模式切换以菜单按钮替代 legacy 红石事件（现代化取舍，视觉/UX 留人工验收）。",
+   "evidence": [
+    "neoforge/src/gameTest/java/ic2/neoforge/test/DistributorTests.java",
+    "neoforge/src/gameTest/java/ic2/neoforge/test/MenuAuditTests.java",
+    "docs/migration/distributors.md"
+   ]
   },
   {
    "registry": "item",
@@ -8693,7 +8711,13 @@
    "factory": "register",
    "expression": "Ic2TileEntityBlock.create(Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).strength(2.0F, 10.0F).requiresCorrectToolForDrops().sound(SoundType.METAL), TileEntityFluidDistributor.class, true, Ic2TileEntityBlock.DefaultDrop.Machine, Util.allFacings, true)",
    "decision": "preserve",
-   "status": "pending"
+   "status": "implemented",
+   "note": "流体分配机（active 为持久模式：active 推正面单出/除正面全部接受流入，idle 仅正面流入+向其余面均衡分配）与加权流体/物品分配机（≤5 方向有序优先级持久化不含正面，正面进、按序推送直至罐空/缓冲逐方向搬空即停）经 GameTest DistributorTests 六用例 IC2/GT 双模式验证（正面推送+桶填充输出、800mB 均衡 400+400、端口随模式翻转/加权恒正面、优先级顺序与移除与拒绝 facing、物品缓冲顺序分发、存档往返）+MenuAuditTests 槽位审计；加权 GUI 以 6 向 toggle 按钮替代 legacy 5×6 权重矩阵、模式切换以菜单按钮替代 legacy 红石事件（现代化取舍，视觉/UX 留人工验收）。",
+   "evidence": [
+    "neoforge/src/gameTest/java/ic2/neoforge/test/DistributorTests.java",
+    "neoforge/src/gameTest/java/ic2/neoforge/test/MenuAuditTests.java",
+    "docs/migration/distributors.md"
+   ]
   },
   {
    "registry": "block",
@@ -9558,7 +9582,13 @@
    "factory": "register",
    "expression": "Ic2TileEntityBlock.create(Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).strength(2.0F, 10.0F).requiresCorrectToolForDrops().sound(SoundType.METAL), TileEntityWeightedFluidDistributor.class, false, Ic2TileEntityBlock.DefaultDrop.Machine, Util.allFacings, true)",
    "decision": "preserve",
-   "status": "pending"
+   "status": "implemented",
+   "note": "流体分配机（active 为持久模式：active 推正面单出/除正面全部接受流入，idle 仅正面流入+向其余面均衡分配）与加权流体/物品分配机（≤5 方向有序优先级持久化不含正面，正面进、按序推送直至罐空/缓冲逐方向搬空即停）经 GameTest DistributorTests 六用例 IC2/GT 双模式验证（正面推送+桶填充输出、800mB 均衡 400+400、端口随模式翻转/加权恒正面、优先级顺序与移除与拒绝 facing、物品缓冲顺序分发、存档往返）+MenuAuditTests 槽位审计；加权 GUI 以 6 向 toggle 按钮替代 legacy 5×6 权重矩阵、模式切换以菜单按钮替代 legacy 红石事件（现代化取舍，视觉/UX 留人工验收）。",
+   "evidence": [
+    "neoforge/src/gameTest/java/ic2/neoforge/test/DistributorTests.java",
+    "neoforge/src/gameTest/java/ic2/neoforge/test/MenuAuditTests.java",
+    "docs/migration/distributors.md"
+   ]
   },
   {
    "registry": "block",
@@ -9568,7 +9598,13 @@
    "factory": "register",
    "expression": "Ic2TileEntityBlock.create(Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).strength(2.0F, 10.0F).requiresCorrectToolForDrops().sound(SoundType.METAL), TileEntityWeightedItemDistributor.class, false, Ic2TileEntityBlock.DefaultDrop.Machine, Util.allFacings, true)",
    "decision": "preserve",
-   "status": "pending"
+   "status": "implemented",
+   "note": "流体分配机（active 为持久模式：active 推正面单出/除正面全部接受流入，idle 仅正面流入+向其余面均衡分配）与加权流体/物品分配机（≤5 方向有序优先级持久化不含正面，正面进、按序推送直至罐空/缓冲逐方向搬空即停）经 GameTest DistributorTests 六用例 IC2/GT 双模式验证（正面推送+桶填充输出、800mB 均衡 400+400、端口随模式翻转/加权恒正面、优先级顺序与移除与拒绝 facing、物品缓冲顺序分发、存档往返）+MenuAuditTests 槽位审计；加权 GUI 以 6 向 toggle 按钮替代 legacy 5×6 权重矩阵、模式切换以菜单按钮替代 legacy 红石事件（现代化取舍，视觉/UX 留人工验收）。",
+   "evidence": [
+    "neoforge/src/gameTest/java/ic2/neoforge/test/DistributorTests.java",
+    "neoforge/src/gameTest/java/ic2/neoforge/test/MenuAuditTests.java",
+    "docs/migration/distributors.md"
+   ]
   },
   {
    "registry": "block",
@@ -12167,7 +12203,13 @@
    "factory": "register",
    "expression": "TileEntityFluidDistributor::new",
    "decision": "preserve",
-   "status": "pending"
+   "status": "implemented",
+   "note": "流体分配机（active 为持久模式：active 推正面单出/除正面全部接受流入，idle 仅正面流入+向其余面均衡分配）与加权流体/物品分配机（≤5 方向有序优先级持久化不含正面，正面进、按序推送直至罐空/缓冲逐方向搬空即停）经 GameTest DistributorTests 六用例 IC2/GT 双模式验证（正面推送+桶填充输出、800mB 均衡 400+400、端口随模式翻转/加权恒正面、优先级顺序与移除与拒绝 facing、物品缓冲顺序分发、存档往返）+MenuAuditTests 槽位审计；加权 GUI 以 6 向 toggle 按钮替代 legacy 5×6 权重矩阵、模式切换以菜单按钮替代 legacy 红石事件（现代化取舍，视觉/UX 留人工验收）。",
+   "evidence": [
+    "neoforge/src/gameTest/java/ic2/neoforge/test/DistributorTests.java",
+    "neoforge/src/gameTest/java/ic2/neoforge/test/MenuAuditTests.java",
+    "docs/migration/distributors.md"
+   ]
   },
   {
    "registry": "block_entity",
@@ -13389,7 +13431,13 @@
    "factory": "register",
    "expression": "TileEntityWeightedFluidDistributor::new",
    "decision": "preserve",
-   "status": "pending"
+   "status": "implemented",
+   "note": "流体分配机（active 为持久模式：active 推正面单出/除正面全部接受流入，idle 仅正面流入+向其余面均衡分配）与加权流体/物品分配机（≤5 方向有序优先级持久化不含正面，正面进、按序推送直至罐空/缓冲逐方向搬空即停）经 GameTest DistributorTests 六用例 IC2/GT 双模式验证（正面推送+桶填充输出、800mB 均衡 400+400、端口随模式翻转/加权恒正面、优先级顺序与移除与拒绝 facing、物品缓冲顺序分发、存档往返）+MenuAuditTests 槽位审计；加权 GUI 以 6 向 toggle 按钮替代 legacy 5×6 权重矩阵、模式切换以菜单按钮替代 legacy 红石事件（现代化取舍，视觉/UX 留人工验收）。",
+   "evidence": [
+    "neoforge/src/gameTest/java/ic2/neoforge/test/DistributorTests.java",
+    "neoforge/src/gameTest/java/ic2/neoforge/test/MenuAuditTests.java",
+    "docs/migration/distributors.md"
+   ]
   },
   {
    "registry": "block_entity",
@@ -13399,7 +13447,13 @@
    "factory": "register",
    "expression": "TileEntityWeightedItemDistributor::new",
    "decision": "preserve",
-   "status": "pending"
+   "status": "implemented",
+   "note": "流体分配机（active 为持久模式：active 推正面单出/除正面全部接受流入，idle 仅正面流入+向其余面均衡分配）与加权流体/物品分配机（≤5 方向有序优先级持久化不含正面，正面进、按序推送直至罐空/缓冲逐方向搬空即停）经 GameTest DistributorTests 六用例 IC2/GT 双模式验证（正面推送+桶填充输出、800mB 均衡 400+400、端口随模式翻转/加权恒正面、优先级顺序与移除与拒绝 facing、物品缓冲顺序分发、存档往返）+MenuAuditTests 槽位审计；加权 GUI 以 6 向 toggle 按钮替代 legacy 5×6 权重矩阵、模式切换以菜单按钮替代 legacy 红石事件（现代化取舍，视觉/UX 留人工验收）。",
+   "evidence": [
+    "neoforge/src/gameTest/java/ic2/neoforge/test/DistributorTests.java",
+    "neoforge/src/gameTest/java/ic2/neoforge/test/MenuAuditTests.java",
+    "docs/migration/distributors.md"
+   ]
   },
   {
    "registry": "block_entity",
@@ -13953,8 +14007,13 @@
    "factory": "registerManagedBe",
    "expression": "",
    "decision": "preserve",
-   "status": "pending",
-   "note": "MenuType 已注册、通用布局绑定经审计验证；legacy 专属流体分配布局未移植。"
+   "status": "implemented",
+   "note": "流体分配机（active 为持久模式：active 推正面单出/除正面全部接受流入，idle 仅正面流入+向其余面均衡分配）与加权流体/物品分配机（≤5 方向有序优先级持久化不含正面，正面进、按序推送直至罐空/缓冲逐方向搬空即停）经 GameTest DistributorTests 六用例 IC2/GT 双模式验证（正面推送+桶填充输出、800mB 均衡 400+400、端口随模式翻转/加权恒正面、优先级顺序与移除与拒绝 facing、物品缓冲顺序分发、存档往返）+MenuAuditTests 槽位审计；加权 GUI 以 6 向 toggle 按钮替代 legacy 5×6 权重矩阵、模式切换以菜单按钮替代 legacy 红石事件（现代化取舍，视觉/UX 留人工验收）。",
+   "evidence": [
+    "neoforge/src/gameTest/java/ic2/neoforge/test/DistributorTests.java",
+    "neoforge/src/gameTest/java/ic2/neoforge/test/MenuAuditTests.java",
+    "docs/migration/distributors.md"
+   ]
   },
   {
    "registry": "menu",
@@ -14373,8 +14432,13 @@
    "factory": "registerManagedBe",
    "expression": "",
    "decision": "preserve",
-   "status": "pending",
-   "note": "MenuType 已注册；legacy 加权分配 GUI（权重调节）未移植。"
+   "status": "implemented",
+   "note": "流体分配机（active 为持久模式：active 推正面单出/除正面全部接受流入，idle 仅正面流入+向其余面均衡分配）与加权流体/物品分配机（≤5 方向有序优先级持久化不含正面，正面进、按序推送直至罐空/缓冲逐方向搬空即停）经 GameTest DistributorTests 六用例 IC2/GT 双模式验证（正面推送+桶填充输出、800mB 均衡 400+400、端口随模式翻转/加权恒正面、优先级顺序与移除与拒绝 facing、物品缓冲顺序分发、存档往返）+MenuAuditTests 槽位审计；加权 GUI 以 6 向 toggle 按钮替代 legacy 5×6 权重矩阵、模式切换以菜单按钮替代 legacy 红石事件（现代化取舍，视觉/UX 留人工验收）。",
+   "evidence": [
+    "neoforge/src/gameTest/java/ic2/neoforge/test/DistributorTests.java",
+    "neoforge/src/gameTest/java/ic2/neoforge/test/MenuAuditTests.java",
+    "docs/migration/distributors.md"
+   ]
   },
   {
    "registry": "menu",
@@ -14384,8 +14448,13 @@
    "factory": "registerManagedBe",
    "expression": "",
    "decision": "preserve",
-   "status": "pending",
-   "note": "MenuType 已注册；legacy 加权分配 GUI（权重调节）未移植。"
+   "status": "implemented",
+   "note": "流体分配机（active 为持久模式：active 推正面单出/除正面全部接受流入，idle 仅正面流入+向其余面均衡分配）与加权流体/物品分配机（≤5 方向有序优先级持久化不含正面，正面进、按序推送直至罐空/缓冲逐方向搬空即停）经 GameTest DistributorTests 六用例 IC2/GT 双模式验证（正面推送+桶填充输出、800mB 均衡 400+400、端口随模式翻转/加权恒正面、优先级顺序与移除与拒绝 facing、物品缓冲顺序分发、存档往返）+MenuAuditTests 槽位审计；加权 GUI 以 6 向 toggle 按钮替代 legacy 5×6 权重矩阵、模式切换以菜单按钮替代 legacy 红石事件（现代化取舍，视觉/UX 留人工验收）。",
+   "evidence": [
+    "neoforge/src/gameTest/java/ic2/neoforge/test/DistributorTests.java",
+    "neoforge/src/gameTest/java/ic2/neoforge/test/MenuAuditTests.java",
+    "docs/migration/distributors.md"
+   ]
   },
   {
    "registry": "menu",

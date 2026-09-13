@@ -1482,5 +1482,9 @@
   "ic2.tooltip.coke_kiln.multiblock": "MultiBlock Structure:",
   "ic2.tooltip.coke_kiln.bottom": " Bottom Layer - 3x3 of Refractory Blocks with a Coke Kiln Grate in the centre",
   "ic2.tooltip.coke_kiln.middle": " Middle Layer - 3x3 of Refractory Blocks with a hollow centre and this block in the middle of one of the sides",
-  "ic2.tooltip.coke_kiln.top": " Top Layer - 3x3 of Refractory Blocks with a Coke Kiln Hatch in the centre"
+  "ic2.tooltip.coke_kiln.top": " Top Layer - 3x3 of Refractory Blocks with a Coke Kiln Hatch in the centre",
+  "ic2.distributor.active": "Active",
+  "ic2.distributor.idle": "Idle",
+  "ic2.distributor.side": "%s",
+  "ic2.distributor.priority": "%s #%s"
 }

@@ -1,0 +1,19 @@
+{
+  "type": "ic2:shaped",
+  "pattern": [
+    "CUC",
+    "UMU",
+    "CIC"
+  ],
+  "consuming": true,
+  "result": {
+    "id": "ic2:weighted_fluid_distributor",
+    "count": 1
+  },
+  "key": {
+    "M": "ic2:machine",
+    "C": "ic2:facade_cell",
+    "U": "ic2:fluid_ejector_upgrade",
+    "I": "ic2:fluid_pulling_upgrade"
+  }
+}

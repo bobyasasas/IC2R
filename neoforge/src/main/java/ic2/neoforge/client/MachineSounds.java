@@ -153,7 +153,10 @@ final class MachineSounds {
                     COKE_KILN_HATCH,
                     COKE_KILN_GRATE,
                     INDUSTRIAL_WORKBENCH,
-                    BATCH_CRAFTER ->
+                    BATCH_CRAFTER,
+                    FLUID_DISTRIBUTOR,
+                    WEIGHTED_FLUID_DISTRIBUTOR,
+                    WEIGHTED_ITEM_DISTRIBUTOR ->
                     null;
             case ELECTROLYZER -> ModSounds.MACHINE_ELECTROLYZER_LOOP.get();
             case TERRAFORMER -> ModSounds.MACHINE_TERRAFORMER_LOOP.get();
