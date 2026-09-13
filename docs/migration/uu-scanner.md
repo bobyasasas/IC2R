@@ -189,3 +189,30 @@ legacy `ItemCrystalMemory`(内嵌 ItemStack 的模式存储盘)及其空白晶�
   (待测试.md 新增节)。
 - 扫描机/复制机屏幕布局对 legacy GUI 的还原度(人工比对)。
 
+
+## GUI 链路收尾(第 51 轮,fec18953)
+
+- **pattern_storage 补缺**:legacy `onNetworkEvent` 事件 3(从水晶盘
+  `readItemStack` 读回 `addPattern`)此前 port 缺失,`menuAction(3)` 补齐
+  (空白水晶盘/重复图案拒,`pattern_storage_import` 断言)。
+  `menuValue` 扩展 2/3/4 字段:选中图案 item raw id、UU 桶值与复刻能耗
+  (float bits 两词同步),对位 legacy `getNetworkedFields` 的
+  `pattern/patternUu/patternEu`(legacy `UuIndex.getReplicationEu` 即
+  原始图值,桶值 ×1e-5)。
+- **PatternStorageScreen(新)**:legacy `GuiPatternStorage` 对位——
+  last/next/export/import 四按钮 + 索引 "N / M" + Name/UU-Matter/Energy
+  三行(有图案时) + SI 格式复用 `MeterScreen.toSiString`(放宽为包内)。
+  legacy 9×18 图标按钮几何在 port 通用底板上不可复用,取 ReplicatorScreen
+  文本按钮先例(现代化取舍)。
+- **UuScannerScreen 升级**:menuValue 1=状态序数(IDLE0..TRANSFER_ERROR7,
+  legacy State 枚举序),3/4=解析物 UU 桶/复刻能耗;状态行改译文键八分支
+  (idle/info1-info8,legacy 色值 0xEBEB20/0x20EB3E/0xD71010),扫描中显示
+  百分比,COMPLETED/TRANSFER_ERROR 显示 "B UUM"/"EU" 结果行;delete/save
+  按钮按状态门控(delete: COMPLETED/TRANSFER_ERROR/FAILED;save 不含
+  FAILED,legacy enable handler),移除单机直读 BE 的渲染捷径
+  (`menu.machine()` instanceof)。`AbstractContainerScreen.tick()` 在
+  26.1.2 为 final,门控改在 extractBackground 每帧更新。
+- **测试**:新增 `pattern_storage_import`、`pattern_storage_menu_values`、
+  `uu_scanner_state_sync`(空白水晶盘过存储前置,SCANNING 序数 2 →
+  COMPLETED 序数 6 断言);IC2/GT 双模式 **543 项全绿**(基线 540→543)。
+- **遗留**:屏幕按钮与布局实机观感、tooltip 渲染仍留人工验收。
