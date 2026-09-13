@@ -117,17 +117,18 @@ public final class ModReactorItems {
     public static final DeferredItem<FuelRodItem> QUAD_MOX_FUEL_ROD =
             ITEMS.registerItem(
                     "quad_mox_fuel_rod", properties -> new MoxFuelRodItem(properties, 4, 10000));
-    public static final DeferredItem<Item> DEPLETED_URANIUM_FUEL_ROD =
-            nuclear("depleted_uranium_fuel_rod");
-    public static final DeferredItem<Item> DEPLETED_DUAL_URANIUM_FUEL_ROD =
-            nuclear("depleted_dual_uranium_fuel_rod");
-    public static final DeferredItem<Item> DEPLETED_QUAD_URANIUM_FUEL_ROD =
-            nuclear("depleted_quad_uranium_fuel_rod");
-    public static final DeferredItem<Item> DEPLETED_MOX_FUEL_ROD = nuclear("depleted_mox_fuel_rod");
-    public static final DeferredItem<Item> DEPLETED_DUAL_MOX_FUEL_ROD =
-            nuclear("depleted_dual_mox_fuel_rod");
-    public static final DeferredItem<Item> DEPLETED_QUAD_MOX_FUEL_ROD =
-            nuclear("depleted_quad_mox_fuel_rod");
+    public static final DeferredItem<ic2.neoforge.item.NuclearResourceItem> DEPLETED_URANIUM_FUEL_ROD =
+            nuclearResource("depleted_uranium_fuel_rod", 10, 100);
+    public static final DeferredItem<ic2.neoforge.item.NuclearResourceItem> DEPLETED_DUAL_URANIUM_FUEL_ROD =
+            nuclearResource("depleted_dual_uranium_fuel_rod", 10, 100);
+    public static final DeferredItem<ic2.neoforge.item.NuclearResourceItem> DEPLETED_QUAD_URANIUM_FUEL_ROD =
+            nuclearResource("depleted_quad_uranium_fuel_rod", 10, 100);
+    public static final DeferredItem<ic2.neoforge.item.NuclearResourceItem> DEPLETED_MOX_FUEL_ROD =
+            nuclearResource("depleted_mox_fuel_rod", 10, 100);
+    public static final DeferredItem<ic2.neoforge.item.NuclearResourceItem> DEPLETED_DUAL_MOX_FUEL_ROD =
+            nuclearResource("depleted_dual_mox_fuel_rod", 10, 100);
+    public static final DeferredItem<ic2.neoforge.item.NuclearResourceItem> DEPLETED_QUAD_MOX_FUEL_ROD =
+            nuclearResource("depleted_quad_mox_fuel_rod", 10, 100);
 
     public static final DeferredItem<ic2.neoforge.item.DepletingRodItem> LITHIUM_FUEL_ROD =
             ITEMS.registerItem("lithium_fuel_rod", ic2.neoforge.item.DepletingRodItem::lithium);
@@ -177,26 +178,40 @@ public final class ModReactorItems {
 
     /**
      * RTG fuel: one pellet per slot across six machine slots. The recovered item also irradiates an
-     * unprotected carrier; that behavior needs the hazmat armor set and lands with P16.
+     * unprotected carrier (legacy 2s, amplifier 90).
      */
-    public static final DeferredItem<Item> RTG_PELLET =
-            ITEMS.registerItem("rtg_pellet", properties -> new Item(properties.stacksTo(1)));
+    public static final DeferredItem<ic2.neoforge.item.NuclearResourceItem> RTG_PELLET =
+            ITEMS.registerItem(
+                    "rtg_pellet",
+                    properties ->
+                            new ic2.neoforge.item.NuclearResourceItem(properties.stacksTo(1), 2, 90));
 
-    // Nuclear materials (P09): stackable refinement outputs of the ore and reactor chains.
-    // The recovered resources also irradiate an unprotected carrier; that behavior needs the
-    // hazmat armor set and lands with P16.
-    public static final DeferredItem<Item> URANIUM = nuclear("uranium");
-    public static final DeferredItem<Item> URANIUM_235 = nuclear("uranium_235");
-    public static final DeferredItem<Item> URANIUM_238 = nuclear("uranium_238");
-    public static final DeferredItem<Item> PLUTONIUM = nuclear("plutonium");
-    public static final DeferredItem<Item> SMALL_PLUTONIUM = nuclear("small_plutonium");
-    public static final DeferredItem<Item> SMALL_URANIUM_235 = nuclear("small_uranium_235");
-    public static final DeferredItem<Item> SMALL_URANIUM_238 = nuclear("small_uranium_238");
-    public static final DeferredItem<Item> MOX = nuclear("mox");
-    public static final DeferredItem<Item> URANIUM_PELLET = nuclear("uranium_pellet");
+    // Nuclear materials (P09): stackable refinement outputs of the ore and reactor chains. Every
+    // resource irradiates an unprotected carrier with its legacy duration and amplifier.
+    public static final DeferredItem<ic2.neoforge.item.NuclearResourceItem> URANIUM =
+            nuclearResource("uranium", 60, 100);
+    public static final DeferredItem<ic2.neoforge.item.NuclearResourceItem> URANIUM_235 =
+            nuclearResource("uranium_235", 150, 100);
+    public static final DeferredItem<ic2.neoforge.item.NuclearResourceItem> URANIUM_238 =
+            nuclearResource("uranium_238", 10, 90);
+    public static final DeferredItem<ic2.neoforge.item.NuclearResourceItem> PLUTONIUM =
+            nuclearResource("plutonium", 150, 100);
+    public static final DeferredItem<ic2.neoforge.item.NuclearResourceItem> SMALL_PLUTONIUM =
+            nuclearResource("small_plutonium", 150, 100);
+    public static final DeferredItem<ic2.neoforge.item.NuclearResourceItem> SMALL_URANIUM_235 =
+            nuclearResource("small_uranium_235", 150, 100);
+    public static final DeferredItem<ic2.neoforge.item.NuclearResourceItem> SMALL_URANIUM_238 =
+            nuclearResource("small_uranium_238", 10, 90);
+    public static final DeferredItem<ic2.neoforge.item.NuclearResourceItem> MOX =
+            nuclearResource("mox", 300, 100);
+    public static final DeferredItem<ic2.neoforge.item.NuclearResourceItem> URANIUM_PELLET =
+            nuclearResource("uranium_pellet", 60, 100);
 
-    private static DeferredItem<Item> nuclear(String name) {
-        return ITEMS.registerItem(name, properties -> new Item(properties));
+    private static DeferredItem<ic2.neoforge.item.NuclearResourceItem> nuclearResource(
+            String name, int duration, int amplifier) {
+        return ITEMS.registerItem(
+                name,
+                properties -> new ic2.neoforge.item.NuclearResourceItem(properties, duration, amplifier));
     }
 
     public static void register(IEventBus bus) {

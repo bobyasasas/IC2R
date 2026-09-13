@@ -238,6 +238,8 @@ public final class RegistrationTests {
         FUNCTIONS.register("heat_blast_cancel", () -> EntityTickingTests.wrap(HeatExplosionTests::cancellation));
         FUNCTIONS.register("condenser_power_chain", () -> EntityTickingTests.wrap(CondenserTests::nativePowerChain));
         FUNCTIONS.register("condenser_passive_reload", () -> EntityTickingTests.wrap(CondenserTests::passiveReload));
+        FUNCTIONS.register(
+                "condensator_never_discharges", () -> EntityTickingTests.wrap(CondenserTests::condensatorNeverDischarges));
         FUNCTIONS.register("solar_distiller_specs", () -> EntityTickingTests.wrap(SolarDistillerTests::specs));
         FUNCTIONS.register("solar_distiller_daylight", () -> EntityTickingTests.wrap(SolarDistillerTests::daylight));
         FUNCTIONS.register("solar_distiller_containers", () -> EntityTickingTests.wrap(SolarDistillerTests::containers));
@@ -358,6 +360,10 @@ public final class RegistrationTests {
                 "reactor_coolant_overflow", () -> EntityTickingTests.wrap(NuclearReactorTests::coolantCellDestroysOnOverflow));
         FUNCTIONS.register(
                 "reactor_vent_overflow", () -> EntityTickingTests.wrap(NuclearReactorTests::heatVentDestroysOnOverflow));
+        FUNCTIONS.register(
+                "reactor_condensator_absorb", () -> EntityTickingTests.wrap(NuclearReactorTests::condensatorAbsorbsRodHeat));
+        FUNCTIONS.register(
+                "mox_rod_breeder_output", () -> EntityTickingTests.wrap(NuclearReactorTests::moxRodBreederOutput));
         FUNCTIONS.register("reactor_chamber_widen", () -> EntityTickingTests.wrap(ReactorChamberTests::chamberWidensGrid));
         FUNCTIONS.register(
                 "reactor_chamber_shrink", () -> ReactorChamberTests::brokenChamberEjectsColumn);
@@ -642,6 +648,8 @@ public final class RegistrationTests {
                 () -> RadiationTests::explosionRadiationAffectsUnprotectedMobs);
         FUNCTIONS.register(
                 "reactor_heat_radiation", () -> RadiationTests::reactorHeatRadiationDamages);
+        FUNCTIONS.register(
+                "nuclear_material_irradiation", () -> RadiationTests::nuclearMaterialsIrradiateCarriers);
         FUNCTIONS.register("uu_values_datapack", () -> EntityTickingTests.wrap(UuScannerTests::datapackSeedsDriveGraph));
         FUNCTIONS.register("uu_scanner_unknown", () -> EntityTickingTests.wrap(UuScannerTests::unknownItemFails));
         FUNCTIONS.register("uu_scanner_seed_coverage", () -> EntityTickingTests.wrap(UuScannerTests::expandedSeedCoverage));

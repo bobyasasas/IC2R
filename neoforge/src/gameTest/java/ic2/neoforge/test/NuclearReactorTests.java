@@ -136,6 +136,50 @@ final class NuclearReactorTests {
         helper.succeed();
     }
 
+    static void condensatorAbsorbsRodHeat(GameTestHelper helper) {
+        var reactor = reactor(helper);
+        reactor.inventory()
+                .set(
+                        9,
+                        ItemResource.of(
+                                ModReactorItems.URANIUM_FUEL_ROD.get().getDefaultInstance()),
+                        1);
+        reactor.inventory()
+                .set(
+                        10,
+                        ItemResource.of(ModReactorItems.RSH_CONDENSATOR.get().getDefaultInstance()),
+                        1);
+        cycles(reactor, helper, 1);
+        var condensator = ModReactorItems.RSH_CONDENSATOR.get();
+        helper.assertValueEqual(
+                condensator.storedHeat(reactor.inventory().stack(10)),
+                4,
+                "The condensator soaks the single rod pulse of four heat");
+        helper.assertValueEqual(reactor.getHeat(), 0, "The core stays cold behind the condensator");
+        helper.assertValueEqual(
+                reactor.getReactorEnergyOutput(),
+                1.0F,
+                "The condensator does not change the pulse count");
+        helper.succeed();
+    }
+
+    static void moxRodBreederOutput(GameTestHelper helper) {
+        var reactor = reactor(helper);
+        reactor.setHeat(5000);
+        reactor.inventory()
+                .set(
+                        9,
+                        ItemResource.of(ModReactorItems.MOX_FUEL_ROD.get().getDefaultInstance()),
+                        1);
+        cycles(reactor, helper, 1);
+        float output = reactor.getReactorEnergyOutput();
+        helper.assertTrue(
+                output > 3.0F && output < 3.1F,
+                "A half-hot core pays every MOX pulse four times the heat ratio plus one, saw "
+                        + output);
+        helper.succeed();
+    }
+
     static void meltDownExplodesCore(GameTestHelper helper) {
         var reactor = reactor(helper);
         for (int slot = 9; slot <= 11; slot++)

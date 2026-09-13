@@ -11,10 +11,11 @@ import net.minecraft.world.item.component.TooltipDisplay;
 import java.util.function.Consumer;
 
 /**
- * Reactor heat storage (RSH 20,000 / LZH 100,000): it absorbs reactor heat once the reactor itself
- * migrates, and gradual crafting recipes vent the stored heat with redstone or lapis.
+ * Reactor heat storage (RSH 20,000 / LZH 100,000). In the grid it soaks heat from neighbouring
+ * rods but never discharges any; when full it simply refuses more. Gradual crafting recipes vent
+ * the stored heat with redstone or lapis.
  */
-public final class CondensatorItem extends Item {
+public final class CondensatorItem extends Item implements ReactorComponent {
     private final int maxUse;
 
     public CondensatorItem(Properties properties, int maxUse) {
@@ -28,6 +29,30 @@ public final class CondensatorItem extends Item {
 
     public int storedHeat(ItemStack stack) {
         return Math.clamp(stack.getOrDefault(ModDataComponents.REACTOR_HEAT, 0), 0, maxUse);
+    }
+
+    @Override
+    public boolean canStoreHeat(ItemStack stack, ReactorHost reactor, int x, int y) {
+        return storedHeat(stack) < maxUse;
+    }
+
+    @Override
+    public int getCurrentHeat(ItemStack stack, ReactorHost reactor, int x, int y) {
+        return storedHeat(stack);
+    }
+
+    @Override
+    public int getMaxHeat(ItemStack stack, ReactorHost reactor, int x, int y) {
+        return maxUse;
+    }
+
+    @Override
+    public int alterHeat(ItemStack stack, ReactorHost reactor, int x, int y, int heat) {
+        // Legacy ItemReactorCondensator: a condensator only soaks, a discharge passes through.
+        if (heat < 0) return heat;
+        int absorbed = Math.min(heat, maxUse - storedHeat(stack));
+        stack.set(ModDataComponents.REACTOR_HEAT, storedHeat(stack) + absorbed);
+        return heat - absorbed;
     }
 
     @Override

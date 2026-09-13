@@ -297,6 +297,30 @@ final class CondenserTests {
         helper.succeed();
     }
 
+    static void condensatorNeverDischarges(GameTestHelper helper) {
+        var item = ModReactorItems.RSH_CONDENSATOR.get();
+        var full = new ItemStack(item);
+        full.set(ModDataComponents.REACTOR_HEAT, item.maxUse());
+        helper.assertValueEqual(
+                item.alterHeat(full, null, 0, 0, 5),
+                5,
+                "A full condensator refuses additional heat");
+        helper.assertValueEqual(
+                item.storedHeat(full), item.maxUse(), "The refused heat stays out of the store");
+        helper.assertValueEqual(
+                item.alterHeat(full, null, 0, 0, -3),
+                -3,
+                "A condensator passes a discharge through untouched");
+        helper.assertValueEqual(
+                item.storedHeat(full),
+                item.maxUse(),
+                "The discharge never drains the condensator");
+        var half = new ItemStack(item);
+        helper.assertValueEqual(item.alterHeat(half, null, 0, 0, 7), 0, "A fresh condensator soaks seven heat");
+        helper.assertValueEqual(item.storedHeat(half), 7, "The soaked heat is stored");
+        helper.succeed();
+    }
+
     private static CondenserBlockEntity machine(GameTestHelper helper) {
         helper.setBlock(POSITION, ModMachines.block(MachineKind.CONDENSER));
         return helper.getBlockEntity(POSITION, CondenserBlockEntity.class);

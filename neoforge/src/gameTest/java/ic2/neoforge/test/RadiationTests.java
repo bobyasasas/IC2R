@@ -7,6 +7,7 @@ import ic2.neoforge.machine.NuclearReactorBlockEntity;
 import ic2.neoforge.registration.ModArmor;
 import ic2.neoforge.registration.ModEffects;
 import ic2.neoforge.registration.ModMachines;
+import ic2.neoforge.registration.ModReactorItems;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.gametest.framework.GameTestHelper;
@@ -128,6 +129,32 @@ final class RadiationTests {
                         + " invulnerable="
                         + victim.invulnerableTime);
         helper.succeed();
+    }
+
+    static void nuclearMaterialsIrradiateCarriers(GameTestHelper helper) {
+        Zombie naked = helper.spawn(EntityType.ZOMBIE, new BlockPos(2, 1, 2));
+        naked.setNoAi(true);
+        naked.setItemSlot(
+                EquipmentSlot.MAINHAND,
+                new net.minecraft.world.item.ItemStack(ModReactorItems.URANIUM_235.get()));
+        Zombie dressed = helper.spawn(EntityType.ZOMBIE, new BlockPos(4, 1, 2));
+        dressed.setNoAi(true);
+        dress(dressed);
+        dressed.setItemSlot(
+                EquipmentSlot.MAINHAND,
+                new net.minecraft.world.item.ItemStack(ModReactorItems.URANIUM_235.get()));
+        helper.startSequence()
+                .thenIdle(40)
+                .thenExecute(
+                        () -> {
+                            helper.assertTrue(
+                                    naked.hasEffect(ModEffects.RADIATION),
+                                    "Held enriched uranium irradiates an unprotected carrier");
+                            helper.assertTrue(
+                                    !dressed.hasEffect(ModEffects.RADIATION),
+                                    "A complete hazmat suit blocks the carrier radiation");
+                        })
+                .thenSucceed();
     }
 
     private RadiationTests() {}

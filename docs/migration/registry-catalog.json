@@ -3760,11 +3760,13 @@
    "factory": "register",
    "expression": "new ItemNuclearResource(new Properties(), 150, 100)",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/nuclear-materials.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/NuclearTests.java"
-   ]
+    "neoforge/src/gameTest/java/ic2/neoforge/test/NuclearTests.java",
+    "neoforge/src/gameTest/java/ic2/neoforge/test/RadiationTests.java"
+   ],
+   "note": "物品、精炼离心链（20 铀=112 铀 238+7 铀 235）与载具辐射（150 秒 amplifier 100）已验证；实机外观留人工验收。"
   },
   {
    "registry": "item",
@@ -3774,11 +3776,13 @@
    "factory": "register",
    "expression": "new ItemNuclearResource(new Properties(), 10, 90)",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/nuclear-materials.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/NuclearTests.java"
-   ]
+    "neoforge/src/gameTest/java/ic2/neoforge/test/NuclearTests.java",
+    "neoforge/src/gameTest/java/ic2/neoforge/test/RadiationTests.java"
+   ],
+   "note": "物品、精炼离心链与载具辐射（10 秒 amplifier 90）已验证；实机外观留人工验收。"
   },
   {
    "registry": "item",
@@ -3816,11 +3820,12 @@
    "factory": "register",
    "expression": "new ItemNuclearResource(new Properties(), 150, 100)",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/nuclear-materials.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/NuclearTests.java"
-   ]
+    "neoforge/src/gameTest/java/ic2/neoforge/test/RadiationTests.java"
+   ],
+   "note": "物品、破碎/冲洗矿离心与压缩机压缩配方链已加载，载具辐射（150 秒 amplifier 100）已验证；实机外观留人工验收。"
   },
   {
    "registry": "item",
@@ -3830,11 +3835,12 @@
    "factory": "register",
    "expression": "new ItemNuclearResource(new Properties(), 10, 90)",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/nuclear-materials.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/NuclearTests.java"
-   ]
+    "neoforge/src/gameTest/java/ic2/neoforge/test/RadiationTests.java"
+   ],
+   "note": "物品注册与载具辐射（10 秒 amplifier 90）已对齐；legacy 中该物品同样无配方用途；实机外观留人工验收。"
   },
   {
    "registry": "item",
@@ -3858,11 +3864,12 @@
    "factory": "register",
    "expression": "new ItemNuclearResource(new Properties(), 60, 100)",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/nuclear-materials.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/NuclearTests.java"
-   ]
+    "neoforge/src/gameTest/java/ic2/neoforge/test/RadiationTests.java"
+   ],
+   "note": "物品与载具辐射（60 秒 amplifier 100）已对齐；legacy 中该物品同样无配方用途（MOX 棒灌装用 ic2:mox 材料）；实机外观留人工验收。"
   },
   {
    "registry": "item",
@@ -3886,12 +3893,13 @@
    "factory": "register",
    "expression": "new ItemNuclearResource(new Properties(), 10, 100)",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/fuel-rods.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/FuelRodTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/FuelRodTests.java",
+    "neoforge/src/gameTest/java/ic2/neoforge/test/RadiationTests.java"
    ],
-   "note": "物品已注册、离心配方已加载;辐射行为随 P16。"
+   "note": "物品、离心配方链与载具辐射（10 秒 amplifier 100，完整防化服免疫）已验证；实机外观留人工验收。"
   },
   {
    "registry": "item",
@@ -3901,12 +3909,13 @@
    "factory": "register",
    "expression": "new ItemNuclearResource(new Properties(), 10, 100)",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/fuel-rods.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/FuelRodTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/FuelRodTests.java",
+    "neoforge/src/gameTest/java/ic2/neoforge/test/RadiationTests.java"
    ],
-   "note": "物品已注册、离心配方已加载;辐射行为随 P16。"
+   "note": "物品、离心配方链与载具辐射（10 秒 amplifier 100，完整防化服免疫）已验证；实机外观留人工验收。"
   },
   {
    "registry": "item",
@@ -3916,12 +3925,13 @@
    "factory": "register",
    "expression": "new ItemNuclearResource(new Properties(), 10, 100)",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/fuel-rods.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/FuelRodTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/FuelRodTests.java",
+    "neoforge/src/gameTest/java/ic2/neoforge/test/RadiationTests.java"
    ],
-   "note": "物品已注册、离心配方已加载;辐射行为随 P16。"
+   "note": "物品、离心配方链与载具辐射（10 秒 amplifier 100，完整防化服免疫）已验证；实机外观留人工验收。"
   },
   {
    "registry": "item",
@@ -3931,12 +3941,13 @@
    "factory": "register",
    "expression": "new ItemNuclearResource(new Properties(), 10, 100)",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/fuel-rods.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/FuelRodTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/FuelRodTests.java",
+    "neoforge/src/gameTest/java/ic2/neoforge/test/RadiationTests.java"
    ],
-   "note": "物品已注册、离心配方已加载;辐射行为随 P16。"
+   "note": "物品、离心配方链与载具辐射（10 秒 amplifier 100，完整防化服免疫）已验证；实机外观留人工验收。"
   },
   {
    "registry": "item",
@@ -3946,12 +3957,13 @@
    "factory": "register",
    "expression": "new ItemNuclearResource(new Properties(), 10, 100)",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/fuel-rods.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/FuelRodTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/FuelRodTests.java",
+    "neoforge/src/gameTest/java/ic2/neoforge/test/RadiationTests.java"
    ],
-   "note": "物品已注册、离心配方已加载;辐射行为随 P16。"
+   "note": "物品、离心配方链与载具辐射（10 秒 amplifier 100，完整防化服免疫）已验证；实机外观留人工验收。"
   },
   {
    "registry": "item",
@@ -3961,12 +3973,13 @@
    "factory": "register",
    "expression": "new ItemNuclearResource(new Properties(), 10, 100)",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/fuel-rods.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/FuelRodTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/FuelRodTests.java",
+    "neoforge/src/gameTest/java/ic2/neoforge/test/RadiationTests.java"
    ],
-   "note": "物品已注册、离心配方已加载;辐射行为随 P16。"
+   "note": "物品、离心配方链与载具辐射（10 秒 amplifier 100，完整防化服免疫）已验证；实机外观留人工验收。"
   },
   {
    "registry": "item",
@@ -4796,12 +4809,12 @@
    "factory": "register",
    "expression": "new ItemReactorPlating(new Properties(), 1000, 0.95F)",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/nuclear-reactor.md",
     "neoforge/src/gameTest/java/ic2/neoforge/test/ReactorComponentTests.java"
    ],
-   "note": "物品、堆内组件行为与合成配方经 GameTest 验证;客户端外观随实机测试。"
+   "note": "物品与堆内热限提升（1000/2000/500）及热效应软化（0.95/0.99/0.9）经 GameTest 验证，参数对照 legacy；实机外观留人工验收。"
   },
   {
    "registry": "item",
@@ -4811,12 +4824,12 @@
    "factory": "register",
    "expression": "new ItemReactorPlating(new Properties(), 2000, 0.99F)",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/nuclear-reactor.md",
     "neoforge/src/gameTest/java/ic2/neoforge/test/ReactorComponentTests.java"
    ],
-   "note": "物品、堆内组件行为与合成配方经 GameTest 验证;客户端外观随实机测试。"
+   "note": "物品与堆内热限提升（1000/2000/500）及热效应软化（0.95/0.99/0.9）经 GameTest 验证，参数对照 legacy；实机外观留人工验收。"
   },
   {
    "registry": "item",
@@ -4826,12 +4839,12 @@
    "factory": "register",
    "expression": "new ItemReactorPlating(new Properties(), 500, 0.9F)",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/nuclear-reactor.md",
     "neoforge/src/gameTest/java/ic2/neoforge/test/ReactorComponentTests.java"
    ],
-   "note": "物品、堆内组件行为与合成配方经 GameTest 验证;客户端外观随实机测试。"
+   "note": "物品与堆内热限提升（1000/2000/500）及热效应软化（0.95/0.99/0.9）经 GameTest 验证，参数对照 legacy；实机外观留人工验收。"
   },
   {
    "registry": "item",
@@ -4983,12 +4996,12 @@
    "factory": "register",
    "expression": "new ItemReactorReflector(new Properties(), 30000)",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/nuclear-reactor.md",
     "neoforge/src/gameTest/java/ic2/neoforge/test/ReactorComponentTests.java"
    ],
-   "note": "物品、堆内组件行为与合成配方经 GameTest 验证;客户端外观随实机测试。"
+   "note": "物品、反射脉冲翻倍输出与薄板反射损耗（30000/120000 次，铱板永久不损耗）经 GameTest 验证；实机外观留人工验收。"
   },
   {
    "registry": "item",
@@ -4998,12 +5011,12 @@
    "factory": "register",
    "expression": "new ItemReactorReflector(new Properties(), 120000)",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/nuclear-reactor.md",
     "neoforge/src/gameTest/java/ic2/neoforge/test/ReactorComponentTests.java"
    ],
-   "note": "物品、堆内组件行为与合成配方经 GameTest 验证;客户端外观随实机测试。"
+   "note": "物品、反射脉冲翻倍输出与薄板反射损耗（30000/120000 次，铱板永久不损耗）经 GameTest 验证；实机外观留人工验收。"
   },
   {
    "registry": "item",
@@ -5013,12 +5026,12 @@
    "factory": "register",
    "expression": "new ItemReactorIridiumReflector(new Properties())",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/nuclear-reactor.md",
     "neoforge/src/gameTest/java/ic2/neoforge/test/ReactorComponentTests.java"
    ],
-   "note": "物品、堆内组件行为与合成配方经 GameTest 验证;客户端外观随实机测试。"
+   "note": "物品、反射脉冲翻倍输出与薄板反射损耗（30000/120000 次，铱板永久不损耗）经 GameTest 验证；实机外观留人工验收。"
   },
   {
    "registry": "item",
@@ -5028,12 +5041,14 @@
    "factory": "register",
    "expression": "new ItemReactorCondensator(new Properties(), 20000)",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/gradual-recipes.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/GradualRecipeTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/GradualRecipeTests.java",
+    "neoforge/src/gameTest/java/ic2/neoforge/test/NuclearReactorTests.java",
+    "neoforge/src/gameTest/java/ic2/neoforge/test/CondenserTests.java"
    ],
-   "note": "物品、存热组件、tooltip 与耐久条已验证;反应堆吸热行为随 P12。"
+   "note": "物品、存热组件、tooltip 与耐久条已验证；堆内吸热（只吸不放、满则拒收）经堆内测试覆盖，渐变配方放热链保留；实机外观留人工验收。"
   },
   {
    "registry": "item",
@@ -5043,12 +5058,14 @@
    "factory": "register",
    "expression": "new ItemReactorCondensator(new Properties(), 100000)",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/gradual-recipes.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/GradualRecipeTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/GradualRecipeTests.java",
+    "neoforge/src/gameTest/java/ic2/neoforge/test/NuclearReactorTests.java",
+    "neoforge/src/gameTest/java/ic2/neoforge/test/CondenserTests.java"
    ],
-   "note": "物品、存热组件、tooltip 与耐久条已验证;反应堆吸热行为随 P12。"
+   "note": "物品、存热组件、tooltip 与耐久条已验证；堆内吸热（只吸不放、满则拒收）经堆内测试覆盖，渐变配方放热链保留；实机外观留人工验收。"
   },
   {
    "registry": "item",
@@ -5089,12 +5106,13 @@
    "factory": "register",
    "expression": "new ItemReactorUranium(new Properties(), 1)",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/fuel-rods.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/FuelRodTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/FuelRodTests.java",
+    "neoforge/src/gameTest/java/ic2/neoforge/test/NuclearReactorTests.java"
    ],
-   "note": "物品、存耗组件、鲜棒组件配料与双联合成经 GameTest 验证;堆内脉冲随 P12 反应堆本体。"
+   "note": "物品、存耗组件、鲜棒双联合成与耗尽换枯竭棒经 GameTest 验证；堆内脉冲、热量分配与 MOX 产能随堆热缩放由反应堆堆内测试覆盖；实机外观留人工验收。"
   },
   {
    "registry": "item",
@@ -5104,12 +5122,13 @@
    "factory": "register",
    "expression": "new ItemReactorUranium(new Properties(), 2)",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/fuel-rods.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/FuelRodTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/FuelRodTests.java",
+    "neoforge/src/gameTest/java/ic2/neoforge/test/NuclearReactorTests.java"
    ],
-   "note": "物品、存耗组件、鲜棒组件配料与双联合成经 GameTest 验证;堆内脉冲随 P12 反应堆本体。"
+   "note": "物品、存耗组件、鲜棒双联合成与耗尽换枯竭棒经 GameTest 验证；堆内脉冲、热量分配与 MOX 产能随堆热缩放由反应堆堆内测试覆盖；实机外观留人工验收。"
   },
   {
    "registry": "item",
@@ -5119,12 +5138,13 @@
    "factory": "register",
    "expression": "new ItemReactorUranium(new Properties(), 4)",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/fuel-rods.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/FuelRodTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/FuelRodTests.java",
+    "neoforge/src/gameTest/java/ic2/neoforge/test/NuclearReactorTests.java"
    ],
-   "note": "物品、存耗组件、鲜棒组件配料与双联合成经 GameTest 验证;堆内脉冲随 P12 反应堆本体。"
+   "note": "物品、存耗组件、鲜棒双联合成与耗尽换枯竭棒经 GameTest 验证；堆内脉冲、热量分配与 MOX 产能随堆热缩放由反应堆堆内测试覆盖；实机外观留人工验收。"
   },
   {
    "registry": "item",
@@ -5134,12 +5154,13 @@
    "factory": "register",
    "expression": "new ItemReactorMOX(new Properties(), 1)",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/fuel-rods.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/FuelRodTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/FuelRodTests.java",
+    "neoforge/src/gameTest/java/ic2/neoforge/test/NuclearReactorTests.java"
    ],
-   "note": "物品、存耗组件、鲜棒组件配料与双联合成经 GameTest 验证;堆内脉冲随 P12 反应堆本体。"
+   "note": "物品、存耗组件、鲜棒双联合成与耗尽换枯竭棒经 GameTest 验证；堆内脉冲、热量分配与 MOX 产能随堆热缩放由反应堆堆内测试覆盖；实机外观留人工验收。"
   },
   {
    "registry": "item",
@@ -5149,12 +5170,13 @@
    "factory": "register",
    "expression": "new ItemReactorMOX(new Properties(), 2)",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/fuel-rods.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/FuelRodTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/FuelRodTests.java",
+    "neoforge/src/gameTest/java/ic2/neoforge/test/NuclearReactorTests.java"
    ],
-   "note": "物品、存耗组件、鲜棒组件配料与双联合成经 GameTest 验证;堆内脉冲随 P12 反应堆本体。"
+   "note": "物品、存耗组件、鲜棒双联合成与耗尽换枯竭棒经 GameTest 验证；堆内脉冲、热量分配与 MOX 产能随堆热缩放由反应堆堆内测试覆盖；实机外观留人工验收。"
   },
   {
    "registry": "item",
@@ -5164,12 +5186,13 @@
    "factory": "register",
    "expression": "new ItemReactorMOX(new Properties(), 4)",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/fuel-rods.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/FuelRodTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/FuelRodTests.java",
+    "neoforge/src/gameTest/java/ic2/neoforge/test/NuclearReactorTests.java"
    ],
-   "note": "物品、存耗组件、鲜棒组件配料与双联合成经 GameTest 验证;堆内脉冲随 P12 反应堆本体。"
+   "note": "物品、存耗组件、鲜棒双联合成与耗尽换枯竭棒经 GameTest 验证；堆内脉冲、热量分配与 MOX 产能随堆热缩放由反应堆堆内测试覆盖；实机外观留人工验收。"
   },
   {
    "registry": "item",
