@@ -108,6 +108,8 @@ public final class RegistrationTests {
         FUNCTIONS.register("tool_interactions", () -> EntityTickingTests.wrap(ToolTests::rotationAndInsulation));
         FUNCTIONS.register("tool_crafting", () -> EntityTickingTests.wrap(ToolTests::crafting));
         FUNCTIONS.register("transformer_profiles", () -> EntityTickingTests.wrap(EnergyDeviceTests::profiles));
+        FUNCTIONS.register(
+                "transformer_charged_switch", () -> EnergyDeviceTests::chargedModeSwitch);
         FUNCTIONS.register("storage_state", () -> EntityTickingTests.wrap(EnergyDeviceTests::stateAndMenu));
         FUNCTIONS.register("transformer_chain", () -> EntityTickingTests.wrap(EnergyDeviceTests::transformerChain));
         FUNCTIONS.register("storage_input", () -> EntityTickingTests.wrap(EnergyDeviceTests::storageInput));

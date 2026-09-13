@@ -1271,12 +1271,13 @@
    "factory": "register",
    "expression": "new ItemBlockIc2(Ic2Blocks.LV_TRANSFORMER, new Properties())",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
+    "neoforge/src/main/java/ic2/neoforge/machine/TransformerBlockEntity.java",
     "neoforge/src/gameTest/java/ic2/neoforge/test/EnergyDeviceTests.java",
     "docs/migration/energy-devices.md"
    ],
-   "note": "方向、红石、菜单、保存及扳手拆卸已验证；完整 IC2 爆炸和多人持续验收仍待完成。"
+   "note": "Facing rules, redstone mode, reversible 4:1 transformation, persistence, wrench removal and the charged GT mode-switch blast are live and GameTest covered; full blast propagation stays an M12 milestone and multiplayer endurance stays a manual acceptance item."
   },
   {
    "registry": "item",
@@ -1286,12 +1287,13 @@
    "factory": "register",
    "expression": "new ItemBlockIc2(Ic2Blocks.MV_TRANSFORMER, new Properties())",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
+    "neoforge/src/main/java/ic2/neoforge/machine/TransformerBlockEntity.java",
     "neoforge/src/gameTest/java/ic2/neoforge/test/EnergyDeviceTests.java",
     "docs/migration/energy-devices.md"
    ],
-   "note": "方向、红石、菜单、保存及扳手拆卸已验证；完整 IC2 爆炸和多人持续验收仍待完成。"
+   "note": "Facing rules, redstone mode, reversible 4:1 transformation, persistence, wrench removal and the charged GT mode-switch blast are live and GameTest covered; full blast propagation stays an M12 milestone and multiplayer endurance stays a manual acceptance item."
   },
   {
    "registry": "item",
@@ -1301,12 +1303,13 @@
    "factory": "register",
    "expression": "new ItemBlockIc2(Ic2Blocks.HV_TRANSFORMER, new Properties().rarity(Rarity.UNCOMMON))",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
+    "neoforge/src/main/java/ic2/neoforge/machine/TransformerBlockEntity.java",
     "neoforge/src/gameTest/java/ic2/neoforge/test/EnergyDeviceTests.java",
     "docs/migration/energy-devices.md"
    ],
-   "note": "方向、红石、菜单、保存及扳手拆卸已验证；完整 IC2 爆炸和多人持续验收仍待完成。"
+   "note": "Facing rules, redstone mode, reversible 4:1 transformation, persistence, wrench removal and the charged GT mode-switch blast are live and GameTest covered; full blast propagation stays an M12 milestone and multiplayer endurance stays a manual acceptance item."
   },
   {
    "registry": "item",
@@ -1316,12 +1319,13 @@
    "factory": "register",
    "expression": "new ItemBlockIc2(Ic2Blocks.EV_TRANSFORMER, new Properties().rarity(Rarity.UNCOMMON))",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
+    "neoforge/src/main/java/ic2/neoforge/machine/TransformerBlockEntity.java",
     "neoforge/src/gameTest/java/ic2/neoforge/test/EnergyDeviceTests.java",
     "docs/migration/energy-devices.md"
    ],
-   "note": "方向、红石、菜单、保存及扳手拆卸已验证；完整 IC2 爆炸和多人持续验收仍待完成。"
+   "note": "Facing rules, redstone mode, reversible 4:1 transformation, persistence, wrench removal and the charged GT mode-switch blast are live and GameTest covered; full blast propagation stays an M12 milestone and multiplayer endurance stays a manual acceptance item."
   },
   {
    "registry": "item",
@@ -9596,12 +9600,12 @@
    "factory": "register",
    "expression": "Ic2TileEntityBlock.create(Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).strength(2.0F, 10.0F).requiresCorrectToolForDrops().sound(SoundType.METAL), TileEntityTransformerLV.class, true, Ic2TileEntityBlock.DefaultDrop.Self, Util.allFacings, true)",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
-    "neoforge/src/gameTest/java/ic2/neoforge/test/EnergyDeviceTests.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/TransformerBlockEntity.java",
     "docs/migration/energy-devices.md"
    ],
-   "note": "方向、红石、菜单、保存及扳手拆卸已验证；完整 IC2 爆炸和多人持续验收仍待完成。"
+   "note": "Facing rules, redstone mode, reversible 4:1 transformation, persistence, wrench removal and the charged GT mode-switch blast are live and GameTest covered; full blast propagation stays an M12 milestone and multiplayer endurance stays a manual acceptance item."
   },
   {
    "registry": "block",
@@ -9611,12 +9615,12 @@
    "factory": "register",
    "expression": "Ic2TileEntityBlock.create(Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).strength(2.0F, 10.0F).requiresCorrectToolForDrops().sound(SoundType.METAL), TileEntityTransformerMV.class, true, Ic2TileEntityBlock.DefaultDrop.Machine, Util.allFacings, true)",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
-    "neoforge/src/gameTest/java/ic2/neoforge/test/EnergyDeviceTests.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/TransformerBlockEntity.java",
     "docs/migration/energy-devices.md"
    ],
-   "note": "方向、红石、菜单、保存及扳手拆卸已验证；完整 IC2 爆炸和多人持续验收仍待完成。"
+   "note": "Facing rules, redstone mode, reversible 4:1 transformation, persistence, wrench removal and the charged GT mode-switch blast are live and GameTest covered; full blast propagation stays an M12 milestone and multiplayer endurance stays a manual acceptance item."
   },
   {
    "registry": "block",
@@ -9626,12 +9630,12 @@
    "factory": "register",
    "expression": "Ic2TileEntityBlock.create(Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).strength(2.0F, 10.0F).requiresCorrectToolForDrops().sound(SoundType.METAL), TileEntityTransformerHV.class, true, Ic2TileEntityBlock.DefaultDrop.Machine, Util.allFacings, true)",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
-    "neoforge/src/gameTest/java/ic2/neoforge/test/EnergyDeviceTests.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/TransformerBlockEntity.java",
     "docs/migration/energy-devices.md"
    ],
-   "note": "方向、红石、菜单、保存及扳手拆卸已验证；完整 IC2 爆炸和多人持续验收仍待完成。"
+   "note": "Facing rules, redstone mode, reversible 4:1 transformation, persistence, wrench removal and the charged GT mode-switch blast are live and GameTest covered; full blast propagation stays an M12 milestone and multiplayer endurance stays a manual acceptance item."
   },
   {
    "registry": "block",
@@ -9641,12 +9645,12 @@
    "factory": "register",
    "expression": "Ic2TileEntityBlock.create(Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).strength(2.0F, 10.0F).requiresCorrectToolForDrops().sound(SoundType.METAL), TileEntityTransformerEV.class, true, Ic2TileEntityBlock.DefaultDrop.Machine, Util.allFacings, true)",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
-    "neoforge/src/gameTest/java/ic2/neoforge/test/EnergyDeviceTests.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/TransformerBlockEntity.java",
     "docs/migration/energy-devices.md"
    ],
-   "note": "方向、红石、菜单、保存及扳手拆卸已验证；完整 IC2 爆炸和多人持续验收仍待完成。"
+   "note": "Facing rules, redstone mode, reversible 4:1 transformation, persistence, wrench removal and the charged GT mode-switch blast are live and GameTest covered; full blast propagation stays an M12 milestone and multiplayer endurance stays a manual acceptance item."
   },
   {
    "registry": "block",
@@ -13488,12 +13492,12 @@
    "factory": "register",
    "expression": "TileEntityTransformerLV::new",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
-    "neoforge/src/gameTest/java/ic2/neoforge/test/EnergyDeviceTests.java",
-    "docs/migration/energy-devices.md"
+    "neoforge/src/main/java/ic2/neoforge/machine/TransformerBlockEntity.java",
+    "neoforge/src/gameTest/java/ic2/neoforge/test/EnergyDeviceTests.java"
    ],
-   "note": "方向、红石、菜单、保存及扳手拆卸已验证；完整 IC2 爆炸和多人持续验收仍待完成。"
+   "note": "Facing rules, redstone mode, reversible 4:1 transformation, persistence, wrench removal and the charged GT mode-switch blast are live and GameTest covered; full blast propagation stays an M12 milestone and multiplayer endurance stays a manual acceptance item."
   },
   {
    "registry": "block_entity",
@@ -13503,12 +13507,12 @@
    "factory": "register",
    "expression": "TileEntityTransformerMV::new",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
-    "neoforge/src/gameTest/java/ic2/neoforge/test/EnergyDeviceTests.java",
-    "docs/migration/energy-devices.md"
+    "neoforge/src/main/java/ic2/neoforge/machine/TransformerBlockEntity.java",
+    "neoforge/src/gameTest/java/ic2/neoforge/test/EnergyDeviceTests.java"
    ],
-   "note": "方向、红石、菜单、保存及扳手拆卸已验证；完整 IC2 爆炸和多人持续验收仍待完成。"
+   "note": "Facing rules, redstone mode, reversible 4:1 transformation, persistence, wrench removal and the charged GT mode-switch blast are live and GameTest covered; full blast propagation stays an M12 milestone and multiplayer endurance stays a manual acceptance item."
   },
   {
    "registry": "block_entity",
@@ -13518,12 +13522,12 @@
    "factory": "register",
    "expression": "TileEntityTransformerHV::new",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
-    "neoforge/src/gameTest/java/ic2/neoforge/test/EnergyDeviceTests.java",
-    "docs/migration/energy-devices.md"
+    "neoforge/src/main/java/ic2/neoforge/machine/TransformerBlockEntity.java",
+    "neoforge/src/gameTest/java/ic2/neoforge/test/EnergyDeviceTests.java"
    ],
-   "note": "方向、红石、菜单、保存及扳手拆卸已验证；完整 IC2 爆炸和多人持续验收仍待完成。"
+   "note": "Facing rules, redstone mode, reversible 4:1 transformation, persistence, wrench removal and the charged GT mode-switch blast are live and GameTest covered; full blast propagation stays an M12 milestone and multiplayer endurance stays a manual acceptance item."
   },
   {
    "registry": "block_entity",
@@ -13533,12 +13537,12 @@
    "factory": "register",
    "expression": "TileEntityTransformerEV::new",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
-    "neoforge/src/gameTest/java/ic2/neoforge/test/EnergyDeviceTests.java",
-    "docs/migration/energy-devices.md"
+    "neoforge/src/main/java/ic2/neoforge/machine/TransformerBlockEntity.java",
+    "neoforge/src/gameTest/java/ic2/neoforge/test/EnergyDeviceTests.java"
    ],
-   "note": "方向、红石、菜单、保存及扳手拆卸已验证；完整 IC2 爆炸和多人持续验收仍待完成。"
+   "note": "Facing rules, redstone mode, reversible 4:1 transformation, persistence, wrench removal and the charged GT mode-switch blast are live and GameTest covered; full blast propagation stays an M12 milestone and multiplayer endurance stays a manual acceptance item."
   },
   {
    "registry": "block_entity",
@@ -14604,12 +14608,13 @@
    "factory": "registerManagedBe",
    "expression": "",
    "decision": "preserve",
-   "status": "partial",
-   "note": "MenuType 已注册、槽位绑定经全 kind 审计验证；legacy 变压器 GUI 的流量/传输模式调节展示未移植。",
+   "status": "implemented",
+   "note": "MenuType, slot binding, the mode switch button and input/output flow text are live via EnergyDeviceScreen and GameTest covered.",
    "evidence": [
-    "docs/migration/menu-audit.md",
     "neoforge/src/main/java/ic2/neoforge/menu/MachineMenu.java",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/MenuAuditTests.java"
+    "neoforge/src/main/java/ic2/neoforge/client/EnergyDeviceScreen.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/TransformerBlockEntity.java",
+    "neoforge/src/gameTest/java/ic2/neoforge/test/RegistrationTests.java"
    ]
   },
   {

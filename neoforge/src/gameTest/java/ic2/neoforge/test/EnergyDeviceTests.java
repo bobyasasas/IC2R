@@ -2,6 +2,8 @@ package ic2.neoforge.test;
 
 import ic2.core.energy.StorageRedstoneMode;
 import ic2.core.energy.TransformerMode;
+import ic2.core.energy.grid.EnergyMode;
+import ic2.neoforge.energy.EnergyConfig;
 import ic2.neoforge.item.ElectricItemEnergy;
 import ic2.neoforge.machine.*;
 import ic2.neoforge.menu.MachineMenu;
@@ -228,6 +230,29 @@ final class EnergyDeviceTests {
             var menu = new MachineMenu(1, player.getInventory(), restored);
             helper.assertTrue(
                     menu.slots.size() == 36, "Transformers must expose only player inventory");
+        }
+        helper.succeed();
+    }
+
+    /** Legacy semantics: a charged GT mode flip faults; the classic net toggles freely. */
+    static void chargedModeSwitch(GameTestHelper helper) {
+        place(helper, MID, MachineKind.LV_TRANSFORMER, Direction.NORTH);
+        var transformer = helper.getBlockEntity(MID, TransformerBlockEntity.class);
+        transformer.setMode(TransformerMode.STEP_UP);
+        transformer.energy().restore(128);
+        transformer.setMode(TransformerMode.STEP_DOWN);
+        if (EnergyConfig.MODE.get() == EnergyMode.GT) {
+            helper.assertTrue(
+                    helper.getBlockState(MID).isAir(),
+                    "A charged GT mode switch must blast the transformer away");
+        } else {
+            helper.assertTrue(
+                    !helper.getBlockState(MID).isAir(),
+                    "An IC2 mode switch must be safe while charged");
+            helper.assertTrue(
+                    !transformer.stepUp(), "The charged IC2 transformer must step down");
+            transformer.setMode(TransformerMode.STEP_UP);
+            helper.assertTrue(transformer.stepUp(), "IC2 modes must toggle freely");
         }
         helper.succeed();
     }
