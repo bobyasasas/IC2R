@@ -76,11 +76,13 @@ public final class ModFluids {
         return Collections.unmodifiableMap(result);
     }
 
-    /** Legacy createFluidBlock: six families carry special world behaviour, the rest stay plain. */
+    /** Legacy createFluidBlock: eight families carry special blocks, the rest stay plain. */
     private static LiquidBlock blockFor(
             FluidDefinition definition, net.minecraft.world.level.material.FlowingFluid fluid,
             BlockBehaviour.Properties p) {
         return switch (definition) {
+            case AIR -> new ic2.neoforge.fluid.AirFluidBlock(fluid, p);
+            case HYDROGEN -> new ic2.neoforge.fluid.HydrogenFluidBlock(fluid, p);
             case STEAM, SUPERHEATED_STEAM -> new ic2.neoforge.fluid.SteamFluidBlock(fluid, p);
             case UU_MATTER -> new ic2.neoforge.fluid.UUMatterFluidBlock(fluid, p);
             case HOT_WATER -> new ic2.neoforge.fluid.HotWaterFluidBlock(fluid, p);

@@ -154,6 +154,9 @@ public final class RegistrationTests {
                 "fluid_pahoehoe_burns", () -> EntityTickingTests.wrap(FluidBlockTests::pahoehoeBurnsEntities));
         FUNCTIONS.register(
                 "fluid_pahoehoe_basalt", () -> EntityTickingTests.wrap(FluidBlockTests::pahoehoeSolidifiesToBasalt));
+        FUNCTIONS.register(
+                "fluid_hydrogen_explodes", () -> EntityTickingTests.wrap(FluidBlockTests::hydrogenDetonatesNearFire));
+        FUNCTIONS.register("fluid_air_inert", () -> EntityTickingTests.wrap(FluidBlockTests::airBlockStaysInert));
         FUNCTIONS.register("iron_furnace", () -> EntityTickingTests.wrap(MachineTests::ironFurnace));
         FUNCTIONS.register("crafting_charge", () -> EntityTickingTests.wrap(CraftingTests::charge));
         FUNCTIONS.register("crafting_remainders", () -> EntityTickingTests.wrap(CraftingTests::remainder));

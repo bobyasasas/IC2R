@@ -1,5 +1,6 @@
 package ic2.neoforge.test;
 
+import ic2.neoforge.fluid.AirFluidBlock;
 import ic2.neoforge.fluid.FluidDefinition;
 import ic2.neoforge.fluid.HotWaterFluidBlock;
 import ic2.neoforge.fluid.PahoehoeLavaFluidBlock;
@@ -177,6 +178,41 @@ final class FluidBlockTests {
                 solidified.is(Blocks.BASALT) && !(solidified.getBlock() instanceof PahoehoeLavaFluidBlock),
                 "Pahoehoe lava touching water turns straight into basalt");
         helper.succeed();
+    }
+
+    static void hydrogenDetonatesNearFire(GameTestHelper helper) {
+        var level = (ServerLevel) helper.getLevel();
+        var hydrogenState = place(helper, FluidDefinition.HYDROGEN, FLUID);
+        var pos = helper.absolutePos(FLUID);
+        var markerPos = pos.east();
+        level.setBlock(markerPos, Blocks.GLASS.defaultBlockState(), 3);
+        var firePos = pos.west();
+        level.setBlock(firePos.below(), Blocks.NETHERRACK.defaultBlockState(), 3);
+        level.setBlock(firePos, Blocks.FIRE.defaultBlockState(), 3);
+        helper.assertTrue(
+                hydrogenState.getBlock() instanceof ic2.neoforge.fluid.HydrogenFluidBlock,
+                "The hydrogen family carries the legacy hydrogen block");
+        helper.assertTrue(
+                helper.getBlockState(FLUID).isAir(),
+                "The hydrogen source detonates away next to fire");
+        helper.assertTrue(
+                !level.getBlockState(markerPos).is(Blocks.GLASS),
+                "The detonation breaks blocks around the hydrogen");
+        helper.succeed();
+    }
+
+    static void airBlockStaysInert(GameTestHelper helper) {
+        place(helper, FluidDefinition.AIR, FLUID);
+        var pig = wadeInto(helper, FluidDefinition.AIR, FLUID);
+        helper.runAtTickTime(40, () -> {
+            helper.assertTrue(
+                    helper.getBlockState(FLUID).getBlock() instanceof AirFluidBlock,
+                    "The air fluid block stays in place");
+            helper.assertTrue(
+                    !pig.isOnFire() && pig.getHealth() >= pig.getMaxHealth(),
+                    "Air fluid does not hurt or ignite entities");
+            helper.succeed();
+        });
     }
 
     private static BlockState place(GameTestHelper helper, FluidDefinition definition, BlockPos pos) {

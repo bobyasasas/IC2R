@@ -16772,12 +16772,14 @@
    "factory": "create",
    "expression": "-100",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
-    "neoforge/src/main/java/ic2/neoforge/registration/ModFluids.java",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/FluidBlockTests.java",
+    "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java",
+    "neoforge/src/main/java/ic2/neoforge/fluid/AirFluidBlock.java",
+    "neoforge/src/main/java/ic2/neoforge/registration/ModFluids.java"
    ],
-   "note": "已注册流体、桶和渲染；特殊流体方块行为仍待迁移。"
+   "note": "已注册流体、桶和渲染；第58轮勘误：legacy AirBlock 为无行为空类（entityInside 空覆盖），port 由 AirFluidBlock 等效镜像承载（ModFluids.blockFor 分发），fluid_air_inert 测试覆盖惰性语义。"
   },
   {
    "registry": "fluid_family",
@@ -16787,12 +16789,14 @@
    "factory": "create",
    "expression": "-100",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
-    "neoforge/src/main/java/ic2/neoforge/registration/ModFluids.java",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/FluidBlockTests.java",
+    "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java",
+    "neoforge/src/main/java/ic2/neoforge/fluid/HydrogenFluidBlock.java",
+    "neoforge/src/main/java/ic2/neoforge/registration/ModFluids.java"
    ],
-   "note": "已注册流体、桶和渲染；特殊流体方块行为仍待迁移。"
+   "note": "已注册流体、桶和渲染；第58轮勘误：legacy HydrogenBlock 特殊行为已随 HydrogenFluidBlock 交付——氢源放置或邻居变化时 3×3×3 邻域内发现火即自毁并触发 2.0 威力破坏性爆炸，fluid_hydrogen_explodes 覆盖（26.1 火需 infiniburn 支撑，测试垫下界岩）。"
   },
   {
    "registry": "fluid_family",
@@ -17941,12 +17945,15 @@
    "factory": "dynamic fluid registration",
    "expression": "ic2:air",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
-    "neoforge/src/main/java/ic2/neoforge/registration/ModFluids.java",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/FluidBlockTests.java",
+    "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java",
+    "neoforge/src/main/java/ic2/neoforge/fluid/AirFluidBlock.java",
+    "neoforge/src/main/java/ic2/neoforge/registration/ModFluids.java"
    ],
-   "derived_from": "ic2:air"
+   "derived_from": "ic2:air",
+   "note": "第58轮交付：AirFluidBlock（legacy AirBlock 镜像：无行为惰性流体方块），ModFluids.blockFor 分发，fluid_air_inert 覆盖。"
   },
   {
    "registry": "item",
@@ -18016,12 +18023,15 @@
    "factory": "dynamic fluid registration",
    "expression": "ic2:hydrogen",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
-    "neoforge/src/main/java/ic2/neoforge/registration/ModFluids.java",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/FluidBlockTests.java",
+    "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java",
+    "neoforge/src/main/java/ic2/neoforge/fluid/HydrogenFluidBlock.java",
+    "neoforge/src/main/java/ic2/neoforge/registration/ModFluids.java"
    ],
-   "derived_from": "ic2:hydrogen"
+   "derived_from": "ic2:hydrogen",
+   "note": "第58轮交付：HydrogenFluidBlock（legacy HydrogenBlock 镜像：3×3×3 邻域火→自毁+2.0 威力破坏性爆炸），fluid_hydrogen_explodes 覆盖；实机观感留人工。"
   },
   {
    "registry": "item",
