@@ -21,6 +21,10 @@ final class MenuAuditTests {
         return switch (kind) {
             // Legacy adds 3 upgrade slots, but the port BE consumes no upgrades yet.
             case SORTING_MACHINE -> 6 * 7 + 11;
+            // Three computed crafting previews beside the 31 real slots.
+            case INDUSTRIAL_WORKBENCH -> 34;
+            // Nine hologram templates live outside the machine inventory.
+            case BATCH_CRAFTER -> 33;
             default -> kind.slots();
         };
     }
@@ -37,10 +41,17 @@ final class MenuAuditTests {
             Set<Long> bound = new HashSet<>();
             for (int slot = 0; slot < machineSlotCount; slot++) {
                 var menuSlot = menu.slots.get(slot);
-                // StackCopySlot shares one static empty container, so slots are identified
-                // by their backing handler plus the handler slot index.
-                long key = ((long) System.identityHashCode(handlerOf(menuSlot)) << 32)
-                        | menuSlot.getContainerSlot();
+                long key;
+                if (menuSlot
+                        instanceof net.neoforged.neoforge.transfer.item.ResourceHandlerSlot) {
+                    // StackCopySlot shares one static empty container, so slots are identified
+                    // by their backing handler plus the handler slot index.
+                    key = ((long) System.identityHashCode(handlerOf(menuSlot)) << 32)
+                            | menuSlot.getContainerSlot();
+                } else {
+                    // Computed and hologram slots own a private container; coordinates are unique.
+                    key = Long.MIN_VALUE | ((long) menuSlot.x << 16) | menuSlot.y;
+                }
                 helper.assertTrue(
                         bound.add(key),
                         kind + " machine slot " + slot + " must not overlap another slot binding"

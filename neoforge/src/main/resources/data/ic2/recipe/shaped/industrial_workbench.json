@@ -1,0 +1,18 @@
+{
+  "type": "ic2:shaped",
+  "pattern": [
+    " T ",
+    "HMC"
+  ],
+  "consuming": true,
+  "result": {
+    "id": "ic2:industrial_workbench",
+    "count": 1
+  },
+  "key": {
+    "T": "minecraft:crafting_table",
+    "H": "ic2:forge_hammer",
+    "M": "ic2:machine",
+    "C": "ic2:cutter"
+  }
+}

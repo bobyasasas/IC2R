@@ -992,6 +992,7 @@
   "ic2.work.kinetic": "储存：%s KU",
   "ic2.work.kinetic_rate": "%s KU/t",
   "ic2.work.voltage": "输出电压：%s EU",
+  "ic2.workbench.clear": "清空网格",
   "item.ic2.advanced_batpack": "高级电池背包",
   "item.ic2.advanced_charging_re_battery": "高级充电电池",
   "item.ic2.advanced_circuit": "高级电路板",

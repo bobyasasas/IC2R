@@ -1410,7 +1410,13 @@
    "factory": "register",
    "expression": "new ItemBlockIc2(Ic2Blocks.INDUSTRIAL_WORKBENCH, new Properties())",
    "decision": "preserve",
-   "status": "pending"
+   "status": "implemented",
+   "evidence": [
+    "neoforge/src/gameTest/java/ic2/neoforge/test/CrafterTests.java",
+    "neoforge/src/gameTest/java/ic2/neoforge/test/MenuAuditTests.java",
+    "docs/migration/crafters.md"
+   ],
+   "note": "工业工作台（31 槽+锤/钳 2x1 组合计算输出+清空网格回填缓冲）与批量制作机（9 全息模板+9 原料同配方校验+2EU/t×40t 连续合成）经 GameTest CrafterTests IC2/GT 双模式验证（预览/消耗/余量映射/能量 80EU）+MenuAuditTests 槽位审计。"
   },
   {
    "registry": "item",
@@ -1420,7 +1426,13 @@
    "factory": "register",
    "expression": "new ItemBlockIc2(Ic2Blocks.BATCH_CRAFTER, new Properties().rarity(Rarity.UNCOMMON))",
    "decision": "preserve",
-   "status": "pending"
+   "status": "implemented",
+   "evidence": [
+    "neoforge/src/gameTest/java/ic2/neoforge/test/CrafterTests.java",
+    "neoforge/src/gameTest/java/ic2/neoforge/test/MenuAuditTests.java",
+    "docs/migration/crafters.md"
+   ],
+   "note": "工业工作台（31 槽+锤/钳 2x1 组合计算输出+清空网格回填缓冲）与批量制作机（9 全息模板+9 原料同配方校验+2EU/t×40t 连续合成）经 GameTest CrafterTests IC2/GT 双模式验证（预览/消耗/余量映射/能量 80EU）+MenuAuditTests 槽位审计。"
   },
   {
    "registry": "item",
@@ -9596,7 +9608,13 @@
    "factory": "register",
    "expression": "Ic2TileEntityBlock.create(Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).strength(2.0F, 10.0F).requiresCorrectToolForDrops().sound(SoundType.METAL), TileEntityIndustrialWorkbench.class, false, Ic2TileEntityBlock.DefaultDrop.Self, Util.horizontalFacings, true)",
    "decision": "preserve",
-   "status": "pending"
+   "status": "implemented",
+   "evidence": [
+    "neoforge/src/gameTest/java/ic2/neoforge/test/CrafterTests.java",
+    "neoforge/src/gameTest/java/ic2/neoforge/test/MenuAuditTests.java",
+    "docs/migration/crafters.md"
+   ],
+   "note": "工业工作台（31 槽+锤/钳 2x1 组合计算输出+清空网格回填缓冲）与批量制作机（9 全息模板+9 原料同配方校验+2EU/t×40t 连续合成）经 GameTest CrafterTests IC2/GT 双模式验证（预览/消耗/余量映射/能量 80EU）+MenuAuditTests 槽位审计。"
   },
   {
    "registry": "block",
@@ -9606,7 +9624,13 @@
    "factory": "register",
    "expression": "Ic2TileEntityBlock.create(Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).strength(2.0F, 10.0F).requiresCorrectToolForDrops().sound(SoundType.METAL), TileEntityBatchCrafter.class, true, Ic2TileEntityBlock.DefaultDrop.AdvMachine, Util.horizontalFacings, true)",
    "decision": "preserve",
-   "status": "pending"
+   "status": "implemented",
+   "evidence": [
+    "neoforge/src/gameTest/java/ic2/neoforge/test/CrafterTests.java",
+    "neoforge/src/gameTest/java/ic2/neoforge/test/MenuAuditTests.java",
+    "docs/migration/crafters.md"
+   ],
+   "note": "工业工作台（31 槽+锤/钳 2x1 组合计算输出+清空网格回填缓冲）与批量制作机（9 全息模板+9 原料同配方校验+2EU/t×40t 连续合成）经 GameTest CrafterTests IC2/GT 双模式验证（预览/消耗/余量映射/能量 80EU）+MenuAuditTests 槽位审计。"
   },
   {
    "registry": "block",
@@ -13415,7 +13439,13 @@
    "factory": "register",
    "expression": "TileEntityIndustrialWorkbench::new",
    "decision": "preserve",
-   "status": "pending"
+   "status": "implemented",
+   "evidence": [
+    "neoforge/src/gameTest/java/ic2/neoforge/test/CrafterTests.java",
+    "neoforge/src/gameTest/java/ic2/neoforge/test/MenuAuditTests.java",
+    "docs/migration/crafters.md"
+   ],
+   "note": "工业工作台（31 槽+锤/钳 2x1 组合计算输出+清空网格回填缓冲）与批量制作机（9 全息模板+9 原料同配方校验+2EU/t×40t 连续合成）经 GameTest CrafterTests IC2/GT 双模式验证（预览/消耗/余量映射/能量 80EU）+MenuAuditTests 槽位审计。"
   },
   {
    "registry": "block_entity",
@@ -13425,7 +13455,13 @@
    "factory": "register",
    "expression": "TileEntityBatchCrafter::new",
    "decision": "preserve",
-   "status": "pending"
+   "status": "implemented",
+   "evidence": [
+    "neoforge/src/gameTest/java/ic2/neoforge/test/CrafterTests.java",
+    "neoforge/src/gameTest/java/ic2/neoforge/test/MenuAuditTests.java",
+    "docs/migration/crafters.md"
+   ],
+   "note": "工业工作台（31 槽+锤/钳 2x1 组合计算输出+清空网格回填缓冲）与批量制作机（9 全息模板+9 原料同配方校验+2EU/t×40t 连续合成）经 GameTest CrafterTests IC2/GT 双模式验证（预览/消耗/余量映射/能量 80EU）+MenuAuditTests 槽位审计。"
   },
   {
    "registry": "block_entity",
@@ -14359,8 +14395,13 @@
    "factory": "registerManagedBe",
    "expression": "",
    "decision": "preserve",
-   "status": "pending",
-   "note": "legacy 工业工作台 GUI（3x3 合成+工具槽）未移植。"
+   "status": "implemented",
+   "note": "工业工作台（31 槽+锤/钳 2x1 组合计算输出+清空网格回填缓冲）与批量制作机（9 全息模板+9 原料同配方校验+2EU/t×40t 连续合成）经 GameTest CrafterTests IC2/GT 双模式验证（预览/消耗/余量映射/能量 80EU）+MenuAuditTests 槽位审计。",
+   "evidence": [
+    "neoforge/src/gameTest/java/ic2/neoforge/test/CrafterTests.java",
+    "neoforge/src/gameTest/java/ic2/neoforge/test/MenuAuditTests.java",
+    "docs/migration/crafters.md"
+   ]
   },
   {
    "registry": "menu",
@@ -14370,8 +14411,13 @@
    "factory": "registerManagedBe",
    "expression": "",
    "decision": "preserve",
-   "status": "pending",
-   "note": "批量制作机 GUI 未移植，与批量制作机功能切片同批。"
+   "status": "implemented",
+   "note": "工业工作台（31 槽+锤/钳 2x1 组合计算输出+清空网格回填缓冲）与批量制作机（9 全息模板+9 原料同配方校验+2EU/t×40t 连续合成）经 GameTest CrafterTests IC2/GT 双模式验证（预览/消耗/余量映射/能量 80EU）+MenuAuditTests 槽位审计。",
+   "evidence": [
+    "neoforge/src/gameTest/java/ic2/neoforge/test/CrafterTests.java",
+    "neoforge/src/gameTest/java/ic2/neoforge/test/MenuAuditTests.java",
+    "docs/migration/crafters.md"
+   ]
   },
   {
    "registry": "menu",

@@ -65,7 +65,6 @@ public final class MachineMenu extends AbstractContainerMenu {
         this.kind = kind;
         this.position = position.immutable();
         this.machine = machine;
-        machineSlots = inventory.size();
         data =
                 machine == null
                         ? new SimpleContainerData(MachineMenuData.SIZE)
@@ -74,6 +73,69 @@ public final class MachineMenu extends AbstractContainerMenu {
             addFluidContainerSlot(inventory, 0, 48, 72);
             addOutputSlot(inventory, 1, 66, 72);
             addBatterySlot(inventory, 2, 8, 72);
+        } else if (kind == MachineKind.INDUSTRIAL_WORKBENCH) {
+            for (int y = 0; y < 3; y++)
+                for (int x = 0; x < 3; x++)
+                    addSlot(
+                            new ResourceHandlerSlot(
+                                    inventory, inventory::set, x + y * 3, 30 + x * 18, 43 + y * 18));
+            for (int y = 0; y < 2; y++)
+                for (int x = 0; x < 9; x++)
+                    addSlot(
+                            new ResourceHandlerSlot(
+                                    inventory,
+                                    inventory::set,
+                                    IndustrialWorkbenchBlockEntity.BUFFER + x + y * 9,
+                                    8 + x * 18,
+                                    106 + y * 18));
+            addToolSlot(
+                    inventory,
+                    IndustrialWorkbenchBlockEntity.HAMMER_TOOL,
+                    7,
+                    17,
+                    ic2.neoforge.registration.ModTools.FORGE_HAMMERS);
+            addSlot(
+                    new ResourceHandlerSlot(
+                            inventory,
+                            inventory::set,
+                            IndustrialWorkbenchBlockEntity.HAMMER_INPUT,
+                            25,
+                            17));
+            addToolSlot(
+                    inventory,
+                    IndustrialWorkbenchBlockEntity.CUTTER_TOOL,
+                    91,
+                    17,
+                    ic2.neoforge.registration.ModTools.WIRE_CUTTERS);
+            addSlot(
+                    new ResourceHandlerSlot(
+                            inventory,
+                            inventory::set,
+                            IndustrialWorkbenchBlockEntity.CUTTER_INPUT,
+                            109,
+                            17));
+            addCraftResultSlot(124, 61, 0);
+            addCraftResultSlot(69, 17, 1);
+            addCraftResultSlot(153, 17, 2);
+        } else if (kind == MachineKind.BATCH_CRAFTER) {
+            var hologram =
+                    machine instanceof BatchCrafterBlockEntity batch
+                            ? batch.hologram()
+                            : new MachineInventory(9, () -> {}, (slot, item) -> true, slot -> 1);
+            for (int y = 0; y < 3; y++)
+                for (int x = 0; x < 3; x++)
+                    addSlot(
+                            new HologramSlot(
+                                    hologram, x + y * 3, 30 + x * 18, 17 + y * 18, machine != null));
+            addOutputSlot(inventory, BatchCrafterBlockEntity.OUTPUT, 124, 35);
+            for (int slot = 0; slot < 9; slot++)
+                addSlot(
+                        new ResourceHandlerSlot(
+                                inventory, inventory::set, slot, 8 + slot * 18, 84));
+            for (int slot = 0; slot < 9; slot++)
+                addOutputSlot(
+                        inventory, BatchCrafterBlockEntity.CONTAINERS + slot, 8 + slot * 18, 102);
+            addBatterySlot(inventory, BatchCrafterBlockEntity.BATTERY, 8, 62);
         } else if (kind == MachineKind.STEAM_KINETIC_GENERATOR) {
             addSlot(
                     new ResourceHandlerSlot(inventory, inventory::set, 0, 80, 18) {
@@ -627,8 +689,52 @@ public final class MachineMenu extends AbstractContainerMenu {
                         });
             }
         }
+        machineSlots = slots.size();
         addStandardInventorySlots(playerInventory, 8, kind.inventoryY());
         addDataSlots(data);
+    }
+
+    /** Tool combos accept only their legacy tool tag (forge hammers, wire cutters). */
+    private void addToolSlot(
+            MachineInventory inventory,
+            int slot,
+            int x,
+            int y,
+            net.minecraft.tags.TagKey<net.minecraft.world.item.Item> tag) {
+        addSlot(
+                new ResourceHandlerSlot(inventory, inventory::set, slot, x, y) {
+                    @Override
+                    public boolean mayPlace(ItemStack stack) {
+                        return stack.getItem().builtInRegistryHolder().is(tag);
+                    }
+
+                    @Override
+                    public int getMaxStackSize() {
+                        return 1;
+                    }
+                });
+    }
+
+    /** Computed crafting previews: server authoritative, consumed through the BE on take. */
+    private void addCraftResultSlot(int x, int y, int combo) {
+        addSlot(
+                new CraftResultSlot(
+                        x,
+                        y,
+                        machine != null,
+                        () ->
+                                machine
+                                                instanceof
+                                                ic2.neoforge.machine.IndustrialWorkbenchBlockEntity
+                                                        workbench
+                                        ? workbench.preview(combo)
+                                        : ItemStack.EMPTY,
+                        player -> {
+                            if (machine
+                                    instanceof
+                                    ic2.neoforge.machine.IndustrialWorkbenchBlockEntity workbench)
+                                workbench.consumeCraft(player, combo);
+                        }));
     }
 
     private void addInstalledParts(
@@ -747,11 +853,23 @@ public final class MachineMenu extends AbstractContainerMenu {
     @Override
     public boolean clickMenuButton(Player player, int id) {
         if (player.containerMenu != this || !stillValid(player) || machine == null) return false;
+        if (machine instanceof ic2.neoforge.machine.BatchCrafterBlockEntity batch)
+            return batch.hologramClick(player, id);
+        if (machine instanceof ic2.neoforge.machine.IndustrialWorkbenchBlockEntity workbench)
+            return id == 0 && workbench.clearGrid(player);
         if (machine instanceof ic2.neoforge.machine.TankBlockEntity tank)
             return (id == 0 || id == 1) && tank.transferCursor(player, this, id == 1);
         if (machine instanceof ic2.neoforge.machine.CokeKilnGrateBlockEntity grate)
             return (id == 0 || id == 1) && grate.transferCursor(player, this, id == 1);
         return machine.menuAction(id);
+    }
+
+    /** Computed outputs must not join double-click pickup-all (legacy ContainerIndustrialWorkbench). */
+    @Override
+    public boolean canTakeItemForPickAll(ItemStack stack, Slot slot) {
+        return !(slot instanceof CraftResultSlot)
+                && !(slot instanceof HologramSlot)
+                && super.canTakeItemForPickAll(stack, slot);
     }
 
     /** The server-side machine behind this menu, for screens that render machine state. */
@@ -794,6 +912,21 @@ public final class MachineMenu extends AbstractContainerMenu {
             return ic2.neoforge.machine.SteamTurbineBlockEntity.rotor(ItemResource.of(stack))
                     ? 0
                     : -1;
+        if (kind == MachineKind.INDUSTRIAL_WORKBENCH) {
+            if (stack.getItem()
+                    .builtInRegistryHolder()
+                    .is(ic2.neoforge.registration.ModTools.FORGE_HAMMERS))
+                return IndustrialWorkbenchBlockEntity.HAMMER_TOOL;
+            if (stack.getItem()
+                    .builtInRegistryHolder()
+                    .is(ic2.neoforge.registration.ModTools.WIRE_CUTTERS))
+                return IndustrialWorkbenchBlockEntity.CUTTER_TOOL;
+            return IndustrialWorkbenchBlockEntity.BUFFER;
+        }
+        if (kind == MachineKind.BATCH_CRAFTER)
+            return stack.getItem() instanceof ElectricItem
+                    ? BatchCrafterBlockEntity.BATTERY
+                    : BatchCrafterBlockEntity.INGREDIENTS;
         if (kind == MachineKind.CONDENSER) {
             if (stack.is(ic2.neoforge.registration.ModReactorItems.HEAT_VENT.get())) return 3;
             if (stack.getItem() instanceof ElectricItem) return 2;

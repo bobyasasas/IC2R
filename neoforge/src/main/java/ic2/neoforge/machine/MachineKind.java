@@ -94,7 +94,9 @@ public enum MachineKind implements StringRepresentable {
     CROP_HARVESTER("crop_harvester", 10000, 15, 0, 0),
     TESLA_COIL("tesla_coil", 10000, 0, 0, 0),
     TERRAFORMER("terraformer", 100000, 0, 0, 0),
-    LUMINATOR("luminator", 5, 0, 0, 0);
+    LUMINATOR("luminator", 5, 0, 0, 0),
+    INDUSTRIAL_WORKBENCH("industrial_workbench", 0, 31, 0, 0),
+    BATCH_CRAFTER("batch_crafter", 20000, 20, 40, 2);
 
     public static final Codec<MachineKind> CODEC =
             StringRepresentable.fromEnum(MachineKind::values);
@@ -239,10 +241,13 @@ public enum MachineKind implements StringRepresentable {
     }
 
     public int menuWidth() {
+        if (this == INDUSTRIAL_WORKBENCH) return 194;
         return upgradable() || this == FLUID_REGULATOR || this == STEAM_GENERATOR ? 202 : 176;
     }
 
     public int menuHeight() {
+        if (this == INDUSTRIAL_WORKBENCH) return 228;
+        if (this == BATCH_CRAFTER) return 206;
         if (this == STEAM_GENERATOR) return 238;
         if (this == ENERGY_O_MAT) return 184;
         if (this == PERSONAL_CHEST) return 222;

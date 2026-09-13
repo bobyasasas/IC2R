@@ -2103,8 +2103,8 @@
     {
       "source": "shaped/batch_crafter.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:batch_crafter"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/batch_crafter.json"
     },
     {
       "source": "shaped/batpack.json",
@@ -2781,8 +2781,8 @@
     {
       "source": "shaped/industrial_workbench.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:industrial_workbench"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/industrial_workbench.json"
     },
     {
       "source": "shaped/iridium.json",

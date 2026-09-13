@@ -44,6 +44,10 @@ public final class ModTools {
     public static final TagKey<Block> WRENCH_TARGETS =
             TagKey.create(
                     Registries.BLOCK, Identifier.fromNamespaceAndPath("ic2", "mineable/wrench"));
+    public static final TagKey<Item> FORGE_HAMMERS =
+            TagKey.create(Registries.ITEM, Identifier.fromNamespaceAndPath("ic2", "forge_hammers"));
+    public static final TagKey<Item> WIRE_CUTTERS =
+            TagKey.create(Registries.ITEM, Identifier.fromNamespaceAndPath("ic2", "wire_cutters"));
     private static final TagKey<Item> TOOL_REPAIRS =
             ItemTags.create(
                     Identifier.fromNamespaceAndPath(IndustrialCraft.MOD_ID, "repairs_bronze_tool"));

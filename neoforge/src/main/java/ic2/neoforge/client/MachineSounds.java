@@ -151,7 +151,9 @@ final class MachineSounds {
                     SOLAR_GENERATOR,
                     LUMINATOR,
                     COKE_KILN_HATCH,
-                    COKE_KILN_GRATE ->
+                    COKE_KILN_GRATE,
+                    INDUSTRIAL_WORKBENCH,
+                    BATCH_CRAFTER ->
                     null;
             case ELECTROLYZER -> ModSounds.MACHINE_ELECTROLYZER_LOOP.get();
             case TERRAFORMER -> ModSounds.MACHINE_TERRAFORMER_LOOP.get();

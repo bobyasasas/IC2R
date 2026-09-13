@@ -116,6 +116,8 @@ public final class RegistrationTests {
         FUNCTIONS.register("canner_fill_empty", () -> EntityTickingTests.wrap(CannerTests::fillAndEmpty));
         FUNCTIONS.register("canner_enrichment_rollback", () -> EntityTickingTests.wrap(CannerTests::enrichmentRollback));
         FUNCTIONS.register("canner_state_buttons", () -> EntityTickingTests.wrap(CannerTests::stateAndButtons));
+        FUNCTIONS.register("crafter_workbench", () -> EntityTickingTests.wrap(CrafterTests::workbench));
+        FUNCTIONS.register("crafter_batch", () -> EntityTickingTests.wrap(CrafterTests::batch));
 
         FUNCTIONS.register("fluid_world", () -> EntityTickingTests.wrap(FluidTests::worldInteraction));
         FUNCTIONS.register("fluid_families", () -> EntityTickingTests.wrap(FluidTests::families));

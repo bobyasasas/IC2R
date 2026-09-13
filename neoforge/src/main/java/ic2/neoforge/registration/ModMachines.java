@@ -202,6 +202,9 @@ public final class ModMachines {
             case TESLA_COIL -> new ic2.neoforge.machine.TeslaCoilBlockEntity(pos, state);
             case TERRAFORMER -> new ic2.neoforge.machine.TerraformerBlockEntity(pos, state);
             case LUMINATOR -> new ic2.neoforge.machine.LuminatorBlockEntity(pos, state);
+            case INDUSTRIAL_WORKBENCH ->
+                    new ic2.neoforge.machine.IndustrialWorkbenchBlockEntity(pos, state);
+            case BATCH_CRAFTER -> new ic2.neoforge.machine.BatchCrafterBlockEntity(pos, state);
         };
     }
 

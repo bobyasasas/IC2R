@@ -992,6 +992,7 @@
   "ic2.work.kinetic": "Stored: %s KU",
   "ic2.work.kinetic_rate": "%s KU/t",
   "ic2.work.voltage": "Output: %s EU",
+  "ic2.workbench.clear": "Clear Grid",
   "item.ic2.advanced_batpack": "Adv.Batpack",
   "item.ic2.advanced_charging_re_battery": "Advanced Charging Battery",
   "item.ic2.advanced_circuit": "Advanced Circuit",
