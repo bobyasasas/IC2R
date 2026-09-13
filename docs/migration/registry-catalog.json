@@ -2005,12 +2005,13 @@
    "factory": "register",
    "expression": "new ItemBlockIc2(Ic2Blocks.CONDENSER, new Properties())",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/condenser.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/CondenserTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/CondenserTests.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/CondenserBlockEntity.java"
    ],
-   "note": "冷凝事务、批次余额、缺电、变压器、容器与端口已接入；蒸汽生产链、多人验收和散热片在完整反应堆中的热效应待迁移。"
+   "note": "Audit round 37: legacy TileEntityCondenser (100000 steam tank, 1000 distilled-water tank, 10000 credit batch yielding 100 mB, 100+vents*100 mB drain at vents*2 EU, 4 single heat-vent slots, transformer upgradable tier) is ported by CondenserBlockEntity with the atomic Condensation plan; CondenserTests seven cases cover it."
   },
   {
    "registry": "item",
@@ -2046,12 +2047,13 @@
    "factory": "register",
    "expression": "new ItemBlockIc2(Ic2Blocks.FLUID_REGULATOR, new Properties())",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/fluid-regulator.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/FluidRegulatorTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/FluidRegulatorTests.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/FluidRegulatorBlockEntity.java"
    ],
-   "note": "有界流量、按秒或刻调度、部分目标接收守恒、原生流体与EU事务、重载额度及菜单权限已接入；客户端与多人性能验收持续验证。"
+   "note": "Audit round 37: legacy TileEntityFluidRegulator (per-second / per-tick delivery modes, 0-1000 mB setting, flat 10 EU per delivery, front-face output, side connectivity) is ported by FluidRegulatorBlockEntity with the FlowRegulator simulation; FluidRegulatorTests partialTarget/cadence/portsAndBlockedPower/menuSettings cover it. Native transfer conservation replaces the legacy full-drain-on-partial-accept flaw, as recorded in fluid-regulator.md."
   },
   {
    "registry": "item",
@@ -2090,11 +2092,13 @@
    "factory": "register",
    "expression": "new ItemBlockIc2(Ic2Blocks.SOLAR_DISTILLER, new Properties())",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/solar-distiller.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/SolarDistillerTests.java"
-   ]
+    "neoforge/src/gameTest/java/ic2/neoforge/test/SolarDistillerTests.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/SolarDistillerBlockEntity.java"
+   ],
+   "note": "Audit round 37: legacy TileEntitySolarDistiller (1 mB water to distilled water per batch above 0.5 sky light sampled one block up, 10000 mB tanks, four container slots) is ported by SolarDistillerBlockEntity; SolarDistillerTests specs/daylight/containers cover it. Constant 72-tick rate kept: legacy HOT=36/COLD=144 biome tiers are unreachable through the EnvProxy stub, as recorded in solar-distiller.md."
   },
   {
    "registry": "item",
@@ -2421,12 +2425,13 @@
    "factory": "register",
    "expression": "new ItemBlockIc2(Ic2Blocks.FERMENTER, new Properties())",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/fermenter.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/FermenterTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/FermenterTests.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/FermenterBlockEntity.java"
    ],
-   "note": "数据包发酵配方、热量与物料事务、重载、容器及传输升级已接入；完整沼气转电链及多人性能验收持续验证。"
+   "note": "Audit round 37: legacy TileEntityFermenter (front-face heat draw capped at 100 per tick, 10000 biomass / 2000 biogas tanks, heat-buffered conversion, fertilizer every N processed mB) is ported by FermenterBlockEntity with the transactional FermentationCycle and datapack ic2:fermenting recipes; FermenterTests six cases including biofuelChain cover it. Remainder handling keeps partial fertilizer credit instead of resetting, as recorded in fermenter.md."
   },
   {
    "registry": "item",
@@ -8788,12 +8793,13 @@
    "factory": "register",
    "expression": "Ic2TileEntityBlock.create(Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).strength(2.0F, 10.0F).requiresCorrectToolForDrops().sound(SoundType.METAL), TileEntityCondenser.class, true, Ic2TileEntityBlock.DefaultDrop.Machine, Util.horizontalFacings, true)",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/condenser.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/CondenserTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/CondenserTests.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/CondenserBlockEntity.java"
    ],
-   "note": "冷凝事务、批次余额、缺电、变压器、容器与端口已接入；蒸汽生产链、多人验收和散热片在完整反应堆中的热效应待迁移。"
+   "note": "Audit round 37: legacy TileEntityCondenser (100000 steam tank, 1000 distilled-water tank, 10000 credit batch yielding 100 mB, 100+vents*100 mB drain at vents*2 EU, 4 single heat-vent slots, transformer upgradable tier) is ported by CondenserBlockEntity with the atomic Condensation plan; CondenserTests seven cases cover it."
   },
   {
    "registry": "block",
@@ -8829,12 +8835,13 @@
    "factory": "register",
    "expression": "Ic2TileEntityBlock.create(Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).strength(2.0F, 10.0F).requiresCorrectToolForDrops().sound(SoundType.METAL), TileEntityFluidRegulator.class, true, Ic2TileEntityBlock.DefaultDrop.Machine, Util.allFacings, true)",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/fluid-regulator.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/FluidRegulatorTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/FluidRegulatorTests.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/FluidRegulatorBlockEntity.java"
    ],
-   "note": "有界流量、按秒或刻调度、部分目标接收守恒、原生流体与EU事务、重载额度及菜单权限已接入；客户端与多人性能验收持续验证。"
+   "note": "Audit round 37: legacy TileEntityFluidRegulator (per-second / per-tick delivery modes, 0-1000 mB setting, flat 10 EU per delivery, front-face output, side connectivity) is ported by FluidRegulatorBlockEntity with the FlowRegulator simulation; FluidRegulatorTests partialTarget/cadence/portsAndBlockedPower/menuSettings cover it. Native transfer conservation replaces the legacy full-drain-on-partial-accept flaw, as recorded in fluid-regulator.md."
   },
   {
    "registry": "block",
@@ -8874,11 +8881,13 @@
    "factory": "register",
    "expression": "Ic2TileEntityBlock.create(Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).strength(2.0F, 10.0F).requiresCorrectToolForDrops().sound(SoundType.METAL), TileEntitySolarDistiller.class, false, Ic2TileEntityBlock.DefaultDrop.Machine, Util.noFacings, false)",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/solar-distiller.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/SolarDistillerTests.java"
-   ]
+    "neoforge/src/gameTest/java/ic2/neoforge/test/SolarDistillerTests.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/SolarDistillerBlockEntity.java"
+   ],
+   "note": "Audit round 37: legacy TileEntitySolarDistiller (1 mB water to distilled water per batch above 0.5 sky light sampled one block up, 10000 mB tanks, four container slots) is ported by SolarDistillerBlockEntity; SolarDistillerTests specs/daylight/containers cover it. Constant 72-tick rate kept: legacy HOT=36/COLD=144 biome tiers are unreachable through the EnvProxy stub, as recorded in solar-distiller.md."
   },
   {
    "registry": "block",
@@ -9175,12 +9184,13 @@
    "factory": "register",
    "expression": "Ic2TileEntityBlock.create(Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).strength(2.0F, 10.0F).requiresCorrectToolForDrops().sound(SoundType.METAL), TileEntityFermenter.class, true, Ic2TileEntityBlock.DefaultDrop.Machine, Util.allFacings, true)",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/fermenter.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/FermenterTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/FermenterTests.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/FermenterBlockEntity.java"
    ],
-   "note": "数据包发酵配方、热量与物料事务、重载、容器及传输升级已接入；完整沼气转电链及多人性能验收持续验证。"
+   "note": "Audit round 37: legacy TileEntityFermenter (front-face heat draw capped at 100 per tick, 10000 biomass / 2000 biogas tanks, heat-buffered conversion, fertilizer every N processed mB) is ported by FermenterBlockEntity with the transactional FermentationCycle and datapack ic2:fermenting recipes; FermenterTests six cases including biofuelChain cover it. Remainder handling keeps partial fertilizer credit instead of resetting, as recorded in fermenter.md."
   },
   {
    "registry": "block",
@@ -12274,12 +12284,13 @@
    "factory": "register",
    "expression": "TileEntityCondenser::new",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/condenser.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/CondenserTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/CondenserTests.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/CondenserBlockEntity.java"
    ],
-   "note": "冷凝事务、批次余额、缺电、变压器、容器与端口已接入；蒸汽生产链、多人验收和散热片在完整反应堆中的热效应待迁移。"
+   "note": "Audit round 37: legacy TileEntityCondenser (100000 steam tank, 1000 distilled-water tank, 10000 credit batch yielding 100 mB, 100+vents*100 mB drain at vents*2 EU, 4 single heat-vent slots, transformer upgradable tier) is ported by CondenserBlockEntity with the atomic Condensation plan; CondenserTests seven cases cover it."
   },
   {
    "registry": "block_entity",
@@ -12363,12 +12374,13 @@
    "factory": "register",
    "expression": "TileEntityFluidRegulator::new",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/fluid-regulator.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/FluidRegulatorTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/FluidRegulatorTests.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/FluidRegulatorBlockEntity.java"
    ],
-   "note": "有界流量、按秒或刻调度、部分目标接收守恒、原生流体与EU事务、重载额度及菜单权限已接入；客户端与多人性能验收持续验证。"
+   "note": "Audit round 37: legacy TileEntityFluidRegulator (per-second / per-tick delivery modes, 0-1000 mB setting, flat 10 EU per delivery, front-face output, side connectivity) is ported by FluidRegulatorBlockEntity with the FlowRegulator simulation; FluidRegulatorTests partialTarget/cadence/portsAndBlockedPower/menuSettings cover it. Native transfer conservation replaces the legacy full-drain-on-partial-accept flaw, as recorded in fluid-regulator.md."
   },
   {
    "registry": "block_entity",
@@ -12456,11 +12468,13 @@
    "factory": "register",
    "expression": "TileEntitySolarDistiller::new",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/solar-distiller.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/SolarDistillerTests.java"
-   ]
+    "neoforge/src/gameTest/java/ic2/neoforge/test/SolarDistillerTests.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/SolarDistillerBlockEntity.java"
+   ],
+   "note": "Audit round 37: legacy TileEntitySolarDistiller (1 mB water to distilled water per batch above 0.5 sky light sampled one block up, 10000 mB tanks, four container slots) is ported by SolarDistillerBlockEntity; SolarDistillerTests specs/daylight/containers cover it. Constant 72-tick rate kept: legacy HOT=36/COLD=144 biome tiers are unreachable through the EnvProxy stub, as recorded in solar-distiller.md."
   },
   {
    "registry": "block_entity",
@@ -13081,12 +13095,13 @@
    "factory": "register",
    "expression": "TileEntityFermenter::new",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/fermenter.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/FermenterTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/FermenterTests.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/FermenterBlockEntity.java"
    ],
-   "note": "数据包发酵配方、热量与物料事务、重载、容器及传输升级已接入；完整沼气转电链及多人性能验收持续验证。"
+   "note": "Audit round 37: legacy TileEntityFermenter (front-face heat draw capped at 100 per tick, 10000 biomass / 2000 biogas tanks, heat-buffered conversion, fertilizer every N processed mB) is ported by FermenterBlockEntity with the transactional FermentationCycle and datapack ic2:fermenting recipes; FermenterTests six cases including biofuelChain cover it. Remainder handling keeps partial fertilizer credit instead of resetting, as recorded in fermenter.md."
   },
   {
    "registry": "block_entity",
@@ -14126,12 +14141,13 @@
    "factory": "registerManagedBe",
    "expression": "",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/condenser.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/CondenserTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/CondenserTests.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/CondenserBlockEntity.java"
    ],
-   "note": "冷凝事务、批次余额、缺电、变压器、容器与端口已接入；蒸汽生产链、多人验收和散热片在完整反应堆中的热效应待迁移。"
+   "note": "Audit round 37: legacy TileEntityCondenser (100000 steam tank, 1000 distilled-water tank, 10000 credit batch yielding 100 mB, 100+vents*100 mB drain at vents*2 EU, 4 single heat-vent slots, transformer upgradable tier) is ported by CondenserBlockEntity with the atomic Condensation plan; CondenserTests seven cases cover it."
   },
   {
    "registry": "menu",
@@ -14168,12 +14184,13 @@
    "factory": "registerManagedBe",
    "expression": "",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/fluid-regulator.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/FluidRegulatorTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/FluidRegulatorTests.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/FluidRegulatorBlockEntity.java"
    ],
-   "note": "有界流量、按秒或刻调度、部分目标接收守恒、原生流体与EU事务、重载额度及菜单权限已接入；客户端与多人性能验收持续验证。"
+   "note": "Audit round 37: legacy TileEntityFluidRegulator (per-second / per-tick delivery modes, 0-1000 mB setting, flat 10 EU per delivery, front-face output, side connectivity) is ported by FluidRegulatorBlockEntity with the FlowRegulator simulation; FluidRegulatorTests partialTarget/cadence/portsAndBlockedPower/menuSettings cover it. Native transfer conservation replaces the legacy full-drain-on-partial-accept flaw, as recorded in fluid-regulator.md."
   },
   {
    "registry": "menu",
@@ -14198,11 +14215,13 @@
    "factory": "registerManagedBe",
    "expression": "",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/solar-distiller.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/SolarDistillerTests.java"
-   ]
+    "neoforge/src/gameTest/java/ic2/neoforge/test/SolarDistillerTests.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/SolarDistillerBlockEntity.java"
+   ],
+   "note": "Audit round 37: legacy TileEntitySolarDistiller (1 mB water to distilled water per batch above 0.5 sky light sampled one block up, 10000 mB tanks, four container slots) is ported by SolarDistillerBlockEntity; SolarDistillerTests specs/daylight/containers cover it. Constant 72-tick rate kept: legacy HOT=36/COLD=144 biome tiers are unreachable through the EnvProxy stub, as recorded in solar-distiller.md."
   },
   {
    "registry": "menu",
@@ -14289,12 +14308,13 @@
    "factory": "registerManagedBe",
    "expression": "",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/fermenter.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/FermenterTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/FermenterTests.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/FermenterBlockEntity.java"
    ],
-   "note": "数据包发酵配方、热量与物料事务、重载、容器及传输升级已接入；完整沼气转电链及多人性能验收持续验证。"
+   "note": "Audit round 37: legacy TileEntityFermenter (front-face heat draw capped at 100 per tick, 10000 biomass / 2000 biogas tanks, heat-buffered conversion, fertilizer every N processed mB) is ported by FermenterBlockEntity with the transactional FermentationCycle and datapack ic2:fermenting recipes; FermenterTests six cases including biofuelChain cover it. Remainder handling keeps partial fertilizer credit instead of resetting, as recorded in fermenter.md."
   },
   {
    "registry": "menu",
