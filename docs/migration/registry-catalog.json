@@ -6947,12 +6947,14 @@
    "factory": "register",
    "expression": "new ItemUpgradeModule(new Properties(), UpgradeType.overclocker)",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/upgrades.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/UpgradeTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/UpgradeTests.java",
+    "neoforge/src/main/java/ic2/neoforge/item/UpgradeItem.java",
+    "neoforge/src/gameTest/java/ic2/neoforge/test/UpgradeSuitabilityTests.java"
    ],
-   "note": "基础加工和罐装机支持升级槽、倍率、容量与自动传输；其他机器适用性待迁移。"
+   "note": "超频升级:时间0.7/能耗1.6倍率与批量加工全量接入;适用性矩阵本轮与legacy ItemUpgradeModule.isSuitableFor属性全表对齐,补齐磁化机/区块加载/高炉/物质发生器/泵/太阳能蒸馏等7处缺失;port默认规则对sorting_machine/miner/adv_miner/energy_o_mat等非Processing机器仍多放行加工件(超集差异,upgrades.md记档待裁决)。"
   },
   {
    "registry": "item",
@@ -6962,12 +6964,14 @@
    "factory": "register",
    "expression": "new ItemUpgradeModule(new Properties(), UpgradeType.transformer)",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/upgrades.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/UpgradeTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/UpgradeTests.java",
+    "neoforge/src/main/java/ic2/neoforge/item/UpgradeItem.java",
+    "neoforge/src/gameTest/java/ic2/neoforge/test/UpgradeSuitabilityTests.java"
    ],
-   "note": "基础加工和罐装机支持升级槽、倍率、容量与自动传输；其他机器适用性待迁移。"
+   "note": "变压升级:电压等级适配全量接入;适用性矩阵本轮与legacy UpgradableProperty全表对齐(含chunk_loader/crop_harvester/matter_generator补齐);磁化机port有3个升级槽但无消费逻辑与红石门控(recorded gap,upgrades.md记档)。"
   },
   {
    "registry": "item",
@@ -6977,12 +6981,14 @@
    "factory": "register",
    "expression": "new ItemUpgradeModule(new Properties(), UpgradeType.energy_storage)",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/upgrades.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/UpgradeTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/UpgradeTests.java",
+    "neoforge/src/main/java/ic2/neoforge/item/UpgradeItem.java",
+    "neoforge/src/gameTest/java/ic2/neoforge/test/UpgradeSuitabilityTests.java"
    ],
-   "note": "基础加工和罐装机支持升级槽、倍率、容量与自动传输；其他机器适用性待迁移。"
+   "note": "储能升级:+10,000 EU容量全量接入,移除升级时超额能量按legacy丢弃;适用性矩阵本轮与legacy属性全表对齐(chunk_loader/crop_harvester补齐)。"
   },
   {
    "registry": "item",
@@ -7006,12 +7012,14 @@
    "factory": "register",
    "expression": "new ItemUpgradeModule(new Properties(), UpgradeType.ejector)",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/upgrades.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/UpgradeTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/UpgradeTests.java",
+    "neoforge/src/main/java/ic2/neoforge/item/UpgradeItem.java",
+    "neoforge/src/gameTest/java/ic2/neoforge/test/UpgradeSuitabilityTests.java"
    ],
-   "note": "基础加工和罐装机支持升级槽、倍率、容量与自动传输；其他机器适用性待迁移。"
+   "note": "弹出升级:按处理比例自动输出,方向数据组件全量接入;适用性矩阵本轮与legacy属性全表对齐(chunk_loader/matter_generator/pump/solar_distiller补齐)。"
   },
   {
    "registry": "item",
@@ -7039,12 +7047,14 @@
    "factory": "register",
    "expression": "new ItemUpgradeModule(new Properties(), UpgradeType.pulling)",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/upgrades.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/UpgradeTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/UpgradeTests.java",
+    "neoforge/src/main/java/ic2/neoforge/item/UpgradeItem.java",
+    "neoforge/src/gameTest/java/ic2/neoforge/test/UpgradeSuitabilityTests.java"
    ],
-   "note": "基础加工和罐装机支持升级槽、倍率、容量与自动传输；其他机器适用性待迁移。"
+   "note": "抽入升级:自动输入按实际配方筛选,方向数据组件全量接入;适用性矩阵本轮与legacy属性全表对齐(chunk_loader/blast_furnace/cropmatron补齐)。"
   },
   {
    "registry": "item",
@@ -7072,12 +7082,14 @@
    "factory": "register",
    "expression": "new ItemUpgradeModule(new Properties(), UpgradeType.fluid_ejector)",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/upgrades.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/UpgradeTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/UpgradeTests.java",
+    "neoforge/src/main/java/ic2/neoforge/item/UpgradeItem.java",
+    "neoforge/src/gameTest/java/ic2/neoforge/test/UpgradeSuitabilityTests.java"
    ],
-   "note": "基础加工和罐装机支持升级槽、倍率、容量与自动传输；其他机器适用性待迁移。"
+   "note": "流体弹出升级:每堆叠每侧每刻50倍mB传输;适用性矩阵本轮与legacy属性全表对齐——罐装机(port由CANNER统一替代legacy fluid_bottler)/物质发生器/泵/太阳能蒸馏/蒸汽动能机接入。"
   },
   {
    "registry": "item",
@@ -7087,12 +7099,14 @@
    "factory": "register",
    "expression": "new ItemUpgradeModule(new Properties(), UpgradeType.fluid_pulling)",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/upgrades.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/UpgradeTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/UpgradeTests.java",
+    "neoforge/src/main/java/ic2/neoforge/item/UpgradeItem.java",
+    "neoforge/src/gameTest/java/ic2/neoforge/test/UpgradeSuitabilityTests.java"
    ],
-   "note": "基础加工和罐装机支持升级槽、倍率、容量与自动传输；其他机器适用性待迁移。"
+   "note": "流体抽入升级:流体输入自动传输;适用性矩阵本轮与legacy属性全表对齐——罐装机(CANNER)/高炉/洗矿机/电解机/农作物机/蒸汽动能机接入;matter_generator/chunk_loader/solar_distiller无FluidConsuming属性故排除(与legacy一致)。"
   },
   {
    "registry": "item",

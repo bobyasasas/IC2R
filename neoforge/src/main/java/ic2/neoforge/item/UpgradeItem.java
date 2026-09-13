@@ -54,16 +54,19 @@ public final class UpgradeItem extends Item {
         }
 
         public boolean suitable(MachineKind machine) {
-            // Legacy RedstoneSensitive machines (ItemUpgradeModule.isSuitableFor) — checked before
-            // the per-machine cases below, which only enumerate the directional kinds. The port
-            // magnetizer has no upgrade slots (pending parity), and the port replicator reads no
-            // redstone yet, mirroring legacy where TileEntityReplicator declares the property but
-            // wires no Redstone component, so the inverter is inert there in both codebases.
+            // Legacy ItemUpgradeModule.isSuitableFor folds each machine's UpgradableProperty set into
+            // these per-kind cases; the trailing default covers the plain processing machines.
+            // RedstoneSensitive machines (legacy declares RedstoneSensitive): induction furnace,
+            // matter generator, blast furnace, centrifuge, replicator, adv miner, magnetizer. The
+            // port replicator reads no redstone yet, mirroring legacy where TileEntityReplicator
+            // declares the property but wires no Redstone component, so the inverter is inert there
+            // in both codebases. The port magnetizer has no redstone gate either (recorded gap).
             if (this == REDSTONE_INVERTER)
                 return machine == MachineKind.ADV_MINER
                         || machine == MachineKind.BLAST_FURNACE
                         || machine == MachineKind.CENTRIFUGE
                         || machine == MachineKind.INDUCTION_FURNACE
+                        || machine == MachineKind.MAGNETIZER
                         || machine == MachineKind.MATTER_GENERATOR
                         || machine == MachineKind.REPLICATOR;
             // Legacy has no RemotelyAccessible machine and InvSlotUpgrade.getRemoteRange has no
@@ -73,15 +76,28 @@ public final class UpgradeItem extends Item {
             // Legacy cropmatron: transformer/energy storage/item consuming/fluid consuming.
             if (machine == MachineKind.CROPMATRON)
                 return this == TRANSFORMER || this == ENERGY_STORAGE || pulling();
-            // Legacy chunk loader properties: energy storage/transformer only (no processing).
+            // Legacy chunk loader: energy storage/transformer/item consuming/item producing —
+            // no fluid consuming, so the fluid pulling upgrade stays out.
             if (machine == MachineKind.CHUNK_LOADER)
-                return this == TRANSFORMER || this == ENERGY_STORAGE;
+                return this == TRANSFORMER
+                        || this == ENERGY_STORAGE
+                        || ejector()
+                        || this == PULLING
+                        || this == ADVANCED_PULLING;
             // Legacy crop harvester: transformer/energy storage/item producing.
             if (machine == MachineKind.CROP_HARVESTER)
                 return this == TRANSFORMER || this == ENERGY_STORAGE || ejector();
             if (machine == MachineKind.ITEM_BUFFER) return directional() && !fluid();
-            if (machine == MachineKind.BLAST_FURNACE) return directional() && !fluid();
-            if (machine == MachineKind.MATTER_GENERATOR) return directional() && !fluid();
+            // Legacy blast furnace: item consuming/item producing/fluid consuming.
+            if (machine == MachineKind.BLAST_FURNACE) return ejector() || pulling();
+            // Legacy matter generator: item consuming/item producing/fluid producing/transformer —
+            // no fluid consuming, so fluid pulling stays out.
+            if (machine == MachineKind.MATTER_GENERATOR)
+                return ejector()
+                        || this == PULLING
+                        || this == ADVANCED_PULLING
+                        || this == FLUID_EJECTOR
+                        || this == TRANSFORMER;
             if (machine == MachineKind.CONDENSER) return directional() || this == TRANSFORMER;
             if (machine == MachineKind.ELECTROLYZER) return this == FLUID_PULLING;
             if (machine == MachineKind.TANK) return fluid();
@@ -101,7 +117,10 @@ public final class UpgradeItem extends Item {
             return machine.upgradable()
                     && (!fluid()
                             || machine == MachineKind.CANNER
-                            || this == FLUID_PULLING && machine == MachineKind.ORE_WASHING_PLANT);
+                            || this == FLUID_PULLING && machine == MachineKind.ORE_WASHING_PLANT
+                            || this == FLUID_EJECTOR
+                                    && (machine == MachineKind.PUMP
+                                            || machine == MachineKind.SOLAR_DISTILLER));
         }
     }
 

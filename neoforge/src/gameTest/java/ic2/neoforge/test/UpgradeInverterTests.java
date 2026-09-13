@@ -61,13 +61,14 @@ final class UpgradeInverterTests {
                         && inverter.suitable(MachineKind.CENTRIFUGE)
                         && inverter.suitable(MachineKind.ADV_MINER)
                         && inverter.suitable(MachineKind.BLAST_FURNACE)
+                        && inverter.suitable(MachineKind.MAGNETIZER)
                         && inverter.suitable(MachineKind.MATTER_GENERATOR)
                         && inverter.suitable(MachineKind.REPLICATOR),
                 "Every legacy RedstoneSensitive machine with upgrade slots accepts the inverter");
         helper.assertTrue(
                 !inverter.suitable(MachineKind.ELECTRIC_FURNACE)
-                        && !inverter.suitable(MachineKind.MAGNETIZER),
-                "Plain electric machines reject the inverter and the port magnetizer has no slots");
+                        && !inverter.suitable(MachineKind.MINER),
+                "Plain electric machines and the miner reject the inverter");
         var remote = UpgradeItem.Kind.REMOTE_INTERFACE;
         helper.assertTrue(
                 !remote.suitable(MachineKind.INDUCTION_FURNACE)
