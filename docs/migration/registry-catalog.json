@@ -1768,12 +1768,13 @@
    "factory": "register",
    "expression": "new ItemBlockIc2(Ic2Blocks.ELECTRIC_HEAT_GENERATOR, new Properties())",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/work-energy.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/WorkEnergyTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/WorkEnergyTests.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/ElectricWorkBlockEntity.java"
    ],
-   "note": "原生事务热能／动能接口、方向、安装件、缓冲、重载及双模式转换链已接入；其余源设备和多人随 P10/M16 验收。"
+   "note": "Audit round 36: legacy TileEntityElectricHeatGenerator (10 single-coil slots at 10 HU each, 10000 tier-4 sink, min(request, energy/multiplier) draw with whole-unit floor) is ported by the ElectricWorkBlockEntity heat branch via WorkBuffer.generate(wholeUnits); WorkEnergyTests and the heat-chain GameTests cover it."
   },
   {
    "registry": "item",
@@ -1783,12 +1784,13 @@
    "factory": "register",
    "expression": "new ItemBlockIc2(Ic2Blocks.FLUID_HEAT_GENERATOR, new Properties())",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/fuel-heat.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/FuelHeatTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/FuelHeatTests.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/FuelHeatBlockEntity.java"
    ],
-   "note": "固体余热、流体预付批次、灰烬、事务能力、重载及真实转换链已接入；其余源设备和多人随 P10/M16 验收。"
+   "note": "Audit round 36: legacy TileEntityFluidHeatGenerator (10000 mB biogas tank, 10 mB per 20-tick burn batch at 32 x multiplier, converts only while reserve is below emission) is ported by the FuelHeatBlockEntity fluid branch; FuelHeatTests fluidPrepayment/fluidChain and menuTransport cover behaviour and menu."
   },
   {
    "registry": "item",
@@ -1798,11 +1800,13 @@
    "factory": "register",
    "expression": "new ItemBlockIc2(Ic2Blocks.RT_HEAT_GENERATOR, new Properties())",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/isotopic-heat.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/RtGeneratorTests.java"
-   ]
+    "neoforge/src/gameTest/java/ic2/neoforge/test/RtGeneratorTests.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/RtHeatGeneratorBlockEntity.java"
+   ],
+   "note": "Audit round 36: legacy TileEntityRTHeatGenerator (6 single-pellet slots, 2^(n-1) x 2.0 x multiplier emission, pellets never consumed, active while buffer holds) is ported by RtHeatGeneratorBlockEntity with RadioisotopeOutput; RtGeneratorTests covers it."
   },
   {
    "registry": "item",
@@ -1812,12 +1816,13 @@
    "factory": "register",
    "expression": "new ItemBlockIc2(Ic2Blocks.SOLID_HEAT_GENERATOR, new Properties())",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/fuel-heat.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/FuelHeatTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/FuelHeatTests.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/FuelHeatBlockEntity.java"
    ],
-   "note": "固体余热、流体预付批次、灰烬、事务能力、重载及真实转换链已接入；其余源设备和多人随 P10/M16 验收。"
+   "note": "Audit round 36: legacy TileEntitySolidHeatGenerator (burn time / 4, 50% ash on batch end gated by output-slot fit, burn-while-full, one-tick output delay) is ported by the FuelHeatBlockEntity solid branch; FuelHeatTests solidReserve/solidOutputAndFuel cover it."
   },
   {
    "registry": "item",
@@ -2099,12 +2104,14 @@
    "factory": "register",
    "expression": "new ItemBlockIc2(Ic2Blocks.STEAM_GENERATOR, new Properties())",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/steam-generator.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/SteamGeneratorTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/SteamGeneratorTests.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/SteamGeneratorBlockEntity.java",
+    "core/src/main/java/ic2/core/machine/SteamBoiler.java"
    ],
-   "note": "压力与温度、结垢、HU事务、直接流体分配、热爆炸、重载额度与阀门同步已接入，双级汽轮机循环已验证；多人验收待完成。"
+   "note": "Audit round 36: legacy TileEntitySteamGenerator work() loop (1200 HU cap, 5e-4 heat per HU, 500-degree overheat explosion 10 radius 0.01 with block removal, 374-degree superheat threshold, pressure valve 0-300, water rate 0-1000, calcification 100000 shutdown, x100 steam expansion, 1-in-10 pressure burst, rejected/100 condensate return, biome 45/25/0 ambient, 0.01 idle cooldown) is ported by SteamGeneratorBlockEntity plus SteamBoiler.step; SteamGeneratorTests and HeatExplosionTests cover it; NBT keys systemheat/calcification/pressurevalve/inputmb match legacy."
   },
   {
    "registry": "item",
@@ -8544,12 +8551,13 @@
    "factory": "register",
    "expression": "Ic2TileEntityBlock.create(Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).strength(2.0F, 10.0F).requiresCorrectToolForDrops().sound(SoundType.METAL), TileEntityElectricHeatGenerator.class, true, Ic2TileEntityBlock.DefaultDrop.Self, Util.allFacings, true)",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/work-energy.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/WorkEnergyTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/WorkEnergyTests.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/ElectricWorkBlockEntity.java"
    ],
-   "note": "原生事务热能／动能接口、方向、安装件、缓冲、重载及双模式转换链已接入；其余源设备和多人随 P10/M16 验收。"
+   "note": "Audit round 36: legacy TileEntityElectricHeatGenerator (10 single-coil slots at 10 HU each, 10000 tier-4 sink, min(request, energy/multiplier) draw with whole-unit floor) is ported by the ElectricWorkBlockEntity heat branch via WorkBuffer.generate(wholeUnits); WorkEnergyTests and the heat-chain GameTests cover it."
   },
   {
    "registry": "block",
@@ -8559,12 +8567,13 @@
    "factory": "register",
    "expression": "Ic2TileEntityBlock.create(Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).strength(2.0F, 10.0F).requiresCorrectToolForDrops().sound(SoundType.METAL), TileEntityFluidHeatGenerator.class, true, Ic2TileEntityBlock.DefaultDrop.Self, Util.allFacings, true)",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/fuel-heat.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/FuelHeatTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/FuelHeatTests.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/FuelHeatBlockEntity.java"
    ],
-   "note": "固体余热、流体预付批次、灰烬、事务能力、重载及真实转换链已接入；其余源设备和多人随 P10/M16 验收。"
+   "note": "Audit round 36: legacy TileEntityFluidHeatGenerator (10000 mB biogas tank, 10 mB per 20-tick burn batch at 32 x multiplier, converts only while reserve is below emission) is ported by the FuelHeatBlockEntity fluid branch; FuelHeatTests fluidPrepayment/fluidChain and menuTransport cover behaviour and menu."
   },
   {
    "registry": "block",
@@ -8574,12 +8583,13 @@
    "factory": "register",
    "expression": "Ic2TileEntityBlock.create(Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).strength(2.0F, 10.0F).requiresCorrectToolForDrops().sound(SoundType.METAL), TileEntityRTHeatGenerator.class, true, Ic2TileEntityBlock.DefaultDrop.Self, Util.allFacings, true)",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/isotopic-heat.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/RtGeneratorTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/RtGeneratorTests.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/RtHeatGeneratorBlockEntity.java"
    ],
-   "note": "六槽同位素燃料、指数输出曲线、单面热输出、热缓冲持久化与 LV 供电/电池充电已接入；配方前置（钚、反应堆室）随 P09/P12 迁移，辐射行为随 P16。"
+   "note": "Audit round 36: legacy TileEntityRTHeatGenerator (6 single-pellet slots, 2^(n-1) x 2.0 x multiplier emission, pellets never consumed, active while buffer holds) is ported by RtHeatGeneratorBlockEntity with RadioisotopeOutput; RtGeneratorTests covers it."
   },
   {
    "registry": "block",
@@ -8589,12 +8599,13 @@
    "factory": "register",
    "expression": "Ic2TileEntityBlock.create(Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).strength(2.0F, 10.0F).requiresCorrectToolForDrops().sound(SoundType.METAL), TileEntitySolidHeatGenerator.class, true, Ic2TileEntityBlock.DefaultDrop.Self, Util.allFacings, true)",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/fuel-heat.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/FuelHeatTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/FuelHeatTests.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/FuelHeatBlockEntity.java"
    ],
-   "note": "固体余热、流体预付批次、灰烬、事务能力、重载及真实转换链已接入；其余源设备和多人随 P10/M16 验收。"
+   "note": "Audit round 36: legacy TileEntitySolidHeatGenerator (burn time / 4, 50% ash on batch end gated by output-slot fit, burn-while-full, one-tick output delay) is ported by the FuelHeatBlockEntity solid branch; FuelHeatTests solidReserve/solidOutputAndFuel cover it."
   },
   {
    "registry": "block",
@@ -8877,12 +8888,14 @@
    "factory": "register",
    "expression": "Ic2TileEntityBlock.create(Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).strength(2.0F, 10.0F).requiresCorrectToolForDrops().sound(SoundType.METAL), TileEntitySteamGenerator.class, true, Ic2TileEntityBlock.DefaultDrop.Self, Util.horizontalFacings, true)",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/steam-generator.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/SteamGeneratorTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/SteamGeneratorTests.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/SteamGeneratorBlockEntity.java",
+    "core/src/main/java/ic2/core/machine/SteamBoiler.java"
    ],
-   "note": "压力与温度、结垢、HU事务、直接流体分配、热爆炸、重载额度与阀门同步已接入，双级汽轮机循环已验证；多人验收待完成。"
+   "note": "Audit round 36: legacy TileEntitySteamGenerator work() loop (1200 HU cap, 5e-4 heat per HU, 500-degree overheat explosion 10 radius 0.01 with block removal, 374-degree superheat threshold, pressure valve 0-300, water rate 0-1000, calcification 100000 shutdown, x100 steam expansion, 1-in-10 pressure burst, rejected/100 condensate return, biome 45/25/0 ambient, 0.01 idle cooldown) is ported by SteamGeneratorBlockEntity plus SteamBoiler.step; SteamGeneratorTests and HeatExplosionTests cover it; NBT keys systemheat/calcification/pressurevalve/inputmb match legacy."
   },
   {
    "registry": "block",
@@ -11784,12 +11797,13 @@
    "factory": "register",
    "expression": "TileEntityElectricHeatGenerator::new",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/work-energy.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/WorkEnergyTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/WorkEnergyTests.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/ElectricWorkBlockEntity.java"
    ],
-   "note": "原生事务热能／动能接口、方向、安装件、缓冲、重载及双模式转换链已接入；其余源设备和多人随 P10/M16 验收。"
+   "note": "Audit round 36: legacy TileEntityElectricHeatGenerator (10 single-coil slots at 10 HU each, 10000 tier-4 sink, min(request, energy/multiplier) draw with whole-unit floor) is ported by the ElectricWorkBlockEntity heat branch via WorkBuffer.generate(wholeUnits); WorkEnergyTests and the heat-chain GameTests cover it."
   },
   {
    "registry": "block_entity",
@@ -11815,12 +11829,13 @@
    "factory": "register",
    "expression": "TileEntityFluidHeatGenerator::new",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/fuel-heat.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/FuelHeatTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/FuelHeatTests.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/FuelHeatBlockEntity.java"
    ],
-   "note": "固体余热、流体预付批次、灰烬、事务能力、重载及真实转换链已接入；其余源设备和多人随 P10/M16 验收。"
+   "note": "Audit round 36: legacy TileEntityFluidHeatGenerator (10000 mB biogas tank, 10 mB per 20-tick burn batch at 32 x multiplier, converts only while reserve is below emission) is ported by the FuelHeatBlockEntity fluid branch; FuelHeatTests fluidPrepayment/fluidChain and menuTransport cover behaviour and menu."
   },
   {
    "registry": "block_entity",
@@ -11846,12 +11861,13 @@
    "factory": "register",
    "expression": "TileEntityRTHeatGenerator::new",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/isotopic-heat.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/RtGeneratorTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/RtGeneratorTests.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/RtHeatGeneratorBlockEntity.java"
    ],
-   "note": "六槽同位素燃料、指数输出曲线、单面热输出、热缓冲持久化与 LV 供电/电池充电已接入；配方前置（钚、反应堆室）随 P09/P12 迁移，辐射行为随 P16。"
+   "note": "Audit round 36: legacy TileEntityRTHeatGenerator (6 single-pellet slots, 2^(n-1) x 2.0 x multiplier emission, pellets never consumed, active while buffer holds) is ported by RtHeatGeneratorBlockEntity with RadioisotopeOutput; RtGeneratorTests covers it."
   },
   {
    "registry": "block_entity",
@@ -11877,12 +11893,13 @@
    "factory": "register",
    "expression": "TileEntitySolidHeatGenerator::new",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/fuel-heat.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/FuelHeatTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/FuelHeatTests.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/FuelHeatBlockEntity.java"
    ],
-   "note": "固体余热、流体预付批次、灰烬、事务能力、重载及真实转换链已接入；其余源设备和多人随 P10/M16 验收。"
+   "note": "Audit round 36: legacy TileEntitySolidHeatGenerator (burn time / 4, 50% ash on batch end gated by output-slot fit, burn-while-full, one-tick output delay) is ported by the FuelHeatBlockEntity solid branch; FuelHeatTests solidReserve/solidOutputAndFuel cover it."
   },
   {
    "registry": "block_entity",
@@ -12469,12 +12486,14 @@
    "factory": "register",
    "expression": "TileEntitySteamGenerator::new",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/steam-generator.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/SteamGeneratorTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/SteamGeneratorTests.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/SteamGeneratorBlockEntity.java",
+    "core/src/main/java/ic2/core/machine/SteamBoiler.java"
    ],
-   "note": "压力与温度、结垢、HU事务、直接流体分配、热爆炸、重载额度与阀门同步已接入，双级汽轮机循环已验证；多人验收待完成。"
+   "note": "Audit round 36: legacy TileEntitySteamGenerator work() loop (1200 HU cap, 5e-4 heat per HU, 500-degree overheat explosion 10 radius 0.01 with block removal, 374-degree superheat threshold, pressure valve 0-300, water rate 0-1000, calcification 100000 shutdown, x100 steam expansion, 1-in-10 pressure burst, rejected/100 condensate return, biome 45/25/0 ambient, 0.01 idle cooldown) is ported by SteamGeneratorBlockEntity plus SteamBoiler.step; SteamGeneratorTests and HeatExplosionTests cover it; NBT keys systemheat/calcification/pressurevalve/inputmb match legacy."
   },
   {
    "registry": "block_entity",
@@ -13963,12 +13982,13 @@
    "factory": "registerManagedBe",
    "expression": "",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/work-energy.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/WorkEnergyTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/WorkEnergyTests.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/ElectricWorkBlockEntity.java"
    ],
-   "note": "原生事务热能／动能接口、方向、安装件、缓冲、重载及双模式转换链已接入；其余源设备和多人随 P10/M16 验收。"
+   "note": "Audit round 36: legacy TileEntityElectricHeatGenerator (10 single-coil slots at 10 HU each, 10000 tier-4 sink, min(request, energy/multiplier) draw with whole-unit floor) is ported by the ElectricWorkBlockEntity heat branch via WorkBuffer.generate(wholeUnits); WorkEnergyTests and the heat-chain GameTests cover it."
   },
   {
    "registry": "menu",
@@ -13978,12 +13998,13 @@
    "factory": "registerManagedBe",
    "expression": "",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/fuel-heat.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/FuelHeatTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/FuelHeatTests.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/FuelHeatBlockEntity.java"
    ],
-   "note": "固体余热、流体预付批次、灰烬、事务能力、重载及真实转换链已接入；其余源设备和多人随 P10/M16 验收。"
+   "note": "Audit round 36: legacy TileEntityFluidHeatGenerator (10000 mB biogas tank, 10 mB per 20-tick burn batch at 32 x multiplier, converts only while reserve is below emission) is ported by the FuelHeatBlockEntity fluid branch; FuelHeatTests fluidPrepayment/fluidChain and menuTransport cover behaviour and menu."
   },
   {
    "registry": "menu",
@@ -14191,12 +14212,14 @@
    "factory": "registerManagedBe",
    "expression": "",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/steam-generator.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/SteamGeneratorTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/SteamGeneratorTests.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/SteamGeneratorBlockEntity.java",
+    "core/src/main/java/ic2/core/machine/SteamBoiler.java"
    ],
-   "note": "压力与温度、结垢、HU事务、直接流体分配、热爆炸、重载额度与阀门同步已接入，双级汽轮机循环已验证；多人验收待完成。"
+   "note": "Audit round 36: legacy TileEntitySteamGenerator work() loop (1200 HU cap, 5e-4 heat per HU, 500-degree overheat explosion 10 radius 0.01 with block removal, 374-degree superheat threshold, pressure valve 0-300, water rate 0-1000, calcification 100000 shutdown, x100 steam expansion, 1-in-10 pressure burst, rejected/100 condensate return, biome 45/25/0 ambient, 0.01 idle cooldown) is ported by SteamGeneratorBlockEntity plus SteamBoiler.step; SteamGeneratorTests and HeatExplosionTests cover it; NBT keys systemheat/calcification/pressurevalve/inputmb match legacy."
   },
   {
    "registry": "menu",
