@@ -2410,12 +2410,13 @@
    "factory": "register",
    "expression": "new ItemBlockIc2(Ic2Blocks.CENTRIFUGE, new Properties())",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/centrifuge.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/CentrifugeTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/CentrifugeTests.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/CentrifugeBlockEntity.java"
    ],
-   "note": "16条配方、MV、预热和保存重载已验证；本体合成及核材料依赖待迁移。"
+   "note": "Audit round 38: legacy TileEntityCentrifuge (48 EU/t, 500-tick operations, two operations per tick, 1 EU per heat unit with 1-unit cooling, recipe minHeat gating with the target+1 boundary, redstone hold-heat at 5000, recipe switch cools to the new target) is ported by CentrifugeBlockEntity with the CentrifugeHeat simulation; CentrifugeTests processingAndPersistence/redstoneAndOutputBlocking/recipeCodec cover it. CentrifugeRecipe and its recipe type/serializer are registered in ModProcessingRecipes with datapack recipes."
   },
   {
    "registry": "item",
@@ -2471,12 +2472,13 @@
    "factory": "register",
    "expression": "new ItemBlockIc2(Ic2Blocks.ORE_WASHING_PLANT, new Properties())",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/ore-washing.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/WashingTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/WashingTests.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/OreWashingBlockEntity.java"
    ],
-   "note": "八条配方、多输出、水与容器事务已实现；完整配置及多人整体验收待完成。"
+   "note": "Audit round 38: legacy TileEntityOreWashing (16 EU/t standard machine, 8000 mB water tank, recipe metadata water amount drained per operation, recipes blocked while short of water, container slot for buckets/cells) is ported by OreWashingBlockEntity over the shared ProcessingBlockEntity with WashingRecipe water cost; WashingTests atomicOutputs/containers/pullingUpgrade/codec cover it. All eight legacy recipes converted per ore-washing.md."
   },
   {
    "registry": "item",
@@ -9169,12 +9171,13 @@
    "factory": "register",
    "expression": "Ic2TileEntityBlock.create(Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).strength(2.0F, 10.0F).requiresCorrectToolForDrops().sound(SoundType.METAL), TileEntityCentrifuge.class, true, Ic2TileEntityBlock.DefaultDrop.Machine, Util.horizontalFacings, true)",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/centrifuge.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/CentrifugeTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/CentrifugeTests.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/CentrifugeBlockEntity.java"
    ],
-   "note": "16条配方、MV、预热和保存重载已验证；本体合成及核材料依赖待迁移。"
+   "note": "Audit round 38: legacy TileEntityCentrifuge (48 EU/t, 500-tick operations, two operations per tick, 1 EU per heat unit with 1-unit cooling, recipe minHeat gating with the target+1 boundary, redstone hold-heat at 5000, recipe switch cools to the new target) is ported by CentrifugeBlockEntity with the CentrifugeHeat simulation; CentrifugeTests processingAndPersistence/redstoneAndOutputBlocking/recipeCodec cover it. CentrifugeRecipe and its recipe type/serializer are registered in ModProcessingRecipes with datapack recipes."
   },
   {
    "registry": "block",
@@ -9230,12 +9233,13 @@
    "factory": "register",
    "expression": "Ic2TileEntityBlock.create(Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).strength(2.0F, 10.0F).requiresCorrectToolForDrops().sound(SoundType.METAL), TileEntityOreWashing.class, true, Ic2TileEntityBlock.DefaultDrop.Machine, Util.horizontalFacings, true)",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/ore-washing.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/WashingTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/WashingTests.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/OreWashingBlockEntity.java"
    ],
-   "note": "八条配方、多输出、水与容器事务已实现；完整配置及多人整体验收待完成。"
+   "note": "Audit round 38: legacy TileEntityOreWashing (16 EU/t standard machine, 8000 mB water tank, recipe metadata water amount drained per operation, recipes blocked while short of water, container slot for buckets/cells) is ported by OreWashingBlockEntity over the shared ProcessingBlockEntity with WashingRecipe water cost; WashingTests atomicOutputs/containers/pullingUpgrade/codec cover it. All eight legacy recipes converted per ore-washing.md."
   },
   {
    "registry": "block",
@@ -13064,12 +13068,13 @@
    "factory": "register",
    "expression": "TileEntityCentrifuge::new",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/centrifuge.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/CentrifugeTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/CentrifugeTests.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/CentrifugeBlockEntity.java"
    ],
-   "note": "16条配方、MV、预热和保存重载已验证；本体合成及核材料依赖待迁移。"
+   "note": "Audit round 38: legacy TileEntityCentrifuge (48 EU/t, 500-tick operations, two operations per tick, 1 EU per heat unit with 1-unit cooling, recipe minHeat gating with the target+1 boundary, redstone hold-heat at 5000, recipe switch cools to the new target) is ported by CentrifugeBlockEntity with the CentrifugeHeat simulation; CentrifugeTests processingAndPersistence/redstoneAndOutputBlocking/recipeCodec cover it. CentrifugeRecipe and its recipe type/serializer are registered in ModProcessingRecipes with datapack recipes."
   },
   {
    "registry": "block_entity",
@@ -13141,12 +13146,13 @@
    "factory": "register",
    "expression": "TileEntityOreWashing::new",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/ore-washing.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/WashingTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/WashingTests.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/OreWashingBlockEntity.java"
    ],
-   "note": "八条配方、多输出、水与容器事务已实现；完整配置及多人整体验收待完成。"
+   "note": "Audit round 38: legacy TileEntityOreWashing (16 EU/t standard machine, 8000 mB water tank, recipe metadata water amount drained per operation, recipes blocked while short of water, container slot for buckets/cells) is ported by OreWashingBlockEntity over the shared ProcessingBlockEntity with WashingRecipe water cost; WashingTests atomicOutputs/containers/pullingUpgrade/codec cover it. All eight legacy recipes converted per ore-washing.md."
   },
   {
    "registry": "block_entity",
@@ -15807,12 +15813,13 @@
    "factory": "register",
    "expression": "new BasicMachineRecipeSerializer(Ic2RecipeTypes.CENTRIFUGE, intMeta(\"minHeat\"))",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/centrifuge.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/CentrifugeTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/CentrifugeTests.java",
+    "neoforge/src/main/java/ic2/neoforge/recipe/CentrifugeRecipe.java"
    ],
-   "note": "16条配方、MV、预热和保存重载已验证；本体合成及核材料依赖待迁移。"
+   "note": "Audit round 38: legacy TileEntityCentrifuge (48 EU/t, 500-tick operations, two operations per tick, 1 EU per heat unit with 1-unit cooling, recipe minHeat gating with the target+1 boundary, redstone hold-heat at 5000, recipe switch cools to the new target) is ported by CentrifugeBlockEntity with the CentrifugeHeat simulation; CentrifugeTests processingAndPersistence/redstoneAndOutputBlocking/recipeCodec cover it. CentrifugeRecipe and its recipe type/serializer are registered in ModProcessingRecipes with datapack recipes."
   },
   {
    "registry": "recipe_serializer",
@@ -16005,12 +16012,13 @@
    "factory": "register",
    "expression": "",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/centrifuge.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/CentrifugeTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/CentrifugeTests.java",
+    "neoforge/src/main/java/ic2/neoforge/recipe/CentrifugeRecipe.java"
    ],
-   "note": "16条配方、MV、预热和保存重载已验证；本体合成及核材料依赖待迁移。"
+   "note": "Audit round 38: legacy TileEntityCentrifuge (48 EU/t, 500-tick operations, two operations per tick, 1 EU per heat unit with 1-unit cooling, recipe minHeat gating with the target+1 boundary, redstone hold-heat at 5000, recipe switch cools to the new target) is ported by CentrifugeBlockEntity with the CentrifugeHeat simulation; CentrifugeTests processingAndPersistence/redstoneAndOutputBlocking/recipeCodec cover it. CentrifugeRecipe and its recipe type/serializer are registered in ModProcessingRecipes with datapack recipes."
   },
   {
    "registry": "recipe_type",
