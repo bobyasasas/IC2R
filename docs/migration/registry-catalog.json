@@ -1155,11 +1155,15 @@
    "factory": "register",
    "expression": "new BlockItemEnergyStorage(Ic2Blocks.BATBOX_CHARGEPAD, new Properties(), 40000)",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
-    "docs/migration/chargepads.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/ChargepadTests.java"
-   ]
+    "neoforge/src/main/java/ic2/neoforge/machine/ChargepadBlockEntity.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/MachineKind.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/MachineBlock.java",
+    "neoforge/src/gameTest/java/ic2/neoforge/test/ChargepadTests.java",
+    "docs/migration/chargepads.md"
+   ],
+   "note": "Standing charge order (main hand, off hand, armor, hot bar, inventory), network feeding, marked-face output, the two-state redstone mode, top-face input rejection and the debug-item skip are verified. The active particle effect and in-GUI button rendering stay manual client items."
   },
   {
    "registry": "item",
@@ -1169,11 +1173,15 @@
    "factory": "register",
    "expression": "new BlockItemEnergyStorage(Ic2Blocks.CESU_CHARGEPAD, new Properties(), 300000)",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
-    "docs/migration/chargepads.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/ChargepadTests.java"
-   ]
+    "neoforge/src/main/java/ic2/neoforge/machine/ChargepadBlockEntity.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/MachineKind.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/MachineBlock.java",
+    "neoforge/src/gameTest/java/ic2/neoforge/test/ChargepadTests.java",
+    "docs/migration/chargepads.md"
+   ],
+   "note": "Standing charge order (main hand, off hand, armor, hot bar, inventory), network feeding, marked-face output, the two-state redstone mode, top-face input rejection and the debug-item skip are verified. The active particle effect and in-GUI button rendering stay manual client items."
   },
   {
    "registry": "item",
@@ -1183,11 +1191,15 @@
    "factory": "register",
    "expression": "new BlockItemEnergyStorage(Ic2Blocks.MFE_CHARGEPAD, new Properties(), 4000000)",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
-    "docs/migration/chargepads.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/ChargepadTests.java"
-   ]
+    "neoforge/src/main/java/ic2/neoforge/machine/ChargepadBlockEntity.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/MachineKind.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/MachineBlock.java",
+    "neoforge/src/gameTest/java/ic2/neoforge/test/ChargepadTests.java",
+    "docs/migration/chargepads.md"
+   ],
+   "note": "Standing charge order (main hand, off hand, armor, hot bar, inventory), network feeding, marked-face output, the two-state redstone mode, top-face input rejection and the debug-item skip are verified. The active particle effect and in-GUI button rendering stay manual client items."
   },
   {
    "registry": "item",
@@ -1197,11 +1209,15 @@
    "factory": "register",
    "expression": "new BlockItemEnergyStorage(Ic2Blocks.MFSU_CHARGEPAD, new Properties().rarity(Rarity.UNCOMMON), 40000000)",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
-    "docs/migration/chargepads.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/ChargepadTests.java"
-   ]
+    "neoforge/src/main/java/ic2/neoforge/machine/ChargepadBlockEntity.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/MachineKind.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/MachineBlock.java",
+    "neoforge/src/gameTest/java/ic2/neoforge/test/ChargepadTests.java",
+    "docs/migration/chargepads.md"
+   ],
+   "note": "Standing charge order (main hand, off hand, armor, hot bar, inventory), network feeding, marked-face output, the two-state redstone mode, top-face input rejection and the debug-item skip are verified. The active particle effect and in-GUI button rendering stay manual client items."
   },
   {
    "registry": "item",
@@ -9477,12 +9493,15 @@
    "factory": "register",
    "expression": "Ic2TileEntityBlock.create(Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).strength(2.0F, 10.0F).requiresCorrectToolForDrops().sound(SoundType.METAL).noOcclusion(), TileEntityChargePadBatBox.class, true, Ic2TileEntityBlock.DefaultDrop.Self, Util.downSideFacings, true)",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
-    "docs/migration/chargepads.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/ChargepadTests.java"
+    "neoforge/src/main/java/ic2/neoforge/machine/ChargepadBlockEntity.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/MachineKind.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/MachineBlock.java",
+    "neoforge/src/gameTest/java/ic2/neoforge/test/ChargepadTests.java",
+    "docs/migration/chargepads.md"
    ],
-   "note": "站立充电（主手→副手→盔甲→背包顺序、绕过单次上限）、网络供电与朝向输出已接入；红石模式与粒子表现待客户端验收。"
+   "note": "Standing charge order (main hand, off hand, armor, hot bar, inventory), network feeding, marked-face output, the two-state redstone mode, top-face input rejection and the debug-item skip are verified. The active particle effect and in-GUI button rendering stay manual client items."
   },
   {
    "registry": "block",
@@ -9492,12 +9511,15 @@
    "factory": "register",
    "expression": "Ic2TileEntityBlock.create(Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).strength(2.0F, 10.0F).requiresCorrectToolForDrops().sound(SoundType.METAL).noOcclusion(), TileEntityChargePadCESU.class, true, Ic2TileEntityBlock.DefaultDrop.Self, Util.downSideFacings, true)",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
-    "docs/migration/chargepads.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/ChargepadTests.java"
+    "neoforge/src/main/java/ic2/neoforge/machine/ChargepadBlockEntity.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/MachineKind.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/MachineBlock.java",
+    "neoforge/src/gameTest/java/ic2/neoforge/test/ChargepadTests.java",
+    "docs/migration/chargepads.md"
    ],
-   "note": "站立充电（主手→副手→盔甲→背包顺序、绕过单次上限）、网络供电与朝向输出已接入；红石模式与粒子表现待客户端验收。"
+   "note": "Standing charge order (main hand, off hand, armor, hot bar, inventory), network feeding, marked-face output, the two-state redstone mode, top-face input rejection and the debug-item skip are verified. The active particle effect and in-GUI button rendering stay manual client items."
   },
   {
    "registry": "block",
@@ -9507,12 +9529,15 @@
    "factory": "register",
    "expression": "Ic2TileEntityBlock.create(Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).strength(2.0F, 10.0F).requiresCorrectToolForDrops().sound(SoundType.METAL).noOcclusion(), TileEntityChargePadMFE.class, true, Ic2TileEntityBlock.DefaultDrop.Machine, Util.downSideFacings, true)",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
-    "docs/migration/chargepads.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/ChargepadTests.java"
+    "neoforge/src/main/java/ic2/neoforge/machine/ChargepadBlockEntity.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/MachineKind.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/MachineBlock.java",
+    "neoforge/src/gameTest/java/ic2/neoforge/test/ChargepadTests.java",
+    "docs/migration/chargepads.md"
    ],
-   "note": "站立充电（主手→副手→盔甲→背包顺序、绕过单次上限）、网络供电与朝向输出已接入；红石模式与粒子表现待客户端验收。"
+   "note": "Standing charge order (main hand, off hand, armor, hot bar, inventory), network feeding, marked-face output, the two-state redstone mode, top-face input rejection and the debug-item skip are verified. The active particle effect and in-GUI button rendering stay manual client items."
   },
   {
    "registry": "block",
@@ -9522,12 +9547,15 @@
    "factory": "register",
    "expression": "Ic2TileEntityBlock.create(Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).strength(2.0F, 10.0F).requiresCorrectToolForDrops().sound(SoundType.METAL).noOcclusion(), TileEntityChargePadMFSU.class, true, Ic2TileEntityBlock.DefaultDrop.AdvMachine, Util.downSideFacings, true)",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
-    "docs/migration/chargepads.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/ChargepadTests.java"
+    "neoforge/src/main/java/ic2/neoforge/machine/ChargepadBlockEntity.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/MachineKind.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/MachineBlock.java",
+    "neoforge/src/gameTest/java/ic2/neoforge/test/ChargepadTests.java",
+    "docs/migration/chargepads.md"
    ],
-   "note": "站立充电（主手→副手→盔甲→背包顺序、绕过单次上限）、网络供电与朝向输出已接入；红石模式与粒子表现待客户端验收。"
+   "note": "Standing charge order (main hand, off hand, armor, hot bar, inventory), network feeding, marked-face output, the two-state redstone mode, top-face input rejection and the debug-item skip are verified. The active particle effect and in-GUI button rendering stay manual client items."
   },
   {
    "registry": "block",
@@ -13381,12 +13409,15 @@
    "factory": "register",
    "expression": "TileEntityChargePadBatBox::new",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
-    "docs/migration/chargepads.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/ChargepadTests.java"
+    "neoforge/src/main/java/ic2/neoforge/machine/ChargepadBlockEntity.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/MachineKind.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/MachineBlock.java",
+    "neoforge/src/gameTest/java/ic2/neoforge/test/ChargepadTests.java",
+    "docs/migration/chargepads.md"
    ],
-   "note": "站立充电（主手→副手→盔甲→背包顺序、绕过单次上限）、网络供电与朝向输出已接入；红石模式与粒子表现待客户端验收。"
+   "note": "Standing charge order (main hand, off hand, armor, hot bar, inventory), network feeding, marked-face output, the two-state redstone mode, top-face input rejection and the debug-item skip are verified. The active particle effect and in-GUI button rendering stay manual client items."
   },
   {
    "registry": "block_entity",
@@ -13396,12 +13427,15 @@
    "factory": "register",
    "expression": "TileEntityChargePadCESU::new",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
-    "docs/migration/chargepads.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/ChargepadTests.java"
+    "neoforge/src/main/java/ic2/neoforge/machine/ChargepadBlockEntity.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/MachineKind.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/MachineBlock.java",
+    "neoforge/src/gameTest/java/ic2/neoforge/test/ChargepadTests.java",
+    "docs/migration/chargepads.md"
    ],
-   "note": "站立充电（主手→副手→盔甲→背包顺序、绕过单次上限）、网络供电与朝向输出已接入；红石模式与粒子表现待客户端验收。"
+   "note": "Standing charge order (main hand, off hand, armor, hot bar, inventory), network feeding, marked-face output, the two-state redstone mode, top-face input rejection and the debug-item skip are verified. The active particle effect and in-GUI button rendering stay manual client items."
   },
   {
    "registry": "block_entity",
@@ -13411,12 +13445,15 @@
    "factory": "register",
    "expression": "TileEntityChargePadMFE::new",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
-    "docs/migration/chargepads.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/ChargepadTests.java"
+    "neoforge/src/main/java/ic2/neoforge/machine/ChargepadBlockEntity.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/MachineKind.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/MachineBlock.java",
+    "neoforge/src/gameTest/java/ic2/neoforge/test/ChargepadTests.java",
+    "docs/migration/chargepads.md"
    ],
-   "note": "站立充电（主手→副手→盔甲→背包顺序、绕过单次上限）、网络供电与朝向输出已接入；红石模式与粒子表现待客户端验收。"
+   "note": "Standing charge order (main hand, off hand, armor, hot bar, inventory), network feeding, marked-face output, the two-state redstone mode, top-face input rejection and the debug-item skip are verified. The active particle effect and in-GUI button rendering stay manual client items."
   },
   {
    "registry": "block_entity",
@@ -13426,12 +13463,15 @@
    "factory": "register",
    "expression": "TileEntityChargePadMFSU::new",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
-    "docs/migration/chargepads.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/ChargepadTests.java"
+    "neoforge/src/main/java/ic2/neoforge/machine/ChargepadBlockEntity.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/MachineKind.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/MachineBlock.java",
+    "neoforge/src/gameTest/java/ic2/neoforge/test/ChargepadTests.java",
+    "docs/migration/chargepads.md"
    ],
-   "note": "站立充电（主手→副手→盔甲→背包顺序、绕过单次上限）、网络供电与朝向输出已接入；红石模式与粒子表现待客户端验收。"
+   "note": "Standing charge order (main hand, off hand, armor, hot bar, inventory), network feeding, marked-face output, the two-state redstone mode, top-face input rejection and the debug-item skip are verified. The active particle effect and in-GUI button rendering stay manual client items."
   },
   {
    "registry": "block_entity",

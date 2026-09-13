@@ -182,6 +182,13 @@ public enum MachineKind implements StringRepresentable {
         };
     }
 
+    public boolean chargepad() {
+        return switch (this) {
+            case BATBOX_CHARGEPAD, CESU_CHARGEPAD, MFE_CHARGEPAD, MFSU_CHARGEPAD -> true;
+            default -> false;
+        };
+    }
+
     /** Chargepads are storage-shaped pads that push energy into whatever a player carries. */
     public int padOutput() {
         return switch (this) {

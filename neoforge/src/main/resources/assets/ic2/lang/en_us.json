@@ -781,6 +781,8 @@
   "ic2.energy_device.transformer.0": "Automatic",
   "ic2.energy_device.transformer.1": "Step-down",
   "ic2.energy_device.transformer.2": "Step-up",
+  "ic2.energy_device.chargepad.0": "Emit while charging",
+  "ic2.energy_device.chargepad.1": "Emit while idle",
   "ic2.energynet.mode": "Current Energy Net mode: %s",
   "ic2.energynet.mode.gt": "GTEU",
   "ic2.energynet.mode.ic2": "IC2",

@@ -268,6 +268,10 @@ public final class RegistrationTests {
         FUNCTIONS.register("chargepad_inventory", () -> EntityTickingTests.wrap(ChargepadTests::chargesPlayerInventory));
         FUNCTIONS.register("chargepad_order_limits", () -> EntityTickingTests.wrap(ChargepadTests::chargeOrderAndLimits));
         FUNCTIONS.register("chargepad_network", () -> EntityTickingTests.wrap(ChargepadTests::networkFeeding));
+        FUNCTIONS.register("chargepad_redstone_modes", () -> EntityTickingTests.wrap(ChargepadTests::redstoneModes));
+        FUNCTIONS.register("chargepad_feeds_marked_face", () -> EntityTickingTests.wrap(ChargepadTests::feedsMarkedFace));
+        FUNCTIONS.register("chargepad_rejects_top_feed", () -> EntityTickingTests.wrap(ChargepadTests::rejectsTopFeed));
+        FUNCTIONS.register("chargepad_skips_debug_item", () -> EntityTickingTests.wrap(ChargepadTests::skipsDebugItem));
         FUNCTIONS.register(
                 "storage_box_wooden", () -> StorageBoxTests::woodenCapacityAndAutomation);
         FUNCTIONS.register("storage_box_iridium", () -> EntityTickingTests.wrap(StorageBoxTests::iridiumHolds126Slots));

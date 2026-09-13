@@ -8,7 +8,7 @@ import net.minecraft.client.gui.components.Tooltip;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Inventory;
 
-/** Shared storage/transformer controls; server-side policies own each button's meaning. */
+/** Shared storage/transformer/chargepad controls; server-side policies own each button's meaning. */
 public final class EnergyDeviceScreen extends MachineScreen {
     private Button modeButton;
 
@@ -28,20 +28,30 @@ public final class EnergyDeviceScreen extends MachineScreen {
                                                 minecraft.gameMode.handleInventoryButtonClick(
                                                         menu.containerId,
                                                         (menu.familyValue(0) + 1)
-                                                                % (menu.kind().storage() ? 7 : 3));
+                                                                % (menu.kind().storage()
+                                                                        ? 7
+                                                                        : menu.kind().chargepad()
+                                                                                ? 2
+                                                                                : 3));
                                         })
                                 .bounds(leftPos + 76, topPos + 58, 92, 18)
                                 .build());
     }
 
     private Component label() {
+        var kind = menu.kind();
         return Component.translatable(
                 "ic2.energy_device."
-                        + (menu.kind().storage() ? "storage." : "transformer.")
+                        + (kind.storage()
+                                ? "storage."
+                                : kind.chargepad() ? "chargepad." : "transformer.")
                         + menu.familyValue(0));
     }
 
     private Component description() {
+        if (menu.kind().chargepad())
+            return Component.translatable(
+                    "ic2.blockChargepad.gui.mod.redstone" + menu.familyValue(0));
         return Component.translatable(
                 menu.kind().storage()
                         ? "ic2.EUStorage.gui.mod.redstone" + menu.familyValue(0)

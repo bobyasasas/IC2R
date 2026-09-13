@@ -292,14 +292,14 @@ public final class MachineBlock extends BaseEntityBlock {
 
     @Override
     protected boolean isSignalSource(BlockState state) {
-        return kind.storage();
+        return kind.storage() || kind.chargepad();
     }
 
     @Override
     protected int getSignal(BlockState state, BlockGetter level, BlockPos pos, Direction side) {
-        return level.getBlockEntity(pos) instanceof EnergyStorageBlockEntity storage
-                ? storage.signal()
-                : 0;
+        if (level.getBlockEntity(pos) instanceof EnergyStorageBlockEntity storage)
+            return storage.signal();
+        return level.getBlockEntity(pos) instanceof ChargepadBlockEntity pad ? pad.signal() : 0;
     }
 
     @Override
