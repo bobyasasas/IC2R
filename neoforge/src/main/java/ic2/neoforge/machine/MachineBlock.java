@@ -347,7 +347,8 @@ public final class MachineBlock extends BaseEntityBlock {
                 || kind == MachineKind.ITEM_BUFFER
                 || kind == MachineKind.TANK
                 || kind == MachineKind.LUMINATOR
-                || kind == MachineKind.TELEPORTER;
+                || kind == MachineKind.TELEPORTER
+                || kind == MachineKind.ADV_MINER;
     }
 
     @Override
@@ -360,6 +361,7 @@ public final class MachineBlock extends BaseEntityBlock {
         if (machine instanceof InductionFurnaceBlockEntity furnace) return furnace.comparator();
         if (machine instanceof LuminatorBlockEntity luminator) return luminator.comparator();
         if (machine instanceof TeleporterBlockEntity teleporter) return teleporter.comparator();
+        if (machine instanceof AdvMinerBlockEntity advMiner) return advMiner.comparator();
         return 0;
     }
 

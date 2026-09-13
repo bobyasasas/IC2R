@@ -7,6 +7,7 @@ import ic2.neoforge.registration.ModMachines;
 import ic2.neoforge.registration.ModTools;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.gametest.framework.GameTestHelper;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.EntityType;
@@ -140,6 +141,29 @@ final class AdvMinerTests {
         helper.assertTrue(
                 miner.menuAction(0) && miner.mineTarget() == null,
                 "The reset button clears the sweep cursor");
+        helper.succeed();
+    }
+
+    static void comparatorTracksBuffer(GameTestHelper helper) {
+        var level = helper.getLevel();
+        var miner = miner(helper);
+        helper.assertTrue(miner.comparator() == 0, "An empty buffer reads comparator zero");
+        miner.energy().restore(miner.energy().capacity() / 2);
+        miner.serverTick((ServerLevel) level);
+        helper.assertTrue(
+                miner.comparator() == 7,
+                "A half buffer raises the legacy fill-ratio signal to step seven");
+        helper.assertTrue(
+                level.getBlockState(helper.absolutePos(POSITION))
+                                .getAnalogOutputSignal(level, helper.absolutePos(POSITION), Direction.UP)
+                        == 7,
+                "The block hands the buffer signal to comparators");
+        miner.energy().restore(miner.energy().capacity());
+        miner.serverTick((ServerLevel) level);
+        helper.assertTrue(miner.comparator() == 15, "A full buffer pegs the signal at maximum");
+        helper.assertTrue(
+                level.getBlockState(helper.absolutePos(POSITION)).hasAnalogOutputSignal(),
+                "The miner block advertises an analog output");
         helper.succeed();
     }
 

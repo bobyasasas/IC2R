@@ -341,6 +341,7 @@ public final class RegistrationTests {
         FUNCTIONS.register("adv_miner_sweep", () -> EntityTickingTests.wrap(AdvMinerTests::sweepsAndMines));
         FUNCTIONS.register("adv_miner_whitelist", () -> EntityTickingTests.wrap(AdvMinerTests::whitelistGates));
         FUNCTIONS.register("adv_miner_silk_reset", () -> EntityTickingTests.wrap(AdvMinerTests::silkAndReset));
+        FUNCTIONS.register("adv_miner_comparator", () -> EntityTickingTests.wrap(AdvMinerTests::comparatorTracksBuffer));
         FUNCTIONS.register(
                 "mining_filter_card_defer",
                 () -> MiningFilterCardTests::uneditedCardDefersToMachineFilter);

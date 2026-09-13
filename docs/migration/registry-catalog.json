@@ -2172,12 +2172,13 @@
    "factory": "register",
    "expression": "new ItemBlockIc2(Ic2Blocks.LIQUID_HEAT_EXCHANGER, new Properties())",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/heat-exchanger.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/HeatExchangerTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/HeatExchangerTests.java",
+    "neoforge/src/main/java/ic2/neoforge/client/LiquidHeatExchangerScreen.java"
    ],
-   "note": "数据包冷却、单件元件槽、三重容量限制、原生事务热量、重载、容器与转电链已接入；完整热循环与多人性能验收继续跟踪。"
+   "note": "数据包冷却、单件导热件槽、三重容量限制、原生事务热量、重载、容器与转电链已接入;第55轮勘误:完整热循环经 cooling_stirling_chain 等 5 条 GameTest 验证,LiquidHeatExchangerScreen 已注册;多人性能验收留人工。"
   },
   {
    "registry": "item",
@@ -2499,12 +2500,13 @@
    "factory": "register",
    "expression": "new ItemBlockIc2(Ic2Blocks.BLAST_FURNACE, new Properties())",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/blast-furnace.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/BlastFurnaceTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/BlastFurnaceTests.java",
+    "neoforge/src/main/java/ic2/neoforge/client/BlastFurnaceScreen.java"
    ],
-   "note": "方块、热链(电热源→50,000 HU)、空气罐/单元、钢锭+炉渣产出经 GameTest 验证;真实客户端界面随实机测试。"
+   "note": "方块、热链(电热源→50,000 HU)、空气罐/单元、钢锭+炉渣产出经 GameTest 验证;第55轮勘误:客户端界面(BlastFurnaceScreen 热量/空气双条+tooltip、5 槽 MachineMenu)已交付;实机观感留人工验收。"
   },
   {
    "registry": "item",
@@ -2610,12 +2612,14 @@
    "factory": "register",
    "expression": "new ItemBlockIc2(Ic2Blocks.ADVANCED_MINER, new Properties())",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/adv-miner.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/AdvMinerTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/AdvMinerTests.java",
+    "neoforge/src/main/java/ic2/neoforge/item/MiningFilterCardItem.java",
+    "neoforge/src/gameTest/java/ic2/neoforge/test/MiningFilterCardTests.java"
    ],
-   "note": "创造页与配方外观待实机;卡片编辑 GUI 随后续切片。"
+   "note": "逐层扫描、过滤门控、精准采集与游标持久化验证通过;第55轮勘误:采矿过滤器卡片(MiningFilterCardItem+MiningFilterMenu/MiningFilterScreen 编辑 GUI+机器组件消费)与电量比较器(EnergyStore 填充率 0-15 经 MachineBlock 模拟输出)均已交付;创造页与配方外观待实机;多人随 M16。"
   },
   {
    "registry": "item",
@@ -9003,12 +9007,13 @@
    "factory": "register",
    "expression": "Ic2TileEntityBlock.create(Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).strength(2.0F, 10.0F).requiresCorrectToolForDrops().sound(SoundType.METAL), TileEntityLiquidHeatExchanger.class, true, Ic2TileEntityBlock.DefaultDrop.Machine, Util.allFacings, true)",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/heat-exchanger.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/HeatExchangerTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/HeatExchangerTests.java",
+    "neoforge/src/main/java/ic2/neoforge/client/LiquidHeatExchangerScreen.java"
    ],
-   "note": "数据包冷却、单件元件槽、三重容量限制、原生事务热量、重载、容器与转电链已接入；完整热循环与多人性能验收继续跟踪。"
+   "note": "数据包冷却、单件导热件槽、三重容量限制、原生事务热量、重载、容器与转电链已接入;第55轮勘误:完整热循环经 cooling_stirling_chain 等 5 条 GameTest 验证,LiquidHeatExchangerScreen 已注册;多人性能验收留人工。"
   },
   {
    "registry": "block",
@@ -9299,12 +9304,13 @@
    "factory": "register",
    "expression": "Ic2TileEntityBlock.create(Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).strength(2.0F, 10.0F).requiresCorrectToolForDrops().sound(SoundType.METAL), TileEntityBlastFurnace.class, true, Ic2TileEntityBlock.DefaultDrop.Machine, Util.allFacings, true)",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/blast-furnace.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/BlastFurnaceTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/BlastFurnaceTests.java",
+    "neoforge/src/main/java/ic2/neoforge/client/BlastFurnaceScreen.java"
    ],
-   "note": "方块、热链(电热源→50,000 HU)、空气罐/单元、钢锭+炉渣产出经 GameTest 验证;真实客户端界面随实机测试。"
+   "note": "方块、热链(电热源→50,000 HU)、空气罐/单元、钢锭+炉渣产出经 GameTest 验证;第55轮勘误:客户端界面(BlastFurnaceScreen 热量/空气双条+tooltip、5 槽 MachineMenu)已交付;实机观感留人工验收。"
   },
   {
    "registry": "block",
@@ -9410,12 +9416,13 @@
    "factory": "register",
    "expression": "Ic2TileEntityBlock.create(Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).strength(2.0F, 10.0F).requiresCorrectToolForDrops().sound(SoundType.METAL), TileEntityAdvMiner.class, true, Ic2TileEntityBlock.DefaultDrop.Self, Util.horizontalFacings, true)",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/adv-miner.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/AdvMinerTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/AdvMinerTests.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/MachineBlock.java"
    ],
-   "note": "逐层扫描、过滤门控、精准采集与游标持久化验证通过;采矿过滤器卡片与比较器未迁移;多人随 M16。"
+   "note": "逐层扫描、过滤门控、精准采集与游标持久化验证通过;第55轮勘误:电量比较器(EnergyStore 填充率 0-15)经 MachineBlock getAnalogOutputSignal 补齐;采矿过滤器卡片已交付;多人随 M16。"
   },
   {
    "registry": "block",
@@ -12674,12 +12681,13 @@
    "factory": "register",
    "expression": "TileEntityLiquidHeatExchanger::new",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/heat-exchanger.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/HeatExchangerTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/HeatExchangerTests.java",
+    "neoforge/src/main/java/ic2/neoforge/client/LiquidHeatExchangerScreen.java"
    ],
-   "note": "数据包冷却、单件元件槽、三重容量限制、原生事务热量、重载、容器与转电链已接入；完整热循环与多人性能验收继续跟踪。"
+   "note": "数据包冷却、单件导热件槽、三重容量限制、原生事务热量、重载、容器与转电链已接入;第55轮勘误:完整热循环经 cooling_stirling_chain 等 5 条 GameTest 验证,LiquidHeatExchangerScreen 已注册;多人性能验收留人工。"
   },
   {
    "registry": "block_entity",
@@ -13278,12 +13286,13 @@
    "factory": "register",
    "expression": "TileEntityBlastFurnace::new",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/blast-furnace.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/BlastFurnaceTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/BlastFurnaceTests.java",
+    "neoforge/src/main/java/ic2/neoforge/client/BlastFurnaceScreen.java"
    ],
-   "note": "方块、热链(电热源→50,000 HU)、空气罐/单元、钢锭+炉渣产出经 GameTest 验证;真实客户端界面随实机测试。"
+   "note": "方块、热链(电热源→50,000 HU)、空气罐/单元、钢锭+炉渣产出经 GameTest 验证;第55轮勘误:客户端界面(BlastFurnaceScreen 热量/空气双条+tooltip、5 槽 MachineMenu)已交付;实机观感留人工验收。"
   },
   {
    "registry": "block_entity",
@@ -13439,12 +13448,13 @@
    "factory": "register",
    "expression": "TileEntityAdvMiner::new",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/adv-miner.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/AdvMinerTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/AdvMinerTests.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/AdvMinerBlockEntity.java"
    ],
-   "note": "逐层扫描、过滤门控、精准采集与游标持久化验证通过;采矿过滤器卡片与比较器未迁移;多人随 M16。"
+   "note": "逐层扫描、过滤门控、精准采集与游标持久化验证通过;第55轮勘误:电量比较器(EnergyStore 填充率 0-15,serverTick 差分广播)补齐;采矿过滤器卡片组件消费已交付;多人随 M16。"
   },
   {
    "registry": "block_entity",
@@ -14526,12 +14536,13 @@
    "factory": "registerManagedBe",
    "expression": "",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/heat-exchanger.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/HeatExchangerTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/HeatExchangerTests.java",
+    "neoforge/src/main/java/ic2/neoforge/client/LiquidHeatExchangerScreen.java"
    ],
-   "note": "数据包冷却、单件元件槽、三重容量限制、原生事务热量、重载、容器与转电链已接入；完整热循环与多人性能验收继续跟踪。"
+   "note": "数据包冷却、单件导热件槽、三重容量限制、原生事务热量、重载、容器与转电链已接入;第55轮勘误:完整热循环经 cooling_stirling_chain 等 5 条 GameTest 验证,LiquidHeatExchangerScreen 已注册;多人性能验收留人工。"
   },
   {
    "registry": "menu",
@@ -14671,12 +14682,14 @@
    "factory": "registerManagedBe",
    "expression": "",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/adv-miner.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/AdvMinerTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/AdvMinerTests.java",
+    "neoforge/src/main/java/ic2/neoforge/menu/MiningFilterMenu.java",
+    "neoforge/src/main/java/ic2/neoforge/client/MiningFilterScreen.java"
    ],
-   "note": "逐层扫描、过滤门控、精准采集与游标持久化验证通过;采矿过滤器卡片与比较器未迁移;多人随 M16。"
+   "note": "逐层扫描、过滤门控、精准采集与游标持久化验证通过;第55轮勘误:采矿过滤器卡片编辑 GUI(MiningFilterMenu/MiningFilterScreen)已交付;电量比较器补齐;多人随 M16。"
   },
   {
    "registry": "menu",
@@ -16177,12 +16190,13 @@
    "factory": "register",
    "expression": "new BasicMachineRecipeSerializer(Ic2RecipeTypes.BLAST_FURNACE, twoIntsMeta())",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/blast-furnace.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/BlastFurnaceTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/BlastFurnaceTests.java",
+    "neoforge/src/main/java/ic2/neoforge/client/BlastFurnaceScreen.java"
    ],
-   "note": "方块、热链(电热源→50,000 HU)、空气罐/单元、钢锭+炉渣产出经 GameTest 验证;真实客户端界面随实机测试。"
+   "note": "方块、热链(电热源→50,000 HU)、空气罐/单元、钢锭+炉渣产出经 GameTest 验证;第55轮勘误:客户端界面(BlastFurnaceScreen 热量/空气双条+tooltip、5 槽 MachineMenu)已交付;实机观感留人工验收。"
   },
   {
    "registry": "recipe_serializer",
@@ -16380,12 +16394,13 @@
    "factory": "register",
    "expression": "",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/blast-furnace.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/BlastFurnaceTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/BlastFurnaceTests.java",
+    "neoforge/src/main/java/ic2/neoforge/client/BlastFurnaceScreen.java"
    ],
-   "note": "方块、热链(电热源→50,000 HU)、空气罐/单元、钢锭+炉渣产出经 GameTest 验证;真实客户端界面随实机测试。"
+   "note": "方块、热链(电热源→50,000 HU)、空气罐/单元、钢锭+炉渣产出经 GameTest 验证;第55轮勘误:客户端界面(BlastFurnaceScreen 热量/空气双条+tooltip、5 槽 MachineMenu)已交付;实机观感留人工验收。"
   },
   {
    "registry": "recipe_type",

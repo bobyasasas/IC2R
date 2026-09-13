@@ -49,6 +49,7 @@ public final class AdvMinerBlockEntity extends PoweredBlockEntity {
     private boolean silkTouch = false;
     private int ticker;
     private int maxBlockScanCount = 5;
+    private int comparator;
 
     public AdvMinerBlockEntity(BlockPos pos, BlockState state) {
         super(
@@ -82,6 +83,16 @@ public final class AdvMinerBlockEntity extends PoweredBlockEntity {
     public void serverTick(ServerLevel level) {
         chargeTool();
         setActive(work(level));
+        int nextComparator = comparator();
+        if (nextComparator != comparator) {
+            comparator = nextComparator;
+            level.updateNeighbourForOutputSignal(worldPosition, getBlockState().getBlock());
+        }
+    }
+
+    /** Legacy TileEntityElectricMachine comparator: the buffer fill ratio scaled onto 0-15. */
+    public int comparator() {
+        return (int) Math.floor(15 * energy.stored() / energy.capacity());
     }
 
     private void chargeTool() {
