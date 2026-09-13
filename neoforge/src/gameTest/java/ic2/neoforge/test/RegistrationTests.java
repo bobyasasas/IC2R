@@ -511,6 +511,23 @@ public final class RegistrationTests {
         FUNCTIONS.register(
                 "meter_item_targets", () -> EntityTickingTests.wrap(MeterTests::itemUsageDistinguishesEnergyNodes));
         FUNCTIONS.register(
+                "debug_item_modes_cycle", () -> EntityTickingTests.wrap(DebugItemTests::modesCycleOnSneakUse));
+        FUNCTIONS.register(
+                "debug_item_tile_data_reports_tiles",
+                () -> EntityTickingTests.wrap(DebugItemTests::tileDataReportsMachinesCropsAndSafes));
+        FUNCTIONS.register(
+                "debug_item_energy_net_dumps_the_grid",
+                () -> EntityTickingTests.wrap(DebugItemTests::energyNetDumpsTheGrid));
+        FUNCTIONS.register(
+                "debug_item_reflection_dumps_fields",
+                () -> EntityTickingTests.wrap(DebugItemTests::reflectionDumpsFields));
+        FUNCTIONS.register(
+                "debug_item_accelerates_blocks",
+                () -> EntityTickingTests.wrap(DebugItemTests::accelerateForcesTicks));
+        FUNCTIONS.register(
+                "debug_item_infinite_and_retrace",
+                () -> EntityTickingTests.wrap(DebugItemTests::infiniteBudgetAndRetraceDumps));
+        FUNCTIONS.register(
                 "obscurator_retextures_wall", () -> ObscuratorTests::obscuratorRetexturesWall);
         FUNCTIONS.register(
                 "obscurator_requires_energy", () -> ObscuratorTests::obscuratorRequiresEnergy);

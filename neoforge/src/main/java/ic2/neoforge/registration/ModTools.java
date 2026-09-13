@@ -2,6 +2,7 @@ package ic2.neoforge.registration;
 
 import ic2.core.energy.ElectricItemSpec;
 import ic2.neoforge.IndustrialCraft;
+import ic2.neoforge.component.ModDataComponents;
 import ic2.neoforge.item.*;
 import ic2.neoforge.item.ElectricTreetapItem;
 import ic2.neoforge.item.TreetapItem;
@@ -198,6 +199,16 @@ public final class ModTools {
             ITEMS.registerItem("wind_meter", p -> new WindMeterItem(p.stacksTo(1)));
     public static final DeferredItem<MeterItem> METER =
             ITEMS.registerItem("meter", p -> new MeterItem(p.stacksTo(1)));
+    public static final DeferredItem<DebugItem> DEBUG_ITEM =
+            ITEMS.registerItem(
+                    "debug_item",
+                    p ->
+                            new DebugItem(
+                                    p.stacksTo(1)
+                                            .component(
+                                                    ModDataComponents.CHARGE.get(),
+                                                    DebugItem.INFINITE_SPEC.capacity())
+                                            .component(ModDataComponents.DEBUG_MODE.get(), 0)));
     public static final DeferredItem<MiningFilterCardItem> MINING_FILTER_CARD =
             ITEMS.registerItem("mining_filter_card", p -> new MiningFilterCardItem(p.stacksTo(1)));
     public static final DeferredItem<ContainmentBoxItem> CONTAINMENT_BOX =
@@ -326,6 +337,7 @@ public final class ModTools {
             event.accept(FREQUENCY_TRANSMITTER);
             event.accept(WIND_METER);
             event.accept(METER);
+            event.accept(DEBUG_ITEM);
             event.accept(CROP_ANALYZER);
             event.accept(MINING_FILTER_CARD);
             event.accept(CONTAINMENT_BOX);

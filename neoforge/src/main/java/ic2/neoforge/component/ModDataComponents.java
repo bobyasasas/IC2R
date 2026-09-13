@@ -413,6 +413,14 @@ public final class ModDataComponents {
                             builder.persistent(Codec.intRange(0, 2))
                                     .networkSynchronized(ByteBufCodecs.VAR_INT));
 
+    // Legacy debug item NBT "mode" int: ordinal of its working mode, cycled in the field.
+    public static final Supplier<DataComponentType<Integer>> DEBUG_MODE =
+            TYPES.<Integer>registerComponentType(
+                    "debug_mode",
+                    builder ->
+                            builder.persistent(Codec.intRange(0, 5))
+                                    .networkSynchronized(ByteBufCodecs.VAR_INT));
+
     private ModDataComponents() {}
 
     private static double validCharge(double value) {

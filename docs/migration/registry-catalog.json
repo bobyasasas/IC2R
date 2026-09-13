@@ -5530,7 +5530,15 @@
    "factory": "register",
    "expression": "new ItemDebug(new Properties().stacksTo(1))",
    "decision": "preserve",
-   "status": "pending"
+   "status": "implemented",
+   "note": "调试物品六模式(反射dump/TileData/EnergyNet/加速×2/实体Retrace):无限电=大有限容量(1e18)+默认满电,扣减真实发生;潜行右键切模式替代legacy键位;EnergyNet读数对接WorldEnergyNetworks.dumpDebugInfo;console通道改服务端日志;IDebuggable死分支/ItemEntity特例(不可达)不移植;工具箱白名单由port全收超集分歧;IReactor读数随P12;legacy \"on % (%s)\" 格式笔误修正;NBT dump改components。",
+   "evidence": [
+    "neoforge/src/main/java/ic2/neoforge/item/DebugItem.java",
+    "neoforge/src/main/java/ic2/neoforge/energy/WorldEnergyNetworks.java",
+    "neoforge/src/main/java/ic2/neoforge/component/ModDataComponents.java",
+    "neoforge/src/main/java/ic2/neoforge/registration/ModTools.java",
+    "neoforge/src/gameTest/java/ic2/neoforge/test/DebugItemTests.java"
+   ]
   },
   {
    "registry": "item",

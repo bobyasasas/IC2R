@@ -1,0 +1,7 @@
+{
+  "type": "minecraft:function",
+  "function": "ic2_tests:debug_item_accelerates_blocks",
+  "environment": "minecraft:default",
+  "structure": "ic2_tests:world_room",
+  "max_ticks": 100
+}

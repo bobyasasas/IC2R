@@ -23,6 +23,7 @@ import net.neoforged.neoforge.event.level.LevelEvent;
 import net.neoforged.neoforge.event.tick.LevelTickEvent;
 
 import java.util.ArrayDeque;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.IdentityHashMap;
@@ -104,6 +105,69 @@ public final class WorldEnergyNetworks {
     public static PacketDistributor.NodeStats nodeStats(ServerLevel level, BlockPos pos) {
         Network network = NETWORKS.get(level);
         return network == null ? null : network.lastNodeStats.get(grid(pos));
+    }
+
+    /**
+     * Legacy EnergyNetLocal.dumpDebugInfo for the Debug Item: describes the energy node at the
+     * position into both sinks (chat for the player, console for the server log — legacy fed a
+     * client console via packets instead). Returns false when nothing energized is there, so the
+     * caller falls through untouched.
+     */
+    public static boolean dumpDebugInfo(
+            ServerLevel level,
+            BlockPos pos,
+            java.util.function.Consumer<String> console,
+            java.util.function.Consumer<String> chat) {
+        Network network = NETWORKS.get(level);
+        EnergyNode node = network == null ? null : network.graph.node(grid(pos));
+        if (node == null) return false;
+        List<String> lines = new ArrayList<>();
+        lines.add(
+                "Node %s at %s info:"
+                        .formatted(
+                                node.getClass().getSimpleName(),
+                                level.dimension().identifier() + " " + pos.toShortString()));
+        lines.add(
+                " machines: %d, nodes: %d"
+                        .formatted(network.machines.size(), network.graph.nodes().size()));
+        if (node instanceof EnergyNode.Conductor cable) {
+            var spec = cable.specification();
+            lines.add(
+                    " role: conductor, cable: %dV, %dA, loss %.3f/%d, insulation %d/%d, diameter %.4f"
+                            .formatted(
+                                    spec.voltageLimit(),
+                                    spec.ampLimit(),
+                                    spec.classicLoss(),
+                                    spec.gtLoss(),
+                                    spec.insulation(),
+                                    spec.maxInsulation(),
+                                    spec.diameter()));
+        } else if (node instanceof EnergyNode.Terminal terminal) {
+            lines.add(
+                    " role: terminal, buffer: %.0f/%.0f EU"
+                            .formatted(terminal.energy().stored(), terminal.energy().capacity()));
+            terminal.output()
+                    .ifPresent(output ->
+                            lines.add(
+                                    " output: %dV, %dA"
+                                            .formatted(output.voltage(), output.maxAmps())));
+            terminal.input()
+                    .ifPresent(input ->
+                            lines.add(
+                                    " input: %dV, %dA".formatted(input.voltage(), input.maxAmps())));
+        }
+        PacketDistributor.NodeStats stats = nodeStats(level, pos);
+        if (stats != null)
+            lines.add(
+                    " last packets: in %.2f EU, out %.2f EU, %.2f V, %d A"
+                            .formatted(
+                                    stats.energyIn(),
+                                    stats.energyOut(),
+                                    stats.voltage(),
+                                    stats.amperage()));
+        lines.forEach(console);
+        lines.forEach(chat);
+        return true;
     }
 
     public static void tick(LevelTickEvent.Post event) {
