@@ -22,6 +22,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.GameType;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.SugarCaneBlock;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
 
@@ -34,7 +35,7 @@ final class DebugItemTests {
     private static final BlockPos MACHINE = new BlockPos(6, 8, 8),
             SAFE = new BlockPos(10, 8, 8),
             CROP = new BlockPos(8, 8, 6),
-            ICE = new BlockPos(6, 8, 6),
+            CANE = new BlockPos(6, 8, 6),
             PLAIN = new BlockPos(8, 8, 10),
             SOURCE = new BlockPos(4, 8, 10),
             CABLE = new BlockPos(5, 8, 10),
@@ -156,9 +157,20 @@ final class DebugItemTests {
                         .setValue(MachineBlock.FACING, Direction.EAST));
         var source = helper.getBlockEntity(SOURCE, ic2.neoforge.machine.PoweredBlockEntity.class);
         source.energy().restore(source.energy().capacity());
-        helper.runAtTickTime(
-                30,
-                () -> {
+        // The dump reports the level-wide registry totals, and the game-test dimension runs
+        // every batched structure in one level, so neighbouring structures inflate the
+        // machine count ("machines: 33" in CI instead of 2). Gate on this grid's own
+        // distribution having registered both machines instead of a fixed tick, then assert
+        // both are wired in and the totals cover them.
+        helper.startSequence()
+                .thenWaitUntil(() -> helper.assertTrue(
+                        WorldEnergyNetworks.nodeStats(level(helper), helper.absolutePos(SOURCE))
+                                        != null
+                                && WorldEnergyNetworks.nodeStats(
+                                                level(helper), helper.absolutePos(SINK))
+                                        != null,
+                        "Waiting for the grid to register and distribute over both machines"))
+                .thenExecute(() -> {
                     List<String> console = new ArrayList<>();
                     List<String> chat = new ArrayList<>();
                     helper.assertTrue(
@@ -172,9 +184,15 @@ final class DebugItemTests {
                     helper.assertTrue(
                             text.contains("role: conductor"),
                             "The dump describes the conductor role: " + text);
+                    var machines =
+                            java.util.regex.Pattern.compile("machines: (\\d+)").matcher(text);
                     helper.assertTrue(
-                            text.contains("machines: 2"),
-                            "The dump counts both grid machines: " + text);
+                            machines.find() && Integer.parseInt(machines.group(1)) >= 2,
+                            "The dump's machine total covers both grid machines: " + text);
+                    var nodes = java.util.regex.Pattern.compile("nodes: (\\d+)").matcher(text);
+                    helper.assertTrue(
+                            nodes.find() && Integer.parseInt(nodes.group(1)) >= 3,
+                            "The dump's node total covers the source, cable and sink: " + text);
                     helper.assertTrue(
                             text.contains("last packets:"),
                             "The dump includes the latest distribution statistics: " + text);
@@ -229,8 +247,8 @@ final class DebugItemTests {
     }
 
     static void accelerateForcesTicks(GameTestHelper helper) {
-        helper.setBlock(ICE, Blocks.ICE.defaultBlockState());
-        helper.setBlock(ICE.above(), Blocks.GLOWSTONE);
+        helper.setBlock(CANE.below(), Blocks.SAND);
+        helper.setBlock(CANE, Blocks.SUGAR_CANE.defaultBlockState());
         helper.setBlock(MACHINE, ModMachines.block(MachineKind.MFE).defaultBlockState());
         helper.setBlock(PLAIN, Blocks.STONE);
         var output = chatOutput();
@@ -248,24 +266,25 @@ final class DebugItemTests {
         helper.assertTrue(
                 chatText().contains("Running 1000 ticks"),
                 "The acceleration announces its work (chats=" + chats.size() + "): " + chatText());
-        // Block light needs a tick to propagate before the ice melt check can pass.
-        helper.runAtTickTime(
-                20,
-                () -> {
-                    var lightOutput = chatOutput();
-                    helper.assertTrue(
-                            DebugItem.accelerate(
-                                    helper.getLevel(), helper.absolutePos(ICE), 1000, lightOutput),
-                            "A randomly ticking block accelerates too");
-                    lightOutput.flush();
-                    helper.assertTrue(
-                            chatText().contains("before a state change"),
-                            "The random tick run reports the state change: " + chatText());
-                    helper.assertTrue(
-                            helper.getBlockState(ICE).is(Blocks.WATER),
-                            "The accelerated ice melted under the glowstone");
-                    helper.succeed();
-                });
+        // The random-tick carrier must change state without the light engine: the shared
+        // game-test dimension starves light propagation without bound (block light over the
+        // ice stayed 0 past tick 100 in one run), so the old ice-under-glowstone setup raced
+        // that propagation and flaked in CI. Sugar cane ages one step per forced random tick
+        // with no light or probability involved.
+        var lightOutput = chatOutput();
+        helper.assertTrue(
+                DebugItem.accelerate(
+                        helper.getLevel(), helper.absolutePos(CANE), 1000, lightOutput),
+                "A randomly ticking block accelerates too");
+        lightOutput.flush();
+        helper.assertTrue(
+                chatText().contains("before a state change"),
+                "The random tick run reports the state change: " + chatText());
+        helper.assertTrue(
+                helper.getBlockState(CANE).is(Blocks.SUGAR_CANE)
+                        && helper.getBlockState(CANE).getValue(SugarCaneBlock.AGE) > 0,
+                "The accelerated cane aged under the forced random ticks");
+        helper.succeed();
     }
 
     static void infiniteBudgetAndRetraceDumps(GameTestHelper helper) {
