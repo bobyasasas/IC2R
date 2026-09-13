@@ -6,6 +6,9 @@ import ic2.neoforge.transfer.ResourcePort;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.storage.ValueInput;
 import net.minecraft.world.level.storage.ValueOutput;
@@ -15,6 +18,8 @@ import net.neoforged.neoforge.transfer.item.ItemResource;
 import net.neoforged.neoforge.transfer.transaction.Transaction;
 
 import org.jspecify.annotations.Nullable;
+
+import java.util.UUID;
 
 /**
  * Player trade terminal: the owner pins a demand and an offer template, visitors drop the demanded
@@ -26,9 +31,19 @@ public final class TradeOMatBlockEntity extends MachineBlockEntity {
     public static final int DEMAND = 0, OFFER = 1, INPUT = 2, OUTPUT = 3;
     private boolean infinite;
     private int stock = -1, totalTradeCount;
+    private @Nullable UUID owner;
+    private String ownerName = "";
 
     public TradeOMatBlockEntity(BlockPos pos, BlockState state) {
         super(ModMachines.entityType(MachineKind.TRADE_O_MAT), pos, state, 4);
+    }
+
+    public boolean owned() {
+        return owner != null;
+    }
+
+    public String ownerName() {
+        return ownerName;
     }
 
     public boolean infinite() {
@@ -143,13 +158,36 @@ public final class TradeOMatBlockEntity extends MachineBlockEntity {
         return level.getCapability(Capabilities.Item.BLOCK, pos, direction.getOpposite());
     }
 
-    @Override
-    public boolean menuAction(int id) {
-        if (id == 0) {
-            toggleInfinite();
+    /** Legacy checkAccess: the first opener claims the terminal; afterwards owner or operator. */
+    public boolean permits(Player player) {
+        if (owner == null) {
+            owner = player.getUUID();
+            ownerName = player.getName().getString();
+            setChanged();
             return true;
         }
-        return false;
+        return isOperator(player) || owner.equals(player.getUUID());
+    }
+
+    /** Legacy canToggleInfinite: only server operators may flip the infinite flag. */
+    public boolean canToggleInfinite(Player player) {
+        return isOperator(player);
+    }
+
+    private static boolean isOperator(Player player) {
+        return player.level().getServer().getPlayerList().isOp(player.nameAndId());
+    }
+
+    /** Legacy onNetworkEvent event 0; the server re-checks the operator gate on every click. */
+    public boolean handleButton(Player player, int id) {
+        if (id != 0 || !canToggleInfinite(player)) return false;
+        toggleInfinite();
+        return true;
+    }
+
+    @Override
+    public AbstractContainerMenu createMenu(int id, Inventory playerInventory, Player player) {
+        return new ic2.neoforge.menu.MachineMenu(id, playerInventory, this, permits(player));
     }
 
     @Override
@@ -188,6 +226,9 @@ public final class TradeOMatBlockEntity extends MachineBlockEntity {
         infinite = input.getBooleanOr("infinite", false);
         stock = input.getIntOr("stock", -1);
         totalTradeCount = input.getIntOr("trades", 0);
+        String uuid = input.getStringOr("owner", "");
+        owner = uuid.isEmpty() ? null : UUID.fromString(uuid);
+        ownerName = input.getStringOr("ownerName", "");
     }
 
     @Override
@@ -196,5 +237,9 @@ public final class TradeOMatBlockEntity extends MachineBlockEntity {
         output.putBoolean("infinite", infinite);
         output.putInt("stock", stock);
         output.putInt("trades", totalTradeCount);
+        if (owner != null) {
+            output.putString("owner", owner.toString());
+            output.putString("ownerName", ownerName);
+        }
     }
 }

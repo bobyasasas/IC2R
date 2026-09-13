@@ -33,25 +33,43 @@ public final class MachineMenu extends AbstractContainerMenu {
     private final MachineBlockEntity machine;
     private final ContainerData data;
     private final int machineSlots;
+    // Legacy ContainerTradeOMatOpen vs Closed: visitors get read-only demand/offer template slots.
+    private final boolean tradeEditable;
 
     public MachineMenu(int id, Inventory playerInventory, MachineBlockEntity machine) {
+        this(id, playerInventory, machine, true);
+    }
+
+    public MachineMenu(
+            int id, Inventory playerInventory, MachineBlockEntity machine, boolean tradeEditable) {
         this(
                 id,
                 playerInventory,
                 machine.getBlockPos(),
                 machine.kind(),
                 machine,
-                machine.inventory());
+                machine.inventory(),
+                tradeEditable);
     }
 
     public MachineMenu(int id, Inventory playerInventory, BlockPos position, MachineKind kind) {
+        this(id, playerInventory, position, kind, true);
+    }
+
+    public MachineMenu(
+            int id,
+            Inventory playerInventory,
+            BlockPos position,
+            MachineKind kind,
+            boolean tradeEditable) {
         this(
                 id,
                 playerInventory,
                 position,
                 kind,
                 null,
-                new MachineInventory(kind.slots(), () -> {}, (slot, item) -> true));
+                new MachineInventory(kind.slots(), () -> {}, (slot, item) -> true),
+                tradeEditable);
     }
 
     private MachineMenu(
@@ -60,11 +78,13 @@ public final class MachineMenu extends AbstractContainerMenu {
             BlockPos position,
             MachineKind kind,
             MachineBlockEntity machine,
-            MachineInventory inventory) {
+            MachineInventory inventory,
+            boolean tradeEditable) {
         super(ModMachines.menuType(kind), id);
         this.kind = kind;
         this.position = position.immutable();
         this.machine = machine;
+        this.tradeEditable = tradeEditable;
         data =
                 machine == null
                         ? new SimpleContainerData(MachineMenuData.SIZE)
@@ -205,20 +225,8 @@ public final class MachineMenu extends AbstractContainerMenu {
                             }
                         });
         } else if (kind == MachineKind.TRADE_O_MAT) {
-            addSlot(
-                    new ResourceHandlerSlot(inventory, inventory::set, 0, 56, 17) {
-                        @Override
-                        public int getMaxStackSize() {
-                            return 1;
-                        }
-                    });
-            addSlot(
-                    new ResourceHandlerSlot(inventory, inventory::set, 1, 102, 17) {
-                        @Override
-                        public int getMaxStackSize() {
-                            return 1;
-                        }
-                    });
+            addSlot(templateSlot(inventory, 0, 56, 17));
+            addSlot(templateSlot(inventory, 1, 102, 17));
             addSlot(new ResourceHandlerSlot(inventory, inventory::set, 2, 56, 53));
             addSlot(new ResourceHandlerSlot(inventory, inventory::set, 3, 102, 53));
         } else if (kind == MachineKind.ENERGY_O_MAT) {
@@ -808,6 +816,26 @@ public final class MachineMenu extends AbstractContainerMenu {
                 });
     }
 
+    /** One-stack demand/offer template slot, locked for visitors like the legacy Closed menu. */
+    private ResourceHandlerSlot templateSlot(MachineInventory inventory, int slot, int x, int y) {
+        return new ResourceHandlerSlot(inventory, inventory::set, slot, x, y) {
+            @Override
+            public int getMaxStackSize() {
+                return 1;
+            }
+
+            @Override
+            public boolean mayPlace(ItemStack stack) {
+                return tradeEditable && super.mayPlace(stack);
+            }
+
+            @Override
+            public boolean mayPickup(Player player) {
+                return tradeEditable && super.mayPickup(player);
+            }
+        };
+    }
+
     /** Legacy ContainerElectricBlock armor row: four slots bound to the player's worn armor. */
     private void addArmorSlots(Inventory playerInventory, int x, int y) {
         var armorSlots = net.minecraft.world.entity.EquipmentSlot.values();
@@ -891,7 +919,14 @@ public final class MachineMenu extends AbstractContainerMenu {
             return (id == 0 || id == 1) && tank.transferCursor(player, this, id == 1);
         if (machine instanceof ic2.neoforge.machine.CokeKilnGrateBlockEntity grate)
             return (id == 0 || id == 1) && grate.transferCursor(player, this, id == 1);
+        if (machine instanceof ic2.neoforge.machine.TradeOMatBlockEntity trade)
+            return trade.handleButton(player, id);
         return machine.menuAction(id);
+    }
+
+    /** False for a visitor's legacy Closed view of a Trade-O-Mat. */
+    public boolean tradeEditable() {
+        return tradeEditable;
     }
 
     /** Computed outputs must not join double-click pickup-all (legacy ContainerIndustrialWorkbench). */

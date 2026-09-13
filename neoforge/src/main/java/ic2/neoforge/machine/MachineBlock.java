@@ -313,6 +313,16 @@ public final class MachineBlock extends BaseEntityBlock {
             } else if (machine instanceof ManualKineticBlockEntity manual
                     && player instanceof net.minecraft.server.level.ServerPlayer serverPlayer) {
                 manual.turn(serverPlayer);
+            } else if (machine instanceof TradeOMatBlockEntity trade) {
+                // Legacy opens ContainerTradeOMatOpen for the owner/operator and Closed for
+                // visitors; the port keeps one layout and syncs the editable flag per opener.
+                boolean editable = trade.permits(player);
+                player.openMenu(
+                        machine,
+                        buffer -> {
+                            buffer.writeBlockPos(pos);
+                            buffer.writeBoolean(editable);
+                        });
             } else player.openMenu(machine, buffer -> buffer.writeBlockPos(pos));
         }
         return InteractionResult.SUCCESS;

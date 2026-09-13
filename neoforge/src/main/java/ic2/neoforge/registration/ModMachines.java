@@ -96,12 +96,21 @@ public final class ModMachines {
                             id,
                             () ->
                                     IMenuTypeExtension.create(
-                                            (containerId, inventory, data) ->
-                                                    new MachineMenu(
+                                            (containerId, inventory, data) -> {
+                                                var position = data.readBlockPos();
+                                                if (kind == MachineKind.TRADE_O_MAT) {
+                                                    // The server writes whether this opener may
+                                                    // edit the trade templates.
+                                                    return new MachineMenu(
                                                             containerId,
                                                             inventory,
-                                                            data.readBlockPos(),
-                                                            kind)));
+                                                            position,
+                                                            kind,
+                                                            data.readBoolean());
+                                                }
+                                                return new MachineMenu(
+                                                        containerId, inventory, position, kind);
+                                            }));
             result.put(kind, new Registration(block, entity, menu));
         }
         return Collections.unmodifiableMap(result);

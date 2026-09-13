@@ -2770,11 +2770,15 @@
    "factory": "register",
    "expression": "new ItemBlockIc2(Ic2Blocks.TRADE_O_MAT, new Properties())",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/trade-o-mat.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/TradeOMatTests.java"
-   ]
+    "neoforge/src/gameTest/java/ic2/neoforge/test/TradeOMatTests.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/TradeOMatBlockEntity.java",
+    "neoforge/src/main/java/ic2/neoforge/menu/MachineMenu.java",
+    "neoforge/src/main/java/ic2/neoforge/client/TradeOMatScreen.java"
+   ],
+   "note": "第 54 轮补齐所有者编辑界面服务端与客户端链路（认领/OP 门控/访客只读/stock 行与 ∞ 钮），模板物品随方块注册；GUI 观感与 OP 实机验收留人工。"
   },
   {
    "registry": "item",
@@ -9565,12 +9569,15 @@
    "factory": "register",
    "expression": "Ic2TileEntityBlock.create(Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).strength(-1.0F, 3600000.0F).requiresCorrectToolForDrops().sound(SoundType.METAL), TileEntityTradeOMat.class, true, Ic2TileEntityBlock.DefaultDrop.Self, Util.horizontalFacings, false)",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/trade-o-mat.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/TradeOMatTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/TradeOMatTests.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/TradeOMatBlockEntity.java",
+    "neoforge/src/main/java/ic2/neoforge/menu/MachineMenu.java",
+    "neoforge/src/main/java/ic2/neoforge/client/TradeOMatScreen.java"
    ],
-   "note": "模板交易、无限/邻接供应两种模式与计数已接入;所有者编辑界面待客户端验收。"
+   "note": "模板交易、无限/邻接供应两种模式与计数已接入；第 54 轮补齐所有者编辑界面（首触认领、访客模板槽只读、∞ 切换 OP 门控），GUI 观感与 OP 场景实机验收留人工。"
   },
   {
    "registry": "block",
@@ -13592,12 +13599,15 @@
    "factory": "register",
    "expression": "TileEntityTradeOMat::new",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/trade-o-mat.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/TradeOMatTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/TradeOMatTests.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/TradeOMatBlockEntity.java",
+    "neoforge/src/main/java/ic2/neoforge/menu/MachineMenu.java",
+    "neoforge/src/main/java/ic2/neoforge/client/TradeOMatScreen.java"
    ],
-   "note": "模板交易、无限/邻接供应两种模式与计数已接入;所有者编辑界面待客户端验收。"
+   "note": "模板交易、无限/邻接供应两种模式与计数已接入；第 54 轮补齐所有者编辑界面（owner NBT、permits 认领、handleButton OP 门控、双菜单语义合一），多人实机验收留人工。"
   },
   {
    "registry": "block_entity",
