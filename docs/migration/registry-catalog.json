@@ -14551,10 +14551,16 @@
    "field": "SCANNER",
    "source": "legacy/forge-1.20.1/src/main/java/ic2/core/ref/Ic2ScreenHandlers.java",
    "factory": "registerManagedItem",
-   "expression": "",
+   "expression": "ModTools.SCANNER_MENU + ScannerMenu/ScannerScreen",
    "decision": "preserve",
-   "status": "pending",
-   "note": "legacy ContainerToolScanner 手持扫描 GUI 未移植；MenuType 占位。"
+   "status": "implemented",
+   "note": "手持扫描 GUI 落地：use 耗电 50/250 EU 后开手持菜单（crop_analyzer openMenu 范式，副手 SLOT_OFFHAND 也支持）；服务端构造时一次立方体扫描（range 6/12），legacy StackUtil.oreTags=Tags.Items.ORES+8 原版矿石 item tag，按 item 聚合、数量降序（item id 决胜 tiebreak，legacy 未定义序）、取前 10 经 ContainerData（21 int：条数+每行 rawId+count）同步客户端；Screen 保留 legacy \"Find:\" 标题/行文案/双色 (2157374/5752026)/双列图标位与 230 宽；onDroppedByPlayer 丢弃关菜单（meter 同款）。现代化取舍记档 scanner.md：legacy getCloneItemStack 26.1.2 已移除→new ItemStack(block)；scanResults 网络字段→ContainerData；窗口标题 container.ic2.scanner→stack.getHoverName（OD/OV 自适配）；GUI 观感属人工视觉验收留用户。GameTest scanner_menu_scan/use/drop 隔离+全量 499x2 双模式绿。",
+   "evidence": [
+    "neoforge/src/main/java/ic2/neoforge/menu/ScannerMenu.java",
+    "neoforge/src/main/java/ic2/neoforge/client/ScannerScreen.java",
+    "neoforge/src/main/java/ic2/neoforge/item/ScannerItem.java",
+    "neoforge/src/gameTest/java/ic2/neoforge/test/ScannerItemTests.java"
+   ]
   },
   {
    "registry": "menu",

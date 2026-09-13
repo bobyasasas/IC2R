@@ -8,6 +8,7 @@ import ic2.neoforge.item.TreetapItem;
 import ic2.neoforge.menu.CropAnalyzerMenu;
 import ic2.neoforge.menu.MeterMenu;
 import ic2.neoforge.menu.MiningFilterMenu;
+import ic2.neoforge.menu.ScannerMenu;
 
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -249,6 +250,14 @@ public final class ModTools {
                             IMenuTypeExtension.create(
                                     (id, inventory, data) ->
                                             new ic2.neoforge.menu.ContainmentBoxMenu(
+                                                    id, inventory, data.readVarInt(), true)));
+    public static final DeferredHolder<MenuType<?>, MenuType<ScannerMenu>> SCANNER_MENU =
+            MENUS.register(
+                    "scanner",
+                    () ->
+                            IMenuTypeExtension.create(
+                                    (id, inventory, data) ->
+                                            new ScannerMenu(
                                                     id, inventory, data.readVarInt(), true)));
 
     private static Item.Properties tool(Item.Properties properties, int damage) {

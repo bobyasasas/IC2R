@@ -294,6 +294,11 @@ public final class RegistrationTests {
         FUNCTIONS.register("drill_discharge", () -> EntityTickingTests.wrap(DrillItemTests::dischargePerBlock));
         FUNCTIONS.register("drill_miner_constants", () -> EntityTickingTests.wrap(DrillItemTests::minerConstants));
         FUNCTIONS.register("scanner_layer_scan", () -> EntityTickingTests.wrap(ScannerItemTests::layerScan));
+        FUNCTIONS.register("scanner_menu_scan", () -> EntityTickingTests.wrap(ScannerItemTests::menuScan));
+        FUNCTIONS.register(
+                "scanner_menu_use", () -> EntityTickingTests.wrap(ScannerItemTests::menuScanAndUse));
+        FUNCTIONS.register(
+                "scanner_menu_drop", () -> EntityTickingTests.wrap(ScannerItemTests::menuDropCloses));
         FUNCTIONS.register("miner_digs_down", () -> EntityTickingTests.wrap(MinerTests::digsDownAndHarvests));
         FUNCTIONS.register("miner_scanner_tunnel", () -> EntityTickingTests.wrap(MinerTests::scannerDigsTowardsOre));
         FUNCTIONS.register("miner_withdraw", () -> EntityTickingTests.wrap(MinerTests::withdrawsColumnWithoutDrill));
