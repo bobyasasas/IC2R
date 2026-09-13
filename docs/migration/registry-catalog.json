@@ -2297,11 +2297,13 @@
    "factory": "register",
    "expression": "new ItemBlockIc2(Ic2Blocks.ELECTRIC_FURNACE, new Properties())",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "neoforge/src/main/java/ic2/neoforge/registration/ModMachines.java",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/MachineTests.java"
-   ]
+    "neoforge/src/gameTest/java/ic2/neoforge/test/MachineTests.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/ElectricFurnaceBlockEntity.java"
+   ],
+   "note": "Electric furnace item registered with the machine block; vanilla smelting at 3 EU/t over 100 ticks verified."
   },
   {
    "registry": "item",
@@ -2326,11 +2328,13 @@
    "factory": "register",
    "expression": "new ItemBlockIc2(Ic2Blocks.IRON_FURNACE, new Properties())",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "neoforge/src/main/java/ic2/neoforge/registration/ModMachines.java",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/ProcessingTests.java"
-   ]
+    "neoforge/src/gameTest/java/ic2/neoforge/test/ProcessingTests.java",
+    "neoforge/src/main/java/ic2/neoforge/client/MachineSounds.java"
+   ],
+   "note": "Iron furnace item registered with the machine block; fuel burning, 160-tick smelting and experience verified."
   },
   {
    "registry": "item",
@@ -2355,12 +2359,13 @@
    "factory": "register",
    "expression": "new ItemBlockIc2(Ic2Blocks.RECYCLER, new Properties())",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/recycler.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/RecyclerTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/RecyclerTests.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/RecyclerBlockEntity.java"
    ],
-   "note": "概率、黑名单、输入组件和保存重载已验证；数据包白名单重载及多人整体验收待完成。"
+   "note": "Recycler item registered with the machine block; 1/8 scrap chance, tag-driven whitelist/blacklist and persistence verified."
   },
   {
    "registry": "item",
@@ -9060,11 +9065,13 @@
    "factory": "register",
    "expression": "Ic2TileEntityBlock.create(Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).strength(2.0F, 10.0F).requiresCorrectToolForDrops().sound(SoundType.METAL), TileEntityElectricFurnace.class, true, Ic2TileEntityBlock.DefaultDrop.Self, Util.horizontalFacings, true)",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "neoforge/src/main/java/ic2/neoforge/registration/ModMachines.java",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/MachineTests.java"
-   ]
+    "neoforge/src/gameTest/java/ic2/neoforge/test/MachineTests.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/ElectricFurnaceBlockEntity.java"
+   ],
+   "note": "Electric furnace block and block entity run vanilla smelting recipes at 3 EU/t over 100 ticks with upgrades."
   },
   {
    "registry": "block",
@@ -9089,11 +9096,13 @@
    "factory": "register",
    "expression": "Ic2TileEntityBlock.create(Properties.of().strength(5.0F, 10.0F).requiresCorrectToolForDrops().sound(SoundType.METAL), TileEntityIronFurnace.class, true, Ic2TileEntityBlock.DefaultDrop.Self, Util.horizontalFacings, false)",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "neoforge/src/main/java/ic2/neoforge/registration/ModMachines.java",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/ProcessingTests.java"
-   ]
+    "neoforge/src/gameTest/java/ic2/neoforge/test/ProcessingTests.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/MachineBlock.java"
+   ],
+   "note": "Iron furnace block and block entity burn fuel for 160-tick smelting with fuel/output/input automation."
   },
   {
    "registry": "block",
@@ -9118,12 +9127,13 @@
    "factory": "register",
    "expression": "Ic2TileEntityBlock.create(Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).strength(2.0F, 10.0F).requiresCorrectToolForDrops().sound(SoundType.METAL), TileEntityRecycler.class, true, Ic2TileEntityBlock.DefaultDrop.Machine, Util.horizontalFacings, true)",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/recycler.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/RecyclerTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/RecyclerTests.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/RecyclerBlockEntity.java"
    ],
-   "note": "概率、黑名单、输入组件和保存重载已验证；数据包白名单重载及多人整体验收待完成。"
+   "note": "Recycler block and block entity produce scrap on a one-in-eight roll at 1 EU/t over 45 ticks with upgrades."
   },
   {
    "registry": "block",
@@ -12829,11 +12839,13 @@
    "factory": "register",
    "expression": "TileEntityElectricFurnace::new",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "neoforge/src/main/java/ic2/neoforge/registration/ModMachines.java",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/MachineTests.java"
-   ]
+    "neoforge/src/gameTest/java/ic2/neoforge/test/MachineTests.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/ElectricFurnaceBlockEntity.java"
+   ],
+   "note": "ElectricFurnaceBlockEntity maps vanilla smelting onto the shared atomic processing pipeline and banks experience."
   },
   {
    "registry": "block_entity",
@@ -12891,11 +12903,13 @@
    "factory": "register",
    "expression": "TileEntityIronFurnace::new",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "neoforge/src/main/java/ic2/neoforge/registration/ModMachines.java",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/ProcessingTests.java"
-   ]
+    "neoforge/src/gameTest/java/ic2/neoforge/test/ProcessingTests.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/IronFurnaceBlockEntity.java"
+   ],
+   "note": "IronFurnaceBlockEntity consumes fuel with remainder handling, persists fuel/progress/xp, awards banked experience and shows legacy flames, crackle and loop sound."
   },
   {
    "registry": "block_entity",
@@ -12953,12 +12967,13 @@
    "factory": "register",
    "expression": "TileEntityRecycler::new",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/recycler.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/RecyclerTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/RecyclerTests.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/RecyclerBlockEntity.java"
    ],
-   "note": "概率、黑名单、输入组件和保存重载已验证；数据包白名单重载及多人整体验收待完成。"
+   "note": "RecyclerBlockEntity rolls the scrap chance only on completion, reads whitelist/blacklist item tags live (reload-safe) and saves the full input identity."
   },
   {
    "registry": "block_entity",

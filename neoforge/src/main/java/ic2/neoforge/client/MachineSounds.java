@@ -170,8 +170,8 @@ final class MachineSounds {
             case MACERATOR -> ModSounds.MACHINE_MACERATOR_OPERATE.get();
             case EXTRACTOR -> ModSounds.MACHINE_EXTRACTOR_OPERATE.get();
             case COMPRESSOR -> ModSounds.MACHINE_COMPRESSOR_OPERATE.get();
-            case IRON_FURNACE,
-                    BATBOX,
+            case IRON_FURNACE -> ModSounds.MACHINE_FURNACE_IRON_OPERATE.get();
+            case BATBOX,
                     CESU,
                     MFE,
                     MFSU,

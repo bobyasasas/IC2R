@@ -12,6 +12,8 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.LivingEntity;
@@ -176,6 +178,34 @@ public final class MachineBlock extends BaseEntityBlock {
                         }
                         world.addParticle(ParticleTypes.SMOKE, x, y, z, 0.0, 0.0, 0.0);
                         world.addParticle(ParticleTypes.FLAME, x, y, z, 0.0, 0.0, 0.0);
+                    }
+                };
+                // The legacy iron furnace shows the same furnace flames while burning and, on
+                // one client tick in ten, plays a fire crackle at the block centre base.
+                case IRON_FURNACE -> (world, pos, blockState, entity) -> {
+                    if (blockState.getValue(ACTIVE)) {
+                        var random = world.getRandom();
+                        var facing = blockState.getValue(FACING);
+                        double x = pos.getX() + (facing.getStepX() * 1.04 + 1.0) / 2.0;
+                        double y = pos.getY() + random.nextFloat() * 0.375;
+                        double z = pos.getZ() + (facing.getStepZ() * 1.04 + 1.0) / 2.0;
+                        if (facing.getAxis() == Direction.Axis.X) {
+                            z += random.nextFloat() * 0.625 - 0.3125;
+                        } else {
+                            x += random.nextFloat() * 0.625 - 0.3125;
+                        }
+                        world.addParticle(ParticleTypes.SMOKE, x, y, z, 0.0, 0.0, 0.0);
+                        world.addParticle(ParticleTypes.FLAME, x, y, z, 0.0, 0.0, 0.0);
+                        if (random.nextDouble() < 0.1)
+                            world.playLocalSound(
+                                    pos.getX() + 0.5,
+                                    pos.getY(),
+                                    pos.getZ() + 0.5,
+                                    SoundEvents.FURNACE_FIRE_CRACKLE,
+                                    SoundSource.BLOCKS,
+                                    1.0F,
+                                    1.0F,
+                                    false);
                     }
                 };
                 default -> null;
