@@ -2,11 +2,14 @@ package ic2.neoforge.machine;
 
 import ic2.core.energy.EnergyStore;
 import ic2.neoforge.registration.ModMachines;
+import ic2.neoforge.registration.ModSounds;
 import ic2.neoforge.transfer.ResourcePort;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.particles.DustParticleOptions;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
@@ -27,6 +30,7 @@ import net.neoforged.neoforge.transfer.ResourceHandler;
 import net.neoforged.neoforge.transfer.item.ItemResource;
 
 import java.util.ArrayList;
+import java.util.concurrent.ThreadLocalRandom;
 
 /**
  * Ports the legacy teleporter: redstone power plus a linked target teleports the closest unmounted
@@ -35,8 +39,12 @@ import java.util.ArrayList;
  */
 public final class TeleporterBlockEntity extends MachineBlockEntity {
     private static final int COOLDOWN_TICKS = 20;
+    // Legacy idle dust: blue while armed, green while cooling down (an int ARGB colour here).
+    private static final DustParticleOptions BLUE_DUST = new DustParticleOptions(0xFF0000FF, 1.0F);
+    private static final DustParticleOptions GREEN_DUST = new DustParticleOptions(0xFF00FF00, 1.0F);
     private BlockPos target;
     private int cooldown;
+    private int targetCheckTicker = ThreadLocalRandom.current().nextInt(1024);
 
     public TeleporterBlockEntity(BlockPos pos, BlockState state) {
         super(ModMachines.entityType(((MachineBlock) state.getBlock()).kind()), pos, state, 0);
@@ -49,34 +57,52 @@ public final class TeleporterBlockEntity extends MachineBlockEntity {
 
     @Override
     public void serverTick(ServerLevel level) {
-        if (cooldown > 0) cooldown--;
+        boolean coolingDown = cooldown > 0;
+        if (coolingDown) cooldown--;
         if (!level.hasNeighborSignal(worldPosition) || target == null) {
             setActive(false);
             return;
         }
         setActive(true);
-        var bounds =
-                new AABB(
-                        worldPosition.getX() - 1,
-                        worldPosition.getY(),
-                        worldPosition.getZ() - 1,
-                        worldPosition.getX() + 2,
-                        worldPosition.getY() + 3,
-                        worldPosition.getZ() + 2);
+        // Legacy renders this dust client-side every active tick; the port broadcasts it.
+        level.sendParticles(
+                coolingDown ? GREEN_DUST : BLUE_DUST,
+                worldPosition.getX() + 0.5,
+                worldPosition.getY() + 1.5,
+                worldPosition.getZ() + 0.5,
+                2,
+                0.5,
+                1.0,
+                0.5,
+                0.0);
+        // Legacy searches no entities while cooling down, yet still runs its target check below.
         Entity closest = null;
-        double best = Double.MAX_VALUE;
-        for (var entity :
-                level.getEntitiesOfClass(
-                        Entity.class, bounds, e -> e.isAlive() && e.getVehicle() == null)) {
-            double distance =
-                    worldPosition.distToLowCornerSqr(entity.getX(), entity.getY(), entity.getZ());
-            if (distance < best) {
-                best = distance;
-                closest = entity;
+        if (!coolingDown) {
+            var bounds =
+                    new AABB(
+                            worldPosition.getX() - 1,
+                            worldPosition.getY(),
+                            worldPosition.getZ() - 1,
+                            worldPosition.getX() + 2,
+                            worldPosition.getY() + 3,
+                            worldPosition.getZ() + 2);
+            double best = Double.MAX_VALUE;
+            for (var entity :
+                    level.getEntitiesOfClass(
+                            Entity.class, bounds, e -> e.isAlive() && e.getVehicle() == null)) {
+                double distance =
+                        worldPosition.distToLowCornerSqr(entity.getX(), entity.getY(), entity.getZ());
+                if (distance < best) {
+                    best = distance;
+                    closest = entity;
+                }
             }
         }
         if (closest != null && verifyTarget(level)) {
             teleport(closest, Math.sqrt(worldPosition.distSqr(target)));
+        } else if (++targetCheckTicker % 1024 == 0) {
+            // Legacy sweeps for a destroyed target every 1024 ticks even with no entity around.
+            verifyTarget(level);
         }
     }
 
@@ -84,6 +110,7 @@ public final class TeleporterBlockEntity extends MachineBlockEntity {
         if (level.getBlockEntity(target) instanceof TeleporterBlockEntity) return true;
         target = null;
         setChanged();
+        updateComparatorSignal();
         return false;
     }
 
@@ -98,7 +125,32 @@ public final class TeleporterBlockEntity extends MachineBlockEntity {
                 && server.getBlockEntity(target) instanceof TeleporterBlockEntity other) {
             other.onTeleportTo();
         }
+        if (level instanceof ServerLevel server) {
+            server.playSound(
+                    null,
+                    worldPosition,
+                    ModSounds.MACHINE_TELEPORTER_USE.get(),
+                    SoundSource.BLOCKS,
+                    1.0F,
+                    1.0F);
+            // Legacy event 0: a blue burst over both ends of the link.
+            burst(server, worldPosition);
+            burst(server, target);
+        }
         setChanged();
+    }
+
+    private static void burst(ServerLevel level, BlockPos pos) {
+        level.sendParticles(
+                BLUE_DUST,
+                pos.getX() + 0.5,
+                pos.getY() + 1.5,
+                pos.getZ() + 0.5,
+                20,
+                0.5,
+                1.0,
+                0.5,
+                0.0);
     }
 
     /** Legacy linkage hook: the receiving teleporter cools down before teleporting again. */
@@ -189,6 +241,23 @@ public final class TeleporterBlockEntity extends MachineBlockEntity {
         return stack.isEmpty() ? 0 : 100 * stack.getCount() / Math.max(1, stack.getMaxStackSize());
     }
 
+    /** Legacy comparator: a full signal while a target is linked, none otherwise. */
+    public int comparator() {
+        return target != null ? 15 : 0;
+    }
+
+    private void updateComparatorSignal() {
+        if (level instanceof ServerLevel server)
+            server.updateNeighbourForOutputSignal(worldPosition, getBlockState().getBlock());
+    }
+
+    @Override
+    public void onLoad() {
+        super.onLoad();
+        // Legacy refreshes the comparator level once the tile comes back from disk.
+        updateComparatorSignal();
+    }
+
     public boolean hasTarget() {
         return target != null;
     }
@@ -200,6 +269,7 @@ public final class TeleporterBlockEntity extends MachineBlockEntity {
     public void setTarget(BlockPos pos) {
         target = pos;
         setChanged();
+        updateComparatorSignal();
     }
 
     @Override

@@ -151,5 +151,66 @@ final class TeleporterTests {
         helper.succeed();
     }
 
+    static void comparatorTracksLinkState(GameTestHelper helper) {
+        var level = helper.getLevel();
+        var sender = teleporter(helper, ORIGIN);
+        teleporter(helper, DESTINATION);
+        var state = helper.getBlockState(ORIGIN);
+        helper.assertTrue(
+                state.getAnalogOutputSignal(level, helper.absolutePos(ORIGIN), Direction.NORTH) == 0,
+                "An unlinked teleporter gives no comparator signal");
+        var transmitter = ModTools.FREQUENCY_TRANSMITTER.toStack();
+        var player = player(helper);
+        use(player, helper, ORIGIN, transmitter);
+        use(player, helper, DESTINATION, transmitter);
+        helper.assertTrue(sender.hasTarget(), "The link is established");
+        helper.assertTrue(
+                state.getAnalogOutputSignal(level, helper.absolutePos(ORIGIN), Direction.NORTH)
+                        == 15,
+                "A linked teleporter reports a full comparator signal");
+        // Destroying the target unlinks on the next powered tick that sees an entity
+        // (legacy only verifies the target when a teleport candidate is in range).
+        var probe = dropAt(helper, ORIGIN);
+        helper.setBlock(DESTINATION, Blocks.AIR.defaultBlockState());
+        helper.setBlock(ORIGIN.below(), Blocks.REDSTONE_BLOCK.defaultBlockState());
+        sender.serverTick((ServerLevel) level);
+        helper.assertTrue(!sender.hasTarget(), "A destroyed target unlinks the teleporter");
+        helper.assertTrue(
+                probe.isAlive()
+                        && Math.abs(
+                                        probe.getX()
+                                                - (helper.absolutePos(ORIGIN).getX() + 0.5))
+                                < 0.1,
+                "The unlinking check does not teleport the entity that triggered it");
+        helper.assertTrue(
+                state.getAnalogOutputSignal(level, helper.absolutePos(ORIGIN), Direction.NORTH)
+                        == 0,
+                "Losing the target drops the comparator signal");
+        helper.succeed();
+    }
+
+    static void cooldownBlocksWhilePowered(GameTestHelper helper) {
+        var level = helper.getLevel();
+        var sender = teleporter(helper, ORIGIN);
+        var receiver = teleporter(helper, DESTINATION);
+        helper.setBlock(BATTERY, ModMachines.block(MachineKind.MFE).defaultBlockState());
+        var battery = helper.getBlockEntity(BATTERY, EnergyStorageBlockEntity.class);
+        battery.energy().restore(1000000);
+        helper.setBlock(DESTINATION.below(), Blocks.REDSTONE_BLOCK.defaultBlockState());
+        receiver.setTarget(helper.absolutePos(ORIGIN));
+        receiver.onTeleportTo();
+        var loot = dropAt(helper, DESTINATION);
+        for (int tick = 0; tick < 10; tick++) receiver.serverTick((ServerLevel) level);
+        helper.assertTrue(
+                loot.getX() == helper.absolutePos(DESTINATION).getX() + 0.5
+                        && loot.getZ() == helper.absolutePos(DESTINATION).getZ() + 0.5,
+                "The cooldown blocks teleports even with energy available");
+        for (int tick = 0; tick < 15; tick++) receiver.serverTick((ServerLevel) level);
+        helper.assertTrue(
+                Math.abs(loot.getX() - (helper.absolutePos(ORIGIN).getX() + 0.5)) < 0.1,
+                "After the cooldown the powered teleport proceeds");
+        helper.succeed();
+    }
+
     private TeleporterTests() {}
 }

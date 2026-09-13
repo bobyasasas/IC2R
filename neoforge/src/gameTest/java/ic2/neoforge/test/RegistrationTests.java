@@ -307,6 +307,11 @@ public final class RegistrationTests {
         FUNCTIONS.register(
                 "teleporter_cooldown_shortage", () -> TeleporterTests::cooldownAndShortage);
         FUNCTIONS.register("teleporter_unlink", () -> EntityTickingTests.wrap(TeleporterTests::unlinksInAir));
+        FUNCTIONS.register(
+                "teleporter_comparator_link_state", () -> TeleporterTests::comparatorTracksLinkState);
+        FUNCTIONS.register(
+                "teleporter_cooldown_blocks_while_powered",
+                () -> EntityTickingTests.wrap(TeleporterTests::cooldownBlocksWhilePowered));
         FUNCTIONS.register("adv_miner_sweep", () -> EntityTickingTests.wrap(AdvMinerTests::sweepsAndMines));
         FUNCTIONS.register("adv_miner_whitelist", () -> EntityTickingTests.wrap(AdvMinerTests::whitelistGates));
         FUNCTIONS.register("adv_miner_silk_reset", () -> EntityTickingTests.wrap(AdvMinerTests::silkAndReset));

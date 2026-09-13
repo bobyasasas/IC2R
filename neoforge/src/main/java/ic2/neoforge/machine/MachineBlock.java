@@ -235,7 +235,8 @@ public final class MachineBlock extends BaseEntityBlock {
         return kind.storage()
                 || kind == MachineKind.INDUCTION_FURNACE
                 || kind == MachineKind.TANK
-                || kind == MachineKind.LUMINATOR;
+                || kind == MachineKind.LUMINATOR
+                || kind == MachineKind.TELEPORTER;
     }
 
     @Override
@@ -246,6 +247,7 @@ public final class MachineBlock extends BaseEntityBlock {
         if (machine instanceof TankBlockEntity tank) return tank.comparator();
         if (machine instanceof InductionFurnaceBlockEntity furnace) return furnace.comparator();
         if (machine instanceof LuminatorBlockEntity luminator) return luminator.comparator();
+        if (machine instanceof TeleporterBlockEntity teleporter) return teleporter.comparator();
         return 0;
     }
 
