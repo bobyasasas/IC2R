@@ -8,7 +8,6 @@ import ic2.neoforge.registration.ModMaterialBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.gametest.framework.GameTestHelper;
-import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.item.ItemEntity;
@@ -16,6 +15,7 @@ import net.minecraft.world.entity.monster.zombie.Zombie;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.level.ChunkPos;
 import net.minecraft.world.level.GameType;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.phys.BlockHitResult;
@@ -117,48 +117,85 @@ final class SheetTests {
 
     static void resinSheetCushionsFalls(GameTestHelper helper) {
         helper.setTime(18000);
-        // The game-test grid can leave the dimension's entity ticking idle when the
-        // test starts, and then the fallers never tick at all (zero gravity, no fall).
-        // A real server player anchors a PLAYER_SIMULATION ticket, which is exactly
-        // what drives the entity-ticking range, so the shaft chunks tick the zombies
-        // deterministically. Creative mode keeps the zombies from targeting it.
-        setStone(helper, new BlockPos(3, 1, 2));
-        ServerPlayer anchor = helper.makeMockServerPlayerInLevel();
-        var anchorPos = helper.absolutePos(new BlockPos(3, 2, 2));
-        anchor.teleportTo(
-                anchorPos.getX() + 0.5, anchorPos.getY(), anchorPos.getZ() + 0.5);
-        // Two sealed shafts, nine blocks of fall: one passes through a resin curtain,
-        // one floors on bare stone.
+        // Two sealed shafts, eleven blocks of fall: one passes through a resin
+        // curtain, one floors on bare stone.
         buildShaft(helper, 1, 1, true);
         buildShaft(helper, 1, 4, false);
+        // The grid dimension only ticks entities whose chunks sit in the
+        // entity-ticking ticket range, and the section bookkeeping that feeds
+        // the tick list advances through asynchronous chunk promotions that do
+        // not reliably happen inside the test window. So the test takes its own
+        // FORCED tickets (exactly the entity-ticking level, and the simulation
+        // tracker reads them straight from ticket storage) and the fallers
+        // override isAlwaysTicking, the same bypass players get, which enters
+        // them into the tick list regardless of section state. Gravity then
+        // depends on nothing asynchronous but the chunk load itself.
+        var shaftA = helper.absolutePos(new BlockPos(1, 13, 1));
+        var shaftB = helper.absolutePos(new BlockPos(1, 13, 4));
+        int ax = shaftA.getX() >> 4;
+        int az = shaftA.getZ() >> 4;
+        int bx = shaftB.getX() >> 4;
+        int bz = shaftB.getZ() >> 4;
+        var level = helper.getLevel();
+        level.setChunkForced(ax, az, true);
+        level.setChunkForced(bx, bz, true);
+        var distanceManager = level.getChunkSource().chunkMap.getDistanceManager();
         Zombie[] cushioned = new Zombie[1];
         Zombie[] bare = new Zombie[1];
-        // Spawn a few ticks in, after the anchor's simulation ticket has settled.
-        helper.runAfterDelay(5, () -> {
-            cushioned[0] = dropZombie(helper, 1, 1);
-            bare[0] = dropZombie(helper, 1, 4);
-        });
+        for (int t = 1; t <= 60; t++) {
+            int tick = t;
+            helper.runAtTickTime(tick, () -> {
+                if (cushioned[0] != null) {
+                    return;
+                }
+                // Spawn only once both shaft chunks are fully loaded and their
+                // forced tickets put them in the entity-ticking range.
+                boolean loaded = level.getChunkSource().hasChunk(ax, az)
+                        && level.getChunkSource().hasChunk(bx, bz);
+                boolean ticking = distanceManager.inEntityTickingRange(ChunkPos.pack(ax, az))
+                        && distanceManager.inEntityTickingRange(ChunkPos.pack(bx, bz));
+                if (loaded && ticking) {
+                    cushioned[0] = dropZombie(helper, shaftA);
+                    bare[0] = dropZombie(helper, shaftB);
+                    return;
+                }
+                if (tick == 60) {
+                    helper.fail("Shaft chunks never reached the entity-ticking range (loaded="
+                            + loaded + ", ticking=" + ticking + ")");
+                }
+            });
+        }
 
-        helper.runAfterDelay(
-                60,
-                () -> {
-                    anchor.discard();
-                    helper.assertTrue(cushioned[0] != null && bare[0] != null,
-                            "Both zombies must have spawned");
-                    helper.assertTrue(cushioned[0].isAlive() && bare[0].isAlive(),
-                            "Both zombies must survive the landing itself");
-                    helper.assertTrue(
-                            cushioned[0].getHealth() > bare[0].getHealth() + 1.0F,
-                            "The resin sheet must absorb fall damage (cushioned "
-                                    + cushioned[0].getHealth() + " vs bare "
-                                    + bare[0].getHealth() + ")");
-                    helper.succeed();
-                });
+        // Wait for the physics instead of a fixed deadline: both fallers must
+        // cross the floor line, then a short settle for the landing damage.
+        double floorY = helper.absolutePos(new BlockPos(1, 2, 4)).getY() + 0.5;
+        helper.startSequence()
+                .thenWaitUntil(() -> helper.assertTrue(
+                        cushioned[0] != null && bare[0] != null
+                                && cushioned[0].getY() < floorY
+                                && bare[0].getY() < floorY,
+                        "Waiting for both zombies to floor"))
+                .thenExecuteAfter(
+                        3,
+                        () -> {
+                            level.setChunkForced(ax, az, false);
+                            level.setChunkForced(bx, bz, false);
+                            helper.assertTrue(
+                                    cushioned[0].isAlive() && bare[0].isAlive(),
+                                    "Both zombies must survive the landing itself");
+                            helper.assertTrue(
+                                    cushioned[0].getHealth()
+                                            > bare[0].getHealth() + 1.0F,
+                                    "The resin sheet must absorb fall damage (cushioned "
+                                            + cushioned[0].getHealth() + " vs bare "
+                                            + bare[0].getHealth() + ")");
+                            helper.succeed();
+                        });
     }
 
     private static void buildShaft(
             GameTestHelper helper, int x, int z, boolean withSheet) {
-        for (int y = 1; y <= 12; y++) {
+        for (int y = 1; y <= 13; y++) {
             setStone(helper, new BlockPos(x - 1, y, z));
             setStone(helper, new BlockPos(x + 1, y, z));
             setStone(helper, new BlockPos(x, y, z - 1));
@@ -177,11 +214,21 @@ final class SheetTests {
         }
     }
 
-    private static Zombie dropZombie(GameTestHelper helper, int x, int z) {
-        // Nine blocks of fall: the landing speed stays well below the one step in which
-        // a faller could cross the whole curtain window, so the resin always gets its
-        // damping ticks, while the bare control still takes real damage.
-        return helper.spawn(EntityType.ZOMBIE, new BlockPos(x, 11, z));
+    private static Zombie dropZombie(GameTestHelper helper, BlockPos shaftTop) {
+        // Eleven blocks of fall: the landing speed stays well below the one step in
+        // which a faller could cross the whole curtain window, so the resin always
+        // gets at least one pre-landing damping tick, while the bare control still
+        // takes heavy damage. Even a single damping tick keeps the margin at 2.0:
+        // bare ceil(11-3)=8 damage (12.0) versus 0.75*(11-2.125)+2.125 -> 6 (14.0).
+        Zombie faller = new Zombie(EntityType.ZOMBIE, helper.getLevel()) {
+            @Override
+            public boolean isAlwaysTicking() {
+                return true;
+            }
+        };
+        faller.setPos(shaftTop.getX() + 0.5, shaftTop.getY(), shaftTop.getZ() + 0.5);
+        helper.getLevel().addFreshEntity(faller);
+        return faller;
     }
 
     static void rubberSheetBouncesItems(GameTestHelper helper) {
