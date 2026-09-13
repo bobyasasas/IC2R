@@ -1609,11 +1609,14 @@
    "factory": "register",
    "expression": "new ItemBlockIc2(Ic2Blocks.GENERATOR, new Properties())",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "neoforge/src/main/java/ic2/neoforge/registration/ModMachines.java",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/MachineTests.java"
-   ]
+    "neoforge/src/gameTest/java/ic2/neoforge/test/MachineTests.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/GeneratorBlockEntity.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/MachineBlock.java"
+   ],
+   "note": "基础发电机:固体燃料烧炼时长/4 记 fuel 刻,每刻 10×倍率 EU(LV 32V/1A,缓冲 4000);燃料槽底部弹容器、非燃料可插入、无燃料物品可底部抽取,电池充电槽沿用;fuel/totalFuel 随存档保存;本轮补齐 legacy updateEntityClient 的活跃火焰粒子(client ticker 1/8 概率正面 SMOKE+FLAME,几何对齐 showFurnaceFlames);GameTest machine_chain/generator_persistence 覆盖发电链路与持久化,IC2/GT 双模式 522 例全绿，本轮审计后 item/block/block_entity 三条目同轮翻转。"
   },
   {
    "registry": "item",
@@ -1623,12 +1626,13 @@
    "factory": "register",
    "expression": "new ItemBlockIc2(Ic2Blocks.GEO_GENERATOR, new Properties())",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/generators.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/GenerationTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/GenerationTests.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/FluidGeneratorBlockEntity.java"
    ],
-   "note": "默认日照、熔岩与沼气供电、容量、燃料、容器与重载已验证；完整配置和多人行为待验收。"
+   "note": "地热发电机:8000 mB 岩浆罐,每刻抽 2 mB 记 1 fuel 刻×20×倍率 EU(LV);流体容器经 ItemAccess 转罐、空容器送输出槽、输出阻塞整体回滚,外部管道只能注入不能抽取,满电暂停不吞液体;剩余刻数/产能/罐均保存(修复 legacy 重载产能恢复);地热 loop 音效;GameTest generation_geothermal 覆盖岩浆桶回收/满电不耗燃料/保存重载,IC2/GT 双模式 522 例全绿，本轮审计后 item/block/block_entity 三条目同轮翻转。"
   },
   {
    "registry": "item",
@@ -1668,12 +1672,13 @@
    "factory": "register",
    "expression": "new ItemBlockIc2(Ic2Blocks.SEMIFLUID_GENERATOR, new Properties())",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/generators.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/GenerationTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/GenerationTests.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/FluidGeneratorBlockEntity.java"
    ],
-   "note": "默认日照、熔岩与沼气供电、容量、燃料、容器与重载已验证；完整配置和多人行为待验收。"
+   "note": "半流质发电机:10000 mB 罐,沼气每 10 mB 一批燃 10 刻×16×倍率 EU(LV),燃料批次 FluidFuelBurner 事务化(燃料/EU/计数同一事务);容器转入/输出回滚/端口单向/满电暂停同地热;产能随燃料批恢复,修复 legacy 只存 fuel 致重载可能错误 production;GameTest generation_semifluid 覆盖保存重载后恰好完成一批,IC2/GT 双模式 522 例全绿，本轮审计后 item/block/block_entity 三条目同轮翻转。"
   },
   {
    "registry": "item",
@@ -1683,12 +1688,13 @@
    "factory": "register",
    "expression": "new ItemBlockIc2(Ic2Blocks.SOLAR_GENERATOR, new Properties())",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/generators.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/GenerationTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/GenerationTests.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/SolarGeneratorBlockEntity.java"
    ],
-   "note": "默认日照、熔岩与沼气供电、容量、燃料、容器与重载已验证；完整配置和多人行为待验收。"
+   "note": "太阳能发电机:无燃料,每 128 刻采样上方天空光(首次加载立即采样、按位置错峰);亮度=SUN_ANGLE 日照×雨衰减(1-×5/16)×雷衰减×skylight/15,产能=采样×solar 倍率(默认 1 EU/t,缓冲 32);legacy 沙地群系天气豁免因 EnvProxyForge stub 恒 false 不可达,移植同样不生效并记档注释;充电槽不对自动化开放;GameTest generation_solar 覆盖实际日夜/遮挡/夜晚独立校验,IC2/GT 双模式 522 例全绿，本轮审计后 item/block/block_entity 三条目同轮翻转。"
   },
   {
    "registry": "item",
@@ -1713,12 +1719,13 @@
    "factory": "register",
    "expression": "new ItemBlockIc2(Ic2Blocks.WATER_GENERATOR, new Properties())",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/water-generation.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/WaterGenerationTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/WaterGenerationTests.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/WaterGeneratorBlockEntity.java"
    ],
-   "note": "水源、容器、批次重载、转子及双能源模式网络供电已验证；多人整体验收待完成。"
+   "note": "水力发电机:3×3×3 水方块计数每 128 刻采样,环境微储水流(fuel 空+水>0 时 water×water 倍率入 microStorage/100 记每刻产出);水容器 500/2000 记账:桶有 crafting remainder 产 1 EU/t、水单元无容器产 2 EU/t(FluidCellItem 的 crafting remainder 属合成不改变路由);流水转子速度=water/25、容器燃料时全速;automation 按 watermillAutomation 配置仅顶部插入/抽空;GameTest bucket_persistence/cell_automation/ambient_rotor/network_supply 覆盖桶持久化/单元自动化/环境转子/供电,IC2/GT 双模式 522 例全绿，本轮审计后 item/block/block_entity 三条目同轮翻转。"
   },
   {
    "registry": "item",
@@ -1728,12 +1735,13 @@
    "factory": "register",
    "expression": "new ItemBlockIc2(Ic2Blocks.WIND_GENERATOR, new Properties())",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "neoforge/src/gameTest/java/ic2/neoforge/test/WindGenerationTests.java",
-    "docs/migration/wind-generation.md"
+    "docs/migration/wind-generation.md",
+    "neoforge/src/main/java/ic2/neoforge/machine/WindGeneratorBlockEntity.java"
    ],
-   "note": "原生持久化风场、遮挡、倍率、转子、菜单与双能量模式网络已接入；全配置及多人验收随 P06/M16 推进。"
+   "note": "风力发电机:5×7×9 区域非空气计数(自体除外、未加载视为遮挡且不加载区块),风×(1-遮挡/567),每 128 刻采样产能、每 1024 刻重采样遮挡;过热比=(windRatio-0.5)/0.5 进菜单;legacy 超速拆机因先清 production 永不触发,移植保持该默认并记档,opt-in 配置改用真实 production+普通掉落;production>0 转子转动;GameTest wind_persistence/wind_obstructions/wind_network_supply 覆盖重载/遮挡/供电,IC2/GT 双模式 522 例全绿，本轮审计后 item/block/block_entity 三条目同轮翻转。"
   },
   {
    "registry": "item",
@@ -8393,11 +8401,14 @@
    "factory": "register",
    "expression": "Ic2TileEntityBlock.create(Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).strength(2.0F, 10.0F).requiresCorrectToolForDrops().sound(SoundType.METAL), TileEntityGenerator.class, true, Ic2TileEntityBlock.DefaultDrop.Self, Util.horizontalFacings, true)",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "neoforge/src/main/java/ic2/neoforge/registration/ModMachines.java",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/MachineTests.java"
-   ]
+    "neoforge/src/gameTest/java/ic2/neoforge/test/MachineTests.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/GeneratorBlockEntity.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/MachineBlock.java"
+   ],
+   "note": "基础发电机:固体燃料烧炼时长/4 记 fuel 刻,每刻 10×倍率 EU(LV 32V/1A,缓冲 4000);燃料槽底部弹容器、非燃料可插入、无燃料物品可底部抽取,电池充电槽沿用;fuel/totalFuel 随存档保存;本轮补齐 legacy updateEntityClient 的活跃火焰粒子(client ticker 1/8 概率正面 SMOKE+FLAME,几何对齐 showFurnaceFlames);GameTest machine_chain/generator_persistence 覆盖发电链路与持久化,IC2/GT 双模式 522 例全绿，本轮审计后 item/block/block_entity 三条目同轮翻转。"
   },
   {
    "registry": "block",
@@ -8407,12 +8418,13 @@
    "factory": "register",
    "expression": "Ic2TileEntityBlock.create(Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).strength(2.0F, 10.0F).requiresCorrectToolForDrops().sound(SoundType.METAL), TileEntityGeoGenerator.class, true, Ic2TileEntityBlock.DefaultDrop.Generator, Util.horizontalFacings, true)",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/generators.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/GenerationTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/GenerationTests.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/FluidGeneratorBlockEntity.java"
    ],
-   "note": "默认日照、熔岩与沼气供电、容量、燃料、容器与重载已验证；完整配置和多人行为待验收。"
+   "note": "地热发电机:8000 mB 岩浆罐,每刻抽 2 mB 记 1 fuel 刻×20×倍率 EU(LV);流体容器经 ItemAccess 转罐、空容器送输出槽、输出阻塞整体回滚,外部管道只能注入不能抽取,满电暂停不吞液体;剩余刻数/产能/罐均保存(修复 legacy 重载产能恢复);地热 loop 音效;GameTest generation_geothermal 覆盖岩浆桶回收/满电不耗燃料/保存重载,IC2/GT 双模式 522 例全绿，本轮审计后 item/block/block_entity 三条目同轮翻转。"
   },
   {
    "registry": "block",
@@ -8453,12 +8465,13 @@
    "factory": "register",
    "expression": "Ic2TileEntityBlock.create(Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).strength(2.0F, 10.0F).requiresCorrectToolForDrops().sound(SoundType.METAL), TileEntitySemifluidGenerator.class, true, Ic2TileEntityBlock.DefaultDrop.Generator, Util.horizontalFacings, true)",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/generators.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/GenerationTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/GenerationTests.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/FluidGeneratorBlockEntity.java"
    ],
-   "note": "默认日照、熔岩与沼气供电、容量、燃料、容器与重载已验证；完整配置和多人行为待验收。"
+   "note": "半流质发电机:10000 mB 罐,沼气每 10 mB 一批燃 10 刻×16×倍率 EU(LV),燃料批次 FluidFuelBurner 事务化(燃料/EU/计数同一事务);容器转入/输出回滚/端口单向/满电暂停同地热;产能随燃料批恢复,修复 legacy 只存 fuel 致重载可能错误 production;GameTest generation_semifluid 覆盖保存重载后恰好完成一批,IC2/GT 双模式 522 例全绿，本轮审计后 item/block/block_entity 三条目同轮翻转。"
   },
   {
    "registry": "block",
@@ -8468,12 +8481,13 @@
    "factory": "register",
    "expression": "Ic2TileEntityBlock.create(Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).strength(2.0F, 10.0F).requiresCorrectToolForDrops().sound(SoundType.METAL), TileEntitySolarGenerator.class, true, Ic2TileEntityBlock.DefaultDrop.Generator, Util.horizontalFacings, true)",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/generators.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/GenerationTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/GenerationTests.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/SolarGeneratorBlockEntity.java"
    ],
-   "note": "默认日照、熔岩与沼气供电、容量、燃料、容器与重载已验证；完整配置和多人行为待验收。"
+   "note": "太阳能发电机:无燃料,每 128 刻采样上方天空光(首次加载立即采样、按位置错峰);亮度=SUN_ANGLE 日照×雨衰减(1-×5/16)×雷衰减×skylight/15,产能=采样×solar 倍率(默认 1 EU/t,缓冲 32);legacy 沙地群系天气豁免因 EnvProxyForge stub 恒 false 不可达,移植同样不生效并记档注释;充电槽不对自动化开放;GameTest generation_solar 覆盖实际日夜/遮挡/夜晚独立校验,IC2/GT 双模式 522 例全绿，本轮审计后 item/block/block_entity 三条目同轮翻转。"
   },
   {
    "registry": "block",
@@ -8498,12 +8512,13 @@
    "factory": "register",
    "expression": "Ic2TileEntityBlock.create(Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).strength(2.0F, 10.0F).requiresCorrectToolForDrops().sound(SoundType.METAL), TileEntityWaterGenerator.class, true, Ic2TileEntityBlock.DefaultDrop.Generator, Util.horizontalFacings, true)",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/water-generation.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/WaterGenerationTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/WaterGenerationTests.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/WaterGeneratorBlockEntity.java"
    ],
-   "note": "水源、容器、批次重载、转子及双能源模式网络供电已验证；多人整体验收待完成。"
+   "note": "水力发电机:3×3×3 水方块计数每 128 刻采样,环境微储水流(fuel 空+水>0 时 water×water 倍率入 microStorage/100 记每刻产出);水容器 500/2000 记账:桶有 crafting remainder 产 1 EU/t、水单元无容器产 2 EU/t(FluidCellItem 的 crafting remainder 属合成不改变路由);流水转子速度=water/25、容器燃料时全速;automation 按 watermillAutomation 配置仅顶部插入/抽空;GameTest bucket_persistence/cell_automation/ambient_rotor/network_supply 覆盖桶持久化/单元自动化/环境转子/供电,IC2/GT 双模式 522 例全绿，本轮审计后 item/block/block_entity 三条目同轮翻转。"
   },
   {
    "registry": "block",
@@ -8513,12 +8528,13 @@
    "factory": "register",
    "expression": "Ic2TileEntityBlock.create(Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).strength(2.0F, 10.0F).requiresCorrectToolForDrops().sound(SoundType.METAL), TileEntityWindGenerator.class, true, Ic2TileEntityBlock.DefaultDrop.Generator, Util.horizontalFacings, true)",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "neoforge/src/gameTest/java/ic2/neoforge/test/WindGenerationTests.java",
-    "docs/migration/wind-generation.md"
+    "docs/migration/wind-generation.md",
+    "neoforge/src/main/java/ic2/neoforge/machine/WindGeneratorBlockEntity.java"
    ],
-   "note": "原生持久化风场、遮挡、倍率、转子、菜单与双能量模式网络已接入；全配置及多人验收随 P06/M16 推进。"
+   "note": "风力发电机:5×7×9 区域非空气计数(自体除外、未加载视为遮挡且不加载区块),风×(1-遮挡/567),每 128 刻采样产能、每 1024 刻重采样遮挡;过热比=(windRatio-0.5)/0.5 进菜单;legacy 超速拆机因先清 production 永不触发,移植保持该默认并记档,opt-in 配置改用真实 production+普通掉落;production>0 转子转动;GameTest wind_persistence/wind_obstructions/wind_network_supply 覆盖重载/遮挡/供电,IC2/GT 双模式 522 例全绿，本轮审计后 item/block/block_entity 三条目同轮翻转。"
   },
   {
    "registry": "block",
@@ -11481,11 +11497,14 @@
    "factory": "register",
    "expression": "TileEntityGenerator::new",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "neoforge/src/main/java/ic2/neoforge/registration/ModMachines.java",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/MachineTests.java"
-   ]
+    "neoforge/src/gameTest/java/ic2/neoforge/test/MachineTests.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/GeneratorBlockEntity.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/MachineBlock.java"
+   ],
+   "note": "基础发电机:固体燃料烧炼时长/4 记 fuel 刻,每刻 10×倍率 EU(LV 32V/1A,缓冲 4000);燃料槽底部弹容器、非燃料可插入、无燃料物品可底部抽取,电池充电槽沿用;fuel/totalFuel 随存档保存;本轮补齐 legacy updateEntityClient 的活跃火焰粒子(client ticker 1/8 概率正面 SMOKE+FLAME,几何对齐 showFurnaceFlames);GameTest machine_chain/generator_persistence 覆盖发电链路与持久化,IC2/GT 双模式 522 例全绿，本轮审计后 item/block/block_entity 三条目同轮翻转。"
   },
   {
    "registry": "block_entity",
@@ -11511,12 +11530,13 @@
    "factory": "register",
    "expression": "TileEntityGeoGenerator::new",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/generators.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/GenerationTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/GenerationTests.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/FluidGeneratorBlockEntity.java"
    ],
-   "note": "默认日照、熔岩与沼气供电、容量、燃料、容器与重载已验证；完整配置和多人行为待验收。"
+   "note": "地热发电机:8000 mB 岩浆罐,每刻抽 2 mB 记 1 fuel 刻×20×倍率 EU(LV);流体容器经 ItemAccess 转罐、空容器送输出槽、输出阻塞整体回滚,外部管道只能注入不能抽取,满电暂停不吞液体;剩余刻数/产能/罐均保存(修复 legacy 重载产能恢复);地热 loop 音效;GameTest generation_geothermal 覆盖岩浆桶回收/满电不耗燃料/保存重载,IC2/GT 双模式 522 例全绿，本轮审计后 item/block/block_entity 三条目同轮翻转。"
   },
   {
    "registry": "block_entity",
@@ -11605,12 +11625,13 @@
    "factory": "register",
    "expression": "TileEntitySemifluidGenerator::new",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/generators.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/GenerationTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/GenerationTests.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/FluidGeneratorBlockEntity.java"
    ],
-   "note": "默认日照、熔岩与沼气供电、容量、燃料、容器与重载已验证；完整配置和多人行为待验收。"
+   "note": "半流质发电机:10000 mB 罐,沼气每 10 mB 一批燃 10 刻×16×倍率 EU(LV),燃料批次 FluidFuelBurner 事务化(燃料/EU/计数同一事务);容器转入/输出回滚/端口单向/满电暂停同地热;产能随燃料批恢复,修复 legacy 只存 fuel 致重载可能错误 production;GameTest generation_semifluid 覆盖保存重载后恰好完成一批,IC2/GT 双模式 522 例全绿，本轮审计后 item/block/block_entity 三条目同轮翻转。"
   },
   {
    "registry": "block_entity",
@@ -11636,12 +11657,13 @@
    "factory": "register",
    "expression": "TileEntitySolarGenerator::new",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/generators.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/GenerationTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/GenerationTests.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/SolarGeneratorBlockEntity.java"
    ],
-   "note": "默认日照、熔岩与沼气供电、容量、燃料、容器与重载已验证；完整配置和多人行为待验收。"
+   "note": "太阳能发电机:无燃料,每 128 刻采样上方天空光(首次加载立即采样、按位置错峰);亮度=SUN_ANGLE 日照×雨衰减(1-×5/16)×雷衰减×skylight/15,产能=采样×solar 倍率(默认 1 EU/t,缓冲 32);legacy 沙地群系天气豁免因 EnvProxyForge stub 恒 false 不可达,移植同样不生效并记档注释;充电槽不对自动化开放;GameTest generation_solar 覆盖实际日夜/遮挡/夜晚独立校验,IC2/GT 双模式 522 例全绿，本轮审计后 item/block/block_entity 三条目同轮翻转。"
   },
   {
    "registry": "block_entity",
@@ -11698,12 +11720,13 @@
    "factory": "register",
    "expression": "TileEntityWaterGenerator::new",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/water-generation.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/WaterGenerationTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/WaterGenerationTests.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/WaterGeneratorBlockEntity.java"
    ],
-   "note": "水源、容器、批次重载、转子及双能源模式网络供电已验证；多人整体验收待完成。"
+   "note": "水力发电机:3×3×3 水方块计数每 128 刻采样,环境微储水流(fuel 空+水>0 时 water×water 倍率入 microStorage/100 记每刻产出);水容器 500/2000 记账:桶有 crafting remainder 产 1 EU/t、水单元无容器产 2 EU/t(FluidCellItem 的 crafting remainder 属合成不改变路由);流水转子速度=water/25、容器燃料时全速;automation 按 watermillAutomation 配置仅顶部插入/抽空;GameTest bucket_persistence/cell_automation/ambient_rotor/network_supply 覆盖桶持久化/单元自动化/环境转子/供电,IC2/GT 双模式 522 例全绿，本轮审计后 item/block/block_entity 三条目同轮翻转。"
   },
   {
    "registry": "block_entity",
@@ -11729,12 +11752,13 @@
    "factory": "register",
    "expression": "TileEntityWindGenerator::new",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "neoforge/src/gameTest/java/ic2/neoforge/test/WindGenerationTests.java",
-    "docs/migration/wind-generation.md"
+    "docs/migration/wind-generation.md",
+    "neoforge/src/main/java/ic2/neoforge/machine/WindGeneratorBlockEntity.java"
    ],
-   "note": "原生持久化风场、遮挡、倍率、转子、菜单与双能量模式网络已接入；全配置及多人验收随 P06/M16 推进。"
+   "note": "风力发电机:5×7×9 区域非空气计数(自体除外、未加载视为遮挡且不加载区块),风×(1-遮挡/567),每 128 刻采样产能、每 1024 刻重采样遮挡;过热比=(windRatio-0.5)/0.5 进菜单;legacy 超速拆机因先清 production 永不触发,移植保持该默认并记档,opt-in 配置改用真实 production+普通掉落;production>0 转子转动;GameTest wind_persistence/wind_obstructions/wind_network_supply 覆盖重载/遮挡/供电,IC2/GT 双模式 522 例全绿，本轮审计后 item/block/block_entity 三条目同轮翻转。"
   },
   {
    "registry": "block_entity",

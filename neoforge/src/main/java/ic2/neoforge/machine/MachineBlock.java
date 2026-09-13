@@ -140,26 +140,46 @@ public final class MachineBlock extends BaseEntityBlock {
             Level level, BlockState state, BlockEntityType<T> type) {
         if (type != ModMachines.entityType(kind)) return null;
         if (level.isClientSide()) {
-            // The legacy macerator puffs smoke from its top while running (one roll in eight
-            // per client tick, four particles around the block centre).
-            return kind == MachineKind.MACERATOR
-                    ? (world, pos, blockState, entity) -> {
-                        if (blockState.getValue(ACTIVE)
-                                && world.getRandom().nextInt(8) == 0) {
-                            var random = world.getRandom();
-                            for (int particle = 0; particle < 4; particle++) {
-                                world.addParticle(
-                                        ParticleTypes.SMOKE,
-                                        pos.getX() + 0.5 + random.nextFloat() * 0.6 - 0.3,
-                                        pos.getY() + 1 + random.nextFloat() * 0.2 - 0.1,
-                                        pos.getZ() + 0.5 + random.nextFloat() * 0.6 - 0.3,
-                                        0.0,
-                                        0.0,
-                                        0.0);
-                            }
+            return switch (kind) {
+                // The legacy macerator puffs smoke from its top while running (one roll in eight
+                // per client tick, four particles around the block centre).
+                case MACERATOR -> (world, pos, blockState, entity) -> {
+                    if (blockState.getValue(ACTIVE)
+                            && world.getRandom().nextInt(8) == 0) {
+                        var random = world.getRandom();
+                        for (int particle = 0; particle < 4; particle++) {
+                            world.addParticle(
+                                    ParticleTypes.SMOKE,
+                                    pos.getX() + 0.5 + random.nextFloat() * 0.6 - 0.3,
+                                    pos.getY() + 1 + random.nextFloat() * 0.2 - 0.1,
+                                    pos.getZ() + 0.5 + random.nextFloat() * 0.6 - 0.3,
+                                    0.0,
+                                    0.0,
+                                    0.0);
                         }
                     }
-                    : null;
+                };
+                // The legacy generator shows furnace flames on its active face (legacy
+                // showFurnaceFlames: one roll in eight, smoke plus flame in front of the facing).
+                case GENERATOR -> (world, pos, blockState, entity) -> {
+                    if (blockState.getValue(ACTIVE)
+                            && world.getRandom().nextInt(8) == 0) {
+                        var random = world.getRandom();
+                        var facing = blockState.getValue(FACING);
+                        double x = pos.getX() + (facing.getStepX() * 1.04 + 1.0) / 2.0;
+                        double y = pos.getY() + random.nextFloat() * 0.375;
+                        double z = pos.getZ() + (facing.getStepZ() * 1.04 + 1.0) / 2.0;
+                        if (facing.getAxis() == Direction.Axis.X) {
+                            z += random.nextFloat() * 0.625 - 0.3125;
+                        } else {
+                            x += random.nextFloat() * 0.625 - 0.3125;
+                        }
+                        world.addParticle(ParticleTypes.SMOKE, x, y, z, 0.0, 0.0, 0.0);
+                        world.addParticle(ParticleTypes.FLAME, x, y, z, 0.0, 0.0, 0.0);
+                    }
+                };
+                default -> null;
+            };
         }
         return (world, pos, blockState, entity) -> {
             if (entity instanceof MachineBlockEntity machine)
