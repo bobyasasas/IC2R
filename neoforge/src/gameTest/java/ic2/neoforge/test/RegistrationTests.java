@@ -287,6 +287,8 @@ public final class RegistrationTests {
         FUNCTIONS.register("sorting_machine_upgrade", () -> SortingMachineTests::transformerRaisesSinkTier);
         FUNCTIONS.register("magnetizer_lift", () -> EntityTickingTests.wrap(MagnetizerTests::poweredLift));
         FUNCTIONS.register("magnetizer_unpowered", () -> EntityTickingTests.wrap(MagnetizerTests::unpoweredStays));
+        FUNCTIONS.register("magnetizer_upgrade_storage", () -> MagnetizerTests::upgradeStorageResizes);
+        FUNCTIONS.register("magnetizer_upgrade_transformer", () -> MagnetizerTests::upgradeTransformersRaiseAmps);
         FUNCTIONS.register("trade_o_mat_infinite", () -> EntityTickingTests.wrap(TradeOMatTests::infiniteTrade));
         FUNCTIONS.register("trade_o_mat_supply", () -> EntityTickingTests.wrap(TradeOMatTests::suppliedTrade));
         FUNCTIONS.register("energy_o_mat_trade", () -> EntityTickingTests.wrap(EnergyOMatTests::tradePaysForCredit));
