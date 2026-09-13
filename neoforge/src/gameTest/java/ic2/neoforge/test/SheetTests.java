@@ -8,6 +8,7 @@ import ic2.neoforge.registration.ModMaterialBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.gametest.framework.GameTestHelper;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.item.ItemEntity;
@@ -116,21 +117,41 @@ final class SheetTests {
 
     static void resinSheetCushionsFalls(GameTestHelper helper) {
         helper.setTime(18000);
-        // Two sealed shafts, ten blocks of fall: one floors through resin, one bare stone.
+        // The game-test grid can leave the dimension's entity ticking idle when the
+        // test starts, and then the fallers never tick at all (zero gravity, no fall).
+        // A real server player anchors a PLAYER_SIMULATION ticket, which is exactly
+        // what drives the entity-ticking range, so the shaft chunks tick the zombies
+        // deterministically. Creative mode keeps the zombies from targeting it.
+        setStone(helper, new BlockPos(3, 1, 2));
+        ServerPlayer anchor = helper.makeMockServerPlayerInLevel();
+        var anchorPos = helper.absolutePos(new BlockPos(3, 2, 2));
+        anchor.teleportTo(
+                anchorPos.getX() + 0.5, anchorPos.getY(), anchorPos.getZ() + 0.5);
+        // Two sealed shafts, nine blocks of fall: one passes through a resin curtain,
+        // one floors on bare stone.
         buildShaft(helper, 1, 1, true);
         buildShaft(helper, 1, 4, false);
-        Zombie cushioned = dropZombie(helper, 1, 1);
-        Zombie bare = dropZombie(helper, 1, 4);
+        Zombie[] cushioned = new Zombie[1];
+        Zombie[] bare = new Zombie[1];
+        // Spawn a few ticks in, after the anchor's simulation ticket has settled.
+        helper.runAfterDelay(5, () -> {
+            cushioned[0] = dropZombie(helper, 1, 1);
+            bare[0] = dropZombie(helper, 1, 4);
+        });
 
         helper.runAfterDelay(
                 60,
                 () -> {
-                    helper.assertTrue(cushioned.isAlive() && bare.isAlive(),
+                    anchor.discard();
+                    helper.assertTrue(cushioned[0] != null && bare[0] != null,
+                            "Both zombies must have spawned");
+                    helper.assertTrue(cushioned[0].isAlive() && bare[0].isAlive(),
                             "Both zombies must survive the landing itself");
                     helper.assertTrue(
-                            cushioned.getHealth() > bare.getHealth() + 1.0F,
+                            cushioned[0].getHealth() > bare[0].getHealth() + 1.0F,
                             "The resin sheet must absorb fall damage (cushioned "
-                                    + cushioned.getHealth() + " vs bare " + bare.getHealth() + ")");
+                                    + cushioned[0].getHealth() + " vs bare "
+                                    + bare[0].getHealth() + ")");
                     helper.succeed();
                 });
     }
@@ -145,14 +166,22 @@ final class SheetTests {
         }
         setStone(helper, new BlockPos(x, 1, z));
         if (withSheet) {
-            helper.setBlock(
-                    new BlockPos(x, 2, z),
-                    ModMaterialBlocks.RESIN_SHEET.get().defaultBlockState());
+            // A three-sheet curtain: the faller stays inside the damping window for
+            // several ticks. A single floor-level sheet only damps on the landing tick,
+            // which puts the damage on a ceil() knife edge.
+            for (int y = 2; y <= 4; y++) {
+                helper.setBlock(
+                        new BlockPos(x, y, z),
+                        ModMaterialBlocks.RESIN_SHEET.get().defaultBlockState());
+            }
         }
     }
 
     private static Zombie dropZombie(GameTestHelper helper, int x, int z) {
-        return helper.spawn(EntityType.ZOMBIE, new BlockPos(x, 12, z));
+        // Nine blocks of fall: the landing speed stays well below the one step in which
+        // a faller could cross the whole curtain window, so the resin always gets its
+        // damping ticks, while the bare control still takes real damage.
+        return helper.spawn(EntityType.ZOMBIE, new BlockPos(x, 11, z));
     }
 
     static void rubberSheetBouncesItems(GameTestHelper helper) {
