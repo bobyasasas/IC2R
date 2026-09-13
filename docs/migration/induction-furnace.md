@@ -17,3 +17,14 @@ P09 的机器主体已覆盖金属成型、洗矿、离心、回收与感应炉�
 客户端已将两组各 8 件粗铁／粗金通过 Shift 点击送入不同输入槽，得到各 8 件铁锭／金锭；输出、热量和两个升级槽显示正常。测试使用调试电量与初始满温，音频在无声设备下仅检查事件／资源加载。
 
 ![感应炉双路熔炼结果](images/induction-menu.png)
+
+## 第 53 轮审计收尾（ab64d1a3）
+
+对照 legacy `TileEntityInduction` 逐条核实后，旧记录「红石升级待完成」过时：红石保温语义早已随
+`InductionCycle.tick` 落地——`(canProcess || redstone) && energy.consume(1)` 时 `heat++`（上限 10000）、
+否则 `heat -= min(heat, 4)`，与 legacy `(canOperate || redstone.hasRedstoneInput()) && useEnergy(1.0)` 逐句对位；
+`redstone` 参数由 `UpgradeItem.invertedSignal` 提供（无 inverter 直连红石、有 inverter 时 15 - external 反相），
+两条路径分别由 `induction_redstone_warm`（本轮新增，直连：红石块相邻→保温耗 1 EU/tick，撤信号→冷却）与
+`inverterKeepsInductionWarm`（inverter 反相）覆盖。双路熔炼、共享热量、比较器 `heat*15/10000`、进度阈值
+跨重载消费、经验与升级限制均有既有测试。registry 条目（item/block/block_entity）翻 implemented；
+多人整体实机验收继续留人工。

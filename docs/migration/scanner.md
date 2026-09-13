@@ -39,3 +39,12 @@ port：`ScannerItem.use()` + `ScannerMenu` + `ScannerScreen` + `ModTools.SCANNER
 1. ScannerScreen 整体观感：230 宽扁平面板、“Find:” 标题、行文案与图标双列位的实际渲染效果（legacy 为 230×231 贴图 GUI）。
 2. 矿石物品图标在双列条带中的排布密度（11px 行距下图标 16px 的 legacy 式重叠是否可接受）。
 3. 扫描结果的即时性观感（开菜单后 1-2 tick 内行/图标经数据槽填充）。
+
+## 第 53 轮审计收尾（ab64d1a3）：扫描音效
+
+catalog 中「手持扫描结果界面待后续切片」的 note 过时——GUI 链已随本文件记录的切片交付。核对 legacy
+`ItemScanner.use` 后确认当时唯一真实遗留为扫描音效：legacy 在 use 的客户端分支本地播放
+`Ic2SoundEvents.ITEM_SCANNER_USE`（`ic2:item.scanner.use`）。port 的 `sounds.json` 条目与 `ModSounds.ITEM_SCANNER_USE`
+SoundEvent 早已预存但无人播放；本轮在 `ScannerItem.use` 的 ServerPlayer 分支向使用者本人下发
+`ClientboundSoundEntityPacket`（音源 PLAYERS、音量/音调 1.0、随机 seed），对位 legacy 仅本人可闻的语义
+（未用 `level.playSound` 广播，避免引入新超集差异）。屏幕观感与音效实机可闻留人工。
