@@ -36,3 +36,9 @@
 ## 未验收范围
 
 - 粒子/红石模式界面、真实玩家站立(非 mock)体验、多人同垫(M16)。
+
+## 物品槽与红石控件收尾（第 52 轮，0867e46e）
+
+legacy `ContainerChargepadBlock` 为充电垫配了 charge (56,17)／discharge (56,53) 两个物品槽。port 充电垫 inventory 由 0 格扩为 2 格：serverTick 每 tick 用缓存电量充 CHARGE 槽、把 DISCHARGE 槽电量放回缓存（与储能方块同款规则，且在玩家充能的双 tick 门控之外，对应 legacy `Energy.addManagedSlot` 每 tick 处理）；`MachineMenu` 充能台分支挂载两电池槽，`MachineKind` 充能台 slots 0→2，shift-click 复用储能方块的充/放判定。此前的“红石模式按钮未实现”已过时：`EnergyDeviceScreen` 的双模式轮换按钮对四个充电垫 kind 均已生效。
+
+GameTest：`chargepad_item_slots`（充电槽从缓存充电、放电槽放回缓存且守恒、菜单 38 槽、电池可放石头不可放）。

@@ -36,3 +36,9 @@ IC2 降压输出是四个独立的小电包，不能合成一个四倍大小的�
 扳手拆卸及重新放置已补测，默认保留 80% 储能；普通工具拆 MFE／MFSU 返回外壳。
 
 剩余工作：更多装备与充电站、完整 IC2 爆炸传播，以及多人及客户端持续验收。故障目前与首批机器一样采用原版爆炸占位，由 M12 替换。
+
+## 储能护甲槽收尾（第 52 轮，0867e46e）
+
+legacy `ContainerElectricBlock` 在电池槽之外还展示四个护甲槽（绑定玩家已穿护甲，菜单容器索引 36–39，位置 x=8+col*18 / y=84，仅接受同部位装备）。port 以 `PlayerArmorSlot`（复刻 legacy `SlotArmor`，用 `DataComponents.EQUIPPABLE` 校验部位）补齐 BATBOX/CESU/MFE/MFSU，菜单高度 166→196（legacy 196），`EnergyDeviceScreen` 在 (8,74) 增加 `ic2.EUStorage.gui.info.armor` 标签。磁化机按 legacy `ContainerMagnetizer` 补上 FEET 护甲槽 (45,26)，护甲槽整族缺口就此闭合。护甲槽是穿戴展示/取穿的 UI 槽，机器侧充放仍走 charge/discharge 电池槽，行为与 legacy 一致。
+
+GameTest：`energy_device_armor_slots`（槽数 42、部位校验、与玩家装备共享、legacy 坐标）；`EnergyDeviceTests.stateAndMenu` 更新为 42 槽；`MenuAuditTests` 记录 storage +4、magnetizer +1 的 legacy 差异。
