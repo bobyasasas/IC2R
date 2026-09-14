@@ -15,3 +15,12 @@ P09 继续进行：离心机、回收机、感应炉与铁栅栏／磁化器尚�
 客户端验证：手持水桶直接注入 1,000 mB；Shift 点击第二个水桶进入容器槽后自动回收空桶，水箱显示 2,000 / 8,000 mB。三输出和容器槽无重叠，流体提示正常。
 
 ![洗矿机容器回收与水量](images/washing-menu.png)
+
+## 第 60 轮审计(2026-09-12)
+
+- 勘误翻 implemented 1 条:recipe_serializer ic2:ore_washer。
+- 依据:8 条配方与 legacy 目录文件级 1:1 一致(7 矿石 crushed→purified+
+  gravel→stone dust),原 note"完整配置…待完成"为过时留尾。
+- 测试:WashingTests 四项(原子产物/容器事务/拉取升级/codec 序列化)GameTest 通过。
+- 验证:IC2/GT 双模式 558×2 全绿;registry 计数 1109/70/20→1130/49/20。
+- 留人工:多人整机实机验收(M16)。

@@ -58,3 +58,17 @@
   留人工;记录于 `/home/codex/minecraft/待测试.md` 第 144 节。
 - uu_matter 湮灭为六邻遍历(legacy 每次仅检查单一邻居位置),触发语义等效;
   超集差异记录不回删,留用户裁决。
+
+## 第 60 轮审计(2026-09-12)
+
+- 勘误翻 implemented 16 条:8 个 fluid_family(coolant/creosote/biomass/biogas/
+  distilled_water/weed_ex/oxygen/heavy_water)与同名 8 个 fluid_block_*。
+- 依据:legacy `EnvFluidHandlerForge.createFluidBlock` switch 仅特判 8 家族
+  (steam/superheated_steam、uu_matter、hot_water、hot_coolant、pahoehoe_lava、
+  air、hydrogen、construction_foam),上述 8 家族走 `default -> LiquidBlock`,
+  本无特殊行为——原 note"特殊流体方块行为仍待迁移"为过时留尾,非功能缺口。
+- port 侧 `ModFluids.blockFor` default 分支与 legacy 一一对应(第 58 轮交付时核对);
+  17 家族注册、类型一致性、桶装/排/事务回滚经 `fluid_families` GameTest 全覆盖。
+- 验证:IC2/GT 双模式 558×2 全绿;verify_artifact OK(748 classes 不变);
+  registry 计数 1109/70/20→1130/49/20(本轮 21 条,含 canner/ore_washer 5 条)。
+- 留人工:实机渲染/流动观感(M16)。

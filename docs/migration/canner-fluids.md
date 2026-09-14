@@ -32,3 +32,15 @@
 剩余验收：升级模块、燃料棒等尚未迁移原料的配方、特殊流体的世界效果、多人实机交互及声音听感。当前机器和流体族在注册清单中仍标为部分实现。
 
 资源生成顺序：`machines.py` → `material_blocks.py` → `fluids.py` → `tools.py` → `recipes.py`，均位于 `tools/migration/resources/`。
+
+## 第 60 轮审计(2026-09-12)
+
+- 勘误翻 implemented 4 条:recipe_serializer/recipe_type × ic2:canner_bottle、
+  ic2:canner_enrich。
+- 依据:配方目录与 legacy 文件级 1:1 全量转换(canner_bottle 41 条=
+  39 食物罐头+铀/钼燃料棒封装;canner_enrich 4 条=biomass/construction_foam/
+  coolant×2),recipe-catalog.json 对应条目全 converted。仅剩 7 条 pending 配方
+  均因 tank/fluid_bottler/solid_canner 分歧条目待用户签署,与 canner 序列化器无关。
+- 测试:CannerTests 四项(实心封装/装罐排空/富集回滚/状态与按钮)GameTest 通过。
+- 验证:IC2/GT 双模式 558×2 全绿;registry 计数 1109/70/20→1130/49/20。
+- 留人工:装罐/富集 GUI 实机操作(M16);"尚未迁移原料的配方"随对应物品切片跟进。
