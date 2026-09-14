@@ -14,6 +14,8 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.animal.Animal;
+import net.minecraft.world.entity.boss.enderdragon.EnderDragon;
+import net.minecraft.world.entity.boss.wither.WitherBoss;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.monster.Ghast;
 import net.minecraft.world.entity.monster.Monster;
@@ -228,7 +230,11 @@ public final class TeleporterBlockEntity extends MachineBlockEntity {
         } else if (user instanceof Ghast) {
             weight += 2500;
         } else if (user instanceof LivingEntity living) {
-            weight += living instanceof Monster ? 500 : 0;
+            // legacy weighed the bosses separately (WitherBoss 5000, EnderDragon 10000);
+            // plain Monster matching alone would score the wither 500 and the dragon 0
+            if (living instanceof EnderDragon) weight += 10000;
+            else if (living instanceof WitherBoss) weight += 5000;
+            else if (living instanceof Monster) weight += 500;
             for (var slot : EquipmentSlot.values()) {
                 if (slot != EquipmentSlot.BODY) weight += stackCost(living.getItemBySlot(slot));
             }

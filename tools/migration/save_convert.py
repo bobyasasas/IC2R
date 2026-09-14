@@ -509,7 +509,8 @@ def scan_chunk_root(root: dict, report: Report) -> None:
         if isinstance(identifier, str):
             report.count("block_entity", identifier)
             for key, child in block_entity.items():
-                if key in ("Items", "Inventory", "Recipes"):
+                # InvSlots = legacy named-slot machines; inventory = port stacks list
+                if key in ("Items", "Inventory", "Recipes", "InvSlots", "inventory"):
                     scan_value(child, report)
     for entity in root.get("Entities", []) or []:
         identifier = entity.get("id")
@@ -562,6 +563,8 @@ class IdMap:
         self.item: dict[str, str] = mapping.get("item", {})
         self.entity: dict[str, str] = mapping.get("entity", {})
         self.fluid: dict[str, str] = mapping.get("fluid", {})
+        # legacy BE id (or its replacement) -> {legacy InvSlot name: new slot index}
+        self.inventory: dict[str, dict[str, int]] = mapping.get("inventory_map", {})
 
     @classmethod
     def load(cls, path: str) -> "IdMap":
@@ -579,6 +582,16 @@ class ConvertStats:
         self.preserved: dict[str, dict[str, int]] = {}
         self.chunks_rewritten = 0
         self.chunks_kept = 0
+        # InvSlots -> inventory.stacks migration bookkeeping (R07)
+        self.inventory: dict = {
+            "machines_migrated": 0,
+            "placed_stacks": 0,
+            "overflow_stacks": 0,
+            "unmapped_slots": {},
+            "legacy_tag_keys": {},
+        }
+        # per-BE field rewrites (teleporter target, miner mode ordinals, ...)
+        self.fields: dict[str, int] = {}
 
     def rename(self, category: str, amount: int = 1) -> None:
         self.renamed[category] = self.renamed.get(category, 0) + amount
@@ -597,6 +610,8 @@ class ConvertStats:
             "preserved": self.preserved,
             "chunks_rewritten": self.chunks_rewritten,
             "chunks_kept": self.chunks_kept,
+            "inventory": self.inventory,
+            "fields": self.fields,
         }
 
 
@@ -636,17 +651,19 @@ def convert_chunk_root(root: dict, id_map: IdMap, stats: ConvertStats) -> None:
                 keep.append(block_entity)
                 continue
             replacement = id_map.block_entity.get(identifier)
-            if replacement is None:
-                if identifier.startswith("ic2:"):
-                    stats.mark_preserved("block_entity", identifier)
-                keep.append(block_entity)
-                continue
             if replacement == "":
                 # mapped to "drop": the new mod implements this block-level, no BE
                 stats.drop(f"block_entity:{identifier}")
                 continue
-            block_entity["id"] = replacement
-            stats.rename("block_entity")
+            if replacement is not None:
+                block_entity["id"] = replacement
+                stats.rename("block_entity")
+            elif identifier.startswith("ic2:"):
+                stats.mark_preserved("block_entity", identifier)
+            # inventory migration keyed on the new id first, then the legacy id
+            # (replaced machines such as ic2:fluid_bottler use their own layout)
+            convert_inventory(block_entity, block_entity["id"], id_map, stats, identifier)
+            convert_legacy_fields(block_entity, block_entity["id"], stats)
             keep.append(block_entity)
         root["block_entities"] = keep
         # machine inventories live inside the block entities, not at chunk root
@@ -685,11 +702,144 @@ def convert_items(value, id_map: IdMap, stats: ConvertStats) -> None:
             if replacement is None:
                 if identifier.startswith("ic2:"):
                     stats.mark_preserved("item", identifier)
+            elif replacement == "":
+                # mapped to "drop": the item no longer exists in the port (crowbar).
+                # An air stack with count 0 deserializes as empty, so the removed item
+                # never survives as an unresolvable id — and it shows up in the report.
+                value["id"] = "minecraft:air"
+                value["Count"] = NbtByte(0)
+                stats.drop(f"item:{identifier}")
             else:
                 value["id"] = replacement
                 stats.rename("item")
-        for child in value.values():
+        for key, child in value.items():
+            if key == FORENSIC_INVENTORY_KEY:
+                # forensic snapshot keeps its pre-conversion ids on purpose
+                continue
             convert_items(child, id_map, stats)
+
+
+# Legacy machines serialize inventory as named InvSlots compounds; the port reads a
+# flat "inventory.stacks" list (ItemStacksResourceHandler, ItemStack OPTIONAL_CODEC).
+# inventory_map in save_id_map.json carries each BE's slot-name -> slot-index layout;
+# legacy multi-count slots expand through their per-entry Index byte.
+LEGACY_TAG_COMPONENTS = {
+    # ElectricItemManager stored charge as a double tag; the port uses a double component.
+    "charge": "ic2:charge",
+    # vanilla moved durability from tag.Damage to the minecraft:damage component
+    "Damage": "minecraft:damage",
+}
+
+# key under which the original named-slot layout is preserved for forensics
+FORENSIC_INVENTORY_KEY = "ic2_legacy_InvSlots"
+
+
+def convert_inventory(
+    block_entity: dict, new_id: str, id_map: IdMap, stats: ConvertStats, legacy_id: str
+) -> None:
+    layout = id_map.inventory.get(new_id) or id_map.inventory.get(legacy_id)
+    inv_slots = block_entity.get("InvSlots")
+    if layout is None or not isinstance(inv_slots, dict):
+        return
+    placements: list[tuple[int, dict]] = []
+    max_index = -1
+    for slot_name, slot_tag in inv_slots.items():
+        base = layout.get(slot_name)
+        if base is None or not isinstance(slot_tag, dict):
+            key = f"{legacy_id}:{slot_name}"
+            stats.inventory["unmapped_slots"][key] = stats.inventory["unmapped_slots"].get(key, 0) + 1
+            continue
+        contents = slot_tag.get("Contents")
+        if not isinstance(contents, NbtList):
+            continue
+        for entry in contents:
+            if not isinstance(entry, dict):
+                continue
+            target = base + int(entry.get("Index", 0))
+            placements.append((target, entry))
+            max_index = max(max_index, target)
+    if max_index < 0:
+        return
+    stacks: list[dict] = [{} for _ in range(max_index + 1)]
+    for target, entry in placements:
+        if stacks[target]:
+            stats.inventory["overflow_stacks"] += 1
+            continue
+        stacks[target] = _legacy_stack(entry, id_map, stats)
+        stats.inventory["placed_stacks"] += 1
+    block_entity["inventory"] = {"stacks": NbtList(10, stacks)}
+    # keep the original named-slot layout in place for forensics instead of dropping it
+    block_entity[FORENSIC_INVENTORY_KEY] = inv_slots
+    del block_entity["InvSlots"]
+    stats.inventory["machines_migrated"] += 1
+
+
+def _legacy_stack(entry: dict, id_map: IdMap, stats: ConvertStats) -> dict:
+    """Convert a 1.20.1 stack {id, Count, tag} into the 26.x {id, count, components} shape.
+
+    Id remapping stays with convert_items (one rewrite pass over the whole chunk);
+    only explicit removals are applied here so a placed stack never double-reports.
+    """
+    identifier = entry.get("id")
+    if not isinstance(identifier, str):
+        return {}
+    if id_map.item.get(identifier) == "":
+        return {"id": "minecraft:air", "count": 0}
+    stack: dict = {"id": identifier, "count": int(entry.get("Count", 1))}
+    tag = entry.get("tag")
+    if isinstance(tag, dict):
+        components = {}
+        for key, value in tag.items():
+            component = LEGACY_TAG_COMPONENTS.get(key)
+            if component is None:
+                # unmigrated legacy NBT stays reachable in ic2_legacy_InvSlots
+                stats.inventory["legacy_tag_keys"][key] = stats.inventory["legacy_tag_keys"].get(key, 0) + 1
+                continue
+            components[component] = value
+        if components:
+            stack["components"] = components
+    return stack
+
+
+# Field-level rewrites for machines whose NBT schema changed shape (not just ids).
+# Miner lastMode: legacy stored the TileEntityMiner.Mode ordinal (None/Withdraw/
+# MineAir/MineDrill/MineDDrill/MineIDrill/MineCustomDrill = 0..6); the port stores
+# the enum name string and falls back to NONE on anything it cannot parse, so an
+# unconverted int silently resets the miner. Teleporter target: legacy stored three
+# int keys, the port stores one BlockPos compound ({X,Y,Z}) under "target".
+MINER_MODES = [
+    "NONE",
+    "WITHDRAW",
+    "MINE_AIR",
+    "MINE_DRILL",
+    "MINE_DIAMOND_DRILL",
+    "MINE_IRIDIUM_DRILL",
+    "MINE_CUSTOM_DRILL",
+]
+
+
+def convert_legacy_fields(block_entity: dict, new_id: str, stats: ConvertStats) -> None:
+    def bump(key: str) -> None:
+        stats.fields[key] = stats.fields.get(key, 0) + 1
+
+    if new_id == "ic2:teleporter":
+        if "target" in block_entity:
+            return  # already port schema (idempotent)
+        coords = [block_entity.get(key) for key in ("targetX", "targetY", "targetZ")]
+        if all(isinstance(value, int) for value in coords):
+            block_entity["target"] = {"X": coords[0], "Y": coords[1], "Z": coords[2]}
+            for key in ("targetX", "targetY", "targetZ"):
+                del block_entity[key]
+            bump("teleporter_target")
+        elif any(value is not None for value in coords):
+            # partial keys: leave as-is and report rather than guess a target
+            bump("teleporter_target_incomplete")
+    elif new_id == "ic2:miner":
+        mode = block_entity.get("lastMode")
+        if isinstance(mode, int):
+            known = 0 <= mode < len(MINER_MODES)
+            block_entity["lastMode"] = MINER_MODES[mode] if known else "NONE"
+            bump("miner_mode" if known else "miner_mode_unknown")
 
 
 def convert_save(src: str, dst: str, id_map: IdMap, *, write: bool) -> dict:
@@ -769,10 +919,17 @@ def _ensure_parent(path: str) -> None:
 
 SELF_TEST_MAP = {
     "block": {"ic2:legacy_block": "ic2:modern_block"},
-    "block_entity": {"ic2:itnt": ""},
-    "item": {"ic2:old_item": "ic2:new_item"},
+    "block_entity": {"ic2:itnt": "", "ic2:fluid_bottler": "ic2:canner"},
+    "item": {"ic2:old_item": "ic2:new_item", "ic2:crowbar": ""},
     "entity": {"ic2:legacy_beast": "ic2:modern_beast"},
     "fluid": {},
+    # slot-name -> new slot index per machine family (ProcessingBlockEntity layout:
+    # INPUT 0 / OUTPUT 1 / BATTERY 2, upgrades follow). Keyed by legacy id where the
+    # machine was replaced, so the legacy-id fallback lookup stays exercised.
+    "inventory_map": {
+        "ic2:electric_compressor": {"input": 0, "output": 1, "discharge": 2, "upgrade": 3},
+        "ic2:fluid_bottler": {"fillInput": 3, "output": 1, "discharge": 2, "upgrade": 4},
+    },
 }
 
 
@@ -796,8 +953,50 @@ def _fixture_chunk(x: int, z: int) -> dict:
                 "z": z,
                 "energy": 1000.0,
                 "Items": NbtList(10, [{"id": "ic2:old_item", "Count": 1, "Slot": 0}]),
+                # legacy InvSlots layout; upgrade carries a duplicate Index to prove
+                # the overflow guard, input carries an unmigrated tag key
+                "InvSlots": {
+                    "input": {"Contents": NbtList(10, [{"id": "ic2:old_item", "Count": NbtByte(1), "Index": NbtByte(0), "tag": {"charge": 8000.0, "mystery": 1}}])},
+                    "output": {"Contents": NbtList(10, [])},
+                    "discharge": {"Contents": NbtList(10, [{"id": "ic2:old_item", "Count": NbtByte(1), "Index": NbtByte(0)}])},
+                    "upgrade": {"Contents": NbtList(10, [{"id": "ic2:old_item", "Count": NbtByte(1), "Index": NbtByte(1)}, {"id": "ic2:old_item", "Count": NbtByte(1), "Index": NbtByte(1)}])},
+                },
             },
             {"id": "ic2:itnt", "x": x + 2, "y": 1, "z": z},
+            {
+                # replaced by ic2:canner; its inventory layout is keyed by legacy id
+                "id": "ic2:fluid_bottler",
+                "x": x + 3,
+                "y": 1,
+                "z": z,
+                "InvSlots": {
+                    "fillInput": {"Contents": NbtList(10, [{"id": "ic2:old_item", "Count": NbtByte(2), "Index": NbtByte(0)}])},
+                    "output": {"Contents": NbtList(10, [])},
+                    "discharge": {"Contents": NbtList(10, [])},
+                    "upgrade": {"Contents": NbtList(10, [])},
+                    "unknownSlot": {"Contents": NbtList(10, [])},
+                },
+            },
+            {
+                # legacy int trio -> port BlockPos compound under "target"
+                "id": "ic2:teleporter",
+                "x": x + 4,
+                "y": 1,
+                "z": z,
+                "targetX": 100,
+                "targetY": 64,
+                "targetZ": -200,
+                "cooldown": 0,
+            },
+            {
+                # legacy mode ordinal 3 -> port enum name MINE_DRILL
+                "id": "ic2:miner",
+                "x": x + 5,
+                "y": 1,
+                "z": z,
+                "lastMode": 3,
+                "pumpMode": NbtByte(0),
+            },
         ],
     )
     entities = NbtList(10, [{"id": "ic2:legacy_beast", "Pos": NbtList(5, [0.0, 1.0, 0.0])}])
@@ -813,10 +1012,33 @@ def _fixture_chunk(x: int, z: int) -> dict:
     }
 
 
+def _fixture_vanilla_chunk(x: int, z: int) -> dict:
+    section = {
+        "Y": 0,
+        "block_states": {"palette": NbtList(10, [{"Name": "minecraft:stone"}]), "data": LongArray([0] * 64)},
+        "biomes": {"palette": NbtList(10, [{"Name": "minecraft:plains"}])},
+    }
+    return {
+        "DataVersion": 3465,
+        "xPos": x,
+        "zPos": z,
+        "Status": "full",
+        "sections": NbtList(10, [section]),
+        "PostProcessing": NbtList(12, []),
+    }
+
+
 def _fixture_dat() -> dict:
     return {
         "DataVersion": 3465,
-        "Inventory": NbtList(10, [{"id": "ic2:old_item", "Count": 64, "Slot": 0}]),
+        "Inventory": NbtList(
+            10,
+            [
+                {"id": "ic2:old_item", "Count": 64, "Slot": 0},
+                # removed from the port: must surface as a counted drop, not survive
+                {"id": "ic2:crowbar", "Count": 1, "Slot": 1},
+            ],
+        ),
     }
 
 
@@ -830,14 +1052,25 @@ def self_test(tmp: str) -> None:
         66: Chunk(66, _fixture_chunk(-1, -1), 2, None),
     }
     write_region(os.path.join(region_dir, "r.-1.-1.mca"), RegionData(chunks, b"\0" * 4096))
+    # a vanilla-only region for the byte-exact round-trip proof: the ic2 chunk is
+    # deliberately rewritten by field migration, so identity needs clean content
+    write_region(
+        os.path.join(region_dir, "r.0.0.mca"),
+        RegionData({0: Chunk(0, _fixture_vanilla_chunk(0, 0), 2, None)}, b"\0" * 4096),
+    )
 
     report = scan_save(src).to_json()
     assert report["counts"]["palette"]["ic2:legacy_block"] == 1, report
-    assert report["counts"]["palette"]["minecraft:stone"] == 1, report
+    assert report["counts"]["palette"]["minecraft:stone"] == 2, report
     assert report["block_properties"]["minecraft:stone"] == ["facing"], report
     assert report["counts"]["block_entity"]["ic2:sign"] == 1, report
     assert report["counts"]["block_entity"]["ic2:electric_compressor"] == 1, report
-    assert report["counts"]["item"]["ic2:old_item"] == 2, report  # BE + player inventory
+    assert report["counts"]["block_entity"]["ic2:fluid_bottler"] == 1, report
+    assert report["counts"]["block_entity"]["ic2:teleporter"] == 1, report
+    assert report["counts"]["block_entity"]["ic2:miner"] == 1, report
+    # legacy Items(1) + InvSlots(1+1+2) + fillInput(1) + level.dat(1)
+    assert report["counts"]["item"]["ic2:old_item"] == 7, report
+    assert report["counts"]["item"]["ic2:crowbar"] == 1, report
     assert report["counts"]["entity"]["ic2:legacy_beast"] == 1, report
     assert report["data_versions"]["region"] == [3465], report
 
@@ -852,27 +1085,72 @@ def self_test(tmp: str) -> None:
     dst = os.path.join(tmp, "converted-save")
     stats = convert_save(src, dst, IdMap(SELF_TEST_MAP), write=True)
     assert stats["renamed"]["palette"] == 1, stats
-    assert stats["renamed"]["item"] == 2, stats  # machine inventory + player inventory
+    assert stats["renamed"]["block_entity"] == 1, stats  # fluid_bottler -> canner
+    assert stats["renamed"]["item"] == 6, stats  # live stacks; overflow entry never converts
     assert stats["renamed"]["entity"] == 1, stats
-    assert stats["dropped"] == {"block_entity:ic2:itnt": 1}, stats
+    assert stats["dropped"] == {"block_entity:ic2:itnt": 1, "item:ic2:crowbar": 1}, stats
     # ids absent from the map are preserved by design (catalog identity default)
-    assert stats["preserved"] == {"block_entity": {"ic2:sign": 1, "ic2:electric_compressor": 1}}, stats
-    assert stats["chunks_rewritten"] == 1 and stats["chunks_kept"] == 0, stats
+    assert stats["preserved"]["block_entity"] == {
+        "ic2:sign": 1,
+        "ic2:electric_compressor": 1,
+        "ic2:teleporter": 1,
+        "ic2:miner": 1,
+    }, stats
+    assert stats["chunks_rewritten"] == 1 and stats["chunks_kept"] == 1, stats
+    assert stats["inventory"] == {
+        "machines_migrated": 2,
+        "placed_stacks": 4,
+        "overflow_stacks": 1,
+        "unmapped_slots": {"ic2:fluid_bottler:unknownSlot": 1},
+        "legacy_tag_keys": {"mystery": 1},
+    }, stats
+    assert stats["fields"] == {"teleporter_target": 1, "miner_mode": 1}, stats
 
     converted = scan_save(dst).to_json()
     assert converted["counts"]["palette"].get("ic2:modern_block") == 1, converted
     assert "ic2:legacy_block" not in converted["counts"]["palette"], converted
     assert "ic2:itnt" not in converted["counts"]["block_entity"], converted
-    assert "ic2:sign" in converted["counts"]["block_entity"], converted
-    assert converted["counts"]["item"].get("ic2:new_item") == 2, converted
+    assert "ic2:fluid_bottler" not in converted["counts"]["block_entity"], converted
+    assert converted["counts"]["block_entity"].get("ic2:canner") == 1, converted
+    assert converted["counts"]["item"].get("ic2:new_item") == 6, converted
+    # frozen forensic copies are not live content, so no legacy id remains in the scan
+    assert "ic2:old_item" not in converted["counts"]["item"], converted
     assert converted["counts"]["entity"].get("ic2:modern_beast") == 1, converted
 
-    # byte-exact round trip for an untouched region: convert again with an empty map
+    # byte-level inspection of the migrated machines
+    region = read_region(os.path.join(dst, "region", "r.-1.-1.mca"))
+    by_id: dict[str, list] = {}
+    for block_entity in region.chunks[66].root["block_entities"]:
+        by_id.setdefault(block_entity.get("id"), []).append(block_entity)
+    compressor = by_id["ic2:electric_compressor"][0]
+    assert "InvSlots" not in compressor, compressor
+    assert FORENSIC_INVENTORY_KEY in compressor, compressor
+    stacks = compressor["inventory"]["stacks"]
+    assert len(stacks) == 5, stacks  # targets 0..4 (duplicate upgrade entry overflowed)
+    assert stacks[0]["id"] == "ic2:new_item" and stacks[0]["count"] == 1, stacks
+    assert stacks[0]["components"]["ic2:charge"] == 8000.0, stacks
+    assert stacks[2]["id"] == "ic2:new_item" and stacks[4]["id"] == "ic2:new_item", stacks
+    canner = by_id["ic2:canner"][0]
+    assert canner["inventory"]["stacks"][3] == {"id": "ic2:new_item", "count": 2}, canner
+    teleporter = by_id["ic2:teleporter"][0]
+    assert teleporter["target"] == {"X": 100, "Y": 64, "Z": -200}, teleporter
+    assert "targetX" not in teleporter and "cooldown" in teleporter, teleporter
+    assert by_id["ic2:miner"][0]["lastMode"] == "MINE_DRILL"
+
+    # byte-exact round trip for untouched content: an empty map leaves the vanilla
+    # region bit-identical while schema migration still fixes the ic2 chunk
     dst2 = os.path.join(tmp, "identity-save")
-    convert_save(src, dst2, IdMap({"block": {}, "block_entity": {}, "item": {}, "entity": {}, "fluid": {}}), write=True)
-    with open(os.path.join(dst2, "region", "r.-1.-1.mca"), "rb") as handle:
-        original = open(os.path.join(src, "region", "r.-1.-1.mca"), "rb").read()
-        assert handle.read() == original, "identity conversion changed chunk payload bytes"
+    stats2 = convert_save(
+        src,
+        dst2,
+        IdMap({"block": {}, "block_entity": {}, "item": {}, "entity": {}, "fluid": {}}),
+        write=True,
+    )
+    assert stats2["renamed"] == {} and stats2["dropped"] == {}, stats2
+    assert stats2["fields"] == {"teleporter_target": 1, "miner_mode": 1}, stats2
+    with open(os.path.join(dst2, "region", "r.0.0.mca"), "rb") as handle:
+        with open(os.path.join(src, "region", "r.0.0.mca"), "rb") as original:
+            assert handle.read() == original.read(), "identity conversion changed chunk payload bytes"
 
     # playerdata conversion
     player_dir = os.path.join(src, "players")
@@ -884,8 +1162,10 @@ def self_test(tmp: str) -> None:
     with open(os.path.join(dst3, "players", "legacy.dat"), "rb") as handle:
         player = nbt_load(handle.read())
     assert player["Inventory"][0]["id"] == "ic2:new_item", player
+    assert player["Inventory"][1]["id"] == "minecraft:air", player
+    assert int(player["Inventory"][1]["Count"]) == 0, player
 
-    print("self-test: PASS (scan, convert, drop, byte-exact round trip, playerdata)")
+    print("self-test: PASS (scan, convert, drop, inventory+field migration, byte-exact round trip, playerdata)")
 
 
 # ---------------------------------------------------------------------------

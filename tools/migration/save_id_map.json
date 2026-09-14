@@ -5,14 +5,46 @@
     "Ids NOT listed here are preserved verbatim (1198/1199 catalog entries are decision=preserve,",
     "old and new share the identifier), so the map only carries the deviations.",
     "A block_entity value of \"\" means: drop the block entity from the chunk (the new mod implements",
-    "the behavior at block level and registers no block entity type with that id)."
+    "the behavior at block level and registers no block entity type with that id).",
+    "An item value of \"\" means: the item no longer exists in the port; the stack becomes air/0",
+    "and the removal is counted in the convert report (dropped).",
+    "inventory_map: legacy InvSlot name -> new slot index per machine. Standard electric machines",
+    "are INPUT 0 / OUTPUT 1 / BATTERY 2 with upgrades from slot 3 (CannerBlockEntity uses",
+    "ADDITIVE 0 / OUTPUT 1 / BATTERY 2 / CONTAINER 3 with upgrades from 4; tanks only carry 4",
+    "upgrade slots from 0). Entries are keyed by the LEGACY block-entity id wherever the BE was",
+    "replaced, so the converter's legacy-id fallback lookup stays authoritative.",
+    "Deferred pending slot-layout verification: miner (18 slots), block_cutter, fermenter,",
+    "condenser, electrolyzer and other non-standard families - their InvSlots are left in place",
+    "(forensic copy) and surface in the report's unmapped_slots instead of being guessed.",
+    "ic2:fluid_bottler drainInput is deliberately unmapped: the port canner has no drain slot."
   ],
   "generated_from": "docs/migration/registry-catalog.json",
   "block": {},
   "block_entity": {
-    "ic2:itnt": ""
+    "ic2:itnt": "",
+    "ic2:fluid_bottler": "ic2:canner",
+    "ic2:solid_canner": "ic2:canner"
   },
-  "item": {},
+  "item": {
+    "ic2:crowbar": ""
+  },
   "entity": {},
-  "fluid": {}
+  "fluid": {},
+  "inventory_map": {
+    "ic2:macerator": {"input": 0, "output": 1, "discharge": 2, "upgrade": 3},
+    "ic2:extractor": {"input": 0, "output": 1, "discharge": 2, "upgrade": 3},
+    "ic2:compressor": {"input": 0, "output": 1, "discharge": 2, "upgrade": 3},
+    "ic2:electric_furnace": {"input": 0, "output": 1, "discharge": 2, "upgrade": 3},
+    "ic2:recycler": {"input": 0, "output": 1, "discharge": 2, "upgrade": 3},
+    "ic2:metal_former": {"input": 0, "output": 1, "discharge": 2, "upgrade": 3},
+    "ic2:centrifuge": {"input": 0, "output": 1, "discharge": 2, "upgrade": 5},
+    "ic2:ore_washing_plant": {"input": 0, "output": 1, "discharge": 2, "fluid": 5, "cell": 6, "upgrade": 7},
+    "ic2:iron_furnace": {"input": 0, "output": 1, "fuel": 2, "upgrade": 3},
+    "ic2:bronze_tank": {"upgrade": 0},
+    "ic2:iron_tank": {"upgrade": 0},
+    "ic2:steel_tank": {"upgrade": 0},
+    "ic2:iridium_tank": {"upgrade": 0},
+    "ic2:fluid_bottler": {"fillInput": 3, "output": 1, "discharge": 2, "upgrade": 4},
+    "ic2:solid_canner": {"input": 0, "canInput": 3, "output": 1, "discharge": 2, "upgrade": 4}
+  }
 }
