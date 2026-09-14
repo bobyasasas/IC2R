@@ -97,6 +97,22 @@ with zipfile.ZipFile(jars[0]) as jar:
         if name.startswith('assets/ic2/items/') and name.endswith('.json'):
             check_item_model(json.loads(jar.read(name)))
             item_names.append(name.removeprefix('assets/ic2/items/').removesuffix('.json'))
+    # Reverse completeness: the GameTest server dumps the live item registry, so a
+    # registered item without a client item definition (26.1.2 renders those as the
+    # missing model) can no longer slip through just because the shipped files
+    # individually validate. Blocks without a BlockItem are not in the dump and are
+    # never required to carry a definition.
+    dump_path = ROOT / 'neoforge/run/ic2_item_registry.json'
+    assert dump_path.exists(), 'item registry dump missing: run :neoforge:runGameTestServer first'
+    dump = json.loads(dump_path.read_text())
+    assert dump.get('items'), 'item registry dump is empty'
+    assert dump.get('mod_version') == metadata['mods'][0]['version'], \
+        'stale item registry dump: rerun :neoforge:runGameTestServer for this build'
+    registered = {name.removeprefix('ic2:') for name in dump['items']}
+    missing = sorted(registered - set(item_names))
+    assert not missing, f'registered items without client item definition: {missing}'
+    stale = sorted(set(item_names) - registered)
+    assert not stale, f'item definitions without registered item: {stale}'
     for locale in ['en_us', 'zh_cn']:
         language = json.loads(jar.read(f'assets/ic2/lang/{locale}.json'))
         for item in item_names:

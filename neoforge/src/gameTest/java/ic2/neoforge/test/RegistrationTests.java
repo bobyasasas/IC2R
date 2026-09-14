@@ -1,5 +1,7 @@
 package ic2.neoforge.test;
 
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 import com.mojang.logging.LogUtils;
 
 import ic2.core.energy.ElectricalProfile;
@@ -16,14 +18,19 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.neoforged.bus.api.IEventBus;
+import net.neoforged.fml.ModList;
 import net.neoforged.fml.common.Mod;
+import net.neoforged.fml.loading.FMLPaths;
 import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.server.ServerAboutToStartEvent;
+import net.neoforged.neoforge.event.server.ServerStartedEvent;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
+import java.io.IOException;
+import java.nio.file.Files;
 import java.util.function.Consumer;
 
 /** Development-only test mod; never included in the production JAR. */
@@ -886,6 +893,40 @@ public final class RegistrationTests {
                     EnergyConfig.MODE.set(mode);
                     LogUtils.getLogger().info("IC2 GameTest energy mode: {}", mode);
                 });
+        NeoForge.EVENT_BUS.addListener(
+                (ServerStartedEvent event) -> dumpItemRegistry());
+    }
+
+    /**
+     * Dumps every registered ic2 item id so tools/migration/verify_artifact.py can
+     * reverse-check client item definitions against the live registry instead of
+     * only validating the definition files that already exist in the JAR.
+     */
+    private static void dumpItemRegistry() {
+        var items = new JsonArray();
+        BuiltInRegistries.ITEM.keySet().stream()
+                .filter(id -> id.getNamespace().equals("ic2"))
+                .map(Identifier::toString)
+                .sorted()
+                .forEach(items::add);
+        var payload = new JsonObject();
+        payload.addProperty(
+                "mod_version",
+                ModList.get()
+                        .getModContainerById("ic2")
+                        .orElseThrow()
+                        .getModInfo()
+                        .getVersion()
+                        .toString());
+        payload.add("items", items);
+        try {
+            Files.writeString(
+                    FMLPaths.GAMEDIR.get().resolve("ic2_item_registry.json"),
+                    payload.toString());
+        } catch (IOException e) {
+            throw new IllegalStateException("cannot write item registry dump", e);
+        }
+        LogUtils.getLogger().info("IC2 item registry dump: {} items", items.size());
     }
 
     private static void copperPlate(GameTestHelper helper) {

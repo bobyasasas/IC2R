@@ -16,15 +16,12 @@ import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.resources.Identifier;
 import net.minecraft.util.Mth;
 
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.api.distmarker.OnlyIn;
-
 /**
  * Renders the mining laser beam as an arrow-shaped textured shaft with the IC2 laser texture.
  * Legacy hand-rolled the same arrow layout from textured quads; 26.1.2 ships the shape as a
- * baked model, so the port reuses it.
+ * baked model, so the port reuses it. The class is only referenced from the client-only
+ * mod constructor (dist = CLIENT), so 26.x requires no OnlyIn annotation here.
  */
-@OnlyIn(Dist.CLIENT)
 public class LaserBulletRenderer extends EntityRenderer<LaserBulletEntity, ArrowRenderState> {
     private static final Identifier TEXTURE =
             Identifier.fromNamespaceAndPath("ic2", "textures/models/laser.png");
