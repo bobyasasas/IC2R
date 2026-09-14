@@ -5964,13 +5964,13 @@
    "factory": "register",
    "expression": "new ItemRemote(new Properties())",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "neoforge/src/main/java/ic2/neoforge/item/RemoteItem.java",
     "neoforge/src/gameTest/java/ic2/neoforge/test/RemoteTests.java",
     "docs/migration/dynamite.md"
    ],
-   "note": "REMOTE_LINKS 配对/解配/群爆与跨维度跳过已交付;配对上限随后续切片。"
+   "note": "勘误翻 implemented：本轮对齐 legacy 三处——已 LINKED 方块拒绝异遥控器配对（cannot_unlink 消息仅在拒绝时发，成功解配静默）、引爆一次性消耗已加载链接（跨维度与未加载块保留）；remote_pairing_gate/remote_launch_consumes/remote_detonate 三测试直接断言。port 侧 RemoteLinks MAX_TARGETS=1024 为 codec 安全界（legacy 无上限），属超集差异记录不回删。"
   },
   {
    "registry": "item",
@@ -8586,12 +8586,13 @@
    "factory": "register",
    "expression": "new BlockDynamite()",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/dynamite.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/DynamiteTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/DynamiteTests.java",
+    "neoforge/src/gameTest/java/ic2/neoforge/test/ThrownDynamiteTests.java"
    ],
-   "note": "方块状态机/贴面生存/LINKED/放置测试与遥控器配对群爆已交付;支撑弹出与 BlockItem 于切片三补齐;投掷炸药、粘性炸药与红石引信链随后续切片。"
+   "note": "勘误翻 implemented：原 note 过时——投掷炸药（DynamiteItem.use→ThrownDynamite、fuse 100）、粘性炸药（StickyDynamiteItem+锚定加速 fuse-3/tick+支撑消失脱落+落地 200 tick 失效）、红石引信链（checkPlacement 邻信号引燃 fuse 40、wasExploded 连锁 fuse 5、水浸 fuse+2000 哑弹）均已交付且经 dynamite_placement/break_fuse/redstone_fuse/explosion_chain/linked_toggle/water_disarms/sticky_dynamite_accelerates/thrown_dynamite_detonates 九个 GameTest 直接断言。"
   },
   {
    "registry": "block",

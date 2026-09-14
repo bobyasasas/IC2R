@@ -108,3 +108,28 @@
 - 实机测试(投掷手感、发射器、粘性攀附视觉)见 待测试.md 第 41 节。
 - legacy `Ic2Explosion` 全尺寸语义(核弹/NUKE)未迁移。
 - 遥控器配对上限随后续切片;投掷实体被箭/攻击命中无交互(与 legacy 一致)。
+
+## 第 63 轮交付(2026-09-12)
+
+- 勘误:投掷炸药、粘性炸药与红石引信链在早前切片已全部交付并带九个
+  GameTest 直接断言(placement/break_fuse/redstone_fuse/explosion_chain/
+  linked_toggle/water_disarms/sticky_dynamite_accelerates/
+  thrown_dynamite_detonates/remote_detonate),catalog `ic2:dynamite`
+  block 条 note 过时,本轮翻 implemented。
+- 遥控器对齐 legacy `ItemRemote` 三处行为分歧(功能改动):
+  1. 已 LINKED 的方块只接受持有该链接的遥控器解配;异遥控器 useOn 拒绝
+     并发 `ic2.remote.cannot_unlink` 消息(旧 port 会把异遥控器也加上链接,
+     且成功解配误发 cannot_unlink);
+  2. 成功解配静默,不再发消息;
+  3. 空手引爆(legacy `launchRemotes`)改为一次性消耗:本维度已加载目标
+     逐条尝试引爆后从链接中移除,跨维度与未加载区块的链接保留待后续
+     触发;引爆条件补齐 legacy 的 LINKED 状态检查。
+- 新增 2 个 GameTest:`remote_pairing_gate`(owner 配对→异遥控器拒配且
+  链接为空→owner 静默解配)、`remote_launch_consumes`(引爆后链接仅剩
+  跨维度条目,方块清除、引信实体生成)。566×2 全绿(564+2)。
+- catalog `ic2:remote` item 条随本轮翻 implemented;port `RemoteLinks`
+  MAX_TARGETS=1024 为 codec 安全界(legacy 无上限),属超集差异记录不回删。
+- 验证:IC2/GT 双模式 566×2 全绿;registry 1163/16/20→**1165/14/20**
+  (pending 20 维持);progress.py --check 通过;verify_artifact OK
+  (748 classes/512 items/1155 models 不变)。
+- 留人工:投掷手感/发射器/粘性攀附视觉/遥控器实机操作(M16)。
