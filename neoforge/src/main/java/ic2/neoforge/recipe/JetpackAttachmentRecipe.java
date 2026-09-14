@@ -34,6 +34,11 @@ import java.util.Set;
  * three parts may sit anywhere in the grid.
  */
 public final class JetpackAttachmentRecipe implements CraftingRecipe {
+    /** Unit codecs must encode the exact instance returned by the map codec. */
+    public static final JetpackAttachmentRecipe INSTANCE = new JetpackAttachmentRecipe();
+
+    private JetpackAttachmentRecipe() {}
+
     /** Legacy blacklist: the jetpacks themselves, the quantum suit and the elytra. */
     private static Set<Item> blacklist() {
         Set<Item> items = new HashSet<>();

@@ -13,7 +13,7 @@
 | 2 | LaserBulletRenderer @OnlyIn 复发 | R01 | done（7b04af50；全仓 grep=0，CI 警告消失） |
 | 3 | 配方台账 7 条 pending 漂移；converted-recipes 缺 5 条；9 条 empty ingredients 警告 | R02 | done（ec4354ea，CI 34818810933 success；台账 794/2 显式处置；警告清零） |
 | 4 | 旧档转换缺 InvSlots→inventory 结构迁移与 canner 映射；无端到端 | R07 | partial（实现+自测端到端 done，本切片；真实旧世界样本端到端 todo） |
-| 5 | 实机/集成/多人证据边界（留人工项、AE2 测试替身、证据非最终 HEAD） | R05/R06/R08 | todo |
+| 5 | 实机/集成/多人证据边界（留人工项、AE2 测试替身、证据非最终 HEAD） | R05/R06/R08 | partial（单客户端核心可玩链已通过；集成与多人仍待测） |
 | 6 | 状态文档双向过期（矿机/传送机/M14/UU 扫描持久化等） | R00/R10 | 进行中 |
 
 ## R00 基线盘点
@@ -64,8 +64,8 @@
 
 ## R05 实机基础验收（实用版）
 
-- 状态：todo（先四罐+激光渲染器，再补待测试.md 缺实机证据项；按指令第 R05 节表格执行）
-- 证据目录：docs/migration/live-evidence/（截图+日志；每行一测：设备/模式｜提交｜操作｜预期｜实测｜结论｜证据路径）
+- 状态：partial（2026-09-14 单客户端核心可玩链通过：稳定登录、Chest/MFE/Iron Furnace 菜单、MFE 供电加工、产物取出、保存重进、IC2 方块真实放置与破坏；全功能视觉与集成项继续按需补测）
+- 证据：[2026-09-14 单客户端核心可玩性实测](live-evidence/2026-09-14-core-playability.md)；证据目录 `docs/migration/live-evidence/`
 
 ## R06 JEI/Jade/AE2 真实集成
 
@@ -105,3 +105,4 @@
 | 2026-09-14 | R01 资源反向完整性+13 定义+OnlyIn | 7b04af50（CI 34817123339 success） | 检查器抓出 9 个额外缺定义+1 死定义+8 漏标签；OnlyIn 警告清零 |
 | 2026-09-14 | R02 配方链 794/2+钚标签+警告清零 | ec4354ea（CI 34818810933 success） | legacy 空#c:ingots/plutonium 判定为 legacy bug，补值修复；GameTest 576×2、双模式警告=0 |
 | 2026-09-14 | R07 存档转换：库存结构+字段迁移+canner 映射+传送机权重（R03 缺口 1/2/3） | （本切片） | self-test 端到端 PASS；GameTest 576×2；verify_artifact 通过；真实旧世界样本端到端遗留 |
+| 2026-09-14 | R05 单客户端核心可玩性实测+配方同步登录修复 | （与本记录同提交） | 实际登录、菜单、MFE→铁炉→铁锭、保存重进、真实放置/破坏全部通过；非阻断资源与创造标签问题留后续 |

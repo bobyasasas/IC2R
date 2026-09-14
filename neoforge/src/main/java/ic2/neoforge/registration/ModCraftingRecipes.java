@@ -61,8 +61,8 @@ public final class ModCraftingRecipes {
                             "jetpack_attachment",
                             () ->
                                     new RecipeSerializer<JetpackAttachmentRecipe>(
-                                            MapCodec.unit(new JetpackAttachmentRecipe()),
-                                            StreamCodec.unit(new JetpackAttachmentRecipe())));
+                                            MapCodec.unit(JetpackAttachmentRecipe.INSTANCE),
+                                            StreamCodec.unit(JetpackAttachmentRecipe.INSTANCE)));
 
     public static void register(IEventBus bus) {
         SERIALIZERS.register(bus);
