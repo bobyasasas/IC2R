@@ -4499,12 +4499,12 @@
    "factory": "register",
    "expression": "new BlockCuttingBlade(new Properties(), BlockCuttingBladeType.iron)",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/block-cutter.md",
     "neoforge/src/gameTest/java/ic2/neoforge/test/BlockCutterTests.java"
    ],
-   "note": "物品、tooltip、创造页与切割门控已验证;客户端外观随实机测试。"
+   "note": "勘误翻 implemented：切割门控经 BlockCutterTests 直接断言（iron 切铜块并耗尽电量/黑曜石完全抗 iron 并停机不耗电）；客户端外观随实机（M16）。"
   },
   {
    "registry": "item",
@@ -4514,12 +4514,12 @@
    "factory": "register",
    "expression": "new BlockCuttingBlade(new Properties(), BlockCuttingBladeType.diamond)",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/block-cutter.md",
     "neoforge/src/gameTest/java/ic2/neoforge/test/BlockCutterTests.java"
    ],
-   "note": "物品、tooltip、创造页与切割门控已验证;客户端外观随实机测试。"
+   "note": "勘误翻 implemented：切割门控经 BlockCutterTests 直接断言（diamond 恢复黑曜石切割并计满 1800 EU）；客户端外观随实机（M16）。"
   },
   {
    "registry": "item",
@@ -5160,12 +5160,12 @@
    "factory": "register",
    "expression": "new ItemReactorVentSpread(new Properties(), 4)",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/nuclear-reactor.md",
     "neoforge/src/gameTest/java/ic2/neoforge/test/ReactorComponentTests.java"
    ],
-   "note": "物品、堆内组件行为与合成配方经 GameTest 验证;客户端外观随实机测试。"
+   "note": "勘误翻 implemented：堆内散热行为经 ReactorComponentTests.ventSpreadCoolsNeighbours 直接断言（COMPONENT_HEAT_VENT 扩散冷却邻居）；客户端外观随实机（M16）。"
   },
   {
    "registry": "item",
@@ -6643,13 +6643,14 @@
    "factory": "register",
    "expression": "new ItemWindRotor(new Properties().durability(10800), 5, false, 0.25F, 10, 60, IC2.getIdentifier(\"textures/item/rotor/wood_rotor_model.png\"))",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/wind-turbine.md",
     "neoforge/src/gameTest/java/ic2/neoforge/test/WindTurbineTests.java",
-    "docs/migration/water-turbine.md"
+    "docs/migration/water-turbine.md",
+    "neoforge/src/gameTest/java/ic2/neoforge/test/WindGenerationTests.java"
    ],
-   "note": "转子规格、耐久、风场与水域、空间、产能预算、重载及转电链已接入；多人和性能验收由 M16 跟踪。"
+   "note": "勘误翻 implemented：转子链（规格/耐久/风场与水域/空间/产能预算/重载/转电）经 wind/water/steam 涡轮 GameTest 直接覆盖（RotorMaterial.WOODEN 实例断言）；多人与性能实机验收留人工（M16）。"
   },
   {
    "registry": "item",
@@ -6675,13 +6676,15 @@
    "factory": "register",
    "expression": "new ItemWindRotor(new Properties().durability(86400), 7, true, 0.5F, 14, 75, ResourceLocation.fromNamespaceAndPath(\"ic2\", \"textures/item/rotor/iron_rotor_model.png\"))",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/wind-turbine.md",
     "neoforge/src/gameTest/java/ic2/neoforge/test/WindTurbineTests.java",
-    "docs/migration/water-turbine.md"
+    "docs/migration/water-turbine.md",
+    "neoforge/src/gameTest/java/ic2/neoforge/test/WaterTurbineTests.java",
+    "neoforge/src/gameTest/java/ic2/neoforge/test/SteamTurbineTests.java"
    ],
-   "note": "转子规格、耐久、风场与水域、空间、产能预算、重载及转电链已接入；多人和性能验收由 M16 跟踪。"
+   "note": "勘误翻 implemented：转子链（规格/耐久/风场与水域/空间/产能预算/重载/转电）经 wind/water/steam 涡轮 GameTest 直接覆盖（RotorMaterial.IRON 实例断言）；多人与性能实机验收留人工（M16）。"
   },
   {
    "registry": "item",
@@ -6723,12 +6726,12 @@
    "factory": "register",
    "expression": "new ItemClassicCell(new Properties(), Fluids.EMPTY)",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "neoforge/src/main/java/ic2/neoforge/registration/ModCells.java",
     "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
    ],
-   "note": "原生流体能力、堆叠容器交换和资源已验证；世界交互继续验收。"
+   "note": "勘误翻 implemented：世界交互已实现——FluidCellItem.use 空罐经 SOURCE_ONLY 射线拾取世界流体源（FluidUtil.tryPickupFluid）、满罐就地放置（tryPlaceFluid）、useOn 经 FluidUtil 与方块机器交互；并有 fluid_world GameTest（水罐拾取/放置实测）、fluid_cells（整罐事务：部分拒绝/输出槽/回滚）、fluid_families（20 罐注册与桶能力全量断言）覆盖。实机手持观感留人工（M16）。"
   },
   {
    "registry": "item",
@@ -6738,12 +6741,12 @@
    "factory": "register",
    "expression": "new ItemClassicCell(new Properties(), Fluids.WATER)",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "neoforge/src/main/java/ic2/neoforge/registration/ModCells.java",
     "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
    ],
-   "note": "原生流体能力、堆叠容器交换和资源已验证；世界交互继续验收。"
+   "note": "勘误翻 implemented：世界交互已实现——FluidCellItem.use 空罐经 SOURCE_ONLY 射线拾取世界流体源（FluidUtil.tryPickupFluid）、满罐就地放置（tryPlaceFluid）、useOn 经 FluidUtil 与方块机器交互；并有 fluid_world GameTest（水罐拾取/放置实测）、fluid_cells（整罐事务：部分拒绝/输出槽/回滚）、fluid_families（20 罐注册与桶能力全量断言）覆盖。实机手持观感留人工（M16）。"
   },
   {
    "registry": "item",
@@ -6753,12 +6756,12 @@
    "factory": "register",
    "expression": "new ItemClassicCell(new Properties(), Fluids.LAVA)",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "neoforge/src/main/java/ic2/neoforge/registration/ModCells.java",
     "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
    ],
-   "note": "原生流体能力、堆叠容器交换和资源已验证；世界交互继续验收。"
+   "note": "勘误翻 implemented：世界交互已实现——FluidCellItem.use 空罐经 SOURCE_ONLY 射线拾取世界流体源（FluidUtil.tryPickupFluid）、满罐就地放置（tryPlaceFluid）、useOn 经 FluidUtil 与方块机器交互；并有 fluid_world GameTest（水罐拾取/放置实测）、fluid_cells（整罐事务：部分拒绝/输出槽/回滚）、fluid_families（20 罐注册与桶能力全量断言）覆盖。实机手持观感留人工（M16）。"
   },
   {
    "registry": "item",
@@ -6768,12 +6771,12 @@
    "factory": "register",
    "expression": "new ItemClassicCell(new Properties(), Ic2Fluids.AIR.still())",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "neoforge/src/main/java/ic2/neoforge/registration/ModCells.java",
     "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
    ],
-   "note": "原生流体能力、堆叠容器交换和资源已验证；世界交互继续验收。"
+   "note": "勘误翻 implemented：世界交互已实现——FluidCellItem.use 空罐经 SOURCE_ONLY 射线拾取世界流体源（FluidUtil.tryPickupFluid）、满罐就地放置（tryPlaceFluid）、useOn 经 FluidUtil 与方块机器交互；并有 fluid_world GameTest（水罐拾取/放置实测）、fluid_cells（整罐事务：部分拒绝/输出槽/回滚）、fluid_families（20 罐注册与桶能力全量断言）覆盖。实机手持观感留人工（M16）。"
   },
   {
    "registry": "item",
@@ -6797,12 +6800,12 @@
    "factory": "register",
    "expression": "new ItemClassicCell(new Properties(), Ic2Fluids.WEED_EX.still())",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "neoforge/src/main/java/ic2/neoforge/registration/ModCells.java",
     "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
    ],
-   "note": "原生流体能力、堆叠容器交换和资源已验证；世界交互继续验收。"
+   "note": "勘误翻 implemented：世界交互已实现——FluidCellItem.use 空罐经 SOURCE_ONLY 射线拾取世界流体源（FluidUtil.tryPickupFluid）、满罐就地放置（tryPlaceFluid）、useOn 经 FluidUtil 与方块机器交互；并有 fluid_world GameTest（水罐拾取/放置实测）、fluid_cells（整罐事务：部分拒绝/输出槽/回滚）、fluid_families（20 罐注册与桶能力全量断言）覆盖。实机手持观感留人工（M16）。"
   },
   {
    "registry": "item",
@@ -6829,12 +6832,12 @@
    "factory": "register",
    "expression": "new ItemClassicCell(new Properties(), Ic2Fluids.UU_MATTER.still())",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "neoforge/src/main/java/ic2/neoforge/registration/ModCells.java",
     "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
    ],
-   "note": "原生流体能力、堆叠容器交换和资源已验证；世界交互继续验收。"
+   "note": "勘误翻 implemented：世界交互已实现——FluidCellItem.use 空罐经 SOURCE_ONLY 射线拾取世界流体源（FluidUtil.tryPickupFluid）、满罐就地放置（tryPlaceFluid）、useOn 经 FluidUtil 与方块机器交互；并有 fluid_world GameTest（水罐拾取/放置实测）、fluid_cells（整罐事务：部分拒绝/输出槽/回滚）、fluid_families（20 罐注册与桶能力全量断言）覆盖。实机手持观感留人工（M16）。"
   },
   {
    "registry": "item",
@@ -6844,12 +6847,12 @@
    "factory": "register",
    "expression": "new ItemClassicCell(new Properties(), Ic2Fluids.CONSTRUCTION_FOAM.still())",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "neoforge/src/main/java/ic2/neoforge/registration/ModCells.java",
     "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
    ],
-   "note": "原生流体能力、堆叠容器交换和资源已验证；世界交互继续验收。"
+   "note": "勘误翻 implemented：世界交互已实现——FluidCellItem.use 空罐经 SOURCE_ONLY 射线拾取世界流体源（FluidUtil.tryPickupFluid）、满罐就地放置（tryPlaceFluid）、useOn 经 FluidUtil 与方块机器交互；并有 fluid_world GameTest（水罐拾取/放置实测）、fluid_cells（整罐事务：部分拒绝/输出槽/回滚）、fluid_families（20 罐注册与桶能力全量断言）覆盖。实机手持观感留人工（M16）。"
   },
   {
    "registry": "item",
@@ -6859,12 +6862,12 @@
    "factory": "register",
    "expression": "new ItemClassicCell(new Properties(), Ic2Fluids.COOLANT.still())",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "neoforge/src/main/java/ic2/neoforge/registration/ModCells.java",
     "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
    ],
-   "note": "原生流体能力、堆叠容器交换和资源已验证；世界交互继续验收。"
+   "note": "勘误翻 implemented：世界交互已实现——FluidCellItem.use 空罐经 SOURCE_ONLY 射线拾取世界流体源（FluidUtil.tryPickupFluid）、满罐就地放置（tryPlaceFluid）、useOn 经 FluidUtil 与方块机器交互；并有 fluid_world GameTest（水罐拾取/放置实测）、fluid_cells（整罐事务：部分拒绝/输出槽/回滚）、fluid_families（20 罐注册与桶能力全量断言）覆盖。实机手持观感留人工（M16）。"
   },
   {
    "registry": "item",
@@ -6874,12 +6877,12 @@
    "factory": "register",
    "expression": "new ItemClassicCell(new Properties(), Ic2Fluids.CREOSOTE.still())",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "neoforge/src/main/java/ic2/neoforge/registration/ModCells.java",
     "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
    ],
-   "note": "原生流体能力、堆叠容器交换和资源已验证；世界交互继续验收。"
+   "note": "勘误翻 implemented：世界交互已实现——FluidCellItem.use 空罐经 SOURCE_ONLY 射线拾取世界流体源（FluidUtil.tryPickupFluid）、满罐就地放置（tryPlaceFluid）、useOn 经 FluidUtil 与方块机器交互；并有 fluid_world GameTest（水罐拾取/放置实测）、fluid_cells（整罐事务：部分拒绝/输出槽/回滚）、fluid_families（20 罐注册与桶能力全量断言）覆盖。实机手持观感留人工（M16）。"
   },
   {
    "registry": "item",
@@ -6889,12 +6892,12 @@
    "factory": "register",
    "expression": "new ItemClassicCell(new Properties(), Ic2Fluids.HOT_COOLANT.still())",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "neoforge/src/main/java/ic2/neoforge/registration/ModCells.java",
     "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
    ],
-   "note": "原生流体能力、堆叠容器交换和资源已验证；世界交互继续验收。"
+   "note": "勘误翻 implemented：世界交互已实现——FluidCellItem.use 空罐经 SOURCE_ONLY 射线拾取世界流体源（FluidUtil.tryPickupFluid）、满罐就地放置（tryPlaceFluid）、useOn 经 FluidUtil 与方块机器交互；并有 fluid_world GameTest（水罐拾取/放置实测）、fluid_cells（整罐事务：部分拒绝/输出槽/回滚）、fluid_families（20 罐注册与桶能力全量断言）覆盖。实机手持观感留人工（M16）。"
   },
   {
    "registry": "item",
@@ -6904,12 +6907,12 @@
    "factory": "register",
    "expression": "new ItemClassicCell(new Properties(), Ic2Fluids.PAHOEHOE_LAVA.still())",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "neoforge/src/main/java/ic2/neoforge/registration/ModCells.java",
     "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
    ],
-   "note": "原生流体能力、堆叠容器交换和资源已验证；世界交互继续验收。"
+   "note": "勘误翻 implemented：世界交互已实现——FluidCellItem.use 空罐经 SOURCE_ONLY 射线拾取世界流体源（FluidUtil.tryPickupFluid）、满罐就地放置（tryPlaceFluid）、useOn 经 FluidUtil 与方块机器交互；并有 fluid_world GameTest（水罐拾取/放置实测）、fluid_cells（整罐事务：部分拒绝/输出槽/回滚）、fluid_families（20 罐注册与桶能力全量断言）覆盖。实机手持观感留人工（M16）。"
   },
   {
    "registry": "item",
@@ -6919,12 +6922,12 @@
    "factory": "register",
    "expression": "new ItemClassicCell(new Properties(), Ic2Fluids.BIOMASS.still())",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "neoforge/src/main/java/ic2/neoforge/registration/ModCells.java",
     "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
    ],
-   "note": "原生流体能力、堆叠容器交换和资源已验证；世界交互继续验收。"
+   "note": "勘误翻 implemented：世界交互已实现——FluidCellItem.use 空罐经 SOURCE_ONLY 射线拾取世界流体源（FluidUtil.tryPickupFluid）、满罐就地放置（tryPlaceFluid）、useOn 经 FluidUtil 与方块机器交互；并有 fluid_world GameTest（水罐拾取/放置实测）、fluid_cells（整罐事务：部分拒绝/输出槽/回滚）、fluid_families（20 罐注册与桶能力全量断言）覆盖。实机手持观感留人工（M16）。"
   },
   {
    "registry": "item",
@@ -6934,12 +6937,12 @@
    "factory": "register",
    "expression": "new ItemClassicCell(new Properties(), Ic2Fluids.BIOGAS.still())",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "neoforge/src/main/java/ic2/neoforge/registration/ModCells.java",
     "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
    ],
-   "note": "原生流体能力、堆叠容器交换和资源已验证；世界交互继续验收。"
+   "note": "勘误翻 implemented：世界交互已实现——FluidCellItem.use 空罐经 SOURCE_ONLY 射线拾取世界流体源（FluidUtil.tryPickupFluid）、满罐就地放置（tryPlaceFluid）、useOn 经 FluidUtil 与方块机器交互；并有 fluid_world GameTest（水罐拾取/放置实测）、fluid_cells（整罐事务：部分拒绝/输出槽/回滚）、fluid_families（20 罐注册与桶能力全量断言）覆盖。实机手持观感留人工（M16）。"
   },
   {
    "registry": "item",
@@ -6949,12 +6952,12 @@
    "factory": "register",
    "expression": "new ItemClassicCell(new Properties(), Ic2Fluids.DISTILLED_WATER.still())",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "neoforge/src/main/java/ic2/neoforge/registration/ModCells.java",
     "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
    ],
-   "note": "原生流体能力、堆叠容器交换和资源已验证；世界交互继续验收。"
+   "note": "勘误翻 implemented：世界交互已实现——FluidCellItem.use 空罐经 SOURCE_ONLY 射线拾取世界流体源（FluidUtil.tryPickupFluid）、满罐就地放置（tryPlaceFluid）、useOn 经 FluidUtil 与方块机器交互；并有 fluid_world GameTest（水罐拾取/放置实测）、fluid_cells（整罐事务：部分拒绝/输出槽/回滚）、fluid_families（20 罐注册与桶能力全量断言）覆盖。实机手持观感留人工（M16）。"
   },
   {
    "registry": "item",
@@ -6964,12 +6967,12 @@
    "factory": "register",
    "expression": "new ItemClassicCell(new Properties(), Ic2Fluids.SUPERHEATED_STEAM.still())",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "neoforge/src/main/java/ic2/neoforge/registration/ModCells.java",
     "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
    ],
-   "note": "原生流体能力、堆叠容器交换和资源已验证；世界交互继续验收。"
+   "note": "勘误翻 implemented：世界交互已实现——FluidCellItem.use 空罐经 SOURCE_ONLY 射线拾取世界流体源（FluidUtil.tryPickupFluid）、满罐就地放置（tryPlaceFluid）、useOn 经 FluidUtil 与方块机器交互；并有 fluid_world GameTest（水罐拾取/放置实测）、fluid_cells（整罐事务：部分拒绝/输出槽/回滚）、fluid_families（20 罐注册与桶能力全量断言）覆盖。实机手持观感留人工（M16）。"
   },
   {
    "registry": "item",
@@ -6979,12 +6982,12 @@
    "factory": "register",
    "expression": "new ItemClassicCell(new Properties(), Ic2Fluids.STEAM.still())",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "neoforge/src/main/java/ic2/neoforge/registration/ModCells.java",
     "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
    ],
-   "note": "原生流体能力、堆叠容器交换和资源已验证；世界交互继续验收。"
+   "note": "勘误翻 implemented：世界交互已实现——FluidCellItem.use 空罐经 SOURCE_ONLY 射线拾取世界流体源（FluidUtil.tryPickupFluid）、满罐就地放置（tryPlaceFluid）、useOn 经 FluidUtil 与方块机器交互；并有 fluid_world GameTest（水罐拾取/放置实测）、fluid_cells（整罐事务：部分拒绝/输出槽/回滚）、fluid_families（20 罐注册与桶能力全量断言）覆盖。实机手持观感留人工（M16）。"
   },
   {
    "registry": "item",
@@ -6994,12 +6997,12 @@
    "factory": "register",
    "expression": "new ItemClassicCell(new Properties(), Ic2Fluids.HOT_WATER.still())",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "neoforge/src/main/java/ic2/neoforge/registration/ModCells.java",
     "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
    ],
-   "note": "原生流体能力、堆叠容器交换和资源已验证；世界交互继续验收。"
+   "note": "勘误翻 implemented：世界交互已实现——FluidCellItem.use 空罐经 SOURCE_ONLY 射线拾取世界流体源（FluidUtil.tryPickupFluid）、满罐就地放置（tryPlaceFluid）、useOn 经 FluidUtil 与方块机器交互；并有 fluid_world GameTest（水罐拾取/放置实测）、fluid_cells（整罐事务：部分拒绝/输出槽/回滚）、fluid_families（20 罐注册与桶能力全量断言）覆盖。实机手持观感留人工（M16）。"
   },
   {
    "registry": "item",
@@ -7009,12 +7012,12 @@
    "factory": "register",
    "expression": "new ItemClassicCell(new Properties(), Ic2Fluids.HYDROGEN.still())",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "neoforge/src/main/java/ic2/neoforge/registration/ModCells.java",
     "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
    ],
-   "note": "原生流体能力、堆叠容器交换和资源已验证；世界交互继续验收。"
+   "note": "勘误翻 implemented：世界交互已实现——FluidCellItem.use 空罐经 SOURCE_ONLY 射线拾取世界流体源（FluidUtil.tryPickupFluid）、满罐就地放置（tryPlaceFluid）、useOn 经 FluidUtil 与方块机器交互；并有 fluid_world GameTest（水罐拾取/放置实测）、fluid_cells（整罐事务：部分拒绝/输出槽/回滚）、fluid_families（20 罐注册与桶能力全量断言）覆盖。实机手持观感留人工（M16）。"
   },
   {
    "registry": "item",
@@ -7024,12 +7027,12 @@
    "factory": "register",
    "expression": "new ItemClassicCell(new Properties(), Ic2Fluids.OXYGEN.still())",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "neoforge/src/main/java/ic2/neoforge/registration/ModCells.java",
     "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
    ],
-   "note": "原生流体能力、堆叠容器交换和资源已验证；世界交互继续验收。"
+   "note": "勘误翻 implemented：世界交互已实现——FluidCellItem.use 空罐经 SOURCE_ONLY 射线拾取世界流体源（FluidUtil.tryPickupFluid）、满罐就地放置（tryPlaceFluid）、useOn 经 FluidUtil 与方块机器交互；并有 fluid_world GameTest（水罐拾取/放置实测）、fluid_cells（整罐事务：部分拒绝/输出槽/回滚）、fluid_families（20 罐注册与桶能力全量断言）覆盖。实机手持观感留人工（M16）。"
   },
   {
    "registry": "item",
@@ -7039,12 +7042,12 @@
    "factory": "register",
    "expression": "new ItemClassicCell(new Properties(), Ic2Fluids.HEAVY_WATER.still())",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "neoforge/src/main/java/ic2/neoforge/registration/ModCells.java",
     "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
    ],
-   "note": "原生流体能力、堆叠容器交换和资源已验证；世界交互继续验收。"
+   "note": "勘误翻 implemented：世界交互已实现——FluidCellItem.use 空罐经 SOURCE_ONLY 射线拾取世界流体源（FluidUtil.tryPickupFluid）、满罐就地放置（tryPlaceFluid）、useOn 经 FluidUtil 与方块机器交互；并有 fluid_world GameTest（水罐拾取/放置实测）、fluid_cells（整罐事务：部分拒绝/输出槽/回滚）、fluid_families（20 罐注册与桶能力全量断言）覆盖。实机手持观感留人工（M16）。"
   },
   {
    "registry": "item",
@@ -15236,12 +15239,12 @@
    "factory": "registerManagedItem",
    "expression": "",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/mining-filter-card.md",
     "neoforge/src/gameTest/java/ic2/neoforge/test/MiningFilterCardTests.java"
    ],
-   "note": "45 格全息编辑与黑/白名单切换经 GameTest 验证;真实客户端操作随实机测试。"
+   "note": "勘误翻 implemented：45 格全息编辑与黑/白名单切换经 MiningFilterCardTests.handheldMenuEditsCard GameTest 直接覆盖（构造 MiningFilterMenu+clickMenuButton 实测切换）；真实客户端操作留人工（M16）。"
   },
   {
    "registry": "sound",
@@ -16153,12 +16156,12 @@
    "factory": "register",
    "expression": "new GradualRecipe.Serializer()",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/gradual-recipes.md",
     "neoforge/src/gameTest/java/ic2/neoforge/test/GradualRecipeTests.java"
    ],
-   "note": "逐步放热合成配方经 GameTest 验证;配方书展示随实机测试。"
+   "note": "勘误翻 implemented：逐步放热合成经 GradualRecipeTests 三项 GameTest（放热/部分放热保留余量/空冷凝器拒绝）；配方书展示为客户端集成留人工（M16）。"
   },
   {
    "registry": "recipe_serializer",
