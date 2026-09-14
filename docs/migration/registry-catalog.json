@@ -1489,12 +1489,13 @@
    "factory": "register",
    "expression": "new ItemBlockIc2(Ic2Blocks.RCI_RSH, new Properties())",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/nuclear-reactor.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/ReactorAccessHatchTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/ReactorAccessHatchTests.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/ReactorRciBlockEntity.java"
    ],
-   "note": "方块、代理行为(网格访问/红石口/RCI 回充)经 GameTest 验证;客户端外观随实机测试。 切片五:RCI 输出加成(每台 10 点)与满尺寸校验已接入。"
+   "note": "第59轮勘误：功能面已交付——方块、代理行为（网格访问/红石口/RCI 回充）、RCI 输出加成（每台 10 点）与满尺寸校验经 ReactorAccessHatchTests 六项验证（ReactorRciBlockEntity，rsh/lzh 共用）；客户端外观留实机人工验收。"
   },
   {
    "registry": "item",
@@ -1504,12 +1505,13 @@
    "factory": "register",
    "expression": "new ItemBlockIc2(Ic2Blocks.RCI_LZH, new Properties())",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/nuclear-reactor.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/ReactorAccessHatchTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/ReactorAccessHatchTests.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/ReactorRciBlockEntity.java"
    ],
-   "note": "方块、代理行为(网格访问/红石口/RCI 回充)经 GameTest 验证;客户端外观随实机测试。 切片五:RCI 输出加成(每台 10 点)与满尺寸校验已接入。"
+   "note": "第59轮勘误：功能面已交付——方块、代理行为（网格访问/红石口/RCI 回充）、RCI 输出加成（每台 10 点）与满尺寸校验经 ReactorAccessHatchTests 六项验证（ReactorRciBlockEntity，rsh/lzh 共用）；客户端外观留实机人工验收。"
   },
   {
    "registry": "item",
@@ -2670,12 +2672,14 @@
    "factory": "register",
    "expression": "new ItemBlockIc2(Ic2Blocks.MINER, new Properties())",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/miner.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/MinerTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/MinerTests.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/MinerBlockEntity.java",
+    "neoforge/src/main/java/ic2/neoforge/menu/MachineMenu.java"
    ],
-   "note": "合成、放置与创造页验证通过；真实客户端外观与 GUI 操作随实机测试。"
+   "note": "第59轮勘误：功能面已交付——直挖/收回/扫描器侧挖/泵联动经 MinerTests 四项验证（MinerBlockEntity+MachineMenu PUMP 分支），合成/放置/创造页此前已验证；真实客户端外观、GUI 操作与多人同步留实机与 M16 人工验收。"
   },
   {
    "registry": "item",
@@ -2685,12 +2689,14 @@
    "factory": "register",
    "expression": "new ItemBlockIc2(Ic2Blocks.MATTER_GENERATOR, new Properties().rarity(Rarity.RARE))",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/matter-generator.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/MatterGeneratorTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/MatterGeneratorTests.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/MatterGeneratorBlockEntity.java",
+    "neoforge/src/main/java/ic2/neoforge/menu/MachineMenu.java"
    ],
-   "note": "方块、1M EU 缓冲、scrap 5× 增益、UU 单元灌装经 GameTest 验证;真实客户端界面随实机测试。"
+   "note": "第59轮勘误：功能面已交付——1M EU 缓冲、scrap 5× 增益、UU 单元灌装、红石门控经 MatterGeneratorTests 三项验证（MatterGeneratorBlockEntity+MachineMenu）；真实客户端界面观感留实机人工验收。"
   },
   {
    "registry": "item",
@@ -2717,12 +2723,14 @@
    "factory": "register",
    "expression": "new ItemBlockIc2(Ic2Blocks.REPLICATOR, new Properties().rarity(Rarity.UNCOMMON))",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/uu-scanner.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/ReplicatorTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/ReplicatorTests.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/ReplicatorBlockEntity.java",
+    "neoforge/src/main/java/ic2/neoforge/menu/MachineMenu.java"
    ],
-   "note": "UU 罐/单元链、单次/连续模式、legacy 按钮 id(0/1 浏览仅停止态、3 停止清进度、4 单次、5 连续)、4 升级槽(超频 0.7ⁿ 速度/1.6ⁿ 耗电、变压器提 tier、储能 +10000 EU)、进度/UU 银行/罐/模式/选中图案持久化、图案变更重置(legacy refreshInfo)、∞值图案永续烧 UU(legacy 怪癖)均经 GameTest 验证;屏幕按钮实机观感留人工验收。"
+   "note": "第59轮勘误：功能面已交付——UU 罐/单元链、单次/连续模式、legacy 按钮 id（0/1 浏览仅停止态、3 停止清进度、4 单次、5 连续）、4 升级槽、进度/UU 银行/罐/模式/选中图案持久化、图案变更重置、∞值图案永续烧 UU（legacy 怪癖）经 ReplicatorTests 七项验证（ReplicatorBlockEntity+MachineMenu）；屏幕按钮实机观感留人工验收。"
   },
   {
    "registry": "item",
@@ -9489,12 +9497,14 @@
    "factory": "register",
    "expression": "Ic2TileEntityBlock.create(Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).strength(2.0F, 10.0F).requiresCorrectToolForDrops().sound(SoundType.METAL), TileEntityMiner.class, true, Ic2TileEntityBlock.DefaultDrop.Self, Util.horizontalFacings, true)",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/miner.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/MinerTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/MinerTests.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/MinerBlockEntity.java",
+    "neoforge/src/main/java/ic2/neoforge/menu/MachineMenu.java"
    ],
-   "note": "直挖/收回/扫描器侧挖/泵联动与掉落入缓冲验证通过；多人与实机表现待验收。"
+   "note": "第59轮勘误：功能面已交付——直挖/收回/扫描器侧挖/泵联动经 MinerTests 四项验证（MinerBlockEntity+MachineMenu PUMP 分支），合成/放置/创造页此前已验证；真实客户端外观、GUI 操作与多人同步留实机与 M16 人工验收。"
   },
   {
    "registry": "block",
@@ -9504,12 +9514,14 @@
    "factory": "register",
    "expression": "Ic2TileEntityBlock.create(Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).strength(2.0F, 10.0F).requiresCorrectToolForDrops().sound(SoundType.METAL), TileEntityMatter.class, true, Ic2TileEntityBlock.DefaultDrop.AdvMachine, Util.horizontalFacings, true)",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/matter-generator.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/MatterGeneratorTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/MatterGeneratorTests.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/MatterGeneratorBlockEntity.java",
+    "neoforge/src/main/java/ic2/neoforge/menu/MachineMenu.java"
    ],
-   "note": "方块、1M EU 缓冲、scrap 5× 增益、UU 单元灌装经 GameTest 验证;真实客户端界面随实机测试。"
+   "note": "第59轮勘误：功能面已交付——1M EU 缓冲、scrap 5× 增益、UU 单元灌装、红石门控经 MatterGeneratorTests 三项验证（MatterGeneratorBlockEntity+MachineMenu）；真实客户端界面观感留实机人工验收。"
   },
   {
    "registry": "block",
@@ -9536,12 +9548,14 @@
    "factory": "register",
    "expression": "Ic2TileEntityBlock.create(Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).strength(2.0F, 10.0F).requiresCorrectToolForDrops().sound(SoundType.METAL), TileEntityReplicator.class, true, Ic2TileEntityBlock.DefaultDrop.AdvMachine, Util.horizontalFacings, true)",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/uu-scanner.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/ReplicatorTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/ReplicatorTests.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/ReplicatorBlockEntity.java",
+    "neoforge/src/main/java/ic2/neoforge/menu/MachineMenu.java"
    ],
-   "note": "UU 罐/单元链、单次/连续模式、legacy 按钮 id(0/1 浏览仅停止态、3 停止清进度、4 单次、5 连续)、4 升级槽(超频 0.7ⁿ 速度/1.6ⁿ 耗电、变压器提 tier、储能 +10000 EU)、进度/UU 银行/罐/模式/选中图案持久化、图案变更重置(legacy refreshInfo)、∞值图案永续烧 UU(legacy 怪癖)均经 GameTest 验证;屏幕按钮实机观感留人工验收。"
+   "note": "第59轮勘误：功能面已交付——UU 罐/单元链、单次/连续模式、legacy 按钮 id（0/1 浏览仅停止态、3 停止清进度、4 单次、5 连续）、4 升级槽、进度/UU 银行/罐/模式/选中图案持久化、图案变更重置、∞值图案永续烧 UU（legacy 怪癖）经 ReplicatorTests 七项验证（ReplicatorBlockEntity+MachineMenu）；屏幕按钮实机观感留人工验收。"
   },
   {
    "registry": "block",
@@ -9970,12 +9984,13 @@
    "factory": "register",
    "expression": "Ic2TileEntityBlock.create(Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).strength(2.0F, 10.0F).requiresCorrectToolForDrops().sound(SoundType.METAL), TileEntityRCI_RSH.class, true, Ic2TileEntityBlock.DefaultDrop.AdvMachine, Util.allFacings, true)",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/nuclear-reactor.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/ReactorAccessHatchTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/ReactorAccessHatchTests.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/ReactorRciBlockEntity.java"
    ],
-   "note": "方块、代理行为(网格访问/红石口/RCI 回充)经 GameTest 验证;客户端外观随实机测试。 切片五:RCI 输出加成(每台 10 点)与满尺寸校验已接入。"
+   "note": "第59轮勘误：功能面已交付——方块、代理行为（网格访问/红石口/RCI 回充）、RCI 输出加成（每台 10 点）与满尺寸校验经 ReactorAccessHatchTests 六项验证（ReactorRciBlockEntity，rsh/lzh 共用）；客户端外观留实机人工验收。"
   },
   {
    "registry": "block",
@@ -9985,12 +10000,13 @@
    "factory": "register",
    "expression": "Ic2TileEntityBlock.create(Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).strength(2.0F, 10.0F).requiresCorrectToolForDrops().sound(SoundType.METAL), TileEntityRCI_LZH.class, true, Ic2TileEntityBlock.DefaultDrop.AdvMachine, Util.allFacings, true)",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/nuclear-reactor.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/ReactorAccessHatchTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/ReactorAccessHatchTests.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/ReactorRciBlockEntity.java"
    ],
-   "note": "方块、代理行为(网格访问/红石口/RCI 回充)经 GameTest 验证;客户端外观随实机测试。 切片五:RCI 输出加成(每台 10 点)与满尺寸校验已接入。"
+   "note": "第59轮勘误：功能面已交付——方块、代理行为（网格访问/红石口/RCI 回充）、RCI 输出加成（每台 10 点）与满尺寸校验经 ReactorAccessHatchTests 六项验证（ReactorRciBlockEntity，rsh/lzh 共用）；客户端外观留实机人工验收。"
   },
   {
    "registry": "block",
@@ -13527,12 +13543,14 @@
    "factory": "register",
    "expression": "TileEntityMiner::new",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/miner.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/MinerTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/MinerTests.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/MinerBlockEntity.java",
+    "neoforge/src/main/java/ic2/neoforge/menu/MachineMenu.java"
    ],
-   "note": "直挖/收回/扫描器侧挖/泵联动与掉落入缓冲验证通过；多人与实机表现待验收。"
+   "note": "第59轮勘误：功能面已交付——直挖/收回/扫描器侧挖/泵联动经 MinerTests 四项验证（MinerBlockEntity+MachineMenu PUMP 分支），合成/放置/创造页此前已验证；真实客户端外观、GUI 操作与多人同步留实机与 M16 人工验收。"
   },
   {
    "registry": "block_entity",
@@ -13542,12 +13560,14 @@
    "factory": "register",
    "expression": "TileEntityMatter::new",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/matter-generator.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/MatterGeneratorTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/MatterGeneratorTests.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/MatterGeneratorBlockEntity.java",
+    "neoforge/src/main/java/ic2/neoforge/menu/MachineMenu.java"
    ],
-   "note": "方块、1M EU 缓冲、scrap 5× 增益、UU 单元灌装经 GameTest 验证;真实客户端界面随实机测试。"
+   "note": "第59轮勘误：功能面已交付——1M EU 缓冲、scrap 5× 增益、UU 单元灌装、红石门控经 MatterGeneratorTests 三项验证（MatterGeneratorBlockEntity+MachineMenu）；真实客户端界面观感留实机人工验收。"
   },
   {
    "registry": "block_entity",
@@ -13574,12 +13594,14 @@
    "factory": "register",
    "expression": "TileEntityReplicator::new",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/uu-scanner.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/ReplicatorTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/ReplicatorTests.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/ReplicatorBlockEntity.java",
+    "neoforge/src/main/java/ic2/neoforge/menu/MachineMenu.java"
    ],
-   "note": "UU 罐/单元链、单次/连续模式、legacy 按钮 id(0/1 浏览仅停止态、3 停止清进度、4 单次、5 连续)、4 升级槽(超频 0.7ⁿ 速度/1.6ⁿ 耗电、变压器提 tier、储能 +10000 EU)、进度/UU 银行/罐/模式/选中图案持久化、图案变更重置(legacy refreshInfo)、∞值图案永续烧 UU(legacy 怪癖)均经 GameTest 验证;屏幕按钮实机观感留人工验收。"
+   "note": "第59轮勘误：功能面已交付——UU 罐/单元链、单次/连续模式、legacy 按钮 id（0/1 浏览仅停止态、3 停止清进度、4 单次、5 连续）、4 升级槽、进度/UU 银行/罐/模式/选中图案持久化、图案变更重置、∞值图案永续烧 UU（legacy 怪癖）经 ReplicatorTests 七项验证（ReplicatorBlockEntity+MachineMenu）；屏幕按钮实机观感留人工验收。"
   },
   {
    "registry": "block_entity",
@@ -13975,12 +13997,13 @@
    "factory": "register",
    "expression": "TileEntityRCI_RSH::new",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/nuclear-reactor.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/ReactorAccessHatchTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/ReactorAccessHatchTests.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/ReactorRciBlockEntity.java"
    ],
-   "note": "方块、代理行为(网格访问/红石口/RCI 回充)经 GameTest 验证;客户端外观随实机测试。 切片五:RCI 输出加成(每台 10 点)与满尺寸校验已接入。"
+   "note": "第59轮勘误：功能面已交付——方块、代理行为（网格访问/红石口/RCI 回充）、RCI 输出加成（每台 10 点）与满尺寸校验经 ReactorAccessHatchTests 六项验证（ReactorRciBlockEntity，rsh/lzh 共用）；客户端外观留实机人工验收。"
   },
   {
    "registry": "block_entity",
@@ -13990,12 +14013,13 @@
    "factory": "register",
    "expression": "TileEntityRCI_LZH::new",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/nuclear-reactor.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/ReactorAccessHatchTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/ReactorAccessHatchTests.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/ReactorRciBlockEntity.java"
    ],
-   "note": "方块、代理行为(网格访问/红石口/RCI 回充)经 GameTest 验证;客户端外观随实机测试。 切片五:RCI 输出加成(每台 10 点)与满尺寸校验已接入。"
+   "note": "第59轮勘误：功能面已交付——方块、代理行为（网格访问/红石口/RCI 回充）、RCI 输出加成（每台 10 点）与满尺寸校验经 ReactorAccessHatchTests 六项验证（ReactorRciBlockEntity，rsh/lzh 共用）；客户端外观留实机人工验收。"
   },
   {
    "registry": "block_entity",
@@ -14764,12 +14788,14 @@
    "factory": "registerManagedBe",
    "expression": "",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/miner.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/MinerTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/MinerTests.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/MinerBlockEntity.java",
+    "neoforge/src/main/java/ic2/neoforge/menu/MachineMenu.java"
    ],
-   "note": "矿机菜单与泵模式按钮已接入；双人同步与真实客户端操作随 M16 验收。"
+   "note": "第59轮勘误：矿机菜单与泵模式按钮已交付（MachineMenu MachineKind.PUMP 分支），MinerTests pump_mode 经菜单路径验证；双人同步与真实客户端操作留 M16/实机人工验收。"
   },
   {
    "registry": "menu",
@@ -14779,12 +14805,14 @@
    "factory": "registerManagedBe",
    "expression": "",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/matter-generator.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/MatterGeneratorTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/MatterGeneratorTests.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/MatterGeneratorBlockEntity.java",
+    "neoforge/src/main/java/ic2/neoforge/menu/MachineMenu.java"
    ],
-   "note": "方块、1M EU 缓冲、scrap 5× 增益、UU 单元灌装经 GameTest 验证;真实客户端界面随实机测试。"
+   "note": "第59轮勘误：功能面已交付——1M EU 缓冲、scrap 5× 增益、UU 单元灌装、红石门控经 MatterGeneratorTests 三项验证（MatterGeneratorBlockEntity+MachineMenu）；真实客户端界面观感留实机人工验收。"
   },
   {
    "registry": "menu",
@@ -14811,12 +14839,14 @@
    "factory": "registerManagedBe",
    "expression": "",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/uu-scanner.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/ReplicatorTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/ReplicatorTests.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/ReplicatorBlockEntity.java",
+    "neoforge/src/main/java/ic2/neoforge/menu/MachineMenu.java"
    ],
-   "note": "UU 罐/单元链、单次/连续模式、legacy 按钮 id(0/1 浏览仅停止态、3 停止清进度、4 单次、5 连续)、4 升级槽(超频 0.7ⁿ 速度/1.6ⁿ 耗电、变压器提 tier、储能 +10000 EU)、进度/UU 银行/罐/模式/选中图案持久化、图案变更重置(legacy refreshInfo)、∞值图案永续烧 UU(legacy 怪癖)均经 GameTest 验证;屏幕按钮实机观感留人工验收。"
+   "note": "第59轮勘误：功能面已交付——UU 罐/单元链、单次/连续模式、legacy 按钮 id（0/1 浏览仅停止态、3 停止清进度、4 单次、5 连续）、4 升级槽、进度/UU 银行/罐/模式/选中图案持久化、图案变更重置、∞值图案永续烧 UU（legacy 怪癖）经 ReplicatorTests 七项验证（ReplicatorBlockEntity+MachineMenu）；屏幕按钮实机观感留人工验收。"
   },
   {
    "registry": "menu",
@@ -16314,12 +16344,14 @@
    "factory": "register",
    "expression": "new IntegerOutputRecipeSerializer(Ic2RecipeTypes.MATTER_FABRICATOR, null)",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/matter-generator.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/MatterGeneratorTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/MatterGeneratorTests.java",
+    "neoforge/src/main/resources/data/ic2/recipe/matter_fabricator/scrap_box_to_45000.json",
+    "neoforge/src/main/resources/data/ic2/recipe/matter_fabricator/scrap_to_5000.json"
    ],
-   "note": "scrap/Scrap Box 增幅配方已转换并加载。"
+   "note": "第59轮勘误：scrap→5000/scrap box→45000 增幅配方已转换落盘（recipe/matter_fabricator/）并经加载清单与 MatterGeneratorTests scrap 项验证。"
   },
   {
    "registry": "recipe_serializer",
@@ -16520,12 +16552,14 @@
    "factory": "register",
    "expression": "",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/matter-generator.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/MatterGeneratorTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/MatterGeneratorTests.java",
+    "neoforge/src/main/resources/data/ic2/recipe/matter_fabricator/scrap_box_to_45000.json",
+    "neoforge/src/main/resources/data/ic2/recipe/matter_fabricator/scrap_to_5000.json"
    ],
-   "note": "scrap/Scrap Box 增幅配方已转换并加载。"
+   "note": "第59轮勘误：scrap→5000/scrap box→45000 增幅配方已转换落盘（recipe/matter_fabricator/）并经加载清单与 MatterGeneratorTests scrap 项验证。"
   },
   {
    "registry": "recipe_type",

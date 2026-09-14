@@ -32,14 +32,14 @@
 
 | 注册类别 | 已实现 | 部分实现 | 基线总数 |
 |---|---:|---:|---:|
-| item | 473 | 48 | 528 |
-| block | 243 | 15 | 264 |
-| block_entity | 145 | 6 | 157 |
+| item | 478 | 43 | 528 |
+| block | 248 | 10 | 264 |
+| block_entity | 150 | 1 | 157 |
 | entity | 8 | 0 | 8 |
-| menu | 49 | 5 | 55 |
+| menu | 52 | 2 | 55 |
 | sound | 62 | 0 | 62 |
-| recipe_serializer | 12 | 5 | 17 |
-| recipe_type | 10 | 3 | 13 |
+| recipe_serializer | 13 | 4 | 17 |
+| recipe_type | 11 | 2 | 13 |
 | fluid_family | 9 | 8 | 17 |
 | game_event | 5 | 0 | 5 |
 | fluid_type | 17 | 0 | 17 |
