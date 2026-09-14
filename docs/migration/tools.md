@@ -18,7 +18,7 @@
 
 ![客户端扳手旋转](images/wrench-rotation.png)
 
-剩余工作：扳手的面选择叠层、工具箱与其他工具装备整合，客户端持续及多人验收。工具清单仍保留部分实现状态。
+剩余工作：扳手的面选择叠层（port 侧 UX 增强，记录不回删）、客户端持续及多人验收。工具清单六件已全部转 implemented（工具箱整合见下文第 64 轮）。
 
 电链锯（e17d5a49）：`ChainsawItem` 30,000 EU、100 EU 传输上限、等级 1，与 legacy `ItemElectricToolChainsaw` 同规格。斧类方块按 legacy 速度 12 挖掘且不耗电（普通挖掘与蜘蛛网破坏免费）；未被 26.1.2 保留的 `onBlockStartBreak` 钩子由 `BreakBlockEvent` 监听替代：剪切模式开启时（默认开）可剪切植被（树叶/短草/蕨/枯灌木/垂根/藤蔓/绊线/羊毛/蜘蛛网，legacy 的 grass 按 1.20.3+ 改名映射为 short_grass）破坏即取消原版掉落、掉落方块本身并消耗 100 EU，附带 legacy 的破坏粒子、`BLOCK_DESTROY` game event 与猪灵激怒；右键剪切 `Shearable` 生物（羊等，掉落由原版剪切战利品表处理）与攻击均消耗 100 EU，+11 攻击伤害/-3 攻击速度对应 legacy DiggerItem 属性组合。剪切模式经潜行+使用切换（写 `chainsaw_disable_shear` 数据组件，沿用涂色器对 legacy mode-switch 键位组合的降级处理），切换提示复用 legacy 熔刻器的模式文案；掉落判定（斧类+蜘蛛网+可剪切，无电量门槛）与挖掘速度衰减（没电降为 1.0）与 legacy 逐条对齐。铁矿板×5+动力单元与钢锭×4+电路+RE 蓄电池两条成形配方，创造标签页在铱钻头之后。`ChainsawItemTests` 4 项双模式验收：规格/速度/掉落矩阵与免费挖掘、剪切破坏双向（开：掉自身耗 100 EU；关：原版掉落不耗电）、潜行切换往返、羊剪切与禁用直通。
 
@@ -87,3 +87,22 @@ Legacy `ic2.core.item.armor.jetpack` 包（JetpackHandler/JetpackAttachmentRecip
 - GameTest 4 项（双模式共 **378 项**）：配方装配两条电量路径+黑名单+重复/缺件/已附加拒绝+板图案、
   附加飞行推力复算+悬停+地面免耗+电动护甲自电池路径、弹回带电量+护甲存活不换+未附加不弹、
   capability 沼气限定+组件写回+TANK 右键端到端。
+
+## 工具箱整合：ic2:toolbox_tools 全族准入（第 64 轮）
+
+legacy 工具箱准入链 `HandHeldToolbox.canPlaceItem` → `ItemWrapper.canBeStoredInToolbox` → `IBoxable`
+（ItemTreetap、ItemDebug、ItemToolCrafting（锻造锤+切线钳）、ItemToolWrench、ItemToolMeter、
+ItemToolWrenchElectric、ItemScanner、ItemSprayer、ItemToolPainter、ItemDynamite、
+ItemBatteryChargeHotbar、ItemBatterySU、ItemCrop 共 13 类）在 port 对应
+`ToolboxItem.accepts` 的 `ic2:toolbox_tools` 标签门控（且拒绝工具箱本体嵌套）。
+本轮把标签从 25 条补齐到 36 条：新增 ic2:dynamite、ic2:dynamite_sticky、ic2:meter、
+ic2:debug_item、ic2:single_use_battery、ic2:charging_re_battery、
+ic2:advanced_charging_re_battery、ic2:charging_energy_crystal、ic2:charging_lapotron_crystal、
+ic2:crop_stick、ic2:foam_sprayer，覆盖 legacy IBoxable 全名单（充电电池族对应
+ItemBatteryChargeHotbar、单次电池对应 ItemBatterySU、作物架对应 ItemCrop、喷涂器对应 ItemSprayer）。
+
+`ToolboxTests.familyAdmission` 直断六工具（切线钳/锻造锤/扳手/电动扳手/树洞钻/电动树洞钻）
+同箱六槽收纳、泥土仍拒收、11 个补项逐条插入/取出恰好一次往返。
+双模式 567 项全绿。工具清单六条 partial（cutter/forge_hammer/wrench/electric_wrench/
+treetap/electric_treetap）翻转 implemented（1171/8/20）；扳手面选择叠层为记录在案的
+port 侧 UX 增强留 M16 人工验收。

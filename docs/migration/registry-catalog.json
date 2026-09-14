@@ -5747,12 +5747,13 @@
    "factory": "register",
    "expression": "new ItemToolCutter(new Properties().durability(60))",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/tools.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/ToolTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/ToolTests.java",
+    "neoforge/src/gameTest/java/ic2/neoforge/test/ToolboxTests.java"
    ],
-   "note": "合成、旋转、原生拆卸、耐久／电耗和绝缘交互通过；扳手面选择叠层、工具箱等后续整合待验收。"
+   "note": "合成、旋转、原生拆卸、耐久／电耗和绝缘交互通过；工具箱收纳已并入整族直断（toolbox_family_admission）。完整客户端外观验收留 M16。"
   },
   {
    "registry": "item",
@@ -5780,12 +5781,13 @@
    "factory": "register",
    "expression": "new ItemToolCrafting(new Properties().durability(80))",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/tools.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/ToolTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/ToolTests.java",
+    "neoforge/src/gameTest/java/ic2/neoforge/test/ToolboxTests.java"
    ],
-   "note": "合成、旋转、原生拆卸、耐久／电耗和绝缘交互通过；扳手面选择叠层、工具箱等后续整合待验收。"
+   "note": "合成、旋转、原生拆卸、耐久／电耗和绝缘交互通过；工具箱收纳已并入整族直断（toolbox_family_admission）。完整客户端外观验收留 M16。"
   },
   {
    "registry": "item",
@@ -5840,11 +5842,12 @@
    "factory": "register",
    "expression": "new ItemTreetap(new Properties().durability(16))",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
-    "neoforge/src/gameTest/java/ic2/neoforge/test/WorldContentTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/WorldContentTests.java",
+    "neoforge/src/gameTest/java/ic2/neoforge/test/ToolboxTests.java"
    ],
-   "note": "树脂与工具消耗验证通过；工具箱及完整客户端验收待完成。"
+   "note": "树脂与工具消耗验证通过；工具箱收纳已并入整族直断（toolbox_family_admission）。完整客户端外观验收留 M16。"
   },
   {
    "registry": "item",
@@ -5854,12 +5857,13 @@
    "factory": "register",
    "expression": "new ItemToolWrench(new Properties().durability(120))",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/tools.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/ToolTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/ToolTests.java",
+    "neoforge/src/gameTest/java/ic2/neoforge/test/ToolboxTests.java"
    ],
-   "note": "合成、旋转、原生拆卸、耐久／电耗和绝缘交互通过；扳手面选择叠层、工具箱等后续整合待验收。"
+   "note": "合成、旋转、原生拆卸、耐久／电耗和绝缘交互通过；工具箱收纳已并入整族直断（toolbox_family_admission）。扳手面选择叠层为记录在案的 port 侧 UX 增强，留 M16 客户端人工验收。"
   },
   {
    "registry": "item",
@@ -6087,11 +6091,12 @@
    "factory": "register",
    "expression": "new ItemTreetapElectric(new Properties().stacksTo(1))",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
-    "neoforge/src/gameTest/java/ic2/neoforge/test/WorldContentTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/WorldContentTests.java",
+    "neoforge/src/gameTest/java/ic2/neoforge/test/ToolboxTests.java"
    ],
-   "note": "树脂与工具消耗验证通过；工具箱及完整客户端验收待完成。"
+   "note": "树脂与工具消耗验证通过；工具箱收纳已并入整族直断（toolbox_family_admission）。完整客户端外观验收留 M16。"
   },
   {
    "registry": "item",
@@ -6101,12 +6106,13 @@
    "factory": "register",
    "expression": "new ItemToolWrenchElectric(new Properties().stacksTo(1))",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/tools.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/ToolTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/ToolTests.java",
+    "neoforge/src/gameTest/java/ic2/neoforge/test/ToolboxTests.java"
    ],
-   "note": "合成、旋转、原生拆卸、耐久／电耗和绝缘交互通过；扳手面选择叠层、工具箱等后续整合待验收。"
+   "note": "合成、旋转、原生拆卸、耐久／电耗和绝缘交互通过；工具箱收纳已并入整族直断（toolbox_family_admission）。扳手面选择叠层为记录在案的 port 侧 UX 增强，留 M16 客户端人工验收。"
   },
   {
    "registry": "item",

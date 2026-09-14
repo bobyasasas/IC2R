@@ -182,6 +182,69 @@ final class ToolboxTests {
         helper.succeed();
     }
 
+    static void familyAdmission(GameTestHelper helper) {
+        var tools =
+                List.of(
+                        "cutter",
+                        "forge_hammer",
+                        "wrench",
+                        "electric_wrench",
+                        "treetap",
+                        "electric_treetap");
+        var boxAccess = ItemAccess.forStack(ModToolbox.ITEM.toStack());
+        var boxHandler = new ToolboxHandler(boxAccess);
+        try (var tx = Transaction.openRoot()) {
+            for (int i = 0; i < tools.size(); i++) {
+                helper.assertTrue(
+                        boxHandler.insert(i, ItemResource.of(item(tools.get(i))), 1, tx) == 1,
+                        tools.get(i) + " must be admitted to the toolbox");
+            }
+            helper.assertTrue(
+                    boxHandler.insert(6, ItemResource.of(Items.DIRT), 1, tx) == 0,
+                    "Non-tools must stay rejected alongside the full tool family");
+            tx.commit();
+        }
+        for (int i = 0; i < tools.size(); i++) {
+            helper.assertTrue(
+                    boxHandler.getAmountAsInt(i) == 1,
+                    tools.get(i) + " must persist in its slot after commit");
+        }
+        var additions =
+                List.of(
+                        "dynamite",
+                        "dynamite_sticky",
+                        "meter",
+                        "debug_item",
+                        "single_use_battery",
+                        "charging_re_battery",
+                        "advanced_charging_re_battery",
+                        "charging_energy_crystal",
+                        "charging_lapotron_crystal",
+                        "crop_stick",
+                        "foam_sprayer");
+        for (String name : additions) {
+            var access = ItemAccess.forStack(ModToolbox.ITEM.toStack());
+            var handler = new ToolboxHandler(access);
+            var resource = ItemResource.of(item(name));
+            try (var tx = Transaction.openRoot()) {
+                helper.assertTrue(
+                        handler.insert(0, resource, 1, tx) == 1,
+                        name + " must be admitted to the toolbox");
+                tx.commit();
+            }
+            try (var tx = Transaction.openRoot()) {
+                helper.assertTrue(
+                        handler.extract(0, resource, 1, tx) == 1,
+                        name + " must remain extractable after admission");
+                tx.commit();
+            }
+            helper.assertTrue(
+                    handler.getAmountAsInt(0) == 0,
+                    name + " admission must round-trip exactly once");
+        }
+        helper.succeed();
+    }
+
     private static ItemStack item(String name) {
         return new ItemStack(BuiltInRegistries.ITEM.getValue(Identifier.parse("ic2:" + name)));
     }

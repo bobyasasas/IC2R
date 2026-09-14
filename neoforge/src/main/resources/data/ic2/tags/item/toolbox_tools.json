@@ -24,6 +24,17 @@
     "ic2:brown_painter",
     "ic2:green_painter",
     "ic2:red_painter",
-    "ic2:black_painter"
+    "ic2:black_painter",
+    "ic2:dynamite",
+    "ic2:dynamite_sticky",
+    "ic2:meter",
+    "ic2:debug_item",
+    "ic2:single_use_battery",
+    "ic2:charging_re_battery",
+    "ic2:advanced_charging_re_battery",
+    "ic2:charging_energy_crystal",
+    "ic2:charging_lapotron_crystal",
+    "ic2:crop_stick",
+    "ic2:foam_sprayer"
   ]
 }

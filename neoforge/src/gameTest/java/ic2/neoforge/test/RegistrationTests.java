@@ -179,6 +179,8 @@ public final class RegistrationTests {
         FUNCTIONS.register("toolbox_storage", () -> EntityTickingTests.wrap(ToolboxTests::storage));
         FUNCTIONS.register("toolbox_menu_binding", () -> EntityTickingTests.wrap(ToolboxTests::menuBinding));
         FUNCTIONS.register("toolbox_crafting", () -> EntityTickingTests.wrap(ToolboxTests::crafting));
+        FUNCTIONS.register(
+                "toolbox_family_admission", () -> EntityTickingTests.wrap(ToolboxTests::familyAdmission));
         FUNCTIONS.register("metal_former_modes", () -> EntityTickingTests.wrap(MetalFormerTests::modes));
         FUNCTIONS.register("metal_former_persistence", () -> EntityTickingTests.wrap(MetalFormerTests::persistence));
         FUNCTIONS.register("washing_atomic_outputs", () -> EntityTickingTests.wrap(WashingTests::atomicOutputs));
