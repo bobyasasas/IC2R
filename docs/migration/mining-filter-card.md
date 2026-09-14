@@ -75,3 +75,11 @@ legacy `shapeless/mining_filter.json`(高级电路 ×2 + 频率传送器 + **物
 - 合成配方随 `ic2:item_buffer`(独立物流机器切片)迁移解锁。
 - legacy 矿机家族的区块边界(chunk loading)行为:legacy 矿机不强制加载区块,
   迁移保持一致;agent.md §5 中"区块边界"验收项指实机跨区块挖掘观察,随实机补测。
+
+## 第 61 轮审计(2026-09-12)
+
+- 勘误翻 implemented 1 条:menu ic2:mining_filter。
+- 依据:45 格全息编辑与黑/白名单切换经 MiningFilterCardTests.handheldMenuEditsCard
+  GameTest 直接覆盖(构造 MiningFilterMenu 并 clickMenuButton 实测切换)。
+- 验证:IC2/GT 双模式 558×2 全绿;registry 1130/49/20→1157/22/20。
+- 留人工:真实客户端全息界面操作(M16)。

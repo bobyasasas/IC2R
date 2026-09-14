@@ -19,3 +19,14 @@ P06 继续进行：同位素与热／动能转换、剩余配置和整体验收�
 客户端实测：自然世界中风机显示 23 个遮挡和 2.61 EU/t，产生实际电量，转子可见。退出世界后，主世界、下界、末地均生成各自的 `data/ic2/wind.dat`。
 
 ![风力菜单](images/wind-menu.png)
+
+## 第 61 轮审计(2026-09-12)
+
+- 勘误翻 implemented 2 条:wooden_rotor、iron_rotor item。
+- 依据:转子链(规格/耐久/风场与水域/空间/产能预算/重载/转电)经
+  WindTurbineTests/WindGenerationTests/WaterTurbineTests/SteamTurbineTests
+  直接覆盖(RotorMaterial.WOODEN/IRON 实例断言);
+  原 note 留尾仅多人与性能实机项。
+- 验证:IC2/GT 双模式 558×2 全绿;registry 1130/49/20→1157/22/20。
+- 留人工:多人/性能实机(M16)。bronze/steel/carbon_rotor 无直接断言,留 partial
+  待补 GameTest 切片(不虚报)。

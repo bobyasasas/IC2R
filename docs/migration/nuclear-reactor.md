@@ -193,3 +193,12 @@
   与满尺寸校验;rsh/lzh 由 ReactorRciBlockEntity 按 MachineKind 区分。
   本轮无代码改动。
 - 留人工(不自行签署):客户端外观实机观感。
+
+## 第 61 轮审计(2026-09-12)
+
+- 勘误翻 implemented 1 条:component_heat_vent item。
+- 依据:ReactorComponentTests.ventSpreadCoolsNeighbours 以 COMPONENT_HEAT_VENT
+  实例直接断言堆内扩散冷却邻居行为。
+- 验证:IC2/GT 双模式 558×2 全绿;registry 1130/49/20→1157/22/20。
+- 留人工:客户端外观(M16)。component_heat_exchanger/advanced_heat_exchanger
+  无直接 GameTest 断言,留 partial 待补(不虚报)。

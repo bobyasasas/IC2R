@@ -74,3 +74,14 @@
   电缆/meter 等),与成分语义无关;
 - 流体成分的 JEI/EMI 展示(jei 信息插件对 custom 成分的渲染)未做,
   属客户端展示切片。
+
+## 第 61 轮审计(2026-09-12)
+
+- 勘误翻 implemented 20 条:全部经典流体罐(cell)条目。
+- 依据:原 note"世界交互继续验收"为过时留尾——FluidCellItem.use 空罐经
+  SOURCE_ONLY 射线拾取世界流体源(tryPickupFluid)、满罐就地放置
+  (tryPlaceFluid)、useOn 经 FluidUtil 与方块机器交互均已实现;
+  fluid_world GameTest 实测水罐拾取/放置,fluid_cells 覆盖整罐事务
+  (部分拒绝/输出槽/回滚),fluid_families 全量断言 20 罐注册与桶能力。
+- 验证:IC2/GT 双模式 558×2 全绿;registry 1130/49/20→1157/22/20。
+- 留人工:手持罐实机观感(M16)。

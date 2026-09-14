@@ -60,3 +60,12 @@
 - 2026-09-12 审计:两端对照(`TileEntityBlockCutter` vs
   `BlockCutterBlockEntity`)确认 4 EU/t×450t、刀片槽门控、`bladeTooWeak`
   状态与无刀片停机均已对齐,无服务端缺口;catalog 家族 5 条随本轮翻转。
+
+## 第 61 轮审计(2026-09-12)
+
+- 勘误翻 implemented 2 条:iron_cutting_blade、diamond_cutting_blade item。
+- 依据:BlockCutterTests 直接断言——iron 刀切铜块并按 4 EU/t×450 tick 耗尽电量、
+  黑曜石完全抗 iron 刀并停机不耗电;diamond 刀恢复黑曜石切割并计满 1800 EU。
+- 验证:IC2/GT 双模式 558×2 全绿;registry 1130/49/20→1157/22/20。
+- 留人工:客户端外观(M16)。steel_cutting_blade 无直接阈值断言,留 partial
+  待补 GameTest(不虚报)。
