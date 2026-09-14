@@ -22,15 +22,21 @@ import net.neoforged.neoforge.transfer.fluid.FluidResource;
 import net.neoforged.neoforge.transfer.item.ItemResource;
 import net.neoforged.neoforge.transfer.transaction.Transaction;
 
-/** Persistent 24-bucket store; all fluid faces are bidirectional and upgrades are fluid-only. */
+/** Persistent per-tier fluid store; all fluid faces are bidirectional and upgrades are fluid-only. */
 public final class TankBlockEntity extends MachineBlockEntity implements FluidMachine {
     public static final int CAPACITY = 24000;
-    private final MachineFluidTank tank =
-            new MachineFluidTank(CAPACITY, this::contentsChanged, fluid -> true);
+    private final MachineFluidTank tank;
+    private final int capacity;
     private int previousComparator;
 
     public TankBlockEntity(BlockPos pos, BlockState state) {
-        super(ModMachines.entityType(MachineKind.TANK), pos, state, MachineKind.TANK.slots());
+        this(pos, state, MachineKind.TANK);
+    }
+
+    public TankBlockEntity(BlockPos pos, BlockState state, MachineKind kind) {
+        super(ModMachines.entityType(kind), pos, state, kind.slots());
+        this.capacity = kind.tankCapacity();
+        this.tank = new MachineFluidTank(capacity, this::contentsChanged, fluid -> true);
     }
 
     public MachineFluidTank tank() {
@@ -39,7 +45,7 @@ public final class TankBlockEntity extends MachineBlockEntity implements FluidMa
 
     public int comparator() {
         int amount = tank.getAmountAsInt(0);
-        return amount == 0 ? 0 : 1 + (int) (14L * amount / CAPACITY);
+        return amount == 0 ? 0 : 1 + (int) (14L * amount / capacity);
     }
 
     private void contentsChanged() {

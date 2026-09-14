@@ -345,7 +345,7 @@ public final class MachineBlock extends BaseEntityBlock {
         return kind.storage()
                 || kind == MachineKind.INDUCTION_FURNACE
                 || kind == MachineKind.ITEM_BUFFER
-                || kind == MachineKind.TANK
+                || kind.isTank()
                 || kind == MachineKind.LUMINATOR
                 || kind == MachineKind.TELEPORTER
                 || kind == MachineKind.ADV_MINER;

@@ -478,7 +478,7 @@ public final class MachineMenu extends AbstractContainerMenu {
                     17);
         } else if (kind == MachineKind.ELECTROLYZER) {
             addBatterySlot(inventory, 0, 50, 53);
-        } else if (kind == MachineKind.TANK) {
+        } else if (kind.isTank()) {
             // Tanks contain only the four upgrade slots added below.
         } else if (kind == MachineKind.CHUNK_LOADER) {
             // Legacy ContainerChunkLoader: one discharge slot beside the nine-by-nine canvas.
@@ -1001,7 +1001,7 @@ public final class MachineMenu extends AbstractContainerMenu {
             return stack.getItem() instanceof ElectricItem ? 0 : -1;
         if (kind == MachineKind.ENERGY_O_MAT)
             return stack.getItem() instanceof ElectricItem ? 2 : 1;
-        if (kind == MachineKind.TANK) return -1;
+        if (kind.isTank()) return -1;
         if (kind == MachineKind.COKE_KILN_GRATE) return -1;
         if (kind == MachineKind.COKE_KILN_HATCH) return 0;
         if (kind == MachineKind.LIQUID_HEAT_EXCHANGER

@@ -235,6 +235,7 @@ public final class RegistrationTests {
         FUNCTIONS.register("tank_storage", () -> EntityTickingTests.wrap(TankTests::storageAndComparator));
         FUNCTIONS.register("tank_cursor", () -> EntityTickingTests.wrap(TankTests::cursorAndPermissions));
         FUNCTIONS.register("tank_upgrade", () -> EntityTickingTests.wrap(TankTests::partialBucketAndUpgrade));
+        FUNCTIONS.register("tank_tiered_variants", () -> EntityTickingTests.wrap(TankTests::tieredVariants));
         FUNCTIONS.register("reactor_heat_component", () -> EntityTickingTests.wrap(CondenserTests::heatComponent));
         FUNCTIONS.register("condenser_ports", () -> EntityTickingTests.wrap(CondenserTests::portsAndContainers));
         FUNCTIONS.register("condenser_blocked_output", () -> EntityTickingTests.wrap(CondenserTests::blockedOutput));

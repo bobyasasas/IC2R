@@ -1425,12 +1425,12 @@
    "factory": "register",
    "expression": "new ItemBlockIc2(Ic2Blocks.TANK, new Properties())",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/tank.md",
     "neoforge/src/gameTest/java/ic2/neoforge/test/TankTests.java"
    ],
-   "note": "24桶原生事务存储、比较器、双向能力、升级、光标容器与菜单权限已接入；客户端与多人性能验收持续验证。"
+   "note": "24桶原生事务存储、比较器、双向能力、升级、光标容器与菜单权限已接入；变体家族 bronze/iron/steel/iridium 已落地（容量 32/32/128/1024 桶，GameTest tank_tiered_variants 断言），本条随家族翻转 implemented。"
   },
   {
    "registry": "item",
@@ -1638,7 +1638,13 @@
    "factory": "register",
    "expression": "new ItemBlockIc2(Ic2Blocks.BRONZE_TANK, new Properties())",
    "decision": "preserve",
-   "status": "pending"
+   "status": "implemented",
+   "evidence": [
+    "neoforge/src/main/java/ic2/neoforge/machine/MachineKind.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/TankBlockEntity.java",
+    "neoforge/src/gameTest/java/ic2/neoforge/test/TankTests.java"
+   ],
+   "note": "物品方块本体注册+专属物品bronze 专属 cap/side 纹理外观；容量阶梯由 MachineKind.tankCapacity() 参数化（bronze=32/128/1024 桶档），tank_tiered_variants 断言容量、满罐比较器 15、禁混液与家族菜单 4 升级槽。"
   },
   {
    "registry": "item",
@@ -1648,7 +1654,13 @@
    "factory": "register",
    "expression": "new ItemBlockIc2(Ic2Blocks.IRON_TANK, new Properties())",
    "decision": "preserve",
-   "status": "pending"
+   "status": "implemented",
+   "evidence": [
+    "neoforge/src/main/java/ic2/neoforge/machine/MachineKind.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/TankBlockEntity.java",
+    "neoforge/src/gameTest/java/ic2/neoforge/test/TankTests.java"
+   ],
+   "note": "物品方块本体注册+专属物品沿用本体 tank 外观（legacy 同构）；容量阶梯由 MachineKind.tankCapacity() 参数化（iron=32/128/1024 桶档），tank_tiered_variants 断言容量、满罐比较器 15、禁混液与家族菜单 4 升级槽。"
   },
   {
    "registry": "item",
@@ -1658,7 +1670,13 @@
    "factory": "register",
    "expression": "new ItemBlockIc2(Ic2Blocks.STEEL_TANK, new Properties().rarity(Rarity.UNCOMMON))",
    "decision": "preserve",
-   "status": "pending"
+   "status": "implemented",
+   "evidence": [
+    "neoforge/src/main/java/ic2/neoforge/machine/MachineKind.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/TankBlockEntity.java",
+    "neoforge/src/gameTest/java/ic2/neoforge/test/TankTests.java"
+   ],
+   "note": "物品方块本体注册+专属物品稀有度 UNCOMMON；容量阶梯由 MachineKind.tankCapacity() 参数化（steel=32/128/1024 桶档），tank_tiered_variants 断言容量、满罐比较器 15、禁混液与家族菜单 4 升级槽。"
   },
   {
    "registry": "item",
@@ -1668,7 +1686,13 @@
    "factory": "register",
    "expression": "new ItemBlockIc2(Ic2Blocks.IRIDIUM_TANK, new Properties().rarity(Rarity.RARE))",
    "decision": "preserve",
-   "status": "pending"
+   "status": "implemented",
+   "evidence": [
+    "neoforge/src/main/java/ic2/neoforge/machine/MachineKind.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/TankBlockEntity.java",
+    "neoforge/src/gameTest/java/ic2/neoforge/test/TankTests.java"
+   ],
+   "note": "物品方块本体注册+专属物品稀有度 RARE；容量阶梯由 MachineKind.tankCapacity() 参数化（iridium=32/128/1024 桶档），tank_tiered_variants 断言容量、满罐比较器 15、禁混液与家族菜单 4 升级槽。"
   },
   {
    "registry": "item",
@@ -2137,8 +2161,13 @@
    "source": "legacy/forge-1.20.1/src/main/java/ic2/core/ref/Ic2Items.java",
    "factory": "register",
    "expression": "new ItemBlockIc2(Ic2Blocks.FLUID_BOTTLER, new Properties())",
-   "decision": "preserve",
-   "status": "pending"
+   "decision": "replace",
+   "status": "implemented",
+   "evidence": [
+    "neoforge/src/main/java/ic2/neoforge/machine/CannerBlockEntity.java",
+    "docs/migration/canner-fluids.md"
+   ],
+   "note": "裁决为 replace——不移植独立 fluid_bottler 方块/方块实体，装罐（fluid_bottler 装填/排空） 全部功能由 CANNER 机器统一承载（先例 ic2:itnt）；canner_bottle 41 条+canner_enrich 4 条配方已 1:1 转换验收，CANNER 四模式（固体装罐/装填/排空/富集）覆盖 legacy 两机全部行为。"
   },
   {
    "registry": "item",
@@ -2500,8 +2529,13 @@
    "source": "legacy/forge-1.20.1/src/main/java/ic2/core/ref/Ic2Items.java",
    "factory": "register",
    "expression": "new ItemBlockIc2(Ic2Blocks.SOLID_CANNER, new Properties())",
-   "decision": "preserve",
-   "status": "pending"
+   "decision": "replace",
+   "status": "implemented",
+   "evidence": [
+    "neoforge/src/main/java/ic2/neoforge/machine/CannerBlockEntity.java",
+    "docs/migration/canner-fluids.md"
+   ],
+   "note": "裁决为 replace——不移植独立 solid_canner 方块/方块实体，固体装罐 全部功能由 CANNER 机器统一承载（先例 ic2:itnt）；canner_bottle 41 条+canner_enrich 4 条配方已 1:1 转换验收，CANNER 四模式（固体装罐/装填/排空/富集）覆盖 legacy 两机全部行为。"
   },
   {
    "registry": "item",
@@ -6000,9 +6034,12 @@
    "source": "legacy/forge-1.20.1/src/main/java/ic2/core/ref/Ic2Items.java",
    "factory": "register",
    "expression": "new ItemToolCrowbar(Tiers.IRON, new Properties().durability(250))",
-   "decision": "preserve",
+   "decision": "remove",
    "status": "pending",
-   "note": "唯一功能是 ICoverHolder 电缆盖板拆除（legacy ItemToolCrowbar 124 行），port 无 cover 系统（grep 零命中），移植即空壳——维持 pending，待 cover 基建轮或明确降级决策后再处理。"
+   "note": "裁决降级废弃（第 67 轮玩家直觉决策授权）：legacy 唯一功能是 ICoverHolder 电缆盖板拆除（ItemToolCrowbar.onItemUseFirst），port 无 cover 系统，移植即空壳；耐久 250、铜锭修复、不可附魔等属性无承载场景，按 M04「保留、替换或废弃」取废弃。status 维持 pending 表示无移植产物；若未来引入 cover 基建可重启条目。",
+   "evidence": [
+    "legacy/forge-1.20.1/src/main/java/ic2/core/item/tool/ItemToolCrowbar.java"
+   ]
   },
   {
    "registry": "item",
@@ -9010,8 +9047,13 @@
    "source": "legacy/forge-1.20.1/src/main/java/ic2/core/ref/Ic2Blocks.java",
    "factory": "register",
    "expression": "Ic2TileEntityBlock.create(Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).strength(2.0F, 10.0F).requiresCorrectToolForDrops().sound(SoundType.METAL), TileEntityFluidBottler.class, true, Ic2TileEntityBlock.DefaultDrop.Machine, Util.horizontalFacings, true)",
-   "decision": "preserve",
-   "status": "pending"
+   "decision": "replace",
+   "status": "implemented",
+   "evidence": [
+    "neoforge/src/main/java/ic2/neoforge/machine/CannerBlockEntity.java",
+    "docs/migration/canner-fluids.md"
+   ],
+   "note": "裁决为 replace——不移植独立 fluid_bottler 方块/方块实体，装罐（fluid_bottler 装填/排空） 全部功能由 CANNER 机器统一承载（先例 ic2:itnt）；canner_bottle 41 条+canner_enrich 4 条配方已 1:1 转换验收，CANNER 四模式（固体装罐/装填/排空/富集）覆盖 legacy 两机全部行为。"
   },
   {
    "registry": "block",
@@ -9341,8 +9383,13 @@
    "source": "legacy/forge-1.20.1/src/main/java/ic2/core/ref/Ic2Blocks.java",
    "factory": "register",
    "expression": "Ic2TileEntityBlock.create(Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).strength(2.0F, 10.0F).requiresCorrectToolForDrops().sound(SoundType.METAL), TileEntitySolidCanner.class, true, Ic2TileEntityBlock.DefaultDrop.Machine, Util.horizontalFacings, true)",
-   "decision": "preserve",
-   "status": "pending"
+   "decision": "replace",
+   "status": "implemented",
+   "evidence": [
+    "neoforge/src/main/java/ic2/neoforge/machine/CannerBlockEntity.java",
+    "docs/migration/canner-fluids.md"
+   ],
+   "note": "裁决为 replace——不移植独立 solid_canner 方块/方块实体，固体装罐 全部功能由 CANNER 机器统一承载（先例 ic2:itnt）；canner_bottle 41 条+canner_enrich 4 条配方已 1:1 转换验收，CANNER 四模式（固体装罐/装填/排空/富集）覆盖 legacy 两机全部行为。"
   },
   {
    "registry": "block",
@@ -9901,12 +9948,12 @@
    "factory": "register",
    "expression": "Ic2TileEntityBlock.create(Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).strength(2.0F, 10.0F).requiresCorrectToolForDrops().sound(SoundType.METAL), TileEntityTank.class, false, Ic2TileEntityBlock.DefaultDrop.Self, Util.horizontalFacings, true)",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/tank.md",
     "neoforge/src/gameTest/java/ic2/neoforge/test/TankTests.java"
    ],
-   "note": "24桶原生事务存储、比较器、双向能力、升级、光标容器与菜单权限已接入；客户端与多人性能验收持续验证。"
+   "note": "24桶原生事务存储、比较器、双向能力、升级、光标容器与菜单权限已接入；变体家族 bronze/iron/steel/iridium 已落地（容量 32/32/128/1024 桶，GameTest tank_tiered_variants 断言），本条随家族翻转 implemented。"
   },
   {
    "registry": "block",
@@ -10148,7 +10195,13 @@
    "factory": "register",
    "expression": "Ic2TileEntityBlock.create(Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).strength(3.0F, 15.0F).requiresCorrectToolForDrops().sound(SoundType.METAL), TileEntityBronzeTank.class, false, Ic2TileEntityBlock.DefaultDrop.Self, Util.noFacings, false)",
    "decision": "preserve",
-   "status": "pending"
+   "status": "implemented",
+   "evidence": [
+    "neoforge/src/main/java/ic2/neoforge/machine/MachineKind.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/TankBlockEntity.java",
+    "neoforge/src/gameTest/java/ic2/neoforge/test/TankTests.java"
+   ],
+   "note": "方块注册含 legacy 强度 3.0F/15.0F、METAL 音效与正确工具掉落；loot table 自掉落、blockstate/model/纹理齐备、legacy shaped 配方 1:1 转换（forge plates tag → c plates tag）；tank_tiered_variants 覆盖行为断言。"
   },
   {
    "registry": "block",
@@ -10158,7 +10211,13 @@
    "factory": "register",
    "expression": "Ic2TileEntityBlock.create(Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).strength(3.0F, 15.0F).requiresCorrectToolForDrops().sound(SoundType.METAL), TileEntityIronTank.class, false, Ic2TileEntityBlock.DefaultDrop.Self, Util.noFacings, false)",
    "decision": "preserve",
-   "status": "pending"
+   "status": "implemented",
+   "evidence": [
+    "neoforge/src/main/java/ic2/neoforge/machine/MachineKind.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/TankBlockEntity.java",
+    "neoforge/src/gameTest/java/ic2/neoforge/test/TankTests.java"
+   ],
+   "note": "方块注册含 legacy 强度 3.0F/15.0F、METAL 音效与正确工具掉落；loot table 自掉落、blockstate/model/纹理齐备、legacy shaped 配方 1:1 转换（forge plates tag → c plates tag）；tank_tiered_variants 覆盖行为断言。"
   },
   {
    "registry": "block",
@@ -10168,7 +10227,13 @@
    "factory": "register",
    "expression": "Ic2TileEntityBlock.create(Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).strength(4.0F, 20.0F).requiresCorrectToolForDrops().sound(SoundType.METAL), TileEntitySteelTank.class, false, Ic2TileEntityBlock.DefaultDrop.Self, Util.noFacings, false)",
    "decision": "preserve",
-   "status": "pending"
+   "status": "implemented",
+   "evidence": [
+    "neoforge/src/main/java/ic2/neoforge/machine/MachineKind.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/TankBlockEntity.java",
+    "neoforge/src/gameTest/java/ic2/neoforge/test/TankTests.java"
+   ],
+   "note": "方块注册含 legacy 强度 4.0F/20.0F、METAL 音效与正确工具掉落；loot table 自掉落、blockstate/model/纹理齐备、legacy shaped 配方 1:1 转换（forge plates tag → c plates tag）；tank_tiered_variants 覆盖行为断言。"
   },
   {
    "registry": "block",
@@ -10178,7 +10243,13 @@
    "factory": "register",
    "expression": "Ic2TileEntityBlock.create(Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).strength(5.0F, 100.0F).requiresCorrectToolForDrops().sound(SoundType.METAL), TileEntityIridiumTank.class, false, Ic2TileEntityBlock.DefaultDrop.Self, Util.noFacings, false)",
    "decision": "preserve",
-   "status": "pending"
+   "status": "implemented",
+   "evidence": [
+    "neoforge/src/main/java/ic2/neoforge/machine/MachineKind.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/TankBlockEntity.java",
+    "neoforge/src/gameTest/java/ic2/neoforge/test/TankTests.java"
+   ],
+   "note": "方块注册含 legacy 强度 5.0F/100.0F、METAL 音效与正确工具掉落；loot table 自掉落、blockstate/model/纹理齐备、legacy shaped 配方 1:1 转换（forge plates tag → c plates tag）；tank_tiered_variants 覆盖行为断言。"
   },
   {
    "registry": "block",
@@ -12650,8 +12721,13 @@
    "source": "legacy/forge-1.20.1/src/main/java/ic2/core/ref/Ic2BlockEntities.java",
    "factory": "register",
    "expression": "TileEntityFluidBottler::new",
-   "decision": "preserve",
-   "status": "pending"
+   "decision": "replace",
+   "status": "implemented",
+   "evidence": [
+    "neoforge/src/main/java/ic2/neoforge/machine/CannerBlockEntity.java",
+    "docs/migration/canner-fluids.md"
+   ],
+   "note": "裁决为 replace——不移植独立 fluid_bottler 方块/方块实体，装罐（fluid_bottler 装填/排空） 全部功能由 CANNER 机器统一承载（先例 ic2:itnt）；canner_bottle 41 条+canner_enrich 4 条配方已 1:1 转换验收，CANNER 四模式（固体装罐/装填/排空/富集）覆盖 legacy 两机全部行为。"
   },
   {
    "registry": "block_entity",
@@ -13321,8 +13397,13 @@
    "source": "legacy/forge-1.20.1/src/main/java/ic2/core/ref/Ic2BlockEntities.java",
    "factory": "register",
    "expression": "TileEntitySolidCanner::new",
-   "decision": "preserve",
-   "status": "pending"
+   "decision": "replace",
+   "status": "implemented",
+   "evidence": [
+    "neoforge/src/main/java/ic2/neoforge/machine/CannerBlockEntity.java",
+    "docs/migration/canner-fluids.md"
+   ],
+   "note": "裁决为 replace——不移植独立 solid_canner 方块/方块实体，固体装罐 全部功能由 CANNER 机器统一承载（先例 ic2:itnt）；canner_bottle 41 条+canner_enrich 4 条配方已 1:1 转换验收，CANNER 四模式（固体装罐/装填/排空/富集）覆盖 legacy 两机全部行为。"
   },
   {
    "registry": "block_entity",
@@ -13914,12 +13995,12 @@
    "factory": "register",
    "expression": "TileEntityTank::new",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/tank.md",
     "neoforge/src/gameTest/java/ic2/neoforge/test/TankTests.java"
    ],
-   "note": "24桶原生事务存储、比较器、双向能力、升级、光标容器与菜单权限已接入；客户端与多人性能验收持续验证。"
+   "note": "24桶原生事务存储、比较器、双向能力、升级、光标容器与菜单权限已接入；变体家族 bronze/iron/steel/iridium 已落地（容量 32/32/128/1024 桶，GameTest tank_tiered_variants 断言），本条随家族翻转 implemented。"
   },
   {
    "registry": "block_entity",
@@ -14161,7 +14242,13 @@
    "factory": "register",
    "expression": "TileEntityBronzeTank::new",
    "decision": "preserve",
-   "status": "pending"
+   "status": "implemented",
+   "evidence": [
+    "neoforge/src/main/java/ic2/neoforge/machine/MachineKind.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/TankBlockEntity.java",
+    "neoforge/src/gameTest/java/ic2/neoforge/test/TankTests.java"
+   ],
+   "note": "legacy TileEntityXxxTank 子类容量=1000×桶倍率（bronze/iron 32、steel 128、iridium 1024）；port 无需 4 个子类，由 TankBlockEntity(pos,state,kind) 构造+kind.tankCapacity() 等价实现；流体自动化、比较器与升级继承本体外壳，tank_tiered_variants 断言。"
   },
   {
    "registry": "block_entity",
@@ -14171,7 +14258,13 @@
    "factory": "register",
    "expression": "TileEntityIronTank::new",
    "decision": "preserve",
-   "status": "pending"
+   "status": "implemented",
+   "evidence": [
+    "neoforge/src/main/java/ic2/neoforge/machine/MachineKind.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/TankBlockEntity.java",
+    "neoforge/src/gameTest/java/ic2/neoforge/test/TankTests.java"
+   ],
+   "note": "legacy TileEntityXxxTank 子类容量=1000×桶倍率（bronze/iron 32、steel 128、iridium 1024）；port 无需 4 个子类，由 TankBlockEntity(pos,state,kind) 构造+kind.tankCapacity() 等价实现；流体自动化、比较器与升级继承本体外壳，tank_tiered_variants 断言。"
   },
   {
    "registry": "block_entity",
@@ -14181,7 +14274,13 @@
    "factory": "register",
    "expression": "TileEntitySteelTank::new",
    "decision": "preserve",
-   "status": "pending"
+   "status": "implemented",
+   "evidence": [
+    "neoforge/src/main/java/ic2/neoforge/machine/MachineKind.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/TankBlockEntity.java",
+    "neoforge/src/gameTest/java/ic2/neoforge/test/TankTests.java"
+   ],
+   "note": "legacy TileEntityXxxTank 子类容量=1000×桶倍率（bronze/iron 32、steel 128、iridium 1024）；port 无需 4 个子类，由 TankBlockEntity(pos,state,kind) 构造+kind.tankCapacity() 等价实现；流体自动化、比较器与升级继承本体外壳，tank_tiered_variants 断言。"
   },
   {
    "registry": "block_entity",
@@ -14191,7 +14290,13 @@
    "factory": "register",
    "expression": "TileEntityIridiumTank::new",
    "decision": "preserve",
-   "status": "pending"
+   "status": "implemented",
+   "evidence": [
+    "neoforge/src/main/java/ic2/neoforge/machine/MachineKind.java",
+    "neoforge/src/main/java/ic2/neoforge/machine/TankBlockEntity.java",
+    "neoforge/src/gameTest/java/ic2/neoforge/test/TankTests.java"
+   ],
+   "note": "legacy TileEntityXxxTank 子类容量=1000×桶倍率（bronze/iron 32、steel 128、iridium 1024）；port 无需 4 个子类，由 TankBlockEntity(pos,state,kind) 构造+kind.tankCapacity() 等价实现；流体自动化、比较器与升级继承本体外壳，tank_tiered_variants 断言。"
   },
   {
    "registry": "block_entity",
@@ -14564,9 +14669,13 @@
    "source": "legacy/forge-1.20.1/src/main/java/ic2/core/ref/Ic2ScreenHandlers.java",
    "factory": "registerManagedBe",
    "expression": "",
-   "decision": "preserve",
-   "status": "pending",
-   "note": "MenuType 已注册、通用布局绑定经审计验证；legacy 专属流体 IO 布局未移植。"
+   "decision": "replace",
+   "status": "implemented",
+   "note": "勘误：旧 note「MenuType 已注册」不实（port 从未注册 fluid_bottler MenuType）；裁决为 replace——不移植该 MenuType，全部功能由 ic2:canner 菜单统一承载，先例同 ic2:itnt block_entity。",
+   "evidence": [
+    "neoforge/src/main/java/ic2/neoforge/machine/CannerBlockEntity.java",
+    "docs/migration/canner-fluids.md"
+   ]
   },
   {
    "registry": "menu",

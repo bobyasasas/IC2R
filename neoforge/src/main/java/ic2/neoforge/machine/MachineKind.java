@@ -22,6 +22,10 @@ public enum MachineKind implements StringRepresentable {
     FLUID_REGULATOR("fluid_regulator", 10000, 3, 0, 0),
     ELECTROLYZER("electrolyzer", 32000, 1, 200, 32),
     TANK("tank", 0, 0, 0, 0),
+    BRONZE_TANK("bronze_tank", 0, 0, 0, 0),
+    IRON_TANK("iron_tank", 0, 0, 0, 0),
+    STEEL_TANK("steel_tank", 0, 0, 0, 0),
+    IRIDIUM_TANK("iridium_tank", 0, 0, 0, 0),
     LIQUID_HEAT_EXCHANGER("liquid_heat_exchanger", 0, 14, 0, 0),
     FERMENTER("fermenter", 0, 5, 0, 0),
     SOLAR_DISTILLER("solar_distiller", 0, 4, 0, 0),
@@ -182,6 +186,32 @@ public enum MachineKind implements StringRepresentable {
         };
     }
 
+    /** The base tank plus its legacy bronze/iron/steel/iridium tiered variants. */
+    public boolean isTank() {
+        return switch (this) {
+            case TANK,
+                    BRONZE_TANK,
+                    IRON_TANK,
+                    STEEL_TANK,
+                    IRIDIUM_TANK ->
+                    true;
+            default -> false;
+        };
+    }
+
+    /**
+     * Legacy TileEntityTank family: capacity is 1000 mB times the bucket multiplier
+     * carried by each variant (base 24, bronze/iron 32, steel 128, iridium 1024).
+     */
+    public int tankCapacity() {
+        return switch (this) {
+            case BRONZE_TANK, IRON_TANK -> 32000;
+            case STEEL_TANK -> 128000;
+            case IRIDIUM_TANK -> 1024000;
+            default -> 24000;
+        };
+    }
+
     public boolean chargepad() {
         return switch (this) {
             case BATBOX_CHARGEPAD, CESU_CHARGEPAD, MFE_CHARGEPAD, MFSU_CHARGEPAD -> true;
@@ -304,7 +334,7 @@ public enum MachineKind implements StringRepresentable {
         if (this == RCI_RSH || this == RCI_LZH) return 4;
         if (this == CONDENSER || this == STEAM_KINETIC_GENERATOR || this == MINER) return 1;
         if (this == ENERGY_O_MAT) return 1;
-        if (this == TANK) return 4;
+        if (isTank()) return 4;
         if (this == LIQUID_HEAT_EXCHANGER || this == STIRLING_KINETIC_GENERATOR) return 3;
         if (this == SOLAR_DISTILLER) return 2;
         if (this == REPLICATOR) return 4;

@@ -161,6 +161,43 @@ final class TankTests {
         helper.succeed();
     }
 
+    /** Legacy tank tiers: bronze/iron hold 32, steel 128 and iridium 1024 buckets. */
+    static void tieredVariants(GameTestHelper helper) {
+        record Tier(MachineKind kind, int capacity) {}
+        var tiers =
+                new Tier[]{
+                        new Tier(MachineKind.BRONZE_TANK, 32000),
+                        new Tier(MachineKind.IRON_TANK, 32000),
+                        new Tier(MachineKind.STEEL_TANK, 128000),
+                        new Tier(MachineKind.IRIDIUM_TANK, 1024000)};
+        for (var tier : tiers) {
+            helper.setBlock(POSITION, ModMachines.block(tier.kind()).defaultBlockState());
+            var tank = helper.getBlockEntity(POSITION, TankBlockEntity.class);
+            try (var transaction = Transaction.openRoot()) {
+                int accepted =
+                        tank.fluidAutomation(Direction.UP)
+                                .insert(0, WATER, tier.capacity() + 1000, transaction);
+                helper.assertTrue(
+                        accepted == tier.capacity(),
+                        tier.kind() + " must cap fills at its legacy tier capacity");
+                helper.assertTrue(
+                        tank.comparator() == 15,
+                        tier.kind() + " full comparator signal must be fifteen");
+                helper.assertTrue(
+                        tank.tank().insert(0, FluidResource.of(Fluids.LAVA), 1, transaction) == 0,
+                        tier.kind() + " must not mix a second fluid");
+                transaction.commit();
+            }
+            var player = helper.makeMockPlayer(GameType.SURVIVAL);
+            var menu =
+                    new MachineMenu(1, player.getInventory(), tank.getBlockPos(), tier.kind);
+            helper.assertTrue(
+                    menu.slots.size() - 36 == 4,
+                    tier.kind() + " menus expose exactly the four family upgrade slots");
+        }
+        helper.succeed();
+    }
+
     private static TankBlockEntity machine(GameTestHelper helper, BlockPos pos) {
         helper.setBlock(pos, ModMachines.block(MachineKind.TANK));
         return helper.getBlockEntity(pos, TankBlockEntity.class);

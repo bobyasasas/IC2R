@@ -208,7 +208,7 @@ public final class IndustrialCraftClient {
                         event.register(registration.menu().get(), ChunkLoaderScreen::new);
                     else if (kind == MachineKind.ELECTROLYZER)
                         event.register(registration.menu().get(), ElectrolyzerScreen::new);
-                    else if (kind == MachineKind.TANK)
+                    else if (kind.isTank())
                         event.register(registration.menu().get(), TankScreen::new);
                     else if (kind == MachineKind.COKE_KILN)
                         event.register(registration.menu().get(), CokeKilnScreen::new);

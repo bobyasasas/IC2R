@@ -100,7 +100,7 @@ public final class UpgradeItem extends Item {
                         || this == TRANSFORMER;
             if (machine == MachineKind.CONDENSER) return directional() || this == TRANSFORMER;
             if (machine == MachineKind.ELECTROLYZER) return this == FLUID_PULLING;
-            if (machine == MachineKind.TANK) return fluid();
+            if (machine.isTank()) return fluid();
             if (machine == MachineKind.FERMENTER
                     || machine == MachineKind.LIQUID_HEAT_EXCHANGER
                     || machine == MachineKind.STIRLING_KINETIC_GENERATOR) return directional();

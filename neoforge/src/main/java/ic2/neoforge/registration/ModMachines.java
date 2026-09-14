@@ -18,6 +18,7 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Rarity;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
@@ -83,7 +84,15 @@ public final class ModMachines {
                             id,
                             properties ->
                                     new MachineBlock(kind, machineProperties(kind, properties)));
-            ITEMS.registerSimpleBlockItem(block);
+            if (kind == MachineKind.STEEL_TANK) {
+                // Legacy Ic2Items: steel shows the uncommon name color, iridium the rare one.
+                ITEMS.registerSimpleBlockItem(
+                        block, props -> props.rarity(Rarity.UNCOMMON));
+            } else if (kind == MachineKind.IRIDIUM_TANK) {
+                ITEMS.registerSimpleBlockItem(block, props -> props.rarity(Rarity.RARE));
+            } else {
+                ITEMS.registerSimpleBlockItem(block);
+            }
             DeferredHolder<BlockEntityType<?>, BlockEntityType<MachineBlockEntity>> entity =
                     ENTITIES.register(
                             id,
@@ -135,6 +144,16 @@ public final class ModMachines {
                 || kind == MachineKind.COKE_KILN_GRATE) {
             // Legacy steam-age blocks keep the stone shell of the coke oven lineage.
             properties.mapColor(MapColor.COLOR_LIGHT_GRAY).sound(SoundType.STONE);
+        }
+        // Legacy tank tiers: bronze/iron 3|15, steel 4|20, iridium 5|100 (Ic2Blocks tank row).
+        if (kind == MachineKind.BRONZE_TANK || kind == MachineKind.IRON_TANK) {
+            properties.strength(3.0F, 15.0F);
+        }
+        if (kind == MachineKind.STEEL_TANK) {
+            properties.strength(4.0F, 20.0F);
+        }
+        if (kind == MachineKind.IRIDIUM_TANK) {
+            properties.strength(5.0F, 100.0F);
         }
         return properties;
     }
@@ -189,7 +208,8 @@ public final class ModMachines {
             case CONDENSER -> new CondenserBlockEntity(pos, state);
             case FLUID_REGULATOR -> new ic2.neoforge.machine.FluidRegulatorBlockEntity(pos, state);
             case ELECTROLYZER -> new ic2.neoforge.machine.ElectrolyzerBlockEntity(pos, state);
-            case TANK -> new ic2.neoforge.machine.TankBlockEntity(pos, state);
+            case TANK, BRONZE_TANK, IRON_TANK, STEEL_TANK, IRIDIUM_TANK ->
+                    new ic2.neoforge.machine.TankBlockEntity(pos, state, kind);
             case LIQUID_HEAT_EXCHANGER ->
                     new ic2.neoforge.machine.LiquidHeatExchangerBlockEntity(pos, state);
             case FERMENTER -> new ic2.neoforge.machine.FermenterBlockEntity(pos, state);
@@ -516,7 +536,7 @@ public final class ModMachines {
                     || kind == MachineKind.FERMENTER
                     || kind == MachineKind.SOLAR_DISTILLER
                     || kind == MachineKind.LIQUID_HEAT_EXCHANGER
-                    || kind == MachineKind.TANK
+                    || kind.isTank()
                     || kind == MachineKind.ELECTROLYZER
                     || kind == MachineKind.STEAM_KINETIC_GENERATOR
                     || kind == MachineKind.STEAM_GENERATOR
