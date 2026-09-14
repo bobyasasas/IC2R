@@ -106,3 +106,34 @@ ItemBatteryChargeHotbar、单次电池对应 ItemBatterySU、作物架对应 Ite
 双模式 567 项全绿。工具清单六条 partial（cutter/forge_hammer/wrench/electric_wrench/
 treetap/electric_treetap）翻转 implemented（1171/8/20）；扳手面选择叠层为记录在案的
 port 侧 UX 增强留 M16 人工验收。
+
+## 电钻三件套收尾：攻击属性/破坏声音/×3 补偿/铱钻模式切换（第 65 轮）
+
+本轮把电钻（drill/diamond_drill/iridium_drill）与采矿过滤卡（mining_filter_card）四条
+partial 收口为 implemented（1175/4/20）。
+
+`DrillItem` 补齐 legacy `ItemDrill` 余量：`ATTRIBUTE_MODIFIERS` 组件按 legacy DiggerItem
+材料组合给 +2（铁）/+5（钻石）/+7（铱钻）攻击伤害与 −3 攻击速度
+（ic2:drill_attack_damage/ic2:drill_attack_speed，同电链锯先例）；`BreakSpeed` 事件
+（注册于 `IndustrialCraft` gameBus）还原 legacy `getDestroySpeed` 的惩罚补偿——
+手持有效钻在"眼在类水流体且 submerged_mining_speed 属性 <1.0（26.1.2 的潮汐亲和
+数据化实现，aqua_affinity 即 +4 add_multiplied_total）"或"离地"时把原版 ÷5 软化为
+×3/5，没电（destroy speed 1.0）不补偿；`mineBlock` 后按 legacy
+`getBreakSoundForBlock` 的 destroyTime>=3.0 分档播放 item.drill.hard/soft，
+以 `ClientboundSoundEntityPacket` 仅分发给挖掘者（扫描器先例，避免广播超集）。
+
+`IridiumDrillItem`（新子类，对应 legacy `ItemDrillIridium`）：潜行+使用切换
+时运 III↔精准采集 I，文案复用 `item.ic2.mining_laser.tooltip.mode` +
+`.silkTouch`/`.normal`（与电链锯同键盘降级处理）；legacy `getItemStack` 恒带时运 III
+以"首 tick 惰性补写（仅当精准/时运双零）+创造标签页显式时运堆
+（`BuildCreativeModeTabContentsEvent` 的 `ItemDisplayParameters.holders` 提供注册表
+访问）"落地——26.1.2 已移除 1.20.5 的 default_components 数据包机制且附魔为
+数据驱动注册表（`BuiltInRegistries` 无 ENCHANTMENT 字段，须走 registryAccess）。
+
+新 GameTest 五项（双模式 572 项全绿）：`drill_attack_attributes`（三钻 +2/5/7 与
+−3 攻速）、`drill_break_sounds`（石/土 SOFT，铁块/黑曜石 HARD）、
+`drill_penalty_compensation`（MockPlayer 构造 BreakSpeed：着地不补偿、离地 ×3、
+没电不补偿、非钻不受影响）、`iridium_mode_toggle`（首 tick 惰性时运 III→切换精准
+→tick 不回写→二次切换回时运→创造页时运堆）、`mining_filter_craft`
+（shapeless 配方 matches+assemble，勘误原"待 item_buffer 解锁"——item_buffer 早已
+迁移且配方早已落盘）。

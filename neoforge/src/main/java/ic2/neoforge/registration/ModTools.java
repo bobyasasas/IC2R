@@ -121,7 +121,8 @@ public final class ModTools {
                                     50,
                                     6,
                                     200,
-                                    0));
+                                    0,
+                                    2.0F));
     public static final DeferredItem<DrillItem> DIAMOND_DRILL =
             ITEMS.registerItem(
                     "diamond_drill",
@@ -135,21 +136,15 @@ public final class ModTools {
                                     80,
                                     20,
                                     50,
-                                    0));
-    public static final DeferredItem<DrillItem> IRIDIUM_DRILL =
+                                    0,
+                                    5.0F));
+    public static final DeferredItem<IridiumDrillItem> IRIDIUM_DRILL =
             ITEMS.registerItem(
                     "iridium_drill",
                     p ->
-                            new DrillItem(
+                            new IridiumDrillItem(
                                     p.stacksTo(1),
-                                    new ElectricItemSpec(300000, 1000, 3, false),
-                                    BlockTags.INCORRECT_FOR_NETHERITE_TOOL,
-                                    24.0F,
-                                    800,
-                                    800,
-                                    200,
-                                    20,
-                                    3));
+                                    new ElectricItemSpec(300000, 1000, 3, false)));
     public static final DeferredItem<ChainsawItem> CHAINSAW =
             ITEMS.registerItem(
                     "chainsaw",
@@ -328,7 +323,7 @@ public final class ModTools {
             event.accept(BRONZE_HOE);
             event.accept(DRILL);
             event.accept(DIAMOND_DRILL);
-            event.accept(IRIDIUM_DRILL);
+            event.accept(IridiumDrillItem.fortuneStack(event.getParameters().holders()));
             event.accept(CHAINSAW);
             event.accept(MINING_LASER);
             event.accept(NANO_SABER);

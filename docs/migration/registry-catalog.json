@@ -5984,12 +5984,14 @@
    "factory": "register",
    "expression": "new ItemMiningFilterCard(new Properties().stacksTo(1))",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/mining-filter-card.md",
+    "neoforge/src/main/resources/data/ic2/recipe/shapeless/mining_filter.json",
+    "neoforge/src/gameTest/java/ic2/neoforge/test/CraftingTests.java",
     "neoforge/src/gameTest/java/ic2/neoforge/test/MiningFilterCardTests.java"
    ],
-   "note": "物品、组件、手持编辑界面与高级矿机卡槽覆盖已验证;合成配方待 ic2:item_buffer 迁移后解锁,客户端外观随实机测试。"
+   "note": "勘误翻 implemented：合成配方 ic2:shapeless/mining_filter（高级电路×2+频率变换器+物品缓冲机，consuming 形态与 legacy 1:1）已随 item_buffer 迁移落盘，并经 CraftingTests.miningFilterCardCrafts matches+assemble 断言（原 note『待 item_buffer 迁移后解锁』过时）。物品、组件、手持编辑界面与高级矿机卡槽覆盖原样；客户端外观随实机测试留人工（M16）。"
   },
   {
    "registry": "item",
@@ -6044,12 +6046,13 @@
    "factory": "register",
    "expression": "new ItemDrill(new Properties().stacksTo(1), 80, Tiers.DIAMOND, 30000, 100, 1, 16.0F)",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/drills.md",
+    "neoforge/src/main/java/ic2/neoforge/item/DrillItem.java",
     "neoforge/src/gameTest/java/ic2/neoforge/test/DrillItemTests.java"
    ],
-   "note": "手持挖掘速度、电量门控、分级掉落与逐方块能耗验证通过；铱钻头键盘模式切换（时运/精准）待键盘 API，矿机联动常量待矿机切片验收，声音与攻击属性未迁移。"
+   "note": "勘误翻 implemented：钻石钻 +5/−3 攻速攻击属性、破坏声音分档、×3 惩罚补偿与矿机常量（20 EU/tick、50 ticks、80 EU）全部断言（原 note 待键盘 API/矿机切片/声音过时）。客户端 idle 循环音（钻石钻 legacy 无 idle 音）留 M16 人工。"
   },
   {
    "registry": "item",
@@ -6059,12 +6062,13 @@
    "factory": "register",
    "expression": "new ItemDrill(new Properties().stacksTo(1), 50, Tiers.IRON, 30000, 100, 1, 8.0F)",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/drills.md",
+    "neoforge/src/main/java/ic2/neoforge/item/DrillItem.java",
     "neoforge/src/gameTest/java/ic2/neoforge/test/DrillItemTests.java"
    ],
-   "note": "手持挖掘速度、电量门控、分级掉落与逐方块能耗验证通过；铱钻头键盘模式切换（时运/精准）待键盘 API，矿机联动常量待矿机切片验收，声音与攻击属性未迁移。"
+   "note": "勘误翻 implemented：在 legacy +2/−3 攻速攻击属性、破坏声音 HARD/SOFT（destroyTime>=3 分档、仅本人分发）、水下无潮汐亲和与空中 ×3 惩罚补偿（BreakSpeed 事件）经 DrillItemTests.attackAttributes/breakSounds/penaltyCompensation 断言；矿机联动常量已由 drill_miner_constants 验证（原 note『待矿机切片验收』过时）。客户端 idle 循环音与真实手持挖矿节奏留 M16 人工。"
   },
   {
    "registry": "item",
@@ -6122,12 +6126,13 @@
    "factory": "register",
    "expression": "new ItemDrillIridium(new Properties().stacksTo(1))",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/drills.md",
+    "neoforge/src/main/java/ic2/neoforge/item/IridiumDrillItem.java",
     "neoforge/src/gameTest/java/ic2/neoforge/test/DrillItemTests.java"
    ],
-   "note": "手持挖掘速度、电量门控、分级掉落与逐方块能耗验证通过；铱钻头键盘模式切换（时运/精准）待键盘 API，矿机联动常量待矿机切片验收，声音与攻击属性未迁移。"
+   "note": "勘误翻 implemented：铱钻 +7/−3 攻速攻击属性、×3 补偿、矿机常量与时运 III 断言；sneak+use 模式切换（时运 III↔精准 I，复用 laser 模式消息键）+首 tick 惰性时运 III+创造页显式时运堆经 iridium_mode_toggle 断言（原 note 待键盘 API/矿机切片/声音过时；26.1 无 default_components、无键盘 API，与电链锯同偏差以 sneak+use 替代）。客户端 idle 循环音（铱钻 legacy 无 idle 音）留 M16 人工。"
   },
   {
    "registry": "item",

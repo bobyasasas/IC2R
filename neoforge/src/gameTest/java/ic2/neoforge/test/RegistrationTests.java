@@ -338,6 +338,17 @@ public final class RegistrationTests {
         FUNCTIONS.register("drill_speed_and_drops", () -> EntityTickingTests.wrap(DrillItemTests::speedAndDrops));
         FUNCTIONS.register("drill_discharge", () -> EntityTickingTests.wrap(DrillItemTests::dischargePerBlock));
         FUNCTIONS.register("drill_miner_constants", () -> EntityTickingTests.wrap(DrillItemTests::minerConstants));
+        FUNCTIONS.register(
+                "drill_attack_attributes", () -> EntityTickingTests.wrap(DrillItemTests::attackAttributes));
+        FUNCTIONS.register(
+                "drill_break_sounds", () -> EntityTickingTests.wrap(DrillItemTests::breakSounds));
+        FUNCTIONS.register(
+                "drill_penalty_compensation",
+                () -> EntityTickingTests.wrap(DrillItemTests::penaltyCompensation));
+        FUNCTIONS.register(
+                "iridium_mode_toggle", () -> EntityTickingTests.wrap(DrillItemTests::iridiumModeToggle));
+        FUNCTIONS.register(
+                "mining_filter_craft", () -> EntityTickingTests.wrap(CraftingTests::miningFilterCardCrafts));
         FUNCTIONS.register("scanner_layer_scan", () -> EntityTickingTests.wrap(ScannerItemTests::layerScan));
         FUNCTIONS.register("scanner_menu_scan", () -> EntityTickingTests.wrap(ScannerItemTests::menuScan));
         FUNCTIONS.register(

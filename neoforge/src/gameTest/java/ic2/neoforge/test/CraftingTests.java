@@ -4,6 +4,7 @@ import com.google.gson.JsonParser;
 import com.mojang.serialization.JsonOps;
 
 import ic2.neoforge.item.ElectricItemEnergy;
+import ic2.neoforge.machine.MachineKind;
 import ic2.neoforge.registration.MaterialDefinition;
 import ic2.neoforge.registration.ModArmor;
 import ic2.neoforge.registration.ModCraftingRecipes;
@@ -225,6 +226,29 @@ final class CraftingTests {
         helper.assertTrue(
                 !recipe.matches(CraftingInput.of(3, 3, wrongCore), helper.getLevel()),
                 "Swapping the circuit for a casing must break the match");
+        helper.succeed();
+    }
+
+    static void miningFilterCardCrafts(GameTestHelper helper) {
+        var advancedCircuit = material(MaterialDefinition.ADVANCED_CIRCUIT);
+        var transmitter = ModTools.FREQUENCY_TRANSMITTER.toStack();
+        var itemBuffer =
+                new ItemStack(
+                        ModMachines.MACHINES.get(MachineKind.ITEM_BUFFER).block().get().asItem());
+        assertCraft(
+                helper,
+                "ic2:shapeless/mining_filter",
+                List.of(
+                        advancedCircuit.copy(),
+                        advancedCircuit.copy(),
+                        ItemStack.EMPTY,
+                        transmitter.copy(),
+                        itemBuffer.copy(),
+                        ItemStack.EMPTY,
+                        ItemStack.EMPTY,
+                        ItemStack.EMPTY,
+                        ItemStack.EMPTY),
+                ModTools.MINING_FILTER_CARD.toStack());
         helper.succeed();
     }
 
