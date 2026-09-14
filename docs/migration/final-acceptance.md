@@ -40,12 +40,12 @@
 
 | 任务 | 维度状态 | 证据 |
 |---|---|---|
-| 5 条罐配方：生成器/catalog/manifest 同步+真实 matches/assemble | todo | recipe-catalog 7 条 pending；converted-recipes 781→786 |
-| fluid_bottler/solid_canner 旧配方显式处置 | todo | 台账 schema 表达处置语义 |
-| 796 条旧配方全量核对（直接迁移/等价替代/明确废弃/真实待办） | partial | 789 converted 有据；7 条漂移在 R02 处理 |
-| 材料标签与生存获取链抽查（核材料/MOX/RTG/散热/高炉/UU/装备） | todo | |
-| 9 条 empty ingredients placement 警告分析 | todo | CI 34812748489 日志 |
-| 生成器可复现（隔离副本运行 diff） | todo | |
+| 5 条罐配方：生成器/catalog/manifest 同步+真实 matches/assemble | done | recipes.py 重新转换（registered=定义集）；recipe-catalog converted；manifest 794 条；CraftingTests tankFamilyCrafting 逐槽+matches+assemble（GameTest 576×2） |
+| fluid_bottler/solid_canner 旧配方显式处置 | done | recipe-catalog 2 条 status=pending + disposition=replaced + replaced_by=ic2:canner（不生成假配方，不留未迁移理由） |
+| 796 条旧配方全量核对 | done（本轮口径） | 794 converted + 2 replaced；无未解释 pending |
+| 材料标签与生存获取链 | partial→本轮修复关键断链 | `#c:ingots/plutonium` legacy 起即为空标签→MOX/RTG 弹丸无法合成（legacy 行为 bug）；补 ic2:plutonium 值（recipes.py tag_value_overrides 防 regen 回退）；全配方引用标签扫描器确认仅此 1 个空标签（其余由 NeoForge 默认标签提供）；回归测试 plutonium_tag_crafting |
+| 9 条 empty ingredients placement 警告分析 | done | 4 条=空钚标签（上述修复）；3 条 gradual+2 条 matter_fabricator=机器交互配方（NOT_PLACEABLE 且非 special 触发 vanilla RecipeManager 警告）；两类型补 isSpecial=true（配方书本就无法放置，机器语义不变）；修复后 IC2/GT 两种模式日志警告数=0 |
+| 生成器可复现 | partial | machines.py/recipes.py 主工作区两次运行幂等（变更集不变）；worktree 隔离复验归入 R09 |
 | 配方书/JEI 实际可发现性 | todo | 依赖 R05/R06 实机 |
 
 ## R03 逐族实现审计

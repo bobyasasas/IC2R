@@ -11,10 +11,10 @@
     "count": 1
   },
   "key": {
-    "I": "ic2:industrial_workbench",
-    "A": "ic2:advanced_circuit",
-    "C": "ic2:advanced_machine",
     "H": "ic2:forge_hammer",
-    "W": "ic2:wrench"
+    "W": "ic2:wrench",
+    "C": "ic2:advanced_machine",
+    "A": "ic2:advanced_circuit",
+    "I": "ic2:industrial_workbench"
   }
 }

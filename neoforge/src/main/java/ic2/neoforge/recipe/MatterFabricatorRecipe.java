@@ -83,6 +83,13 @@ public record MatterFabricatorRecipe(Ingredient ingredient, int inputCount, int 
         return net.minecraft.world.item.crafting.PlacementInfo.NOT_PLACEABLE;
     }
 
+    // Scrap-to-UU-matter conversion is machine-only; keep it out of the recipe book so
+    // RecipeManager does not log an empty-placement warning.
+    @Override
+    public boolean isSpecial() {
+        return true;
+    }
+
     @Override
     public net.minecraft.world.item.crafting.RecipeBookCategory recipeBookCategory() {
         return ic2.neoforge.registration.ModProcessingRecipes.CATEGORY.get();

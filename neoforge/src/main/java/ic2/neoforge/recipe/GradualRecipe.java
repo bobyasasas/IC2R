@@ -133,6 +133,13 @@ public final class GradualRecipe implements CraftingRecipe {
         return PlacementInfo.NOT_PLACEABLE;
     }
 
+    // Condensator charging is a machine interaction, not a crafting-grid recipe: keep it
+    // out of the recipe book so RecipeManager does not log an empty-placement warning.
+    @Override
+    public boolean isSpecial() {
+        return true;
+    }
+
     private void write(RegistryFriendlyByteBuf buf) {
         buf.writeVarInt(BuiltInRegistries.ITEM.getId(component));
         buf.writeVarInt(BuiltInRegistries.ITEM.getId(chargeMaterial));

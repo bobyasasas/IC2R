@@ -10,8 +10,8 @@
     "count": 1
   },
   "key": {
+    "R": "minecraft:redstone",
     "I": "ic2:triple_insulated_iron_cable",
-    "L": "minecraft:lever",
-    "R": "minecraft:redstone"
+    "L": "minecraft:lever"
   }
 }

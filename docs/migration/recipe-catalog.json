@@ -2223,8 +2223,8 @@
     {
       "source": "shaped/bronze_tank.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:bronze_tank"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/bronze_tank.json"
     },
     {
       "source": "shaped/bucket.json",
@@ -2614,7 +2614,9 @@
       "source": "shaped/fluid_bottler.json",
       "type": "ic2:shaped",
       "status": "pending",
-      "reason": "unported result ic2:fluid_bottler"
+      "reason": "ic2:fluid_bottler merged into ic2:canner (registry catalog decision replace); acquisition is the replacement recipe",
+      "disposition": "replaced",
+      "replaced_by": "ic2:canner"
     },
     {
       "source": "shaped/fluid_distributor.json",
@@ -2817,8 +2819,8 @@
     {
       "source": "shaped/iridium_tank.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:iridium_tank"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/iridium_tank.json"
     },
     {
       "source": "shaped/iron_cutting_blade.json",
@@ -2871,8 +2873,8 @@
     {
       "source": "shaped/iron_tank.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:iron_tank"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/iron_tank.json"
     },
     {
       "source": "shaped/irrigation_tfbp.json",
@@ -3742,7 +3744,9 @@
       "source": "shaped/solid_canner.json",
       "type": "ic2:shaped",
       "status": "pending",
-      "reason": "unported result ic2:solid_canner"
+      "reason": "ic2:solid_canner merged into ic2:canner (registry catalog decision replace); acquisition is the replacement recipe",
+      "disposition": "replaced",
+      "replaced_by": "ic2:canner"
     },
     {
       "source": "shaped/solid_heat_generator_from_furnace.json",
@@ -3795,8 +3799,8 @@
     {
       "source": "shaped/steam_repressurizer_from_iron_tank.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported item ic2:iron_tank"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/steam_repressurizer_from_iron_tank.json"
     },
     {
       "source": "shaped/steam_repressurizer_from_tank.json",
@@ -3861,8 +3865,8 @@
     {
       "source": "shaped/steel_tank.json",
       "type": "ic2:shaped",
-      "status": "pending",
-      "reason": "unported result ic2:steel_tank"
+      "status": "converted",
+      "target": "neoforge/src/main/resources/data/ic2/recipe/shaped/steel_tank.json"
     },
     {
       "source": "shaped/stirling_generator.json",

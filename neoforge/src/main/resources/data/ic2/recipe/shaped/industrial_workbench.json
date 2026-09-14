@@ -10,9 +10,9 @@
     "count": 1
   },
   "key": {
-    "T": "minecraft:crafting_table",
     "H": "ic2:forge_hammer",
     "M": "ic2:machine",
-    "C": "ic2:cutter"
+    "C": "ic2:cutter",
+    "T": "minecraft:crafting_table"
   }
 }

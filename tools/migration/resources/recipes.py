@@ -1,15 +1,22 @@
 #!/usr/bin/env python3
 """Convert supported recipes and common item tags; record every deferred recipe explicitly."""
 import json
+import re
 from pathlib import Path
 from base import ROOT, OLD, NEW, write
 
-# Items with client definitions plus every item the registry catalog records as implemented in
-# code (machine block items and late slices that ship no items/*.json of their own).
+# Recipes may only reference items that exist in the live registry; verify_artifact.py
+# enforces registry == client item definitions against the GameTest dump, so the
+# definition set is exactly the referenceable item set.
 registered = {'ic2:' + p.stem for p in (NEW / 'assets/ic2/items').glob('*.json')}
-registered |= {entry['id'] for entry in json.loads(
-    (ROOT / 'docs/migration/registry-catalog.json').read_text())['entries']
-    if entry.get('registry') == 'item' and entry.get('status') == 'implemented'}
+# Machines merged into another block (registry catalog decision=replace): their legacy
+# machine recipes are obsolete, not open port TODOs; the disposition is recorded so the
+# ledger never hides a decision behind a generic "unported" reason.
+replaced_machines = {'ic2:fluid_bottler': 'ic2:canner', 'ic2:solid_canner': 'ic2:canner'}
+# Legacy shipped an empty ingots/plutonium tag, so its MOX and RTG pellet recipes could
+# never match; the port carries ic2:plutonium, so the tag is filled here. This is a
+# deliberate fix of a legacy behavior bug, recorded in docs/migration/final-acceptance.md.
+tag_value_overrides = {'c:ingots/plutonium': ['ic2:plutonium']}
 recipe_root = OLD / 'data/ic2/recipes'
 ledger = []
 ledger_path = ROOT / 'docs/migration/recipe-catalog.json'
@@ -144,6 +151,13 @@ for file in sorted(recipe_root.rglob('*.json')):
         record['target'] = 'neoforge/src/main/resources/data/ic2/recipe/' + target
     except ValueError as error:
         record['reason'] = str(error)
+        match = re.search(r'unported (?:item|result|ingredient) (ic2:\S+)', str(error))
+        if match and match.group(1) in replaced_machines:
+            replacement = replaced_machines[match.group(1)]
+            record['disposition'] = 'replaced'
+            record['replaced_by'] = replacement
+            record['reason'] = (f'{match.group(1)} merged into {replacement} (registry catalog '
+                                'decision replace); acquisition is the replacement recipe')
 
 for namespace in ['ic2', 'forge']:
     for file in sorted((OLD / ('data/' + namespace + '/tags/items')).rglob('*.json')):
@@ -161,6 +175,8 @@ for namespace in ['ic2', 'forge']:
                 values.append(identifier)
         target_tag = common_tag(namespace + ':' + relative.as_posix().removesuffix('.json'))
         target_namespace, target_path = target_tag.split(':')
+        values = values + [value for value in tag_value_overrides.get(target_tag, [])
+                           if value not in values]
         write(f'data/{target_namespace}/tags/item/{target_path}.json', {'replace': False, 'values': values})
 
 # Remove only outputs previously owned by this converter if a recipe becomes unsupported.

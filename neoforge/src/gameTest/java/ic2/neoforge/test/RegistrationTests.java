@@ -166,6 +166,8 @@ public final class RegistrationTests {
         FUNCTIONS.register("fluid_air_inert", () -> EntityTickingTests.wrap(FluidBlockTests::airBlockStaysInert));
         FUNCTIONS.register("iron_furnace", () -> EntityTickingTests.wrap(MachineTests::ironFurnace));
         FUNCTIONS.register("crafting_charge", () -> EntityTickingTests.wrap(CraftingTests::charge));
+        FUNCTIONS.register("tank_crafting", () -> EntityTickingTests.wrap(CraftingTests::tankFamilyCrafting));
+        FUNCTIONS.register("plutonium_tag_crafting", () -> EntityTickingTests.wrap(CraftingTests::plutoniumTagCrafting));
         FUNCTIONS.register("crafting_remainders", () -> EntityTickingTests.wrap(CraftingTests::remainder));
         FUNCTIONS.register("crafting_power_armor", () -> EntityTickingTests.wrap(CraftingTests::powerArmorLine));
         FUNCTIONS.register("crafting_packs", () -> EntityTickingTests.wrap(CraftingTests::packsCraftTheirStorageIn));

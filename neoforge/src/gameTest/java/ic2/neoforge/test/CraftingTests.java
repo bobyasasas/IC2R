@@ -5,8 +5,10 @@ import com.mojang.serialization.JsonOps;
 
 import ic2.neoforge.item.ElectricItemEnergy;
 import ic2.neoforge.machine.MachineKind;
+import ic2.neoforge.recipe.ElectricCraftingRecipe;
 import ic2.neoforge.registration.MaterialDefinition;
 import ic2.neoforge.registration.ModArmor;
+import ic2.neoforge.registration.ModCells;
 import ic2.neoforge.registration.ModCraftingRecipes;
 import ic2.neoforge.registration.ModItems;
 import ic2.neoforge.registration.ModMaterialBlocks;
@@ -24,6 +26,7 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.CraftingInput;
 import net.minecraft.world.item.crafting.CraftingRecipe;
 import net.minecraft.world.item.crafting.Recipe;
+import net.minecraft.world.item.crafting.ShapedRecipe;
 
 import java.util.List;
 
@@ -170,6 +173,75 @@ final class CraftingTests {
         helper.succeed();
     }
 
+    static void tankFamilyCrafting(GameTestHelper helper) {
+        var plate = material(MaterialDefinition.BRONZE_PLATE);
+        var cell = ModCells.EMPTY.toStack();
+        var ironTank =
+                new ItemStack(
+                        ModMachines.MACHINES.get(MachineKind.IRON_TANK).block().get().asItem());
+        var casing = material(MaterialDefinition.IRON_CASING);
+        var boiler = material(MaterialDefinition.COPPER_BOILER);
+        var conductor = material(MaterialDefinition.HEAT_CONDUCTOR);
+        assertCraft(
+                helper,
+                "ic2:shaped/bronze_tank",
+                List.of(
+                        plate.copy(),
+                        cell.copy(),
+                        plate.copy(),
+                        cell.copy(),
+                        ItemStack.EMPTY,
+                        cell.copy(),
+                        plate.copy(),
+                        cell.copy(),
+                        plate.copy()),
+                new ItemStack(
+                        ModMachines.MACHINES.get(MachineKind.BRONZE_TANK)
+                                .block()
+                                .get()
+                                .asItem()));
+        var grid =
+                List.of(
+                        casing.copy(),
+                        casing.copy(),
+                        casing.copy(),
+                        ironTank.copy(),
+                        boiler.copy(),
+                        ironTank.copy(),
+                        casing.copy(),
+                        conductor.copy(),
+                        casing.copy());
+        var recipeId = "ic2:shaped/steam_repressurizer_from_iron_tank";
+        var shaped =
+                (ShapedRecipe)
+                        ((ElectricCraftingRecipe)
+                                helper.getLevel()
+                                        .recipeAccess()
+                                        .byKey(
+                                                ResourceKey.create(
+                                                        Registries.RECIPE,
+                                                        Identifier.parse(recipeId)))
+                                        .orElseThrow()
+                                .value())
+                        .delegate();
+        var ingredients = shaped.getIngredients();
+        for (int slot = 0; slot < ingredients.size(); slot++) {
+            var stack = grid.get(slot);
+            boolean accepted =
+                    ingredients.get(slot)
+                            .map(ingredient -> ingredient.test(stack))
+                            .orElse(stack.isEmpty());
+            helper.assertTrue(
+                    accepted, recipeId + " slot " + slot + " rejects " + stack.getItem());
+        }
+        assertCraft(helper, recipeId, grid, new ItemStack(
+                ModMachines.MACHINES.get(MachineKind.STEAM_REPRESSURIZER)
+                        .block()
+                        .get()
+                        .asItem()));
+        helper.succeed();
+    }
+
     static void chainsawCraftsFromBothRoutes(GameTestHelper helper) {
         var plate = material(MaterialDefinition.IRON_PLATE);
         var steel = material(MaterialDefinition.STEEL_INGOT);
@@ -249,6 +321,42 @@ final class CraftingTests {
                         ItemStack.EMPTY,
                         ItemStack.EMPTY),
                 ModTools.MINING_FILTER_CARD.toStack());
+        helper.succeed();
+    }
+
+    /** Regression: legacy shipped an empty ingots/plutonium tag, breaking MOX and RTG crafting. */
+    static void plutoniumTagCrafting(GameTestHelper helper) {
+        var plutonium = ModReactorItems.PLUTONIUM.toStack();
+        var uranium238 = ModReactorItems.URANIUM_238.toStack();
+        var denseIron = material(MaterialDefinition.DENSE_IRON_PLATE);
+        assertCraft(
+                helper,
+                "ic2:shaped/mox_2",
+                List.of(
+                        uranium238.copy(),
+                        uranium238.copy(),
+                        uranium238.copy(),
+                        plutonium.copy(),
+                        plutonium.copy(),
+                        plutonium.copy(),
+                        uranium238.copy(),
+                        uranium238.copy(),
+                        uranium238.copy()),
+                ModReactorItems.MOX.toStack());
+        assertCraft(
+                helper,
+                "ic2:shaped/rtg_pellet_2",
+                List.of(
+                        denseIron.copy(),
+                        plutonium.copy(),
+                        denseIron.copy(),
+                        denseIron.copy(),
+                        plutonium.copy(),
+                        denseIron.copy(),
+                        denseIron.copy(),
+                        plutonium.copy(),
+                        denseIron.copy()),
+                ModReactorItems.RTG_PELLET.toStack());
         helper.succeed();
     }
 

@@ -10,8 +10,8 @@
     "count": 1
   },
   "key": {
-    "C": "ic2:circuit",
+    "R": "minecraft:redstone",
     "I": "ic2:triple_insulated_iron_cable",
-    "R": "minecraft:redstone"
+    "C": "ic2:circuit"
   }
 }
