@@ -16329,12 +16329,13 @@
    "factory": "register",
    "expression": "new BasicMachineRecipeSerializer(Ic2RecipeTypes.ORE_WASHER, intMeta(\"amount\"))",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/ore-washing.md",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/WashingTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/WashingTests.java",
+    "legacy/forge-1.20.1/src/main/resources/data/ic2/recipes/ore_washer/crushed_iron_to_purified_iron.json"
    ],
-   "note": "八条配方、多输出、水与容器事务已实现；完整配置及多人整体验收待完成。"
+   "note": "勘误翻 implemented：8 条配方与 legacy 目录文件级 1:1 一致（7 矿石富集+gravel→stone dust）；WashingTests 四项（原子产物/容器事务/拉取升级/codec 序列化）GameTest 通过。多人整机实机验收留人工（M16）。"
   },
   {
    "registry": "recipe_serializer",
@@ -16361,12 +16362,14 @@
    "factory": "register",
    "expression": "new CannerBottleRecipeSerializer()",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "neoforge/src/main/java/ic2/neoforge/registration/ModCannerRecipes.java",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/CannerTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/CannerTests.java",
+    "legacy/forge-1.20.1/src/main/resources/data/ic2/recipes/canner_bottle/beef_filled_tin_can.json",
+    "docs/migration/canner-fluids.md"
    ],
-   "note": "当前可用原料配方已转换；所有旧配方状态见 recipe-catalog.json。"
+   "note": "勘误翻 implemented：配方与 legacy 目录文件级 1:1 全量转换（41 条食物罐头+铀/钼燃料棒，recipe-catalog.json 对应条目全 converted；仅剩 7 条 pending 均因 tank/fluid_bottler/solid_canner 分歧条目待用户签署，与本序列化器无关）；CannerTests 四项（实心封装/装罐排空/富集回滚/状态与按钮）GameTest 通过。GUI 实机操作留人工（M16）。"
   },
   {
    "registry": "recipe_serializer",
@@ -16376,12 +16379,14 @@
    "factory": "register",
    "expression": "new CannerEnrichRecipeSerializer()",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "neoforge/src/main/java/ic2/neoforge/registration/ModCannerRecipes.java",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/CannerTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/CannerTests.java",
+    "legacy/forge-1.20.1/src/main/resources/data/ic2/recipes/canner_enrich/coolant_from_water.json",
+    "docs/migration/canner-fluids.md"
    ],
-   "note": "当前可用原料配方已转换；所有旧配方状态见 recipe-catalog.json。"
+   "note": "勘误翻 implemented：配方与 legacy 目录文件级 1:1 全量转换（4 条：biomass/construction_foam/coolant×2，recipe-catalog.json 对应条目全 converted；仅剩 7 条 pending 均因 tank/fluid_bottler/solid_canner 分歧条目待用户签署，与本序列化器无关）；CannerTests 四项（实心封装/装罐排空/富集回滚/状态与按钮）GameTest 通过。GUI 实机操作留人工（M16）。"
   },
   {
    "registry": "recipe_type",
@@ -16569,12 +16574,14 @@
    "factory": "register",
    "expression": "",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "neoforge/src/main/java/ic2/neoforge/registration/ModCannerRecipes.java",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/CannerTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/CannerTests.java",
+    "legacy/forge-1.20.1/src/main/resources/data/ic2/recipes/canner_bottle/beef_filled_tin_can.json",
+    "docs/migration/canner-fluids.md"
    ],
-   "note": "当前可用原料配方已转换；所有旧配方状态见 recipe-catalog.json。"
+   "note": "勘误翻 implemented：配方与 legacy 目录文件级 1:1 全量转换（41 条食物罐头+铀/钼燃料棒，recipe-catalog.json 对应条目全 converted；仅剩 7 条 pending 均因 tank/fluid_bottler/solid_canner 分歧条目待用户签署，与本序列化器无关）；CannerTests 四项（实心封装/装罐排空/富集回滚/状态与按钮）GameTest 通过。GUI 实机操作留人工（M16）。"
   },
   {
    "registry": "recipe_type",
@@ -16584,12 +16591,14 @@
    "factory": "register",
    "expression": "",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "neoforge/src/main/java/ic2/neoforge/registration/ModCannerRecipes.java",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/CannerTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/CannerTests.java",
+    "legacy/forge-1.20.1/src/main/resources/data/ic2/recipes/canner_enrich/coolant_from_water.json",
+    "docs/migration/canner-fluids.md"
    ],
-   "note": "当前可用原料配方已转换；所有旧配方状态见 recipe-catalog.json。"
+   "note": "勘误翻 implemented：配方与 legacy 目录文件级 1:1 全量转换（4 条：biomass/construction_foam/coolant×2，recipe-catalog.json 对应条目全 converted；仅剩 7 条 pending 均因 tank/fluid_bottler/solid_canner 分歧条目待用户签署，与本序列化器无关）；CannerTests 四项（实心封装/装罐排空/富集回滚/状态与按钮）GameTest 通过。GUI 实机操作留人工（M16）。"
   },
   {
    "registry": "fluid_family",
@@ -16631,12 +16640,14 @@
    "factory": "create",
    "expression": "1000",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "neoforge/src/main/java/ic2/neoforge/registration/ModFluids.java",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java",
+    "legacy/forge-1.20.1/src/main/java/ic2/forge/EnvFluidHandlerForge.java",
+    "docs/migration/special-fluid-blocks.md"
    ],
-   "note": "已注册流体、桶和渲染；特殊流体方块行为仍待迁移。"
+   "note": "勘误翻 implemented：legacy createFluidBlock switch 仅特判 8 家族（steam/superheated_steam、uu_matter、hot_water、hot_coolant、pahoehoe_lava、air、hydrogen、construction_foam），本家族走 default 普通 LiquidBlock 无特殊行为；port ModFluids.blockFor default->LiquidBlock 与 legacy 一一对应（第 58 轮八家族交付时核对）。17 家族注册与桶流体能力经 fluid_families GameTest 全覆盖。实机渲染/流动观感留人工（M16）。"
   },
   {
    "registry": "fluid_family",
@@ -16646,12 +16657,14 @@
    "factory": "create",
    "expression": "10000",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "neoforge/src/main/java/ic2/neoforge/registration/ModFluids.java",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java",
+    "legacy/forge-1.20.1/src/main/java/ic2/forge/EnvFluidHandlerForge.java",
+    "docs/migration/special-fluid-blocks.md"
    ],
-   "note": "已注册流体、桶和渲染；特殊流体方块行为仍待迁移。"
+   "note": "勘误翻 implemented：legacy createFluidBlock switch 仅特判 8 家族（steam/superheated_steam、uu_matter、hot_water、hot_coolant、pahoehoe_lava、air、hydrogen、construction_foam），本家族走 default 普通 LiquidBlock 无特殊行为；port ModFluids.blockFor default->LiquidBlock 与 legacy 一一对应（第 58 轮八家族交付时核对）。17 家族注册与桶流体能力经 fluid_families GameTest 全覆盖。实机渲染/流动观感留人工（M16）。"
   },
   {
    "registry": "fluid_family",
@@ -16695,12 +16708,14 @@
    "factory": "create",
    "expression": "1000",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "neoforge/src/main/java/ic2/neoforge/registration/ModFluids.java",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java",
+    "legacy/forge-1.20.1/src/main/java/ic2/forge/EnvFluidHandlerForge.java",
+    "docs/migration/special-fluid-blocks.md"
    ],
-   "note": "已注册流体、桶和渲染；特殊流体方块行为仍待迁移。"
+   "note": "勘误翻 implemented：legacy createFluidBlock switch 仅特判 8 家族（steam/superheated_steam、uu_matter、hot_water、hot_coolant、pahoehoe_lava、air、hydrogen、construction_foam），本家族走 default 普通 LiquidBlock 无特殊行为；port ModFluids.blockFor default->LiquidBlock 与 legacy 一一对应（第 58 轮八家族交付时核对）。17 家族注册与桶流体能力经 fluid_families GameTest 全覆盖。实机渲染/流动观感留人工（M16）。"
   },
   {
    "registry": "fluid_family",
@@ -16710,12 +16725,14 @@
    "factory": "create",
    "expression": "1000",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "neoforge/src/main/java/ic2/neoforge/registration/ModFluids.java",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java",
+    "legacy/forge-1.20.1/src/main/java/ic2/forge/EnvFluidHandlerForge.java",
+    "docs/migration/special-fluid-blocks.md"
    ],
-   "note": "已注册流体、桶和渲染；特殊流体方块行为仍待迁移。"
+   "note": "勘误翻 implemented：legacy createFluidBlock switch 仅特判 8 家族（steam/superheated_steam、uu_matter、hot_water、hot_coolant、pahoehoe_lava、air、hydrogen、construction_foam），本家族走 default 普通 LiquidBlock 无特殊行为；port ModFluids.blockFor default->LiquidBlock 与 legacy 一一对应（第 58 轮八家族交付时核对）。17 家族注册与桶流体能力经 fluid_families GameTest 全覆盖。实机渲染/流动观感留人工（M16）。"
   },
   {
    "registry": "fluid_family",
@@ -16725,12 +16742,14 @@
    "factory": "create",
    "expression": "1000",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "neoforge/src/main/java/ic2/neoforge/registration/ModFluids.java",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java",
+    "legacy/forge-1.20.1/src/main/java/ic2/forge/EnvFluidHandlerForge.java",
+    "docs/migration/special-fluid-blocks.md"
    ],
-   "note": "已注册流体、桶和渲染；特殊流体方块行为仍待迁移。"
+   "note": "勘误翻 implemented：legacy createFluidBlock switch 仅特判 8 家族（steam/superheated_steam、uu_matter、hot_water、hot_coolant、pahoehoe_lava、air、hydrogen、construction_foam），本家族走 default 普通 LiquidBlock 无特殊行为；port ModFluids.blockFor default->LiquidBlock 与 legacy 一一对应（第 58 轮八家族交付时核对）。17 家族注册与桶流体能力经 fluid_families GameTest 全覆盖。实机渲染/流动观感留人工（M16）。"
   },
   {
    "registry": "fluid_family",
@@ -16791,12 +16810,14 @@
    "factory": "create",
    "expression": "1000",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "neoforge/src/main/java/ic2/neoforge/registration/ModFluids.java",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java",
+    "legacy/forge-1.20.1/src/main/java/ic2/forge/EnvFluidHandlerForge.java",
+    "docs/migration/special-fluid-blocks.md"
    ],
-   "note": "已注册流体、桶和渲染；特殊流体方块行为仍待迁移。"
+   "note": "勘误翻 implemented：legacy createFluidBlock switch 仅特判 8 家族（steam/superheated_steam、uu_matter、hot_water、hot_coolant、pahoehoe_lava、air、hydrogen、construction_foam），本家族走 default 普通 LiquidBlock 无特殊行为；port ModFluids.blockFor default->LiquidBlock 与 legacy 一一对应（第 58 轮八家族交付时核对）。17 家族注册与桶流体能力经 fluid_families GameTest 全覆盖。实机渲染/流动观感留人工（M16）。"
   },
   {
    "registry": "fluid_family",
@@ -16840,12 +16861,14 @@
    "factory": "create",
    "expression": "0",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "neoforge/src/main/java/ic2/neoforge/registration/ModFluids.java",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java",
+    "legacy/forge-1.20.1/src/main/java/ic2/forge/EnvFluidHandlerForge.java",
+    "docs/migration/special-fluid-blocks.md"
    ],
-   "note": "已注册流体、桶和渲染；特殊流体方块行为仍待迁移。"
+   "note": "勘误翻 implemented：legacy createFluidBlock switch 仅特判 8 家族（steam/superheated_steam、uu_matter、hot_water、hot_coolant、pahoehoe_lava、air、hydrogen、construction_foam），本家族走 default 普通 LiquidBlock 无特殊行为；port ModFluids.blockFor default->LiquidBlock 与 legacy 一一对应（第 58 轮八家族交付时核对）。17 家族注册与桶流体能力经 fluid_families GameTest 全覆盖。实机渲染/流动观感留人工（M16）。"
   },
   {
    "registry": "fluid_family",
@@ -16855,12 +16878,14 @@
    "factory": "create",
    "expression": "1000",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "neoforge/src/main/java/ic2/neoforge/registration/ModFluids.java",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java",
+    "legacy/forge-1.20.1/src/main/java/ic2/forge/EnvFluidHandlerForge.java",
+    "docs/migration/special-fluid-blocks.md"
    ],
-   "note": "已注册流体、桶和渲染；特殊流体方块行为仍待迁移。"
+   "note": "勘误翻 implemented：legacy createFluidBlock switch 仅特判 8 家族（steam/superheated_steam、uu_matter、hot_water、hot_coolant、pahoehoe_lava、air、hydrogen、construction_foam），本家族走 default 普通 LiquidBlock 无特殊行为；port ModFluids.blockFor default->LiquidBlock 与 legacy 一一对应（第 58 轮八家族交付时核对）。17 家族注册与桶流体能力经 fluid_families GameTest 全覆盖。实机渲染/流动观感留人工（M16）。"
   },
   {
    "registry": "game_event",
@@ -17139,12 +17164,15 @@
    "factory": "dynamic fluid registration",
    "expression": "ic2:coolant",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "neoforge/src/main/java/ic2/neoforge/registration/ModFluids.java",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java",
+    "legacy/forge-1.20.1/src/main/java/ic2/forge/EnvFluidHandlerForge.java",
+    "docs/migration/special-fluid-blocks.md"
    ],
-   "derived_from": "ic2:coolant"
+   "derived_from": "ic2:coolant",
+   "note": "勘误翻 implemented：本方块与 legacy default 分支一致走 LiquidBlock（legacy 中本家族无特殊行为，非功能缺口）；注册经 ModFluids.blockFor 家族分发，与 legacy EnvFluidHandlerForge.createFluidBlock 一一对应。流体行为见 fluid_family 同名条目与 special-fluid-blocks.md。实机观感留人工（M16）。"
   },
   {
    "registry": "item",
@@ -17214,12 +17242,15 @@
    "factory": "dynamic fluid registration",
    "expression": "ic2:creosote",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "neoforge/src/main/java/ic2/neoforge/registration/ModFluids.java",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java",
+    "legacy/forge-1.20.1/src/main/java/ic2/forge/EnvFluidHandlerForge.java",
+    "docs/migration/special-fluid-blocks.md"
    ],
-   "derived_from": "ic2:creosote"
+   "derived_from": "ic2:creosote",
+   "note": "勘误翻 implemented：本方块与 legacy default 分支一致走 LiquidBlock（legacy 中本家族无特殊行为，非功能缺口）；注册经 ModFluids.blockFor 家族分发，与 legacy EnvFluidHandlerForge.createFluidBlock 一一对应。流体行为见 fluid_family 同名条目与 special-fluid-blocks.md。实机观感留人工（M16）。"
   },
   {
    "registry": "item",
@@ -17445,12 +17476,15 @@
    "factory": "dynamic fluid registration",
    "expression": "ic2:biomass",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "neoforge/src/main/java/ic2/neoforge/registration/ModFluids.java",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java",
+    "legacy/forge-1.20.1/src/main/java/ic2/forge/EnvFluidHandlerForge.java",
+    "docs/migration/special-fluid-blocks.md"
    ],
-   "derived_from": "ic2:biomass"
+   "derived_from": "ic2:biomass",
+   "note": "勘误翻 implemented：本方块与 legacy default 分支一致走 LiquidBlock（legacy 中本家族无特殊行为，非功能缺口）；注册经 ModFluids.blockFor 家族分发，与 legacy EnvFluidHandlerForge.createFluidBlock 一一对应。流体行为见 fluid_family 同名条目与 special-fluid-blocks.md。实机观感留人工（M16）。"
   },
   {
    "registry": "item",
@@ -17520,12 +17554,15 @@
    "factory": "dynamic fluid registration",
    "expression": "ic2:biogas",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "neoforge/src/main/java/ic2/neoforge/registration/ModFluids.java",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java",
+    "legacy/forge-1.20.1/src/main/java/ic2/forge/EnvFluidHandlerForge.java",
+    "docs/migration/special-fluid-blocks.md"
    ],
-   "derived_from": "ic2:biogas"
+   "derived_from": "ic2:biogas",
+   "note": "勘误翻 implemented：本方块与 legacy default 分支一致走 LiquidBlock（legacy 中本家族无特殊行为，非功能缺口）；注册经 ModFluids.blockFor 家族分发，与 legacy EnvFluidHandlerForge.createFluidBlock 一一对应。流体行为见 fluid_family 同名条目与 special-fluid-blocks.md。实机观感留人工（M16）。"
   },
   {
    "registry": "item",
@@ -17595,12 +17632,15 @@
    "factory": "dynamic fluid registration",
    "expression": "ic2:distilled_water",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "neoforge/src/main/java/ic2/neoforge/registration/ModFluids.java",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java",
+    "legacy/forge-1.20.1/src/main/java/ic2/forge/EnvFluidHandlerForge.java",
+    "docs/migration/special-fluid-blocks.md"
    ],
-   "derived_from": "ic2:distilled_water"
+   "derived_from": "ic2:distilled_water",
+   "note": "勘误翻 implemented：本方块与 legacy default 分支一致走 LiquidBlock（legacy 中本家族无特殊行为，非功能缺口）；注册经 ModFluids.blockFor 家族分发，与 legacy EnvFluidHandlerForge.createFluidBlock 一一对应。流体行为见 fluid_family 同名条目与 special-fluid-blocks.md。实机观感留人工（M16）。"
   },
   {
    "registry": "item",
@@ -17904,12 +17944,15 @@
    "factory": "dynamic fluid registration",
    "expression": "ic2:weed_ex",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "neoforge/src/main/java/ic2/neoforge/registration/ModFluids.java",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java",
+    "legacy/forge-1.20.1/src/main/java/ic2/forge/EnvFluidHandlerForge.java",
+    "docs/migration/special-fluid-blocks.md"
    ],
-   "derived_from": "ic2:weed_ex"
+   "derived_from": "ic2:weed_ex",
+   "note": "勘误翻 implemented：本方块与 legacy default 分支一致走 LiquidBlock（legacy 中本家族无特殊行为，非功能缺口）；注册经 ModFluids.blockFor 家族分发，与 legacy EnvFluidHandlerForge.createFluidBlock 一一对应。流体行为见 fluid_family 同名条目与 special-fluid-blocks.md。实机观感留人工（M16）。"
   },
   {
    "registry": "item",
@@ -18135,12 +18178,15 @@
    "factory": "dynamic fluid registration",
    "expression": "ic2:oxygen",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "neoforge/src/main/java/ic2/neoforge/registration/ModFluids.java",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java",
+    "legacy/forge-1.20.1/src/main/java/ic2/forge/EnvFluidHandlerForge.java",
+    "docs/migration/special-fluid-blocks.md"
    ],
-   "derived_from": "ic2:oxygen"
+   "derived_from": "ic2:oxygen",
+   "note": "勘误翻 implemented：本方块与 legacy default 分支一致走 LiquidBlock（legacy 中本家族无特殊行为，非功能缺口）；注册经 ModFluids.blockFor 家族分发，与 legacy EnvFluidHandlerForge.createFluidBlock 一一对应。流体行为见 fluid_family 同名条目与 special-fluid-blocks.md。实机观感留人工（M16）。"
   },
   {
    "registry": "item",
@@ -18210,12 +18256,15 @@
    "factory": "dynamic fluid registration",
    "expression": "ic2:heavy_water",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "neoforge/src/main/java/ic2/neoforge/registration/ModFluids.java",
-    "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java"
+    "neoforge/src/gameTest/java/ic2/neoforge/test/FluidTests.java",
+    "legacy/forge-1.20.1/src/main/java/ic2/forge/EnvFluidHandlerForge.java",
+    "docs/migration/special-fluid-blocks.md"
    ],
-   "derived_from": "ic2:heavy_water"
+   "derived_from": "ic2:heavy_water",
+   "note": "勘误翻 implemented：本方块与 legacy default 分支一致走 LiquidBlock（legacy 中本家族无特殊行为，非功能缺口）；注册经 ModFluids.blockFor 家族分发，与 legacy EnvFluidHandlerForge.createFluidBlock 一一对应。流体行为见 fluid_family 同名条目与 special-fluid-blocks.md。实机观感留人工（M16）。"
   },
   {
    "registry": "item",
