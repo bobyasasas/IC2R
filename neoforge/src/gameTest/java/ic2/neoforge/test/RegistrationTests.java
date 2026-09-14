@@ -652,6 +652,10 @@ public final class RegistrationTests {
         FUNCTIONS.register(
                 "crystal_memory_value", () -> CrystalMemoryTests::valueSnapshotRoundTrips);
         FUNCTIONS.register("remote_detonate", () -> EntityTickingTests.wrap(RemoteTests::remoteDetonatesLinkedDynamite));
+        FUNCTIONS.register(
+                "remote_pairing_gate", () -> EntityTickingTests.wrap(RemoteTests::remotePairingGatesForeignRemotes));
+        FUNCTIONS.register(
+                "remote_launch_consumes", () -> EntityTickingTests.wrap(RemoteTests::remoteLaunchConsumesLinks));
         FUNCTIONS.register("uu_scanner_scan", () -> EntityTickingTests.wrap(UuScannerTests::scansSeededItemOntoMemory));
         FUNCTIONS.register("crop_seed_bag_roundtrip", () -> EntityTickingTests.wrap(CropTests::cropSeedBagRoundtrip));
         FUNCTIONS.register("crop_plant_harvest", () -> EntityTickingTests.wrap(CropTests::cropPlantGrowHarvest));

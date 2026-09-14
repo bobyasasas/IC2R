@@ -53,16 +53,19 @@ public class RemoteItem extends Item {
         var stack = context.getItemInHand();
         var links = links(stack);
         var key = GlobalPos.of(level.dimension(), pos.immutable());
-        var updated = new ArrayList<>(links.targets());
-        if (updated.contains(key)) {
-            updated.remove(key);
+        if (state.getValue(DynamiteBlock.LINKED)) {
+            // Legacy ItemRemote.useOn: an already linked stick only unlinks through the
+            // remote holding its link; any other remote is refused with a message.
+            if (!links.targets().contains(key)) {
+                player.sendSystemMessage(Component.translatable("ic2.remote.cannot_unlink"));
+                return InteractionResult.SUCCESS;
+            }
+            setLinks(stack, links.remove(key));
             level.setBlock(pos, state.setValue(DynamiteBlock.LINKED, false), 3);
-            player.sendSystemMessage(Component.translatable("ic2.remote.cannot_unlink"));
-        } else {
-            updated.add(key);
-            level.setBlock(pos, state.setValue(DynamiteBlock.LINKED, true), 3);
+            return InteractionResult.SUCCESS;
         }
-        setLinks(stack, new RemoteLinks(updated));
+        setLinks(stack, links.add(key));
+        level.setBlock(pos, state.setValue(DynamiteBlock.LINKED, true), 3);
         return InteractionResult.SUCCESS;
     }
 
@@ -80,14 +83,22 @@ public class RemoteItem extends Item {
                     net.minecraft.sounds.SoundSource.PLAYERS,
                     1.0F,
                     1.0F);
-            var links = links(stack);
-            for (var target : links.targets()) {
-                if (!target.dimension().equals(level.dimension())) continue;
-                var pos = target.pos();
-                if (level.getBlockState(pos).getBlock() instanceof DynamiteBlock) {
-                    DynamiteBlock.detonate(level, pos, player);
+            // Legacy launchRemotes(): a launch is one-shot — every loaded target is
+            // consumed after its attempt, while links in other dimensions or unloaded
+            // chunks stay for a later trigger.
+            var remaining = new ArrayList<GlobalPos>();
+            for (var target : links(stack).targets()) {
+                if (!target.dimension().equals(level.dimension()) || !level.isLoaded(target.pos())) {
+                    remaining.add(target);
+                    continue;
+                }
+                var state = level.getBlockState(target.pos());
+                if (state.getBlock() instanceof DynamiteBlock
+                        && state.getValue(DynamiteBlock.LINKED)) {
+                    DynamiteBlock.detonate(level, target.pos(), player);
                 }
             }
+            setLinks(stack, new RemoteLinks(remaining));
         }
         return InteractionResult.SUCCESS;
     }

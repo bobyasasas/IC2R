@@ -1,0 +1,7 @@
+{
+  "type": "minecraft:function",
+  "function": "ic2_tests:remote_launch_consumes",
+  "structure": "ic2_tests:world_room",
+  "max_ticks": 120,
+  "environment": "minecraft:default"
+}
