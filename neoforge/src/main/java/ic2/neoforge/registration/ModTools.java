@@ -350,13 +350,6 @@ public final class ModTools {
             event.accept(ModItems.CHILLING_TFBP);
             event.accept(ModItems.IRRIGATION_TFBP);
             event.accept(ModItems.MUSHROOM_TFBP);
-            event.accept(ModItems.BLANK_TFBP);
-            event.accept(ModItems.CHILLING_TFBP);
-            event.accept(ModItems.CULTIVATION_TFBP);
-            event.accept(ModItems.DESERTIFICATION_TFBP);
-            event.accept(ModItems.FLATIFICATION_TFBP);
-            event.accept(ModItems.IRRIGATION_TFBP);
-            event.accept(ModItems.MUSHROOM_TFBP);
         }
         if (event.getTabKey().equals(CreativeModeTabs.COMBAT)) {
             event.accept(BRONZE_SWORD);

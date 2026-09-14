@@ -64,8 +64,8 @@
 
 ## R05 实机基础验收（实用版）
 
-- 状态：partial（2026-09-14 单客户端核心可玩链通过：稳定登录、Chest/MFE/Iron Furnace 菜单、MFE 供电加工、产物取出、保存重进、IC2 方块真实放置与破坏；全功能视觉与集成项继续按需补测）
-- 证据：[2026-09-14 单客户端核心可玩性实测](live-evidence/2026-09-14-core-playability.md)；证据目录 `docs/migration/live-evidence/`
+- 状态：partial（2026-09-14 单客户端核心可玩链通过：稳定登录、创造物品栏、Chest/MFE/Iron Furnace 菜单、MFE 供电加工、产物取出、保存重进、IC2 方块真实放置与破坏；全功能视觉与集成项继续按需补测）
+- 证据：[单客户端核心可玩性实测](live-evidence/2026-09-14-core-playability.md)、[创造物品栏崩溃修复](live-evidence/2026-09-14-creative-inventory.md)；证据目录 `docs/migration/live-evidence/`
 
 ## R06 JEI/Jade/AE2 真实集成
 
@@ -106,3 +106,4 @@
 | 2026-09-14 | R02 配方链 794/2+钚标签+警告清零 | ec4354ea（CI 34818810933 success） | legacy 空#c:ingots/plutonium 判定为 legacy bug，补值修复；GameTest 576×2、双模式警告=0 |
 | 2026-09-14 | R07 存档转换：库存结构+字段迁移+canner 映射+传送机权重（R03 缺口 1/2/3） | （本切片） | self-test 端到端 PASS；GameTest 576×2；verify_artifact 通过；真实旧世界样本端到端遗留 |
 | 2026-09-14 | R05 单客户端核心可玩性实测+配方同步登录修复 | （与本记录同提交） | 实际登录、菜单、MFE→铁炉→铁锭、保存重进、真实放置/破坏全部通过；非阻断资源与创造标签问题留后续 |
+| 2026-09-14 | R05 创造物品栏崩溃修复 | （与本记录同提交） | 删除七种 TFBP 的第二组重复注册；真实按 E、搜索 TFBP、关闭界面及正常退出通过 |
