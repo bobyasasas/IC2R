@@ -8,6 +8,7 @@ import ic2.neoforge.machine.WorldWind;
 import ic2.neoforge.registration.ModCannerRecipes;
 import ic2.neoforge.registration.ModCells;
 import ic2.neoforge.registration.ModCraftingRecipes;
+import ic2.neoforge.registration.ModCreativeTabs;
 import ic2.neoforge.registration.ModEntities;
 import ic2.neoforge.registration.ModFluids;
 import ic2.neoforge.registration.ModGameEvents;
@@ -64,6 +65,7 @@ public final class IndustrialCraft {
         ModCraftingRecipes.register(modBus);
         ModProcessingRecipes.register(modBus);
         ModMachines.register(modBus);
+        ModCreativeTabs.register(modBus);
         container.registerConfig(ModConfig.Type.SERVER, EnergyConfig.SPEC);
         container.registerConfig(
                 ModConfig.Type.SERVER, GenerationConfig.SPEC, "ic2-generation-server.toml");

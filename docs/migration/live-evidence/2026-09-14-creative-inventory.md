@@ -16,3 +16,16 @@
 证据：[修复后的 Creative Inventory](../images/creative-inventory-fixed.png)。新客户端日志中 `blank_tfbp already exists`、`Item Group crashed`、`CreativeModeInventoryScreen` 异常和 FATAL 均为 0。
 
 JEI 仍报告 Combat 标签存在一项重复物品警告；它没有中断标签构建，也没有影响本轮物品栏打开与搜索，作为非阻断项保留。
+
+## IC2 专属标签恢复
+
+崩溃修复后，IC2 物品仍只分散在原版标签中：创造物品栏没有 IC2／IndustrialCraft 标签，Search Items 的 `@ic2` 查询结果也为空。旧版注册了九个 IC2 标签，迁移端保留了对应翻译，但没有迁移 `CREATIVE_MODE_TAB` 注册。
+
+新增 `ModCreativeTabs` 注册统一的 `ic2:general` 标签：
+
+- 标题复用 `itemGroup.ic2.general`，图标使用 IC2 Generator。
+- 内容从物品注册表筛选 `ic2` 命名空间并按注册 ID 排序；新增物品自动出现，无需维护第二份手工清单。
+- 标签自带搜索框，同时保留现有原版标签分类。
+- 当前产物检查确认有 524 个 IC2 物品定义。
+
+最终源码完整重启后的实机结果：创造物品栏第 2 页出现 `IC2 General`；标签可以打开并显示多行 IC2 机器、装备与材料；标签内搜索 `MFE` 可以取出 MFE 放入玩家热栏。证据：[搜索并取出 MFE](../images/ic2-general-mfe-taken.png)、[最终源码复核](../images/ic2-general-final.png)。
