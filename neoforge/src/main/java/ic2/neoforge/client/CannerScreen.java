@@ -5,6 +5,7 @@ import ic2.neoforge.menu.MachineMenu;
 
 import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.components.Button;
+import net.minecraft.client.gui.components.Tooltip;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Inventory;
 
@@ -18,16 +19,18 @@ public final class CannerScreen extends MachineScreen {
     @Override
     public void init() {
         super.init();
+        // The tall legacy tanks occupy the vanilla inventory-title row.
+        inventoryLabelY = -1000;
         modeButton =
                 addRenderableWidget(
                         Button.builder(
-                                        modeLabel(),
+                                        Component.literal("↻"),
                                         button -> sendButton((menu.cannerMode() + 1) % 4))
-                                .bounds(leftPos + 77, topPos + 57, 64, 16)
+                                .bounds(leftPos + 63, topPos + 81, 50, 14)
                                 .build());
         addRenderableWidget(
                 Button.builder(Component.literal("↔"), button -> sendButton(5))
-                        .bounds(leftPos + 144, topPos + 57, 24, 16)
+                        .bounds(leftPos + 77, topPos + 64, 22, 13)
                         .build());
     }
 
@@ -46,16 +49,16 @@ public final class CannerScreen extends MachineScreen {
     public void extractBackground(
             GuiGraphicsExtractor graphics, int mouseX, int mouseY, float partialTick) {
         super.extractBackground(graphics, mouseX, mouseY, partialTick);
-        drawTank(graphics, false, 8);
-        drawTank(graphics, true, 151);
+        drawTank(graphics, false, 39);
+        drawTank(graphics, true, 117);
     }
 
     private void drawTank(GuiGraphicsExtractor graphics, boolean output, int offset) {
-        FluidTankDisplay.draw(
+        FluidTankDisplay.drawNormal(
                 minecraft,
                 graphics,
                 leftPos + offset,
-                topPos + 18,
+                topPos + 42,
                 menu.tankFluid(output),
                 menu.tankAmount(output),
                 8000);
@@ -64,14 +67,16 @@ public final class CannerScreen extends MachineScreen {
     @Override
     public void extractRenderState(
             GuiGraphicsExtractor graphics, int mouseX, int mouseY, float partialTick) {
-        modeButton.setMessage(modeLabel());
+        modeButton.setTooltip(Tooltip.create(modeLabel()));
         super.extractRenderState(graphics, mouseX, mouseY, partialTick);
         for (boolean output : new boolean[] {false, true})
             FluidTankDisplay.tooltip(
                     minecraft,
                     graphics,
-                    leftPos + (output ? 151 : 8),
-                    topPos + 18,
+                    leftPos + (output ? 117 : 39),
+                    topPos + 42,
+                    20,
+                    55,
                     mouseX,
                     mouseY,
                     menu.tankFluid(output),

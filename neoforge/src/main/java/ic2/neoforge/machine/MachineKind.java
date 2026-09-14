@@ -281,35 +281,46 @@ public enum MachineKind implements StringRepresentable {
     }
 
     public int menuWidth() {
-        if (this == INDUSTRIAL_WORKBENCH) return 194;
-        return upgradable() || this == FLUID_REGULATOR || this == STEAM_GENERATOR ? 202 : 176;
+        return switch (this) {
+            case IRIDIUM_STORAGE_BOX -> 338;
+            case SORTING_MACHINE, NUCLEAR_REACTOR -> 212;
+            case INDUSTRIAL_WORKBENCH -> 194;
+            default -> 176;
+        };
     }
 
     public int menuHeight() {
-        if (this == INDUSTRIAL_WORKBENCH) return 228;
-        if (this == BATCH_CRAFTER) return 206;
-        if (this == WEIGHTED_FLUID_DISTRIBUTOR || this == WEIGHTED_ITEM_DISTRIBUTOR) return 211;
-        if (this == CHUNK_LOADER) return 252;
-        if (this == STEAM_GENERATOR) return 238;
-        if (this == ENERGY_O_MAT) return 184;
-        if (this == PERSONAL_CHEST) return 222;
-        if (this == ITEM_BUFFER) return 232;
-        if (this == NUCLEAR_REACTOR) return 232;
-        if (storageBox()) return 124 + slots() / 9 * 18;
-        // Legacy ContainerElectricBlock height: room for the worn-armor row at y 84.
-        if (storage()) return 196;
-        return this == LIQUID_HEAT_EXCHANGER
-                        || this == FLUID_REGULATOR
-                        || this == FLUID_DISTRIBUTOR
-                        || this == CONDENSER
-                        || this == SOLAR_DISTILLER
-                        || this == STEAM_REPRESSURIZER
-                        || this == RT_HEAT_GENERATOR
-                        || this == RT_GENERATOR
-                        || this == STIRLING_KINETIC_GENERATOR
-                        || this == STEAM_KINETIC_GENERATOR
-                ? 184
-                : 166;
+        return switch (this) {
+            case BATBOX, CESU, MFE, MFSU -> 196;
+            case LV_TRANSFORMER, MV_TRANSFORMER, HV_TRANSFORMER, EV_TRANSFORMER -> 219;
+            case BATBOX_CHARGEPAD, CESU_CHARGEPAD, MFE_CHARGEPAD, MFSU_CHARGEPAD -> 161;
+            case BRONZE_STORAGE_BOX, IRON_STORAGE_BOX -> 202;
+            case STEEL_STORAGE_BOX, IRIDIUM_STORAGE_BOX -> 238;
+            case SORTING_MACHINE, NUCLEAR_REACTOR -> 243;
+            case CHUNK_LOADER -> 250;
+            case ITEM_BUFFER -> 232;
+            case PERSONAL_CHEST -> 222;
+            case STEAM_GENERATOR -> 220;
+            case INDUSTRIAL_WORKBENCH -> 228;
+            case WEIGHTED_FLUID_DISTRIBUTOR, WEIGHTED_ITEM_DISTRIBUTOR -> 211;
+            case BATCH_CRAFTER -> 206;
+            case LIQUID_HEAT_EXCHANGER, STIRLING_KINETIC_GENERATOR -> 204;
+            case ADV_MINER -> 203;
+            case CROPMATRON -> 192;
+            case CANNER,
+                    CONDENSER,
+                    FERMENTER,
+                    FLUID_DISTRIBUTOR,
+                    FLUID_REGULATOR,
+                    REPLICATOR,
+                    SOLAR_DISTILLER ->
+                    184;
+            default -> 166;
+        };
+    }
+
+    public int inventoryX() {
+        return this == IRIDIUM_STORAGE_BOX ? 89 : this == NUCLEAR_REACTOR ? 26 : 8;
     }
 
     public int inventoryY() {

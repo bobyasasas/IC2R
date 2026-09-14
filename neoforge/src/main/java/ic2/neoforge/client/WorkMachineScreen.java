@@ -27,15 +27,29 @@ public final class WorkMachineScreen extends MachineScreen {
     }
 
     @Override
+    protected void drawLegacyMachineBackground(GuiGraphicsExtractor graphics) {
+        if (menu.kind() == MachineKind.SOLID_HEAT_GENERATOR)
+            LegacyMachineGui.blit(
+                    graphics,
+                    LegacyMachineGui.SOLID_HEAT_GENERATOR,
+                    leftPos + 48,
+                    topPos + 45,
+                    47,
+                    44,
+                    81,
+                    36);
+    }
+
+    @Override
     public void extractBackground(
             GuiGraphicsExtractor graphics, int mouseX, int mouseY, float partialTick) {
         super.extractBackground(graphics, mouseX, mouseY, partialTick);
         if (menu.kind() == MachineKind.FLUID_HEAT_GENERATOR)
-            FluidTankDisplay.draw(
+            FluidTankDisplay.drawNormal(
                     minecraft,
                     graphics,
-                    leftPos + 25,
-                    topPos + 18,
+                    leftPos + 70,
+                    topPos + 20,
                     net.minecraft.core.registries.BuiltInRegistries.FLUID.byId(menu.familyValue(3)),
                     menu.familyValue(2),
                     menu.familyValue(4));
@@ -88,8 +102,10 @@ public final class WorkMachineScreen extends MachineScreen {
             FluidTankDisplay.tooltip(
                     minecraft,
                     graphics,
-                    leftPos + 25,
-                    topPos + 18,
+                    leftPos + 70,
+                    topPos + 20,
+                    20,
+                    55,
                     mouseX,
                     mouseY,
                     net.minecraft.core.registries.BuiltInRegistries.FLUID.byId(menu.familyValue(3)),

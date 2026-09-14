@@ -4,6 +4,7 @@ import ic2.neoforge.menu.MachineMenu;
 
 import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.components.Button;
+import net.minecraft.client.gui.components.Tooltip;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Inventory;
 
@@ -21,18 +22,21 @@ public final class UuScannerScreen extends MachineScreen {
         super.init();
         delete =
                 addRenderableWidget(
-                        Button.builder(
-                                        Component.translatable("ic2.Scanner.gui.button.delete"),
+                                Button.builder(
+                                        Component.literal("×"),
                                         b -> send(0))
-                                .bounds(leftPos + 8, topPos + 62, 76, 16)
+                                .bounds(leftPos + 102, topPos + 49, 12, 12)
                                 .build());
+        delete.setTooltip(
+                Tooltip.create(Component.translatable("ic2.Scanner.gui.button.delete")));
         save =
                 addRenderableWidget(
                         Button.builder(
-                                        Component.translatable("ic2.Scanner.gui.button.save"),
+                                        Component.literal("S"),
                                         b -> send(1))
-                                .bounds(leftPos + 92, topPos + 62, 76, 16)
+                                .bounds(leftPos + 143, topPos + 49, 24, 12)
                                 .build());
+        save.setTooltip(Tooltip.create(Component.translatable("ic2.Scanner.gui.button.save")));
     }
 
     private void send(int id) {

@@ -18,11 +18,11 @@ public final class GeneratorScreen extends MachineScreen {
             GuiGraphicsExtractor graphics, int mouseX, int mouseY, float partialTick) {
         super.extractBackground(graphics, mouseX, mouseY, partialTick);
         if (menu.kind().fluidGenerator())
-            FluidTankDisplay.draw(
+            FluidTankDisplay.drawNormal(
                     minecraft,
                     graphics,
-                    leftPos + 151,
-                    topPos + 18,
+                    leftPos + 56,
+                    topPos + 16,
                     BuiltInRegistries.FLUID.byId(menu.familyValue(1)),
                     menu.familyValue(0),
                     menu.familyValue(2));
@@ -44,8 +44,10 @@ public final class GeneratorScreen extends MachineScreen {
             FluidTankDisplay.tooltip(
                     minecraft,
                     graphics,
-                    leftPos + 151,
-                    topPos + 18,
+                    leftPos + 56,
+                    topPos + 16,
+                    20,
+                    55,
                     mouseX,
                     mouseY,
                     BuiltInRegistries.FLUID.byId(menu.familyValue(1)),

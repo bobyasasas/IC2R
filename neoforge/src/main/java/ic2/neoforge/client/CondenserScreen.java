@@ -20,59 +20,62 @@ public final class CondenserScreen extends MachineScreen {
     public void extractBackground(
             GuiGraphicsExtractor graphics, int mouseX, int mouseY, float partialTick) {
         super.extractBackground(graphics, mouseX, mouseY, partialTick);
-        for (boolean output : new boolean[] {false, true})
-            FluidTankDisplay.draw(
-                    minecraft,
-                    graphics,
-                    leftPos + (output ? 153 : 8),
-                    topPos + 18,
-                    menu.tankFluid(output),
-                    menu.tankAmount(output),
-                    output ? 1000 : 100000);
-        graphics.text(
-                font,
-                Component.literal((100 + menu.familyValue(0) * 100) + " mB/t"),
-                leftPos + 54,
-                topPos + 40,
-                0xff404040,
-                false);
-        graphics.text(
-                font,
-                Component.literal(menu.familyValue(0) * 2 + " EU/t"),
-                leftPos + 54,
-                topPos + 52,
-                0xff404040,
-                false);
-        graphics.fill(leftPos + 54, topPos + 65, leftPos + 124, topPos + 71, 0xff747474);
-        graphics.fill(
-                leftPos + 54,
-                topPos + 65,
-                leftPos + 54 + Math.clamp(70 * menu.progress() / 10000, 0, 70),
-                topPos + 71,
-                0xffe9ae23);
-        graphics.text(
-                font,
-                Component.literal(menu.progress() + " mB"),
-                leftPos + 54,
-                topPos + 78,
-                0xff404040,
-                false);
+        FluidTankDisplay.drawPlain(
+                minecraft,
+                graphics,
+                leftPos + 46,
+                topPos + 27,
+                84,
+                33,
+                menu.tankFluid(false),
+                menu.tankAmount(false),
+                100000);
+        FluidTankDisplay.drawPlain(
+                minecraft,
+                graphics,
+                leftPos + 46,
+                topPos + 74,
+                84,
+                15,
+                menu.tankFluid(true),
+                menu.tankAmount(true),
+                1000);
+        LegacyMachineGui.drawGauge(
+                graphics,
+                leftPos,
+                topPos,
+                LegacyMachineGui.GaugeSpec.progressCondenser(47, 63),
+                menu.progress(),
+                10000);
     }
 
     @Override
     public void extractRenderState(
             GuiGraphicsExtractor graphics, int mouseX, int mouseY, float partialTick) {
         super.extractRenderState(graphics, mouseX, mouseY, partialTick);
-        for (boolean output : new boolean[] {false, true})
-            FluidTankDisplay.tooltip(
-                    minecraft,
-                    graphics,
-                    leftPos + (output ? 153 : 8),
-                    topPos + 18,
-                    mouseX,
-                    mouseY,
-                    menu.tankFluid(output),
-                    menu.tankAmount(output),
-                    output ? 1000 : 100000);
+        FluidTankDisplay.tooltip(
+                minecraft,
+                graphics,
+                leftPos + 46,
+                topPos + 27,
+                84,
+                33,
+                mouseX,
+                mouseY,
+                menu.tankFluid(false),
+                menu.tankAmount(false),
+                100000);
+        FluidTankDisplay.tooltip(
+                minecraft,
+                graphics,
+                leftPos + 46,
+                topPos + 74,
+                84,
+                15,
+                mouseX,
+                mouseY,
+                menu.tankFluid(true),
+                menu.tankAmount(true),
+                1000);
     }
 }

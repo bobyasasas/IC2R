@@ -28,15 +28,16 @@ public final class SteamTurbineScreen extends MachineScreen {
     public void extractBackground(
             GuiGraphicsExtractor graphics, int mouseX, int mouseY, float partialTick) {
         super.extractBackground(graphics, mouseX, mouseY, partialTick);
-        for (boolean output : new boolean[] {false, true})
-            FluidTankDisplay.draw(
-                    minecraft,
-                    graphics,
-                    leftPos + (output ? 153 : 8),
-                    topPos + 18,
-                    menu.tankFluid(output),
-                    menu.tankAmount(output),
-                    output ? 1000 : 21000);
+        FluidTankDisplay.drawPlain(
+                minecraft,
+                graphics,
+                leftPos + 75,
+                topPos + 21,
+                26,
+                26,
+                menu.tankFluid(true),
+                menu.tankAmount(true),
+                1000);
         graphics.text(
                 font,
                 Component.literal(menu.familyValue(0) + " KU/t"),
@@ -81,16 +82,17 @@ public final class SteamTurbineScreen extends MachineScreen {
     public void extractRenderState(
             GuiGraphicsExtractor graphics, int mouseX, int mouseY, float partialTick) {
         super.extractRenderState(graphics, mouseX, mouseY, partialTick);
-        for (boolean output : new boolean[] {false, true})
-            FluidTankDisplay.tooltip(
-                    minecraft,
-                    graphics,
-                    leftPos + (output ? 153 : 8),
-                    topPos + 18,
-                    mouseX,
-                    mouseY,
-                    menu.tankFluid(output),
-                    menu.tankAmount(output),
-                    output ? 1000 : 21000);
+        FluidTankDisplay.tooltip(
+                minecraft,
+                graphics,
+                leftPos + 75,
+                topPos + 21,
+                26,
+                26,
+                mouseX,
+                mouseY,
+                menu.tankFluid(true),
+                menu.tankAmount(true),
+                1000);
     }
 }

@@ -4,6 +4,7 @@ import ic2.neoforge.menu.MachineMenu;
 
 import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.components.Button;
+import net.minecraft.client.gui.components.Tooltip;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Inventory;
@@ -18,30 +19,20 @@ public final class PatternStorageScreen extends MachineScreen {
     @Override
     public void init() {
         super.init();
-        addRenderableWidget(
-                Button.builder(
-                                Component.translatable("ic2.PatternStorage.gui.info.last"),
-                                b -> send(0))
-                        .bounds(leftPos + 8, topPos + 62, 52, 16)
-                        .build());
-        addRenderableWidget(
-                Button.builder(
-                                Component.translatable("ic2.PatternStorage.gui.info.next"),
-                                b -> send(1))
-                        .bounds(leftPos + 64, topPos + 62, 52, 16)
-                        .build());
-        addRenderableWidget(
-                Button.builder(
-                                Component.translatable("ic2.PatternStorage.gui.info.export"),
-                                b -> send(2))
-                        .bounds(leftPos + 120, topPos + 62, 52, 16)
-                        .build());
-        addRenderableWidget(
-                Button.builder(
-                                Component.translatable("ic2.PatternStorage.gui.info.import"),
-                                b -> send(3))
-                        .bounds(leftPos + 8, topPos + 80, 52, 16)
-                        .build());
+        smallButton("‹", "ic2.PatternStorage.gui.info.last", 0, 7, 19, 9, 18);
+        smallButton("›", "ic2.PatternStorage.gui.info.next", 1, 36, 19, 9, 18);
+        smallButton("↑", "ic2.PatternStorage.gui.info.export", 2, 10, 37, 16, 8);
+        smallButton("↓", "ic2.PatternStorage.gui.info.import", 3, 26, 37, 16, 8);
+    }
+
+    private void smallButton(
+            String symbol, String tooltip, int action, int x, int y, int width, int height) {
+        var button =
+                Button.builder(Component.literal(symbol), b -> send(action))
+                        .bounds(leftPos + x, topPos + y, width, height)
+                        .build();
+        button.setTooltip(Tooltip.create(Component.translatable(tooltip)));
+        addRenderableWidget(button);
     }
 
     private void send(int id) {
@@ -60,45 +51,45 @@ public final class PatternStorageScreen extends MachineScreen {
             graphics.text(
                     font,
                     Component.literal(Math.min(index + 1, size) + " / " + size),
-                    x + 120,
-                    y + 52,
+                    x + (imageWidth - font.width(Math.min(index + 1, size) + " / " + size)) / 2,
+                    y + 30,
                     0xff404040,
                     false);
         }
         graphics.text(
                 font,
                 Component.translatable("ic2.generic.text.Name"),
-                x + 8,
-                y + 96,
+                x + 10,
+                y + 48,
                 0xffffff,
                 false);
         graphics.text(
                 font,
                 Component.translatable("ic2.generic.text.UUMatte"),
-                x + 8,
-                y + 107,
+                x + 10,
+                y + 59,
                 0xffffff,
                 false);
         graphics.text(
                 font,
                 Component.translatable("ic2.generic.text.Energy"),
-                x + 8,
-                y + 118,
+                x + 10,
+                y + 70,
                 0xffffff,
                 false);
         if (size > 0 && menu.familyValue(2) >= 0) {
             ItemStack pattern =
                     new ItemStack(BuiltInRegistries.ITEM.byId(menu.familyValue(2)));
             graphics.text(
-                    font, pattern.getHoverName(), x + 62, y + 96, 0xffffff, false);
+                    font, pattern.getHoverName(), x + 80, y + 48, 0xffffff, false);
             graphics.text(
                     font,
                     Component.literal(
                             MeterScreen.toSiString(menu.familyFloat(3), 4)
                                     + Component.translatable("ic2.generic.text.bucketUnit")
                                             .getString()),
-                    x + 62,
-                    y + 107,
+                    x + 80,
+                    y + 59,
                     0xffffff,
                     false);
             graphics.text(
@@ -106,8 +97,8 @@ public final class PatternStorageScreen extends MachineScreen {
                     Component.literal(
                             MeterScreen.toSiString(menu.familyFloat(4), 4)
                                     + Component.translatable("ic2.generic.text.EU").getString()),
-                    x + 62,
-                    y + 118,
+                    x + 80,
+                    y + 70,
                     0xffffff,
                     false);
         }

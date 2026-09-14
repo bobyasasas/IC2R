@@ -4,6 +4,7 @@ import ic2.neoforge.menu.MachineMenu;
 
 import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.components.Button;
+import net.minecraft.client.gui.components.Tooltip;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Inventory;
 
@@ -20,25 +21,26 @@ public final class AdvMinerScreen extends MachineScreen {
     @Override
     public void init() {
         super.init();
-        resetButton = addRenderableWidget(button("ic2.AdvMiner.gui.switch.reset", 0, 8, 8, 130));
-        modeButton = addRenderableWidget(button("ic2.AdvMiner.gui.switch.mode", 1, 8, 92, 130));
+        resetButton = button("R", "ic2.AdvMiner.gui.switch.reset", 0, 133, 101, 36);
+        modeButton = button("M", "ic2.AdvMiner.gui.switch.mode", 1, 123, 27, 18);
         silkButton =
-                addRenderableWidget(button("ic2.AdvMiner.gui.switch.silktouch", 2, 8, 110, 130));
+                button("S", "ic2.AdvMiner.gui.switch.silktouch", 2, 129, 45, 18);
     }
 
-    private Button button(String key, int action, int x, int y, int width) {
-        return addRenderableWidget(
+    private Button button(
+            String symbol, String tooltip, int action, int x, int y, int width) {
+        var button =
                 Button.builder(
-                                key.endsWith("silktouch")
-                                        ? Component.translatable(key, menu.familyValue(1) == 1)
-                                        : Component.translatable(key),
+                                Component.literal(symbol),
                                 control -> {
                                     if (minecraft.gameMode != null)
                                         minecraft.gameMode.handleInventoryButtonClick(
                                                 menu.containerId, action);
                                 })
-                        .bounds(leftPos + x, topPos + y, width, 16)
-                        .build());
+                        .bounds(leftPos + x, topPos + y, width, 15)
+                        .build();
+        button.setTooltip(Tooltip.create(Component.translatable(tooltip)));
+        return addRenderableWidget(button);
     }
 
     private Component modeLabel() {
@@ -51,7 +53,19 @@ public final class AdvMinerScreen extends MachineScreen {
     @Override
     public void extractRenderState(
             GuiGraphicsExtractor graphics, int mouseX, int mouseY, float partialTick) {
-        modeButton.setMessage(modeLabel());
+        modeButton.setTooltip(Tooltip.create(modeLabel()));
+        silkButton.setTooltip(
+                Tooltip.create(
+                        Component.translatable(
+                                "ic2.AdvMiner.gui.switch.silktouch",
+                                menu.familyValue(1) == 1)));
         super.extractRenderState(graphics, mouseX, mouseY, partialTick);
+    }
+
+    @Override
+    public void extractBackground(
+            GuiGraphicsExtractor graphics, int mouseX, int mouseY, float partialTick) {
+        super.extractBackground(graphics, mouseX, mouseY, partialTick);
+        graphics.text(font, modeLabel(), leftPos + 40, topPos + 30, 0xff20eb3e, false);
     }
 }

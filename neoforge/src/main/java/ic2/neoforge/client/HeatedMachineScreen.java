@@ -1,5 +1,6 @@
 package ic2.neoforge.client;
 
+import ic2.neoforge.machine.MachineKind;
 import ic2.neoforge.menu.MachineMenu;
 
 import net.minecraft.client.gui.GuiGraphicsExtractor;
@@ -15,27 +16,60 @@ public final class HeatedMachineScreen extends MachineScreen {
     }
 
     @Override
+    protected void drawLegacyMachineBackground(GuiGraphicsExtractor graphics) {
+        if (menu.kind() == MachineKind.CENTRIFUGE) {
+            LegacyMachineGui.blit(
+                    graphics,
+                    LegacyMachineGui.THERMAL_CENTRIFUGE,
+                    leftPos + 40,
+                    topPos + 18,
+                    40,
+                    18,
+                    80,
+                    60);
+        } else {
+            blitWhole(graphics, LegacyMachineGui.INDUCTION_INPUT, 42, 16, 34, 18);
+            blitWhole(graphics, LegacyMachineGui.INDUCTION_OUTPUT, 110, 30, 38, 26);
+        }
+    }
+
+    @Override
     public void extractBackground(
             GuiGraphicsExtractor graphics, int mouseX, int mouseY, float partialTick) {
         super.extractBackground(graphics, mouseX, mouseY, partialTick);
-        int height =
-                (int)
-                        Math.clamp(
-                                48L * menu.familyValue(0) / Math.max(1, menu.familyValue(1)),
-                                0,
-                                48);
-        graphics.fill(leftPos + 8, topPos + 18, leftPos + 20, topPos + 68, 0xff373737);
-        graphics.fill(leftPos + 9, topPos + 67 - height, leftPos + 19, topPos + 67, 0xffe86d30);
+        if (menu.kind() == MachineKind.CENTRIFUGE) {
+            LegacyMachineGui.drawGauge(
+                    graphics,
+                    leftPos,
+                    topPos,
+                    LegacyMachineGui.GaugeSpec.heatCentrifuge(68, 67),
+                    menu.familyValue(0),
+                    menu.familyValue(1));
+        } else {
+            graphics.text(
+                    font,
+                    Component.translatable("ic2.generic.text.heat"),
+                    leftPos + 10,
+                    topPos + 36,
+                    0xff404040,
+                    false);
+            graphics.text(
+                    font,
+                    Component.literal(Integer.toString(menu.familyValue(0))),
+                    leftPos + 10,
+                    topPos + 46,
+                    0xff404040,
+                    false);
+        }
     }
 
     @Override
     public void extractRenderState(
             GuiGraphicsExtractor graphics, int mouseX, int mouseY, float partialTick) {
         super.extractRenderState(graphics, mouseX, mouseY, partialTick);
-        if (mouseX >= leftPos + 8
-                && mouseX < leftPos + 20
-                && mouseY >= topPos + 18
-                && mouseY < topPos + 68)
+        var heat = LegacyMachineGui.GaugeSpec.heatCentrifuge(68, 67);
+        if (menu.kind() == MachineKind.CENTRIFUGE
+                && LegacyMachineGui.contains(heat, leftPos, topPos, mouseX, mouseY))
             graphics.setComponentTooltipForNextFrame(
                     font,
                     List.of(
@@ -46,5 +80,25 @@ public final class HeatedMachineScreen extends MachineScreen {
                     mouseX,
                     mouseY,
                     ItemStack.EMPTY);
+    }
+
+    private void blitWhole(
+            GuiGraphicsExtractor graphics,
+            net.minecraft.resources.Identifier texture,
+            int x,
+            int y,
+            int width,
+            int height) {
+        graphics.blit(
+                net.minecraft.client.renderer.RenderPipelines.GUI_TEXTURED,
+                texture,
+                leftPos + x,
+                topPos + y,
+                0.0F,
+                0.0F,
+                width,
+                height,
+                width,
+                height);
     }
 }

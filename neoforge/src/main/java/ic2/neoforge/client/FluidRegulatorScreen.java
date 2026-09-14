@@ -24,20 +24,20 @@ public final class FluidRegulatorScreen extends MachineScreen {
         super.init();
         for (int column = 0; column < 4; column++) {
             int plus = column, minus = column + 4, value = (int) Math.pow(10, column);
-            int x = leftPos + 54 + column * 36;
+            int x = leftPos + 102 + column * 10;
             addRenderableWidget(
-                    Button.builder(Component.literal("+" + value), b -> send(plus))
-                            .bounds(x, topPos + 18, 35, 18)
+                    Button.builder(Component.literal("+"), b -> send(plus))
+                            .bounds(x, topPos + 44, 9, 9)
                             .build());
             addRenderableWidget(
-                    Button.builder(Component.literal("-" + value), b -> send(minus))
-                            .bounds(x, topPos + 50, 35, 18)
+                    Button.builder(Component.literal("-"), b -> send(minus))
+                            .bounds(x, topPos + 68, 9, 9)
                             .build());
         }
         mode =
                 addRenderableWidget(
-                        Button.builder(modeLabel(), b -> send(menu.familyValue(2) == 0 ? 8 : 9))
-                                .bounds(leftPos + 104, topPos + 72, 90, 18)
+                        Button.builder(Component.literal("M"), b -> send(menu.familyValue(2) == 0 ? 8 : 9))
+                                .bounds(leftPos + 152, topPos + 44, 9, 9)
                                 .build());
     }
 
@@ -55,20 +55,20 @@ public final class FluidRegulatorScreen extends MachineScreen {
     public void extractBackground(
             GuiGraphicsExtractor graphics, int mouseX, int mouseY, float partialTick) {
         super.extractBackground(graphics, mouseX, mouseY, partialTick);
-        mode.setMessage(modeLabel());
-        FluidTankDisplay.draw(
+        mode.setTooltip(net.minecraft.client.gui.components.Tooltip.create(modeLabel()));
+        FluidTankDisplay.drawNormal(
                 minecraft,
                 graphics,
-                leftPos + 8,
-                topPos + 18,
+                leftPos + 78,
+                topPos + 34,
                 menu.tankFluid(false),
                 menu.tankAmount(false),
                 10000);
         graphics.text(
                 font,
                 Component.literal(menu.familyValue(0) + " mB"),
-                leftPos + 96,
-                topPos + 41,
+                leftPos + 105,
+                topPos + 57,
                 0xff404040,
                 false);
     }
@@ -80,8 +80,10 @@ public final class FluidRegulatorScreen extends MachineScreen {
         FluidTankDisplay.tooltip(
                 minecraft,
                 graphics,
-                leftPos + 8,
-                topPos + 18,
+                leftPos + 78,
+                topPos + 34,
+                20,
+                55,
                 mouseX,
                 mouseY,
                 menu.tankFluid(false),

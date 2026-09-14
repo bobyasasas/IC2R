@@ -4,6 +4,7 @@ import ic2.neoforge.menu.MachineMenu;
 
 import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.item.ItemStack;
 
@@ -24,51 +25,50 @@ public class MachineScreen extends ContainerScreenBase<MachineMenu> {
     }
 
     @Override
+    protected Identifier backgroundTexture() {
+        return LegacyMachineGui.background(menu);
+    }
+
+    /** Static machine art from a legacy atlas, drawn before live gauges and tank contents. */
+    protected void drawLegacyMachineBackground(GuiGraphicsExtractor graphics) {}
+
+    @Override
     public void extractBackground(
             GuiGraphicsExtractor graphics, int mouseX, int mouseY, float partialTick) {
         super.extractBackground(graphics, mouseX, mouseY, partialTick);
-        int x = leftPos, y = topPos;
-        int energyHeight =
-                (int)
-                        Math.clamp(
-                                48L
-                                        * (menu.capacity() > 0
-                                                ? menu.energy()
-                                                : menu.fuelRemaining())
-                                        / Math.max(
-                                                1,
-                                                menu.capacity() > 0
-                                                        ? menu.capacity()
-                                                        : menu.fuelMaximum()),
-                                0,
-                                48);
-        if (showsEnergyBar()) {
-            graphics.fill(x + 25, y + 18, x + 37, y + 68, 0xff373737);
-            graphics.fill(x + 26, y + 67 - energyHeight, x + 36, y + 67, 0xffe9ae23);
-        }
-        if (!showsProgress()) return;
-        int progressWidth =
-                menu.progressMaximum() <= 0
-                        ? 0
-                        : (int) Math.clamp(24L * menu.progress() / menu.progressMaximum(), 0, 24);
-        graphics.fill(x + 79, y + 36, x + 103, y + 45, 0xff747474);
-        graphics.fill(
-                x + 79,
-                y + 36,
-                x + 79 + progressWidth,
-                y + 45,
-                menu.kind().generating() ? 0xffff8f35 : 0xffe9ae23);
+        drawLegacyMachineBackground(graphics);
+        if (showsEnergyBar())
+            LegacyMachineGui.drawGauge(
+                    graphics,
+                    leftPos,
+                    topPos,
+                    LegacyMachineGui.energy(menu.kind()),
+                    menu.energy(),
+                    menu.capacity());
+        LegacyMachineGui.drawGauge(
+                graphics,
+                leftPos,
+                topPos,
+                LegacyMachineGui.fuel(menu.kind()),
+                menu.fuelRemaining(),
+                menu.fuelMaximum());
+        if (showsProgress())
+            LegacyMachineGui.drawGauge(
+                    graphics,
+                    leftPos,
+                    topPos,
+                    LegacyMachineGui.progress(menu.kind()),
+                    menu.progress(),
+                    menu.progressMaximum());
     }
 
     @Override
     public void extractRenderState(
             GuiGraphicsExtractor graphics, int mouseX, int mouseY, float partialTick) {
         super.extractRenderState(graphics, mouseX, mouseY, partialTick);
+        var energyGauge = LegacyMachineGui.energy(menu.kind());
         if (menu.capacity() > 0
-                && mouseX >= leftPos + 25
-                && mouseX < leftPos + 37
-                && mouseY >= topPos + 18
-                && mouseY < topPos + 68) {
+                && LegacyMachineGui.contains(energyGauge, leftPos, topPos, mouseX, mouseY)) {
             graphics.setComponentTooltipForNextFrame(
                     font,
                     List.of(

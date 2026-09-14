@@ -26,11 +26,13 @@ public final class StirlingKineticScreen extends MachineScreen {
             GuiGraphicsExtractor graphics, int mouseX, int mouseY, float partialTick) {
         super.extractBackground(graphics, mouseX, mouseY, partialTick);
         for (boolean output : new boolean[] {false, true})
-            FluidTankDisplay.draw(
+            FluidTankDisplay.drawPlain(
                     minecraft,
                     graphics,
                     leftPos + (output ? 145 : 19),
-                    topPos + 18,
+                    topPos + 47,
+                    12,
+                    44,
                     menu.tankFluid(output),
                     menu.tankAmount(output),
                     2000);
@@ -52,7 +54,9 @@ public final class StirlingKineticScreen extends MachineScreen {
                     minecraft,
                     graphics,
                     leftPos + (output ? 145 : 19),
-                    topPos + 18,
+                    topPos + 47,
+                    12,
+                    44,
                     mouseX,
                     mouseY,
                     menu.tankFluid(output),

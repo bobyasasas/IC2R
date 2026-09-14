@@ -1,5 +1,6 @@
 package ic2.neoforge.client;
 
+import ic2.core.energy.VoltageTier;
 import ic2.neoforge.menu.MachineMenu;
 
 import net.minecraft.client.gui.GuiGraphicsExtractor;
@@ -19,33 +20,34 @@ public final class EnergyDeviceScreen extends MachineScreen {
     @Override
     public void init() {
         super.init();
+        if (menu.kind().transformer()) {
+            for (int mode = 0; mode < 3; mode++) {
+                int selectedMode = mode;
+                addRenderableWidget(
+                        Button.builder(
+                                        Component.translatable(
+                                                "ic2.Transformer.gui.switch.mode" + (mode + 1)),
+                                        button -> send(selectedMode))
+                                .bounds(leftPos + 7, topPos + 65 + mode * 20, 144, 20)
+                                .build());
+            }
+            return;
+        }
         modeButton =
                 addRenderableWidget(
                         Button.builder(
-                                        label(),
-                                        button -> {
-                                            if (minecraft.gameMode != null)
-                                                minecraft.gameMode.handleInventoryButtonClick(
-                                                        menu.containerId,
+                                        Component.literal("R"),
+                                        button ->
+                                                send(
                                                         (menu.familyValue(0) + 1)
-                                                                % (menu.kind().storage()
-                                                                        ? 7
-                                                                        : menu.kind().chargepad()
-                                                                                ? 2
-                                                                                : 3));
-                                        })
-                                .bounds(leftPos + 76, topPos + 58, 92, 18)
+                                                                % (menu.kind().storage() ? 7 : 2)))
+                                .bounds(leftPos + 152, topPos + 4, 20, 20)
                                 .build());
     }
 
-    private Component label() {
-        var kind = menu.kind();
-        return Component.translatable(
-                "ic2.energy_device."
-                        + (kind.storage()
-                                ? "storage."
-                                : kind.chargepad() ? "chargepad." : "transformer.")
-                        + menu.familyValue(0));
+    private void send(int value) {
+        if (minecraft.gameMode != null)
+            minecraft.gameMode.handleInventoryButtonClick(menu.containerId, value);
     }
 
     private Component description() {
@@ -63,7 +65,6 @@ public final class EnergyDeviceScreen extends MachineScreen {
             GuiGraphicsExtractor graphics, int mouseX, int mouseY, float partialTick) {
         super.extractBackground(graphics, mouseX, mouseY, partialTick);
         if (modeButton != null) {
-            modeButton.setMessage(label());
             modeButton.setTooltip(Tooltip.create(description()));
         }
         if (menu.kind().transformer()) {
@@ -71,31 +72,41 @@ public final class EnergyDeviceScreen extends MachineScreen {
                     font,
                     Component.translatable(
                             "ic2.energy_device.input", menu.familyValue(1), menu.familyValue(2)),
-                    leftPos + 45,
-                    topPos + 22,
+                    leftPos + 8,
+                    topPos + 28,
                     0xff404040,
                     false);
             graphics.text(
                     font,
                     Component.translatable(
                             "ic2.energy_device.output", menu.familyValue(3), menu.familyValue(4)),
-                    leftPos + 45,
-                    topPos + 38,
+                    leftPos + 8,
+                    topPos + 44,
                     0xff404040,
                     false);
         } else {
+            var tier = VoltageTier.fromIcTier(menu.kind().electricalTier());
             graphics.text(
                     font,
-                    Component.translatable("ic2.energy_device.charge"),
-                    leftPos + 78,
-                    topPos + 21,
+                    Component.translatable(
+                            "ic2.EUStorage.gui.info.level",
+                            Component.translatable(tier.getTranslationKey())),
+                    leftPos + (menu.kind().chargepad() ? 79 : 82),
+                    topPos + (menu.kind().chargepad() ? 25 : 24),
                     0xff404040,
                     false);
             graphics.text(
                     font,
-                    Component.translatable("ic2.energy_device.discharge"),
-                    leftPos + 78,
-                    topPos + 43,
+                    Component.literal(" " + menu.energy()),
+                    leftPos + 110,
+                    topPos + 34,
+                    0xff404040,
+                    false);
+            graphics.text(
+                    font,
+                    Component.literal("/" + menu.capacity()),
+                    leftPos + 110,
+                    topPos + 44,
                     0xff404040,
                     false);
             if (menu.kind().storage()) {
@@ -105,6 +116,20 @@ public final class EnergyDeviceScreen extends MachineScreen {
                         Component.translatable("ic2.EUStorage.gui.info.armor"),
                         leftPos + 8,
                         topPos + 74,
+                        0xff404040,
+                        false);
+                graphics.text(
+                        font,
+                        Component.translatable("ic2.EUStorage.gui.info.output"),
+                        leftPos + 82,
+                        topPos + 59,
+                        0xff404040,
+                        false);
+                graphics.text(
+                        font,
+                        Component.literal(tier.getVoltage() + " EU/t"),
+                        leftPos + 82,
+                        topPos + 69,
                         0xff404040,
                         false);
             }

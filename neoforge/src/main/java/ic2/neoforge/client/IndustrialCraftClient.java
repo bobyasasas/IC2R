@@ -157,6 +157,8 @@ public final class IndustrialCraftClient {
                         event.register(registration.menu().get(), CropmatronScreen::new);
                     else if (kind == MachineKind.CROP_HARVESTER)
                         event.register(registration.menu().get(), MachineScreen::new);
+                    else if (kind == MachineKind.PUMP)
+                        event.register(registration.menu().get(), PumpScreen::new);
                     else if (kind == MachineKind.CENTRIFUGE
                             || kind == MachineKind.INDUCTION_FURNACE)
                         event.register(registration.menu().get(), HeatedMachineScreen::new);

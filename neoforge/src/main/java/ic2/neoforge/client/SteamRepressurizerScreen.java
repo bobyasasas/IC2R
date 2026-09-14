@@ -22,11 +22,13 @@ public final class SteamRepressurizerScreen extends MachineScreen {
             GuiGraphicsExtractor graphics, int mouseX, int mouseY, float partialTick) {
         super.extractBackground(graphics, mouseX, mouseY, partialTick);
         for (boolean output : new boolean[] {false, true})
-            FluidTankDisplay.draw(
+            FluidTankDisplay.drawPlain(
                     minecraft,
                     graphics,
-                    leftPos + (output ? 153 : 8),
-                    topPos + 18,
+                    leftPos + (output ? 123 : 15),
+                    topPos + 19,
+                    38,
+                    47,
                     menu.tankFluid(output),
                     menu.tankAmount(output),
                     10000);
@@ -64,8 +66,10 @@ public final class SteamRepressurizerScreen extends MachineScreen {
             FluidTankDisplay.tooltip(
                     minecraft,
                     graphics,
-                    leftPos + (output ? 153 : 8),
-                    topPos + 18,
+                    leftPos + (output ? 123 : 15),
+                    topPos + 19,
+                    38,
+                    47,
                     mouseX,
                     mouseY,
                     menu.tankFluid(output),

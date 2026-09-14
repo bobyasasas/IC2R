@@ -4,6 +4,7 @@ import ic2.neoforge.menu.MachineMenu;
 
 import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.components.Button;
+import net.minecraft.client.gui.components.Tooltip;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Inventory;
 
@@ -21,13 +22,13 @@ public final class MinerScreen extends MachineScreen {
         pumpButton =
                 addRenderableWidget(
                         Button.builder(
-                                        pumpLabel(),
+                                        Component.literal("P"),
                                         button -> {
                                             if (minecraft.gameMode != null)
                                                 minecraft.gameMode.handleInventoryButtonClick(
                                                         menu.containerId, 0);
                                         })
-                                .bounds(leftPos + 8, topPos + 72, 26, 16)
+                                .bounds(leftPos + 152, topPos + 40, 18, 18)
                                 .build());
     }
 
@@ -41,7 +42,7 @@ public final class MinerScreen extends MachineScreen {
     @Override
     public void extractRenderState(
             GuiGraphicsExtractor graphics, int mouseX, int mouseY, float partialTick) {
-        pumpButton.setMessage(pumpLabel());
+        pumpButton.setTooltip(Tooltip.create(pumpLabel()));
         super.extractRenderState(graphics, mouseX, mouseY, partialTick);
     }
 }

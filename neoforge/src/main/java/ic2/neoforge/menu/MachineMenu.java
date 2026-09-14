@@ -90,9 +90,9 @@ public final class MachineMenu extends AbstractContainerMenu {
                         ? new SimpleContainerData(MachineMenuData.SIZE)
                         : new MachineMenuData(machine);
         if (kind == MachineKind.FLUID_REGULATOR) {
-            addFluidContainerSlot(inventory, 0, 48, 72);
-            addOutputSlot(inventory, 1, 66, 72);
-            addBatterySlot(inventory, 2, 8, 72);
+            addFluidContainerSlot(inventory, 0, 58, 53);
+            addOutputSlot(inventory, 1, 58, 71);
+            addBatterySlot(inventory, 2, 8, 57);
         } else if (kind == MachineKind.INDUSTRIAL_WORKBENCH) {
             for (int y = 0; y < 3; y++)
                 for (int x = 0; x < 3; x++)
@@ -170,7 +170,7 @@ public final class MachineMenu extends AbstractContainerMenu {
                                 inventory, inventory::set, slot, 8 + slot * 18, 108));
         } else if (kind == MachineKind.STEAM_KINETIC_GENERATOR) {
             addSlot(
-                    new ResourceHandlerSlot(inventory, inventory::set, 0, 80, 18) {
+                    new ResourceHandlerSlot(inventory, inventory::set, 0, 80, 26) {
                         @Override
                         public boolean mayPlace(ItemStack stack) {
                             return ic2.neoforge.machine.SteamTurbineBlockEntity.rotor(
@@ -190,8 +190,9 @@ public final class MachineMenu extends AbstractContainerMenu {
             // The terraformer is hand-loaded, the coil is wired only and the luminator is
             // right-clicked; all three are slotless.
         } else if (kind == MachineKind.PUMP) {
-            addFluidContainerSlot(inventory, 0, 56, 35);
-            addOutputSlot(inventory, 1, 116, 35);
+            // Dynamic legacy GUI: input above the tank, output at the arrow's tip.
+            addFluidContainerSlot(inventory, 0, 99, 17);
+            addOutputSlot(inventory, 1, 132, 34);
         } else if (kind == MachineKind.SORTING_MACHINE) {
             // The client-side menu has no live BE and binds a placeholder filter grid.
             var filters =
@@ -208,8 +209,8 @@ public final class MachineMenu extends AbstractContainerMenu {
                                 filters,
                                 filters::set,
                                 slot,
-                                8 + (slot % 7) * 18,
-                                18 + (slot / 7) * 18) {
+                                80 + (slot % 7) * 18,
+                                19 + (slot / 7) * 20) {
                             @Override
                             public int getMaxStackSize() {
                                 return 1;
@@ -218,34 +219,41 @@ public final class MachineMenu extends AbstractContainerMenu {
             for (int slot = 0; slot < 11; slot++)
                 addSlot(
                         new ResourceHandlerSlot(
-                                inventory, inventory::set, slot, 8 + (slot % 11) * 16, 150) {
+                                inventory, inventory::set, slot, 8 + slot * 18, 141) {
                             @Override
                             public int getMaxStackSize() {
                                 return 64;
                             }
                         });
         } else if (kind == MachineKind.TRADE_O_MAT) {
-            addSlot(templateSlot(inventory, 0, 56, 17));
-            addSlot(templateSlot(inventory, 1, 102, 17));
-            addSlot(new ResourceHandlerSlot(inventory, inventory::set, 2, 56, 53));
-            addSlot(new ResourceHandlerSlot(inventory, inventory::set, 3, 102, 53));
+            if (tradeEditable) {
+                addSlot(templateSlot(inventory, 0, 50, 19));
+                addSlot(templateSlot(inventory, 1, 50, 53));
+                addSlot(new ResourceHandlerSlot(inventory, inventory::set, 2, 80, 19));
+                addSlot(new ResourceHandlerSlot(inventory, inventory::set, 3, 80, 53));
+            } else {
+                addSlot(templateSlot(inventory, 0, 50, 19));
+                addSlot(templateSlot(inventory, 1, 50, 38));
+                addSlot(new ResourceHandlerSlot(inventory, inventory::set, 2, 143, 17));
+                addSlot(new ResourceHandlerSlot(inventory, inventory::set, 3, 143, 53));
+            }
         } else if (kind == MachineKind.ENERGY_O_MAT) {
             addSlot(
-                    new ResourceHandlerSlot(inventory, inventory::set, 0, 38, 74) {
+                    new ResourceHandlerSlot(inventory, inventory::set, 0, 24, 17) {
                         @Override
                         public int getMaxStackSize() {
                             return 1;
                         }
                     });
-            addSlot(new ResourceHandlerSlot(inventory, inventory::set, 1, 74, 74));
-            addBatterySlot(inventory, 2, 110, 74);
+            addSlot(new ResourceHandlerSlot(inventory, inventory::set, 1, 60, 17));
+            addBatterySlot(inventory, 2, 60, 53);
         } else if (kind == MachineKind.BLAST_FURNACE) {
-            addSlot(new ResourceHandlerSlot(inventory, inventory::set, 0, 56, 17));
-            addOutputSlot(inventory, 1, 116, 35);
-            addOutputSlot(inventory, 2, 134, 35);
-            addFluidContainerSlot(inventory, 3, 38, 53);
+            addSlot(new ResourceHandlerSlot(inventory, inventory::set, 0, 56, 25));
+            addOutputSlot(inventory, 1, 112, 25);
+            addOutputSlot(inventory, 2, 112, 43);
+            addFluidContainerSlot(inventory, 3, 8, 53);
             addSlot(
-                    new ResourceHandlerSlot(inventory, inventory::set, 4, 74, 53) {
+                    new ResourceHandlerSlot(inventory, inventory::set, 4, 26, 53) {
                         @Override
                         public boolean mayPlace(ItemStack stack) {
                             return false;
@@ -259,29 +267,29 @@ public final class MachineMenu extends AbstractContainerMenu {
                                     inventory,
                                     inventory::set,
                                     x + y * NuclearReactorBlockEntity.GRID_COLUMNS,
-                                    8 + x * 18,
-                                    17 + y * 18));
+                                    26 + x * 18,
+                                    25 + y * 18));
         } else if (kind == MachineKind.REPLICATOR) {
-            addFluidContainerSlot(inventory, ReplicatorBlockEntity.FLUID_SLOT, 56, 17);
+            addFluidContainerSlot(inventory, ReplicatorBlockEntity.FLUID_SLOT, 8, 27);
             addSlot(
                     new ResourceHandlerSlot(
-                            inventory, inventory::set, ReplicatorBlockEntity.CELL_SLOT, 125, 35) {
+                            inventory, inventory::set, ReplicatorBlockEntity.CELL_SLOT, 8, 72) {
                         @Override
                         public boolean mayPlace(ItemStack stack) {
                             return false;
                         }
                     });
-            addOutputSlot(inventory, ReplicatorBlockEntity.OUTPUT, 125, 53);
+            addOutputSlot(inventory, ReplicatorBlockEntity.OUTPUT, 90, 59);
         } else if (kind == MachineKind.UU_SCANNER) {
             addSlot(
-                    new ResourceHandlerSlot(inventory, inventory::set, 0, 56, 35) {
+                    new ResourceHandlerSlot(inventory, inventory::set, 0, 55, 35) {
                         @Override
                         public boolean mayPlace(ItemStack stack) {
                             return true;
                         }
                     });
             addSlot(
-                    new ResourceHandlerSlot(inventory, inventory::set, 1, 116, 35) {
+                    new ResourceHandlerSlot(inventory, inventory::set, 1, 152, 65) {
                         @Override
                         public boolean mayPlace(ItemStack stack) {
                             return stack.getItem() instanceof ic2.neoforge.item.CrystalMemoryItem;
@@ -394,14 +402,15 @@ public final class MachineMenu extends AbstractContainerMenu {
                                 44 + slot % 5 * 18,
                                 22 + slot / 5 * 18));
         } else if (kind.storageBox()) {
+            int columns = kind == MachineKind.IRIDIUM_STORAGE_BOX ? 18 : 9;
             for (int slot = 0; slot < kind.slots(); slot++)
                 addSlot(
                         new ResourceHandlerSlot(
                                 inventory,
                                 inventory::set,
                                 slot,
-                                8 + (slot % 9) * 18,
-                                18 + (slot / 9) * 18) {
+                                8 + (slot % columns) * 18,
+                                17 + (slot / columns) * 18) {
                             @Override
                             public int getMaxStackSize() {
                                 return 64;
@@ -435,7 +444,11 @@ public final class MachineMenu extends AbstractContainerMenu {
             for (int slot = 0; slot < 6; slot++)
                 addSlot(
                         new ResourceHandlerSlot(
-                                inventory, inventory::set, slot, 34 + slot * 18, 34) {
+                                inventory,
+                                inventory::set,
+                                slot,
+                                62 + slot % 3 * 18,
+                                27 + slot / 3 * 18) {
                             @Override
                             public boolean mayPlace(ItemStack stack) {
                                 return ItemResource.of(stack).getItem()
@@ -452,7 +465,11 @@ public final class MachineMenu extends AbstractContainerMenu {
             for (int slot = 0; slot < 6; slot++)
                 addSlot(
                         new ResourceHandlerSlot(
-                                inventory, inventory::set, slot, 34 + slot * 18, 34) {
+                                inventory,
+                                inventory::set,
+                                slot,
+                                31 + slot % 3 * 18,
+                                26 + slot / 3 * 18) {
                             @Override
                             public boolean mayPlace(ItemStack stack) {
                                 return ItemResource.of(stack).getItem()
@@ -465,24 +482,37 @@ public final class MachineMenu extends AbstractContainerMenu {
                                 return 1;
                             }
                         });
-            addBatterySlot(inventory, 6, 8, 72);
+            addBatterySlot(inventory, 6, 8, 62);
         } else if (kind == MachineKind.CONDENSER) {
-            addFluidContainerSlot(inventory, 0, 130, 72);
-            addOutputSlot(inventory, 1, 152, 72);
-            addBatterySlot(inventory, 2, 8, 72);
-            addInstalledParts(
-                    inventory,
-                    3,
-                    ic2.neoforge.registration.ModReactorItems.HEAT_VENT.get(),
-                    54,
-                    17);
+            addFluidContainerSlot(inventory, 0, 26, 73);
+            addOutputSlot(inventory, 1, 134, 73);
+            addBatterySlot(inventory, 2, 8, 44);
+            for (int slot = 0; slot < 4; slot++)
+                addSlot(
+                        new ResourceHandlerSlot(
+                                inventory,
+                                inventory::set,
+                                3 + slot,
+                                26 + slot % 2 * 108,
+                                26 + slot / 2 * 18) {
+                            @Override
+                            public boolean mayPlace(ItemStack stack) {
+                                return stack.is(
+                                        ic2.neoforge.registration.ModReactorItems.HEAT_VENT.get());
+                            }
+
+                            @Override
+                            public int getMaxStackSize() {
+                                return 1;
+                            }
+                        });
         } else if (kind == MachineKind.ELECTROLYZER) {
-            addBatterySlot(inventory, 0, 50, 53);
+            addBatterySlot(inventory, 0, 8, 62);
         } else if (kind.isTank()) {
             // Tanks contain only the four upgrade slots added below.
         } else if (kind == MachineKind.CHUNK_LOADER) {
             // Legacy ContainerChunkLoader: one discharge slot beside the nine-by-nine canvas.
-            addBatterySlot(inventory, 0, 162, 143);
+            addBatterySlot(inventory, 0, 8, 143);
         } else if (kind == MachineKind.TELEPORTER || kind == MachineKind.CREATIVE_GENERATOR) {
             // Legacy teleporters and the creative generator have no GUI and no inventory.
         } else if (kind == MachineKind.PATTERN_STORAGE) {
@@ -505,28 +535,43 @@ public final class MachineMenu extends AbstractContainerMenu {
         } else if (kind == MachineKind.COKE_KILN_GRATE) {
             // The grate is a fluid tank only; contents move via fluid clicks and pipes.
         } else if (kind == MachineKind.LIQUID_HEAT_EXCHANGER) {
-            addFluidContainerSlot(inventory, 0, 8, 65);
-            addOutputSlot(inventory, 1, 26, 65);
-            addFluidContainerSlot(inventory, 2, 134, 65);
-            addOutputSlot(inventory, 3, 152, 65);
-            addInstalledParts(
-                    inventory,
-                    4,
-                    ModItems.MATERIALS.get(MaterialDefinition.HEAT_CONDUCTOR).get(),
-                    45,
-                    17);
+            addFluidContainerSlot(inventory, 0, 8, 103);
+            addOutputSlot(inventory, 1, 26, 103);
+            addFluidContainerSlot(inventory, 2, 134, 103);
+            addOutputSlot(inventory, 3, 152, 103);
+            for (int slot = 0; slot < 10; slot++)
+                addSlot(
+                        new ResourceHandlerSlot(
+                                inventory,
+                                inventory::set,
+                                4 + slot,
+                                46 + slot % 5 * 17,
+                                50 + slot / 5 * 22) {
+                            @Override
+                            public boolean mayPlace(ItemStack stack) {
+                                return stack.is(
+                                        ModItems.MATERIALS
+                                                .get(MaterialDefinition.HEAT_CONDUCTOR)
+                                                .get());
+                            }
+
+                            @Override
+                            public int getMaxStackSize() {
+                                return 1;
+                            }
+                        });
         } else if (kind == MachineKind.STIRLING_KINETIC_GENERATOR) {
             // Legacy ContainerStirlingKineticGenerator: cold containers left, hot right.
-            addFluidContainerSlot(inventory, 0, 8, 65);
-            addOutputSlot(inventory, 1, 26, 65);
-            addFluidContainerSlot(inventory, 2, 134, 65);
-            addOutputSlot(inventory, 3, 152, 65);
+            addFluidContainerSlot(inventory, 0, 8, 103);
+            addOutputSlot(inventory, 1, 26, 103);
+            addFluidContainerSlot(inventory, 2, 134, 103);
+            addOutputSlot(inventory, 3, 152, 103);
         } else if (kind == MachineKind.FERMENTER) {
-            addFluidContainerSlot(inventory, 0, 28, 17);
-            addOutputSlot(inventory, 1, 28, 53);
-            addFluidContainerSlot(inventory, 2, 130, 17);
-            addOutputSlot(inventory, 3, 130, 53);
-            addOutputSlot(inventory, 4, 80, 53);
+            addFluidContainerSlot(inventory, 0, 14, 46);
+            addOutputSlot(inventory, 1, 14, 64);
+            addFluidContainerSlot(inventory, 2, 148, 43);
+            addOutputSlot(inventory, 3, 148, 61);
+            addOutputSlot(inventory, 4, 86, 83);
         } else if (kind == MachineKind.SOLAR_DISTILLER) {
             // Legacy ContainerSolarDistiller: water column left, distilled column right.
             addFluidContainerSlot(inventory, 0, 17, 27);
@@ -536,15 +581,15 @@ public final class MachineMenu extends AbstractContainerMenu {
         } else if (kind == MachineKind.CROPMATRON) {
             // Legacy ContainerCropmatron: weed-ex row on top, water row below it,
             // seven fertilizer doses along the bottom; tanks render beside them.
-            addFluidContainerSlot(inventory, CropmatronBlockEntity.EX_INPUT, 49, 18);
-            addOutputSlot(inventory, CropmatronBlockEntity.EX_OUTPUT, 67, 18);
-            addFluidContainerSlot(inventory, CropmatronBlockEntity.WATER_INPUT, 57, 40);
-            addOutputSlot(inventory, CropmatronBlockEntity.WATER_OUTPUT, 75, 40);
+            addFluidContainerSlot(inventory, CropmatronBlockEntity.EX_INPUT, 49, 27);
+            addOutputSlot(inventory, CropmatronBlockEntity.EX_OUTPUT, 67, 27);
+            addFluidContainerSlot(inventory, CropmatronBlockEntity.WATER_INPUT, 57, 56);
+            addOutputSlot(inventory, CropmatronBlockEntity.WATER_OUTPUT, 75, 56);
             for (int slot = 0; slot < CropmatronBlockEntity.FERTILIZER_END; slot++) {
                 int index = slot;
                 addSlot(
                         new ResourceHandlerSlot(
-                                inventory, inventory::set, index, 8 + index * 18, 62) {
+                                inventory, inventory::set, index, 8 + index * 18, 80) {
                             @Override
                             public boolean mayPlace(ItemStack stack) {
                                 return stack.is(
@@ -567,7 +612,7 @@ public final class MachineMenu extends AbstractContainerMenu {
             }
         } else if (kind.turbine()) {
             addSlot(
-                    new ResourceHandlerSlot(inventory, inventory::set, 0, 133, 24) {
+                    new ResourceHandlerSlot(inventory, inventory::set, 0, 80, 26) {
                         @Override
                         public boolean mayPlace(ItemStack stack) {
                             return stack.getItem() instanceof ic2.neoforge.item.RotorItem rotor
@@ -576,8 +621,12 @@ public final class MachineMenu extends AbstractContainerMenu {
                         }
                     });
         } else if (kind.fuelHeat()) {
+            int fuelX = kind == MachineKind.FLUID_HEAT_GENERATOR ? 27 : 81;
+            int fuelY = kind == MachineKind.FLUID_HEAT_GENERATOR ? 21 : 46;
+            int outputX = kind == MachineKind.FLUID_HEAT_GENERATOR ? 27 : 114;
+            int outputY = kind == MachineKind.FLUID_HEAT_GENERATOR ? 54 : 46;
             addSlot(
-                    new ResourceHandlerSlot(inventory, inventory::set, 0, 56, 17) {
+                    new ResourceHandlerSlot(inventory, inventory::set, 0, fuelX, fuelY) {
                         @Override
                         public boolean mayPlace(ItemStack stack) {
                             return kind == MachineKind.FLUID_HEAT_GENERATOR
@@ -589,7 +638,7 @@ public final class MachineMenu extends AbstractContainerMenu {
                                             > 0;
                         }
                     });
-            addOutputSlot(inventory, 1, 56, 53);
+            addOutputSlot(inventory, 1, outputX, outputY);
         } else if (kind.workConversion() || kind == MachineKind.MANUAL_KINETIC_GENERATOR) {
             // Conversion generators have no inventory.
         } else if (kind.electricWork()) {
@@ -599,11 +648,13 @@ public final class MachineMenu extends AbstractContainerMenu {
                     ModItems.MATERIALS
                             .get(ic2.neoforge.machine.ElectricWorkBlockEntity.part(kind))
                             .get(),
-                    56,
-                    17);
-            addBatterySlot(inventory, 10, 56, 53);
-        } else if (kind == MachineKind.SOLAR_GENERATOR || kind == MachineKind.WIND_GENERATOR) {
-            addBatterySlot(inventory, 0, 56, 53);
+                    44,
+                    27);
+            addBatterySlot(inventory, 10, 8, 62);
+        } else if (kind == MachineKind.SOLAR_GENERATOR) {
+            addBatterySlot(inventory, 0, 80, 26);
+        } else if (kind == MachineKind.WIND_GENERATOR) {
+            addBatterySlot(inventory, 0, 81, 27);
         } else if (kind.storage()) {
             addBatterySlot(inventory, 0, 56, 17);
             addBatterySlot(inventory, 1, 56, 53);
@@ -612,11 +663,17 @@ public final class MachineMenu extends AbstractContainerMenu {
         } else if (kind.transformer()) {
             // Transformers have no inventory.
         } else if (kind == MachineKind.GENERATOR || kind == MachineKind.WATER_GENERATOR) {
+            boolean water = kind == MachineKind.WATER_GENERATOR;
             addSlot(
-                    new ResourceHandlerSlot(inventory, inventory::set, 0, 56, 53) {
+                    new ResourceHandlerSlot(
+                            inventory,
+                            inventory::set,
+                            0,
+                            water ? 81 : 57,
+                            water ? 54 : 53) {
                         @Override
                         public boolean mayPlace(ItemStack stack) {
-                            if (kind == MachineKind.WATER_GENERATOR)
+                            if (water)
                                 return WaterGeneratorBlockEntity.containsWater(
                                         net.neoforged.neoforge.transfer.item.ItemResource.of(
                                                 stack));
@@ -626,7 +683,56 @@ public final class MachineMenu extends AbstractContainerMenu {
                                     > 0;
                         }
                     });
-            addBatterySlot(inventory, 1, 56, 17);
+            addBatterySlot(inventory, 1, water ? 81 : 57, water ? 18 : 17);
+        } else if (kind.fluidGenerator()) {
+            addFluidContainerSlot(inventory, 0, 27, 17);
+            addOutputSlot(inventory, 1, 27, 53);
+            addBatterySlot(inventory, 2, 115, 49);
+        } else if (kind == MachineKind.CANNER) {
+            addSlot(new ResourceHandlerSlot(inventory, inventory::set, 0, 80, 44));
+            addOutputSlot(inventory, 1, 119, 17);
+            addBatterySlot(inventory, 2, 8, 80);
+            addSlot(new ResourceHandlerSlot(inventory, inventory::set, 3, 41, 17));
+        } else if (kind == MachineKind.BLOCK_CUTTER) {
+            addSlot(new ResourceHandlerSlot(inventory, inventory::set, 0, 27, 17));
+            addOutputSlot(inventory, 1, 116, 35);
+            addBatterySlot(inventory, 2, 27, 53);
+            addSlot(
+                    new ResourceHandlerSlot(inventory, inventory::set, 3, 71, 35) {
+                        @Override
+                        public boolean mayPlace(ItemStack stack) {
+                            return stack.getItem() instanceof ic2.neoforge.item.CuttingBladeItem;
+                        }
+
+                        @Override
+                        public int getMaxStackSize() {
+                            return 1;
+                        }
+                    });
+        } else if (kind == MachineKind.METAL_FORMER) {
+            addSlot(new ResourceHandlerSlot(inventory, inventory::set, 0, 17, 17));
+            addOutputSlot(inventory, 1, 116, 35);
+            addBatterySlot(inventory, 2, 17, 53);
+        } else if (kind == MachineKind.CENTRIFUGE) {
+            addSlot(new ResourceHandlerSlot(inventory, inventory::set, 0, 11, 18));
+            addOutputSlot(inventory, 1, 124, 18);
+            addBatterySlot(inventory, 2, 11, 54);
+            addOutputSlot(inventory, 3, 124, 36);
+            addOutputSlot(inventory, 4, 124, 54);
+        } else if (kind == MachineKind.ORE_WASHING_PLANT) {
+            addSlot(new ResourceHandlerSlot(inventory, inventory::set, 0, 104, 17));
+            addOutputSlot(inventory, 1, 86, 62);
+            addBatterySlot(inventory, 2, 11, 54);
+            addOutputSlot(inventory, 3, 104, 62);
+            addOutputSlot(inventory, 4, 122, 62);
+            addFluidContainerSlot(inventory, 5, 38, 17);
+            addOutputSlot(inventory, 6, 38, 62);
+        } else if (kind == MachineKind.INDUCTION_FURNACE) {
+            addSlot(new ResourceHandlerSlot(inventory, inventory::set, 0, 43, 17));
+            addOutputSlot(inventory, 1, 113, 35);
+            addBatterySlot(inventory, 2, 51, 53);
+            addSlot(new ResourceHandlerSlot(inventory, inventory::set, 3, 59, 17));
+            addOutputSlot(inventory, 4, 129, 35);
         } else {
             addSlot(new ResourceHandlerSlot(inventory, inventory::set, 0, 56, 17));
             addSlot(
@@ -634,11 +740,8 @@ public final class MachineMenu extends AbstractContainerMenu {
                             inventory,
                             inventory::set,
                             1,
-                            (kind == MachineKind.ORE_WASHING_PLANT
-                                            || kind == MachineKind.CENTRIFUGE)
-                                    ? 110
-                                    : 116,
-                            kind == MachineKind.INDUCTION_FURNACE ? 17 : 35) {
+                            116,
+                            35) {
                         @Override
                         public boolean mayPlace(ItemStack stack) {
                             return false;
@@ -663,61 +766,63 @@ public final class MachineMenu extends AbstractContainerMenu {
                         });
             } else addBatterySlot(inventory, 2, 56, 53);
         }
-        if (kind == MachineKind.ORE_WASHING_PLANT || kind == MachineKind.CENTRIFUGE) {
-            addOutputSlot(inventory, 3, 128, 35);
-            addOutputSlot(inventory, 4, 146, 35);
-        }
-        if (kind == MachineKind.ORE_WASHING_PLANT) {
-            addSlot(
-                    new ResourceHandlerSlot(inventory, inventory::set, 5, 110, 53) {
-                        @Override
-                        public boolean mayPlace(ItemStack stack) {
-                            return ItemAccess.forStack(stack.copy())
-                                            .getCapability(Capabilities.Fluid.ITEM)
-                                    != null;
-                        }
-                    });
-            addOutputSlot(inventory, 6, 146, 53);
-        }
-        if (kind == MachineKind.INDUCTION_FURNACE) {
-            addSlot(new ResourceHandlerSlot(inventory, inventory::set, 3, 56, 35));
-            addOutputSlot(inventory, 4, 116, 35);
-        }
-        if (kind == MachineKind.CANNER)
-            addSlot(new ResourceHandlerSlot(inventory, inventory::set, 3, 92, 17));
-        if (kind == MachineKind.BLOCK_CUTTER)
-            addSlot(
-                    new ResourceHandlerSlot(inventory, inventory::set, 3, 38, 17) {
-                        @Override
-                        public boolean mayPlace(ItemStack stack) {
-                            return stack.getItem() instanceof ic2.neoforge.item.CuttingBladeItem;
-                        }
-
-                        @Override
-                        public int getMaxStackSize() {
-                            return 1;
-                        }
-                    });
-        if (kind.upgradable()) {
-            for (int index = 0; index < kind.upgradeSlots(); index++) {
-                addSlot(
-                        new ResourceHandlerSlot(
-                                inventory,
-                                inventory::set,
-                                kind.upgradeStart() + index,
-                                180,
-                                17 + 18 * index) {
-                            @Override
-                            public boolean mayPlace(ItemStack stack) {
-                                return stack.getItem() instanceof UpgradeItem item
-                                        && item.kind().suitable(kind);
-                            }
-                        });
-            }
-        }
+        addUpgradeSlots(inventory);
         machineSlots = slots.size();
-        addStandardInventorySlots(playerInventory, 8, kind.inventoryY());
+        addStandardInventorySlots(playerInventory, kind.inventoryX(), kind.inventoryY());
         addDataSlots(data);
+    }
+
+    /** Keep upgrade slots at their legacy per-machine positions instead of widening every GUI. */
+    private void addUpgradeSlots(MachineInventory inventory) {
+        for (int index = 0; index < kind.upgradeSlots(); index++) {
+            int x;
+            int y;
+            if (kind == MachineKind.SORTING_MACHINE) {
+                x = 188;
+                y = 161 + index * 18;
+            } else if (kind == MachineKind.ITEM_BUFFER) {
+                x = 35 + index * 90;
+                y = 128;
+            } else if (kind == MachineKind.LIQUID_HEAT_EXCHANGER
+                    || kind == MachineKind.STIRLING_KINETIC_GENERATOR) {
+                x = 62 + index * 18;
+                y = 103;
+            } else if (kind == MachineKind.FERMENTER) {
+                x = 125 + index * 18;
+                y = 83;
+            } else if (kind == MachineKind.CHUNK_LOADER) {
+                x = 8;
+                y = 44 + index * 18;
+            } else if (kind == MachineKind.CONDENSER) {
+                x = 152;
+                y = 73;
+            } else if (kind == MachineKind.ENERGY_O_MAT) {
+                x = 24;
+                y = 53;
+            } else if (kind == MachineKind.MINER) {
+                x = 152;
+                y = 22;
+            } else if (kind == MachineKind.CANNER
+                    || kind == MachineKind.ADV_MINER
+                    || kind == MachineKind.CROPMATRON
+                    || kind == MachineKind.INDUCTION_FURNACE
+                    || kind == MachineKind.STEAM_KINETIC_GENERATOR) {
+                x = 152;
+                y = 26 + index * 18;
+            } else {
+                x = 152;
+                y = 8 + index * 18;
+            }
+            int slot = kind.upgradeStart() + index;
+            addSlot(
+                    new ResourceHandlerSlot(inventory, inventory::set, slot, x, y) {
+                        @Override
+                        public boolean mayPlace(ItemStack stack) {
+                            return stack.getItem() instanceof UpgradeItem item
+                                    && item.kind().suitable(kind);
+                        }
+                    });
+        }
     }
 
     /** Tool combos accept only their legacy tool tag (forge hammers, wire cutters). */

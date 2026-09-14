@@ -22,6 +22,15 @@ public final class RotorGeneratorScreen extends MachineScreen {
     public void extractBackground(
             GuiGraphicsExtractor graphics, int mouseX, int mouseY, float partialTick) {
         super.extractBackground(graphics, mouseX, mouseY, partialTick);
+        LegacyMachineGui.drawGauge(
+                graphics,
+                leftPos,
+                topPos,
+                menu.kind() == MachineKind.WIND_GENERATOR
+                        ? LegacyMachineGui.GaugeSpec.windProgress(82, 45)
+                        : LegacyMachineGui.GaugeSpec.waterBucket(82, 36),
+                menu.progress(),
+                menu.progressMaximum());
         graphics.text(
                 font,
                 Component.translatable(

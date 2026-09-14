@@ -7,6 +7,7 @@ import ic2.neoforge.registration.ModFluids;
 
 import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.level.material.Fluid;
 
@@ -23,6 +24,15 @@ public final class NuclearReactorScreen extends ContainerScreenBase<NuclearReact
     }
 
     @Override
+    protected Identifier backgroundTexture() {
+        return Identifier.fromNamespaceAndPath(
+                "ic2",
+                menu.fluidCooled()
+                        ? "textures/gui/guinuclearreactorfluid.png"
+                        : "textures/gui/guinuclearreactor.png");
+    }
+
+    @Override
     public void extractBackground(
             GuiGraphicsExtractor graphics, int mouseX, int mouseY, float partialTick) {
         super.extractBackground(graphics, mouseX, mouseY, partialTick);
@@ -35,10 +45,18 @@ public final class NuclearReactorScreen extends ContainerScreenBase<NuclearReact
                 int cellX = x + 26 + column * 18, cellY = y + 25 + row * 18;
                 graphics.fill(cellX, cellY, cellX + 16, cellY + 16, 0xff373737);
             }
-        // The vertical heat gauge under the grid (legacy GaugeStyle.HeatNuclearReactor).
-        int heatHeight = heatGaugeHeight();
-        graphics.fill(x + 7, y + 136, x + 19, y + 184, 0xff373737);
-        graphics.fill(x + 8, y + 183 - heatHeight, x + 18, y + 183, HOT_COLOR);
+        // Legacy GaugeStyle.HeatNuclearReactor is a horizontal 100x13 texture strip.
+        int heatWidth = heatGaugeWidth();
+        if (heatWidth > 0)
+            LegacyMachineGui.blit(
+                    graphics,
+                    Identifier.fromNamespaceAndPath("ic2", "textures/gui/guinuclearreactor.png"),
+                    x + 7,
+                    y + 136,
+                    0,
+                    243,
+                    heatWidth,
+                    13);
         if (!menu.fluidCooled()) return;
         // Fluid mode: seven thin temperature bars fill leftward from the grid's right edge.
         int barWidth = (int) Math.clamp(160L * menu.heat() / Math.max(1, menu.maxHeat()), 0, 160);
@@ -69,7 +87,7 @@ public final class NuclearReactorScreen extends ContainerScreenBase<NuclearReact
             GuiGraphicsExtractor graphics, int mouseX, int mouseY, float partialTick) {
         super.extractRenderState(graphics, mouseX, mouseY, partialTick);
         int x = leftPos, y = topPos;
-        if (mouseX >= x + 7 && mouseX < x + 19 && mouseY >= y + 136 && mouseY < y + 184) {
+        if (mouseX >= x + 7 && mouseX < x + 107 && mouseY >= y + 136 && mouseY < y + 149) {
             String percent =
                     String.format(
                             Locale.ROOT,
@@ -117,8 +135,8 @@ public final class NuclearReactorScreen extends ContainerScreenBase<NuclearReact
                 NuclearReactorBlockEntity.COOLANT_TANK_CAPACITY);
     }
 
-    private int heatGaugeHeight() {
-        return (int) Math.clamp(48L * menu.heat() / Math.max(1, menu.maxHeat()), 0, 48);
+    private int heatGaugeWidth() {
+        return (int) Math.clamp(100L * menu.heat() / Math.max(1, menu.maxHeat()), 0, 100);
     }
 
     private static Fluid tankFluid(FluidDefinition definition) {

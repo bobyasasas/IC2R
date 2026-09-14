@@ -26,15 +26,26 @@ public final class SolarDistillerScreen extends MachineScreen {
     public void extractBackground(
             GuiGraphicsExtractor graphics, int mouseX, int mouseY, float partialTick) {
         super.extractBackground(graphics, mouseX, mouseY, partialTick);
-        for (boolean output : new boolean[] {false, true})
-            FluidTankDisplay.draw(
-                    minecraft,
-                    graphics,
-                    leftPos + (output ? 153 : 8),
-                    topPos + 18,
-                    menu.tankFluid(output),
-                    menu.tankAmount(output),
-                    10000);
+        FluidTankDisplay.drawPlain(
+                minecraft,
+                graphics,
+                leftPos + 37,
+                topPos + 43,
+                53,
+                18,
+                menu.tankFluid(false),
+                menu.tankAmount(false),
+                10000);
+        FluidTankDisplay.drawPlain(
+                minecraft,
+                graphics,
+                leftPos + 115,
+                topPos + 55,
+                17,
+                43,
+                menu.tankFluid(true),
+                menu.tankAmount(true),
+                10000);
         graphics.text(
                 font,
                 Component.translatable("ic2.solar_distiller.sunlight"),
@@ -55,16 +66,29 @@ public final class SolarDistillerScreen extends MachineScreen {
     public void extractRenderState(
             GuiGraphicsExtractor graphics, int mouseX, int mouseY, float partialTick) {
         super.extractRenderState(graphics, mouseX, mouseY, partialTick);
-        for (boolean output : new boolean[] {false, true})
-            FluidTankDisplay.tooltip(
-                    minecraft,
-                    graphics,
-                    leftPos + (output ? 153 : 8),
-                    topPos + 18,
-                    mouseX,
-                    mouseY,
-                    menu.tankFluid(output),
-                    menu.tankAmount(output),
-                    10000);
+        FluidTankDisplay.tooltip(
+                minecraft,
+                graphics,
+                leftPos + 37,
+                topPos + 43,
+                53,
+                18,
+                mouseX,
+                mouseY,
+                menu.tankFluid(false),
+                menu.tankAmount(false),
+                10000);
+        FluidTankDisplay.tooltip(
+                minecraft,
+                graphics,
+                leftPos + 115,
+                topPos + 55,
+                17,
+                43,
+                mouseX,
+                mouseY,
+                menu.tankFluid(true),
+                menu.tankAmount(true),
+                10000);
     }
 }

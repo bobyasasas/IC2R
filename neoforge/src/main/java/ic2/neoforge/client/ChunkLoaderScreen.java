@@ -23,18 +23,13 @@ import it.unimi.dsi.fastutil.longs.Long2IntOpenHashMap;
  */
 public final class ChunkLoaderScreen extends MachineScreen {
     private static final int CANVAS = ChunkLoaderBlockEntity.CANVAS;
-    private static final int CELL = 16, CANVAS_X = 8, CANVAS_Y = 18;
+    private static final int CELL = 16, CANVAS_X = 25, CANVAS_Y = 16;
     private static final int SELECTED = 0x3000FF00, UNSELECTED = 0x30FF0000;
 
     private final Long2IntOpenHashMap terrainShades = new Long2IntOpenHashMap();
 
     public ChunkLoaderScreen(MachineMenu menu, Inventory inventory, Component title) {
         super(menu, inventory, title);
-    }
-
-    @Override
-    protected boolean showsEnergyBar() {
-        return false;
     }
 
     @Override
@@ -47,7 +42,6 @@ public final class ChunkLoaderScreen extends MachineScreen {
             GuiGraphicsExtractor graphics, int mouseX, int mouseY, float partialTick) {
         super.extractBackground(graphics, mouseX, mouseY, partialTick);
         int x = leftPos, y = topPos;
-        drawEnergyBolt(graphics, x + 162, y + 18);
         for (int dz = 0; dz < CANVAS; dz++) {
             for (int dx = 0; dx < CANVAS; dx++) {
                 int cellX = x + CANVAS_X + dx * CELL, cellY = y + CANVAS_Y + dz * CELL;
@@ -65,16 +59,10 @@ public final class ChunkLoaderScreen extends MachineScreen {
         graphics.text(
                 font,
                 Component.literal(menu.familyValue(3) + " / " + menu.familyValue(4)),
-                x + 160,
-                y + 76,
+                x + 8,
+                y + 58,
                 0xff404040,
                 false);
-    }
-
-    private void drawEnergyBolt(GuiGraphicsExtractor graphics, int x, int y) {
-        graphics.fill(x, y, x + 12, y + 50, 0xff373737);
-        int fill = (int) Math.clamp(48L * menu.energy() / Math.max(1, menu.capacity()), 0, 48);
-        graphics.fill(x + 1, y + 49 - fill, x + 11, y + 49, 0xffe9ae23);
     }
 
     private ChunkPos canvasChunk(int dx, int dz) {

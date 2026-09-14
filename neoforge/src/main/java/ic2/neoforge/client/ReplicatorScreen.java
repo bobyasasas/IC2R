@@ -1,9 +1,13 @@
 package ic2.neoforge.client;
 
+import ic2.neoforge.fluid.FluidDefinition;
+import ic2.neoforge.machine.ReplicatorBlockEntity;
 import ic2.neoforge.menu.MachineMenu;
+import ic2.neoforge.registration.ModFluids;
 
 import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.components.Button;
+import net.minecraft.client.gui.components.Tooltip;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Inventory;
 
@@ -16,36 +20,21 @@ public final class ReplicatorScreen extends MachineScreen {
     @Override
     public void init() {
         super.init();
-        addRenderableWidget(
-                Button.builder(
-                                Component.translatable("ic2.Replicator.gui.info.last"),
-                                b -> send(0))
-                        .bounds(leftPos + 8, topPos + 62, 48, 16)
-                        .build());
-        addRenderableWidget(
-                Button.builder(
-                                Component.translatable("ic2.Replicator.gui.info.next"),
-                                b -> send(1))
-                        .bounds(leftPos + 60, topPos + 62, 48, 16)
-                        .build());
-        addRenderableWidget(
-                Button.builder(
-                                Component.translatable("ic2.Replicator.gui.info.Stop"),
-                                b -> send(3))
-                        .bounds(leftPos + 112, topPos + 62, 60, 16)
-                        .build());
-        addRenderableWidget(
-                Button.builder(
-                                Component.translatable("ic2.Replicator.gui.info.single"),
-                                b -> send(4))
-                        .bounds(leftPos + 8, topPos + 80, 76, 16)
-                        .build());
-        addRenderableWidget(
-                Button.builder(
-                                Component.translatable("ic2.Replicator.gui.info.repeat"),
-                                b -> send(5))
-                        .bounds(leftPos + 88, topPos + 80, 76, 16)
-                        .build());
+        smallButton("‹", "ic2.Replicator.gui.info.last", 0, 80, 16, 9, 18);
+        smallButton("›", "ic2.Replicator.gui.info.next", 1, 109, 16, 9, 18);
+        smallButton("■", "ic2.Replicator.gui.info.Stop", 3, 75, 82, 16, 16);
+        smallButton("1", "ic2.Replicator.gui.info.single", 4, 92, 82, 16, 16);
+        smallButton("∞", "ic2.Replicator.gui.info.repeat", 5, 109, 82, 16, 16);
+    }
+
+    private void smallButton(
+            String symbol, String tooltip, int action, int x, int y, int width, int height) {
+        var button =
+                Button.builder(Component.literal(symbol), b -> send(action))
+                        .bounds(leftPos + x, topPos + y, width, height)
+                        .build();
+        button.setTooltip(Tooltip.create(Component.translatable(tooltip)));
+        addRenderableWidget(button);
     }
 
     private void send(int id) {
@@ -57,6 +46,16 @@ public final class ReplicatorScreen extends MachineScreen {
     public void extractBackground(
             GuiGraphicsExtractor graphics, int mouseX, int mouseY, float partialTick) {
         super.extractBackground(graphics, mouseX, mouseY, partialTick);
+        int tankAmount =
+                Math.round(menu.familyFloat(0) * ReplicatorBlockEntity.TANK_CAPACITY);
+        FluidTankDisplay.drawNormal(
+                minecraft,
+                graphics,
+                leftPos + 27,
+                topPos + 30,
+                ModFluids.FAMILIES.get(FluidDefinition.UU_MATTER).source().get(),
+                tankAmount,
+                ReplicatorBlockEntity.TANK_CAPACITY);
         int count = menu.familyValue(3);
         if (count > 0) {
             graphics.text(
@@ -67,5 +66,25 @@ public final class ReplicatorScreen extends MachineScreen {
                     0xff404040,
                     false);
         }
+    }
+
+    @Override
+    public void extractRenderState(
+            GuiGraphicsExtractor graphics, int mouseX, int mouseY, float partialTick) {
+        super.extractRenderState(graphics, mouseX, mouseY, partialTick);
+        int tankAmount =
+                Math.round(menu.familyFloat(0) * ReplicatorBlockEntity.TANK_CAPACITY);
+        FluidTankDisplay.tooltip(
+                minecraft,
+                graphics,
+                leftPos + 27,
+                topPos + 30,
+                20,
+                55,
+                mouseX,
+                mouseY,
+                ModFluids.FAMILIES.get(FluidDefinition.UU_MATTER).source().get(),
+                tankAmount,
+                ReplicatorBlockEntity.TANK_CAPACITY);
     }
 }

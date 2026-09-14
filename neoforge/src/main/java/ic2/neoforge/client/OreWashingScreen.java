@@ -13,14 +13,27 @@ public final class OreWashingScreen extends MachineScreen {
     }
 
     @Override
+    protected void drawLegacyMachineBackground(GuiGraphicsExtractor graphics) {
+        LegacyMachineGui.blit(
+                graphics,
+                LegacyMachineGui.ORE_WASHING,
+                leftPos + 37,
+                topPos + 16,
+                37,
+                16,
+                87,
+                63);
+    }
+
+    @Override
     public void extractBackground(
             GuiGraphicsExtractor graphics, int mouseX, int mouseY, float partialTick) {
         super.extractBackground(graphics, mouseX, mouseY, partialTick);
-        FluidTankDisplay.draw(
+        FluidTankDisplay.drawNormal(
                 minecraft,
                 graphics,
-                leftPos + 8,
-                topPos + 18,
+                leftPos + 60,
+                topPos + 20,
                 BuiltInRegistries.FLUID.byId(menu.familyValue(1)),
                 menu.familyValue(0),
                 menu.familyValue(2));
@@ -33,8 +46,10 @@ public final class OreWashingScreen extends MachineScreen {
         FluidTankDisplay.tooltip(
                 minecraft,
                 graphics,
-                leftPos + 8,
-                topPos + 18,
+                leftPos + 60,
+                topPos + 20,
+                20,
+                55,
                 mouseX,
                 mouseY,
                 BuiltInRegistries.FLUID.byId(menu.familyValue(1)),

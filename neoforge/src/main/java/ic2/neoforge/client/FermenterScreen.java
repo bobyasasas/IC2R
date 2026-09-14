@@ -35,41 +35,20 @@ public final class FermenterScreen extends MachineScreen {
                     menu.tankFluid(output),
                     menu.tankAmount(output),
                     output ? 2000 : 10000);
-        graphics.text(
-                font,
-                Component.translatable("ic2.fermenter.heat"),
-                leftPos + 55,
-                topPos + 18,
-                0xff404040,
-                false);
-        graphics.text(
-                font,
-                Component.literal(menu.fuelRemaining() + " / " + menu.fuelMaximum()),
-                leftPos + 55,
-                topPos + 28,
-                0xff404040,
-                false);
-        int width =
-                (int)
-                        Math.clamp(
-                                65L * menu.fuelRemaining() / Math.max(1, menu.fuelMaximum()),
-                                0,
-                                65);
-        graphics.fill(leftPos + 55, topPos + 40, leftPos + 120, topPos + 45, 0xff373737);
-        graphics.fill(leftPos + 55, topPos + 40, leftPos + 55 + width, topPos + 45, 0xffe9ae23);
-        int progress =
-                (int)
-                        Math.clamp(
-                                100L * menu.progress() / Math.max(1, menu.progressMaximum()),
-                                0,
-                                100);
-        graphics.text(
-                font,
-                Component.literal(progress + "%"),
-                leftPos + 101,
-                topPos + 58,
-                0xff404040,
-                false);
+        LegacyMachineGui.drawGauge(
+                graphics,
+                leftPos,
+                topPos,
+                LegacyMachineGui.GaugeSpec.heatFermenter(42, 41),
+                menu.fuelRemaining(),
+                menu.fuelMaximum());
+        LegacyMachineGui.drawGauge(
+                graphics,
+                leftPos,
+                topPos,
+                LegacyMachineGui.GaugeSpec.progressFermenter(38, 88),
+                menu.progress(),
+                menu.progressMaximum());
     }
 
     @Override

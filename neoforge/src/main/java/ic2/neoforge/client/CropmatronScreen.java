@@ -17,19 +17,23 @@ public final class CropmatronScreen extends MachineScreen {
     public void extractBackground(
             GuiGraphicsExtractor graphics, int mouseX, int mouseY, float partialTick) {
         super.extractBackground(graphics, mouseX, mouseY, partialTick);
-        FluidTankDisplay.draw(
+        FluidTankDisplay.drawPlain(
                 minecraft,
                 graphics,
-                leftPos + 8,
-                topPos + 18,
+                leftPos + 11,
+                topPos + 26,
+                24,
+                47,
                 BuiltInRegistries.FLUID.byId(menu.familyValue(1)),
                 menu.familyValue(0),
                 menu.familyValue(2));
-        FluidTankDisplay.draw(
+        FluidTankDisplay.drawPlain(
                 minecraft,
                 graphics,
-                leftPos + 132,
-                topPos + 18,
+                leftPos + 105,
+                topPos + 26,
+                24,
+                47,
                 BuiltInRegistries.FLUID.byId(menu.familyValue(4)),
                 menu.familyValue(3),
                 menu.familyValue(5));
@@ -42,8 +46,10 @@ public final class CropmatronScreen extends MachineScreen {
         FluidTankDisplay.tooltip(
                 minecraft,
                 graphics,
-                leftPos + 8,
-                topPos + 18,
+                leftPos + 11,
+                topPos + 26,
+                24,
+                47,
                 mouseX,
                 mouseY,
                 BuiltInRegistries.FLUID.byId(menu.familyValue(1)),
@@ -52,8 +58,10 @@ public final class CropmatronScreen extends MachineScreen {
         FluidTankDisplay.tooltip(
                 minecraft,
                 graphics,
-                leftPos + 132,
-                topPos + 18,
+                leftPos + 105,
+                topPos + 26,
+                24,
+                47,
                 mouseX,
                 mouseY,
                 BuiltInRegistries.FLUID.byId(menu.familyValue(4)),
