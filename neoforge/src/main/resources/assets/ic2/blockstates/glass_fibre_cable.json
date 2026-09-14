@@ -2,28 +2,13 @@
   "multipart": [
     {
       "apply": {
-        "model": "ic2:block/cable/glass_fibre_cable_center"
+        "model": "ic2:block/cable/glass_core_white"
       }
     },
     {
       "apply": {
-        "model": "ic2:block/cable/glass_fibre_cable_down"
-      },
-      "when": {
-        "down": "true"
-      }
-    },
-    {
-      "apply": {
-        "model": "ic2:block/cable/glass_fibre_cable_up"
-      },
-      "when": {
-        "up": "true"
-      }
-    },
-    {
-      "apply": {
-        "model": "ic2:block/cable/glass_fibre_cable_north"
+        "model": "ic2:block/cable/glass_side_white",
+        "uvlock": true
       },
       "when": {
         "north": "true"
@@ -31,7 +16,19 @@
     },
     {
       "apply": {
-        "model": "ic2:block/cable/glass_fibre_cable_south"
+        "model": "ic2:block/cable/glass_side_white",
+        "uvlock": true,
+        "y": 90
+      },
+      "when": {
+        "east": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "ic2:block/cable/glass_side_white",
+        "uvlock": true,
+        "y": 180
       },
       "when": {
         "south": "true"
@@ -39,7 +36,9 @@
     },
     {
       "apply": {
-        "model": "ic2:block/cable/glass_fibre_cable_west"
+        "model": "ic2:block/cable/glass_side_white",
+        "uvlock": true,
+        "y": 270
       },
       "when": {
         "west": "true"
@@ -47,10 +46,22 @@
     },
     {
       "apply": {
-        "model": "ic2:block/cable/glass_fibre_cable_east"
+        "model": "ic2:block/cable/glass_side_white",
+        "uvlock": true,
+        "x": -90
       },
       "when": {
-        "east": "true"
+        "up": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "ic2:block/cable/glass_side_white",
+        "uvlock": true,
+        "x": 90
+      },
+      "when": {
+        "down": "true"
       }
     }
   ]

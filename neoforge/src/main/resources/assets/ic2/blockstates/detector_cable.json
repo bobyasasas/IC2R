@@ -2,7 +2,7 @@
   "multipart": [
     {
       "apply": {
-        "model": "ic2:block/cable/detector_cable_center"
+        "model": "ic2:block/cable/detector_core"
       },
       "when": {
         "active": "false"
@@ -10,15 +10,7 @@
     },
     {
       "apply": {
-        "model": "ic2:block/cable/detector_cable_center_active"
-      },
-      "when": {
-        "active": "true"
-      }
-    },
-    {
-      "apply": {
-        "model": "ic2:block/cable/detector_cable_side",
+        "model": "ic2:block/cable/detector_side",
         "uvlock": true
       },
       "when": {
@@ -28,7 +20,7 @@
     },
     {
       "apply": {
-        "model": "ic2:block/cable/detector_cable_side",
+        "model": "ic2:block/cable/detector_side",
         "uvlock": true,
         "y": 90
       },
@@ -39,7 +31,7 @@
     },
     {
       "apply": {
-        "model": "ic2:block/cable/detector_cable_side",
+        "model": "ic2:block/cable/detector_side",
         "uvlock": true,
         "y": 180
       },
@@ -50,7 +42,7 @@
     },
     {
       "apply": {
-        "model": "ic2:block/cable/detector_cable_side",
+        "model": "ic2:block/cable/detector_side",
         "uvlock": true,
         "y": 270
       },
@@ -61,7 +53,7 @@
     },
     {
       "apply": {
-        "model": "ic2:block/cable/detector_cable_side",
+        "model": "ic2:block/cable/detector_side",
         "uvlock": true,
         "x": -90
       },
@@ -72,7 +64,7 @@
     },
     {
       "apply": {
-        "model": "ic2:block/cable/detector_cable_side",
+        "model": "ic2:block/cable/detector_side",
         "uvlock": true,
         "x": 90
       },
@@ -83,7 +75,15 @@
     },
     {
       "apply": {
-        "model": "ic2:block/cable/detector_cable_side_active",
+        "model": "ic2:block/cable/detector_core_active"
+      },
+      "when": {
+        "active": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "ic2:block/cable/detector_side_active",
         "uvlock": true
       },
       "when": {
@@ -93,7 +93,7 @@
     },
     {
       "apply": {
-        "model": "ic2:block/cable/detector_cable_side_active",
+        "model": "ic2:block/cable/detector_side_active",
         "uvlock": true,
         "y": 90
       },
@@ -104,7 +104,7 @@
     },
     {
       "apply": {
-        "model": "ic2:block/cable/detector_cable_side_active",
+        "model": "ic2:block/cable/detector_side_active",
         "uvlock": true,
         "y": 180
       },
@@ -115,7 +115,7 @@
     },
     {
       "apply": {
-        "model": "ic2:block/cable/detector_cable_side_active",
+        "model": "ic2:block/cable/detector_side_active",
         "uvlock": true,
         "y": 270
       },
@@ -126,7 +126,7 @@
     },
     {
       "apply": {
-        "model": "ic2:block/cable/detector_cable_side_active",
+        "model": "ic2:block/cable/detector_side_active",
         "uvlock": true,
         "x": -90
       },
@@ -137,7 +137,7 @@
     },
     {
       "apply": {
-        "model": "ic2:block/cable/detector_cable_side_active",
+        "model": "ic2:block/cable/detector_side_active",
         "uvlock": true,
         "x": 90
       },

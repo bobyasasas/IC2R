@@ -59,6 +59,17 @@ energy-transfer 切片按代表变体验收;本轮补齐变体级证据与两处
 - 既有回归:`cable_shock_*` 4 条、`foam_cable_*` 7 条、`detector_cable_*` 5 条、
   `machine_chain/reconnect` 输电与拓扑失效全部不受影响。
 
+## 外观资源收尾
+
+- 绝缘线与玻璃纤维线的默认颜色恢复为 legacy blockstate 使用的 `white`，不再错误
+  引用偏暗的 `light_gray`；旧色纹理继续保留，供未来染色功能使用。
+- 12 个普通变体及 detector/splitter 改回 legacy 的共享 `core_N` / `side_N` 精确 UV
+  模型，连接臂通过 multipart 旋转复用。模型和新增白色纹理均与 legacy 文件逐字节一致。
+- 保持模型环境光遮蔽和方块光照，不添加自发光。旧构建实机已确认导线在白天和暗室中
+  随环境光变化、没有错误发光；修复后实机复测负责确认白色绝缘与连接段 UV。
+- 包含本资源替换的隔离全量验证为 IC2/GT 双模式各 578 项全部通过；产物检查确认所有
+  模型父级和纹理依赖可解析。
+
 ## 遗留
 
 - CableItem tooltip 与含水状态的实机(游戏内)观感留人工验收,见 `待测试.md` §136。
