@@ -1,6 +1,6 @@
 # M14／P17：可选模组集成（JEI、Jade、AE2）
 
-状态：进行中（2026-09-10，M14-a JEI 切片 + M14-b Jade 切片 + M14-c JEI 剩余类别切片 + P17-AE2 桥接切片交付）。本文记录目标版本评估证据、集成策略与已验证边界。
+状态：进行中（2026-09-14，M14-a/b/c/d 与 P17-AE2 桥接切片交付）。本文记录目标版本评估证据、集成策略与已验证边界。
 
 ## 目标版本评估（2026-09-10 取证）
 
@@ -94,5 +94,14 @@ legacy 排查勘误后的移植（legacy 蓝本：`ic2/integration/ae2/Ic2Ae2Plu
 
 ## 后续切片
 
-- P17 收尾：JEI+Jade 真实客户端**人工**验收（JEI 面：16 个类别页布局/tooltip/催化剂入口，重点电解多输出与高炉空气槽；Jade 面：机器能量条/进度条/百分比文本样式）——本轮无头冒烟已证插件装载与类别注册，视觉细节需人眼复核。
+- P17 收尾仍需覆盖所有 19 个 JEI 类别的逐页视觉复核，重点检查电解多输出与高炉空气槽；本轮已经完成机器点击入口、代表性物品/流体布局和 Jade 能量数据显示的真实客户端验证。
 - 电解配方数据包实际输出≤2（数据包上限 6），类别输出列最多渲染 3 行；若未来数据包单配方输出超过 3，需调整 electrolyzing 布局（已在待测试.md §66 记录）。
+
+## 已交付：M14-d JEI 机器入口补全（2026-09-14）
+
+- 类别从 16 个补全到 19 个：新增 `ic2:heating`，以及由原生流体物品能力实时发现的 `ic2:canner_bottle_liquid` / `ic2:canner_empty_liquid`。后两类直接模拟与 Canner 相同的 `Capabilities.Fluid.ITEM` 事务；排空类只收录可完整排空的容器，装填类进一步要求装回后精确恢复原容器。
+- NeoForge 26.1 默认不向客户端发送完整自定义配方。`RecipeSync` 在数据包同步事件中明确请求 17 个 IC2 机器 `RecipeType`，客户端缓存于 JEI 注册前接收并在退出世界时清理；实机日志已从 463 个 IC2 客户端配方提升到 804 个。
+- 催化剂补全：Iron/Electric/Induction Furnace 接入原版 smelting（Iron Furnace 同时接 fueling）；Generator/Solid Heat Generator 接 fueling；Batch Crafter/Industrial Workbench 接 crafting；Stirling Kinetic Generator 和 Canner 四模式接各自 IC2 类别。
+- `MachineRecipeLinks` 作为单个通用 JEI GUI handler，按 `MachineKind` 和 Canner/Metal Former 当前模式解析类型。旧版 XML/GUI 中的 RecipeButton 坐标作为点击区；新增热流体机器使用其现有动态读数/进度区域。机器 Screen 不直接引用 JEI API，保持无 JEI 安装时的可选依赖边界。
+- 点击机器 GUI 的进度条、燃料条或对应动态工作区后，JEI 打开该机器当前模式的配方列表；Canner 与 Metal Former 不会错误跳到其他模式。
+- 真实客户端验收通过：Macerator 进度条打开 `1/116`；Canner mode 1/2 分别打开排空/装填 `1/38`；Stirling Kinetic Generator 打开加热 `1/2`；Iron Furnace 的工作区和燃料区分别打开原版 Smelting `1/55` 与 Smelting Fuel `1/97`。Jade 同时显示机器名与 `0 EU / 1.8k EU` 能量数据。

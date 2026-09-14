@@ -62,7 +62,7 @@ final class ProcessingTests {
         helper.succeed();
     }
 
-    /** Each processing family the JEI plugin renders must have server-side recipes. */
+    /** Each data-driven family the JEI plugin renders must have server-side recipes. */
     static void jeiCategoriesNonEmpty(GameTestHelper helper) {
         List<RecipeType<?>> categories = new ArrayList<>();
         for (ProcessingMethod method : ProcessingMethod.values())
@@ -71,6 +71,7 @@ final class ProcessingTests {
         categories.add(ModCannerRecipes.ENRICH.get());
         categories.add(ModThermalRecipes.FERMENTING.get());
         categories.add(ModThermalRecipes.COOLING.get());
+        categories.add(ModThermalRecipes.HEATING.get());
         categories.add(ModThermalRecipes.ELECTROLYZING.get());
         categories.add(ModProcessingRecipes.WASHING_TYPE.get());
         categories.add(ModProcessingRecipes.CENTRIFUGE_TYPE.get());

@@ -2,6 +2,7 @@ package ic2.neoforge.client.interop.jei;
 
 import ic2.core.recipe.ProcessingMethod;
 import ic2.neoforge.IndustrialCraft;
+import ic2.neoforge.client.MachineScreen;
 import ic2.neoforge.fluid.FluidDefinition;
 import ic2.neoforge.machine.MachineKind;
 import ic2.neoforge.recipe.BlastFurnaceRecipe;
@@ -10,6 +11,7 @@ import ic2.neoforge.recipe.CoolingRecipe;
 import ic2.neoforge.recipe.ElectrolyzingRecipe;
 import ic2.neoforge.recipe.EnrichingRecipe;
 import ic2.neoforge.recipe.FermentingRecipe;
+import ic2.neoforge.recipe.HeatingRecipe;
 import ic2.neoforge.recipe.MatterFabricatorRecipe;
 import ic2.neoforge.recipe.ProcessingRecipe;
 import ic2.neoforge.recipe.SolidCanningRecipe;
@@ -22,13 +24,15 @@ import ic2.neoforge.registration.ModThermalRecipes;
 
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
+import mezz.jei.api.constants.RecipeTypes;
 import mezz.jei.api.gui.drawable.IDrawable;
 import mezz.jei.api.helpers.IGuiHelper;
 import mezz.jei.api.recipe.category.IRecipeCategory;
+import mezz.jei.api.recipe.types.IRecipeType;
+import mezz.jei.api.registration.IGuiHandlerRegistration;
 import mezz.jei.api.registration.IRecipeCatalystRegistration;
 import mezz.jei.api.registration.IRecipeCategoryRegistration;
 import mezz.jei.api.registration.IRecipeRegistration;
-import mezz.jei.api.recipe.types.IRecipeType;
 
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
@@ -43,31 +47,38 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * JEI integration (M14). Loaded only when JEI is installed: JEI discovers this class
- * through the plugin annotation, nothing else references it, so an IC2 install without
- * JEI never loads it. Covers the counted-input processing families and the remaining
- * machine recipe families (canner, thermal, ore washing, centrifuge, blast furnace,
- * matter fabricator). ElectricCraftingRecipe stays on the vanilla crafting category.
+ * JEI integration (M14). Loaded only when JEI is installed: JEI discovers this class through the
+ * plugin annotation, nothing else references it, so an IC2 install without JEI never loads it.
+ * Covers the counted-input processing families and the remaining machine recipe families (canner,
+ * thermal, ore washing, centrifuge, blast furnace, matter fabricator). Capability-driven canner
+ * operations are discovered from registered item defaults and JEI's additional ingredient variants.
+ * ElectricCraftingRecipe stays on the vanilla crafting category.
  */
 @JeiPlugin
 public final class Ic2JeiPlugin implements IModPlugin {
-    private static final Map<ProcessingMethod, IRecipeType<RecipeHolder<ProcessingRecipe>>> TYPES =
+    static final Map<ProcessingMethod, IRecipeType<RecipeHolder<ProcessingRecipe>>> TYPES =
             buildTypes();
 
-    private static final IRecipeType<RecipeHolder<SolidCanningRecipe>> CANNER_BOTTLING =
+    static final IRecipeType<RecipeHolder<SolidCanningRecipe>> CANNER_BOTTLING =
             type("canner_bottle");
-    private static final IRecipeType<RecipeHolder<EnrichingRecipe>> CANNER_ENRICHING =
+    static final IRecipeType<RecipeHolder<EnrichingRecipe>> CANNER_ENRICHING =
             type("canner_enrich");
-    private static final IRecipeType<RecipeHolder<FermentingRecipe>> FERMENTING =
-            type("fermenting");
-    private static final IRecipeType<RecipeHolder<CoolingRecipe>> COOLING = type("cooling");
-    private static final IRecipeType<RecipeHolder<ElectrolyzingRecipe>> ELECTROLYZING =
+    static final IRecipeType<CannerFluidRecipe> CANNER_FILLING =
+            IRecipeType.create(
+                    IndustrialCraft.MOD_ID, "canner_bottle_liquid", CannerFluidRecipe.class);
+    static final IRecipeType<CannerFluidRecipe> CANNER_EMPTYING =
+            IRecipeType.create(
+                    IndustrialCraft.MOD_ID, "canner_empty_liquid", CannerFluidRecipe.class);
+    static final IRecipeType<RecipeHolder<FermentingRecipe>> FERMENTING = type("fermenting");
+    static final IRecipeType<RecipeHolder<CoolingRecipe>> COOLING = type("cooling");
+    static final IRecipeType<RecipeHolder<HeatingRecipe>> HEATING = type("heating");
+    static final IRecipeType<RecipeHolder<ElectrolyzingRecipe>> ELECTROLYZING =
             type("electrolyzing");
-    private static final IRecipeType<RecipeHolder<WashingRecipe>> ORE_WASHING = type("ore_washing");
-    private static final IRecipeType<RecipeHolder<CentrifugeRecipe>> CENTRIFUGE = type("centrifuge");
-    private static final IRecipeType<RecipeHolder<BlastFurnaceRecipe>> BLAST_FURNACE =
+    static final IRecipeType<RecipeHolder<WashingRecipe>> ORE_WASHING = type("ore_washing");
+    static final IRecipeType<RecipeHolder<CentrifugeRecipe>> CENTRIFUGE = type("centrifuge");
+    static final IRecipeType<RecipeHolder<BlastFurnaceRecipe>> BLAST_FURNACE =
             type("blast_furnace");
-    private static final IRecipeType<RecipeHolder<MatterFabricatorRecipe>> MATTER_FABRICATOR =
+    static final IRecipeType<RecipeHolder<MatterFabricatorRecipe>> MATTER_FABRICATOR =
             type("matter_fabricator");
 
     @SuppressWarnings("unchecked")
@@ -151,6 +162,20 @@ public final class Ic2JeiPlugin implements IModPlugin {
                             CategoryLayouts.fluidOutput(builder, 88, 22, recipe.result());
                         }));
         categories.add(
+                new CannerFluidCategory(
+                        CANNER_FILLING,
+                        Component.translatable("jei.ic2.category.canner_fill"),
+                        canner,
+                        arrow,
+                        CannerFluidCategory.Operation.FILL));
+        categories.add(
+                new CannerFluidCategory(
+                        CANNER_EMPTYING,
+                        Component.translatable("jei.ic2.category.canner_empty"),
+                        canner,
+                        arrow,
+                        CannerFluidCategory.Operation.EMPTY));
+        categories.add(
                 new MachineCategory<>(
                         FERMENTING,
                         Component.translatable("jei.ic2.category.fermenting"),
@@ -170,13 +195,30 @@ public final class Ic2JeiPlugin implements IModPlugin {
                                     22,
                                     recipe.result(),
                                     Component.translatable(
-                                            "jei.ic2.fertilizer_interval", recipe.fertilizerInterval()));
+                                            "jei.ic2.fertilizer_interval",
+                                            recipe.fertilizerInterval()));
                         }));
         categories.add(
                 new MachineCategory<>(
                         COOLING,
                         Component.translatable("jei.ic2.category.cooling"),
                         icon(guiHelper, MachineKind.LIQUID_HEAT_EXCHANGER),
+                        arrow,
+                        46,
+                        (builder, recipe) -> {
+                            CategoryLayouts.fluidInput(
+                                    builder,
+                                    4,
+                                    22,
+                                    recipe.input(),
+                                    Component.translatable("jei.ic2.requires_heat", recipe.heat()));
+                            CategoryLayouts.fluidOutput(builder, 88, 22, recipe.result());
+                        }));
+        categories.add(
+                new MachineCategory<>(
+                        HEATING,
+                        Component.translatable("jei.ic2.category.heating"),
+                        icon(guiHelper, MachineKind.STIRLING_KINETIC_GENERATOR),
                         arrow,
                         46,
                         (builder, recipe) -> {
@@ -201,7 +243,8 @@ public final class Ic2JeiPlugin implements IModPlugin {
                                     4,
                                     22,
                                     recipe.input(),
-                                    Component.translatable("jei.ic2.eu_per_tick", recipe.euPerTick()),
+                                    Component.translatable(
+                                            "jei.ic2.eu_per_tick", recipe.euPerTick()),
                                     Component.translatable("jei.ic2.duration", recipe.ticks()));
                             int y = 4;
                             for (ElectrolyzingRecipe.Output output : recipe.outputs()) {
@@ -211,7 +254,8 @@ public final class Ic2JeiPlugin implements IModPlugin {
                                         y,
                                         output.fluid(),
                                         Component.translatable(
-                                                "jei.ic2.side", output.direction().getSerializedName()));
+                                                "jei.ic2.side",
+                                                output.direction().getSerializedName()));
                                 y += 20;
                             }
                         }));
@@ -247,7 +291,8 @@ public final class Ic2JeiPlugin implements IModPlugin {
                                     22,
                                     recipe.ingredient(),
                                     recipe.inputCount(),
-                                    Component.translatable("jei.ic2.requires_heat", recipe.minHeat()));
+                                    Component.translatable(
+                                            "jei.ic2.requires_heat", recipe.minHeat()));
                             int y = 4;
                             for (var output : recipe.outputs()) {
                                 CategoryLayouts.itemOutput(builder, 88, y, output);
@@ -274,7 +319,8 @@ public final class Ic2JeiPlugin implements IModPlugin {
                                         builder,
                                         26,
                                         22,
-                                        ModFluids.FAMILIES.get(fluidOf(MachineKind.BLAST_FURNACE))
+                                        ModFluids.FAMILIES
+                                                .get(fluidOf(MachineKind.BLAST_FURNACE))
                                                 .source()
                                                 .get(),
                                         recipe.fluid());
@@ -298,7 +344,8 @@ public final class Ic2JeiPlugin implements IModPlugin {
                                     builder,
                                     88,
                                     22,
-                                    ModFluids.FAMILIES.get(fluidOf(MachineKind.MATTER_GENERATOR))
+                                    ModFluids.FAMILIES
+                                            .get(fluidOf(MachineKind.MATTER_GENERATOR))
                                             .source()
                                             .get(),
                                     recipe.result());
@@ -321,9 +368,14 @@ public final class Ic2JeiPlugin implements IModPlugin {
                 CANNER_BOTTLING, ClientRecipeCache.byType(ModCannerRecipes.SOLID.get()));
         registration.addRecipes(
                 CANNER_ENRICHING, ClientRecipeCache.byType(ModCannerRecipes.ENRICH.get()));
+        CannerFluidRecipes.Result containers =
+                CannerFluidRecipes.scan(registration.getIngredientManager().getAllItemStacks());
+        registration.addRecipes(CANNER_FILLING, containers.filling());
+        registration.addRecipes(CANNER_EMPTYING, containers.emptying());
         registration.addRecipes(
                 FERMENTING, ClientRecipeCache.byType(ModThermalRecipes.FERMENTING.get()));
         registration.addRecipes(COOLING, ClientRecipeCache.byType(ModThermalRecipes.COOLING.get()));
+        registration.addRecipes(HEATING, ClientRecipeCache.byType(ModThermalRecipes.HEATING.get()));
         registration.addRecipes(
                 ELECTROLYZING, ClientRecipeCache.byType(ModThermalRecipes.ELECTROLYZING.get()));
         registration.addRecipes(
@@ -336,6 +388,11 @@ public final class Ic2JeiPlugin implements IModPlugin {
         registration.addRecipes(
                 MATTER_FABRICATOR,
                 ClientRecipeCache.byType(ModProcessingRecipes.MATTER_FABRICATOR_TYPE.get()));
+        com.mojang.logging.LogUtils.getLogger()
+                .info(
+                        "IC2 JEI discovered {} fill and {} drain container recipes",
+                        containers.filling().size(),
+                        containers.emptying().size());
     }
 
     @Override
@@ -346,11 +403,14 @@ public final class Ic2JeiPlugin implements IModPlugin {
         }
         registration.addCraftingStation(CANNER_BOTTLING, ModMachines.block(MachineKind.CANNER));
         registration.addCraftingStation(CANNER_ENRICHING, ModMachines.block(MachineKind.CANNER));
+        registration.addCraftingStation(CANNER_FILLING, ModMachines.block(MachineKind.CANNER));
+        registration.addCraftingStation(CANNER_EMPTYING, ModMachines.block(MachineKind.CANNER));
         registration.addCraftingStation(FERMENTING, ModMachines.block(MachineKind.FERMENTER));
         registration.addCraftingStation(
                 COOLING, ModMachines.block(MachineKind.LIQUID_HEAT_EXCHANGER));
         registration.addCraftingStation(
-                ELECTROLYZING, ModMachines.block(MachineKind.ELECTROLYZER));
+                HEATING, ModMachines.block(MachineKind.STIRLING_KINETIC_GENERATOR));
+        registration.addCraftingStation(ELECTROLYZING, ModMachines.block(MachineKind.ELECTROLYZER));
         registration.addCraftingStation(
                 ORE_WASHING, ModMachines.block(MachineKind.ORE_WASHING_PLANT));
         registration.addCraftingStation(CENTRIFUGE, ModMachines.block(MachineKind.CENTRIFUGE));
@@ -358,5 +418,24 @@ public final class Ic2JeiPlugin implements IModPlugin {
                 BLAST_FURNACE, ModMachines.block(MachineKind.BLAST_FURNACE));
         registration.addCraftingStation(
                 MATTER_FABRICATOR, ModMachines.block(MachineKind.MATTER_GENERATOR));
+        registration.addCraftingStation(
+                RecipeTypes.SMELTING,
+                ModMachines.block(MachineKind.IRON_FURNACE),
+                ModMachines.block(MachineKind.ELECTRIC_FURNACE),
+                ModMachines.block(MachineKind.INDUCTION_FURNACE));
+        registration.addCraftingStation(
+                RecipeTypes.SMELTING_FUEL,
+                ModMachines.block(MachineKind.IRON_FURNACE),
+                ModMachines.block(MachineKind.GENERATOR),
+                ModMachines.block(MachineKind.SOLID_HEAT_GENERATOR));
+        registration.addCraftingStation(
+                RecipeTypes.CRAFTING,
+                ModMachines.block(MachineKind.BATCH_CRAFTER),
+                ModMachines.block(MachineKind.INDUSTRIAL_WORKBENCH));
+    }
+
+    @Override
+    public void registerGuiHandlers(IGuiHandlerRegistration registration) {
+        registration.addGenericGuiContainerHandler(MachineScreen.class, new MachineRecipeLinks());
     }
 }

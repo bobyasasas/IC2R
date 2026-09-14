@@ -96,8 +96,12 @@ public final class IndustrialCraft {
         gameBus.addListener(ic2.neoforge.item.ChainsawItem::onBreakBlock);
         gameBus.addListener(ic2.neoforge.item.NanoSaberItem::onBreakBlock);
         gameBus.addListener(ic2.neoforge.item.DrillItem::onBreakSpeed);
+        gameBus.addListener(ic2.neoforge.recipe.RecipeSync::onDatapackSync);
         if (FMLEnvironment.getDist().isClient()) {
-            gameBus.addListener(ic2.neoforge.client.interop.jei.ClientRecipeCache::onRecipesReceived);
+            gameBus.addListener(
+                    net.neoforged.bus.api.EventPriority.HIGHEST,
+                    ic2.neoforge.client.interop.jei.ClientRecipeCache::onRecipesReceived);
+            gameBus.addListener(ic2.neoforge.client.interop.jei.ClientRecipeCache::onLogout);
         }
         gameBus.addListener(
                 (net.neoforged.neoforge.event.AddServerReloadListenersEvent event) ->
