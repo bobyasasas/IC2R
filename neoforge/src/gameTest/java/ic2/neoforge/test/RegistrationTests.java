@@ -378,6 +378,8 @@ public final class RegistrationTests {
                 () -> BlockCutterTests::weakBladeStallsAndDiamondResumes);
         FUNCTIONS.register("block_cutter_no_blade", () -> EntityTickingTests.wrap(BlockCutterTests::missingBladeStalls));
         FUNCTIONS.register(
+                "block_cutter_steel_blade", () -> EntityTickingTests.wrap(BlockCutterTests::steelBladeBridgesTheGap));
+        FUNCTIONS.register(
                 "upgrade_suitability_matrix", () -> UpgradeSuitabilityTests::suitabilityMatrix);
         FUNCTIONS.register("coke_kiln_coal", () -> EntityTickingTests.wrap(CokeKilnTests::charsCoalIntoCoke));
         FUNCTIONS.register("coke_kiln_logs", () -> EntityTickingTests.wrap(CokeKilnTests::charsLogsIntoCharcoal));
@@ -430,6 +432,12 @@ public final class RegistrationTests {
                 "reactor_heat_switch", () -> ReactorComponentTests::heatSwitchBalancesCoreHeat);
         FUNCTIONS.register(
                 "reactor_vent_spread", () -> ReactorComponentTests::ventSpreadCoolsNeighbours);
+        FUNCTIONS.register(
+                "reactor_component_exchanger",
+                () -> EntityTickingTests.wrap(ReactorComponentTests::componentExchangerPullsNeighbourHeat));
+        FUNCTIONS.register(
+                "reactor_advanced_exchanger",
+                () -> EntityTickingTests.wrap(ReactorComponentTests::advancedExchangerDumpsCoreHeat));
         FUNCTIONS.register(
                 "pattern_storage_transfer", () -> PatternStorageTests::scannerTransfersToStorage);
         FUNCTIONS.register(
@@ -759,6 +767,9 @@ public final class RegistrationTests {
         FUNCTIONS.register("water_turbine_tides", () -> EntityTickingTests.wrap(WaterTurbineTests::tidesAndDeepOcean));
         FUNCTIONS.register("water_turbine_network", () -> EntityTickingTests.wrap(WaterTurbineTests::networkSupply));
         FUNCTIONS.register("turbine_operation", () -> EntityTickingTests.wrap(WindTurbineTests::operationAndWear));
+        FUNCTIONS.register("turbine_rotor_bronze", () -> EntityTickingTests.wrap(WindTurbineTests::bronzeRotorOperates));
+        FUNCTIONS.register("turbine_rotor_steel", () -> EntityTickingTests.wrap(WindTurbineTests::steelRotorOperates));
+        FUNCTIONS.register("turbine_rotor_carbon", () -> EntityTickingTests.wrap(WindTurbineTests::carbonRotorOperates));
         FUNCTIONS.register("turbine_obstructions", () -> EntityTickingTests.wrap(WindTurbineTests::obstructions));
         FUNCTIONS.register("turbine_network_supply", () -> EntityTickingTests.wrap(WindTurbineTests::networkSupply));
         FUNCTIONS.register("loaded_recipes", () -> EntityTickingTests.wrap(ProcessingTests::loadedRecipes));

@@ -72,6 +72,41 @@ final class WindTurbineTests {
                 });
     }
 
+    static void bronzeRotorOperates(GameTestHelper helper) {
+        materialSpectrum(helper, RotorMaterial.BRONZE);
+    }
+
+    static void steelRotorOperates(GameTestHelper helper) {
+        materialSpectrum(helper, RotorMaterial.STEEL);
+    }
+
+    static void carbonRotorOperates(GameTestHelper helper) {
+        materialSpectrum(helper, RotorMaterial.CARBON);
+    }
+
+    private static void materialSpectrum(GameTestHelper helper, RotorMaterial material) {
+        // Material windows: the tall rotors need more wind than the shared batch can produce
+        // at this altitude, so the wind-window behaviour is asserted on the core formula
+        // directly while the machine chain is asserted through the sampled diameter.
+        var operation = RotorOperation.wind(material, 30, 0, 1);
+        helper.assertTrue(
+                operation.diameter() == material.diameter()
+                        && operation.output() > 0
+                        && operation.status() == RotorOperation.Status.RUNNING,
+                material.id() + " must run wind 30 with its own diameter and efficiency");
+        var turbine = machine(helper);
+        turbine.inventory()
+                .set(0, ItemResource.of(ModRotors.ROTORS.get(material).get()), 1);
+        turbine.serverTick(helper.getLevel());
+        helper.assertTrue(
+                turbine.rotorDiameter() == material.diameter(),
+                material.id() + " must drive the turbine sampling at its own diameter");
+        helper.assertTrue(
+                turbine.inventory().stack(0).getMaxDamage() == material.durability(),
+                material.id() + " must carry its material durability");
+        helper.succeed();
+    }
+
     static void obstructions(GameTestHelper helper) {
         var turbine = machine(helper);
         try (var transaction = Transaction.openRoot()) {

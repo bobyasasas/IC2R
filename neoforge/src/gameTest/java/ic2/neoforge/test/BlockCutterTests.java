@@ -74,6 +74,27 @@ final class BlockCutterTests {
         helper.succeed();
     }
 
+    static void steelBladeBridgesTheGap(GameTestHelper helper) {
+        var cutter = cutter(helper);
+        cutter.energy().insert(1800);
+        insert(cutter, BlockCutterBlockEntity.BLADE, ModTools.STEEL_CUTTING_BLADE.toStack());
+        insert(cutter, 0, new ItemStack(Items.OBSIDIAN));
+        var level = helper.getLevel();
+        run(cutter, level, 450);
+        helper.assertTrue(
+                cutter.bladeTooWeak() && cutter.energy().stored() == 1800,
+                "Obsidian (hardness 8) resists the steel blade (6) without draining energy");
+        insert(cutter, 0, new ItemStack(Items.IRON_BLOCK));
+        run(cutter, level, 450);
+        helper.assertTrue(
+                cutter.inventory().stack(0).isEmpty() && !cutter.inventory().stack(1).isEmpty(),
+                "The steel blade cuts the iron block (hardness 5) the iron blade cannot");
+        helper.assertTrue(
+                cutter.energy().stored() == 0 && !cutter.bladeTooWeak(),
+                "The steel cut drains the full 1800 EU without stalling");
+        helper.succeed();
+    }
+
     static void missingBladeStalls(GameTestHelper helper) {
         var cutter = cutter(helper);
         cutter.energy().insert(1000);

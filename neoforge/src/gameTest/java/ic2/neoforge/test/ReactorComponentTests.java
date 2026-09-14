@@ -107,5 +107,57 @@ final class ReactorComponentTests {
         helper.succeed();
     }
 
+    static void componentExchangerPullsNeighbourHeat(GameTestHelper helper) {
+        var reactor = reactor(helper);
+        var coolant = ModReactorItems.REACTOR_COOLANT_CELL.get().getDefaultInstance();
+        coolant.set(ModDataComponents.REACTOR_HEAT, 100);
+        reactor.inventory().set(9, ItemResource.of(coolant), 1);
+        reactor.inventory()
+                .set(
+                        10,
+                        ItemResource.of(
+                                ModReactorItems.COMPONENT_HEAT_EXCHANGER
+                                        .get()
+                                        .getDefaultInstance()),
+                        1);
+        cycles(reactor, helper, 1);
+        var exchanger = (ReactorComponent) reactor.inventory().stack(10).getItem();
+        int pulled = exchanger.getCurrentHeat(reactor.inventory().stack(10), reactor, 10, 0);
+        helper.assertTrue(
+                pulled > 0, "The component exchanger pulls heat from its neighbours");
+        var neighbour = (ReactorComponent) reactor.inventory().stack(9).getItem();
+        int left = neighbour.getCurrentHeat(reactor.inventory().stack(9), reactor, 9, 0);
+        helper.assertTrue(
+                left < 100,
+                "The neighbour cools as the exchanger absorbs its heat, saw " + left);
+        helper.assertTrue(
+                reactor.getHeat() == 0,
+                "With switchReactor 0 the component exchanger must not touch the core");
+        helper.succeed();
+    }
+
+    static void advancedExchangerDumpsCoreHeat(GameTestHelper helper) {
+        var reactor = reactor(helper);
+        reactor.setHeat(2000);
+        reactor.inventory()
+                .set(
+                        9,
+                        ItemResource.of(
+                                ModReactorItems.ADVANCED_HEAT_EXCHANGER
+                                        .get()
+                                        .getDefaultInstance()),
+                        1);
+        cycles(reactor, helper, 1);
+        var advanced = (ReactorComponent) reactor.inventory().stack(9).getItem();
+        int pulled = advanced.getCurrentHeat(reactor.inventory().stack(9), reactor, 9, 0);
+        helper.assertTrue(
+                pulled > 0,
+                "The advanced exchanger's switchReactor path pulls heat out of the core");
+        helper.assertTrue(
+                reactor.getHeat() < 2000,
+                "The core cools once the advanced exchanger engages, saw " + reactor.getHeat());
+        helper.succeed();
+    }
+
     private ReactorComponentTests() {}
 }
