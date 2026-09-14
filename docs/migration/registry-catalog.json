@@ -15105,15 +15105,18 @@
    "factory": "registerManagedItem",
    "expression": "",
    "decision": "preserve",
-   "status": "partial",
-   "note": "手持物品菜单族已实现 5 种（meter/tool_box/containment_box/crop_analyzer/mining_filter）；legacy 另有 scanner（ContainerToolScanner）与 advanced_upgrade 三屏未移植，各自单列条目跟踪；按已实现物品记 partial。",
+   "status": "implemented",
+   "note": "勘误：原 note 称 scanner（ContainerToolScanner）与 advanced_upgrade 三屏未移植已过时——四者均已单列 implemented（ic2:scanner/ic2:advanced_upgrade/ic2:advanced_upgrade/edit_ore/ic2:advanced_upgrade/value_config）。legacy registerManagedItem 手持物品菜单族 9 个具体菜单与 port 一一对应（tool_box/mining_filter/crop_analyzer/meter/containment_box/scanner/advanced_upgrade；id 映射 advanced_upgrade/value_config→advanced_value_config、advanced_upgrade/edit_ore→advanced_edit_ore，单列条目已记录）；legacy dynamic_item 本体（DynamicContainer<HandHeldInventory> 通用手持容器）在 port 无同名 MenuType，由专属菜单族等价覆盖（机制差异记档不回删，留用户裁决）。handheld_menu_family 审计：9 个 MenuType 注册 id 对照 legacy 家族命名，并经 RegistryFriendlyByteBuf 数据工厂（varint/blockpos/UUID）逐个真实构造专属菜单全部通过（IC2+GT 573×2 全绿）。",
    "evidence": [
     "docs/migration/menu-audit.md",
     "neoforge/src/main/java/ic2/neoforge/menu/MeterMenu.java",
     "neoforge/src/main/java/ic2/neoforge/menu/ToolboxMenu.java",
     "neoforge/src/main/java/ic2/neoforge/menu/ContainmentBoxMenu.java",
     "neoforge/src/main/java/ic2/neoforge/menu/CropAnalyzerMenu.java",
-    "neoforge/src/main/java/ic2/neoforge/menu/MiningFilterMenu.java"
+    "neoforge/src/main/java/ic2/neoforge/menu/MiningFilterMenu.java",
+    "neoforge/src/main/java/ic2/neoforge/registration/ModTools.java",
+    "neoforge/src/main/java/ic2/neoforge/registration/ModToolbox.java",
+    "neoforge/src/gameTest/java/ic2/neoforge/test/MenuAuditTests.java"
    ]
   },
   {

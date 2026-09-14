@@ -859,6 +859,7 @@ public final class RegistrationTests {
         FUNCTIONS.register("stirling_kinetic_chain_charges_batbox", () -> EntityTickingTests.wrap(StirlingKineticTests::chainChargesBatbox));
         FUNCTIONS.register("menu_audit_slots", () -> MenuAuditTests::everyMachineMenuBindsInventorySlotsExactlyOnce);
         FUNCTIONS.register("menu_audit_chunk_loader", () -> EntityTickingTests.wrap(MenuAuditTests::chunkLoaderMenuMatchesSingleDischargeLayout));
+        FUNCTIONS.register("handheld_menu_family", () -> EntityTickingTests.wrap(MenuAuditTests::handheldMenuFamilyMatchesLegacy));
         FUNCTIONS.register("advanced_upgrade_registration", () -> EntityTickingTests.wrap(AdvancedUpgradeTests::registration));
         FUNCTIONS.register("advanced_upgrade_menu", () -> EntityTickingTests.wrap(AdvancedUpgradeTests::menu));
         FUNCTIONS.register("advanced_upgrade_filter", () -> EntityTickingTests.wrap(AdvancedUpgradeTests::filter));
