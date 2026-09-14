@@ -183,3 +183,13 @@
 - 辐射伤害随 P16(防化服/辐射药水)。
 - 反应堆 EU 输出经真实电缆/电压的整链验收与多人回归(M16)。
 - 燃料棒装罐配方依赖核材料链已解锁;堆内脉冲/辐射为 P12/P16 后续验收。
+
+## 第 59 轮审计(2026-09-12)
+
+- catalog item/block/block_entity `ic2:rci_rsh`/`ic2:rci_lzh` 六条勘误翻
+  implemented:ReactorAccessHatchTests 六项覆盖网格访问(hatchExposesGrid/
+  vessel_ring/vessel_ring_ports)、红石口(rci 供能)、RCI 回充
+  (rciRechargesCondensator)、输出加成(rciBonusRaisesConversion 每台 10 点)
+  与满尺寸校验;rsh/lzh 由 ReactorRciBlockEntity 按 MachineKind 区分。
+  本轮无代码改动。
+- 留人工(不自行签署):客户端外观实机观感。

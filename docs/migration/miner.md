@@ -62,3 +62,12 @@
 - 区块边界(`getMinY` 以下停止)已按移植实现,但无专门 GameTest;
 - 真实客户端界面操作、泵模式按钮外观、十二态外观随实机测试;
 - 高级矿机(`TileEntityAdvMiner`)独立切片;多人表现随 M16。
+
+## 第 59 轮审计(2026-09-12)
+
+- catalog item/block/block_entity/menu `ic2:miner` 四条勘误翻 implemented:
+  功能面此前已全部交付——直挖/收回/扫描器侧挖/泵联动经 MinerTests 四项
+  GameTest 验证,泵抽模式经 MachineMenu `MachineKind.PUMP` 分支与
+  `menuAction` 接入。本轮无代码改动。
+- 留人工(不自行签署):真实客户端外观/GUI 操作/泵模式按钮观感;
+  多人同步随 M16;区块边界停止无专门 GameTest。

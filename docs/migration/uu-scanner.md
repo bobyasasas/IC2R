@@ -216,3 +216,13 @@ legacy `ItemCrystalMemory`(内嵌 ItemStack 的模式存储盘)及其空白晶�
   `uu_scanner_state_sync`(空白水晶盘过存储前置,SCANNING 序数 2 →
   COMPLETED 序数 6 断言);IC2/GT 双模式 **543 项全绿**(基线 540→543)。
 - **遗留**:屏幕按钮与布局实机观感、tooltip 渲染仍留人工验收。
+
+## 第 59 轮审计(2026-09-12)
+
+- catalog item/block/block_entity/menu `ic2:replicator` 四条勘误翻
+  implemented:ReplicatorTests 七项覆盖——UU 罐/单元链、单次/连续模式、
+  legacy 按钮 id(0/1 浏览仅停止态、3 停止清进度、4 单次、5 连续)、
+  4 升级槽(超频 0.7ⁿ 速度/1.6ⁿ 耗电、变压器提 tier、储能 +10000 EU)、
+  进度/UU 银行/罐/模式/选中图案持久化、图案变更重置(refreshInfo)、
+  ∞值图案永续烧 UU(legacy 怪癖)。本轮无代码改动。
+- 留人工(不自行签署):屏幕按钮与布局实机观感。

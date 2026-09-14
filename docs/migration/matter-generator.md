@@ -60,3 +60,12 @@
   外观。记录于 `/home/codex/minecraft/待测试.md` 第 22 节。
 - P11 余量:`uu_scanner`/`pattern_storage`/`replicator`(模式复制链)与
   `UuGraph` 物品价值扫描;手持扫描 GUI 此前已随扫描器切片确认未迁移。
+
+## 第 59 轮审计(2026-09-12)
+
+- catalog item/block/block_entity/menu `ic2:matter_generator` 与
+  recipe_serializer/recipe_type `ic2:matter_fabricator` 共六条勘误翻
+  implemented:1M EU 缓冲、scrap 5× 增益、UU 单元灌装、红石门控经
+  MatterGeneratorTests 三项验证;scrap→5000/scrap box→45000 增幅配方
+  落盘 recipe/matter_fabricator/ 并经加载清单验证。本轮无代码改动。
+- 留人工(不自行签署):客户端罐/进度/增幅读数与灌装手感实机观感。
