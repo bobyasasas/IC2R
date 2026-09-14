@@ -69,3 +69,15 @@
 - 验证:IC2/GT 双模式 558×2 全绿;registry 1130/49/20→1157/22/20。
 - 留人工:客户端外观(M16)。steel_cutting_blade 无直接阈值断言,留 partial
   待补 GameTest(不虚报)。
+
+## 第 62 轮交付(2026-09-12)
+
+- 补 GameTest 功能切片 1 项:BlockCutterTests.steelBladeBridgesTheGap
+  (注册名 block_cutter_steel_blade),兑现第 61 轮"steel_cutting_blade 留
+  partial 待补 GameTest"的承诺。
+- 断言:黑曜石(切割需求 8)超 steel 刀阈值(6)→ bladeTooWeak 置位、停机
+  保持 1800 EU 不耗电;换铁块(需求 5)→ 切割完成、钢板入输出槽、电量
+  耗尽 0 EU、bladeTooWeak 复位。
+- 验证:IC2/GT 双模式 564×2 全绿(558 基线+6 新增);registry
+  1157/22/20→1163/16/20(steel_cutting_blade 勘误翻 implemented)。
+- 留人工:客户端外观(M16)。

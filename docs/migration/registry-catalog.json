@@ -4529,12 +4529,12 @@
    "factory": "register",
    "expression": "new BlockCuttingBlade(new Properties(), BlockCuttingBladeType.steel)",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/block-cutter.md",
     "neoforge/src/gameTest/java/ic2/neoforge/test/BlockCutterTests.java"
    ],
-   "note": "物品、tooltip、创造页与切割门控已验证;客户端外观随实机测试。"
+   "note": "勘误翻 implemented：切割阈值经 BlockCutterTests.steelBladeBridgesTheGap 直接断言（黑曜石(需 8)超 steel 阈值(6)停机不耗电保持 1800 EU、铁块(5)可切并耗尽 1800 EU）；客户端外观随实机（M16）。"
   },
   {
    "registry": "item",
@@ -5081,12 +5081,12 @@
    "factory": "register",
    "expression": "new ItemReactorHeatSwitch(new Properties(), 5000, 36, 0)",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/nuclear-reactor.md",
     "neoforge/src/gameTest/java/ic2/neoforge/test/ReactorComponentTests.java"
    ],
-   "note": "物品、堆内组件行为与合成配方经 GameTest 验证;客户端外观随实机测试。"
+   "note": "勘误翻 implemented：堆内换热经 ReactorComponentTests.componentExchangerPullsNeighbourHeat 直接断言（switchSide 36 仅拉四邻：邻居 100 热被拉入换热器、核心热保持 0）；客户端外观随实机（M16）。"
   },
   {
    "registry": "item",
@@ -5096,12 +5096,12 @@
    "factory": "register",
    "expression": "new ItemReactorHeatSwitch(new Properties(), 10000, 24, 8)",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/nuclear-reactor.md",
     "neoforge/src/gameTest/java/ic2/neoforge/test/ReactorComponentTests.java"
    ],
-   "note": "物品、堆内组件行为与合成配方经 GameTest 验证;客户端外观随实机测试。"
+   "note": "勘误翻 implemented：堆内换热经 ReactorComponentTests.advancedExchangerDumpsCoreHeat 直接断言（switchReactor 8 兼拉核心：核心 2000 热被拉入换热器）；客户端外观随实机（M16）。"
   },
   {
    "registry": "item",
@@ -6660,13 +6660,13 @@
    "factory": "register",
    "expression": "new ItemWindRotor(new Properties().durability(86400), 7, true, 0.5F, 14, 75, ResourceLocation.fromNamespaceAndPath(\"ic2\", \"textures/item/rotor/bronze_rotor_model.png\"))",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/wind-turbine.md",
     "neoforge/src/gameTest/java/ic2/neoforge/test/WindTurbineTests.java",
     "docs/migration/water-turbine.md"
    ],
-   "note": "转子规格、耐久、风场与水域、空间、产能预算、重载及转电链已接入；多人和性能验收由 M16 跟踪。"
+   "note": "勘误翻 implemented：材质窗口经 WindTurbineTests.bronzeRotorOperates 直接断言（RotorOperation.wind 风速 30 落入窗口[14,75]产出 RUNNING、直径 7、装转子重采样直径与材质耐久 86400）；多人与性能实机验收留人工（M16）。"
   },
   {
    "registry": "item",
@@ -6694,13 +6694,13 @@
    "factory": "register",
    "expression": "new ItemWindRotor(new Properties().durability(172800), 9, true, 0.75F, 17, 90, ResourceLocation.fromNamespaceAndPath(\"ic2\", \"textures/item/rotor/steel_rotor_model.png\"))",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/wind-turbine.md",
     "neoforge/src/gameTest/java/ic2/neoforge/test/WindTurbineTests.java",
     "docs/migration/water-turbine.md"
    ],
-   "note": "转子规格、耐久、风场与水域、空间、产能预算、重载及转电链已接入；多人和性能验收由 M16 跟踪。"
+   "note": "勘误翻 implemented：材质窗口经 WindTurbineTests.steelRotorOperates 直接断言（RotorOperation.wind 风速 30 落入窗口[17,90]产出 RUNNING、直径 9、装转子重采样直径与材质耐久 172800）；多人与性能实机验收留人工（M16）。"
   },
   {
    "registry": "item",
@@ -6710,13 +6710,13 @@
    "factory": "register",
    "expression": "new ItemWindRotor(new Properties().durability(604800), 11, true, 1.0F, 20, 110, ResourceLocation.fromNamespaceAndPath(\"ic2\", \"textures/item/rotor/carbon_rotor_model.png\"))",
    "decision": "preserve",
-   "status": "partial",
+   "status": "implemented",
    "evidence": [
     "docs/migration/wind-turbine.md",
     "neoforge/src/gameTest/java/ic2/neoforge/test/WindTurbineTests.java",
     "docs/migration/water-turbine.md"
    ],
-   "note": "转子规格、耐久、风场与水域、空间、产能预算、重载及转电链已接入；多人和性能验收由 M16 跟踪。"
+   "note": "勘误翻 implemented：材质窗口经 WindTurbineTests.carbonRotorOperates 直接断言（RotorOperation.wind 风速 30 落入窗口[20,110]产出 RUNNING、直径 11、装转子重采样直径与材质耐久 604800）；多人与性能实机验收留人工（M16）。"
   },
   {
    "registry": "item",

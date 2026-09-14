@@ -30,3 +30,20 @@ P06 继续进行：同位素与热／动能转换、剩余配置和整体验收�
 - 验证:IC2/GT 双模式 558×2 全绿;registry 1130/49/20→1157/22/20。
 - 留人工:多人/性能实机(M16)。bronze/steel/carbon_rotor 无直接断言,留 partial
   待补 GameTest 切片(不虚报)。
+
+## 第 62 轮交付(2026-09-12)
+
+- 补 GameTest 功能切片 3 项:WindTurbineTests.bronzeRotorOperates/
+  steelRotorOperates/carbonRotorOperates(注册名 turbine_rotor_bronze/
+  steel/carbon),兑现第 61 轮"bronze/steel/carbon_rotor 留 partial 待补"
+  的承诺。
+- 断言:RotorOperation.wind(材质, 30, 0, 1) 落入各材质风窗
+  (bronze[14,75]/steel[17,90]/carbon[20,110])→ status RUNNING、
+  output>0、diameter==材质直径;装转子后 serverTick 重采样直径一致、
+  maxDamage==材质耐久(86400/172800/604800)。
+- 风场说明:GameTest 结构内实际采样风≈14,只够 wooden 窗口;高材质窗口
+  语义断言在 core 公式层直接覆盖,机器链(装转子→重采样→直径/耐久)在
+  BlockEntity 层覆盖,不虚构风值(WorldWind strength codec 上限 30)。
+- 验证:IC2/GT 双模式 564×2 全绿;registry 1157/22/20→1163/16/20
+  (bronze/steel/carbon_rotor 勘误翻 implemented)。
+- 留人工:多人/性能实机(M16)。

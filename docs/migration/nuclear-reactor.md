@@ -202,3 +202,17 @@
 - 验证:IC2/GT 双模式 558×2 全绿;registry 1130/49/20→1157/22/20。
 - 留人工:客户端外观(M16)。component_heat_exchanger/advanced_heat_exchanger
   无直接 GameTest 断言,留 partial 待补(不虚报)。
+
+## 第 62 轮交付(2026-09-12)
+
+- 补 GameTest 功能切片 2 项:ReactorComponentTests.
+  componentExchangerPullsNeighbourHeat/advancedExchangerDumpsCoreHeat
+  (注册名 reactor_component_exchanger/reactor_advanced_exchanger),
+  兑现第 61 轮"两热交换器留 partial 待补"的承诺。
+- 断言:component_heat_exchanger(switchSide 36、switchReactor 0)仅拉
+  四邻——邻居元件 100 热被拉入换热器、核心热保持 0;
+  advanced_heat_exchanger(switchSide 24、switchReactor 8)兼拉核心——
+  核心 2000 热被拉入元件。
+- 验证:IC2/GT 双模式 564×2 全绿;registry 1157/22/20→1163/16/20
+  (component/advanced_heat_exchanger 勘误翻 implemented)。
+- 留人工:客户端外观(M16)。
