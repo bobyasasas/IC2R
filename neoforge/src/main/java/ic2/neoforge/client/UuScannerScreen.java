@@ -3,16 +3,11 @@ package ic2.neoforge.client;
 import ic2.neoforge.menu.MachineMenu;
 
 import net.minecraft.client.gui.GuiGraphicsExtractor;
-import net.minecraft.client.gui.components.Button;
-import net.minecraft.client.gui.components.Tooltip;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Inventory;
 
 /** Scanner screen: input + crystal memory with the legacy status line, progress and buttons. */
 public final class UuScannerScreen extends MachineScreen {
-    private Button delete;
-    private Button save;
-
     public UuScannerScreen(MachineMenu menu, Inventory inventory, Component title) {
         super(menu, inventory, title);
     }
@@ -20,51 +15,48 @@ public final class UuScannerScreen extends MachineScreen {
     @Override
     public void init() {
         super.init();
-        delete =
-                addRenderableWidget(
-                                Button.builder(
-                                        Component.literal("×"),
-                                        b -> send(0))
-                                .bounds(leftPos + 102, topPos + 49, 12, 12)
-                                .build());
-        delete.setTooltip(
-                Tooltip.create(Component.translatable("ic2.Scanner.gui.button.delete")));
-        save =
-                addRenderableWidget(
-                        Button.builder(
-                                        Component.literal("S"),
-                                        b -> send(1))
-                                .bounds(leftPos + 143, topPos + 49, 24, 12)
-                                .build());
-        save.setTooltip(Tooltip.create(Component.translatable("ic2.Scanner.gui.button.save")));
+        addLegacyControl(
+                102, 49, 12, 12, button -> button == 0 ? 0 : -1,
+                () -> Component.translatable("ic2.Scanner.gui.button.delete"),
+                () -> menu.familyValue(1) >= 5);
+        addLegacyControl(
+                143, 49, 24, 12, button -> button == 0 ? 1 : -1,
+                () -> Component.translatable("ic2.Scanner.gui.button.save"),
+                () -> menu.familyValue(1) == 6 || menu.familyValue(1) == 7);
     }
 
-    private void send(int id) {
-        if (minecraft.gameMode != null)
-            minecraft.gameMode.handleInventoryButtonClick(menu.containerId, id);
-    }
-
-    /** Legacy enable handlers: delete on COMPLETED/TRANSFER_ERROR/FAILED, save without FAILED. */
-    private void updateButtons() {
+    @Override
+    protected void drawLegacyMachineBackground(GuiGraphicsExtractor graphics) {
         int state = menu.familyValue(1);
-        if (delete != null) delete.active = state >= 5;
-        if (save != null) save.active = state == 6 || state == 7;
+        if (state >= 5)
+            LegacyMachineGui.blit(graphics, backgroundTexture(), leftPos + 102, topPos + 49, 176, 57, 12, 12);
+        if (state == 6 || state == 7)
+            LegacyMachineGui.blit(graphics, backgroundTexture(), leftPos + 143, topPos + 49, 176, 69, 24, 12);
+        if (state == 2 && menu.progressMaximum() > 0) {
+            int scanning = Math.clamp(Math.round(menu.progress() * 43.0F / menu.progressMaximum()), 0, 43);
+            if (scanning > 0)
+                LegacyMachineGui.blit(
+                        graphics,
+                        backgroundTexture(),
+                        leftPos + 30,
+                        topPos + 63 - scanning,
+                        176,
+                        57 - scanning,
+                        66,
+                        scanning);
+        }
     }
 
     @Override
     public void extractBackground(
             GuiGraphicsExtractor graphics, int mouseX, int mouseY, float partialTick) {
         super.extractBackground(graphics, mouseX, mouseY, partialTick);
-        updateButtons();
         int x = leftPos, y = topPos;
         int state = menu.familyValue(1);
-        graphics.text(
-                font,
-                Component.translatable("ic2.Scanner.gui.info5").getString() + ":",
-                x + 123,
-                y + 6,
-                0xff404040,
-                false);
+        drawFittedText(
+                graphics,
+                Component.literal(Component.translatable("ic2.Scanner.gui.info5").getString() + ":"),
+                123, 6, 45, 0xff404040);
         switch (state) {
             case 2 -> {
                 status(graphics, "ic2.Scanner.gui.info1", 0xff20eb3e);
@@ -77,38 +69,31 @@ public final class UuScannerScreen extends MachineScreen {
             case 4 -> status(graphics, "ic2.Scanner.gui.info8", 0xffd71010);
             case 5 -> {
                 status(graphics, "ic2.Scanner.gui.info4", 0xff20eb3e);
-                graphics.text(
-                        font,
-                        Component.translatable("ic2.Scanner.gui.info6"),
-                        x + 110,
-                        y + 30,
-                        0xffd71010,
-                        false);
+                drawFittedText(graphics, Component.translatable("ic2.Scanner.gui.info6"), 110, 30, 58, 0xffd71010);
             }
             case 6, 7 -> {
                 if (state == 6) status(graphics, "ic2.Scanner.gui.info4", 0xff20eb3e);
                 else status(graphics, "ic2.Scanner.gui.info7", 0xffd71010);
-                graphics.text(
-                        font,
-                        Component.literal(
-                                MeterScreen.toSiString(menu.familyFloat(3), 4) + "B UUM"),
-                        x + 105,
-                        y + 25,
-                        0xffffff,
-                        false);
-                graphics.text(
-                        font,
+                drawFittedText(
+                        graphics,
+                        Component.literal(MeterScreen.toSiString(menu.familyFloat(3), 4) + "B UUM"),
+                        105,
+                        25,
+                        63,
+                        0xffffff);
+                drawFittedText(
+                        graphics,
                         Component.literal(MeterScreen.toSiString(menu.familyFloat(4), 4) + "EU"),
-                        x + 105,
-                        y + 36,
-                        0xffffff,
-                        false);
+                        105,
+                        36,
+                        63,
+                        0xffffff);
             }
             default -> status(graphics, "ic2.Scanner.gui.idle", 0xffebeb20);
         }
     }
 
     private void status(GuiGraphicsExtractor graphics, String key, int color) {
-        graphics.text(font, Component.translatable(key), leftPos + 10, topPos + 69, color, false);
+        drawFittedText(graphics, Component.translatable(key), 10, 69, 110, color);
     }
 }

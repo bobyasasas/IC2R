@@ -1,5 +1,6 @@
 package ic2.neoforge.test;
 
+import ic2.neoforge.machine.AdvMinerBlockEntity;
 import ic2.neoforge.machine.ChunkLoaderBlockEntity;
 import ic2.neoforge.machine.MachineKind;
 import ic2.neoforge.menu.AdvancedEditOreMenu;
@@ -58,11 +59,16 @@ final class MenuAuditTests {
         for (MachineKind kind : MachineKind.values()) {
             var player = helper.makeMockPlayer(GameType.SURVIVAL);
             var menu = new MachineMenu(1, player.getInventory(), BlockPos.ZERO, kind);
-            int machineSlotCount = menu.slots.size() - PLAYER_SLOTS;
+            int playerSlotCount = kind == MachineKind.STEAM_GENERATOR ? 0 : PLAYER_SLOTS;
+            int machineSlotCount = menu.slots.size() - playerSlotCount;
             helper.assertTrue(
                     machineSlotCount == auditedMachineSlots(kind),
                     kind + " menu must expose exactly its inventory slots: expected "
                             + auditedMachineSlots(kind) + ", got " + machineSlotCount);
+            if (kind == MachineKind.STEAM_GENERATOR)
+                helper.assertTrue(
+                        menu.slots.isEmpty(),
+                        "The legacy steam-generator control panel must not overlap player slots");
             Set<Long> bound = new HashSet<>();
             for (int slot = 0; slot < machineSlotCount; slot++) {
                 var menuSlot = menu.slots.get(slot);
@@ -112,6 +118,25 @@ final class MenuAuditTests {
         helper.assertTrue(
                 menu.slots.getFirst().getContainerSlot() == 0,
                 "Chunk loader discharge must bind the only non-upgrade inventory slot");
+        helper.succeed();
+    }
+
+    static void advancedMinerMenuMatchesLiveInventory(GameTestHelper helper) {
+        helper.setBlock(
+                new BlockPos(2, 2, 2),
+                ModMachines.block(MachineKind.ADV_MINER).defaultBlockState());
+        AdvMinerBlockEntity miner =
+                helper.getBlockEntity(new BlockPos(2, 2, 2), AdvMinerBlockEntity.class);
+        var player = helper.makeMockPlayer(GameType.SURVIVAL);
+        var menu = new MachineMenu(1, player.getInventory(), miner);
+        helper.assertTrue(
+                miner.inventory().size() == MachineKind.ADV_MINER.slots(),
+                "Advanced miner inventory must contain its scanner, card, filters and four upgrades");
+        helper.assertTrue(
+                menu.slots.size() == PLAYER_SLOTS + MachineKind.ADV_MINER.slots(),
+                "Advanced miner menu must not bind beyond the live block entity inventory");
+        for (int index = 0; index < MachineKind.ADV_MINER.slots(); index++)
+            menu.slots.get(index).getItem();
         helper.succeed();
     }
 

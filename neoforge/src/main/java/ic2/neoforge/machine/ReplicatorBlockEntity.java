@@ -354,6 +354,7 @@ public final class ReplicatorBlockEntity extends PoweredBlockEntity implements F
             case 1 -> mode;
             case 2 -> patterns.isEmpty() ? 0 : Math.floorMod(patternIndex, patterns.size()) + 1;
             case 3 -> patterns.size();
+            case 4 -> selected.isEmpty() ? -1 : BuiltInRegistries.ITEM.getId(selected.getItem());
             default -> 0;
         };
     }

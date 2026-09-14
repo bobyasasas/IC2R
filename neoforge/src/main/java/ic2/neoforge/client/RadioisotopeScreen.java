@@ -16,19 +16,13 @@ public class RadioisotopeScreen extends MachineScreen {
     public void extractBackground(
             GuiGraphicsExtractor graphics, int mouseX, int mouseY, float partialTick) {
         super.extractBackground(graphics, mouseX, mouseY, partialTick);
-        graphics.text(
-                font,
+        drawFittedText(
+                graphics,
                 Component.translatable("ic2.radioisotope.installed", menu.familyValue(0)),
-                leftPos + 34,
-                topPos + 18,
-                0xff404040,
-                false);
-        graphics.text(
-                font,
+                34, 18, 134, 0xff404040);
+        drawFittedText(
+                graphics,
                 Component.translatable("ic2.radioisotope.rate", menu.familyValue(1)),
-                leftPos + 34,
-                topPos + 56,
-                0xff404040,
-                false);
+                34, 56, 134, 0xff404040);
     }
 }

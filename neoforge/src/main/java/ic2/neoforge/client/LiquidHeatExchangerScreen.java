@@ -36,20 +36,11 @@ public final class LiquidHeatExchangerScreen extends MachineScreen {
                     menu.tankFluid(output),
                     menu.tankAmount(output),
                     2000);
-        graphics.text(
-                font,
+        drawFittedText(
+                graphics,
                 Component.translatable("ic2.work.heat_rate", menu.familyValue(0)),
-                leftPos + 48,
-                topPos + 58,
-                0xff404040,
-                false);
-        graphics.text(
-                font,
-                Component.translatable("ic2.work.heat", menu.fuelRemaining()),
-                leftPos + 48,
-                topPos + 70,
-                0xff404040,
-                false);
+                48, 58, 94, 0xff404040);
+        drawFittedText(graphics, Component.translatable("ic2.work.heat", menu.fuelRemaining()), 48, 70, 94, 0xff404040);
     }
 
     @Override

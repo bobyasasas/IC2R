@@ -38,22 +38,13 @@ public final class SteamTurbineScreen extends MachineScreen {
                 menu.tankFluid(true),
                 menu.tankAmount(true),
                 1000);
-        graphics.text(
-                font,
-                Component.literal(menu.familyValue(0) + " KU/t"),
-                leftPos + 45,
-                topPos + 42,
-                0xff404040,
-                false);
-        graphics.text(
-                font,
+        drawFittedText(graphics, Component.literal(menu.familyValue(0) + " KU/t"), 45, 42, 28, 0xff404040);
+        drawFittedText(
+                graphics,
                 Component.translatable(
                         "ic2.steam_turbine.pending",
                         String.format(Locale.ROOT, "%.3g", menu.familyFloat(6))),
-                leftPos + 8,
-                topPos + 60,
-                0xff404040,
-                false);
+                8, 60, 160, 0xff404040);
         int flags = menu.familyValue(5);
         String status =
                 (flags & SteamTurbineBlockEntity.NO_TURBINE) != 0
@@ -69,13 +60,7 @@ public final class SteamTurbineScreen extends MachineScreen {
                                                         : menu.familyValue(0) > 0
                                                                 ? "running"
                                                                 : "idle";
-        graphics.text(
-                font,
-                Component.translatable("ic2.steam_turbine." + status),
-                leftPos + 8,
-                topPos + 74,
-                0xff404040,
-                false);
+        drawFittedText(graphics, Component.translatable("ic2.steam_turbine." + status), 8, 74, 160, 0xff404040);
     }
 
     @Override

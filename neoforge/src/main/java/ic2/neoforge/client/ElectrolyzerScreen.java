@@ -28,27 +28,15 @@ public final class ElectrolyzerScreen extends MachineScreen {
                 menu.tankFluid(false),
                 menu.tankAmount(false),
                 8000);
-        graphics.text(
-                font,
+        drawFittedText(
+                graphics,
                 Component.translatable("ic2.tooltip.generation", menu.familyValue(0)),
-                leftPos + 98,
-                topPos + 20,
-                0xff404040,
-                false);
-        graphics.text(
-                font,
+                98, 20, 70, 0xff404040);
+        drawFittedText(
+                graphics,
                 Component.literal(menu.progress() + " / " + menu.progressMaximum()),
-                leftPos + 98,
-                topPos + 34,
-                0xff404040,
-                false);
-        graphics.text(
-                font,
-                Component.translatable("ic2.electrolyzer.tanks"),
-                leftPos + 76,
-                topPos + 60,
-                0xff404040,
-                false);
+                98, 34, 70, 0xff404040);
+        drawFittedText(graphics, Component.translatable("ic2.electrolyzer.tanks"), 76, 60, 92, 0xff404040);
     }
 
     @Override

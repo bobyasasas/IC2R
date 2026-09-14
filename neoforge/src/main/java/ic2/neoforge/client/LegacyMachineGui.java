@@ -288,6 +288,18 @@ final class LegacyMachineGui {
             return custom("guifermenter.png", x, y, 177, 10, 40, 3, 0, 0, 0, 0, 0, 0);
         }
 
+        static GaugeSpec heatSteamGenerator(int x, int y) {
+            return new GaugeSpec(
+                    LegacyMachineGui.texture("guisteamgenerator.png"),
+                    x, y, 177, 1, 7, 76, true, true, 0, 0, 0, 0, 0, 0);
+        }
+
+        static GaugeSpec calcificationSteamGenerator(int x, int y) {
+            return new GaugeSpec(
+                    LegacyMachineGui.texture("guisteamgenerator.png"),
+                    x, y, 187, 1, 7, 58, true, true, 0, 0, 0, 0, 0, 0);
+        }
+
         static GaugeSpec progressFermenter(int x, int y) {
             return custom("guifermenter.png", x, y, 177, 1, 40, 7, 0, 0, 0, 0, 0, 0);
         }

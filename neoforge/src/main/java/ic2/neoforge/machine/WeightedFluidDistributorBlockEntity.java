@@ -51,7 +51,11 @@ public final class WeightedFluidDistributorBlockEntity extends FluidDistributorB
     /** Toggling a direction removes it; adding appends it as the lowest priority. */
     @Override
     public boolean menuAction(int id) {
-        if (id < 0 || id >= Direction.values().length) return false;
+        if (id >= 6 && id < 36) {
+            int encoded = id - 6;
+            return movePriority(Direction.from3DDataValue(encoded % 6), encoded / 6);
+        }
+        if (id < 0 || id >= 6) return false;
         var side = Direction.from3DDataValue(id);
         if (priority.remove(side)) {
             setChanged();
@@ -59,6 +63,21 @@ public final class WeightedFluidDistributorBlockEntity extends FluidDistributorB
         }
         if (priority.size() >= MAX_PRIORITY || side.equals(facing())) return false;
         priority.add(side);
+        setChanged();
+        return true;
+    }
+
+    private boolean movePriority(Direction side, int row) {
+        int current = priority.indexOf(side);
+        if (current == row) {
+            priority.remove(current);
+            setChanged();
+            return true;
+        }
+        if (side.equals(facing())) return false;
+        priority.remove(side);
+        priority.add(Math.min(row, priority.size()), side);
+        while (priority.size() > MAX_PRIORITY) priority.remove(priority.size() - 1);
         setChanged();
         return true;
     }

@@ -4,7 +4,6 @@ import ic2.core.machine.SteamBoiler;
 import ic2.neoforge.menu.MachineMenu;
 
 import net.minecraft.client.gui.GuiGraphicsExtractor;
-import net.minecraft.client.gui.components.Button;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Inventory;
 
@@ -28,73 +27,55 @@ public final class SteamGeneratorScreen extends MachineScreen {
     @Override
     public void init() {
         super.init();
+        inventoryLabelY = -1000;
         for (int column = 0; column < 4; column++) {
-            int value = (int) Math.pow(10, column);
-            button(column, "+" + value, 54 + column * 36, 18);
-            button(column + 4, "-" + value, 54 + column * 36, 50);
+            addLegacyControl(92 + column * 10, 162, 9, 9, 3 - column, null);
+            addLegacyControl(92 + column * 10, 186, 9, 9, 7 - column, null);
             if (column < 3) {
-                button(column + 8, "+" + value, 54 + column * 46, 76);
-                button(column + 11, "-" + value, 54 + column * 46, 108);
+                addLegacyControl(23 + column * 10, 25, 9, 9, 10 - column, null);
+                addLegacyControl(23 + column * 10, 49, 9, 9, 13 - column, null);
             }
         }
-    }
-
-    private void button(int id, String label, int x, int y) {
-        addRenderableWidget(
-                Button.builder(
-                                Component.literal(label),
-                                button -> {
-                                    if (minecraft.gameMode != null)
-                                        minecraft.gameMode.handleInventoryButtonClick(
-                                                menu.containerId, id);
-                                })
-                        .bounds(leftPos + x, topPos + y, 35, 18)
-                        .build());
     }
 
     @Override
     public void extractBackground(
             GuiGraphicsExtractor graphics, int mouseX, int mouseY, float partialTick) {
         super.extractBackground(graphics, mouseX, mouseY, partialTick);
-        FluidTankDisplay.draw(
-                minecraft,
+        FluidTankDisplay.drawPlain(
+                minecraft, graphics, leftPos + 10, topPos + 155, 75, 47,
+                menu.tankFluid(false), menu.tankAmount(false), 10000);
+        LegacyMachineGui.drawGauge(
+                graphics, leftPos, topPos, LegacyMachineGui.GaugeSpec.heatSteamGenerator(13, 70),
+                Math.round(menu.familyFloat(4)), 500);
+        LegacyMachineGui.drawGauge(
+                graphics, leftPos, topPos,
+                LegacyMachineGui.GaugeSpec.calcificationSteamGenerator(155, 61),
+                menu.progress(), SteamBoiler.MAX_SCALE);
+        drawFittedText(
                 graphics,
-                leftPos + 8,
-                topPos + 18,
-                menu.tankFluid(false),
-                menu.tankAmount(false),
-                10000);
-        text(graphics, Component.literal(menu.familyValue(0) + " mB/t"), 80, 40);
-        text(graphics, Component.literal(menu.familyValue(2) + " bar"), 80, 98);
-        text(
+                Component.literal(menu.familyValue(0) + Component.translatable("ic2.generic.text.mb").getString()
+                        + Component.translatable("ic2.generic.text.tick").getString()),
+                91, 172, 59, 0xff20eb3e);
+        drawFittedText(
                 graphics,
-                Component.literal(String.format(Locale.ROOT, "%.0f°C", menu.familyFloat(4))),
-                8,
-                60);
-        text(graphics, Component.literal(menu.fuelRemaining() + " HU"), 8, 78);
-        graphics.fill(leftPos + 8, topPos + 96, leftPos + 44, topPos + 102, 0xff747474);
-        graphics.fill(
-                leftPos + 8,
-                topPos + 96,
-                leftPos + 8 + 36 * menu.progress() / SteamBoiler.MAX_SCALE,
-                topPos + 102,
-                0xffaa7744);
-        text(graphics, Component.literal(menu.progress() / 1000 + "%"), 8, 108);
+                Component.translatable("ic2.steam_generator.gui.heatInput", menu.fuelRemaining()),
+                35, 135, 107, 0xff20eb3e);
+        drawFittedText(
+                graphics,
+                Component.translatable("ic2.steam_generator.gui.pressurevalve", menu.familyValue(2)),
+                26, 37, 38, 0xff20eb3e);
         var outputs = SteamBoiler.Output.values();
         int type = Math.clamp(menu.familyValue(6), 0, outputs.length - 1);
-        text(
+        drawFittedText(
                 graphics,
-                Component.literal(menu.familyValue(5) + " mB/t ")
-                        .append(
-                                Component.translatable(
-                                        "ic2.boiler.output."
-                                                + outputs[type].name().toLowerCase(Locale.ROOT))),
-                8,
-                132);
-    }
-
-    private void text(GuiGraphicsExtractor graphics, Component text, int x, int y) {
-        graphics.text(font, text, leftPos + x, topPos + y, 0xff404040, false);
+                Component.literal(menu.familyValue(5) + Component.translatable("ic2.generic.text.mb").getString()
+                        + Component.translatable("ic2.generic.text.tick").getString()),
+                70, 27, 77, 0xff20eb3e);
+        drawFittedText(
+                graphics,
+                Component.translatable("ic2.boiler.output." + outputs[type].name().toLowerCase(Locale.ROOT)),
+                70, 47, 96, 0xff20eb3e);
     }
 
     @Override
@@ -104,8 +85,10 @@ public final class SteamGeneratorScreen extends MachineScreen {
         FluidTankDisplay.tooltip(
                 minecraft,
                 graphics,
-                leftPos + 8,
-                topPos + 18,
+                leftPos + 10,
+                topPos + 155,
+                75,
+                47,
                 mouseX,
                 mouseY,
                 menu.tankFluid(false),
@@ -113,21 +96,14 @@ public final class SteamGeneratorScreen extends MachineScreen {
                 10000);
         int x = mouseX - leftPos, y = mouseY - topPos;
         Component tooltip = null;
-        if (x >= 8 && x < 48) {
-            if (y >= 57 && y < 70)
+        if (x >= 13 && x < 20) {
+            if (y >= 70 && y < 146)
                 tooltip =
                         Component.translatable(
-                                "ic2.boiler.temperature",
+                                "ic2.steam_generator.gui.systemheat",
                                 String.format(Locale.ROOT, "%.1f", menu.familyFloat(4)));
-            else if (y >= 75 && y < 90)
-                tooltip = Component.translatable("ic2.boiler.heat", menu.fuelRemaining());
-            else if (y >= 94 && y < 120)
-                tooltip =
-                        Component.translatable(
-                                "ic2.boiler.scale", menu.progress(), SteamBoiler.MAX_SCALE);
-        } else if (x >= 54 && x < 194) {
-            if (y >= 37 && y < 49) tooltip = Component.translatable("ic2.boiler.flow");
-            else if (y >= 95 && y < 107) tooltip = Component.translatable("ic2.boiler.pressure");
+        } else if (x >= 155 && x < 162 && y >= 61 && y < 119) {
+            tooltip = Component.translatable("ic2.steam_generator.gui.calcification", menu.progress() / 1000);
         }
         if (tooltip != null) graphics.setTooltipForNextFrame(font, tooltip, mouseX, mouseY);
     }

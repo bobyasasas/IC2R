@@ -3,13 +3,10 @@ package ic2.neoforge.client;
 import ic2.neoforge.menu.MachineMenu;
 
 import net.minecraft.client.gui.GuiGraphicsExtractor;
-import net.minecraft.client.gui.components.Button;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Inventory;
 
 public final class FluidRegulatorScreen extends MachineScreen {
-    private Button mode;
-
     public FluidRegulatorScreen(MachineMenu menu, Inventory inventory, Component title) {
         super(menu, inventory, title);
     }
@@ -23,22 +20,14 @@ public final class FluidRegulatorScreen extends MachineScreen {
     public void init() {
         super.init();
         for (int column = 0; column < 4; column++) {
-            int plus = column, minus = column + 4, value = (int) Math.pow(10, column);
-            int x = leftPos + 102 + column * 10;
-            addRenderableWidget(
-                    Button.builder(Component.literal("+"), b -> send(plus))
-                            .bounds(x, topPos + 44, 9, 9)
-                            .build());
-            addRenderableWidget(
-                    Button.builder(Component.literal("-"), b -> send(minus))
-                            .bounds(x, topPos + 68, 9, 9)
-                            .build());
+            int plus = 3 - column;
+            int minus = 7 - column;
+            int x = 102 + column * 10;
+            addLegacyControl(x, 44, 9, 9, plus, null);
+            addLegacyControl(x, 68, 9, 9, minus, null);
         }
-        mode =
-                addRenderableWidget(
-                        Button.builder(Component.literal("M"), b -> send(menu.familyValue(2) == 0 ? 8 : 9))
-                                .bounds(leftPos + 152, topPos + 44, 9, 9)
-                                .build());
+        addLegacyControl(152, 44, 9, 9, 8, this::modeLabel);
+        addLegacyControl(152, 68, 9, 9, 9, this::modeLabel);
     }
 
     private Component modeLabel() {
@@ -46,16 +35,10 @@ public final class FluidRegulatorScreen extends MachineScreen {
                 menu.familyValue(2) == 0 ? "ic2.regulator.second" : "ic2.regulator.tick");
     }
 
-    private void send(int id) {
-        if (minecraft.gameMode != null)
-            minecraft.gameMode.handleInventoryButtonClick(menu.containerId, id);
-    }
-
     @Override
     public void extractBackground(
             GuiGraphicsExtractor graphics, int mouseX, int mouseY, float partialTick) {
         super.extractBackground(graphics, mouseX, mouseY, partialTick);
-        mode.setTooltip(net.minecraft.client.gui.components.Tooltip.create(modeLabel()));
         FluidTankDisplay.drawNormal(
                 minecraft,
                 graphics,
@@ -64,13 +47,17 @@ public final class FluidRegulatorScreen extends MachineScreen {
                 menu.tankFluid(false),
                 menu.tankAmount(false),
                 10000);
-        graphics.text(
-                font,
-                Component.literal(menu.familyValue(0) + " mB"),
-                leftPos + 105,
-                topPos + 57,
-                0xff404040,
-                false);
+        drawFittedText(graphics, Component.literal(menu.familyValue(0) + " mB"), 105, 57, 38, 0xff20eb3e);
+        drawFittedText(
+                graphics,
+                Component.translatable(
+                        menu.familyValue(2) == 0
+                                ? "ic2.generic.text.sec"
+                                : "ic2.generic.text.tick"),
+                145,
+                57,
+                24,
+                0xff20eb3e);
     }
 
     @Override

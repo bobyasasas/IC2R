@@ -46,20 +46,8 @@ public final class SolarDistillerScreen extends MachineScreen {
                 menu.tankFluid(true),
                 menu.tankAmount(true),
                 10000);
-        graphics.text(
-                font,
-                Component.translatable("ic2.solar_distiller.sunlight"),
-                leftPos + 55,
-                topPos + 18,
-                0xff404040,
-                false);
-        graphics.text(
-                font,
-                Component.literal(menu.progress() / 10 + "%"),
-                leftPos + 55,
-                topPos + 28,
-                0xff404040,
-                false);
+        drawFittedText(graphics, Component.translatable("ic2.solar_distiller.sunlight"), 55, 18, 105, 0xff404040);
+        drawFittedText(graphics, Component.literal(menu.progress() / 10 + "%"), 55, 28, 105, 0xff404040);
     }
 
     @Override

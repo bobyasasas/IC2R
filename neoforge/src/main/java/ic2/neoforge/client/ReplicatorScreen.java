@@ -6,10 +6,10 @@ import ic2.neoforge.menu.MachineMenu;
 import ic2.neoforge.registration.ModFluids;
 
 import net.minecraft.client.gui.GuiGraphicsExtractor;
-import net.minecraft.client.gui.components.Button;
-import net.minecraft.client.gui.components.Tooltip;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.item.ItemStack;
 
 /** Replicator screen: pattern browsing and mode buttons (legacy last/next/single/repeat/stop). */
 public final class ReplicatorScreen extends MachineScreen {
@@ -20,26 +20,11 @@ public final class ReplicatorScreen extends MachineScreen {
     @Override
     public void init() {
         super.init();
-        smallButton("‹", "ic2.Replicator.gui.info.last", 0, 80, 16, 9, 18);
-        smallButton("›", "ic2.Replicator.gui.info.next", 1, 109, 16, 9, 18);
-        smallButton("■", "ic2.Replicator.gui.info.Stop", 3, 75, 82, 16, 16);
-        smallButton("1", "ic2.Replicator.gui.info.single", 4, 92, 82, 16, 16);
-        smallButton("∞", "ic2.Replicator.gui.info.repeat", 5, 109, 82, 16, 16);
-    }
-
-    private void smallButton(
-            String symbol, String tooltip, int action, int x, int y, int width, int height) {
-        var button =
-                Button.builder(Component.literal(symbol), b -> send(action))
-                        .bounds(leftPos + x, topPos + y, width, height)
-                        .build();
-        button.setTooltip(Tooltip.create(Component.translatable(tooltip)));
-        addRenderableWidget(button);
-    }
-
-    private void send(int id) {
-        if (minecraft.gameMode != null)
-            minecraft.gameMode.handleInventoryButtonClick(menu.containerId, id);
+        addLegacyControl(80, 16, 9, 18, 0, () -> Component.translatable("ic2.Replicator.gui.info.last"));
+        addLegacyControl(109, 16, 9, 18, 1, () -> Component.translatable("ic2.Replicator.gui.info.next"));
+        addLegacyControl(75, 82, 16, 16, 3, () -> Component.translatable("ic2.Replicator.gui.info.Stop"));
+        addLegacyControl(92, 82, 16, 16, 4, () -> Component.translatable("ic2.Replicator.gui.info.single"));
+        addLegacyControl(109, 82, 16, 16, 5, () -> Component.translatable("ic2.Replicator.gui.info.repeat"));
     }
 
     @Override
@@ -56,16 +41,26 @@ public final class ReplicatorScreen extends MachineScreen {
                 ModFluids.FAMILIES.get(FluidDefinition.UU_MATTER).source().get(),
                 tankAmount,
                 ReplicatorBlockEntity.TANK_CAPACITY);
-        int count = menu.familyValue(3);
-        if (count > 0) {
-            graphics.text(
-                    font,
-                    Component.literal(menu.familyValue(2) + " / " + count),
-                    leftPos + 8,
-                    topPos + 52,
-                    0xff404040,
-                    false);
+        if (menu.familyValue(4) >= 0)
+            graphics.item(
+                    new ItemStack(BuiltInRegistries.ITEM.byId(menu.familyValue(4))),
+                    leftPos + 91,
+                    topPos + 17);
+        int mode = menu.familyValue(1);
+        Component status;
+        int color;
+        if (mode == 0) {
+            status = Component.translatable("ic2.Replicator.gui.info.Waiting");
+            color = 0xffebeb20;
+        } else {
+            int percent =
+                    menu.progressMaximum() <= 0
+                            ? 0
+                            : Math.min(100, Math.round(menu.progress() * 100.0F / menu.progressMaximum()));
+            status = Component.literal("UU:" + percent + "%  EU:" + percent + "%  >" + (mode == 1 ? "" : ">"));
+            color = 0xff20eb3e;
         }
+        drawFittedText(graphics, status, 53, 40, 88, color);
     }
 
     @Override

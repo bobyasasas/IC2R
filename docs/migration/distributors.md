@@ -15,8 +15,8 @@
 | `neoforge/src/main/java/ic2/neoforge/machine/FluidDistributorBlockEntity.java` | plain/加权流体共用基类：1000mB 内罐、桶填充输出、模式化端口与推送 |
 | `neoforge/src/main/java/ic2/neoforge/machine/WeightedFluidDistributorBlockEntity.java` | ≤5 方向有序优先级，按序推送直至罐空 |
 | `neoforge/src/main/java/ic2/neoforge/machine/WeightedItemDistributorBlockEntity.java` | 9 格缓冲 + 同构优先级列表，逐方向 `moveStacking` 搬空缓冲 |
-| `neoforge/src/main/java/ic2/neoforge/client/FluidDistributorScreen.java` | 模式 toggle 按钮 + 罐量读数 |
-| `neoforge/src/main/java/ic2/neoforge/client/WeightedDistributorScreen.java` | 6 向 toggle 按钮矩阵（weighted 两件共用） |
+| `neoforge/src/main/java/ic2/neoforge/client/FluidDistributorScreen.java` | legacy 储罐、模式文字与原位透明切换热区 |
+| `neoforge/src/main/java/ic2/neoforge/client/WeightedDistributorScreen.java` | legacy 5×6 优先级矩阵（weighted 两件共用，行与方向共同编码） |
 
 注册走 `ModMachines` 自动链（MachineKind→block/item/entity/menu），`MachineMenu` 增加三件槽位布局，`MachineSounds` null 声明组。资产：10 张 legacy 贴图、7 个模型、3 个 blockstate（12 变体×3）、3 个 loot（wrench alternatives→machine 模式）。
 
@@ -43,6 +43,12 @@
 
 ## 现代化取舍（记档）
 
-1. **加权 GUI**：legacy 为 5×6 权重调节按钮矩阵；移植为 6 向 toggle 按钮（按下加入/移出优先级列表，屏幕按序显示）。语义等价（≤5 个非正面方向的有序集合），**视觉/UX 属人工验收项，留用户签署**。
+1. **加权 GUI**：已恢复 legacy 5×6 权重调节矩阵。新菜单事件使用
+   `6 + row * 6 + directionData` 表示目标行与方向；原有 `0..5` toggle 事件保留兼容。
+   再次点击当前单元会移除方向，点击其他行会移动优先级，正面方向仍由服务端拒绝。
 2. **模式切换**：legacy plain 分配器经红石网络事件 `onNetworkEvent` 翻转 active；移植为菜单按钮（`menuAction(0)`）。红石翻转不再提供。
 3. **均衡算法**：逐行移植 legacy 双阶段（simulate 收集+share 分配），行为经用例 2 验证与 legacy 一致。
+
+后续 GUI 收尾新增 `distributor_weighted_matrix`，覆盖矩阵插入、重排、移除与正面拒绝。
+普通流体分配机恢复 1000 mB legacy 罐容量对应的填充比例，避免按 10000 mB 绘制造成液面仅显示十分之一。
+包含该用例的当前全量验证为 IC2/GT 双模式各 578 项全部通过。

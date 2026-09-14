@@ -768,7 +768,10 @@ public final class MachineMenu extends AbstractContainerMenu {
         }
         addUpgradeSlots(inventory);
         machineSlots = slots.size();
-        addStandardInventorySlots(playerInventory, kind.inventoryX(), kind.inventoryY());
+        // The legacy boiler is a 220-pixel control panel with no player inventory. Adding the
+        // normal inventory here placed its slots directly over the water tank and valve buttons.
+        if (kind != MachineKind.STEAM_GENERATOR)
+            addStandardInventorySlots(playerInventory, kind.inventoryX(), kind.inventoryY());
         addDataSlots(data);
     }
 

@@ -26,15 +26,24 @@ public final class FermenterScreen extends MachineScreen {
     public void extractBackground(
             GuiGraphicsExtractor graphics, int mouseX, int mouseY, float partialTick) {
         super.extractBackground(graphics, mouseX, mouseY, partialTick);
-        for (boolean output : new boolean[] {false, true})
-            FluidTankDisplay.draw(
-                    minecraft,
-                    graphics,
-                    leftPos + (output ? 153 : 8),
-                    topPos + 18,
-                    menu.tankFluid(output),
-                    menu.tankAmount(output),
-                    output ? 2000 : 10000);
+        FluidTankDisplay.drawPlain(
+                minecraft,
+                graphics,
+                leftPos + 38,
+                topPos + 49,
+                48,
+                30,
+                menu.tankFluid(false),
+                menu.tankAmount(false),
+                10000);
+        FluidTankDisplay.drawNormal(
+                minecraft,
+                graphics,
+                leftPos + 125,
+                topPos + 22,
+                menu.tankFluid(true),
+                menu.tankAmount(true),
+                2000);
         LegacyMachineGui.drawGauge(
                 graphics,
                 leftPos,
@@ -55,16 +64,11 @@ public final class FermenterScreen extends MachineScreen {
     public void extractRenderState(
             GuiGraphicsExtractor graphics, int mouseX, int mouseY, float partialTick) {
         super.extractRenderState(graphics, mouseX, mouseY, partialTick);
-        for (boolean output : new boolean[] {false, true})
-            FluidTankDisplay.tooltip(
-                    minecraft,
-                    graphics,
-                    leftPos + (output ? 153 : 8),
-                    topPos + 18,
-                    mouseX,
-                    mouseY,
-                    menu.tankFluid(output),
-                    menu.tankAmount(output),
-                    output ? 2000 : 10000);
+        FluidTankDisplay.tooltip(
+                minecraft, graphics, leftPos + 38, topPos + 49, 48, 30, mouseX, mouseY,
+                menu.tankFluid(false), menu.tankAmount(false), 10000);
+        FluidTankDisplay.tooltip(
+                minecraft, graphics, leftPos + 125, topPos + 22, 20, 55, mouseX, mouseY,
+                menu.tankFluid(true), menu.tankAmount(true), 2000);
     }
 }

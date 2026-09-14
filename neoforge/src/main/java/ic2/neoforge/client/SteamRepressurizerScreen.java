@@ -32,30 +32,21 @@ public final class SteamRepressurizerScreen extends MachineScreen {
                     menu.tankFluid(output),
                     menu.tankAmount(output),
                     10000);
-        graphics.text(
-                font,
+        drawFittedText(
+                graphics,
                 Component.translatable(
                         "ic2.steam_repressurizer.rate", BalanceConfig.STEAM_PER_STEAM.get()),
-                leftPos + 54,
-                topPos + 30,
-                0xff404040,
-                false);
-        graphics.text(
-                font,
+                54, 30, 67, 0xff404040);
+        drawFittedText(
+                graphics,
                 Component.translatable(
                         "ic2.steam_repressurizer.super", BalanceConfig.STEAM_PER_SUPER_STEAM.get()),
-                leftPos + 54,
-                topPos + 44,
-                0xff404040,
-                false);
+                54, 44, 67, 0xff404040);
         if (menu.familyValue(4) < 0)
-            graphics.text(
-                    font,
+            drawFittedText(
+                    graphics,
                     Component.translatable("ic2.steam_repressurizer.no_steam"),
-                    leftPos + 54,
-                    topPos + 58,
-                    0xffb02020,
-                    false);
+                    54, 58, 67, 0xffb02020);
     }
 
     @Override

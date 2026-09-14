@@ -36,13 +36,10 @@ public final class StirlingKineticScreen extends MachineScreen {
                     menu.tankFluid(output),
                     menu.tankAmount(output),
                     2000);
-        graphics.text(
-                font,
+        drawFittedText(
+                graphics,
                 Component.translatable("ic2.work.kinetic", menu.fuelRemaining()),
-                leftPos + 48,
-                topPos + 58,
-                0xff404040,
-                false);
+                48, 58, 94, 0xff404040);
     }
 
     @Override

@@ -34,45 +34,30 @@ public final class TurbineScreen extends MachineScreen {
         super.extractBackground(graphics, mouseX, mouseY, partialTick);
         var statuses = RotorOperation.Status.values();
         var status = statuses[Math.clamp(menu.familyValue(1), 0, statuses.length - 1)];
-        graphics.text(
-                font,
+        drawFittedText(
+                graphics,
                 Component.translatable(
                         menu.kind() == MachineKind.WATER_KINETIC_GENERATOR
                                 ? "ic2.rotor.shore"
                                 : "ic2.rotor.wind",
                         number.format(menu.familyFloat(3))),
-                leftPos + 8,
-                topPos + 24,
-                0xff404040,
-                false);
-        graphics.text(
-                font,
+                8, 24, 160, 0xff404040);
+        drawFittedText(
+                graphics,
                 Component.translatable("ic2.rotor.obstructions", menu.familyValue(2)),
-                leftPos + 8,
-                topPos + 36,
-                0xff404040,
-                false);
-        graphics.text(
-                font,
+                8, 36, 160, 0xff404040);
+        drawFittedText(
+                graphics,
                 Component.translatable("ic2.rotor.output", menu.familyValue(0)),
-                leftPos + 8,
-                topPos + 53,
-                0xff404040,
-                false);
-        graphics.text(
-                font,
+                8, 53, 98, 0xff404040);
+        drawFittedText(
+                graphics,
                 Component.translatable("ic2.rotor.health", menu.progress() / 10),
-                leftPos + 109,
-                topPos + 53,
-                0xff404040,
-                false);
-        graphics.text(
-                font,
+                109, 53, 59, 0xff404040);
+        drawFittedText(
+                graphics,
                 Component.translatable(
                         "ic2.rotor.status." + status.name().toLowerCase(Locale.ROOT)),
-                leftPos + 8,
-                topPos + 65,
-                0xff404040,
-                false);
+                8, 65, 160, 0xff404040);
     }
 }

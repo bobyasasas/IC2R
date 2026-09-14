@@ -68,6 +68,11 @@ final class ReplicatorTests {
         helper.assertTrue(
                 replicator.tankAmount() == 1000, "The UU cell pours 1000 mB into the tank");
         helper.assertTrue(
+                replicator.menuValue(4)
+                        == net.minecraft.core.registries.BuiltInRegistries.ITEM.getId(
+                                Items.COBBLESTONE),
+                "The selected pattern item must be synchronized for the legacy GUI preview");
+        helper.assertTrue(
                 !replicator.inventory().stack(1).isEmpty(),
                 "The drained cell collects in the cell slot");
         replicator.energy().insert(512 * 4);

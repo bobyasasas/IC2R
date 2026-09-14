@@ -21,17 +21,16 @@ public final class EnergyOMatScreen extends MachineScreen {
     @Override
     public void init() {
         super.init();
-        for (int column = 0; column < 4; column++) {
-            int step = (int) Math.pow(10, column + 2);
-            int x = leftPos + 8 + column * 36;
-            int plus = 7 - column, minus = 3 - column;
+        String[] steps = {"100k", "10k", "1k", "100"};
+        for (int row = 0; row < 4; row++) {
+            int index = row;
             addRenderableWidget(
-                    Button.builder(Component.literal("+" + step), b -> send(plus))
-                            .bounds(x, topPos + 18, 35, 18)
+                    Button.builder(Component.literal("-" + steps[row]), b -> send(index))
+                            .bounds(leftPos + 102, topPos + 16 + row * 10, 32, 10)
                             .build());
             addRenderableWidget(
-                    Button.builder(Component.literal("-" + step), b -> send(minus))
-                            .bounds(x, topPos + 38, 35, 18)
+                    Button.builder(Component.literal("+" + steps[row]), b -> send(index + 4))
+                            .bounds(leftPos + 134, topPos + 16 + row * 10, 32, 10)
                             .build());
         }
     }
@@ -45,12 +44,18 @@ public final class EnergyOMatScreen extends MachineScreen {
     public void extractBackground(
             GuiGraphicsExtractor graphics, int mouseX, int mouseY, float partialTick) {
         super.extractBackground(graphics, mouseX, mouseY, partialTick);
-        graphics.text(
-                font,
-                Component.literal(menu.familyValue(0) + " EU"),
-                leftPos + 8,
-                topPos + 61,
-                0xff404040,
-                false);
+        drawFittedText(
+                graphics,
+                Component.translatable("container.inventory"),
+                8,
+                imageHeight - 94,
+                88,
+                0xff404040);
+        drawFittedText(
+                graphics, Component.translatable("ic2.container.personalTrader.offer"),
+                100, 60, 68, 0xff404040);
+        drawFittedText(
+                graphics, Component.literal(menu.familyValue(0) + " EU"),
+                100, 68, 68, 0xff404040);
     }
 }

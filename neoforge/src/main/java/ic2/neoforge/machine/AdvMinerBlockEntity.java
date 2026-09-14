@@ -57,7 +57,7 @@ public final class AdvMinerBlockEntity extends PoweredBlockEntity {
                 pos,
                 state,
                 4000000,
-                20);
+                MachineKind.ADV_MINER.slots());
     }
 
     @Override

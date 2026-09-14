@@ -31,25 +31,19 @@ public final class RotorGeneratorScreen extends MachineScreen {
                         : LegacyMachineGui.GaugeSpec.waterBucket(82, 36),
                 menu.progress(),
                 menu.progressMaximum());
-        graphics.text(
-                font,
+        drawFittedText(
+                graphics,
                 Component.translatable(
                         menu.kind() == MachineKind.WIND_GENERATOR
                                 ? "ic2.wind.obstructions"
                                 : "ic2.water.nearby",
                         menu.familyValue(0)),
-                leftPos + 78,
-                topPos + 19,
-                0xff404040,
-                false);
-        graphics.text(
-                font,
+                78, 19, 90, 0xff404040);
+        drawFittedText(
+                graphics,
                 Component.translatable(
                         "ic2.tooltip.generation", power.format(menu.familyValue(1) / 100.0)),
-                leftPos + 78,
-                topPos + 56,
-                0xff404040,
-                false);
+                78, 56, 90, 0xff404040);
     }
 
     @Override

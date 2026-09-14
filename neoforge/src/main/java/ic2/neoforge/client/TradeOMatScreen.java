@@ -50,21 +50,54 @@ public final class TradeOMatScreen extends MachineScreen {
     public void extractBackground(
             GuiGraphicsExtractor graphics, int mouseX, int mouseY, float partialTick) {
         super.extractBackground(graphics, mouseX, mouseY, partialTick);
-        if (menu.tradeEditable()) return;
+        drawFittedText(
+                graphics,
+                Component.translatable("container.inventory"),
+                8,
+                imageHeight - 94,
+                88,
+                0xff404040);
         int stock = menu.familyValue(1);
-        graphics.text(
-                font,
-                Component.translatable("ic2.container.personalTrader.stock"),
-                leftPos + 8,
-                topPos + 46,
-                0xff404040,
-                false);
-        graphics.text(
-                font,
-                Component.literal(stock < 0 ? "∞" : String.valueOf(stock)),
-                leftPos + 48,
-                topPos + 46,
-                stock == 0 ? 0xff5555 : 0xff404040,
-                false);
+        if (menu.tradeEditable()) {
+            drawFittedText(
+                    graphics,
+                    Component.translatable("ic2.container.personalTrader.want"),
+                    12, 23, 36, 0xff404040);
+            drawFittedText(
+                    graphics,
+                    Component.translatable("ic2.container.personalTrader.offer"),
+                    12, 57, 36, 0xff404040);
+            drawFittedText(
+                    graphics,
+                    Component.translatable("ic2.container.personalTrader.totalTrades0"),
+                    108, 28, 60, 0xff404040);
+            drawFittedText(
+                    graphics,
+                    Component.translatable("ic2.container.personalTrader.totalTrades1"),
+                    108, 36, 60, 0xff404040);
+            drawFittedText(graphics, Component.literal(String.valueOf(menu.familyValue(2))), 112, 44, 56, 0xff404040);
+            drawFittedText(
+                    graphics,
+                    Component.translatable("ic2.container.personalTrader.stock")
+                            .append(" " + (stock < 0 ? "∞" : stock)),
+                    108, 60, 60, 0xff404040);
+        } else {
+            drawFittedText(
+                    graphics,
+                    Component.translatable("ic2.container.personalTrader.want"),
+                    12, 23, 36, 0xff404040);
+            drawFittedText(
+                    graphics,
+                    Component.translatable("ic2.container.personalTrader.offer"),
+                    12, 42, 36, 0xff404040);
+            drawFittedText(
+                    graphics,
+                    Component.translatable("ic2.container.personalTrader.stock"),
+                    12, 60, 36, 0xff404040);
+            drawFittedText(
+                    graphics,
+                    Component.literal(stock < 0 ? "∞" : String.valueOf(stock)),
+                    50, 60, 80, stock == 0 ? 0xffff5555 : 0xff404040);
+        }
     }
 }

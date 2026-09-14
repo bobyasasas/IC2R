@@ -3,8 +3,6 @@ package ic2.neoforge.client;
 import ic2.neoforge.menu.MachineMenu;
 
 import net.minecraft.client.gui.GuiGraphicsExtractor;
-import net.minecraft.client.gui.components.Button;
-import net.minecraft.client.gui.components.Tooltip;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Inventory;
@@ -19,25 +17,10 @@ public final class PatternStorageScreen extends MachineScreen {
     @Override
     public void init() {
         super.init();
-        smallButton("‹", "ic2.PatternStorage.gui.info.last", 0, 7, 19, 9, 18);
-        smallButton("›", "ic2.PatternStorage.gui.info.next", 1, 36, 19, 9, 18);
-        smallButton("↑", "ic2.PatternStorage.gui.info.export", 2, 10, 37, 16, 8);
-        smallButton("↓", "ic2.PatternStorage.gui.info.import", 3, 26, 37, 16, 8);
-    }
-
-    private void smallButton(
-            String symbol, String tooltip, int action, int x, int y, int width, int height) {
-        var button =
-                Button.builder(Component.literal(symbol), b -> send(action))
-                        .bounds(leftPos + x, topPos + y, width, height)
-                        .build();
-        button.setTooltip(Tooltip.create(Component.translatable(tooltip)));
-        addRenderableWidget(button);
-    }
-
-    private void send(int id) {
-        if (minecraft.gameMode != null)
-            minecraft.gameMode.handleInventoryButtonClick(menu.containerId, id);
+        addLegacyControl(7, 19, 9, 18, 0, () -> Component.translatable("ic2.PatternStorage.gui.info.last"));
+        addLegacyControl(36, 19, 9, 18, 1, () -> Component.translatable("ic2.PatternStorage.gui.info.next"));
+        addLegacyControl(10, 37, 16, 8, 2, () -> Component.translatable("ic2.PatternStorage.gui.info.export"));
+        addLegacyControl(26, 37, 16, 8, 3, () -> Component.translatable("ic2.PatternStorage.gui.info.import"));
     }
 
     @Override
@@ -56,51 +39,33 @@ public final class PatternStorageScreen extends MachineScreen {
                     0xff404040,
                     false);
         }
-        graphics.text(
-                font,
-                Component.translatable("ic2.generic.text.Name"),
-                x + 10,
-                y + 48,
-                0xffffff,
-                false);
-        graphics.text(
-                font,
-                Component.translatable("ic2.generic.text.UUMatte"),
-                x + 10,
-                y + 59,
-                0xffffff,
-                false);
-        graphics.text(
-                font,
-                Component.translatable("ic2.generic.text.Energy"),
-                x + 10,
-                y + 70,
-                0xffffff,
-                false);
+        drawFittedText(graphics, Component.translatable("ic2.generic.text.Name"), 10, 48, 68, 0xffffff);
+        drawFittedText(graphics, Component.translatable("ic2.generic.text.UUMatte"), 10, 59, 68, 0xffffff);
+        drawFittedText(graphics, Component.translatable("ic2.generic.text.Energy"), 10, 70, 68, 0xffffff);
         if (size > 0 && menu.familyValue(2) >= 0) {
             ItemStack pattern =
                     new ItemStack(BuiltInRegistries.ITEM.byId(menu.familyValue(2)));
-            graphics.text(
-                    font, pattern.getHoverName(), x + 80, y + 48, 0xffffff, false);
-            graphics.text(
-                    font,
+            drawFittedText(graphics, pattern.getHoverName(), 80, 48, 68, 0xffffff);
+            drawFittedText(
+                    graphics,
                     Component.literal(
                             MeterScreen.toSiString(menu.familyFloat(3), 4)
                                     + Component.translatable("ic2.generic.text.bucketUnit")
                                             .getString()),
-                    x + 80,
-                    y + 59,
-                    0xffffff,
-                    false);
-            graphics.text(
-                    font,
+                    80,
+                    59,
+                    68,
+                    0xffffff);
+            drawFittedText(
+                    graphics,
                     Component.literal(
                             MeterScreen.toSiString(menu.familyFloat(4), 4)
                                     + Component.translatable("ic2.generic.text.EU").getString()),
-                    x + 80,
-                    y + 70,
-                    0xffffff,
-                    false);
+                    80,
+                    70,
+                    68,
+                    0xffffff);
+            graphics.item(pattern, x + 152, y + 29);
         }
     }
 }

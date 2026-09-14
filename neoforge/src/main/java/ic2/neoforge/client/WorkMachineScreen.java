@@ -64,34 +64,34 @@ public final class WorkMachineScreen extends MachineScreen {
                         : Component.translatable(
                                 "ic2.tooltip.generation",
                                 power.format(menu.familyValue(0) / 100.0));
-        graphics.text(
-                font,
+        drawFittedText(
+                graphics,
                 text,
-                leftPos + 78,
-                topPos + ((menu.kind().electricWork() || menu.kind().fuelHeat()) ? 53 : 56),
-                0xff404040,
-                false);
+                78,
+                (menu.kind().electricWork() || menu.kind().fuelHeat()) ? 53 : 56,
+                90,
+                0xff404040);
         if ((menu.kind().electricWork() || menu.kind().fuelHeat()))
-            graphics.text(
-                    font,
+            drawFittedText(
+                    graphics,
                     Component.translatable(
                             (menu.kind() == MachineKind.ELECTRIC_HEAT_GENERATOR
                                             || menu.kind().fuelHeat())
                                     ? "ic2.work.heat_rate"
                                     : "ic2.work.kinetic_rate",
                             menu.familyValue(1)),
-                    leftPos + 78,
-                    topPos + 64,
-                    0xff404040,
-                    false);
+                    78,
+                    64,
+                    90,
+                    0xff404040);
         if (menu.kind().workConversion())
-            graphics.text(
-                    font,
+            drawFittedText(
+                    graphics,
                     Component.translatable("ic2.work.voltage", menu.familyValue(1)),
-                    leftPos + 56,
-                    topPos + 25,
-                    0xff404040,
-                    false);
+                    56,
+                    25,
+                    112,
+                    0xff404040);
     }
 
     @Override

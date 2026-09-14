@@ -49,6 +49,45 @@ are retained as `images/gui-baseline-*.png` for comparison.
 The client log contained only the already-known missing narrator/flite and X11
 cursor messages during these checks; no machine-screen exception was observed.
 
+## Control and text pass
+
+The follow-up audit found that several specialized screens drew modern vanilla
+buttons over icons already present in the legacy texture. `MachineScreen` now
+provides transparent legacy control regions with click, hover, enable and
+tooltip handling. Canner, advanced miner, pattern storage, replicator, UU
+scanner and fluid controls use these regions, so their original artwork remains
+the only visible icon layer.
+
+`ContainerScreenBase.drawFittedText` constrains translated and live values to
+the legacy label region and appends an ellipsis when necessary. Machine screens
+also suppress the automatic vanilla Inventory label because the old `Ic2Gui`
+base did not draw one; Trade-O-Mat and Energy-O-Mat add it explicitly at their
+original coordinate. This removes the observed Advanced Miner, Pattern Storage
+and UU Scanner overlap without moving their slots.
+
+Additional exact restorations in this pass include:
+
+- legacy tanks and controls for fermenter, fluid distributor/regulator and the
+  complete 220-pixel steam-generator control panel;
+- legacy two-column Energy-O-Mat keypad and storage/transformer tool icons;
+- pattern-storage and replicator item previews, scanner progress overlay and
+  replicator status region;
+- the five-row weighted distributor priority matrix, with server-authoritative
+  row moves and a regression test for insert, reorder, remove and front-face
+  rejection.
+
+The first follow-up client pass rechecked the four screens that had visible
+overlap reports. Advanced Miner, Pattern Storage, UU Scanner and Energy-O-Mat
+all opened with their labels, icons and slots separated. The before/after
+captures for the first three are retained as `images/gui-overlap-*.png` and
+`images/gui-overlap-after-*.png`; Energy-O-Mat was verified interactively
+without adding another screenshot.
+
+Opening Advanced Miner during this pass also exposed a live menu contract bug:
+the menu bound four upgrade slots while its block entity allocated only three.
+The block entity now derives its inventory size from `MachineKind`, and a live
+menu audit reads every bound slot so this failure cannot silently return.
+
 ## Validation
 
 Run from the repository root:
@@ -57,6 +96,11 @@ Run from the repository root:
 ./gradlew build --console=plain
 git diff --check
 ```
+
+The control/text pass completed 578 required GameTests in both IC2 and GT
+energy modes. The runs used an isolated copy with unrelated local tag edits
+reset to `HEAD`; the working tree's modified `toolbox_tools.json` otherwise
+causes the pre-existing toolbox/dynamite admission test to fail.
 
 The shared layouts and representative real-client checks remove the broad GUI
 regression. Individual machines may still have small cosmetic differences that

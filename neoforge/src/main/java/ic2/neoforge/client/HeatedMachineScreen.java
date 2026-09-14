@@ -46,20 +46,8 @@ public final class HeatedMachineScreen extends MachineScreen {
                     menu.familyValue(0),
                     menu.familyValue(1));
         } else {
-            graphics.text(
-                    font,
-                    Component.translatable("ic2.generic.text.heat"),
-                    leftPos + 10,
-                    topPos + 36,
-                    0xff404040,
-                    false);
-            graphics.text(
-                    font,
-                    Component.literal(Integer.toString(menu.familyValue(0))),
-                    leftPos + 10,
-                    topPos + 46,
-                    0xff404040,
-                    false);
+            drawFittedText(graphics, Component.translatable("ic2.generic.text.heat"), 10, 36, 30, 0xff404040);
+            drawFittedText(graphics, Component.literal(Integer.toString(menu.familyValue(0))), 10, 46, 30, 0xff404040);
         }
     }
 

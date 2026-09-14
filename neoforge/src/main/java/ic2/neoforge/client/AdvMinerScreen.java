@@ -3,17 +3,11 @@ package ic2.neoforge.client;
 import ic2.neoforge.menu.MachineMenu;
 
 import net.minecraft.client.gui.GuiGraphicsExtractor;
-import net.minecraft.client.gui.components.Button;
-import net.minecraft.client.gui.components.Tooltip;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Inventory;
 
 /** Buttons for the sweep cursor, the blacklist mode and the silk touch switch. */
 public final class AdvMinerScreen extends MachineScreen {
-    private Button resetButton;
-    private Button modeButton;
-    private Button silkButton;
-
     public AdvMinerScreen(MachineMenu menu, Inventory inventory, Component title) {
         super(menu, inventory, title);
     }
@@ -21,26 +15,15 @@ public final class AdvMinerScreen extends MachineScreen {
     @Override
     public void init() {
         super.init();
-        resetButton = button("R", "ic2.AdvMiner.gui.switch.reset", 0, 133, 101, 36);
-        modeButton = button("M", "ic2.AdvMiner.gui.switch.mode", 1, 123, 27, 18);
-        silkButton =
-                button("S", "ic2.AdvMiner.gui.switch.silktouch", 2, 129, 45, 18);
-    }
-
-    private Button button(
-            String symbol, String tooltip, int action, int x, int y, int width) {
-        var button =
-                Button.builder(
-                                Component.literal(symbol),
-                                control -> {
-                                    if (minecraft.gameMode != null)
-                                        minecraft.gameMode.handleInventoryButtonClick(
-                                                menu.containerId, action);
-                                })
-                        .bounds(leftPos + x, topPos + y, width, 15)
-                        .build();
-        button.setTooltip(Tooltip.create(Component.translatable(tooltip)));
-        return addRenderableWidget(button);
+        addLegacyControl(133, 101, 36, 15, 0, () -> Component.translatable("ic2.AdvMiner.gui.switch.reset"));
+        addLegacyControl(123, 27, 18, 15, 1, this::modeLabel);
+        addLegacyControl(
+                129,
+                45,
+                18,
+                15,
+                2,
+                () -> Component.translatable("ic2.AdvMiner.gui.switch.silktouch", menu.familyValue(1) == 1));
     }
 
     private Component modeLabel() {
@@ -51,21 +34,16 @@ public final class AdvMinerScreen extends MachineScreen {
     }
 
     @Override
-    public void extractRenderState(
-            GuiGraphicsExtractor graphics, int mouseX, int mouseY, float partialTick) {
-        modeButton.setTooltip(Tooltip.create(modeLabel()));
-        silkButton.setTooltip(
-                Tooltip.create(
-                        Component.translatable(
-                                "ic2.AdvMiner.gui.switch.silktouch",
-                                menu.familyValue(1) == 1)));
-        super.extractRenderState(graphics, mouseX, mouseY, partialTick);
+    protected void drawLegacyMachineBackground(GuiGraphicsExtractor graphics) {
+        LegacyMachineGui.blit(graphics, LegacyMachineGui.COMMON, leftPos + 133, topPos + 101, 192, 32, 36, 15);
+        LegacyMachineGui.blit(graphics, LegacyMachineGui.COMMON, leftPos + 123, topPos + 27, 228, 32, 18, 15);
+        LegacyMachineGui.blit(graphics, LegacyMachineGui.COMMON, leftPos + 129, topPos + 45, 192, 47, 18, 15);
     }
 
     @Override
     public void extractBackground(
             GuiGraphicsExtractor graphics, int mouseX, int mouseY, float partialTick) {
         super.extractBackground(graphics, mouseX, mouseY, partialTick);
-        graphics.text(font, modeLabel(), leftPos + 40, topPos + 30, 0xff20eb3e, false);
+        drawFittedText(graphics, modeLabel(), 40, 30, 80, 0xff20eb3e);
     }
 }

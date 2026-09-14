@@ -27,13 +27,9 @@ public final class GeneratorScreen extends MachineScreen {
                     menu.familyValue(0),
                     menu.familyValue(2));
         if (menu.kind() == MachineKind.SOLAR_GENERATOR)
-            graphics.text(
-                    font,
-                    Component.translatable("ic2.solar.sunlight", menu.progress() / 10),
-                    leftPos + 76,
-                    topPos + 58,
-                    0xff404040,
-                    false);
+            drawFittedText(
+                    graphics, Component.translatable("ic2.solar.sunlight", menu.progress() / 10),
+                    76, 58, 92, 0xff404040);
     }
 
     @Override

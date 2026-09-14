@@ -143,6 +143,9 @@ public final class RegistrationTests {
         FUNCTIONS.register(
                 "distributor_priority_reload",
                 () -> EntityTickingTests.wrap(DistributorTests::priorityPersistsAcrossReload));
+        FUNCTIONS.register(
+                "distributor_weighted_matrix",
+                () -> EntityTickingTests.wrap(DistributorTests::weightedMatrixMovesPriority));
 
         FUNCTIONS.register("fluid_world", () -> EntityTickingTests.wrap(FluidTests::worldInteraction));
         FUNCTIONS.register("fluid_families", () -> EntityTickingTests.wrap(FluidTests::families));
@@ -869,6 +872,9 @@ public final class RegistrationTests {
         FUNCTIONS.register("stirling_kinetic_chain_charges_batbox", () -> EntityTickingTests.wrap(StirlingKineticTests::chainChargesBatbox));
         FUNCTIONS.register("menu_audit_slots", () -> MenuAuditTests::everyMachineMenuBindsInventorySlotsExactlyOnce);
         FUNCTIONS.register("menu_audit_chunk_loader", () -> EntityTickingTests.wrap(MenuAuditTests::chunkLoaderMenuMatchesSingleDischargeLayout));
+        FUNCTIONS.register(
+                "menu_audit_advanced_miner",
+                () -> EntityTickingTests.wrap(MenuAuditTests::advancedMinerMenuMatchesLiveInventory));
         FUNCTIONS.register("handheld_menu_family", () -> EntityTickingTests.wrap(MenuAuditTests::handheldMenuFamilyMatchesLegacy));
         FUNCTIONS.register("advanced_upgrade_registration", () -> EntityTickingTests.wrap(AdvancedUpgradeTests::registration));
         FUNCTIONS.register("advanced_upgrade_menu", () -> EntityTickingTests.wrap(AdvancedUpgradeTests::menu));

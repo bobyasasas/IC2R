@@ -234,5 +234,28 @@ final class DistributorTests {
         helper.succeed();
     }
 
+    static void weightedMatrixMovesPriority(GameTestHelper helper) {
+        var machine = weightedItem(helper);
+        // Matrix action = 6 + row * 6 + direction data. East and west start in rows 0 and 1.
+        helper.assertTrue(
+                machine.menuAction(11) && machine.menuAction(16),
+                "Matrix buttons must insert a direction at the requested priority row");
+        helper.assertTrue(
+                machine.menuValue(0) == 5 && machine.menuValue(1) == 4,
+                "Matrix rows must be reflected by the synchronized priority values");
+        helper.assertTrue(
+                machine.menuAction(10)
+                        && machine.menuValue(0) == 4
+                        && machine.menuValue(1) == 5,
+                "Selecting west in the highest row must move it ahead of east");
+        helper.assertTrue(
+                machine.menuAction(10) && machine.menuValue(0) == 5,
+                "Selecting an already active matrix cell must remove it and close the gap");
+        helper.assertTrue(
+                !machine.menuAction(8),
+                "The matrix must reject the machine's front face just like legacy toggles");
+        helper.succeed();
+    }
+
     private DistributorTests() {}
 }

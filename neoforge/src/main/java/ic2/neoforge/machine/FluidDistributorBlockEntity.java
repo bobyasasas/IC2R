@@ -28,7 +28,7 @@ import java.util.ArrayList;
  */
 public class FluidDistributorBlockEntity extends MachineBlockEntity implements FluidMachine {
     public static final int INPUT = 0, OUTPUT = 1;
-    protected static final int CAPACITY = 1000;
+    public static final int CAPACITY = 1000;
 
     protected final MachineFluidTank tank =
             new MachineFluidTank(CAPACITY, this::setChanged, fluid -> true);

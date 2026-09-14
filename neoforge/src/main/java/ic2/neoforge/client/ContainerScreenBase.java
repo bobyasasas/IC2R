@@ -27,6 +27,25 @@ public class ContainerScreenBase<T extends AbstractContainerMenu>
         return null;
     }
 
+    /** Draw text inside a fixed legacy label region without spilling over slots or icons. */
+    protected void drawFittedText(
+            GuiGraphicsExtractor graphics,
+            Component text,
+            int x,
+            int y,
+            int maxWidth,
+            int color) {
+        String value = text.getString();
+        if (font.width(value) > maxWidth) {
+            String ellipsis = "…";
+            value =
+                    font.plainSubstrByWidth(
+                                    value, Math.max(0, maxWidth - font.width(ellipsis)))
+                            + ellipsis;
+        }
+        graphics.text(font, Component.literal(value), leftPos + x, topPos + y, color, false);
+    }
+
     @Override
     public void extractBackground(
             GuiGraphicsExtractor graphics, int mouseX, int mouseY, float partialTick) {
