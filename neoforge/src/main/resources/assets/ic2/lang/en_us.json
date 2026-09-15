@@ -847,6 +847,7 @@
   "ic2.jade.progress.fraction": "%s / %s",
   "ic2.jade.progress.time": "%1$ss / %2$ss",
   "ic2.jade.progress.time_both": "%1$ss / %2$ss (%3$s%%)",
+  "ic2.jade.progress.working": "Working · %s%%",
   "ic2.jade.working": "Working",
   "ic2.jei.recipes": "Show recipes",
   "ic2.jei.transfer.error.fluid_mismatch": "Input tank contains wrong fluid. Required: %s",

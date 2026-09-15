@@ -1,6 +1,6 @@
 # M14／P17：可选模组集成（JEI、Jade、AE2）
 
-状态：进行中（2026-09-14，M14-a/b/c/d 与 P17-AE2 桥接切片交付）。本文记录目标版本评估证据、集成策略与已验证边界。
+状态：进行中（2026-09-14，M14-a/b/c/d/e 与 P17-AE2 桥接切片交付）。本文记录目标版本评估证据、集成策略与已验证边界。
 
 ## 目标版本评估（2026-09-10 取证）
 
@@ -105,3 +105,12 @@ legacy 排查勘误后的移植（legacy 蓝本：`ic2/integration/ae2/Ic2Ae2Plu
 - `MachineRecipeLinks` 作为单个通用 JEI GUI handler，按 `MachineKind` 和 Canner/Metal Former 当前模式解析类型。旧版 XML/GUI 中的 RecipeButton 坐标作为点击区；新增热流体机器使用其现有动态读数/进度区域。机器 Screen 不直接引用 JEI API，保持无 JEI 安装时的可选依赖边界。
 - 点击机器 GUI 的进度条、燃料条或对应动态工作区后，JEI 打开该机器当前模式的配方列表；Canner 与 Metal Former 不会错误跳到其他模式。
 - 真实客户端验收通过：Macerator 进度条打开 `1/116`；Canner mode 1/2 分别打开排空/装填 `1/38`；Stirling Kinetic Generator 打开加热 `1/2`；Iron Furnace 的工作区和燃料区分别打开原版 Smelting `1/55` 与 Smelting Fuel `1/97`。Jade 同时显示机器名与 `0 EU / 1.8k EU` 能量数据。
+
+## 已交付：M14-e Jade 信息层级与空闲降噪（2026-09-14）
+
+- 继续复用 Jade universal energy/progress 视图及其主题、缩放与条形样式，不引入固定屏幕坐标和 IC2 私有 HUD 贴图。
+- 普通能量行只显示 `current / maximum`；按住 Shift 的详情视图增加百分比。进度行普通模式显示本地化的 `Working · N%`／`运行中 · N%`，Shift 详情显示 `current / maximum (N%)`。
+- 进度百分比统一钳制到 0–100；服务端额外同步精确 current/maximum，客户端不再从取整后的文本反推详情。
+- 只有方块 `ACTIVE=true` 且进度有效时才发送进度视图。机器空闲、缺料或断电暂停时保留内部进度以便续作，但 Jade 收起“运行中”文字和进度条。
+- 真实客户端由 `luna_worker` 完成画面复核：空闲 Iron Furnace 不再显示 0% 空条；MFE 普通视图 `30k EU / 40k EU`、Shift 详情 `30k EU / 40k EU (75%)` 无重叠；Macerator 运行态 `Working · 61%` 与进度条无裁切，断电 inactive 后两者均消失。日志没有 IC2/Jade 异常，仅有无头环境的 narrator/OpenAL 警告。
+- 验证：Java 25 clean build；装 JEI/Jade 的 IC2 与 GT 双能量模式各 578 项 GameTest；不装可选模组的 IC2 模式 578 项 GameTest；artifact/server-boundary、迁移清单和双语 JSON 检查均通过。

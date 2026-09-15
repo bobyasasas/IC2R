@@ -845,6 +845,7 @@
   "ic2.jade.progress.fraction": "%s / %s",
   "ic2.jade.progress.time": "%1$s秒 / %2$s秒",
   "ic2.jade.progress.time_both": "%1$s秒 / %2$s秒 (%3$s%%)",
+  "ic2.jade.progress.working": "运行中 · %s%%",
   "ic2.jade.working": "运行中",
   "ic2.jei.recipes": "显示配方",
   "ic2.jei.transfer.error.fluid_mismatch": "输入罐内流体不匹配，需要：%s",
